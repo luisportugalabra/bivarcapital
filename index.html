@@ -237,6 +237,10 @@ a { color: inherit; text-decoration: none; }
       <h2>Real capital. Real returns.</h2>
       <p>Every strategy is run with real money. These are actual returns, not simulations.</p>
     </div>
+    <div id="data-date-bar" style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:10px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px">
+      <span class="live-dot"></span>
+      <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted)">Data as of: <strong id="data-date-display" style="color:var(--text-secondary)">loading...</strong> &mdash; updated daily from market close</span>
+    </div>
     <div class="perf-table-wrap">
       <table class="perf-table">
         <thead><tr><th>Strategy</th><th>2025</th><th>2026 YTD</th><th>Since Jan 2024</th><th>Status</th></tr></thead>
@@ -481,6 +485,10 @@ window.addEventListener('resize', function(){drawGrowthChart('homeChart');});
 fetch('wizard-data.json')
   .then(r => r.json())
   .then(d => {
+    // Update data date
+    const dateEl = document.getElementById('data-date-display');
+    if (dateEl && d.date) dateEl.textContent = d.date;
+    // Live preview stocks
     const stocks = (d.momentum && d.momentum.USA) ? d.momentum.USA.slice(0, 3) : [];
     const tbody = document.getElementById('preview-tbody');
     if (stocks.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="padding:20px;text-align:center;color:var(--text-muted)">No data</td></tr>'; return; }
