@@ -228,7 +228,7 @@
         </div>
       </div>
 
-      <p style="margin-top:32px;font-size:0.7rem;color:var(--text-muted);text-align:center">Positions as of April 2026. Updated at each rebalance. Not financial advice.</p>
+      <p style="margin-top:32px;font-size:0.7rem;color:var(--text-muted);text-align:center">Last updated: <span id="port-updated">loading...</span> &middot; Auto-updated daily after market close. Not financial advice.</p>
 
       </div><!-- /portfolio-content -->
     </div>
@@ -306,6 +306,46 @@
     }
   }
   checkPortfolioAuth();
+
+  // Load live portfolio data
+  fetch('portfolio-data.json')
+    .then(r => r.json())
+    .then(data => {
+      // Update timestamp
+      const dateEl = document.getElementById('port-updated');
+      if (dateEl) dateEl.textContent = data.updated;
+
+      const stratMap = {
+        'discretionary': 'sec-geral',
+        'vc2': 'sec-vc2',
+        'vc2trend': 'sec-vc2trend'
+      };
+      const stratLabels = {
+        'discretionary': 'Discretionary Portfolio',
+        'vc2': 'Value Strategy',
+        'vc2trend': 'Momentum + Value'
+      };
+
+      for (const [strat, elemId] of Object.entries(stratMap)) {
+        const s = data.strategies[strat];
+        if (!s) continue;
+        const section = document.getElementById(elemId);
+        if (!section) continue;
+
+        // Update header
+        const h3 = section.querySelector('h3');
+        if (h3) h3.textContent = `${stratLabels[strat]} \u2014 ${s.n_positions} positions`;
+
+        // Update table
+        const tbody = section.querySelector('tbody');
+        if (tbody) {
+          tbody.innerHTML = s.positions.map((p, i) =>
+            `<tr><td>${i+1}</td><td class="ticker">${p.ticker}</td><td class="r">${p.weight}%</td></tr>`
+          ).join('');
+        }
+      }
+    })
+    .catch(e => console.log('Portfolio data not available yet'));
   </script>
   <script src="auth-nav.js"></script>
 </body>

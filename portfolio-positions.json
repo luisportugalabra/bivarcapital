@@ -1,0 +1,331 @@
+{
+  "discretionary": [
+    {
+      "ticker": "BRK-B",
+      "qty": 312,
+      "avg_cost": 492.5,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "JD",
+      "qty": 4616,
+      "avg_cost": 30.3,
+      "broker": "IBKR+TT",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "META",
+      "qty": 133,
+      "avg_cost": 605.2,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "MSFT",
+      "qty": 156,
+      "avg_cost": 385.2,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "AMZN",
+      "qty": 305,
+      "avg_cost": 203.61,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "CLNX",
+      "qty": 1869,
+      "avg_cost": 26.83,
+      "broker": "IBKR",
+      "ccy": "EUR"
+    },
+    {
+      "ticker": "PRX",
+      "qty": 910,
+      "avg_cost": 40.65,
+      "broker": "IBKR",
+      "ccy": "EUR"
+    },
+    {
+      "ticker": "EXO",
+      "qty": 481,
+      "avg_cost": 66.42,
+      "broker": "IBKR",
+      "ccy": "EUR"
+    },
+    {
+      "ticker": "GOOGL",
+      "qty": 112,
+      "avg_cost": 312.67,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "SE",
+      "qty": 452,
+      "avg_cost": 82.11,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "MELI",
+      "qty": 21,
+      "avg_cost": 1707.41,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "V",
+      "qty": 100,
+      "avg_cost": 307.91,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "AMD",
+      "qty": 100,
+      "avg_cost": 193.22,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "NOMD",
+      "qty": 2100,
+      "avg_cost": 10.9,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "FISV",
+      "qty": 370,
+      "avg_cost": 63.86,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "BABA",
+      "qty": 150,
+      "avg_cost": 122.01,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "CHTR",
+      "qty": 50,
+      "avg_cost": 212.42,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "WISE",
+      "qty": 1000,
+      "avg_cost": 8.91,
+      "broker": "IBKR",
+      "ccy": "GBP"
+    },
+    {
+      "ticker": "SFM",
+      "qty": 200,
+      "avg_cost": 66.42,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "ACN",
+      "qty": 75,
+      "avg_cost": 199.76,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "2330",
+      "qty": 178,
+      "avg_cost": 1815,
+      "broker": "IBKR",
+      "ccy": "TWD"
+    },
+    {
+      "ticker": "NVO",
+      "qty": 300,
+      "avg_cost": 40.63,
+      "broker": "IBKR",
+      "ccy": "USD"
+    },
+    {
+      "ticker": "MA",
+      "qty": 20,
+      "avg_cost": 497.4,
+      "broker": "IBKR",
+      "ccy": "USD"
+    }
+  ],
+  "vc2": [
+    {
+      "ticker": "SM",
+      "qty": 481.6,
+      "avg_cost": 19.94,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "PVH",
+      "qty": 81,
+      "avg_cost": 62.23,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "APA",
+      "qty": 181,
+      "avg_cost": 27.64,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "HOG",
+      "qty": 277,
+      "avg_cost": 18.03,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "SGU",
+      "qty": 423,
+      "avg_cost": 11.84,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "AMCX",
+      "qty": 696,
+      "avg_cost": 7.25,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "NUS",
+      "qty": 690,
+      "avg_cost": 7.28,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "SSTK",
+      "qty": 304,
+      "avg_cost": 16.23,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "CMCSA",
+      "qty": 181,
+      "avg_cost": 27.61,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "GPK",
+      "qty": 506,
+      "avg_cost": 9.93,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "EBS",
+      "qty": 598,
+      "avg_cost": 8.33,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "WNC",
+      "qty": 510,
+      "avg_cost": 9.83,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "ANGI",
+      "qty": 675,
+      "avg_cost": 7.4,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "ACCO",
+      "qty": 1492,
+      "avg_cost": 3.35,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "CALM",
+      "qty": 57,
+      "avg_cost": 88.31,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "DXC",
+      "qty": 330,
+      "avg_cost": 15.17,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "CNXC",
+      "qty": 128,
+      "avg_cost": 39.16,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "VSNT",
+      "qty": 14,
+      "avg_cost": 43.54,
+      "ccy": "USD"
+    }
+  ],
+  "vc2trend": [
+    {
+      "ticker": "SENEA",
+      "qty": 42,
+      "avg_cost": 118.57,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "EIX",
+      "qty": 77,
+      "avg_cost": 64.79,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "IMKTA",
+      "qty": 59,
+      "avg_cost": 84.99,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "EBF",
+      "qty": 242,
+      "avg_cost": 20.63,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "DINO",
+      "qty": 87,
+      "avg_cost": 57.56,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "CYH",
+      "qty": 1552,
+      "avg_cost": 3.23,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "GM",
+      "qty": 62,
+      "avg_cost": 79.9,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "M",
+      "qty": 235,
+      "avg_cost": 21.28,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "UHS",
+      "qty": 23,
+      "avg_cost": 213.75,
+      "ccy": "USD"
+    }
+  ]
+}
