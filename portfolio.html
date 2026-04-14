@@ -109,7 +109,7 @@
       <!-- Stats bar -->
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px">
         <div style="background:var(--bg-card);padding:20px" class="port-stat">
-          <div class="port-stat-val">50</div>
+          <div class="port-stat-val">51</div>
           <div class="port-stat-label">Positions</div>
         </div>
         <div style="background:var(--bg-card);padding:20px" class="port-stat">
@@ -117,7 +117,7 @@
           <div class="port-stat-label">Strategies</div>
         </div>
         <div style="background:var(--bg-card);padding:20px" class="port-stat">
-          <div class="port-stat-val" style="color:var(--green)">+0.9%</div>
+          <div class="port-stat-val" style="color:var(--green)">+4.2%</div>
           <div class="port-stat-label">Total P&amp;L</div>
         </div>
         <div style="background:var(--bg-card);padding:20px" class="port-stat">
@@ -126,47 +126,65 @@
         </div>
       </div>
 
+      <!-- Annual Returns -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:32px;overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:0.8rem">
+          <thead><tr>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border)">Year</th>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)">Discretionary</th>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)">Value (VC2)</th>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)">Mom + Value</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:8px 12px;color:var(--text)">2024</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+28.6%</td><td style="padding:8px 12px;text-align:right;color:var(--text-muted)">&mdash;</td><td style="padding:8px 12px;text-align:right;color:var(--text-muted)">&mdash;</td></tr>
+            <tr><td style="padding:8px 12px;color:var(--text)">2025</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+28.8%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+8.5%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+9.3%</td></tr>
+            <tr><td style="padding:8px 12px;color:var(--text)">2026 YTD</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+1.7%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+9.1%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+3.7%</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.65rem;color:var(--text-muted);margin-top:8px;text-align:center">Returns in EUR, excluding cash. Discretionary includes IBKR + TastyTrade.</p>
+      </div>
+
       <!-- Tabs -->
       <div class="port-tabs">
         <div class="port-tab active" onclick="showTab('geral')">Discretionary</div>
         <div class="port-tab" onclick="showTab('vc2')">Value Strategy</div>
         <div class="port-tab" onclick="showTab('vc2trend')">Momentum + Value</div>
-        <div class="port-tab" onclick="showTab('momentum')">Momentum <span class="pro-lock">SOON</span></div>
       </div>
 
       <!-- GERAL -->
       <div class="port-section active" id="sec-geral">
         <div style="margin-bottom:20px">
-          <h3 style="font-size:1.1rem;margin-bottom:6px">Discretionary Portfolio &mdash; 23 positions</h3>
-          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Conviction-based picks. Scalable businesses with long-term compounding potential.</p>
+          <h3 style="font-size:1.1rem;margin-bottom:6px">Discretionary Portfolio &mdash; 24 positions</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Conviction-based picks. Scalable businesses with long-term compounding potential. <span style="color:var(--green)">+2.2% unrealized</span></p>
         </div>
         <div style="overflow-x:auto">
           <table class="pos-table">
-            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th></tr></thead>
+            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th><th class="r">P&amp;L</th></tr></thead>
             <tbody>
-              <tr><td>1</td><td class="ticker">BRK.B</td><td class="r">15.8%</td></tr>
-              <tr><td>2</td><td class="ticker">JD</td><td class="r">14.1%</td></tr>
-              <tr><td>3</td><td class="ticker">META</td><td class="r">8.2%</td></tr>
-              <tr><td>4</td><td class="ticker">MSFT</td><td class="r">7.2%</td></tr>
-              <tr><td>5</td><td class="ticker">AMZN</td><td class="r">7.0%</td></tr>
-              <tr><td>6</td><td class="ticker">CLNX</td><td class="r">6.1%</td></tr>
-              <tr><td>7</td><td class="ticker">PRX</td><td class="r">4.7%</td></tr>
-              <tr><td>8</td><td class="ticker">EXO</td><td class="r">4.1%</td></tr>
-              <tr><td>9</td><td class="ticker">GOOGL</td><td class="r">3.8%</td></tr>
-              <tr><td>10</td><td class="ticker">SE</td><td class="r">3.6%</td></tr>
-              <tr><td>11</td><td class="ticker">MELI</td><td class="r">3.6%</td></tr>
-              <tr><td>12</td><td class="ticker">V</td><td class="r">3.2%</td></tr>
-              <tr><td>13</td><td class="ticker">AMD</td><td class="r">2.6%</td></tr>
-              <tr><td>14</td><td class="ticker">FISV</td><td class="r">2.2%</td></tr>
-              <tr><td>15</td><td class="ticker">NOMD</td><td class="r">2.2%</td></tr>
-              <tr><td>16</td><td class="ticker">BABA</td><td class="r">2.0%</td></tr>
-              <tr><td>17</td><td class="ticker">LULU</td><td class="r">1.7%</td></tr>
-              <tr><td>18</td><td class="ticker">SFM</td><td class="r">1.6%</td></tr>
-              <tr><td>19</td><td class="ticker">ACN</td><td class="r">1.4%</td></tr>
-              <tr><td>20</td><td class="ticker">WISE</td><td class="r">1.4%</td></tr>
-              <tr><td>21</td><td class="ticker">2330</td><td class="r">1.2%</td></tr>
-              <tr><td>22</td><td class="ticker">NVO</td><td class="r">1.2%</td></tr>
-              <tr><td>23</td><td class="ticker">MA</td><td class="r">1.1%</td></tr>
+              <tr><td>1</td><td class="ticker">BRK.B</td><td class="r">15.6%</td><td class="r" style="color:var(--red)">-2.6%</td></tr>
+              <tr><td>2</td><td class="ticker">JD</td><td class="r">13.9%</td><td class="r" style="color:var(--red)">-5.6%</td></tr>
+              <tr><td>3</td><td class="ticker">META</td><td class="r">8.7%</td><td class="r" style="color:var(--green)">+4.1%</td></tr>
+              <tr><td>4</td><td class="ticker">MSFT</td><td class="r">6.0%</td><td class="r" style="color:var(--red)">-3.7%</td></tr>
+              <tr><td>5</td><td class="ticker">AMZN</td><td class="r">7.6%</td><td class="r" style="color:var(--green)">+17.1%</td></tr>
+              <tr><td>6</td><td class="ticker">CLNX</td><td class="r">6.9%</td><td class="r" style="color:var(--green)">+12.0%</td></tr>
+              <tr><td>7</td><td class="ticker">PRX</td><td class="r">4.6%</td><td class="r" style="color:var(--green)">+2.2%</td></tr>
+              <tr><td>8</td><td class="ticker">EXO</td><td class="r">4.1%</td><td class="r" style="color:var(--green)">+3.7%</td></tr>
+              <tr><td>9</td><td class="ticker">GOOGL</td><td class="r">3.7%</td><td class="r" style="color:var(--green)">+1.5%</td></tr>
+              <tr><td>10</td><td class="ticker">SE</td><td class="r">4.0%</td><td class="r" style="color:var(--green)">+4.6%</td></tr>
+              <tr><td>11</td><td class="ticker">MELI</td><td class="r">3.9%</td><td class="r" style="color:var(--green)">+3.9%</td></tr>
+              <tr><td>12</td><td class="ticker">V</td><td class="r">3.2%</td><td class="r" style="color:var(--red)">-1.2%</td></tr>
+              <tr><td>13</td><td class="ticker">AMD</td><td class="r">2.6%</td><td class="r" style="color:var(--green)">+26.8%</td></tr>
+              <tr><td>14</td><td class="ticker">NOMD</td><td class="r">2.2%</td><td class="r" style="color:var(--red)">-9.5%</td></tr>
+              <tr><td>15</td><td class="ticker">FISV</td><td class="r">2.2%</td><td class="r" style="color:var(--red)">-12.2%</td></tr>
+              <tr><td>16</td><td class="ticker">BABA</td><td class="r">2.0%</td><td class="r" style="color:var(--green)">+4.4%</td></tr>
+              <tr><td>17</td><td class="ticker">CHTR</td><td class="r">1.1%</td><td class="r" style="color:var(--green)">+3.0%</td></tr>
+              <tr><td>18</td><td class="ticker">WISE</td><td class="r">1.4%</td><td class="r" style="color:var(--green)">+9.1%</td></tr>
+              <tr><td>19</td><td class="ticker">SFM</td><td class="r">1.6%</td><td class="r" style="color:var(--green)">+16.2%</td></tr>
+              <tr><td>20</td><td class="ticker">ACN</td><td class="r">1.4%</td><td class="r" style="color:var(--red)">-10.1%</td></tr>
+              <tr><td>21</td><td class="ticker">2330</td><td class="r">1.2%</td><td class="r" style="color:var(--green)">+10.2%</td></tr>
+              <tr><td>22</td><td class="ticker">NVO</td><td class="r">1.2%</td><td class="r" style="color:var(--red)">-7.7%</td></tr>
+              <tr><td>23</td><td class="ticker">MA</td><td class="r">1.0%</td><td class="r" style="color:var(--green)">+0.3%</td></tr>
+              <tr><td>24</td><td class="ticker">JD (TT)</td><td class="r">2.2%</td><td class="r" style="color:var(--red)">-8.4%</td></tr>
             </tbody>
           </table>
         </div>
@@ -176,30 +194,30 @@
       <div class="port-section" id="sec-vc2">
         <div style="margin-bottom:20px">
           <h3 style="font-size:1.1rem;margin-bottom:6px">Value Strategy &mdash; 18 positions</h3>
-          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Systematic. Ranked by fundamental value composite. Cheapest stocks.</p>
+          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Systematic. Ranked by 6-metric value composite (VC2). <span style="color:var(--green)">+7.6% unrealized</span></p>
         </div>
         <div style="overflow-x:auto">
           <table class="pos-table">
-            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th></tr></thead>
+            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th><th class="r">P&amp;L</th></tr></thead>
             <tbody>
-              <tr><td>1</td><td class="ticker">SM</td><td class="r">14.3%</td></tr>
-              <tr><td>2</td><td class="ticker">PVH</td><td class="r">7.7%</td></tr>
-              <tr><td>3</td><td class="ticker">APA</td><td class="r">7.3%</td></tr>
-              <tr><td>4</td><td class="ticker">HOG</td><td class="r">6.6%</td></tr>
-              <tr><td>5</td><td class="ticker">SGU</td><td class="r">5.5%</td></tr>
-              <tr><td>6</td><td class="ticker">AMCX</td><td class="r">5.5%</td></tr>
-              <tr><td>7</td><td class="ticker">NUS</td><td class="r">5.4%</td></tr>
-              <tr><td>8</td><td class="ticker">SSTK</td><td class="r">5.3%</td></tr>
-              <tr><td>9</td><td class="ticker">CMCSA</td><td class="r">5.3%</td></tr>
-              <tr><td>10</td><td class="ticker">GPK</td><td class="r">5.1%</td></tr>
-              <tr><td>11</td><td class="ticker">EBS</td><td class="r">5.0%</td></tr>
-              <tr><td>12</td><td class="ticker">WNC</td><td class="r">4.9%</td></tr>
-              <tr><td>13</td><td class="ticker">ANGI</td><td class="r">4.8%</td></tr>
-              <tr><td>14</td><td class="ticker">ACCO</td><td class="r">4.7%</td></tr>
-              <tr><td>15</td><td class="ticker">CALM</td><td class="r">4.5%</td></tr>
-              <tr><td>16</td><td class="ticker">DXC</td><td class="r">3.9%</td></tr>
-              <tr><td>17</td><td class="ticker">CNXC</td><td class="r">3.5%</td></tr>
-              <tr><td>18</td><td class="ticker">VSNT</td><td class="r">0.6%</td></tr>
+              <tr><td>1</td><td class="ticker">SM</td><td class="r">14.3%</td><td class="r" style="color:var(--green)">+44.7%</td></tr>
+              <tr><td>2</td><td class="ticker">PVH</td><td class="r">7.4%</td><td class="r" style="color:var(--green)">+43.0%</td></tr>
+              <tr><td>3</td><td class="ticker">APA</td><td class="r">7.4%</td><td class="r" style="color:var(--green)">+42.9%</td></tr>
+              <tr><td>4</td><td class="ticker">HOG</td><td class="r">6.5%</td><td class="r" style="color:var(--green)">+27.0%</td></tr>
+              <tr><td>5</td><td class="ticker">SGU</td><td class="r">5.4%</td><td class="r" style="color:var(--green)">+5.7%</td></tr>
+              <tr><td>6</td><td class="ticker">AMCX</td><td class="r">5.4%</td><td class="r" style="color:var(--green)">+4.1%</td></tr>
+              <tr><td>7</td><td class="ticker">NUS</td><td class="r">5.3%</td><td class="r" style="color:var(--green)">+3.2%</td></tr>
+              <tr><td>8</td><td class="ticker">SSTK</td><td class="r">5.5%</td><td class="r" style="color:var(--green)">+7.9%</td></tr>
+              <tr><td>9</td><td class="ticker">CMCSA</td><td class="r">5.2%</td><td class="r" style="color:var(--green)">+1.6%</td></tr>
+              <tr><td>10</td><td class="ticker">GPK</td><td class="r">5.1%</td><td class="r" style="color:var(--red)">-1.3%</td></tr>
+              <tr><td>11</td><td class="ticker">EBS</td><td class="r">5.1%</td><td class="r" style="color:var(--red)">-1.1%</td></tr>
+              <tr><td>12</td><td class="ticker">WNC</td><td class="r">4.8%</td><td class="r" style="color:var(--red)">-7.0%</td></tr>
+              <tr><td>13</td><td class="ticker">ANGI</td><td class="r">5.1%</td><td class="r" style="color:var(--red)">-0.1%</td></tr>
+              <tr><td>14</td><td class="ticker">ACCO</td><td class="r">4.6%</td><td class="r" style="color:var(--red)">-11.3%</td></tr>
+              <tr><td>15</td><td class="ticker">CALM</td><td class="r">4.5%</td><td class="r" style="color:var(--red)">-14.0%</td></tr>
+              <tr><td>16</td><td class="ticker">DXC</td><td class="r">4.2%</td><td class="r" style="color:var(--red)">-19.1%</td></tr>
+              <tr><td>17</td><td class="ticker">CNXC</td><td class="r">3.7%</td><td class="r" style="color:var(--red)">-28.9%</td></tr>
+              <tr><td>18</td><td class="ticker">VSNT</td><td class="r">0.6%</td><td class="r" style="color:var(--red)">-6.2%</td></tr>
             </tbody>
           </table>
         </div>
@@ -209,31 +227,23 @@
       <div class="port-section" id="sec-vc2trend">
         <div style="margin-bottom:20px">
           <h3 style="font-size:1.1rem;margin-bottom:6px">Momentum + Value &mdash; 9 positions</h3>
-          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Systematic. Cheapest 10% of stocks, ranked by 6-month momentum. Value meets trend.</p>
+          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Systematic. Cheapest 10% by VC2, ranked by 6-month momentum. <span style="color:var(--green)">+3.9% unrealized</span></p>
         </div>
         <div style="overflow-x:auto">
           <table class="pos-table">
-            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th></tr></thead>
+            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th><th class="r">P&amp;L</th></tr></thead>
             <tbody>
-              <tr><td>1</td><td class="ticker">SENEA</td><td class="r">14.9%</td></tr>
-              <tr><td>2</td><td class="ticker">EIX</td><td class="r">12.4%</td></tr>
-              <tr><td>3</td><td class="ticker">IMKTA</td><td class="r">11.8%</td></tr>
-              <tr><td>4</td><td class="ticker">EBF</td><td class="r">11.4%</td></tr>
-              <tr><td>5</td><td class="ticker">DINO</td><td class="r">10.6%</td></tr>
-              <tr><td>6</td><td class="ticker">CYH</td><td class="r">10.4%</td></tr>
-              <tr><td>7</td><td class="ticker">GM</td><td class="r">10.1%</td></tr>
-              <tr><td>8</td><td class="ticker">M</td><td class="r">9.4%</td></tr>
-              <tr><td>9</td><td class="ticker">UHS</td><td class="r">8.8%</td></tr>
+              <tr><td>1</td><td class="ticker">SENEA</td><td class="r">14.9%</td><td class="r" style="color:var(--green)">+38.6%</td></tr>
+              <tr><td>2</td><td class="ticker">EIX</td><td class="r">12.0%</td><td class="r" style="color:var(--green)">+11.7%</td></tr>
+              <tr><td>3</td><td class="ticker">IMKTA</td><td class="r">11.7%</td><td class="r" style="color:var(--green)">+8.7%</td></tr>
+              <tr><td>4</td><td class="ticker">EBF</td><td class="r">11.4%</td><td class="r" style="color:var(--green)">+6.8%</td></tr>
+              <tr><td>5</td><td class="ticker">DINO</td><td class="r">10.9%</td><td class="r" style="color:var(--green)">+1.7%</td></tr>
+              <tr><td>6</td><td class="ticker">CYH</td><td class="r">10.2%</td><td class="r" style="color:var(--red)">-5.3%</td></tr>
+              <tr><td>7</td><td class="ticker">GM</td><td class="r">10.2%</td><td class="r" style="color:var(--red)">-3.8%</td></tr>
+              <tr><td>8</td><td class="ticker">M</td><td class="r">9.7%</td><td class="r" style="color:var(--red)">-9.6%</td></tr>
+              <tr><td>9</td><td class="ticker">UHS</td><td class="r">9.1%</td><td class="r" style="color:var(--red)">-14.3%</td></tr>
             </tbody>
           </table>
-        </div>
-      </div>
-
-      <!-- Momentum -->
-      <div class="port-section" id="sec-momentum">
-        <div class="port-locked">
-          <h3>Momentum &mdash; Coming Soon</h3>
-          <p>Intermediate momentum positions will be added at the next rebalance.</p>
         </div>
       </div>
 
