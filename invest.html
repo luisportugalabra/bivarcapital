@@ -642,10 +642,15 @@
           <button class="action-btn" onclick="toggleRebalanceAlert(this)" id="rebalance-alert-btn">\u{1F514} Rebalance Alert</button>
           <div class="alert-dropdown" id="rebalance-dropdown">
             <div class="alert-title">Remind me to rebalance</div>
+            <p style="font-size:0.7rem;color:var(--text-muted);padding:4px 12px 8px;margin:0;line-height:1.4">We'll email you the day before with your updated stock list.</p>
             <button class="alert-opt" onclick="setStrategyAlert(1)">In 1 month</button>
             <button class="alert-opt" onclick="setStrategyAlert(3)">In 3 months</button>
             <button class="alert-opt" onclick="setStrategyAlert(6)">In 6 months</button>
             <button class="alert-opt" onclick="setStrategyAlert(12)">In 1 year</button>
+            <div style="border-top:1px solid var(--border);margin-top:4px;padding-top:8px">
+              <input type="date" id="custom-alert-date" style="width:100%;padding:6px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--font-mono);font-size:0.78rem">
+              <button class="alert-opt" style="margin-top:4px;color:var(--accent)" onclick="setCustomAlert()">Set my date</button>
+            </div>
           </div>
         </div>
       ` : '';
@@ -818,6 +823,37 @@
           btn.style.borderColor = 'var(--accent)';
           btn.style.color = 'var(--accent)';
           // Toast
+          const toast = document.createElement('div');
+          toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--bg-card);border:1px solid var(--accent);border-radius:8px;padding:12px 24px;font-family:var(--font-mono);font-size:0.78rem;color:var(--accent);z-index:9999;';
+          toast.textContent = '\u2713 Rebalance alert set for ' + label + ' on ' + dateStr;
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 3000);
+        }
+      } catch(e) { console.error('Alert error', e); }
+    }
+
+    async function setCustomAlert() {
+      const dateInput = document.getElementById('custom-alert-date');
+      if (!dateInput.value) { dateInput.focus(); return; }
+      const token = localStorage.getItem('rtw_token');
+      if (!token) { openAuth('login'); return; }
+      const dateStr = dateInput.value;
+      const stratLabels = { value: 'Value', trend: 'Momentum + Value', momentum: 'Momentum' };
+      const label = stratLabels[selectedStrategy] || selectedStrategy;
+      try {
+        const userRes = await fetch(SUPABASE_URL + '/auth/v1/user', { headers: { 'Authorization': 'Bearer ' + token, 'apikey': SUPABASE_KEY } });
+        const user = await userRes.json();
+        const res = await fetch(SUPABASE_URL + '/rest/v1/alerts', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + token, 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+          body: JSON.stringify({ user_id: user.id, ticker: label + ' (' + selectedGeo + ')', strategy: selectedStrategy, rebalance_date: dateStr })
+        });
+        document.getElementById('rebalance-dropdown').classList.remove('open');
+        if (res.ok) {
+          const btn = document.getElementById('rebalance-alert-btn');
+          btn.innerHTML = '\u2705 Alert set: ' + dateStr;
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.color = 'var(--accent)';
           const toast = document.createElement('div');
           toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--bg-card);border:1px solid var(--accent);border-radius:8px;padding:12px 24px;font-family:var(--font-mono);font-size:0.78rem;color:var(--accent);z-index:9999;';
           toast.textContent = '\u2713 Rebalance alert set for ' + label + ' on ' + dateStr;
