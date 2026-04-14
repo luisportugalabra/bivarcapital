@@ -104,6 +104,30 @@
     .loading-text { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.06em; }
     .loading-sub { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.04em; margin-top: -12px; opacity: 0.5; }
 
+    /* Alert bell */
+    .alert-bell { cursor: pointer; opacity: 0.4; transition: opacity 0.2s; font-size: 0.9rem; }
+    .alert-bell:hover { opacity: 1; }
+    .alert-bell.set { opacity: 1; color: var(--accent); }
+    .alert-dropdown {
+      position: absolute; right: 0; top: 100%; z-index: 50;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px; min-width: 200px; display: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .alert-dropdown.open { display: block; }
+    .alert-dropdown .alert-opt {
+      display: block; width: 100%; padding: 8px 12px; background: none; border: none;
+      color: var(--text-secondary); font-family: var(--font-body); font-size: 0.8rem;
+      text-align: left; cursor: pointer; border-radius: 5px; transition: background 0.15s;
+    }
+    .alert-dropdown .alert-opt:hover { background: var(--bg-elevated); color: var(--text); }
+    .alert-dropdown .alert-title {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); padding: 4px 12px 8px; margin-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .alert-confirm { color: var(--green); font-size: 0.75rem; margin-top: 8px; display: none; text-align: center; }
+
     /* Paywall overlay */
     .paywall-wrap { position: relative; }
     .paywall-wrap.capped { overflow: hidden; max-height: 600px; }
@@ -246,6 +270,15 @@
                 <option value="10000">$10B+</option>
               </select>
             </label>
+          </div>
+          <!-- Go Pro CTA for free users -->
+          <div id="step2-pro-cta" style="margin-top:40px;background:var(--bg-card);border:1px solid var(--accent);border-radius:10px;padding:28px;text-align:center;max-width:500px;margin-left:auto;margin-right:auto;display:none">
+            <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;max-width:none">Pro</p>
+            <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:8px">Unlock all markets</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;max-width:none">Global, Europe, Asia, Emerging Markets &mdash; plus market cap filters, CSV export, and rebalance alerts.</p>
+            <p style="font-family:var(--font-mono);font-size:1.4rem;font-weight:700;color:var(--accent);margin-bottom:4px">$39<span style="font-size:0.75rem;font-weight:400;color:var(--text-muted)">/month</span></p>
+            <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:16px">or $299/year (save 36%)</p>
+            <a onclick="openAuth('register')" style="display:inline-block;padding:12px 32px;background:var(--accent);border-radius:7px;color:var(--bg);font-size:0.82rem;font-weight:700;cursor:pointer;transition:background 0.25s">Go Pro &rarr;</a>
           </div>
         </div>
 
@@ -421,9 +454,9 @@
         }
       });
       const mktWrap = document.getElementById('mktcap-wrap');
-      if (mktWrap) {
-        mktWrap.style.display = userIsPaid ? '' : 'none';
-      }
+      if (mktWrap) mktWrap.style.display = userIsPaid ? '' : 'none';
+      const proCta = document.getElementById('step2-pro-cta');
+      if (proCta) proCta.style.display = userIsPaid ? 'none' : 'block';
     }
 
     function openAuth(mode) {
@@ -701,18 +734,19 @@
       const tbody = document.getElementById('table-body');
       let stocks = isRandom ? [...filtered].sort(() => Math.random() - 0.5).slice(0, count) : filtered.slice(0, 25);
 
+      const alertTh = userIsPaid ? '<th style="width:40px"></th>' : '';
       if (stocks.length === 0) {
         thead.innerHTML = '';
         tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:40px;color:var(--text-muted)">No stocks match this filter. Try lowering the market cap threshold.</td></tr>`;
       } else if (selectedStrategy === 'value') {
-        thead.innerHTML = `<tr><th>#</th><th>Ticker</th><th>Company</th><th class="r">Mkt Cap</th><th class="r">P/E</th><th class="r">P/S</th><th class="r">P/B</th><th class="r">P/CF</th><th class="r">EV/EBITDA</th><th class="r">SH Yield %</th><th class="r">Weight</th></tr>`;
-        tbody.innerHTML = stocks.map((s, i) => `<tr class="${!userIsPaid && i >= FREE_STOCKS ? 'blurred' : ''}"><td>${i+1}</td><td class="ticker">${s[0]}</td><td>${s[1]}</td><td class="r">${fmtCap(s[2])}</td><td class="r">${fmt(s[3],1)}</td><td class="r">${fmt(s[4],2)}</td><td class="r">${fmt(s[5],2)}</td><td class="r">${fmt(s[6],1)}</td><td class="r">${fmt(s[7],1)}</td><td class="r">${fmt(s[8],1)}</td><td class="r weight-col">${weight}%</td></tr>`).join('');
+        thead.innerHTML = `<tr><th>#</th><th>Ticker</th><th>Company</th><th class="r">Mkt Cap</th><th class="r">P/E</th><th class="r">P/S</th><th class="r">P/B</th><th class="r">P/CF</th><th class="r">EV/EBITDA</th><th class="r">SH Yield %</th><th class="r">Weight</th>${alertTh}</tr>`;
+        tbody.innerHTML = stocks.map((s, i) => `<tr class="${!userIsPaid && i >= FREE_STOCKS ? 'blurred' : ''}"><td>${i+1}</td><td class="ticker">${s[0]}</td><td>${s[1]}</td><td class="r">${fmtCap(s[2])}</td><td class="r">${fmt(s[3],1)}</td><td class="r">${fmt(s[4],2)}</td><td class="r">${fmt(s[5],2)}</td><td class="r">${fmt(s[6],1)}</td><td class="r">${fmt(s[7],1)}</td><td class="r">${fmt(s[8],1)}</td><td class="r weight-col">${weight}%</td>${alertCol(s[0])}</tr>`).join('');
       } else if (selectedStrategy === 'momentum') {
-        thead.innerHTML = `<tr><th>#</th><th>Ticker</th><th>Company</th><th class="r">Mkt Cap</th><th class="r">12M %</th><th class="r">6M %</th><th class="r">Int. Mom %</th><th class="r">Weight</th></tr>`;
-        tbody.innerHTML = stocks.map((s, i) => `<tr class="${!userIsPaid && i >= FREE_STOCKS ? 'blurred' : ''}"><td>${i+1}</td><td class="ticker">${s[0]}</td><td>${s[1]}</td><td class="r">${fmtCap(s[2])}</td><td class="r">${fmt(s[3],1)}</td><td class="r">${fmt(s[4],1)}</td><td class="r">${fmt(s[5],1)}</td><td class="r weight-col">${weight}%</td></tr>`).join('');
+        thead.innerHTML = `<tr><th>#</th><th>Ticker</th><th>Company</th><th class="r">Mkt Cap</th><th class="r">12M %</th><th class="r">6M %</th><th class="r">Int. Mom %</th><th class="r">Weight</th>${alertTh}</tr>`;
+        tbody.innerHTML = stocks.map((s, i) => `<tr class="${!userIsPaid && i >= FREE_STOCKS ? 'blurred' : ''}"><td>${i+1}</td><td class="ticker">${s[0]}</td><td>${s[1]}</td><td class="r">${fmtCap(s[2])}</td><td class="r">${fmt(s[3],1)}</td><td class="r">${fmt(s[4],1)}</td><td class="r">${fmt(s[5],1)}</td><td class="r weight-col">${weight}%</td>${alertCol(s[0])}</tr>`).join('');
       } else {
-        thead.innerHTML = `<tr><th>#</th><th>Ticker</th><th>Company</th><th class="r">Mkt Cap</th><th class="r">Momentum 6M %</th><th class="r">Weight</th></tr>`;
-        tbody.innerHTML = stocks.map((s, i) => `<tr class="${!userIsPaid && i >= FREE_STOCKS ? 'blurred' : ''}"><td>${i+1}</td><td class="ticker">${s[0]}</td><td>${s[1]}</td><td class="r">${fmtCap(s[2])}</td><td class="r">${fmt(s[3],1)}</td><td class="r weight-col">${weight}%</td></tr>`).join('');
+        thead.innerHTML = `<tr><th>#</th><th>Ticker</th><th>Company</th><th class="r">Mkt Cap</th><th class="r">Momentum 6M %</th><th class="r">Weight</th>${alertTh}</tr>`;
+        tbody.innerHTML = stocks.map((s, i) => `<tr class="${!userIsPaid && i >= FREE_STOCKS ? 'blurred' : ''}"><td>${i+1}</td><td class="ticker">${s[0]}</td><td>${s[1]}</td><td class="r">${fmtCap(s[2])}</td><td class="r">${fmt(s[3],1)}</td><td class="r weight-col">${weight}%</td>${alertCol(s[0])}</tr>`).join('');
       }
 
       const overlay = document.getElementById('paywall-overlay');
@@ -728,6 +762,83 @@
 
     function fmt(v, d) { return v != null ? v.toFixed(d) : '\u2014'; }
     function fmtCap(v) { if (v == null) return '\u2014'; if (v >= 1000) return '$' + (v/1000).toFixed(1) + 'B'; return '$' + v + 'M'; }
+
+    // ========== ALERT / REBALANCE ==========
+    function showAlertDropdown(ticker, el) {
+      // Close any open dropdowns
+      document.querySelectorAll('.alert-dropdown').forEach(d => d.classList.remove('open'));
+      const dd = el.closest('td').querySelector('.alert-dropdown');
+      if (dd) dd.classList.toggle('open');
+    }
+
+    async function setAlert(ticker, months, el) {
+      const token = localStorage.getItem('rtw_token');
+      if (!token) { openAuth('login'); return; }
+      const rebalanceDate = new Date();
+      rebalanceDate.setMonth(rebalanceDate.getMonth() + months);
+      const dateStr = rebalanceDate.toISOString().split('T')[0];
+
+      try {
+        // Get user id
+        const userRes = await fetch(SUPABASE_URL + '/auth/v1/user', {
+          headers: { 'Authorization': 'Bearer ' + token, 'apikey': SUPABASE_KEY }
+        });
+        const user = await userRes.json();
+
+        // Insert alert
+        const res = await fetch(SUPABASE_URL + '/rest/v1/alerts', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'apikey': SUPABASE_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            user_id: user.id,
+            ticker: ticker,
+            strategy: selectedStrategy,
+            rebalance_date: dateStr
+          })
+        });
+
+        if (res.ok) {
+          // Show confirmation
+          const dd = el.closest('.alert-dropdown');
+          if (dd) dd.classList.remove('open');
+          const bell = el.closest('td').querySelector('.alert-bell');
+          if (bell) { bell.classList.add('set'); bell.title = 'Alert set: ' + dateStr; }
+          // Brief toast
+          const toast = document.createElement('div');
+          toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--bg-card);border:1px solid var(--accent);border-radius:8px;padding:12px 24px;font-family:var(--font-mono);font-size:0.78rem;color:var(--accent);z-index:9999;';
+          toast.textContent = '\u2713 Alert set for ' + ticker + ' on ' + dateStr;
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 3000);
+        }
+      } catch(e) { console.error('Alert error', e); }
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.alert-bell') && !e.target.closest('.alert-dropdown')) {
+        document.querySelectorAll('.alert-dropdown').forEach(d => d.classList.remove('open'));
+      }
+    });
+
+    function alertCol(ticker) {
+      if (!userIsPaid) return '';
+      return `<td style="position:relative;text-align:center;width:40px">
+        <span class="alert-bell" onclick="showAlertDropdown('${ticker}', this)" title="Set rebalance alert">\u{1F514}</span>
+        <div class="alert-dropdown">
+          <div class="alert-title">Rebalance alert for ${ticker}</div>
+          <button class="alert-opt" onclick="setAlert('${ticker}', 1, this)">In 1 month</button>
+          <button class="alert-opt" onclick="setAlert('${ticker}', 3, this)">In 3 months</button>
+          <button class="alert-opt" onclick="setAlert('${ticker}', 6, this)">In 6 months</button>
+          <button class="alert-opt" onclick="setAlert('${ticker}', 12, this)">In 1 year</button>
+        </div>
+      </td>`;
+    }
+
     function randomSelect() { const n = Math.min(25, Math.max(1, parseInt(document.getElementById('pick-count').value) || 25)); showOutput(n); }
     function exportCSV() {
       const table = document.querySelector('.stock-table');
