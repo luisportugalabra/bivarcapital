@@ -81,7 +81,8 @@ def get_price_usd(ticker, ccy):
     if ccy == "EUR":
         return price_local * eur_usd
     elif ccy == "GBP":
-        return price_local * gbp_usd
+        # WISE.L and other LSE stocks are quoted in pence (GBx), not pounds
+        return (price_local / 100) * gbp_usd
     elif ccy == "TWD":
         return price_local * twd_usd
     return price_local

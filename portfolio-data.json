@@ -1,17 +1,8 @@
 {
-  "updated": "2026-04-14 23:34 UTC",
+  "updated": "2026-04-14 23:41 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
-        {
-          "ticker": "WISE",
-          "qty": 1000,
-          "price": 1417.64,
-          "mkt_value": 1417643.61,
-          "cost_basis": 12093.06,
-          "pnl_pct": 11622.8,
-          "weight": 59.4
-        },
         {
           "ticker": "BRK-B",
           "qty": 312,
@@ -19,7 +10,7 @@
           "mkt_value": 148992.48,
           "cost_basis": 153660.0,
           "pnl_pct": -3.0,
-          "weight": 6.2
+          "weight": 15.2
         },
         {
           "ticker": "JD",
@@ -28,7 +19,7 @@
           "mkt_value": 144250.0,
           "cost_basis": 139864.8,
           "pnl_pct": 3.1,
-          "weight": 6.0
+          "weight": 14.7
         },
         {
           "ticker": "META",
@@ -37,7 +28,7 @@
           "mkt_value": 88111.17,
           "cost_basis": 80491.6,
           "pnl_pct": 9.5,
-          "weight": 3.7
+          "weight": 9.0
         },
         {
           "ticker": "AMZN",
@@ -46,7 +37,7 @@
           "mkt_value": 75951.1,
           "cost_basis": 62101.05,
           "pnl_pct": 22.3,
-          "weight": 3.2
+          "weight": 7.7
         },
         {
           "ticker": "CLNX",
@@ -55,7 +46,7 @@
           "mkt_value": 66542.04,
           "cost_basis": 59175.44,
           "pnl_pct": 12.4,
-          "weight": 2.8
+          "weight": 6.8
         },
         {
           "ticker": "MSFT",
@@ -64,7 +55,7 @@
           "mkt_value": 61325.16,
           "cost_basis": 60091.2,
           "pnl_pct": 2.1,
-          "weight": 2.6
+          "weight": 6.2
         },
         {
           "ticker": "PRX",
@@ -73,16 +64,7 @@
           "mkt_value": 45397.98,
           "cost_basis": 43652.94,
           "pnl_pct": 4.0,
-          "weight": 1.9
-        },
-        {
-          "ticker": "GOOGL",
-          "qty": 112,
-          "price": 332.91,
-          "mkt_value": 37285.92,
-          "cost_basis": 35019.04,
-          "pnl_pct": 6.5,
-          "weight": 1.6
+          "weight": 4.6
         },
         {
           "ticker": "SE",
@@ -91,7 +73,7 @@
           "mkt_value": 38691.2,
           "cost_basis": 37113.72,
           "pnl_pct": 4.3,
-          "weight": 1.6
+          "weight": 3.9
         },
         {
           "ticker": "MELI",
@@ -100,7 +82,16 @@
           "mkt_value": 38653.86,
           "cost_basis": 35855.61,
           "pnl_pct": 7.8,
-          "weight": 1.6
+          "weight": 3.9
+        },
+        {
+          "ticker": "GOOGL",
+          "qty": 112,
+          "price": 332.91,
+          "mkt_value": 37285.92,
+          "cost_basis": 35019.04,
+          "pnl_pct": 6.5,
+          "weight": 3.8
         },
         {
           "ticker": "EXO",
@@ -109,7 +100,7 @@
           "mkt_value": 31948.02,
           "cost_basis": 37701.23,
           "pnl_pct": -15.3,
-          "weight": 1.3
+          "weight": 3.2
         },
         {
           "ticker": "V",
@@ -118,7 +109,7 @@
           "mkt_value": 31137.0,
           "cost_basis": 30791.0,
           "pnl_pct": 1.1,
-          "weight": 1.3
+          "weight": 3.2
         },
         {
           "ticker": "AMD",
@@ -127,7 +118,7 @@
           "mkt_value": 25507.0,
           "cost_basis": 19322.0,
           "pnl_pct": 32.0,
-          "weight": 1.1
+          "weight": 2.6
         },
         {
           "ticker": "FISV",
@@ -136,7 +127,7 @@
           "mkt_value": 21837.4,
           "cost_basis": 23628.2,
           "pnl_pct": -7.6,
-          "weight": 0.9
+          "weight": 2.2
         },
         {
           "ticker": "NOMD",
@@ -145,7 +136,7 @@
           "mkt_value": 19992.0,
           "cost_basis": 22890.0,
           "pnl_pct": -12.7,
-          "weight": 0.8
+          "weight": 2.0
         },
         {
           "ticker": "BABA",
@@ -154,7 +145,7 @@
           "mkt_value": 19702.5,
           "cost_basis": 18301.5,
           "pnl_pct": 7.7,
-          "weight": 0.8
+          "weight": 2.0
         },
         {
           "ticker": "SFM",
@@ -163,7 +154,7 @@
           "mkt_value": 15038.0,
           "cost_basis": 13284.0,
           "pnl_pct": 13.2,
-          "weight": 0.6
+          "weight": 1.5
         },
         {
           "ticker": "ACN",
@@ -172,16 +163,16 @@
           "mkt_value": 14277.75,
           "cost_basis": 14982.0,
           "pnl_pct": -4.7,
-          "weight": 0.6
+          "weight": 1.5
         },
         {
-          "ticker": "CHTR",
-          "qty": 50,
-          "price": 215.57,
-          "mkt_value": 10778.5,
-          "cost_basis": 10621.0,
-          "pnl_pct": 1.5,
-          "weight": 0.5
+          "ticker": "WISE",
+          "qty": 1000,
+          "price": 14.18,
+          "mkt_value": 14178.13,
+          "cost_basis": 12094.51,
+          "pnl_pct": 17.2,
+          "weight": 1.4
         },
         {
           "ticker": "2330",
@@ -190,7 +181,7 @@
           "mkt_value": 11430.94,
           "cost_basis": 10095.94,
           "pnl_pct": 13.2,
-          "weight": 0.5
+          "weight": 1.2
         },
         {
           "ticker": "NVO",
@@ -199,7 +190,16 @@
           "mkt_value": 11796.0,
           "cost_basis": 12189.0,
           "pnl_pct": -3.2,
-          "weight": 0.5
+          "weight": 1.2
+        },
+        {
+          "ticker": "CHTR",
+          "qty": 50,
+          "price": 215.57,
+          "mkt_value": 10778.5,
+          "cost_basis": 10621.0,
+          "pnl_pct": 1.5,
+          "weight": 1.1
         },
         {
           "ticker": "MA",
@@ -208,12 +208,12 @@
           "mkt_value": 10263.2,
           "cost_basis": 9948.0,
           "pnl_pct": 3.2,
-          "weight": 0.4
+          "weight": 1.0
         }
       ],
-      "total_value": 2386552.84,
-      "total_cost": 942872.32,
-      "total_pnl_pct": 153.1,
+      "total_value": 983087.35,
+      "total_cost": 942873.77,
+      "total_pnl_pct": 4.3,
       "n_positions": 23
     },
     "vc2": {
@@ -476,8 +476,8 @@
       "n_positions": 9
     }
   },
-  "total_value": 2530138.9,
-  "total_cost": 1078063.45,
-  "total_pnl_pct": 134.7,
+  "total_value": 1126673.41,
+  "total_cost": 1078064.9,
+  "total_pnl_pct": 4.5,
   "n_positions": 50
 }
