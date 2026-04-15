@@ -47,7 +47,7 @@ ws = wb['POSITIONS']
 STRATEGY_MAP = {"GERAL": "discretionary", "VC2": "vc2", "VC2 TREND": "vc2trend"}
 positions = {"discretionary": [], "vc2": [], "vc2trend": []}
 
-for row in ws.iter_rows(min_row=13, max_row=70, values_only=True):
+for row in ws.iter_rows(min_row=13, max_row=200, values_only=True):
     ticker, broker, strategy, qty, avg_cost = row[0], row[1], row[2], row[3], row[4]
     ccy = row[10] if len(row) > 10 else "USD"
     if not ticker or not strategy or not qty:
@@ -75,9 +75,13 @@ def pct(v):
 r17 = [ws_dash.cell(row=17, column=c).value for c in range(1, 9)]
 r18 = [ws_dash.cell(row=18, column=c).value for c in range(1, 9)]
 r19 = [ws_dash.cell(row=19, column=c).value for c in range(1, 9)]
+# Rows 21-23: Discretionary "incl. cash" (USD) — the correct values
+r21 = [ws_dash.cell(row=21, column=c).value for c in range(1, 9)]
+r22 = [ws_dash.cell(row=22, column=c).value for c in range(1, 9)]
+r23 = [ws_dash.cell(row=23, column=c).value for c in range(1, 9)]
 
 returns = {
-    "discretionary": {"2024": pct(r17[2]), "2025": pct(r18[2]), "2026_ytd": pct(r19[2])},
+    "discretionary": {"2024": pct(r21[2]), "2025": pct(r22[2]), "2026_ytd": pct(r23[2])},
     "vc2": {"2025": pct(r18[4]), "2026_ytd": pct(r19[4])},
     "vc2trend": {"2025": pct(r18[6]), "2026_ytd": pct(r19[6])},
 }
@@ -170,7 +174,44 @@ output["sync"]["sp500"] = {
     "ytd_at_sync": sp500.get("2026_ytd", 0)
 }
 
-# ============ 5. SAVE ============
+# ============ 5. GENERATE ACTIVITY LOG ============
+STRAT_NAMES = {"discretionary": "Discretionary", "vc2": "Value Strategy", "vc2trend": "Momentum + Value"}
+activity = []
+date_short = datetime.now(timezone.utc).strftime("%b %-d")
+
+# Load old data to compare
+try:
+    with open("portfolio-data.json") as f:
+        old_data = json.load(f)
+    old_activity = old_data.get("activity", [])
+except:
+    old_data = {}
+    old_activity = []
+
+for strat_name in ["discretionary", "vc2", "vc2trend"]:
+    old_tickers = set()
+    if "strategies" in old_data and strat_name in old_data["strategies"]:
+        old_tickers = {p["ticker"] for p in old_data["strategies"][strat_name]["positions"]}
+    new_tickers = {p["ticker"] for p in output["strategies"][strat_name]["positions"]}
+
+    added = new_tickers - old_tickers
+    removed = old_tickers - new_tickers
+    sname = STRAT_NAMES[strat_name]
+
+    if added and removed:
+        activity.append({"date": date_short, "text": f"{sname} rebalanced \u2014 {len(added)} added, {len(removed)} removed"})
+    elif added:
+        activity.append({"date": date_short, "text": f"{sname} \u2014 added {', '.join(sorted(added))}"})
+    elif removed:
+        activity.append({"date": date_short, "text": f"{sname} \u2014 removed {', '.join(sorted(removed))}"})
+
+if not activity:
+    activity.append({"date": date_short, "text": "Portfolio synced \u2014 positions updated"})
+
+# Keep last 5 entries (new + old)
+output["activity"] = (activity + old_activity)[:5]
+
+# ============ 6. SAVE ============
 with open("portfolio-data.json", "w") as f:
     json.dump(output, f, indent=2)
 

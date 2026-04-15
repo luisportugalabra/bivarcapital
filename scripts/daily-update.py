@@ -116,6 +116,14 @@ try:
 except Exception as e:
     print(f"  S&P 500: error {e}")
 
+# Update activity log
+date_short = datetime.now(timezone.utc).strftime("%b %-d")
+activity = data.get("activity", [])
+# Replace or add today's price update entry
+activity = [a for a in activity if not (a.get("date") == date_short and "Prices updated" in a.get("text", ""))]
+activity.insert(0, {"date": date_short, "text": "Prices updated from market close"})
+data["activity"] = activity[:5]
+
 # Save
 with open("portfolio-data.json", "w") as f:
     json.dump(data, f, indent=2)

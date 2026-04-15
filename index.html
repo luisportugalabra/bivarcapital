@@ -268,9 +268,7 @@ a { color: inherit; text-decoration: none; }
     <p class="perf-footer">Returns in USD, including cash. Live since January 2025. Last rebalance: April 1, 2026.</p>
     <div class="activity-log">
       <div class="activity-log-title">Recent Activity</div>
-      <div class="activity-item"><span class="date">Apr 12</span> Strategies re-computed from market close</div>
-      <div class="activity-item"><span class="date">Apr 1</span> Value Strategy rebalanced &mdash; 5 positions rotated</div>
-      <div class="activity-item"><span class="date">Mar 1</span> Momentum rebalanced &mdash; 8 positions changed</div>
+      <div id="activity-list"><div class="activity-item" style="color:var(--text-muted)">Loading...</div></div>
     </div>
   </div>
 </section>
@@ -515,6 +513,13 @@ fetch('portfolio-data.json')
     if (spEl && pd.sp500_returns && pd.sp500_returns['2026_ytd'] != null) {
       const v = pd.sp500_returns['2026_ytd'];
       spEl.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+    }
+    // Activity log
+    const actList = document.getElementById('activity-list');
+    if (actList && pd.activity && pd.activity.length) {
+      actList.innerHTML = pd.activity.map(a =>
+        `<div class="activity-item"><span class="date">${a.date}</span> ${a.text}</div>`
+      ).join('');
     }
   })
   .catch(() => {});
