@@ -72,20 +72,18 @@ def pct(v):
         return round(v * 100, 1) if abs(v) < 2 else round(v, 1)
     return None
 
-r17 = [ws_dash.cell(row=17, column=c).value for c in range(1, 9)]
 r18 = [ws_dash.cell(row=18, column=c).value for c in range(1, 9)]
 r19 = [ws_dash.cell(row=19, column=c).value for c in range(1, 9)]
-# Rows 21-23: Discretionary "incl. cash" (USD) — the correct values
-r21 = [ws_dash.cell(row=21, column=c).value for c in range(1, 9)]
+# Rows 22-23: Discretionary "incl. cash" (USD) — the correct values
 r22 = [ws_dash.cell(row=22, column=c).value for c in range(1, 9)]
 r23 = [ws_dash.cell(row=23, column=c).value for c in range(1, 9)]
 
 returns = {
-    "discretionary": {"2024": pct(r21[2]), "2025": pct(r22[2]), "2026_ytd": pct(r23[2])},
+    "discretionary": {"2025": pct(r22[2]), "2026_ytd": pct(r23[2])},
     "vc2": {"2025": pct(r18[4]), "2026_ytd": pct(r19[4])},
     "vc2trend": {"2025": pct(r18[6]), "2026_ytd": pct(r19[6])},
 }
-sp500 = {"2024": pct(r17[7]), "2025": pct(r18[7]), "2026_ytd": pct(r19[7])}
+sp500 = {"2025": pct(r18[7]), "2026_ytd": pct(r19[7])}
 
 # Clean None values
 for strat in returns.values():
