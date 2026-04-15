@@ -722,7 +722,8 @@
       document.getElementById('output-title').textContent = title;
       document.getElementById('output-meta').textContent = `${count} stocks \u00b7 Equal weight (${weight}% each)${capLabel}`;
       const dateEl = document.getElementById('data-date-display');
-      if (dateEl) dateEl.textContent = wizardData.date;
+      // Try portfolio-data.json first (updated daily), fallback to wizard-data
+      fetch('portfolio-data.json').then(r=>r.json()).then(pd=>{if(dateEl&&pd.updated)dateEl.textContent=pd.updated;}).catch(()=>{if(dateEl)dateEl.textContent=wizardData.date;});
       const rulesBox = document.getElementById('rules-box');
       const recommendTip = `<li>We recommend holding a <strong>minimum of 10 stocks</strong> per strategy. For larger portfolios, 25 stocks is optimal (best Sharpe ratio). Fewer than 10 exposes you to excessive single-stock risk.</li><li>We recommend investing at least 3\u20134 times a year to reduce the impact of seasonality or isolated market events. Spreading your entries helps smooth out timing risk.</li>`;
       if (userIsPaid) {
