@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-15 06:47 UTC",
+  "updated": "2026-04-15 06:53 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -140,7 +140,7 @@
           "ticker": "WISE",
           "qty": 1000.0,
           "price": 14.16,
-          "mkt_value": 14164.42,
+          "mkt_value": 14163.86,
           "weight": 1.4
         },
         {
@@ -172,7 +172,7 @@
           "weight": 1.0
         }
       ],
-      "total_value": 983107.14,
+      "total_value": 983106.58,
       "n_positions": 24
     },
     "vc2": {
@@ -399,23 +399,29 @@
   },
   "sync": {
     "discretionary": {
-      "date": "2026-04-15 06:47 UTC",
-      "value": 983107.14,
+      "date": "2026-04-15 06:53 UTC",
+      "value": 983106.58,
       "ytd_at_sync": 4.0
     },
     "vc2": {
-      "date": "2026-04-15 06:47 UTC",
+      "date": "2026-04-15 06:53 UTC",
       "value": 97226.2,
       "ytd_at_sync": 9.4
     },
     "vc2trend": {
-      "date": "2026-04-15 06:47 UTC",
+      "date": "2026-04-15 06:53 UTC",
       "value": 46359.86,
       "ytd_at_sync": 3.4
     },
     "sp500": {
-      "date": "2026-04-15 06:47 UTC",
+      "date": "2026-04-15 06:53 UTC",
       "ytd_at_sync": 1.8
     }
-  }
+  },
+  "activity": [
+    {
+      "date": "Apr 15",
+      "text": "Portfolio synced \u2014 positions updated"
+    }
+  ]
 }
