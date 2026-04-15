@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bivar Capital — Systematic Investing</title>
+<meta name="description" content="Three systematic strategies outperforming the S&P 500 since January 2025. Real capital, real returns. Updated daily.">
+<meta property="og:title" content="Bivar Capital — Systematic Investing">
+<meta property="og:description" content="Three systematic strategies outperforming the S&P 500. Real capital, real returns. Updated daily.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bivarcapital.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bivar Capital — Systematic Investing">
+<meta name="twitter:description" content="Three systematic strategies outperforming the S&P 500. Real capital, real returns.">
+<meta name="twitter:image" content="https://bivarcapital.com/og-image.png">
+<meta name="theme-color" content="#060608">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -245,11 +257,11 @@ a { color: inherit; text-decoration: none; }
       <table class="perf-table">
         <thead><tr><th>Strategy</th><th>2025</th><th>2026 YTD</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Discretionary</td><td class="pos">+38.7%</td><td class="pos">+4.0%</td><td class="status"><span class="live-dot"></span>Live</td></tr>
-          <tr><td>Value Strategy</td><td class="pos">+23.1%</td><td class="pos">+9.4%</td><td class="status"><span class="live-dot"></span>Live</td></tr>
-          <tr><td>Momentum + Value</td><td class="pos">+24.0%</td><td class="pos">+3.4%</td><td class="status"><span class="live-dot"></span>Live</td></tr>
+          <tr><td>Discretionary</td><td class="pos">+38.7%</td><td class="pos" id="ytd-discretionary">+4.9%</td><td class="status"><span class="live-dot"></span>Live</td></tr>
+          <tr><td>Value Strategy</td><td class="pos">+23.1%</td><td class="pos" id="ytd-vc2">+9.4%</td><td class="status"><span class="live-dot"></span>Live</td></tr>
+          <tr><td>Momentum + Value</td><td class="pos">+24.0%</td><td class="pos" id="ytd-vc2trend">+3.4%</td><td class="status"><span class="live-dot"></span>Live</td></tr>
           <tr><td>Momentum</td><td class="pos">+35.2%</td><td class="pos">+8.1%</td><td class="status" style="color:var(--text-muted)">Backtest</td></tr>
-          <tr><td style="color:var(--text)">S&amp;P 500</td><td style="color:var(--text)">+17.9%</td><td style="color:var(--text)" id="sp500-ytd">+0.5%</td><td class="status" style="color:var(--text-muted)">Benchmark</td></tr>
+          <tr><td style="color:var(--text)">S&amp;P 500</td><td style="color:var(--text)">+17.9%</td><td style="color:var(--text)" id="ytd-sp500">+1.8%</td><td class="status" style="color:var(--text-muted)">Benchmark</td></tr>
         </tbody>
       </table>
     </div>
@@ -490,7 +502,16 @@ fetch('portfolio-data.json')
   .then(pd => {
     const dateEl = document.getElementById('data-date-display');
     if (dateEl && pd.updated) dateEl.textContent = pd.updated;
-    const spEl = document.getElementById('sp500-ytd');
+    // Update all YTD cells from JSON
+    ['discretionary','vc2','vc2trend'].forEach(s => {
+      const el = document.getElementById('ytd-' + s);
+      const r = pd.returns && pd.returns[s];
+      if (el && r && r['2026_ytd'] != null) {
+        const v = r['2026_ytd'];
+        el.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+      }
+    });
+    const spEl = document.getElementById('ytd-sp500');
     if (spEl && pd.sp500_returns && pd.sp500_returns['2026_ytd'] != null) {
       const v = pd.sp500_returns['2026_ytd'];
       spEl.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
