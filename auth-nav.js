@@ -6,6 +6,13 @@
   const SUPABASE_URL = 'https://efiyeiwdywodjxxnslvu.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha';
 
+  // Migrate old localStorage keys
+  if (localStorage.getItem('rtw_token') && !localStorage.getItem('bc_token')) {
+    localStorage.setItem('bc_token', localStorage.getItem('rtw_token'));
+    if (localStorage.getItem('rtw_refresh')) localStorage.setItem('bc_refresh', localStorage.getItem('rtw_refresh'));
+    localStorage.removeItem('rtw_token'); localStorage.removeItem('rtw_refresh');
+  }
+
   const link = document.querySelector('.btn-sub');
   if (!link) return;
 

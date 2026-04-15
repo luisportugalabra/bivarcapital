@@ -381,6 +381,13 @@
       return res.json();
     }
 
+    // Migrate old localStorage keys
+    if (localStorage.getItem('rtw_token') && !localStorage.getItem('bc_token')) {
+      localStorage.setItem('bc_token', localStorage.getItem('rtw_token'));
+      if (localStorage.getItem('rtw_refresh')) localStorage.setItem('bc_refresh', localStorage.getItem('rtw_refresh'));
+      localStorage.removeItem('rtw_token'); localStorage.removeItem('rtw_refresh');
+    }
+
     async function checkAuth() {
       const token = localStorage.getItem('bc_token');
       if (!token) { currentUser = null; userIsPaid = false; updateNavAuth(); updateGeoLocks(); return; }
