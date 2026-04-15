@@ -138,6 +138,63 @@ for strat_name, strat_positions in positions.items():
 
     output["strategies"][strat_name] = strat_data
 
+# Calculate YTD 2026 returns per strategy
+# YTD = (current_value + realized_pnl) / jan1_value - 1
+realized_pnl = positions.get("realized_pnl_2026", {})
+annual_returns = positions.get("annual_returns", {})
+sp500_returns = positions.get("sp500_returns", {})
+
+output["returns"] = {}
+for strat_name, strat_positions in positions.items():
+    if strat_name in ("realized_pnl_2026", "annual_returns", "sp500_returns"):
+        continue
+
+    # Calculate Jan 1 value for this strategy
+    jan1_value = 0
+    for p in strat_positions:
+        jan1_price = p.get("price_jan1_2026")
+        if jan1_price is None:
+            continue
+        # Convert to USD same way as current price
+        if p["ccy"] == "GBP":
+            jan1_usd = (jan1_price / 100) * gbp_usd
+        elif p["ccy"] == "EUR":
+            jan1_usd = jan1_price * eur_usd
+        elif p["ccy"] == "TWD":
+            jan1_usd = jan1_price * twd_usd
+        else:
+            jan1_usd = jan1_price
+        jan1_value += jan1_usd * p["qty"]
+
+    current_value = output["strategies"][strat_name]["total_value"]
+    real_pnl = realized_pnl.get(strat_name, 0)
+
+    if jan1_value > 0:
+        ytd = ((current_value + real_pnl) / jan1_value - 1) * 100
+    else:
+        ytd = 0
+
+    strat_returns = annual_returns.get(strat_name, {})
+    strat_returns["2026_ytd"] = round(ytd, 1)
+    output["returns"][strat_name] = strat_returns
+
+    if strat_name in output["strategies"]:
+        output["strategies"][strat_name]["ytd_2026"] = round(ytd, 1)
+        output["strategies"][strat_name]["jan1_value"] = round(jan1_value, 2)
+
+# S&P 500 YTD (fetch live)
+try:
+    spy = yf.download("SPY", start="2026-01-02", end="2026-01-06", progress=False)
+    spy_now = yf.download("SPY", period="1d", progress=False)
+    spy_jan1 = float(spy["Close"].iloc[0])
+    spy_current = float(spy_now["Close"].iloc[-1])
+    sp500_ytd = round(((spy_current / spy_jan1) - 1) * 100, 1)
+except:
+    sp500_ytd = -0.6  # fallback
+
+sp500_returns["2026_ytd"] = sp500_ytd
+output["returns"]["sp500"] = sp500_returns
+
 # Grand total
 total_val = sum(s["total_value"] for s in output["strategies"].values())
 total_cost = sum(s["total_cost"] for s in output["strategies"].values())
@@ -154,4 +211,6 @@ with open(out_path, "w") as f:
 print(f"\nSaved to {out_path}")
 print(f"Total: ${total_val:,.0f} | Cost: ${total_cost:,.0f} | P&L: {output['total_pnl_pct']:+.1f}%")
 for s_name, s_data in output["strategies"].items():
-    print(f"  {s_name}: {s_data['n_positions']} positions, ${s_data['total_value']:,.0f}, {s_data['total_pnl_pct']:+.1f}%")
+    ytd = s_data.get('ytd_2026', 0)
+    print(f"  {s_name}: {s_data['n_positions']} pos, ${s_data['total_value']:,.0f}, YTD:{ytd:+.1f}%")
+print(f"  S&P 500 YTD: {sp500_ytd:+.1f}%")

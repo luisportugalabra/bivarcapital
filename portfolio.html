@@ -119,7 +119,7 @@
           <tbody>
             <tr><td style="padding:8px 12px;color:var(--text)">2024</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+20.6%</td><td style="padding:8px 12px;text-align:right;color:var(--text-muted)">&mdash;</td><td style="padding:8px 12px;text-align:right;color:var(--text-muted)">&mdash;</td><td style="padding:8px 12px;text-align:right;color:var(--text-muted)">+25.0%</td></tr>
             <tr><td style="padding:8px 12px;color:var(--text)">2025</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+46.1%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+23.1%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+24.0%</td><td style="padding:8px 12px;text-align:right;color:var(--text-muted)">+17.9%</td></tr>
-            <tr><td style="padding:8px 12px;color:var(--text)">2026 YTD</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+2.0%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+9.4%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+4.0%</td><td style="padding:8px 12px;text-align:right;color:var(--red)">-0.6%</td></tr>
+            <tr><td style="padding:8px 12px;color:var(--text)">2026 YTD</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="discretionary">+5.0%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2">+9.4%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2trend">+3.4%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="sp500">+0.5%</td></tr>
           </tbody>
         </table>
         <p style="font-size:0.65rem;color:var(--text-muted);margin-top:8px;text-align:center">Returns in USD, excluding cash.</p>
@@ -314,6 +314,21 @@
       // Update timestamp
       const dateEl = document.getElementById('port-updated');
       if (dateEl) dateEl.textContent = data.updated;
+
+      // Update YTD returns in table
+      if (data.returns) {
+        const ytdCells = document.querySelectorAll('[data-ytd]');
+        ytdCells.forEach(cell => {
+          const strat = cell.getAttribute('data-ytd');
+          const r = data.returns[strat];
+          if (r && r['2026_ytd'] !== undefined) {
+            const val = r['2026_ytd'];
+            cell.textContent = (val >= 0 ? '+' : '') + val + '%';
+            cell.style.color = val >= 0 ? 'var(--green)' : 'var(--red)';
+            cell.style.fontWeight = '600';
+          }
+        });
+      }
 
       const stratMap = {
         'discretionary': 'sec-geral',

@@ -5,161 +5,184 @@
       "qty": 312,
       "avg_cost": 492.5,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 496.8500061035156
     },
     {
       "ticker": "JD",
       "qty": 4616,
       "avg_cost": 30.3,
       "broker": "IBKR+TT",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 28.513477325439453
     },
     {
       "ticker": "META",
       "qty": 133,
       "avg_cost": 605.2,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 649.8535766601562
     },
     {
       "ticker": "MSFT",
       "qty": 156,
       "avg_cost": 385.2,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 471.8630065917969
     },
     {
       "ticker": "AMZN",
       "qty": 305,
       "avg_cost": 203.61,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 226.5
     },
     {
       "ticker": "CLNX",
       "qty": 1869,
       "avg_cost": 26.83,
       "broker": "IBKR",
-      "ccy": "EUR"
+      "ccy": "EUR",
+      "price_jan1_2026": 27.045299530029297
     },
     {
       "ticker": "PRX",
       "qty": 910,
       "avg_cost": 40.65,
       "broker": "IBKR",
-      "ccy": "EUR"
+      "ccy": "EUR",
+      "price_jan1_2026": 53.79999923706055
     },
     {
       "ticker": "EXO",
       "qty": 481,
       "avg_cost": 66.42,
       "broker": "IBKR",
-      "ccy": "EUR"
+      "ccy": "EUR",
+      "price_jan1_2026": null
     },
     {
       "ticker": "GOOGL",
       "qty": 112,
       "avg_cost": 312.67,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 314.9283142089844
     },
     {
       "ticker": "SE",
       "qty": 452,
       "avg_cost": 82.11,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 131.49000549316406
     },
     {
       "ticker": "MELI",
       "qty": 21,
       "avg_cost": 1707.41,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 1973.699951171875
     },
     {
       "ticker": "V",
       "qty": 100,
       "avg_cost": 307.91,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 345.7669982910156
     },
     {
       "ticker": "AMD",
       "qty": 100,
       "avg_cost": 193.22,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 223.47000122070312
     },
     {
       "ticker": "NOMD",
       "qty": 2100,
       "avg_cost": 10.9,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 12.000862121582031
     },
     {
       "ticker": "FISV",
       "qty": 370,
       "avg_cost": 63.86,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 65.58999633789062
     },
     {
       "ticker": "BABA",
       "qty": 150,
       "avg_cost": 122.01,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 155.74000549316406
     },
     {
       "ticker": "CHTR",
       "qty": 50,
       "avg_cost": 212.42,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 209.27999877929688
     },
     {
       "ticker": "WISE",
       "qty": 1000,
       "avg_cost": 8.91,
       "broker": "IBKR",
-      "ccy": "GBP"
+      "ccy": "GBP",
+      "price_jan1_2026": 871.5
     },
     {
       "ticker": "SFM",
       "qty": 200,
       "avg_cost": 66.42,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 80.63999938964844
     },
     {
       "ticker": "ACN",
       "qty": 75,
       "avg_cost": 199.76,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 257.76409912109375
     },
     {
       "ticker": "2330",
       "qty": 178,
       "avg_cost": 1815,
       "broker": "IBKR",
-      "ccy": "TWD"
+      "ccy": "TWD",
+      "price_jan1_2026": 1579.8455810546875
     },
     {
       "ticker": "NVO",
       "qty": 300,
       "avg_cost": 40.63,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 50.53657913208008
     },
     {
       "ticker": "MA",
       "qty": 20,
       "avg_cost": 497.4,
       "broker": "IBKR",
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 561.32080078125
     }
   ],
   "vc2": [
@@ -167,109 +190,127 @@
       "ticker": "SM",
       "qty": 481.6,
       "avg_cost": 19.94,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 18.96794319152832
     },
     {
       "ticker": "PVH",
       "qty": 81,
       "avg_cost": 62.23,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 67.78128051757812
     },
     {
       "ticker": "APA",
       "qty": 181,
       "avg_cost": 27.64,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 25.121116638183594
     },
     {
       "ticker": "HOG",
       "qty": 277,
       "avg_cost": 18.03,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 20.42442512512207
     },
     {
       "ticker": "SGU",
       "qty": 423,
       "avg_cost": 11.84,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 11.68858528137207
     },
     {
       "ticker": "AMCX",
       "qty": 696,
       "avg_cost": 7.25,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 9.25
     },
     {
       "ticker": "NUS",
       "qty": 690,
       "avg_cost": 7.28,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 9.62263011932373
     },
     {
       "ticker": "SSTK",
       "qty": 304,
       "avg_cost": 16.23,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 18.30508041381836
     },
     {
       "ticker": "CMCSA",
       "qty": 181,
       "avg_cost": 27.61,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 27.049776077270508
     },
     {
       "ticker": "GPK",
       "qty": 506,
       "avg_cost": 9.93,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 14.980295181274414
     },
     {
       "ticker": "EBS",
       "qty": 598,
       "avg_cost": 8.33,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 12.510000228881836
     },
     {
       "ticker": "WNC",
       "qty": 510,
       "avg_cost": 9.83,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 8.780864715576172
     },
     {
       "ticker": "ANGI",
       "qty": 675,
       "avg_cost": 7.4,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 12.649999618530273
     },
     {
       "ticker": "ACCO",
       "qty": 1492,
       "avg_cost": 3.35,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 3.598361015319824
     },
     {
       "ticker": "CALM",
       "qty": 57,
       "avg_cost": 88.31,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 77.79423522949219
     },
     {
       "ticker": "DXC",
       "qty": 330,
       "avg_cost": 15.17,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 14.079999923706055
     },
     {
       "ticker": "CNXC",
       "qty": 128,
       "avg_cost": 39.16,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 40.82585906982422
     },
     {
       "ticker": "VSNT",
       "qty": 14,
       "avg_cost": 43.54,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 46.17745590209961
     }
   ],
   "vc2trend": [
@@ -277,55 +318,89 @@
       "ticker": "SENEA",
       "qty": 42,
       "avg_cost": 118.57,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 108.22000122070312
     },
     {
       "ticker": "EIX",
       "qty": 77,
       "avg_cost": 64.79,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 59.32950210571289
     },
     {
       "ticker": "IMKTA",
       "qty": 59,
       "avg_cost": 84.99,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 69.3812026977539
     },
     {
       "ticker": "EBF",
       "qty": 242,
       "avg_cost": 20.63,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 17.551565170288086
     },
     {
       "ticker": "DINO",
       "qty": 87,
       "avg_cost": 57.56,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 46.381591796875
     },
     {
       "ticker": "CYH",
       "qty": 1552,
       "avg_cost": 3.23,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 3.0999999046325684
     },
     {
       "ticker": "GM",
       "qty": 62,
       "avg_cost": 79.9,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 80.78871154785156
     },
     {
       "ticker": "M",
       "qty": 235,
       "avg_cost": 21.28,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 22.495601654052734
     },
     {
       "ticker": "UHS",
       "qty": 23,
       "avg_cost": 213.75,
-      "ccy": "USD"
+      "ccy": "USD",
+      "price_jan1_2026": 219.6666259765625
     }
-  ]
+  ],
+  "realized_pnl_2026": {
+    "discretionary": 0,
+    "vc2": 0,
+    "vc2trend": 0
+  },
+  "annual_returns": {
+    "discretionary": {
+      "2024": 20.6,
+      "2025": 46.1,
+      "2026_ytd": 5.0
+    },
+    "vc2": {
+      "2025": 23.1,
+      "2026_ytd": 9.4
+    },
+    "vc2trend": {
+      "2025": 24.0,
+      "2026_ytd": 3.4
+    }
+  },
+  "sp500_returns": {
+    "2024": 25.0,
+    "2025": 17.9,
+    "2026_ytd": 0.5
+  }
 }
