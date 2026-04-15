@@ -107,11 +107,10 @@ for strat_name in ["discretionary", "vc2", "vc2trend"]:
 
 # S&P 500 live YTD
 try:
-    spy_dec = yf.download("SPY", start="2025-12-30", end="2026-01-02", progress=False)
-    spy_now = yf.download("SPY", period="1d", progress=False)
-    sp_dec31 = float(spy_dec["Close"].iloc[-1])  # Dec 31 2025 close
-    sp_now = float(spy_now["Close"].iloc[-1])
-    sp_ytd = round(((sp_now / sp_dec31) - 1) * 100, 1)
+    SP500_DEC31_2025 = 6845.5  # S&P 500 index close Dec 31, 2025 (fixed)
+    sp_now_data = yf.download("^GSPC", period="1d", progress=False)
+    sp_now = float(sp_now_data["Close"].iloc[-1])
+    sp_ytd = round(((sp_now / SP500_DEC31_2025) - 1) * 100, 1)
     data["sp500_returns"]["2026_ytd"] = sp_ytd
     print(f"  S&P 500: YTD={sp_ytd}%")
 except Exception as e:
