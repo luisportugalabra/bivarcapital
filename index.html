@@ -15,8 +15,23 @@
 <meta name="twitter:description" content="Three systematic strategies outperforming the S&P 500. Real capital, real returns.">
 <meta name="twitter:image" content="https://bivarcapital.com/og-image.png">
 <meta name="theme-color" content="#060608">
+<link rel="canonical" href="https://bivarcapital.com/">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bivar Capital",
+  "url": "https://bivarcapital.com",
+  "description": "Three systematic strategies outperforming the S&P 500. Real capital, real returns.",
+  "founder": {
+    "@type": "Person",
+    "name": "Luis Portugal",
+    "jobTitle": "Founder"
+  }
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -524,23 +539,30 @@ fetch('portfolio-data.json')
   })
   .catch(() => {});
 
-fetch('wizard-data.json')
-  .then(r => r.json())
-  .then(d => {
-    // Live preview stocks
-    const stocks = (d.momentum && d.momentum.USA) ? d.momentum.USA.slice(0, 3) : [];
-    const tbody = document.getElementById('preview-tbody');
-    if (stocks.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="padding:20px;text-align:center;color:var(--text-muted)">No data</td></tr>'; return; }
-    tbody.innerHTML = stocks.map((s, i) =>
-      `<tr>
-        <td>${i+1}</td>
-        <td>${s[0]}</td>
-        <td>${s[1]}</td>
-        <td>${s[5] != null ? s[5].toFixed(1) + '%' : '\u2014'}</td>
-      </tr>`
-    ).join('');
-  })
-  .catch(() => {});
+// Lazy-load wizard-data.json only when preview table is visible
+const previewObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    previewObs.disconnect();
+    fetch('wizard-data.json')
+      .then(r => r.json())
+      .then(d => {
+        const stocks = (d.momentum && d.momentum.USA) ? d.momentum.USA.slice(0, 3) : [];
+        const tbody = document.getElementById('preview-tbody');
+        if (stocks.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="padding:20px;text-align:center;color:var(--text-muted)">No data</td></tr>'; return; }
+        tbody.innerHTML = stocks.map((s, i) =>
+          `<tr>
+            <td>${i+1}</td>
+            <td>${s[0]}</td>
+            <td>${s[1]}</td>
+            <td>${s[5] != null ? s[5].toFixed(1) + '%' : '\u2014'}</td>
+          </tr>`
+        ).join('');
+      })
+      .catch(() => {});
+  }
+}, { rootMargin: '200px' });
+const previewEl = document.getElementById('preview-tbody');
+if (previewEl) previewObs.observe(previewEl);
 </script>
 <script src="auth-nav.js"></script>
 </body>
