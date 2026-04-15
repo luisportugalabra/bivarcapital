@@ -9,7 +9,7 @@
   const link = document.querySelector('.btn-sub');
   if (!link) return;
 
-  const token = localStorage.getItem('rtw_token');
+  const token = localStorage.getItem('bc_token');
   if (!token) return;
 
   fetch(SUPABASE_URL + '/auth/v1/user', {
@@ -33,14 +33,14 @@
     signout.onmouseout = function() { this.style.color = 'var(--text-muted,#5a5a68)'; };
     signout.onclick = function(e) {
       e.preventDefault();
-      localStorage.removeItem('rtw_token');
-      localStorage.removeItem('rtw_refresh');
+      localStorage.removeItem('bc_token');
+      localStorage.removeItem('bc_refresh');
       window.location.reload();
     };
     parent.appendChild(signout);
   })
   .catch(() => {
-    var refreshToken = localStorage.getItem('rtw_refresh');
+    var refreshToken = localStorage.getItem('bc_refresh');
     if (refreshToken) {
       fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
         method: 'POST',
@@ -49,17 +49,17 @@
       })
       .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function(data) {
-        localStorage.setItem('rtw_token', data.access_token);
-        if (data.refresh_token) localStorage.setItem('rtw_refresh', data.refresh_token);
+        localStorage.setItem('bc_token', data.access_token);
+        if (data.refresh_token) localStorage.setItem('bc_refresh', data.refresh_token);
         window.location.reload();
       })
       .catch(function() {
-        localStorage.removeItem('rtw_token');
-        localStorage.removeItem('rtw_refresh');
+        localStorage.removeItem('bc_token');
+        localStorage.removeItem('bc_refresh');
       });
     } else {
-      localStorage.removeItem('rtw_token');
-      localStorage.removeItem('rtw_refresh');
+      localStorage.removeItem('bc_token');
+      localStorage.removeItem('bc_refresh');
     }
   });
 })();

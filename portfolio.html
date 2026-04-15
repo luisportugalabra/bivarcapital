@@ -127,7 +127,7 @@
           <tbody>
 
             <tr><td style="padding:8px 12px;color:var(--text)">2025</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+38.7%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+23.1%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+24.0%</td><td style="padding:8px 12px;text-align:right;color:var(--text)">+17.9%</td></tr>
-            <tr><td style="padding:8px 12px;color:var(--text)">2026 YTD</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="discretionary">+4.0%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2">+9.4%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2trend">+3.4%</td><td style="padding:8px 12px;text-align:right;color:var(--text)" data-ytd="sp500">+0.5%</td></tr>
+            <tr><td style="padding:8px 12px;color:var(--text)">2026 YTD</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="discretionary">+4.0%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2">+9.4%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2trend">+3.4%</td><td style="padding:8px 12px;text-align:right;color:var(--text)" data-ytd="sp500">+1.8%</td></tr>
           </tbody>
         </table>
         <p style="font-size:0.65rem;color:var(--text-muted);margin-top:8px;text-align:center">Returns in USD, including cash.</p>
@@ -135,9 +135,9 @@
 
       <!-- Tabs -->
       <div class="port-tabs">
-        <div class="port-tab active" onclick="showTab('geral')">Discretionary</div>
-        <div class="port-tab" onclick="showTab('vc2')">Value Strategy</div>
-        <div class="port-tab" onclick="showTab('vc2trend')">Momentum + Value</div>
+        <div class="port-tab active" onclick="showTab('geral', event)">Discretionary</div>
+        <div class="port-tab" onclick="showTab('vc2', event)">Value Strategy</div>
+        <div class="port-tab" onclick="showTab('vc2trend', event)">Momentum + Value</div>
       </div>
 
       <!-- GERAL -->
@@ -263,15 +263,15 @@
   const SUPABASE_URL = 'https://efiyeiwdywodjxxnslvu.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha';
 
-  function showTab(id) {
+  function showTab(id, e) {
     document.querySelectorAll('.port-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.port-section').forEach(s => s.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    if (e) e.currentTarget.classList.add('active');
     document.getElementById('sec-' + id).classList.add('active');
   }
 
   async function checkPortfolioAuth() {
-    const token = localStorage.getItem('rtw_token');
+    const token = localStorage.getItem('bc_token');
     let isPaid = false;
     if (token) {
       try {
@@ -279,7 +279,7 @@
           headers: { 'Authorization': 'Bearer ' + token, 'apikey': SUPABASE_KEY }
         });
         if (!res.ok) {
-          const rt = localStorage.getItem('rtw_refresh');
+          const rt = localStorage.getItem('bc_refresh');
           if (rt) {
             const rr = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
               method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
@@ -287,8 +287,8 @@
             });
             if (rr.ok) {
               const d = await rr.json();
-              localStorage.setItem('rtw_token', d.access_token);
-              if (d.refresh_token) localStorage.setItem('rtw_refresh', d.refresh_token);
+              localStorage.setItem('bc_token', d.access_token);
+              if (d.refresh_token) localStorage.setItem('bc_refresh', d.refresh_token);
               isPaid = d.user?.user_metadata?.is_paid === true;
             }
           }

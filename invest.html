@@ -235,19 +235,19 @@
               <span class="label">Value Strategy</span>
               <h3 style="font-family:var(--font-mono)">18.61% CAGR</h3>
               <p>Buy undervalued stocks based on fundamental metrics. Fully systematic.</p>
-              <a class="btn btn-accent" style="cursor:pointer;padding:14px 36px;font-size:0.9rem;margin-top:auto;padding-top:16px" onclick="selectStrategy('value')">Run strategy &rarr;</a>
+              <a class="btn btn-accent" style="cursor:pointer;padding:14px 36px;font-size:0.9rem;margin-top:auto;padding-top:16px" onclick="selectStrategy('value', event)">Run strategy &rarr;</a>
             </div>
             <div class="card">
               <span class="label">Momentum + Value</span>
               <h3 style="font-family:var(--font-mono)">21.19% CAGR</h3>
               <p>Undervalued companies combined with momentum. Fully systematic.</p>
-              <a class="btn btn-accent" style="cursor:pointer;padding:14px 36px;font-size:0.9rem;margin-top:auto;padding-top:16px" onclick="selectStrategy('trend')">Run strategy &rarr;</a>
+              <a class="btn btn-accent" style="cursor:pointer;padding:14px 36px;font-size:0.9rem;margin-top:auto;padding-top:16px" onclick="selectStrategy('trend', event)">Run strategy &rarr;</a>
             </div>
             <div class="card">
               <span class="label">Momentum</span>
               <h3 style="font-family:var(--font-mono)">21.7% CAGR</h3>
               <p>Strongest intermediate momentum stocks. Fully systematic.</p>
-              <a class="btn btn-accent" style="cursor:pointer;padding:14px 36px;font-size:0.9rem;margin-top:auto;padding-top:16px" onclick="selectStrategy('momentum')">Run strategy &rarr;</a>
+              <a class="btn btn-accent" style="cursor:pointer;padding:14px 36px;font-size:0.9rem;margin-top:auto;padding-top:16px" onclick="selectStrategy('momentum', event)">Run strategy &rarr;</a>
             </div>
           </div>
           <p style="margin-top:40px;font-size:0.75rem;color:var(--text-muted);text-align:center;max-width:100%">Every strategy is backed by 20&ndash;40+ years of US market data and validated against peer-reviewed research and James O'Shaughnessy's <em>What Works on Wall Street</em>. I run all three strategies with real capital. Past performance does not guarantee future results.</p>
@@ -259,11 +259,11 @@
           <div class="wizard-title">Step 2</div>
           <div class="wizard-question"><h2>Where do you want to invest?</h2></div>
           <div class="options" id="geo-options">
-            <div class="geo-btn" onclick="selectGeo('USA')">USA</div>
-            <div class="geo-btn" onclick="selectGeo('Global')">Global</div>
-            <div class="geo-btn" onclick="selectGeo('Europe')">Europe</div>
-            <div class="geo-btn" onclick="selectGeo('Asia')">Asia</div>
-            <div class="geo-btn" onclick="selectGeo('Emerging')">Emerging Markets</div>
+            <div class="geo-btn" onclick="selectGeo('USA', event)">USA</div>
+            <div class="geo-btn" onclick="selectGeo('Global', event)">Global</div>
+            <div class="geo-btn" onclick="selectGeo('Europe', event)">Europe</div>
+            <div class="geo-btn" onclick="selectGeo('Asia', event)">Asia</div>
+            <div class="geo-btn" onclick="selectGeo('Emerging', event)">Emerging Markets</div>
           </div>
           <div id="mktcap-wrap" style="margin-top:32px;text-align:center">
             <label style="display:inline-flex;align-items:center;gap:10px;font-size:0.85rem;color:var(--text-muted)">
@@ -382,14 +382,14 @@
     }
 
     async function checkAuth() {
-      const token = localStorage.getItem('rtw_token');
+      const token = localStorage.getItem('bc_token');
       if (!token) { currentUser = null; userIsPaid = false; updateNavAuth(); updateGeoLocks(); return; }
       try {
         const res = await fetch(SUPABASE_URL + '/auth/v1/user', {
           headers: { 'Authorization': 'Bearer ' + token, 'apikey': SUPABASE_KEY }
         });
         if (!res.ok) {
-          const refreshToken = localStorage.getItem('rtw_refresh');
+          const refreshToken = localStorage.getItem('bc_refresh');
           if (refreshToken) {
             const refRes = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
               method: 'POST',
@@ -398,8 +398,8 @@
             });
             if (refRes.ok) {
               const data = await refRes.json();
-              localStorage.setItem('rtw_token', data.access_token);
-              if (data.refresh_token) localStorage.setItem('rtw_refresh', data.refresh_token);
+              localStorage.setItem('bc_token', data.access_token);
+              if (data.refresh_token) localStorage.setItem('bc_refresh', data.refresh_token);
               currentUser = data.user;
               userIsPaid = data.user?.user_metadata?.is_paid === true;
               updateNavAuth(); updateGeoLocks();
@@ -412,8 +412,8 @@
         currentUser = user;
         userIsPaid = user?.user_metadata?.is_paid === true;
       } catch (e) {
-        localStorage.removeItem('rtw_token');
-        localStorage.removeItem('rtw_refresh');
+        localStorage.removeItem('bc_token');
+        localStorage.removeItem('bc_refresh');
         currentUser = null;
         userIsPaid = false;
       }
@@ -531,8 +531,8 @@
         if (authMode === 'register' && !data.access_token) {
           const loginData = await authFetch('/token?grant_type=password', { email, password });
           if (loginData.access_token) {
-            localStorage.setItem('rtw_token', loginData.access_token);
-            if (loginData.refresh_token) localStorage.setItem('rtw_refresh', loginData.refresh_token);
+            localStorage.setItem('bc_token', loginData.access_token);
+            if (loginData.refresh_token) localStorage.setItem('bc_refresh', loginData.refresh_token);
             closeAuth();
             await checkAuth();
             if (document.getElementById('table-body') && document.getElementById('table-body').innerHTML) {
@@ -547,8 +547,8 @@
         }
 
         if (data.access_token) {
-          localStorage.setItem('rtw_token', data.access_token);
-          if (data.refresh_token) localStorage.setItem('rtw_refresh', data.refresh_token);
+          localStorage.setItem('bc_token', data.access_token);
+          if (data.refresh_token) localStorage.setItem('bc_refresh', data.refresh_token);
         }
 
         closeAuth();
@@ -565,8 +565,8 @@
     }
 
     function doLogout() {
-      localStorage.removeItem('rtw_token');
-      localStorage.removeItem('rtw_refresh');
+      localStorage.removeItem('bc_token');
+      localStorage.removeItem('bc_refresh');
       currentUser = null;
       userIsPaid = false;
       updateNavAuth();
@@ -601,10 +601,10 @@
       window.scrollTo({ top: document.getElementById('wizard').offsetTop - 100, behavior: 'smooth' });
     }
 
-    function selectStrategy(s) {
+    function selectStrategy(s, e) {
       selectedStrategy = s;
       document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-      if (event && event.currentTarget) event.currentTarget.classList.add('selected');
+      if (e && e.currentTarget) e.currentTarget.classList.add('selected');
       const sel = document.getElementById('mktcap-filter');
       const def = defaultMktCap[s] || 0;
       for (let o of sel.options) { o.selected = parseInt(o.value) === def; }
@@ -612,14 +612,14 @@
       setTimeout(() => goToStep(2), 200);
     }
 
-    function selectGeo(g) {
+    function selectGeo(g, e) {
       if (g !== 'USA' && !userIsPaid) {
         openAuth('register');
         return;
       }
       selectedGeo = g;
       document.querySelectorAll('.geo-btn').forEach(b => b.classList.remove('selected'));
-      event.currentTarget.classList.add('selected');
+      if (e) e.currentTarget.classList.add('selected');
       setTimeout(() => showLoading(), 200);
     }
 
@@ -793,7 +793,7 @@
     }
 
     async function setStrategyAlert(months) {
-      const token = localStorage.getItem('rtw_token');
+      const token = localStorage.getItem('bc_token');
       if (!token) { openAuth('login'); return; }
       const rebalanceDate = new Date();
       rebalanceDate.setMonth(rebalanceDate.getMonth() + months);
@@ -844,7 +844,7 @@
     async function setCustomAlert() {
       const dateInput = document.getElementById('custom-alert-date');
       if (!dateInput.value) { dateInput.focus(); return; }
-      const token = localStorage.getItem('rtw_token');
+      const token = localStorage.getItem('bc_token');
       if (!token) { openAuth('login'); return; }
       const dateStr = dateInput.value;
       const stratLabels = { value: 'Value', trend: 'Momentum + Value', momentum: 'Momentum' };
