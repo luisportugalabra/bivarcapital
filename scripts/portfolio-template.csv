@@ -1,0 +1,62 @@
+BIVAR CAPITAL — PORTFOLIO,,,,,,,,
+Auto-updating via GOOGLEFINANCE,,,,,,,,
+
+Strategy,Ticker,GF Ticker,Qty,Avg Cost,CCY,Live Price (formula),Mkt Value USD (formula),Weight % (formula),P&L % (formula)
+Discretionary,BRK-B,NYSE:BRK.B,312,492.5,USD,"=GOOGLEFINANCE(""NYSE:BRK.B"", ""price"")",=G5 * D5,=H5 / H55 * 100,=(H5 / (E5 * D5) - 1) * 100
+Discretionary,JD,JD,4616,30.3,USD,"=GOOGLEFINANCE(""JD"", ""price"")",=G6 * D6,=H6 / H55 * 100,=(H6 / (E6 * D6) - 1) * 100
+Discretionary,META,META,133,605.2,USD,"=GOOGLEFINANCE(""META"", ""price"")",=G7 * D7,=H7 / H55 * 100,=(H7 / (E7 * D7) - 1) * 100
+Discretionary,MSFT,MSFT,156,385.2,USD,"=GOOGLEFINANCE(""MSFT"", ""price"")",=G8 * D8,=H8 / H55 * 100,=(H8 / (E8 * D8) - 1) * 100
+Discretionary,AMZN,AMZN,305,203.61,USD,"=GOOGLEFINANCE(""AMZN"", ""price"")",=G9 * D9,=H9 / H55 * 100,=(H9 / (E9 * D9) - 1) * 100
+Discretionary,CLNX,BME:CLNX,1869,26.83,EUR,"=GOOGLEFINANCE(""BME:CLNX"", ""price"")","=G10 * D10 * GOOGLEFINANCE(""CURRENCY:EURUSD"")",=H10 / H55 * 100,"=(H10 / (E10 * D10 * GOOGLEFINANCE(""CURRENCY:EURUSD"")) - 1) * 100"
+Discretionary,PRX,AMS:PRX,910,40.65,EUR,"=GOOGLEFINANCE(""AMS:PRX"", ""price"")","=G11 * D11 * GOOGLEFINANCE(""CURRENCY:EURUSD"")",=H11 / H55 * 100,"=(H11 / (E11 * D11 * GOOGLEFINANCE(""CURRENCY:EURUSD"")) - 1) * 100"
+Discretionary,EXO,BIT:EXO,481,66.42,EUR,"=GOOGLEFINANCE(""BIT:EXO"", ""price"")","=G12 * D12 * GOOGLEFINANCE(""CURRENCY:EURUSD"")",=H12 / H55 * 100,"=(H12 / (E12 * D12 * GOOGLEFINANCE(""CURRENCY:EURUSD"")) - 1) * 100"
+Discretionary,GOOGL,GOOGL,112,312.67,USD,"=GOOGLEFINANCE(""GOOGL"", ""price"")",=G13 * D13,=H13 / H55 * 100,=(H13 / (E13 * D13) - 1) * 100
+Discretionary,SE,SE,452,82.11,USD,"=GOOGLEFINANCE(""SE"", ""price"")",=G14 * D14,=H14 / H55 * 100,=(H14 / (E14 * D14) - 1) * 100
+Discretionary,MELI,MELI,21,1707.41,USD,"=GOOGLEFINANCE(""MELI"", ""price"")",=G15 * D15,=H15 / H55 * 100,=(H15 / (E15 * D15) - 1) * 100
+Discretionary,V,V,100,307.91,USD,"=GOOGLEFINANCE(""V"", ""price"")",=G16 * D16,=H16 / H55 * 100,=(H16 / (E16 * D16) - 1) * 100
+Discretionary,AMD,AMD,100,193.22,USD,"=GOOGLEFINANCE(""AMD"", ""price"")",=G17 * D17,=H17 / H55 * 100,=(H17 / (E17 * D17) - 1) * 100
+Discretionary,NOMD,NOMD,2100,10.9,USD,"=GOOGLEFINANCE(""NOMD"", ""price"")",=G18 * D18,=H18 / H55 * 100,=(H18 / (E18 * D18) - 1) * 100
+Discretionary,FISV,FISV,370,63.86,USD,"=GOOGLEFINANCE(""FISV"", ""price"")",=G19 * D19,=H19 / H55 * 100,=(H19 / (E19 * D19) - 1) * 100
+Discretionary,BABA,BABA,150,122.01,USD,"=GOOGLEFINANCE(""BABA"", ""price"")",=G20 * D20,=H20 / H55 * 100,=(H20 / (E20 * D20) - 1) * 100
+Discretionary,CHTR,CHTR,50,212.42,USD,"=GOOGLEFINANCE(""CHTR"", ""price"")",=G21 * D21,=H21 / H55 * 100,=(H21 / (E21 * D21) - 1) * 100
+Discretionary,WISE,LON:WISE,1000,8.91,GBP,"=GOOGLEFINANCE(""LON:WISE"", ""price"")","=(G22/100) * D22 * GOOGLEFINANCE(""CURRENCY:GBPUSD"")",=H22 / H55 * 100,"=(H22 / (E22 * D22 * GOOGLEFINANCE(""CURRENCY:GBPUSD"")) - 1) * 100"
+Discretionary,SFM,SFM,200,66.42,USD,"=GOOGLEFINANCE(""SFM"", ""price"")",=G23 * D23,=H23 / H55 * 100,=(H23 / (E23 * D23) - 1) * 100
+Discretionary,ACN,ACN,75,199.76,USD,"=GOOGLEFINANCE(""ACN"", ""price"")",=G24 * D24,=H24 / H55 * 100,=(H24 / (E24 * D24) - 1) * 100
+Discretionary,2330,TPE:2330,178,1815,TWD,"=GOOGLEFINANCE(""TPE:2330"", ""price"")","=G25 * D25 * GOOGLEFINANCE(""CURRENCY:TWDUSD"")",=H25 / H55 * 100,"=(H25 / (E25 * D25 * GOOGLEFINANCE(""CURRENCY:TWDUSD"")) - 1) * 100"
+Discretionary,NVO,NVO,300,40.63,USD,"=GOOGLEFINANCE(""NVO"", ""price"")",=G26 * D26,=H26 / H55 * 100,=(H26 / (E26 * D26) - 1) * 100
+Discretionary,MA,MA,20,497.4,USD,"=GOOGLEFINANCE(""MA"", ""price"")",=G27 * D27,=H27 / H55 * 100,=(H27 / (E27 * D27) - 1) * 100
+Value (VC2),SM,SM,481.6,19.94,USD,"=GOOGLEFINANCE(""SM"", ""price"")",=G28 * D28,=H28 / H55 * 100,=(H28 / (E28 * D28) - 1) * 100
+Value (VC2),PVH,PVH,81,62.23,USD,"=GOOGLEFINANCE(""PVH"", ""price"")",=G29 * D29,=H29 / H55 * 100,=(H29 / (E29 * D29) - 1) * 100
+Value (VC2),APA,APA,181,27.64,USD,"=GOOGLEFINANCE(""APA"", ""price"")",=G30 * D30,=H30 / H55 * 100,=(H30 / (E30 * D30) - 1) * 100
+Value (VC2),HOG,HOG,277,18.03,USD,"=GOOGLEFINANCE(""HOG"", ""price"")",=G31 * D31,=H31 / H55 * 100,=(H31 / (E31 * D31) - 1) * 100
+Value (VC2),SGU,SGU,423,11.84,USD,"=GOOGLEFINANCE(""SGU"", ""price"")",=G32 * D32,=H32 / H55 * 100,=(H32 / (E32 * D32) - 1) * 100
+Value (VC2),AMCX,AMCX,696,7.25,USD,"=GOOGLEFINANCE(""AMCX"", ""price"")",=G33 * D33,=H33 / H55 * 100,=(H33 / (E33 * D33) - 1) * 100
+Value (VC2),NUS,NUS,690,7.28,USD,"=GOOGLEFINANCE(""NUS"", ""price"")",=G34 * D34,=H34 / H55 * 100,=(H34 / (E34 * D34) - 1) * 100
+Value (VC2),SSTK,SSTK,304,16.23,USD,"=GOOGLEFINANCE(""SSTK"", ""price"")",=G35 * D35,=H35 / H55 * 100,=(H35 / (E35 * D35) - 1) * 100
+Value (VC2),CMCSA,CMCSA,181,27.61,USD,"=GOOGLEFINANCE(""CMCSA"", ""price"")",=G36 * D36,=H36 / H55 * 100,=(H36 / (E36 * D36) - 1) * 100
+Value (VC2),GPK,GPK,506,9.93,USD,"=GOOGLEFINANCE(""GPK"", ""price"")",=G37 * D37,=H37 / H55 * 100,=(H37 / (E37 * D37) - 1) * 100
+Value (VC2),EBS,EBS,598,8.33,USD,"=GOOGLEFINANCE(""EBS"", ""price"")",=G38 * D38,=H38 / H55 * 100,=(H38 / (E38 * D38) - 1) * 100
+Value (VC2),WNC,WNC,510,9.83,USD,"=GOOGLEFINANCE(""WNC"", ""price"")",=G39 * D39,=H39 / H55 * 100,=(H39 / (E39 * D39) - 1) * 100
+Value (VC2),ANGI,ANGI,675,7.4,USD,"=GOOGLEFINANCE(""ANGI"", ""price"")",=G40 * D40,=H40 / H55 * 100,=(H40 / (E40 * D40) - 1) * 100
+Value (VC2),ACCO,ACCO,1492,3.35,USD,"=GOOGLEFINANCE(""ACCO"", ""price"")",=G41 * D41,=H41 / H55 * 100,=(H41 / (E41 * D41) - 1) * 100
+Value (VC2),CALM,CALM,57,88.31,USD,"=GOOGLEFINANCE(""CALM"", ""price"")",=G42 * D42,=H42 / H55 * 100,=(H42 / (E42 * D42) - 1) * 100
+Value (VC2),DXC,DXC,330,15.17,USD,"=GOOGLEFINANCE(""DXC"", ""price"")",=G43 * D43,=H43 / H55 * 100,=(H43 / (E43 * D43) - 1) * 100
+Value (VC2),CNXC,CNXC,128,39.16,USD,"=GOOGLEFINANCE(""CNXC"", ""price"")",=G44 * D44,=H44 / H55 * 100,=(H44 / (E44 * D44) - 1) * 100
+Value (VC2),VSNT,VSNT,14,43.54,USD,"=GOOGLEFINANCE(""VSNT"", ""price"")",=G45 * D45,=H45 / H55 * 100,=(H45 / (E45 * D45) - 1) * 100
+Mom + Value,SENEA,SENEA,42,118.57,USD,"=GOOGLEFINANCE(""SENEA"", ""price"")",=G46 * D46,=H46 / H55 * 100,=(H46 / (E46 * D46) - 1) * 100
+Mom + Value,EIX,EIX,77,64.79,USD,"=GOOGLEFINANCE(""EIX"", ""price"")",=G47 * D47,=H47 / H55 * 100,=(H47 / (E47 * D47) - 1) * 100
+Mom + Value,IMKTA,IMKTA,59,84.99,USD,"=GOOGLEFINANCE(""IMKTA"", ""price"")",=G48 * D48,=H48 / H55 * 100,=(H48 / (E48 * D48) - 1) * 100
+Mom + Value,EBF,EBF,242,20.63,USD,"=GOOGLEFINANCE(""EBF"", ""price"")",=G49 * D49,=H49 / H55 * 100,=(H49 / (E49 * D49) - 1) * 100
+Mom + Value,DINO,DINO,87,57.56,USD,"=GOOGLEFINANCE(""DINO"", ""price"")",=G50 * D50,=H50 / H55 * 100,=(H50 / (E50 * D50) - 1) * 100
+Mom + Value,CYH,CYH,1552,3.23,USD,"=GOOGLEFINANCE(""CYH"", ""price"")",=G51 * D51,=H51 / H55 * 100,=(H51 / (E51 * D51) - 1) * 100
+Mom + Value,GM,GM,62,79.9,USD,"=GOOGLEFINANCE(""GM"", ""price"")",=G52 * D52,=H52 / H55 * 100,=(H52 / (E52 * D52) - 1) * 100
+Mom + Value,M,M,235,21.28,USD,"=GOOGLEFINANCE(""M"", ""price"")",=G53 * D53,=H53 / H55 * 100,=(H53 / (E53 * D53) - 1) * 100
+Mom + Value,UHS,UHS,23,213.75,USD,"=GOOGLEFINANCE(""UHS"", ""price"")",=G54 * D54,=H54 / H55 * 100,=(H54 / (E54 * D54) - 1) * 100
+TOTAL,,,,,,,=SUM(H5:H54),100%,
+
+
+ANNUAL RETURNS (USD),,,,
+Year,Discretionary,Value (VC2),Mom + Value,S&P 500
+2024,+20.6%,—,—,+25.0%
+2025,+46.1%,+23.1%,+24.0%,+17.9%
+2026 YTD,+5.0%,+9.4%,+3.4%,+0.5%

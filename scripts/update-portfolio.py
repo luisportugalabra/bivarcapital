@@ -145,9 +145,9 @@ annual_returns = positions.get("annual_returns", {})
 sp500_returns = positions.get("sp500_returns", {})
 
 output["returns"] = {}
-for strat_name, strat_positions in positions.items():
-    if strat_name in ("realized_pnl_2026", "annual_returns", "sp500_returns"):
-        continue
+strat_keys = ["discretionary", "vc2", "vc2trend"]
+for strat_name in strat_keys:
+    strat_positions = positions.get(strat_name, [])
 
     # Calculate Jan 1 value for this strategy
     jan1_value = 0

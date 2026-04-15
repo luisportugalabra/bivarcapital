@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-15 00:12 UTC",
+  "updated": "2026-04-15 02:53 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -34,8 +34,8 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 35.59,
-          "mkt_value": 66518.5,
+          "price": 35.56,
+          "mkt_value": 66463.62,
           "weight": 6.8
         },
         {
@@ -48,8 +48,8 @@
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 49.87,
-          "mkt_value": 45381.92,
+          "price": 49.83,
+          "mkt_value": 45344.48,
           "weight": 4.6
         },
         {
@@ -139,15 +139,15 @@
         {
           "ticker": "WISE",
           "qty": 1000.0,
-          "price": 14.17,
-          "mkt_value": 14174.44,
+          "price": 14.16,
+          "mkt_value": 14164.92,
           "weight": 1.4
         },
         {
           "ticker": "2330",
           "qty": 178.0,
-          "price": 64.22,
-          "mkt_value": 11430.94,
+          "price": 65.47,
+          "mkt_value": 11653.44,
           "weight": 1.2
         },
         {
@@ -172,8 +172,7 @@
           "weight": 1.0
         }
       ],
-      "total_value": 983044.05,
-      "total_cost": 941916.7751437675,
+      "total_value": 983164.72,
       "n_positions": 24
     },
     "vc2": {
@@ -306,7 +305,6 @@
         }
       ],
       "total_value": 97226.2,
-      "total_cost": 90323.96399999999,
       "n_positions": 18
     },
     "vc2trend": {
@@ -376,7 +374,6 @@
         }
       ],
       "total_value": 46359.86,
-      "total_cost": 44867.170000000006,
       "n_positions": 9
     }
   },
@@ -384,7 +381,7 @@
     "discretionary": {
       "2024": 20.6,
       "2025": 46.1,
-      "2026_ytd": 5.0
+      "2026_ytd": 4.9
     },
     "vc2": {
       "2025": 23.1,
@@ -399,5 +396,26 @@
     "2024": 25.0,
     "2025": 17.9,
     "2026_ytd": 0.5
+  },
+  "sync": {
+    "discretionary": {
+      "date": "2026-04-15 02:53 UTC",
+      "value": 983164.72,
+      "ytd_at_sync": 4.9
+    },
+    "vc2": {
+      "date": "2026-04-15 02:53 UTC",
+      "value": 97226.2,
+      "ytd_at_sync": 9.4
+    },
+    "vc2trend": {
+      "date": "2026-04-15 02:53 UTC",
+      "value": 46359.86,
+      "ytd_at_sync": 3.4
+    },
+    "sp500": {
+      "date": "2026-04-15 02:53 UTC",
+      "ytd_at_sync": 0.5
+    }
   }
 }
