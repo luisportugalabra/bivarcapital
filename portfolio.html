@@ -320,11 +320,11 @@
         const ytdCells = document.querySelectorAll('[data-ytd]');
         ytdCells.forEach(cell => {
           const strat = cell.getAttribute('data-ytd');
-          const r = data.returns[strat];
+          const r = strat === 'sp500' ? data.sp500_returns : data.returns[strat];
           if (r && r['2026_ytd'] !== undefined) {
             const val = r['2026_ytd'];
             cell.textContent = (val >= 0 ? '+' : '') + val + '%';
-            cell.style.color = val >= 0 ? 'var(--green)' : 'var(--red)';
+            cell.style.color = strat === 'sp500' ? 'var(--text)' : (val >= 0 ? 'var(--green)' : 'var(--red)');
             cell.style.fontWeight = '600';
           }
         });

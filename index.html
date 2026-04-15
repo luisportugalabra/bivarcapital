@@ -490,6 +490,11 @@ fetch('portfolio-data.json')
   .then(pd => {
     const dateEl = document.getElementById('data-date-display');
     if (dateEl && pd.updated) dateEl.textContent = pd.updated;
+    const spEl = document.getElementById('sp500-ytd');
+    if (spEl && pd.sp500_returns && pd.sp500_returns['2026_ytd'] != null) {
+      const v = pd.sp500_returns['2026_ytd'];
+      spEl.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+    }
   })
   .catch(() => {});
 
