@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negative Momentum + Value — Bivar Capital Research</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:940px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:660px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1.1rem,2.5vw,1.6rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}
+.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.pos{color:var(--green)}.neg{color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.78rem}
+.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout-red p{margin:0;color:var(--text);font-size:.78rem}
+.highlight{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.15);border-radius:8px;padding:18px;margin:18px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:1px 0 0}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.grid6{grid-template-columns:repeat(3,1fr)}.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="container">
+
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>Negative Momentum + Value<span class="it">Buying beaten-down cheap stocks. The contrarian trap.</span></h1>
+<p class="lead">Can you profit from buying the most hated stocks in the market &mdash; as long as they're cheap and growing? We tested a contrarian strategy that buys stocks with the worst 12-month momentum, filtered by P/E &lt; 10, positive EPS, and strong earnings growth. 21 years of data. 252 portfolios. The answer is clear.</p>
+
+<div class="verdict">
+<div class="big"><span class="neg">+5.9% CAGR</span> &nbsp;vs&nbsp; S&amp;P 500: +9.4% CAGR</div>
+<div class="sub">Negative momentum + value &middot; 2005&ndash;2025 &middot; 12 monthly portfolios averaged &middot; Survivorship-bias free</div>
+</div>
+
+<div class="highlight">
+<p><strong>This strategy underperforms the S&amp;P 500 by &minus;3.5% per year with nearly double the volatility.</strong> Buying the worst-performing cheap stocks is a losing strategy. The stocks are cheap and falling for a reason &mdash; and the reasons persist. The strategy only works during post-crash recoveries (2009, 2020) but destroys value the rest of the time. Sharpe ratio: 0.10.</p>
+</div>
+
+<h2>The Thesis</h2>
+<p>The idea is simple and intuitive: find stocks that are cheap (P/E &lt; 10), profitable (EPS &gt; 0), with growing earnings (EPS growth &gt;10% 1yr, &gt;20% 2yr) &mdash; but that the market has punished severely over the past 12 months. The contrarian bet: the market is overreacting, and these stocks will snap back.</p>
+
+<p>This combines two well-documented factors in academic finance: <strong>value</strong> (cheap stocks outperform) and <strong>mean reversion</strong> (extreme losers tend to recover). The filters for earnings growth add a quality screen to avoid genuine value traps. In theory, this should work.</p>
+
+<p><strong>In practice, it doesn't.</strong></p>
+
+<div class="divider"></div>
+
+<h2>Key Statistics</h2>
+
+<div class="grid6">
+<div class="stat"><div class="v neg">+5.9%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v">+9.4%</div><div class="l">S&amp;P 500</div></div>
+<div class="stat"><div class="v neg">&minus;1.1%</div><div class="l">Avg Alpha</div></div>
+<div class="stat"><div class="v neg">0.10</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v neg">28.0%</div><div class="l">Volatility</div></div>
+<div class="stat"><div class="v">10/21</div><div class="l">Win vs S&amp;P</div></div>
+</div>
+
+<div class="grid">
+<div class="stat"><div class="v pos">+79.1%</div><div class="l">Best Year (2009)</div></div>
+<div class="stat"><div class="v neg">&minus;33.8%</div><div class="l">Worst Year (2019)</div></div>
+<div class="stat"><div class="v">$334K</div><div class="l">$100K Final</div></div>
+<div class="stat"><div class="v">$663K</div><div class="l">$100K S&amp;P</div></div>
+</div>
+
+<div class="divider"></div>
+
+<h2>Annual Performance</h2>
+<h3>Average of 12 monthly portfolios per year &mdash; removing seasonality bias</h3>
+
+<table>
+<thead><tr><th>Year</th><th>Strategy</th><th>S&amp;P 500</th><th>Alpha</th><th>Stocks</th><th>Cumulative $100K</th><th>Cumulative S&amp;P</th></tr></thead>
+<tbody>
+<tr><td>2005</td><td class="pos">+13.5%</td><td>+9.2%</td><td class="pos">+4.4%</td><td>25</td><td>$113,535</td><td>$109,152</td></tr>
+<tr><td>2006</td><td class="neg">&minus;11.9%</td><td>+12.2%</td><td class="neg">&minus;24.2%</td><td>25</td><td>$100,014</td><td>$122,520</td></tr>
+<tr><td>2007</td><td class="neg">&minus;12.3%</td><td class="neg">&minus;17.3%</td><td class="pos">+5.0%</td><td>25</td><td>$87,671</td><td>$101,294</td></tr>
+<tr><td>2008</td><td class="neg">&minus;0.4%</td><td class="neg">&minus;18.6%</td><td class="pos">+18.2%</td><td>25</td><td>$87,289</td><td>$82,444</td></tr>
+<tr style="background:rgba(74,222,128,.05)"><td>2009</td><td class="pos" style="font-weight:600">+79.1%</td><td>+20.9%</td><td class="pos" style="font-weight:600">+58.2%</td><td>25</td><td>$156,317</td><td>$99,654</td></tr>
+<tr><td>2010</td><td class="pos">+17.9%</td><td>+13.7%</td><td class="pos">+4.3%</td><td>25</td><td>$184,344</td><td>$113,272</td></tr>
+<tr><td>2011</td><td class="neg">&minus;7.4%</td><td>+8.3%</td><td class="neg">&minus;15.7%</td><td>25</td><td>$170,621</td><td>$122,649</td></tr>
+<tr><td>2012</td><td class="pos">+16.5%</td><td>+19.1%</td><td class="neg">&minus;2.7%</td><td>25</td><td>$198,712</td><td>$146,122</td></tr>
+<tr><td>2013</td><td class="pos">+25.2%</td><td>+17.9%</td><td class="pos">+7.4%</td><td>25</td><td>$248,804</td><td>$172,213</td></tr>
+<tr><td>2014</td><td class="neg">&minus;1.3%</td><td>+5.7%</td><td class="neg">&minus;7.0%</td><td>25</td><td>$245,682</td><td>$182,078</td></tr>
+<tr><td>2015</td><td class="neg" style="font-weight:600">&minus;28.7%</td><td>+2.8%</td><td class="neg" style="font-weight:600">&minus;31.4%</td><td>25</td><td>$175,212</td><td>$187,104</td></tr>
+<tr><td>2016</td><td class="pos">+19.6%</td><td>+17.1%</td><td class="pos">+2.5%</td><td>25</td><td>$209,536</td><td>$219,076</td></tr>
+<tr><td>2017</td><td class="pos">+16.3%</td><td>+11.4%</td><td class="pos">+4.9%</td><td>25</td><td>$243,638</td><td>$243,956</td></tr>
+<tr><td>2018</td><td class="neg">&minus;14.0%</td><td>+7.5%</td><td class="neg">&minus;21.5%</td><td>25</td><td>$209,626</td><td>$262,337</td></tr>
+<tr style="background:rgba(248,113,113,.05)"><td>2019</td><td class="neg" style="font-weight:600">&minus;33.8%</td><td>+10.2%</td><td class="neg" style="font-weight:600">&minus;44.1%</td><td>25</td><td>$138,707</td><td>$289,169</td></tr>
+<tr style="background:rgba(74,222,128,.05)"><td>2020</td><td class="pos" style="font-weight:600">+74.4%</td><td>+33.6%</td><td class="pos" style="font-weight:600">+40.8%</td><td>25</td><td>$241,909</td><td>$386,436</td></tr>
+<tr><td>2021</td><td class="neg">&minus;7.1%</td><td class="neg">&minus;3.8%</td><td class="neg">&minus;3.3%</td><td>25</td><td>$224,735</td><td>$371,687</td></tr>
+<tr><td>2022</td><td class="neg">&minus;5.7%</td><td>+6.7%</td><td class="neg">&minus;12.4%</td><td>25</td><td>$211,904</td><td>$396,636</td></tr>
+<tr><td>2023</td><td class="pos">+11.0%</td><td>+25.8%</td><td class="neg">&minus;14.8%</td><td>25</td><td>$235,306</td><td>$499,087</td></tr>
+<tr><td>2024</td><td class="pos">+12.0%</td><td>+15.0%</td><td class="neg">&minus;2.9%</td><td>25</td><td>$263,623</td><td>$573,784</td></tr>
+<tr><td>2025</td><td class="pos">+26.8%</td><td>+15.6%</td><td class="pos">+11.2%</td><td>25</td><td>$334,329</td><td>$663,166</td></tr>
+</tbody>
+</table>
+
+<div class="divider"></div>
+
+<h2>The Pattern: Only Works After Crashes</h2>
+
+<p>The strategy's returns are dominated by two years: <strong>2009 (+79.1%)</strong> and <strong>2020 (+74.4%)</strong>. Both follow massive market crashes where beaten-down stocks snapped back violently. Remove those two years and the strategy's CAGR drops to approximately +1.5% &mdash; catastrophic underperformance.</p>
+
+<h3>Post-crash years vs normal years</h3>
+<table>
+<thead><tr><th>Period</th><th>Strategy</th><th>S&amp;P 500</th><th>Alpha</th></tr></thead>
+<tbody>
+<tr style="background:rgba(74,222,128,.05)"><td>Post-crash years (2009, 2020)</td><td class="pos">+76.8%</td><td>+27.3%</td><td class="pos">+49.5%</td></tr>
+<tr style="background:rgba(248,113,113,.05)"><td>All other years (19 years)</td><td class="neg">+0.7%</td><td>+8.1%</td><td class="neg">&minus;7.5%</td></tr>
+<tr><td>Full period (21 years)</td><td>+5.9%</td><td>+9.4%</td><td class="neg">&minus;1.1%</td></tr>
+</tbody>
+</table>
+
+<div class="callout-red">
+<p><strong>Outside of post-crash recoveries, the strategy averages +0.7% per year vs +8.1% for the S&amp;P 500.</strong> This is not a strategy with occasional bad years &mdash; it's a strategy that only works in one very specific market regime (post-crash recovery) and fails in all others. You would need to perfectly time when to deploy it, which defeats the purpose of a systematic approach.</p>
+</div>
+
+<div class="divider"></div>
+
+<h2>Why Negative Momentum Fails</h2>
+
+<h3>1. Momentum is the strongest factor in finance</h3>
+<p>Jegadeesh &amp; Titman (1993) demonstrated that stocks with positive momentum continue to outperform, and stocks with negative momentum continue to underperform. This is one of the most replicated findings in financial economics. Betting against momentum is betting against the most persistent market anomaly.</p>
+
+<h3>2. Cheap + falling = falling for a reason</h3>
+<p>A stock with a P/E of 5 and negative momentum isn't a misunderstood bargain &mdash; it's usually a business in structural decline. The low P/E reflects the market's expectation that earnings will collapse. The EPS growth filter should help, but trailing EPS growth can be misleading: a company can report great earnings in its most recent year while its forward outlook deteriorates.</p>
+
+<h3>3. Value traps are systematic</h3>
+<p>The entire strategy is a value trap generator by design. It screens for stocks that look cheap on paper but that the market is actively repricing downward. The EPS growth requirement helps marginally, but it cannot overcome the fundamental problem: price momentum contains information about the future that trailing fundamentals do not.</p>
+
+<h3>4. Extreme volatility destroys compounding</h3>
+<p>With 28% annual volatility (vs ~15% for the S&amp;P 500), the strategy suffers from volatility drag. A year of &minus;33.8% requires a +51% gain just to break even. The strategy's best years (+79%, +74%) are impressive in isolation but are consumed by the many years of losses.</p>
+
+<div class="divider"></div>
+
+<h2>Growth of $100,000</h2>
+<h3>Strategy vs S&amp;P 500 &mdash; 2005 to 2025</h3>
+
+<table>
+<thead><tr><th>Year</th><th>Strategy Return</th><th>S&amp;P Return</th><th>Strategy $</th><th>S&amp;P $</th><th>Gap</th></tr></thead>
+<tbody>
+<tr><td>2005</td><td class="pos">+13.5%</td><td>+9.2%</td><td>$113,535</td><td>$109,152</td><td class="pos">+$4,383</td></tr>
+<tr><td>2006</td><td class="neg">&minus;11.9%</td><td>+12.2%</td><td>$100,014</td><td>$122,520</td><td class="neg">&minus;$22,506</td></tr>
+<tr><td>2007</td><td class="neg">&minus;12.3%</td><td class="neg">&minus;17.3%</td><td>$87,671</td><td>$101,294</td><td class="neg">&minus;$13,624</td></tr>
+<tr><td>2008</td><td class="neg">&minus;0.4%</td><td class="neg">&minus;18.6%</td><td>$87,289</td><td>$82,444</td><td class="pos">+$4,845</td></tr>
+<tr><td>2009</td><td class="pos">+79.1%</td><td>+20.9%</td><td>$156,317</td><td>$99,654</td><td class="pos">+$56,664</td></tr>
+<tr><td>2010</td><td class="pos">+17.9%</td><td>+13.7%</td><td>$184,344</td><td>$113,272</td><td class="pos">+$71,072</td></tr>
+<tr><td>2011</td><td class="neg">&minus;7.4%</td><td>+8.3%</td><td>$170,621</td><td>$122,649</td><td class="pos">+$47,972</td></tr>
+<tr><td>2012</td><td class="pos">+16.5%</td><td>+19.1%</td><td>$198,712</td><td>$146,122</td><td class="pos">+$52,590</td></tr>
+<tr><td>2013</td><td class="pos">+25.2%</td><td>+17.9%</td><td>$248,804</td><td>$172,213</td><td class="pos">+$76,591</td></tr>
+<tr><td>2014</td><td class="neg">&minus;1.3%</td><td>+5.7%</td><td>$245,682</td><td>$182,078</td><td class="pos">+$63,604</td></tr>
+<tr><td>2015</td><td class="neg">&minus;28.7%</td><td>+2.8%</td><td>$175,212</td><td>$187,104</td><td class="neg">&minus;$11,892</td></tr>
+<tr><td>2016</td><td class="pos">+19.6%</td><td>+17.1%</td><td>$209,536</td><td>$219,076</td><td class="neg">&minus;$9,540</td></tr>
+<tr><td>2017</td><td class="pos">+16.3%</td><td>+11.4%</td><td>$243,638</td><td>$243,956</td><td class="neg">&minus;$318</td></tr>
+<tr><td>2018</td><td class="neg">&minus;14.0%</td><td>+7.5%</td><td>$209,626</td><td>$262,337</td><td class="neg">&minus;$52,712</td></tr>
+<tr><td>2019</td><td class="neg">&minus;33.8%</td><td>+10.2%</td><td>$138,707</td><td>$289,169</td><td class="neg">&minus;$150,462</td></tr>
+<tr><td>2020</td><td class="pos">+74.4%</td><td>+33.6%</td><td>$241,909</td><td>$386,436</td><td class="neg">&minus;$144,528</td></tr>
+<tr><td>2021</td><td class="neg">&minus;7.1%</td><td class="neg">&minus;3.8%</td><td>$224,735</td><td>$371,687</td><td class="neg">&minus;$146,952</td></tr>
+<tr><td>2022</td><td class="neg">&minus;5.7%</td><td>+6.7%</td><td>$211,904</td><td>$396,636</td><td class="neg">&minus;$184,732</td></tr>
+<tr><td>2023</td><td class="pos">+11.0%</td><td>+25.8%</td><td>$235,306</td><td>$499,087</td><td class="neg">&minus;$263,781</td></tr>
+<tr><td>2024</td><td class="pos">+12.0%</td><td>+15.0%</td><td>$263,623</td><td>$573,784</td><td class="neg">&minus;$310,161</td></tr>
+<tr><td>2025</td><td class="pos">+26.8%</td><td>+15.6%</td><td>$334,329</td><td>$663,166</td><td class="neg">&minus;$328,837</td></tr>
+</tbody>
+</table>
+
+<div class="callout-red">
+<p><strong>$100,000 invested in this strategy in 2005 would be worth $334,329 today. The same $100,000 in the S&amp;P 500 would be worth $663,166.</strong> You would have endured 28% annual volatility, multiple years of &minus;30% losses, and emotional agony &mdash; all to underperform a simple index fund by nearly half.</p>
+</div>
+
+<div class="divider"></div>
+
+<h2>Worst Drawdown Periods</h2>
+
+<table>
+<thead><tr><th>Period</th><th>Strategy</th><th>S&amp;P 500</th><th>Relative</th><th>What Happened</th></tr></thead>
+<tbody>
+<tr><td>2006</td><td class="neg">&minus;11.9%</td><td>+12.2%</td><td class="neg">&minus;24.2%</td><td>Energy sector collapse; strategy heavily concentrated in cheap oil stocks</td></tr>
+<tr><td>2015</td><td class="neg">&minus;28.7%</td><td>+2.8%</td><td class="neg">&minus;31.4%</td><td>Oil crash; cheap energy stocks with negative momentum fell further</td></tr>
+<tr><td>2018</td><td class="neg">&minus;14.0%</td><td>+7.5%</td><td class="neg">&minus;21.5%</td><td>Value factor underperformance; quality rotation</td></tr>
+<tr><td>2019</td><td class="neg">&minus;33.8%</td><td>+10.2%</td><td class="neg">&minus;44.1%</td><td>Growth/tech dominance; deep value stocks abandoned</td></tr>
+<tr><td>2021</td><td class="neg">&minus;7.1%</td><td class="neg">&minus;3.8%</td><td class="neg">&minus;3.3%</td><td>Post-COVID normalization; meme stock hangover</td></tr>
+</tbody>
+</table>
+
+<p>The strategy experienced <strong>five separate years of &minus;20% or more relative underperformance</strong> vs the benchmark. An investor would need extraordinary conviction (or delusion) to stick with this through 2015 (&minus;28.7%) and 2019 (&minus;33.8%) back-to-back, while the S&amp;P delivered positive returns both years.</p>
+
+<div class="divider"></div>
+
+<h2>Sector Concentration Risk</h2>
+
+<p>A critical problem: because the strategy buys the cheapest, most beaten-down stocks, it systematically concentrates in whichever sector is most out of favour. In 2014&ndash;2015, that meant energy. In 2018&ndash;2019, it was retail and industrials. This creates <strong>unintended sector bets</strong> that dominate the portfolio's performance.</p>
+
+<div class="callout">
+<p><strong>This is not a diversified strategy.</strong> When you buy the 25 cheapest, most hated stocks, you're often buying 15 stocks from the same sector. The portfolio is a concentrated bet on the most unloved corner of the market &mdash; which is exactly where the most permanent capital losses occur.</p>
+</div>
+
+<div class="divider"></div>
+
+<h2>The Verdict</h2>
+
+<div class="highlight">
+<p><strong>Do not use this strategy.</strong> Negative momentum combined with value screens produces inferior risk-adjusted returns to a simple index fund. The strategy has a Sharpe ratio of 0.10 (near zero), almost double the volatility of the benchmark, and underperforms in the majority of years. Its spectacular post-crash recoveries are not repeatable on demand and cannot compensate for the chronic underperformance in normal market conditions.</p>
+</div>
+
+<p>The academic evidence is clear: <strong>momentum works best when you go WITH it, not against it.</strong> Jegadeesh &amp; Titman's original finding was about buying winners and selling losers &mdash; not the reverse. The contrarian "buy the dip" mentality, while psychologically appealing, is systematically unprofitable when applied to individual stocks.</p>
+
+<p>If you want exposure to cheap, growing stocks, combine value with <strong>positive</strong> momentum &mdash; the trending value approach. Or simply buy an index fund.</p>
+
+<div class="divider"></div>
+
+<h2>Methodology</h2>
+<div class="two-col">
+<div class="meta-box">
+<dt>Universe</dt><dd>US equities, market cap &gt; $200M</dd>
+<dt>Exclusions</dt><dd>Financial Services, negative earnings</dd>
+<dt>Value Filter</dt><dd>P/E &lt; 10, EPS &gt; 0</dd>
+<dt>Growth Filter</dt><dd>EPS growth 1yr &gt; 10%, 2yr &gt; 20%</dd>
+<dt>Ranking</dt><dd>Worst 12-1 month momentum (most negative first)</dd>
+</div>
+<div class="meta-box">
+<dt>Portfolio</dt><dd>Top 25 worst momentum, equal weight</dd>
+<dt>Rebalance</dt><dd>Annual (12 monthly portfolios averaged)</dd>
+<dt>Period</dt><dd>2005&ndash;2025 (21 years)</dd>
+<dt>Data</dt><dd>Sharadar / Nasdaq Data Link</dd>
+<dt>Survivorship</dt><dd>Delisted stocks included</dd>
+<dt>Costs</dt><dd>Not included (0%)</dd>
+<dt>Total portfolios</dt><dd>252 (21 years &times; 12 months)</dd>
+</div>
+</div>
+
+<div class="footer">
+<p style="font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);margin-bottom:4px">BIVAR CAPITAL</p>
+<p>Quantitative Research &middot; April 2026</p>
+<p style="margin-top:8px">This is not investment advice. Past performance does not guarantee future results.</p>
+</div>
+</div></body></html>
