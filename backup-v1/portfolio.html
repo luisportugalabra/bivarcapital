@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder's Portfolio — Bivar Capital</title>
+  <meta name="description" content="Live positions across systematic and discretionary strategies. Real capital. Full transparency.">
+  <meta property="og:title" content="Founder's Portfolio — Bivar Capital">
+  <meta property="og:description" content="Live positions across systematic and discretionary strategies. Real capital. Full transparency.">
+  <meta property="og:image" content="https://bivarcapital.com/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bivarcapital.com/portfolio.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Founder's Portfolio — Bivar Capital">
+  <meta name="twitter:description" content="Live positions across systematic and discretionary strategies. Real capital.">
+  <meta name="twitter:image" content="https://bivarcapital.com/og-image.png">
+  <link rel="canonical" href="https://bivarcapital.com/portfolio.html">
+  <meta name="theme-color" content="#060608">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .port-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 32px; }
+    .port-tab {
+      padding: 12px 24px; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
+      cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s;
+    }
+    .port-tab:hover { color: var(--text-secondary); }
+    .port-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+    .port-tab .pro-lock {
+      font-size: 0.5rem; background: var(--accent); color: var(--bg);
+      padding: 1px 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle;
+    }
+    .port-section { display: none; }
+    .port-section.active { display: block; }
+    .pos-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    .pos-table th {
+      font-family: var(--font-mono); font-size: 0.55rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+      text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--border-light);
+    }
+    .pos-table th.r { text-align: right; }
+    .pos-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+    .pos-table td.r { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); font-size: 0.8rem; }
+    .pos-table td.ticker { font-weight: 600; color: var(--text); font-family: var(--font-mono); font-size: 0.82rem; }
+    .pos-table tr:hover { background: var(--bg-elevated); }
+    .port-stat { text-align: center; }
+    .port-stat-val { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .port-stat-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+    .port-locked { text-align: center; padding: 60px 24px; }
+    .port-locked h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 8px; }
+    .port-locked p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .port-gate {
+      display: flex; position: absolute; inset: 0; z-index: 20;
+      flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(6,6,8,0.88); border-radius: 10px; padding: 40px 24px; text-align: center;
+    }
+    .port-gate h3 { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 10px; }
+    .port-gate p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px; max-width: 400px; }
+    .port-gate .price { font-family: var(--font-mono); font-size: 1.8rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .port-gate .price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+    .port-gate .period { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 20px; }
+    .port-gate .cta {
+      display: inline-block; padding: 14px 36px; background: var(--accent); border-radius: 7px;
+      color: var(--bg); font-size: 0.82rem; font-weight: 700; transition: background 0.25s;
+    }
+    .port-gate .cta:hover { background: var(--accent-hover); }
+    .port-gate .signin { font-size: 0.72rem; color: var(--text-muted); margin-top: 12px; }
+    .port-gate .signin a { color: var(--accent); }
+    @media (max-width: 600px) {
+      .port-tabs { overflow-x: auto; }
+      .port-tab { padding: 10px 16px; font-size: 0.62rem; white-space: nowrap; }
+      .pos-table { font-size: 0.75rem; }
+      .pos-table th, .pos-table td { padding: 8px 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo">BIVAR CAPITAL</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="invest.html">Strategy</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="strategies.html">How It Works</a>
+      <a href="about.html">About</a>
+      <a href="invest.html#signin" class="btn-sub">Sign In</a>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding:80px 28px 40px">
+    <p class="label fade-up"><span class="live-dot"></span>Founder's Portfolio &middot; Live Positions</p>
+    <h1 class="fade-up fade-up-1" style="margin-top:16px">Real capital.<span class="italic" style="display:block;margin-top:4px">Full transparency.</span></h1>
+    <p class="fade-up fade-up-2" style="max-width:560px;margin:16px auto 0;color:var(--text-muted)">Every position shown here is held with real money. Systematic and discretionary &mdash; updated at each rebalance.</p>
+  </header>
+
+  <section class="section" style="padding-top:24px">
+    <div class="container" style="max-width:900px;position:relative">
+
+      <!-- Paywall gate -->
+      <div class="port-gate" id="portfolio-gate">
+        <h3>Pro members only</h3>
+        <p>The Founder's Portfolio &mdash; every position, every strategy, updated live &mdash; is available exclusively to Pro members.</p>
+        <div class="price">$39<span>/month</span></div>
+        <div class="period">or $299/year (save 36%)</div>
+        <a href="invest.html#signin" class="cta">Go Pro &rarr;</a>
+        <p class="signin">Already a member? <a href="invest.html#signin">Sign in</a></p>
+      </div>
+
+      <div id="portfolio-content">
+      <!-- Annual Returns -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:32px;overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:0.8rem">
+          <thead><tr>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border)">Year</th>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)">Discretionary</th>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)">Value (VC2)</th>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)">Mom + Value</th>
+            <th style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)">S&amp;P 500</th>
+          </tr></thead>
+          <tbody>
+
+            <tr><td style="padding:8px 12px;color:var(--text)">2025</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+38.7%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+23.1%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600">+24.0%</td><td style="padding:8px 12px;text-align:right;color:var(--text)">+17.9%</td></tr>
+            <tr><td style="padding:8px 12px;color:var(--text)">2026 YTD</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="discretionary">+4.0%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2">+9.4%</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:600" data-ytd="vc2trend">+3.4%</td><td style="padding:8px 12px;text-align:right;color:var(--text)" data-ytd="sp500">+1.8%</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.65rem;color:var(--text-muted);margin-top:8px;text-align:center">Returns in USD, including cash.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="port-tabs">
+        <div class="port-tab active" onclick="showTab('geral', event)">Discretionary</div>
+        <div class="port-tab" onclick="showTab('vc2', event)">Value Strategy</div>
+        <div class="port-tab" onclick="showTab('vc2trend', event)">Momentum + Value</div>
+      </div>
+
+      <!-- GERAL -->
+      <div class="port-section active" id="sec-geral">
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:1.1rem;margin-bottom:6px">Discretionary Portfolio &mdash; 24 positions</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Conviction-based picks. Scalable businesses with long-term compounding potential.</p>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="pos-table">
+            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td class="ticker">BRK.B</td><td class="r">15.6%</td></tr>
+              <tr><td>2</td><td class="ticker">JD</td><td class="r">13.9%</td></tr>
+              <tr><td>3</td><td class="ticker">META</td><td class="r">8.7%</td></tr>
+              <tr><td>4</td><td class="ticker">AMZN</td><td class="r">7.6%</td></tr>
+              <tr><td>5</td><td class="ticker">CLNX</td><td class="r">6.9%</td></tr>
+              <tr><td>6</td><td class="ticker">MSFT</td><td class="r">6.0%</td></tr>
+              <tr><td>7</td><td class="ticker">PRX</td><td class="r">4.6%</td></tr>
+              <tr><td>8</td><td class="ticker">EXO</td><td class="r">4.1%</td></tr>
+              <tr><td>9</td><td class="ticker">SE</td><td class="r">4.0%</td></tr>
+              <tr><td>10</td><td class="ticker">MELI</td><td class="r">3.9%</td></tr>
+              <tr><td>11</td><td class="ticker">GOOGL</td><td class="r">3.7%</td></tr>
+              <tr><td>12</td><td class="ticker">V</td><td class="r">3.2%</td></tr>
+              <tr><td>13</td><td class="ticker">AMD</td><td class="r">2.6%</td></tr>
+              <tr><td>14</td><td class="ticker">JD (TT)</td><td class="r">2.2%</td></tr>
+              <tr><td>15</td><td class="ticker">NOMD</td><td class="r">2.2%</td></tr>
+              <tr><td>16</td><td class="ticker">FISV</td><td class="r">2.2%</td></tr>
+              <tr><td>17</td><td class="ticker">BABA</td><td class="r">2.0%</td></tr>
+              <tr><td>18</td><td class="ticker">SFM</td><td class="r">1.6%</td></tr>
+              <tr><td>19</td><td class="ticker">ACN</td><td class="r">1.4%</td></tr>
+              <tr><td>20</td><td class="ticker">WISE</td><td class="r">1.4%</td></tr>
+              <tr><td>21</td><td class="ticker">2330</td><td class="r">1.2%</td></tr>
+              <tr><td>22</td><td class="ticker">NVO</td><td class="r">1.2%</td></tr>
+              <tr><td>23</td><td class="ticker">CHTR</td><td class="r">1.1%</td></tr>
+              <tr><td>24</td><td class="ticker">MA</td><td class="r">1.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VC2 -->
+      <div class="port-section" id="sec-vc2">
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:1.1rem;margin-bottom:6px">Value Strategy &mdash; 18 positions</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Systematic. Ranked by 6-metric value composite (VC2).</p>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="pos-table">
+            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td class="ticker">SM</td><td class="r">14.3%</td></tr>
+              <tr><td>2</td><td class="ticker">PVH</td><td class="r">7.4%</td></tr>
+              <tr><td>3</td><td class="ticker">APA</td><td class="r">7.4%</td></tr>
+              <tr><td>4</td><td class="ticker">HOG</td><td class="r">6.5%</td></tr>
+              <tr><td>5</td><td class="ticker">AMCX</td><td class="r">5.4%</td></tr>
+              <tr><td>6</td><td class="ticker">SSTK</td><td class="r">5.5%</td></tr>
+              <tr><td>7</td><td class="ticker">SGU</td><td class="r">5.4%</td></tr>
+              <tr><td>8</td><td class="ticker">NUS</td><td class="r">5.3%</td></tr>
+              <tr><td>9</td><td class="ticker">CMCSA</td><td class="r">5.2%</td></tr>
+              <tr><td>10</td><td class="ticker">GPK</td><td class="r">5.1%</td></tr>
+              <tr><td>11</td><td class="ticker">ANGI</td><td class="r">5.1%</td></tr>
+              <tr><td>12</td><td class="ticker">EBS</td><td class="r">5.1%</td></tr>
+              <tr><td>13</td><td class="ticker">WNC</td><td class="r">4.8%</td></tr>
+              <tr><td>14</td><td class="ticker">ACCO</td><td class="r">4.6%</td></tr>
+              <tr><td>15</td><td class="ticker">CALM</td><td class="r">4.5%</td></tr>
+              <tr><td>16</td><td class="ticker">DXC</td><td class="r">4.2%</td></tr>
+              <tr><td>17</td><td class="ticker">CNXC</td><td class="r">3.7%</td></tr>
+              <tr><td>18</td><td class="ticker">VSNT</td><td class="r">0.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VC2 TREND -->
+      <div class="port-section" id="sec-vc2trend">
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:1.1rem;margin-bottom:6px">Momentum + Value &mdash; 9 positions</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted);max-width:none">Systematic. Cheapest 10% by VC2, ranked by 6-month momentum.</p>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="pos-table">
+            <thead><tr><th>#</th><th>Ticker</th><th class="r">Weight</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td class="ticker">SENEA</td><td class="r">14.9%</td></tr>
+              <tr><td>2</td><td class="ticker">EIX</td><td class="r">12.0%</td></tr>
+              <tr><td>3</td><td class="ticker">IMKTA</td><td class="r">11.7%</td></tr>
+              <tr><td>4</td><td class="ticker">EBF</td><td class="r">11.4%</td></tr>
+              <tr><td>5</td><td class="ticker">DINO</td><td class="r">10.9%</td></tr>
+              <tr><td>6</td><td class="ticker">CYH</td><td class="r">10.2%</td></tr>
+              <tr><td>7</td><td class="ticker">GM</td><td class="r">10.2%</td></tr>
+              <tr><td>8</td><td class="ticker">M</td><td class="r">9.7%</td></tr>
+              <tr><td>9</td><td class="ticker">UHS</td><td class="r">9.1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p style="margin-top:32px;font-size:0.7rem;color:var(--text-muted);text-align:center">Last updated: <span id="port-updated">loading...</span> &middot; Auto-updated daily after market close. Not financial advice.</p>
+
+      </div><!-- /portfolio-content -->
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="footer-logo">BIVAR CAPITAL</span>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="invest.html">Strategy</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="strategies.html">How It Works</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/lu%C3%ADs-portugal-6a252441/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://x.com/LuisPAbr" target="_blank" rel="noopener" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://instagram.com/bivarcapital" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    </div>
+    <p class="footer-disclaimer">Not financial advice. Past performance does not guarantee future results. &copy; 2026 Bivar Capital</p>
+  </footer>
+
+  <script>
+  const SUPABASE_URL = 'https://efiyeiwdywodjxxnslvu.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha';
+
+  function showTab(id, e) {
+    document.querySelectorAll('.port-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.port-section').forEach(s => s.classList.remove('active'));
+    if (e) e.currentTarget.classList.add('active');
+    document.getElementById('sec-' + id).classList.add('active');
+  }
+
+  // Migrate old localStorage keys
+  if (localStorage.getItem('rtw_token') && !localStorage.getItem('bc_token')) {
+    localStorage.setItem('bc_token', localStorage.getItem('rtw_token'));
+    if (localStorage.getItem('rtw_refresh')) localStorage.setItem('bc_refresh', localStorage.getItem('rtw_refresh'));
+    localStorage.removeItem('rtw_token'); localStorage.removeItem('rtw_refresh');
+  }
+
+  async function checkPortfolioAuth() {
+    const token = localStorage.getItem('bc_token');
+    let isPaid = false;
+    if (token) {
+      try {
+        let res = await fetch(SUPABASE_URL + '/auth/v1/user', {
+          headers: { 'Authorization': 'Bearer ' + token, 'apikey': SUPABASE_KEY }
+        });
+        if (!res.ok) {
+          const rt = localStorage.getItem('bc_refresh');
+          if (rt) {
+            const rr = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+              method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
+              body: JSON.stringify({ refresh_token: rt })
+            });
+            if (rr.ok) {
+              const d = await rr.json();
+              localStorage.setItem('bc_token', d.access_token);
+              if (d.refresh_token) localStorage.setItem('bc_refresh', d.refresh_token);
+              isPaid = d.user?.user_metadata?.is_paid === true;
+            }
+          }
+        } else {
+          const user = await res.json();
+          isPaid = user?.user_metadata?.is_paid === true;
+        }
+      } catch(e) {}
+    }
+
+    const gate = document.getElementById('portfolio-gate');
+    const content = document.getElementById('portfolio-content');
+    if (isPaid) {
+      gate.style.display = 'none';
+      content.style.filter = 'none';
+      content.style.pointerEvents = 'auto';
+      content.style.userSelect = 'auto';
+    } else {
+      gate.style.display = 'flex';
+      content.style.filter = 'blur(8px)';
+      content.style.pointerEvents = 'none';
+      content.style.userSelect = 'none';
+    }
+  }
+  checkPortfolioAuth();
+
+  // Load live portfolio data
+  fetch('portfolio-data.json')
+    .then(r => r.json())
+    .then(data => {
+      // Update timestamp
+      const dateEl = document.getElementById('port-updated');
+      if (dateEl) dateEl.textContent = data.updated;
+
+      // Update YTD returns in table
+      if (data.returns) {
+        const ytdCells = document.querySelectorAll('[data-ytd]');
+        ytdCells.forEach(cell => {
+          const strat = cell.getAttribute('data-ytd');
+          const r = strat === 'sp500' ? data.sp500_returns : data.returns[strat];
+          if (r && r['2026_ytd'] !== undefined) {
+            const val = r['2026_ytd'];
+            cell.textContent = (val >= 0 ? '+' : '') + val + '%';
+            cell.style.color = strat === 'sp500' ? 'var(--text)' : (val >= 0 ? 'var(--green)' : 'var(--red)');
+            cell.style.fontWeight = '600';
+          }
+        });
+      }
+
+      const stratMap = {
+        'discretionary': 'sec-geral',
+        'vc2': 'sec-vc2',
+        'vc2trend': 'sec-vc2trend'
+      };
+      const stratLabels = {
+        'discretionary': 'Discretionary Portfolio',
+        'vc2': 'Value Strategy',
+        'vc2trend': 'Momentum + Value'
+      };
+
+      for (const [strat, elemId] of Object.entries(stratMap)) {
+        const s = data.strategies[strat];
+        if (!s) continue;
+        const section = document.getElementById(elemId);
+        if (!section) continue;
+
+        // Update header
+        const h3 = section.querySelector('h3');
+        if (h3) h3.textContent = `${stratLabels[strat]} \u2014 ${s.n_positions} positions`;
+
+        // Update table
+        const tbody = section.querySelector('tbody');
+        if (tbody) {
+          tbody.innerHTML = s.positions.map((p, i) =>
+            `<tr><td>${i+1}</td><td class="ticker">${p.ticker}</td><td class="r">${p.weight}%</td></tr>`
+          ).join('');
+        }
+      }
+    })
+    .catch(e => console.log('Portfolio data not available yet'));
+  </script>
+  <script src="auth-nav.js"></script>
+</body>
+</html>

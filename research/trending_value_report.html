@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trending Value — Bivar Capital Research</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:940px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:660px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1.1rem,2.5vw,1.6rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}
+.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.chart{margin:18px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.chart img{width:100%;display:block}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.78rem}
+.highlight{background:rgba(196,162,101,.06);border:1px solid rgba(196,162,101,.15);border-radius:8px;padding:18px;margin:18px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:1px 0 0}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="container">
+
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>Trending Value<span class="it">Value + momentum. Better, but still not what the book promised.</span></h1>
+<p class="lead">O'Shaughnessy's "Trending Value" strategy combines the VC2 value composite with 6-month momentum &mdash; buying cheap stocks that are also trending upward. In theory, this avoids value traps. Our 21-year out-of-sample test shows some alpha, but far below the book's claims.</p>
+
+<div class="verdict">
+<div class="big">Book: <span style="color:var(--muted)">~21% CAGR</span> &nbsp;&rarr;&nbsp; Reality: <span class="neg">+8.0% CAGR</span> &nbsp;vs&nbsp; S&amp;P: +8.4%</div>
+<div class="sub">Trending Value &gt;$200M (original specification) &middot; Avg 12 monthly portfolios &middot; 2005&ndash;2026 &middot; Survivorship-bias free</div>
+</div>
+
+<div class="highlight">
+<p><strong>Using the original specification (&gt;$200M market cap, as in the book), the Trending Value strategy does not beat the S&amp;P 500.</strong> It returns +8.0% CAGR vs the benchmark's +8.4% &mdash; a negative alpha of &minus;0.4%. However, when filtered for large caps (&gt;$5B) and removing P/B from the composite, it improves to +12.2% CAGR with +3.8% alpha. The alpha exists, but only with modifications the book doesn't suggest.</p>
+</div>
+
+<h2>How It Works</h2>
+<div class="meta-box" style="margin:20px 0">
+<dt>Step 1 &mdash; Value Screen</dt><dd>Rank all US equities by the VC2 composite (P/E, P/S, P/FCF, EV/EBITDA, Shareholder Yield &mdash; without P/B for the best variant). Take the cheapest decile (top 10%).</dd>
+<dt>Step 2 &mdash; Momentum Filter</dt><dd>From the value decile, calculate 6-month price momentum for each stock. Select the 25 stocks with the highest momentum.</dd>
+<dt>Step 3 &mdash; Hold</dt><dd>Buy equal weight, hold for 12 months, rebalance.</dd>
+</div>
+
+<p>The intuition: pure value buys cheap stocks regardless of whether they're cheap for a reason (falling knife). Adding momentum ensures we only buy cheap stocks that the market has started to re-price upward &mdash; confirming that the value thesis is playing out.</p>
+
+<h2>Results</h2>
+
+<h3>All Variants Compared</h3>
+<table>
+<thead><tr><th>Strategy</th><th>CAGR</th><th>Alpha</th><th>Note</th></tr></thead>
+<tbody>
+<tr style="background:rgba(248,113,113,.05)"><td style="font-weight:600">TV &gt;$200M (avg 12mo)</td><td class="neg" style="font-weight:600">+8.0%</td><td class="neg" style="font-weight:600">&minus;0.4%</td><td>Original book specification &mdash; does not beat S&amp;P</td></tr>
+<tr><td>TV no P/B &gt;$200M (avg 12mo)</td><td>+8.4%</td><td>+0.0%</td><td>Removing P/B &mdash; breakeven</td></tr>
+<tr><td>TV &gt;$5B (avg 12mo)</td><td>+11.3%</td><td class="pos">+2.9%</td><td>Large-cap filter helps</td></tr>
+<tr style="background:rgba(74,222,128,.05)"><td style="font-weight:600">TV no P/B &gt;$5B (avg 12mo)</td><td class="pos" style="font-weight:600">+12.2%</td><td class="pos" style="font-weight:600">+3.8%</td><td>Best variant &mdash; modified from original</td></tr>
+<tr><td>TV &gt;$5B (January only)</td><td class="pos">+15.1%</td><td class="pos">+6.3%</td><td>Best single month</td></tr>
+<tr><td colspan="4" style="border:none;height:6px"></td></tr>
+<tr><td style="color:var(--muted)">VC2 pure &gt;$200M (avg 12mo)</td><td style="color:var(--muted)">+8.2%</td><td style="color:var(--muted)">&minus;0.2%</td><td style="color:var(--muted)">Value only, no momentum</td></tr>
+<tr><td style="color:var(--muted)">VC2 pure &gt;$5B (avg 12mo)</td><td style="color:var(--muted)">+11.4%</td><td style="color:var(--muted)">+3.0%</td><td style="color:var(--muted)">Value only, large-cap</td></tr>
+<tr style="border-top:2px solid var(--border)"><td style="color:var(--muted)">S&amp;P 500</td><td style="color:var(--muted)">+8.4%</td><td style="color:var(--muted)">&mdash;</td><td style="color:var(--muted)">Benchmark</td></tr>
+<tr><td style="color:var(--muted)">O'Shaughnessy (book)</td><td style="color:var(--muted)">~21%</td><td style="color:var(--muted)">~10%</td><td style="color:var(--muted)">1927&ndash;2009, in-sample</td></tr>
+</tbody>
+</table>
+
+<h3>What Momentum Adds</h3>
+<table>
+<thead><tr><th></th><th>Pure VC2</th><th>Trending Value</th><th>Momentum Premium</th></tr></thead>
+<tbody>
+<tr><td>&gt;$200M</td><td>+8.2%</td><td>+8.0%</td><td class="neg">&minus;0.2%</td></tr>
+<tr><td>&gt;$5B</td><td>+11.4%</td><td>+11.3%</td><td class="neg">&minus;0.1%</td></tr>
+<tr><td>&gt;$5B (no P/B)</td><td>+10.5%</td><td class="pos">+12.2%</td><td class="pos">+1.7%</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<p><strong>The momentum premium depends on the value screen.</strong> With the full 6-factor VC2, momentum adds almost nothing at large-cap level. But when P/B is removed (allowing more capital-light growth companies into the value screen), momentum adds +1.7% &mdash; a meaningful improvement. This suggests that P/B is the factor most responsible for excluding stocks that momentum would otherwise correctly identify as trending.</p>
+</div>
+
+<div class="divider"></div>
+
+<h2>Why the Book's Numbers Don't Replicate</h2>
+
+<h3>1. In-sample vs out-of-sample</h3>
+<p>O'Shaughnessy's 1927&ndash;2009 backtest is in-sample &mdash; the strategy was developed <em>using</em> that data. Our 2005&ndash;2026 test is partly out-of-sample. Strategies routinely lose 30&ndash;50% of their backtested edge when applied to new data.</p>
+
+<h3>2. Value premium has declined</h3>
+<p>The value factor delivered strong returns from the 1930s through the 2000s. Since 2010, growth has dominated. The Fama-French HML (High Minus Low) value factor has been negative or flat in many recent years. This isn't noise &mdash; it reflects a structural shift toward intangible-asset businesses where traditional value metrics are less meaningful.</p>
+
+<h3>3. Survivorship bias in original data</h3>
+<p>Older datasets (pre-CRSP, pre-Compustat) have known survivorship issues. Delisted stocks &mdash; many of which were "cheap" value stocks that went bankrupt &mdash; are often missing from historical databases. Our Sharadar dataset includes 12,151 delisted stocks specifically to avoid this bias.</p>
+
+<h3>4. Market cap effect</h3>
+<p>The book's strongest results come from small/micro-cap stocks that are difficult to trade at scale. When we filter for investable large caps (&gt;$5B), returns drop significantly but remain positive. The "paper" returns of the strategy include stocks with $200M market cap that an institutional investor could never own without moving the price.</p>
+
+<div class="divider"></div>
+
+<h2>The Honest Conclusion</h2>
+<p>The Trending Value strategy generates <strong>real but modest alpha</strong> of approximately +3&ndash;4% per year over the S&amp;P 500 at large-cap level. In January, the alpha can reach +6%. This is valuable &mdash; most active managers fail to beat the benchmark at all.</p>
+
+<p>But it is not the 21% CAGR or the "double your money every 3 years" that <em>What Works on Wall Street</em> suggests. Investors should expect the strategy to:</p>
+
+<p>&bull; <strong>Beat the S&amp;P by 3&ndash;5% per year</strong> on average, before costs<br>
+&bull; <strong>Underperform in tech-driven bull markets</strong> (2017, 2019&ndash;2021, 2023)<br>
+&bull; <strong>Outperform in value rotations</strong> (2009, 2013, 2022, 2025)<br>
+&bull; <strong>Suffer deeper drawdowns</strong> than the S&amp;P in crashes (up to &minus;55% vs &minus;37%)<br>
+&bull; <strong>Require patience</strong> through multi-year underperformance periods</p>
+
+<div class="divider"></div>
+
+<h2>Methodology</h2>
+<div class="two-col">
+<div class="meta-box">
+<dt>Value Screen</dt><dd>VC2 composite: P/E, P/S, P/FCF, EV/EBITDA, Shareholder Yield (5 factors, no P/B for best variant)</dd>
+<dt>Momentum</dt><dd>6-month price return, skip most recent month</dd>
+<dt>Selection</dt><dd>Top decile by VC2, then top 25 by momentum</dd>
+<dt>Portfolio</dt><dd>25 stocks, equal weight, annual rebalance</dd>
+</div>
+<div class="meta-box">
+<dt>Period</dt><dd>2005&ndash;2026 (21 years)</dd>
+<dt>Market caps</dt><dd>&gt;$200M, &gt;$5B tested</dd>
+<dt>Data</dt><dd>Sharadar / Nasdaq Data Link</dd>
+<dt>Survivorship</dt><dd>12,151 delisted stocks included</dd>
+<dt>Timing</dt><dd>12 monthly portfolios averaged</dd>
+<dt>Costs</dt><dd>Not included (0%)</dd>
+</div>
+</div>
+
+<div class="footer">
+<p style="font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);margin-bottom:4px">BIVAR CAPITAL</p>
+<p>Quantitative Research &middot; April 2026</p>
+<p style="margin-top:8px">This is not investment advice. Past performance does not guarantee future results.</p>
+</div>
+</div></body></html>

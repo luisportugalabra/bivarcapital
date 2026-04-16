@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — Bivar Capital</title>
+  <meta name="description" content="Rules-based strategies with proven returns. No discretionary calls. No anxiety. Just rules and rebalances.">
+  <meta property="og:title" content="How It Works — Bivar Capital">
+  <meta property="og:description" content="Three systematic strategies averaging 20.5% CAGR. Rules-based, backtested, and fully transparent.">
+  <meta property="og:image" content="https://bivarcapital.com/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bivarcapital.com/strategies.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How It Works — Bivar Capital">
+  <meta name="twitter:description" content="Three systematic strategies averaging 20.5% CAGR. Rules-based, backtested, and fully transparent.">
+  <meta name="twitter:image" content="https://bivarcapital.com/og-image.png">
+  <link rel="canonical" href="https://bivarcapital.com/strategies.html">
+  <meta name="theme-color" content="#060608">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .strat-content { max-width: 800px; margin: 0 auto; }
+    .strat-content h2 { margin-bottom: 16px; }
+    .strat-content p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 14px; max-width: none; }
+    .strat-content p strong { color: var(--text); font-weight: 600; }
+    .strat-deep { margin-bottom: 48px; }
+    .strat-deep h2 { font-family: var(--font-display); font-size: 1.3rem; }
+    .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 40px; }
+    .how-step { position: relative; }
+    .how-num { font-family: var(--font-mono); font-size: 2.4rem; font-weight: 700; color: var(--accent); opacity: 0.3; line-height: 1; margin-bottom: 14px; }
+    .how-step h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    .how-step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; max-width: none; }
+    .onboard-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 32px; margin-bottom: 32px; }
+    .onboard-box h2 { font-family: var(--font-display); font-size: 1.3rem; margin-top: 8px; margin-bottom: 20px; }
+    .onboard-step { display: flex; gap: 16px; align-items: baseline; margin-bottom: 14px; }
+    .onboard-step .num { font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--accent); min-width: 28px; }
+    .onboard-step p { color: var(--text-muted); margin: 0; max-width: none; }
+    .onboard-step p strong { color: var(--text); }
+    .size-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+      background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 20px 0;
+    }
+    .size-item { background: var(--bg-card); padding: 16px; text-align: center; }
+    .size-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .size-label.rec { color: var(--accent); }
+    .size-val { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--text); }
+    .size-val.green { color: var(--green); }
+    .size-val.red { color: var(--red); }
+    .size-note { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+    .strat-stats {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+      background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 20px 0;
+    }
+    .strat-stat { background: var(--bg-card); padding: 16px; text-align: center; }
+    .strat-stat-val { font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; }
+    .strat-stat-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+    .chart-container { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 32px; margin-bottom: 32px; }
+    .chart-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; flex-wrap: wrap; gap: 8px; }
+    .chart-header h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; }
+    .chart-badge { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; }
+    .chart-legend { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .chart-legend span { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; }
+    .key-stats {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px;
+    }
+    .key-stat { background: var(--bg-card); padding: 20px; text-align: center; }
+    .key-stat-val { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; }
+    .key-stat-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+    .pricing-mini { max-width: 700px; margin: 0 auto; text-align: center; }
+    .pricing-mini .ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    @media (max-width: 900px) {
+      .how-grid { grid-template-columns: 1fr; }
+      .key-stats { grid-template-columns: repeat(2, 1fr); }
+      .size-grid, .strat-stats { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .size-grid, .strat-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo">BIVAR CAPITAL</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="invest.html">Strategy</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="strategies.html" class="active">How It Works</a>
+      <a href="about.html">About</a>
+      <a href="invest.html#signin" class="btn-sub">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <p class="label fade-up">Systematic Strategies &middot; Rules-Based</p>
+    <h1 class="fade-up fade-up-1" style="margin-top:16px">Rules-based strategies.<span class="italic" style="display:block;margin-top:4px">Proven returns.</span></h1>
+    <p class="fade-up fade-up-2" style="color:var(--text-muted)">No discretionary calls. No anxiety. Just rules and rebalances.</p>
+  </header>
+
+  <!-- Why It Works -->
+  <section class="section">
+    <div class="strat-content">
+      <div style="text-align:center;margin-bottom:48px">
+        <p class="label">Why This Works</p>
+        <h2 style="margin:10px 0 16px">Why I invest systematically</h2>
+        <p style="margin:0 auto;color:var(--text-muted)">Rules remove emotion. Data removes guesswork. Over 20&ndash;40 years of US market data, simple rules-based strategies have consistently beaten discretionary stock picking and the S&amp;P 500. I've seen it in the research and I've seen it in my own capital.</p>
+      </div>
+
+      <!-- Growth Chart -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Growth of $100,000 (2006&ndash;2025)</h3>
+          <span class="chart-badge">20-Year Backtest</span>
+        </div>
+        <div class="chart-legend">
+          <span style="color:var(--green)">&#9679; Momentum 21.7% CAGR &mdash; $5.05M (50.5x)</span>
+          <span style="color:var(--text-muted)">&#9679; S&amp;P 500 ~10.9% CAGR &mdash; $747K (7.5x)</span>
+        </div>
+        <canvas id="growthChart" style="width:100%;height:220px"></canvas>
+      </div>
+
+      <!-- Key Stats -->
+      <div class="key-stats">
+        <div class="key-stat">
+          <div class="key-stat-val" style="color:var(--green)">$5.05M</div>
+          <div class="key-stat-label">Momentum</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat-val">$747K</div>
+          <div class="key-stat-label">S&amp;P 500</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat-val">0.95</div>
+          <div class="key-stat-label">Sharpe Ratio</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat-val">85%</div>
+          <div class="key-stat-label">Win Rate</div>
+        </div>
+      </div>
+
+      <!-- How it works steps -->
+      <div class="how-grid" style="margin-bottom:48px">
+        <div class="how-step">
+          <div class="how-num">01</div>
+          <h3>Rank the universe</h3>
+          <p>Each strategy ranks thousands of stocks using quantitative metrics &mdash; value ratios, momentum signals, or both.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">02</div>
+          <h3>Select the top 10&ndash;25</h3>
+          <p>The highest-ranked stocks are selected. Equal weight. No discretion. The rules decide, not emotions.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">03</div>
+          <h3>Rebalance at your pace</h3>
+          <p>When you're ready, repeat the process. Sell the old, buy the new. Annually is recommended &mdash; monthly is more effective if your tax regime allows it.</p>
+        </div>
+      </div>
+
+      <!-- How to use it -->
+      <div class="onboard-box">
+        <p class="section-label">Getting started</p>
+        <h2>How to use it</h2>
+        <div class="onboard-step"><div class="num">1.</div><p><strong>Pick one or more strategies.</strong> Value, Momentum + Value, or Momentum. Or run all three for better diversification.</p></div>
+        <div class="onboard-step"><div class="num">2.</div><p><strong>See today's ranked stocks.</strong> The system ranks thousands of stocks daily using live market data. Pick your top 10&ndash;25.</p></div>
+        <div class="onboard-step"><div class="num">3.</div><p><strong>Buy when you're ready.</strong> In your own broker (IBKR, any broker), equal weight. There's no fixed date &mdash; you decide when to act.</p></div>
+        <div class="onboard-step"><div class="num">4.</div><p><strong>Rebalance at your own pace.</strong> Check back when you want to rotate. Annually is recommended. The data is always there.</p></div>
+        <div class="onboard-step"><div class="num">5.</div><p><strong>The system does the thinking.</strong> You just execute. No research, no analysis, no second-guessing.</p></div>
+      </div>
+
+      <!-- How many stocks -->
+      <div class="onboard-box">
+        <p class="section-label">Portfolio Size</p>
+        <h2>How many stocks should you hold?</h2>
+        <p style="color:var(--text-muted);max-width:none">I recommend a <strong>minimum of 10 stocks</strong> per strategy. That's where diversification starts to meaningfully reduce single-stock risk while still capturing the momentum or value signal.</p>
+        <p style="color:var(--text-muted);max-width:none">For larger portfolios, <strong>25 stocks is optimal</strong>. My backtests show the Sharpe ratio peaks at 25 &mdash; beyond that, you dilute the factor exposure.</p>
+        <div class="size-grid">
+          <div class="size-item">
+            <div class="size-label">Minimum</div>
+            <div class="size-val">10 stocks</div>
+            <div class="size-note">Good diversification</div>
+          </div>
+          <div class="size-item">
+            <div class="size-label rec">Recommended</div>
+            <div class="size-val green">25 stocks</div>
+            <div class="size-note">Optimal Sharpe ratio</div>
+          </div>
+          <div class="size-item">
+            <div class="size-label">Too few</div>
+            <div class="size-val red">&lt;5 stocks</div>
+            <div class="size-note">Concentrated risk</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-block" style="border-radius:10px;margin-bottom:48px">
+        <blockquote>&ldquo;The strategy that works best is the one you can stick with. Rules-based systems remove the hardest part of investing: yourself.&rdquo;</blockquote>
+        <cite>&mdash; James O'Shaughnessy, What Works on Wall Street</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategy Deep Dives -->
+  <section style="padding:48px 0;border-top:1px solid var(--border)">
+    <div class="strat-content">
+      <div style="text-align:center;margin-bottom:48px">
+        <p class="sublabel">The Three Strategies</p>
+        <h2 style="margin:10px 0 16px">How each strategy works</h2>
+      </div>
+
+      <!-- Value -->
+      <div class="strat-deep">
+        <p class="section-label">Strategy 1</p>
+        <h2>Value Strategy &mdash; 18.61% CAGR</h2>
+        <p>A systematic approach to finding undervalued stocks. The strategy ranks the entire market using a proprietary composite of fundamental value metrics, then selects the cheapest stocks. No discretion. Rebalance annually.</p>
+        <p>Sector and quality filters remove stocks where the valuation metrics aren't meaningful, ensuring a clean universe of investable companies.</p>
+        <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0">
+          <p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin:0;max-width:none">The exact ranking formula, filters, and market cap thresholds are available to Pro members.</p>
+        </div>
+        <a class="btn btn-accent" href="invest.html?strategy=value" style="margin-top:20px">Run strategy &rarr;</a>
+      </div>
+
+      <!-- Trending Value -->
+      <div class="strat-deep">
+        <p class="section-label">Strategy 2</p>
+        <h2>Momentum + Value &mdash; 21.19% CAGR</h2>
+        <p>Combines two of the strongest factors in finance &mdash; value and momentum. First, the system identifies the cheapest stocks using the Value composite. Then, within that group, it ranks by price momentum and selects the top performers.</p>
+        <p>You're buying cheap stocks that are already moving up &mdash; avoiding value traps while capturing upside momentum.</p>
+        <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0">
+          <p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin:0;max-width:none">The exact momentum window, value decile, and filter parameters are available to Pro members.</p>
+        </div>
+        <a class="btn btn-accent" href="invest.html?strategy=trend" style="margin-top:20px">Run strategy &rarr;</a>
+      </div>
+
+      <!-- Momentum -->
+      <div class="strat-deep">
+        <p class="section-label">Strategy 3</p>
+        <h2>Intermediate Momentum &mdash; 21.7% CAGR</h2>
+        <p>Based on peer-reviewed academic research. Unlike short-term momentum (which tends to reverse), this strategy targets an intermediate momentum window that has persisted across decades and geographies.</p>
+        <p>The strategy focuses on larger, more liquid stocks &mdash; closely matching the universe where the original research was conducted.</p>
+        <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0">
+          <p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);margin:0;max-width:none">The exact momentum calculation, lookback periods, and market cap filters are available to Pro members.</p>
+        </div>
+        <div class="strat-stats">
+          <div class="strat-stat">
+            <div class="strat-stat-val" style="color:var(--green)">$5.05M</div>
+            <div class="strat-stat-label">$100K &rarr; 20 years</div>
+          </div>
+          <div class="strat-stat">
+            <div class="strat-stat-val">0.95</div>
+            <div class="strat-stat-label">Sharpe Ratio</div>
+          </div>
+          <div class="strat-stat">
+            <div class="strat-stat-val">85%</div>
+            <div class="strat-stat-label">Win Rate (17/20 yrs)</div>
+          </div>
+        </div>
+        <a class="btn btn-accent" href="invest.html?strategy=momentum" style="margin-top:20px">Run strategy &rarr;</a>
+      </div>
+
+      <!-- Diversification -->
+      <div class="onboard-box">
+        <p class="section-label">How I invest</p>
+        <h2>Why I run all three</h2>
+        <p style="color:var(--text-muted);max-width:none">Running all three lowers my overall portfolio variance and improves the Sharpe ratio. Value and momentum are <strong>negatively correlated</strong> &mdash; when one underperforms, the other picks up the slack. Combining them smooths out returns and makes the portfolio easier to hold through drawdowns.</p>
+        <p style="color:var(--text-muted);max-width:none">That's the beauty of systematic investing: I don't need to think, analyse, or second-guess. The rules run themselves. I run all three with real capital, and the systematic side requires almost zero time &mdash; just one rebalance per year.</p>
+      </div>
+
+      <!-- Rebalance frequency -->
+      <div class="onboard-box">
+        <p class="section-label">Rebalance frequency</p>
+        <h2>Monthly rebalance is more effective</h2>
+        <p style="color:var(--text-muted);max-width:none">My backtests show that <strong>monthly rebalance outperforms annual by ~3&ndash;3.5% CAGR</strong>, with significantly lower drawdowns (&minus;18% vs &minus;30%). The momentum signal decays over time &mdash; refreshing it monthly captures more of the effect.</p>
+        <p style="color:var(--text-muted);max-width:none">The catch: more frequent rebalancing means higher turnover, which triggers <strong>short-term capital gains tax</strong> in many jurisdictions. If short-term gains are taxed higher than long-term (e.g. the US), the tax drag can eat most of the extra return.</p>
+        <p style="color:var(--text-muted);max-width:none"><strong>Rule of thumb:</strong> same tax rate for both? Monthly is clearly better. Higher short-term rate? Annual may win after tax. Choose based on your tax regime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing CTA -->
+  <section style="padding:48px 0;border-top:1px solid var(--border)">
+    <div class="pricing-mini">
+      <p class="sublabel">Pricing</p>
+      <h2 style="margin:10px 0 8px">Free to explore. Pro to deploy.</h2>
+      <p style="color:var(--text-muted);margin:0 auto 28px;font-size:0.88rem">See 3 stocks for free. Go Pro for the full system.</p>
+      <div class="ctas">
+        <a href="invest.html" class="btn" style="padding:13px 32px">Start Free &rarr;</a>
+        <a href="invest.html#signin" class="btn btn-accent" style="padding:13px 32px">Go Pro &mdash; $39/month &rarr;</a>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px 28px;text-align:center;max-width:700px;margin:0 auto">
+        <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:6px;font-weight:500;max-width:none">The alternative costs more.</p>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin:0;max-width:none">Similar services: <strong style="color:var(--text)">$1,000&ndash;2,000/year</strong>. Financial advisor: <strong style="color:var(--text)">1% AUM</strong>. Bivar Capital: <strong style="color:var(--green)">$39/month</strong>. Cancel anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-logo">BIVAR CAPITAL</span>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="invest.html">Strategy</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="strategies.html">How It Works</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/lu%C3%ADs-portugal-6a252441/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://x.com/LuisPAbr" target="_blank" rel="noopener" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://instagram.com/bivarcapital" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    </div>
+    <p class="footer-disclaimer">Not financial advice. Past performance does not guarantee future results. &copy; 2026 Bivar Capital</p>
+  </footer>
+
+  <!-- Growth Chart -->
+  <script>
+  function drawStratChart() {
+    const canvas = document.getElementById('growthChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.parentElement.clientWidth - 64;
+    const H = Math.max(180, Math.min(220, W * 0.45));
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+
+    const pad = { t: 20, r: 14, b: 28, l: 14 };
+    const years = [2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+    const momR = [13.41,24.49,-43.96,39.37,38.14,2.79,25.24,49.86,35.52,-0.63,17.49,31.95,-1.20,68.96,65.8,40.16,6.93,3.14,35.47,42.07];
+    const spR = [15.81,5.17,-36.97,26.70,15.06,1.79,15.90,32.53,13.45,1.19,12.00,21.83,-4.38,31.49,18.40,28.71,-18.11,26.29,25.02,10.00];
+
+    function buildEquity(r){let e=[100000];for(let x of r)e.push(e[e.length-1]*(1+x/100));return e;}
+    const momEq=buildEquity(momR),spEq=buildEquity(spR);
+    const allV=[...momEq,...spEq];
+    const logMin=Math.log10(Math.min(...allV)*0.7),logMax=Math.log10(Math.max(...allV)*1.3);
+
+    function xp(i){return pad.l+(i/years.length)*(W-pad.l-pad.r);}
+    function yp(v){return pad.t+(1-(Math.log10(v)-logMin)/(logMax-logMin))*(H-pad.t-pad.b);}
+    function drawLine(eq,col,w){ctx.beginPath();eq.forEach((v,i)=>{i===0?ctx.moveTo(xp(i),yp(v)):ctx.lineTo(xp(i),yp(v));});ctx.strokeStyle=col;ctx.lineWidth=w;ctx.stroke();}
+
+    const isMobile = W < 400;
+    const step = isMobile ? 5 : 4;
+    ctx.fillStyle='#5a5a68';ctx.font='10px "JetBrains Mono",monospace';ctx.textAlign='center';
+    years.forEach((yr,i)=>{if(i%step===0)ctx.fillText(yr,xp(i),H-10);});
+    ctx.fillText('2025',xp(years.length),H-10);
+
+    drawLine(spEq,'#4a4a58',2.5);
+    ctx.shadowColor='rgba(74,222,128,0.3)';ctx.shadowBlur=8;
+    drawLine(momEq,'#4ade80',2.5);
+    ctx.shadowBlur=0;
+
+    ctx.font='bold 13px "JetBrains Mono",monospace';
+    ctx.textAlign='right';
+    ctx.fillStyle='#4ade80';
+    ctx.fillText('$5.05M',xp(years.length)-4,yp(momEq[momEq.length-1])-12);
+    ctx.fillStyle='#5a5a68';
+    ctx.fillText('$747K',xp(years.length)-4,yp(spEq[spEq.length-1])-12);
+  }
+  drawStratChart();
+  window.addEventListener('resize', drawStratChart);
+  </script>
+
+  <script src="auth-nav.js"></script>
+</body>
+</html>
