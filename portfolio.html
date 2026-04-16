@@ -175,9 +175,9 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <p class="signin">Already subscribed? <a href="#" id="signin-link">Sign in</a></p>
     </div>
 
-    <!-- Full table (shown after auth) -->
-    <table class="full-table" id="full-table">
-      <thead><tr><th>Ticker</th><th>Name</th><th>Weight</th><th>Price</th></tr></thead>
+    <!-- Full table (hidden until auth) -->
+    <table class="full-table" id="full-table" style="display:none">
+      <thead><tr><th>Ticker</th><th>Weight</th><th>Price</th></tr></thead>
       <tbody id="positions-body"></tbody>
     </table>
   </section>
