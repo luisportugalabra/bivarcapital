@@ -171,7 +171,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <p class="entry-body">Every US stock sorted into deciles by P/E, P/S, P/B, EV/EBITDA, and Shareholder Yield. 12 monthly portfolios averaged to eliminate timing bias. 2,520 portfolio-years of data (2005&ndash;2026). P/S (+7.4% spread) and Shareholder Yield (+5.9%) still work. P/E is dead (+0.0%). P/B is inverted &mdash; expensive stocks beat cheap ones by 3% per year in large caps. The academic definition of "value" is broken.</p>
       <div class="entry-stats">
         <span class="entry-stat"><span class="num">5</span> metrics</span>
-        <span class="entry-stat"><span class="num">2,520</span> portfolio-years</span>
+        <span class="entry-stat"><span class="num">21</span> years</span>
         <span class="entry-stat"><span class="num">2005&ndash;2026</span></span>
         <span class="entry-stat">P/S: <span class="num">+7.4%</span></span>
         <span class="entry-stat">SY: <span class="num">+5.9%</span></span>
@@ -246,14 +246,18 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
   </section>
 
-  <section style="padding:24px 0 40px;border-top:1px solid var(--border)">
+  <section style="padding:24px 0 40px;border-top:1px solid var(--border);position:relative">
     <div class="log-title">Recent Activity</div>
-    <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-muted);line-height:2.2">
-      <div><span style="color:var(--text-secondary)">Apr 2026</span> &mdash; <span style="color:var(--red)">Sold</span> LULU</div>
-      <div><span style="color:var(--text-secondary)">Mar 2026</span> &mdash; <span style="color:var(--red)">Sold</span> PYPL, ADBE, BKNG, TLPFY, CRM &middot; <span style="color:var(--red)">Reduced</span> GOOGL, MSFT &middot; <span style="color:var(--green)">Bought</span> SE, V, MA, NOMD &middot; <span style="color:var(--green)">Added</span> AMZN, META</div>
-      <div><span style="color:var(--text-secondary)">Feb 2026</span> &mdash; <span style="color:var(--red)">Sold</span> PBR &middot; <span style="color:var(--green)">Bought</span> AMD, MELI, NVO, BABA, SFM &middot; <span style="color:var(--green)">Added</span> MSFT, JD</div>
-      <div><span style="color:var(--text-secondary)">Jan 2026</span> &mdash; <span style="color:var(--green)">Bought</span> CLNX, EXO, PRX, ACN, FISV &middot; <span style="color:var(--green)">Added</span> BRK.B</div>
-      <div><span style="color:var(--text-secondary)">2025</span> &mdash; +38.7% return &middot; 25 trades &middot; Outperformed S&amp;P by 20.8pp</div>
+    <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-muted);line-height:2.2;filter:blur(5px);user-select:none;pointer-events:none">
+      <div><span style="color:var(--text-secondary)">Apr 2026</span> &mdash; Sold LULU</div>
+      <div><span style="color:var(--text-secondary)">Mar 2026</span> &mdash; Sold PYPL, ADBE, BKNG &middot; Reduced GOOGL, MSFT &middot; Bought SE, V, MA, NOMD</div>
+      <div><span style="color:var(--text-secondary)">Feb 2026</span> &mdash; Sold PBR &middot; Bought AMD, MELI, NVO, BABA, SFM</div>
+      <div><span style="color:var(--text-secondary)">Jan 2026</span> &mdash; Bought CLNX, EXO, PRX, ACN &middot; Added BRK.B</div>
+      <div><span style="color:var(--text-secondary)">2025</span> &mdash; +38.7% return &middot; Outperformed S&amp;P by 20.8pp</div>
+    </div>
+    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(6,6,8,0) 0%,rgba(6,6,8,0.9) 30%)">
+      <p style="font-family:var(--font-display);font-size:1rem;margin-bottom:8px">Portfolio activity</p>
+      <a href="/portfolio.html" style="font-family:var(--font-mono);font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:var(--accent);color:var(--bg);padding:10px 24px;border-radius:6px;text-decoration:none">Subscribe</a>
     </div>
   </section>
 
