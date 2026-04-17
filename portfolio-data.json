@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17 04:56 UTC",
+  "updated": "2026-04-17 04:58 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -41,15 +41,15 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 34.94,
-          "mkt_value": 65296.04,
+          "price": 34.93,
+          "mkt_value": 65288.34,
           "weight": 6.5
         },
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 50.38,
-          "mkt_value": 45843.24,
+          "price": 50.37,
+          "mkt_value": 45837.83,
           "weight": 4.6
         },
         {
@@ -140,7 +140,7 @@
           "ticker": "WISE",
           "qty": 1000.0,
           "price": 14.69,
-          "mkt_value": 14685.76,
+          "mkt_value": 14685.3,
           "weight": 1.5
         },
         {
@@ -160,8 +160,8 @@
         {
           "ticker": "2330",
           "qty": 178.0,
-          "price": 63.59,
-          "mkt_value": 11319.69,
+          "price": 63.75,
+          "mkt_value": 11347.5,
           "weight": 1.1
         },
         {
@@ -172,7 +172,7 @@
           "weight": 1.0
         }
       ],
-      "total_value": 997412.6,
+      "total_value": 997426.85,
       "n_positions": 24
     },
     "vc2": {
@@ -397,26 +397,30 @@
   },
   "sync": {
     "discretionary": {
-      "date": "2026-04-17 04:56 UTC",
-      "value": 997412.6,
+      "date": "2026-04-17 04:58 UTC",
+      "value": 997426.85,
       "ytd_at_sync": 5.0
     },
     "vc2": {
-      "date": "2026-04-17 04:56 UTC",
+      "date": "2026-04-17 04:58 UTC",
       "value": 98157.41,
       "ytd_at_sync": 9.2
     },
     "vc2trend": {
-      "date": "2026-04-17 04:56 UTC",
+      "date": "2026-04-17 04:58 UTC",
       "value": 45009.74,
       "ytd_at_sync": 2.6
     },
     "sp500": {
-      "date": "2026-04-17 04:56 UTC",
+      "date": "2026-04-17 04:58 UTC",
       "ytd_at_sync": 2.6
     }
   },
   "activity": [
+    {
+      "date": "Apr 17",
+      "text": "Portfolio synced \u2014 positions updated"
+    },
     {
       "date": "Apr 17",
       "text": "Portfolio synced \u2014 positions updated"
