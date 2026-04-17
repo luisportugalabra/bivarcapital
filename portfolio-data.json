@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17 05:01 UTC",
+  "updated": "2026-04-17 05:03 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -41,15 +41,15 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 34.94,
-          "mkt_value": 65296.04,
+          "price": 34.93,
+          "mkt_value": 65280.65,
           "weight": 6.5
         },
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 50.38,
-          "mkt_value": 45843.24,
+          "price": 50.37,
+          "mkt_value": 45832.43,
           "weight": 4.6
         },
         {
@@ -62,8 +62,8 @@
         {
           "ticker": "EXO",
           "qty": 481.0,
-          "price": 82.45,
-          "mkt_value": 39658.12,
+          "price": 82.43,
+          "mkt_value": 39648.77,
           "weight": 3.9
         },
         {
@@ -133,7 +133,7 @@
           "ticker": "WISE",
           "qty": 1000.0,
           "price": 14.68,
-          "mkt_value": 14684.23,
+          "mkt_value": 14682.58,
           "weight": 1.5
         },
         {
@@ -160,8 +160,8 @@
         {
           "ticker": "2330",
           "qty": 178.0,
-          "price": 63.59,
-          "mkt_value": 11319.69,
+          "price": 63.75,
+          "mkt_value": 11347.5,
           "weight": 1.1
         },
         {
@@ -172,7 +172,7 @@
           "weight": 1.0
         }
       ],
-      "total_value": 1005121.18,
+      "total_value": 1005111.79,
       "n_positions": 24
     },
     "vc2": {
@@ -380,40 +380,40 @@
   "returns": {
     "discretionary": {
       "2025": 46.1,
-      "2026_ytd": 6.0
+      "2026_ytd": 6.3
     },
     "vc2": {
       "2025": 23.1,
-      "2026_ytd": 9.2
+      "2026_ytd": 10.4
     },
     "vc2trend": {
       "2025": 24.0,
-      "2026_ytd": 2.6
+      "2026_ytd": 0.4
     }
   },
   "sp500_returns": {
     "2025": 17.9,
-    "2026_ytd": 2.6
+    "2026_ytd": 2.9
   },
   "sync": {
     "discretionary": {
-      "date": "2026-04-17 05:01 UTC",
-      "value": 1005121.18,
-      "ytd_at_sync": 6.0
+      "date": "2026-04-17 05:03 UTC",
+      "value": 1005111.79,
+      "ytd_at_sync": 6.3
     },
     "vc2": {
-      "date": "2026-04-17 05:01 UTC",
+      "date": "2026-04-17 05:03 UTC",
       "value": 98157.41,
-      "ytd_at_sync": 9.2
+      "ytd_at_sync": 10.4
     },
     "vc2trend": {
-      "date": "2026-04-17 05:01 UTC",
+      "date": "2026-04-17 05:03 UTC",
       "value": 45009.74,
-      "ytd_at_sync": 2.6
+      "ytd_at_sync": 0.4
     },
     "sp500": {
-      "date": "2026-04-17 05:01 UTC",
-      "ytd_at_sync": 2.6
+      "date": "2026-04-17 05:03 UTC",
+      "ytd_at_sync": 2.9
     }
   },
   "activity": [
@@ -430,12 +430,12 @@
       "text": "Portfolio synced \u2014 positions updated"
     },
     {
-      "date": "Apr 16",
-      "text": "Prices updated from market close"
+      "date": "Apr 17",
+      "text": "Portfolio synced \u2014 positions updated"
     },
     {
-      "date": "Apr 15",
-      "text": "Portfolio synced \u2014 positions updated"
+      "date": "Apr 16",
+      "text": "Prices updated from market close"
     }
   ]
 }
