@@ -79,7 +79,7 @@ r22 = [ws_dash.cell(row=22, column=c).value for c in range(1, 9)]
 r23 = [ws_dash.cell(row=23, column=c).value for c in range(1, 9)]
 
 returns = {
-    "discretionary": {"2025": pct(r22[2]), "2026_ytd": pct(r23[2])},
+    "discretionary": {"2025": pct(r18[2]), "2026_ytd": pct(r19[2])},
     "vc2": {"2025": pct(r18[4]), "2026_ytd": pct(r19[4])},
     "vc2trend": {"2025": pct(r18[6]), "2026_ytd": pct(r19[6])},
 }
@@ -95,7 +95,7 @@ print(f"📈 YTD from Excel: Disc={returns['discretionary'].get('2026_ytd','?')}
 # ============ 3. FETCH LIVE PRICES ============
 YF_MAP = {
     "BRK-B": "BRK-B", "2330": "2330.TW", "WISE": "WISE.L",
-    "CLNX": "CLNX.MC", "PRX": "PRX.AS", "EXO": "EXO.MI",
+    "CLNX": "CLNX.MC", "PRX": "PRX.AS", "EXO": "EXO.AS",
 }
 
 all_tickers = set()
