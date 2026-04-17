@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17 05:03 UTC",
+  "updated": "2026-04-17 06:17 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -41,15 +41,15 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 34.93,
-          "mkt_value": 65280.65,
+          "price": 34.92,
+          "mkt_value": 65265.27,
           "weight": 6.5
         },
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 50.37,
-          "mkt_value": 45832.43,
+          "price": 50.35,
+          "mkt_value": 45821.63,
           "weight": 4.6
         },
         {
@@ -132,8 +132,8 @@
         {
           "ticker": "WISE",
           "qty": 1000.0,
-          "price": 14.68,
-          "mkt_value": 14682.58,
+          "price": 14.67,
+          "mkt_value": 14670.48,
           "weight": 1.5
         },
         {
@@ -160,8 +160,8 @@
         {
           "ticker": "2330",
           "qty": 178.0,
-          "price": 63.75,
-          "mkt_value": 11347.5,
+          "price": 63.44,
+          "mkt_value": 11291.88,
           "weight": 1.1
         },
         {
@@ -172,8 +172,9 @@
           "weight": 1.0
         }
       ],
-      "total_value": 1005111.79,
-      "n_positions": 24
+      "total_value": 1005017.89,
+      "n_positions": 24,
+      "ytd_2026": 6.3
     },
     "vc2": {
       "positions": [
@@ -305,7 +306,8 @@
         }
       ],
       "total_value": 98157.41,
-      "n_positions": 18
+      "n_positions": 18,
+      "ytd_2026": 10.4
     },
     "vc2trend": {
       "positions": [
@@ -374,7 +376,8 @@
         }
       ],
       "total_value": 45009.74,
-      "n_positions": 9
+      "n_positions": 9,
+      "ytd_2026": 0.4
     }
   },
   "returns": {
@@ -419,23 +422,23 @@
   "activity": [
     {
       "date": "Apr 17",
-      "text": "Portfolio synced \u2014 positions updated"
-    },
-    {
-      "date": "Apr 17",
-      "text": "Portfolio synced \u2014 positions updated"
-    },
-    {
-      "date": "Apr 17",
-      "text": "Portfolio synced \u2014 positions updated"
-    },
-    {
-      "date": "Apr 17",
-      "text": "Portfolio synced \u2014 positions updated"
-    },
-    {
-      "date": "Apr 16",
       "text": "Prices updated from market close"
+    },
+    {
+      "date": "Apr 17",
+      "text": "Portfolio synced \u2014 positions updated"
+    },
+    {
+      "date": "Apr 17",
+      "text": "Portfolio synced \u2014 positions updated"
+    },
+    {
+      "date": "Apr 17",
+      "text": "Portfolio synced \u2014 positions updated"
+    },
+    {
+      "date": "Apr 17",
+      "text": "Portfolio synced \u2014 positions updated"
     }
   ]
 }
