@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17 04:58 UTC",
+  "updated": "2026-04-17 05:01 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -8,14 +8,14 @@
           "qty": 312.0,
           "price": 475.12,
           "mkt_value": 148237.44,
-          "weight": 14.9
+          "weight": 14.7
         },
         {
           "ticker": "JD",
           "qty": 3875.0,
           "price": 31.33,
           "mkt_value": 121403.75,
-          "weight": 12.2
+          "weight": 12.1
         },
         {
           "ticker": "META",
@@ -36,20 +36,20 @@
           "qty": 156.0,
           "price": 420.26,
           "mkt_value": 65560.56,
-          "weight": 6.6
+          "weight": 6.5
         },
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 34.93,
-          "mkt_value": 65288.34,
+          "price": 34.94,
+          "mkt_value": 65296.04,
           "weight": 6.5
         },
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 50.37,
-          "mkt_value": 45837.83,
+          "price": 50.38,
+          "mkt_value": 45843.24,
           "weight": 4.6
         },
         {
@@ -60,11 +60,11 @@
           "weight": 4.1
         },
         {
-          "ticker": "GOOGL",
-          "qty": 112.0,
-          "price": 336.02,
-          "mkt_value": 37634.24,
-          "weight": 3.8
+          "ticker": "EXO",
+          "qty": 481.0,
+          "price": 82.45,
+          "mkt_value": 39658.12,
+          "weight": 3.9
         },
         {
           "ticker": "MELI",
@@ -74,18 +74,18 @@
           "weight": 3.8
         },
         {
-          "ticker": "EXO",
-          "qty": 481.0,
-          "price": 66.42,
-          "mkt_value": 31948.02,
-          "weight": 3.2
+          "ticker": "GOOGL",
+          "qty": 112.0,
+          "price": 336.02,
+          "mkt_value": 37634.24,
+          "weight": 3.7
         },
         {
           "ticker": "V",
           "qty": 100.0,
           "price": 315.1,
           "mkt_value": 31510.0,
-          "weight": 3.2
+          "weight": 3.1
         },
         {
           "ticker": "AMD",
@@ -123,13 +123,6 @@
           "weight": 2.0
         },
         {
-          "ticker": "ACN",
-          "qty": 75.0,
-          "price": 194.0,
-          "mkt_value": 14550.0,
-          "weight": 1.5
-        },
-        {
           "ticker": "SFM",
           "qty": 200.0,
           "price": 73.19,
@@ -139,9 +132,16 @@
         {
           "ticker": "WISE",
           "qty": 1000.0,
-          "price": 14.69,
-          "mkt_value": 14685.3,
+          "price": 14.68,
+          "mkt_value": 14684.23,
           "weight": 1.5
+        },
+        {
+          "ticker": "ACN",
+          "qty": 75.0,
+          "price": 194.0,
+          "mkt_value": 14550.0,
+          "weight": 1.4
         },
         {
           "ticker": "CHTR",
@@ -160,8 +160,8 @@
         {
           "ticker": "2330",
           "qty": 178.0,
-          "price": 63.75,
-          "mkt_value": 11347.5,
+          "price": 63.59,
+          "mkt_value": 11319.69,
           "weight": 1.1
         },
         {
@@ -172,7 +172,7 @@
           "weight": 1.0
         }
       ],
-      "total_value": 997426.85,
+      "total_value": 1005121.18,
       "n_positions": 24
     },
     "vc2": {
@@ -379,8 +379,8 @@
   },
   "returns": {
     "discretionary": {
-      "2025": 38.7,
-      "2026_ytd": 5.0
+      "2025": 46.1,
+      "2026_ytd": 6.0
     },
     "vc2": {
       "2025": 23.1,
@@ -397,26 +397,30 @@
   },
   "sync": {
     "discretionary": {
-      "date": "2026-04-17 04:58 UTC",
-      "value": 997426.85,
-      "ytd_at_sync": 5.0
+      "date": "2026-04-17 05:01 UTC",
+      "value": 1005121.18,
+      "ytd_at_sync": 6.0
     },
     "vc2": {
-      "date": "2026-04-17 04:58 UTC",
+      "date": "2026-04-17 05:01 UTC",
       "value": 98157.41,
       "ytd_at_sync": 9.2
     },
     "vc2trend": {
-      "date": "2026-04-17 04:58 UTC",
+      "date": "2026-04-17 05:01 UTC",
       "value": 45009.74,
       "ytd_at_sync": 2.6
     },
     "sp500": {
-      "date": "2026-04-17 04:58 UTC",
+      "date": "2026-04-17 05:01 UTC",
       "ytd_at_sync": 2.6
     }
   },
   "activity": [
+    {
+      "date": "Apr 17",
+      "text": "Portfolio synced \u2014 positions updated"
+    },
     {
       "date": "Apr 17",
       "text": "Portfolio synced \u2014 positions updated"
