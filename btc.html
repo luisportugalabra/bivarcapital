@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTC Signal — Bivar Capital</title>
+<meta name="description" content="Bitcoin trend-following signal. RSI + Moving Average + Volatility filter. Updated live.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:640px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:8px}
+.brand a{color:var(--muted);text-decoration:none}
+h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;text-align:center;margin-bottom:6px}
+.sub{text-align:center;color:var(--secondary);font-size:.85rem;margin-bottom:32px}
+.signal-box{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:32px;text-align:center;margin-bottom:24px}
+.signal-box.buy{border-color:var(--green);box-shadow:0 0 40px rgba(74,222,128,.08)}
+.signal-box.sell{border-color:var(--red);box-shadow:0 0 40px rgba(248,113,113,.08)}
+.signal-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.signal-text{font-family:'DM Serif Display',serif;font-size:2.4rem;font-weight:400}
+.signal-text.buy{color:var(--green)}
+.signal-text.sell{color:var(--red)}
+.price{font-family:'JetBrains Mono',monospace;font-size:1.4rem;color:var(--text);margin-top:8px}
+.updated{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);margin-top:8px}
+.indicators{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:24px}
+.ind{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.ind.pass{border-color:rgba(74,222,128,.3)}
+.ind.fail{border-color:rgba(248,113,113,.3)}
+.ind-label{font-family:'JetBrains Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ind-value{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}
+.ind-value.pass{color:var(--green)}
+.ind-value.fail{color:var(--red)}
+.ind-threshold{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--muted);margin-top:2px}
+.ind-status{font-size:.65rem;margin-top:4px}
+.rules{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:24px}
+.rules h3{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.rules p{font-size:.78rem;color:var(--secondary);margin-bottom:6px}
+.rules strong{color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:600}
+.stat .l{font-size:.45rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.footer{text-align:center;padding-top:24px;border-top:1px solid var(--border)}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.loading{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.7rem}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.live-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:5px;animation:pulse 2s ease-in-out infinite}
+@media(max-width:500px){.indicators{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="brand"><a href="/">Bivar Capital</a></div>
+<h1>Bitcoin Signal</h1>
+<p class="sub">Trend-following system. Three rules, checked daily.</p>
+
+<div class="signal-box" id="signal-box">
+  <div class="signal-label"><span class="live-dot"></span>Live Signal</div>
+  <div class="signal-text loading" id="signal-text">Loading...</div>
+  <div class="price" id="price"></div>
+  <div class="updated" id="updated"></div>
+</div>
+
+<div class="proximity" id="proximity" style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:24px;text-align:center;display:none">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px"><span class="live-dot"></span>Real-time price</div>
+  <div id="live-price" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:600">—</div>
+  <div id="ma-distance" style="font-family:'JetBrains Mono',monospace;font-size:.85rem;margin-top:6px">—</div>
+  <div id="live-updated" style="font-family:'JetBrains Mono',monospace;font-size:.5rem;color:var(--muted);margin-top:6px"></div>
+</div>
+
+<div class="indicators" id="indicators">
+  <div class="ind" id="ind-rsi">
+    <div class="ind-label">RSI(14)</div>
+    <div class="ind-value loading" id="rsi-value">—</div>
+    <div class="ind-threshold">need &gt; 54</div>
+    <div class="ind-status" id="rsi-status"></div>
+  </div>
+  <div class="ind" id="ind-ma">
+    <div class="ind-label">MA(155)</div>
+    <div class="ind-value loading" id="ma-value">—</div>
+    <div class="ind-threshold">price must be above</div>
+    <div class="ind-status" id="ma-status"></div>
+  </div>
+  <div class="ind" id="ind-vol">
+    <div class="ind-label">Volatility</div>
+    <div class="ind-value loading" id="vol-value">—</div>
+    <div class="ind-threshold">need &lt; 100%</div>
+    <div class="ind-status" id="vol-status"></div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="v" style="color:var(--green)">+88.8%</div><div class="l">Backtest CAGR</div></div>
+  <div class="stat"><div class="v" style="color:var(--green)">2.37</div><div class="l">Sharpe</div></div>
+  <div class="stat"><div class="v">-30%</div><div class="l">Max Drawdown</div></div>
+  <div class="stat"><div class="v">33%</div><div class="l">Time Invested</div></div>
+</div>
+
+<div class="rules">
+  <h3>Strategy Rules</h3>
+  <p><strong>BUY</strong> when all three are true:</p>
+  <p>1. RSI(14) &gt; 54 — short-term momentum is positive</p>
+  <p>2. Price &gt; 155-day Moving Average — long-term trend is bullish</p>
+  <p>3. 20-day Annualised Volatility &lt; 100% — market is not in chaos</p>
+  <p style="margin-top:8px"><strong>SELL</strong> (100% cash) when any condition fails.</p>
+  <p style="margin-top:12px;font-size:.7rem;color:var(--muted)">Backtest: Jan 2015 – Apr 2026 (4,124 days). Not investment advice.</p>
+</div>
+
+<div class="footer">
+  <p><a href="/" style="color:var(--accent)">Bivar Capital</a> &middot; <a href="/research/btc_strategy_report.html" style="color:var(--muted)">Full Report</a></p>
+  <p style="margin-top:6px">Data from Yahoo Finance. Updated on page load.</p>
+</div>
+</div>
+
+<script>
+async function fetchBTC() {
+  try {
+    // TradingView unofficial API — works without CORS
+    const end = Math.floor(Date.now() / 1000);
+    const start = end - 220 * 86400;
+    const url = `https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=${start*1000}&endTime=${end*1000}&limit=220`;
+
+    const resp = await fetch(url);
+    const data = await resp.json();
+
+    const prices = data.map(k => ({
+      date: new Date(k[0]),
+      close: parseFloat(k[4]) // close price
+    }));
+
+    if (prices.length < 155) {
+      document.getElementById('signal-text').textContent = 'Insufficient data';
+      return;
+    }
+
+    const n = prices.length;
+    const currentPrice = prices[n - 1].close;
+    const currentDate = prices[n - 1].date;
+
+    // MA155
+    let ma155sum = 0;
+    for (let i = n - 155; i < n; i++) ma155sum += prices[i].close;
+    const ma155 = ma155sum / 155;
+    ma155Value = ma155;
+
+    // RSI(14)
+    const period = 14;
+    let gains = 0, losses = 0;
+    for (let i = n - period; i < n; i++) {
+      const diff = prices[i].close - prices[i - 1].close;
+      if (diff > 0) gains += diff; else losses -= diff;
+    }
+    const avgGain = gains / period;
+    const avgLoss = losses / period;
+    const rs = avgLoss === 0 ? 100 : avgGain / avgLoss;
+    const rsi = 100 - 100 / (1 + rs);
+
+    // Volatility (20-day)
+    const volPeriod = 20;
+    const rets = [];
+    for (let i = n - volPeriod; i < n; i++) {
+      rets.push(prices[i].close / prices[i - 1].close - 1);
+    }
+    const mean = rets.reduce((a, b) => a + b, 0) / rets.length;
+    const variance = rets.reduce((a, b) => a + (b - mean) ** 2, 0) / (rets.length - 1);
+    const vol = Math.sqrt(variance) * Math.sqrt(365) * 100; // annualised %
+
+    // Signals
+    const rsiPass = rsi > 54;
+    const maPass = currentPrice > ma155;
+    const volPass = vol < 100;
+    const signal = rsiPass && maPass && volPass;
+
+    // Update DOM
+    const box = document.getElementById('signal-box');
+    const sigText = document.getElementById('signal-text');
+    box.classList.add(signal ? 'buy' : 'sell');
+    sigText.textContent = signal ? 'BUY' : 'CASH';
+    sigText.className = 'signal-text ' + (signal ? 'buy' : 'sell');
+
+    document.getElementById('price').textContent = '$' + currentPrice.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    document.getElementById('updated').textContent = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+    // RSI
+    document.getElementById('rsi-value').textContent = rsi.toFixed(1);
+    document.getElementById('rsi-value').className = 'ind-value ' + (rsiPass ? 'pass' : 'fail');
+    document.getElementById('ind-rsi').classList.add(rsiPass ? 'pass' : 'fail');
+    document.getElementById('rsi-status').innerHTML = rsiPass ? '&#10003; Momentum positive' : '&#10007; Momentum weak';
+    document.getElementById('rsi-status').style.color = rsiPass ? 'var(--green)' : 'var(--red)';
+
+    // MA
+    document.getElementById('ma-value').textContent = '$' + ma155.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    document.getElementById('ma-value').className = 'ind-value ' + (maPass ? 'pass' : 'fail');
+    document.getElementById('ind-ma').classList.add(maPass ? 'pass' : 'fail');
+    document.getElementById('ma-status').innerHTML = maPass ? '&#10003; Above trend' : '&#10007; Below trend';
+    document.getElementById('ma-status').style.color = maPass ? 'var(--green)' : 'var(--red)';
+
+    // Vol
+    document.getElementById('vol-value').textContent = vol.toFixed(0) + '%';
+    document.getElementById('vol-value').className = 'ind-value ' + (volPass ? 'pass' : 'fail');
+    document.getElementById('ind-vol').classList.add(volPass ? 'pass' : 'fail');
+    document.getElementById('vol-status').innerHTML = volPass ? '&#10003; Calm market' : '&#10007; Too volatile';
+    document.getElementById('vol-status').style.color = volPass ? 'var(--green)' : 'var(--red)';
+
+  } catch (e) {
+    document.getElementById('signal-text').textContent = 'Error loading data';
+    document.getElementById('signal-text').style.color = 'var(--muted)';
+    console.error(e);
+  }
+}
+
+let ma155Value = null;
+
+fetchBTC().then(() => {
+  // Start live price ticker after daily data loads
+  updateLivePrice();
+  setInterval(updateLivePrice, 10000); // every 10 seconds
+});
+
+async function updateLivePrice() {
+  try {
+    const resp = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
+    const data = await resp.json();
+    const livePrice = parseFloat(data.price);
+    const now = new Date();
+
+    document.getElementById('proximity').style.display = 'block';
+    document.getElementById('live-price').textContent = '$' + livePrice.toLocaleString('en-US', {maximumFractionDigits: 0});
+    document.getElementById('live-updated').textContent = now.toLocaleTimeString();
+
+    if (ma155Value) {
+      const dist = (livePrice / ma155Value - 1) * 100;
+      const distEl = document.getElementById('ma-distance');
+      if (livePrice > ma155Value) {
+        distEl.innerHTML = '<span style="color:var(--green)">▲ ' + dist.toFixed(1) + '% above MA155</span>';
+      } else {
+        distEl.innerHTML = '<span style="color:var(--red)">▼ ' + Math.abs(dist).toFixed(1) + '% below MA155</span> — need $' + ma155Value.toLocaleString('en-US', {maximumFractionDigits: 0}) + ' to trigger BUY';
+      }
+    }
+  } catch(e) {}
+}
+</script>
+</body>
+</html>
