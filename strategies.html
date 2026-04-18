@@ -97,17 +97,36 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/btc_strategy_report.html" style="display:inline-block;margin-top:14px;margin-left:8px;padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none;transition:all .2s">See strategy &amp; backtests &rarr;</a>
     </div>
 
-    <div class="strategy-card" style="opacity:0.6">
-      <div class="card-header">
-        <div class="card-title">Bivar Optimal Momentum</div>
-        <span class="card-badge badge-soon">Coming Soon</span>
+    <div class="strategy-card" id="momentum-card" style="position:relative">
+      <div id="momentum-blur" style="filter:blur(6px);pointer-events:none">
+        <div class="card-header">
+          <div class="card-title">Bivar Optimal Momentum</div>
+          <span class="card-badge badge-soon">Pro</span>
+        </div>
+        <p class="card-desc">Systematic momentum strategy on US large-cap equities. 6-month pure momentum with profitability filter and MA200 regime overlay. GLD hedge in bear months. Monthly rebalance.</p>
+        <div class="card-stats">
+          <span class="card-stat">Sharpe: <span class="num">1.03</span></span>
+          <span class="card-stat">CAGR: <span class="num">+28.9%</span></span>
+          <span class="card-stat">MaxDD: <span class="num">-29%</span></span>
+          <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
+        </div>
       </div>
-      <p class="card-desc">Systematic momentum strategy on US large-cap equities. 6-month pure momentum with profitability filter and MA200 regime overlay. GLD hedge in bear months. Monthly rebalance.</p>
-      <div class="card-stats">
-        <span class="card-stat">Sharpe: <span class="num">1.03</span></span>
-        <span class="card-stat">CAGR: <span class="num">+28.9%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-29%</span></span>
-        <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
+      <div id="momentum-overlay" style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+        <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase">Members only</div>
+        <button id="signin-btn" onclick="showLogin()" style="padding:10px 28px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.75rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer;transition:all .2s">Sign In</button>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:380px;width:90%">
+        <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Sign In</div>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Access restricted strategies.</p>
+        <input id="login-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
+        <input id="login-password" type="password" placeholder="Password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
+        <div id="login-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
+        <button onclick="doLogin()" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Sign In</button>
+        <button onclick="hideLogin()" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
       </div>
     </div>
 
@@ -120,5 +139,74 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p>Luis Portugal Bivar</p>
   </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabase = window.supabase.createClient(
+  'https://efiyeiwdywodjxxnslvu.supabase.co',
+  'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha'
+);
+
+function showLogin() {
+  document.getElementById('login-modal').style.display = 'flex';
+  document.getElementById('login-email').focus();
+}
+function hideLogin() {
+  document.getElementById('login-modal').style.display = 'none';
+  document.getElementById('login-error').style.display = 'none';
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const errEl = document.getElementById('login-error');
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    errEl.textContent = error.message;
+    errEl.style.display = 'block';
+    return;
+  }
+
+  hideLogin();
+  unlock();
+}
+
+function unlock() {
+  document.getElementById('momentum-blur').style.filter = 'none';
+  document.getElementById('momentum-blur').style.pointerEvents = 'auto';
+  document.getElementById('momentum-overlay').style.display = 'none';
+}
+
+function showLogout() {
+  const overlay = document.getElementById('momentum-overlay');
+  overlay.innerHTML = '<button onclick="doLogout()" style="padding:6px 16px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.6rem;border:1px solid var(--border);border-radius:4px;cursor:pointer">Sign Out</button>';
+  overlay.style.position = 'absolute';
+  overlay.style.top = '12px';
+  overlay.style.right = '12px';
+  overlay.style.left = 'auto';
+  overlay.style.bottom = 'auto';
+  overlay.style.display = 'block';
+}
+
+async function doLogout() {
+  await supabase.auth.signOut();
+  location.reload();
+}
+
+// Check if already logged in
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) {
+    unlock();
+    showLogout();
+  }
+})();
+
+// Enter key on password field
+document.getElementById('login-password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+</script>
 </body>
 </html>
