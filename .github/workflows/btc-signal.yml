@@ -1,0 +1,36 @@
+name: BTC Signal Check
+
+on:
+  schedule:
+    - cron: '10 0 * * *'  # Daily at 00:10 UTC (01:10 Lisboa)
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check BTC signal
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          ALERT_EMAIL: luisportugalabra@gmail.com
+        run: python scripts/btc_signal.py
+
+      - name: Commit signal state
+        run: |
+          git config user.name "BTC Signal Bot"
+          git config user.email "bot@bivarcapital.com"
+          git add btc-signal.json
+          git diff --staged --quiet || git commit -m "Update BTC signal: $(cat btc-signal.json | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d[\"signal\"], d[\"date\"])')"
+          git push
