@@ -12,10 +12,10 @@
         },
         {
           "ticker": "JD",
-          "qty": 3875.0,
+          "qty": 4616.0,
           "price": 31.6,
-          "mkt_value": 122450.0,
-          "weight": 12.1
+          "mkt_value": 145865.6,
+          "weight": 14.399999999999999
         },
         {
           "ticker": "META",
@@ -99,13 +99,6 @@
           "qty": 370.0,
           "price": 63.97,
           "mkt_value": 23668.9,
-          "weight": 2.3
-        },
-        {
-          "ticker": "JD",
-          "qty": 741.0,
-          "price": 31.6,
-          "mkt_value": 23415.6,
           "weight": 2.3
         },
         {

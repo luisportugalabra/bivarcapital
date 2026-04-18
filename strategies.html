@@ -272,6 +272,17 @@ document.getElementById('signup-password').addEventListener('keydown', e => {
 const { data: { session } } = await supabase.auth.getSession();
 if (session) unlock(session.user.email);
 
+// Fetch portfolio YTD from data file
+fetch('/portfolio-data.json').then(r=>r.json()).then(d=>{
+  const disc = d.strategies && d.strategies.discretionary;
+  const el = document.getElementById('port-ytd');
+  if (el && disc && disc['2026_ytd'] != null) {
+    const v = disc['2026_ytd'];
+    el.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+    el.style.color = v >= 0 ? 'var(--green)' : 'var(--red)';
+  }
+}).catch(()=>{});
+
 </script>
 </body>
 </html>
