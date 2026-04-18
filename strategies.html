@@ -110,8 +110,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
       </div>
       <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
-        <button onclick="showLogin()" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button onclick="showSignup()" style="padding:8px 20px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.65rem;border:1px solid var(--border);border-radius:5px;cursor:pointer">Request early access</button>
+        <button id="signin-btn" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button id="signup-btn" style="padding:8px 20px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.65rem;border:1px solid var(--border);border-radius:5px;cursor:pointer">Request early access</button>
       </div>
     </div>
 
@@ -123,8 +123,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <input id="login-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
         <input id="login-password" type="password" placeholder="Password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
         <div id="login-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
-        <button onclick="doLogin()" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Sign In</button>
-        <button onclick="hideLogin()" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
+        <button id="login-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Sign In</button>
+        <button id="login-cancel" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
       </div>
     </div>
 
@@ -136,8 +136,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <input id="signup-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
         <input id="signup-password" type="password" placeholder="Choose a password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
         <div id="signup-msg" style="font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
-        <button onclick="doSignup()" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Request Access</button>
-        <button onclick="hideSignup()" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
+        <button id="signup-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Request Access</button>
+        <button id="signup-cancel" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
       </div>
     </div>
 
@@ -150,107 +150,92 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p>Luis Portugal Bivar</p>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const supabase = window.supabase.createClient(
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const supabase = createClient(
   'https://efiyeiwdywodjxxnslvu.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg'
 );
-
-function showLogin() {
-  document.getElementById('login-modal').style.display = 'flex';
-  document.getElementById('login-email').focus();
-}
-function hideLogin() {
-  document.getElementById('login-modal').style.display = 'none';
-  document.getElementById('login-error').style.display = 'none';
-}
-
-async function doLogin() {
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value;
-  const errEl = document.getElementById('login-error');
-
-
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    errEl.textContent = error.message;
-    errEl.style.display = 'block';
-    return;
-  }
-
-  hideLogin();
-  unlock();
-}
 
 function unlock() {
   document.getElementById('momentum-blur').style.filter = 'none';
   document.getElementById('momentum-blur').style.pointerEvents = 'auto';
   document.getElementById('momentum-blur').style.userSelect = 'auto';
-  document.getElementById('momentum-actions').innerHTML = '<button onclick="doLogout()" style="padding:6px 16px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.6rem;border:1px solid var(--border);border-radius:4px;cursor:pointer">Sign Out</button>';
+  document.getElementById('momentum-actions').innerHTML = '<button id="logout-btn" style="padding:6px 16px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.6rem;border:1px solid var(--border);border-radius:4px;cursor:pointer">Sign Out</button>';
+  document.getElementById('logout-btn').addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    location.reload();
+  });
 }
 
-function showLogout() {}
+// Sign In modal
+document.getElementById('signin-btn').addEventListener('click', () => {
+  document.getElementById('login-modal').style.display = 'flex';
+  document.getElementById('login-email').focus();
+});
 
-async function doLogout() {
-  await supabase.auth.signOut();
-  location.reload();
-}
+document.getElementById('login-cancel').addEventListener('click', () => {
+  document.getElementById('login-modal').style.display = 'none';
+});
 
-function showSignup() {
+document.getElementById('login-submit').addEventListener('click', async () => {
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const errEl = document.getElementById('login-error');
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) {
+    errEl.textContent = error.message;
+    errEl.style.display = 'block';
+    return;
+  }
+  document.getElementById('login-modal').style.display = 'none';
+  unlock();
+});
+
+document.getElementById('login-password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('login-submit').click();
+});
+
+// Sign Up modal
+document.getElementById('signup-btn').addEventListener('click', () => {
   document.getElementById('signup-modal').style.display = 'flex';
   document.getElementById('signup-email').focus();
-}
-function hideSignup() {
-  document.getElementById('signup-modal').style.display = 'none';
-  document.getElementById('signup-msg').style.display = 'none';
-}
+});
 
-async function doSignup() {
+document.getElementById('signup-cancel').addEventListener('click', () => {
+  document.getElementById('signup-modal').style.display = 'none';
+});
+
+document.getElementById('signup-submit').addEventListener('click', async () => {
   const email = document.getElementById('signup-email').value;
   const password = document.getElementById('signup-password').value;
   const msgEl = document.getElementById('signup-msg');
-
   if (!email || !password || password.length < 6) {
     msgEl.textContent = 'Email and password (min 6 chars) required.';
     msgEl.style.color = 'var(--red)';
     msgEl.style.display = 'block';
     return;
   }
-
-  if (!supabase) { msgEl.textContent = 'Loading, try again...'; msgEl.style.color = 'var(--red)'; msgEl.style.display = 'block'; return; }
   const { data, error } = await supabase.auth.signUp({ email, password });
-
   if (error) {
     msgEl.textContent = error.message;
     msgEl.style.color = 'var(--red)';
     msgEl.style.display = 'block';
     return;
   }
-
-  msgEl.textContent = 'Request sent. Check your email to confirm, then wait for activation.';
+  msgEl.textContent = 'Request sent. Check your email to confirm.';
   msgEl.style.color = 'var(--green)';
   msgEl.style.display = 'block';
-  document.getElementById('signup-email').style.display = 'none';
-  document.getElementById('signup-password').style.display = 'none';
-}
-
-document.getElementById('signup-password').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doSignup();
 });
 
-// Check if already logged in
-{
-(async () => {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session) {
-    unlock();
-    showLogout();
-  }
-})();
+document.getElementById('signup-password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('signup-submit').click();
+});
 
-}
+// Check existing session
+const { data: { session } } = await supabase.auth.getSession();
+if (session) unlock();
 
 // Enter key handlers
 document.getElementById('login-password').addEventListener('keydown', e => {
