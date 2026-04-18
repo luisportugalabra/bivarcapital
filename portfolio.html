@@ -228,42 +228,27 @@ fetch('portfolio-data.json')
       const positions = pd.strategies.discretionary.positions;
       document.getElementById('n-pos').textContent = positions.length;
       tbody.innerHTML = positions.map(p =>
-        `<tr><td>${p.ticker}</td><td style="color:var(--text-secondary)">${p.ticker}</td><td>${p.weight.toFixed(1)}%</td><td>$${p.price.toFixed(2)}</td></tr>`
+        `<tr><td>${p.ticker}</td><td>${p.weight.toFixed(1)}%</td><td>$${p.price.toFixed(2)}</td></tr>`
       ).join('');
     }
   })
   .catch(() => {});
 
-// Auth check
+// Auth check using Supabase client
 async function checkAuth() {
-  const token = localStorage.getItem('bc_token');
-  if (!token) return;
+  const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+  const { data: { session } } = await supabase.auth.getSession();
 
-  try {
-    let res = await fetch(SUPABASE_URL + '/auth/v1/user', {
-      headers: { 'Authorization': 'Bearer ' + token, 'apikey': SUPABASE_KEY }
-    });
-
-    if (!res.ok) {
-      const rt = localStorage.getItem('bc_refresh');
-      if (rt) {
-        const rr = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
-          method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
-          body: JSON.stringify({ refresh_token: rt })
-        });
-        if (rr.ok) {
-          const d = await rr.json();
-          localStorage.setItem('bc_token', d.access_token);
-          if (d.refresh_token) localStorage.setItem('bc_refresh', d.refresh_token);
-          showPortfolio();
-          return;
-        }
-      }
-      return;
-    }
-
+  if (session) {
     showPortfolio();
-  } catch(e) {}
+    const si = document.getElementById('nav-signin');
+    if (si) {
+      si.textContent = session.user.email;
+      si.style.cursor = 'pointer';
+      si.onclick = async () => { await supabase.auth.signOut(); location.reload(); };
+    }
+  }
 }
 
 function showPortfolio() {
@@ -272,53 +257,18 @@ function showPortfolio() {
   document.getElementById('full-table').style.display = 'table';
 }
 
-// Subscribe/signin via Supabase magic link
+// Subscribe/signin buttons redirect to strategies page
 document.getElementById('subscribe-btn').addEventListener('click', (e) => {
   e.preventDefault();
-  const email = prompt('Enter your email:');
-  if (!email) return;
-
-  fetch(SUPABASE_URL + '/auth/v1/magiclink', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
-    body: JSON.stringify({ email: email })
-  }).then(() => {
-    alert('Check your email for a login link.');
-  }).catch(() => {
-    alert('Something went wrong. Try again.');
-  });
+  window.location.href = '/strategies.html';
 });
 
 document.getElementById('signin-link').addEventListener('click', (e) => {
   e.preventDefault();
-  const email = prompt('Enter your email:');
-  if (!email) return;
-
-  fetch(SUPABASE_URL + '/auth/v1/magiclink', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
-    body: JSON.stringify({ email: email })
-  }).then(() => {
-    alert('Check your email for a login link.');
-  });
+  window.location.href = '/strategies.html';
 });
-
-// Handle magic link callback
-const hash = window.location.hash;
-if (hash && hash.includes('access_token')) {
-  const params = new URLSearchParams(hash.substring(1));
-  const token = params.get('access_token');
-  const refresh = params.get('refresh_token');
-  if (token) {
-    localStorage.setItem('bc_token', token);
-    if (refresh) localStorage.setItem('bc_refresh', refresh);
-    window.location.hash = '';
-    showPortfolio();
-  }
-}
 
 checkAuth();
 </script>
-
-<script type="module">import{createClient}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";const s=createClient("https://efiyeiwdywodjxxnslvu.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg");const{data:{session}}=await s.auth.getSession();if(session){const si=document.getElementById("nav-signin");if(si){si.textContent=session.user.email;si.style.cursor="pointer";si.onclick=async()=>{await s.auth.signOut();location.reload()}}}</script></body>
+</body>
 </html>
