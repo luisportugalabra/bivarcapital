@@ -7,9 +7,8 @@ sends email alert if signal changed (CASH→BUY or BUY→CASH).
 import json
 import os
 import urllib.request
+import urllib.parse
 import ssl
-import smtplib
-from email.mime.text import MIMEText
 from datetime import datetime
 
 # Binance API
@@ -85,40 +84,33 @@ print(f"Current signal: {signal}")
 if prev_signal and prev_signal != signal:
     print(f"\n*** SIGNAL CHANGED: {prev_signal} → {signal} ***")
 
-    # Send email via SMTP (using Gmail App Password from env)
-    smtp_user = os.environ.get('SMTP_USER')
-    smtp_pass = os.environ.get('SMTP_PASS')
-    alert_email = os.environ.get('ALERT_EMAIL', 'luisportugalabra@gmail.com')
+    # Send Telegram alert
+    tg_token = os.environ.get('TELEGRAM_TOKEN', '8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI')
+    tg_chat = os.environ.get('TELEGRAM_CHAT_ID', '5151262026')
 
-    if smtp_user and smtp_pass:
-        subject = f"BTC Signal: {prev_signal} → {signal}"
-        body = f"""BTC Signal Changed
+    if signal == 'BUY':
+        emoji = '🟢'
+        action = 'BUY NOW — all conditions met.'
+    else:
+        emoji = '🔴'
+        action = 'SELL / GO TO CASH — conditions no longer met.'
 
-{prev_signal} → {signal}
+    tg_msg = f"""{emoji} BTC Signal: {prev_signal} → {signal}
 
-Date: {date}
 Price: ${price:,.0f}
 RSI14: {rsi:.1f}
 MA155: ${ma155:,.0f}
 Vol20: {vol*100:.0f}%
 
-{'BUY NOW — all conditions met.' if signal == 'BUY' else 'SELL / GO TO CASH — conditions no longer met.'}
+{action}
 
-https://bivarcapital.com/btc.html
-"""
-        msg = MIMEText(body)
-        msg['Subject'] = subject
-        msg['From'] = smtp_user
-        msg['To'] = alert_email
+https://bivarcapital.com/btc.html"""
 
-        try:
-            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-                server.login(smtp_user, smtp_pass)
-                server.sendmail(smtp_user, alert_email, msg.as_string())
-            print("Alert email sent!")
-        except Exception as e:
-            print(f"Email failed: {e}")
-    else:
-        print("No SMTP credentials configured. Set SMTP_USER and SMTP_PASS secrets.")
+    try:
+        tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={tg_chat}&text={urllib.parse.quote(tg_msg)}'
+        urllib.request.urlopen(tg_url, context=ctx)
+        print("Telegram alert sent!")
+    except Exception as e:
+        print(f"Telegram failed: {e}")
 else:
     print("No change. No alert needed.")
