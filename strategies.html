@@ -84,6 +84,13 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">Bitcoin Trend Signal</div>
         <span class="card-badge badge-live">Live</span>
       </div>
+      <p class="card-desc" style="filter:blur(6px);user-select:none">Trend-following system for Bitcoin. RSI(14) + 155-day Moving Average + Volatility filter. Three rules checked daily. Invested 33% of the time, avoids crashes.</p>
+      <div class="card-stats">
+        <span class="card-stat">Sharpe: <span class="num">2.37</span></span>
+        <span class="card-stat">CAGR: <span class="num">+88.8%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-30%</span></span>
+        <span class="card-stat">Since: <span class="num">2015</span></span>
+      </div>
       <div style="display:flex;align-items:center;gap:12px;margin-top:14px">
         <a href="/btc.html" class="card-link">View live signal &rarr;</a>
         <a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>
@@ -95,14 +102,12 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">Bivar Optimal Momentum</div>
         <span class="card-badge badge-soon">Pro</span>
       </div>
-      <div id="momentum-blur" style="filter:blur(6px);pointer-events:none;user-select:none">
-        <p class="card-desc">Systematic momentum strategy on US large-cap equities. 6-month pure momentum with profitability filter and MA200 regime overlay. GLD hedge in bear months. Monthly rebalance.</p>
-        <div class="card-stats">
-          <span class="card-stat">Sharpe: <span class="num">1.03</span></span>
-          <span class="card-stat">CAGR: <span class="num">+28.9%</span></span>
-          <span class="card-stat">MaxDD: <span class="num">-29%</span></span>
-          <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
-        </div>
+      <p id="momentum-blur" class="card-desc" style="filter:blur(6px);user-select:none">Systematic momentum strategy on US large-cap equities. 6-month pure momentum with profitability filter and MA200 regime overlay. GLD hedge in bear months. Monthly rebalance.</p>
+      <div class="card-stats">
+        <span class="card-stat">Sharpe: <span class="num">1.03</span></span>
+        <span class="card-stat">CAGR: <span class="num">+28.9%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-29%</span></span>
+        <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
       </div>
       <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
         <button onclick="showLogin()" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
@@ -238,7 +243,7 @@ sbScript.onload = function() {
   try {
     supabase = window.supabase.createClient(
       'https://efiyeiwdywodjxxnslvu.supabase.co',
-      'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg'
     );
     // Check if already logged in
 (async () => {
