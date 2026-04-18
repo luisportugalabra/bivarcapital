@@ -98,7 +98,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
       <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
         <button id="signin-btn" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button id="signup-btn" style="padding:8px 20px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.65rem;border:1px solid var(--border);border-radius:5px;cursor:pointer">Request early access</button>
       </div>
     </div>
 
@@ -114,7 +113,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
       <div id="portfolio-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
         <button onclick="document.getElementById('login-modal').style.display='flex'" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button onclick="document.getElementById('signup-modal').style.display='flex'" style="padding:8px 20px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.65rem;border:1px solid var(--border);border-radius:5px;cursor:pointer">Request early access</button>
       </div>
     </div>
 
@@ -132,7 +130,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
       <div id="btc-actions" style="display:flex;align-items:center;gap:12px;margin-top:14px">
         <button onclick="document.getElementById('login-modal').style.display='flex'" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button onclick="document.getElementById('signup-modal').style.display='flex'" style="padding:8px 20px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.65rem;border:1px solid var(--border);border-radius:5px;cursor:pointer">Request early access</button>
       </div>
     </div>
 
@@ -149,18 +146,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <!-- Signup Modal -->
-    <div id="signup-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center">
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:380px;width:90%">
-        <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Request Early Access</div>
-        <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Sign up to get notified when Pro strategies go live.</p>
-        <input id="signup-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
-        <input id="signup-password" type="password" placeholder="Choose a password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
-        <div id="signup-msg" style="font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
-        <button id="signup-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Request Access</button>
-        <button id="signup-cancel" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
-      </div>
-    </div>
 
   </section>
 </main>
@@ -230,42 +215,6 @@ document.getElementById('login-submit').addEventListener('click', async () => {
 
 document.getElementById('login-password').addEventListener('keydown', e => {
   if (e.key === 'Enter') document.getElementById('login-submit').click();
-});
-
-// Sign Up modal
-document.getElementById('signup-btn').addEventListener('click', () => {
-  document.getElementById('signup-modal').style.display = 'flex';
-  document.getElementById('signup-email').focus();
-});
-
-document.getElementById('signup-cancel').addEventListener('click', () => {
-  document.getElementById('signup-modal').style.display = 'none';
-});
-
-document.getElementById('signup-submit').addEventListener('click', async () => {
-  const email = document.getElementById('signup-email').value;
-  const password = document.getElementById('signup-password').value;
-  const msgEl = document.getElementById('signup-msg');
-  if (!email || !password || password.length < 6) {
-    msgEl.textContent = 'Email and password (min 6 chars) required.';
-    msgEl.style.color = 'var(--red)';
-    msgEl.style.display = 'block';
-    return;
-  }
-  const { data, error } = await supabase.auth.signUp({ email, password });
-  if (error) {
-    msgEl.textContent = error.message;
-    msgEl.style.color = 'var(--red)';
-    msgEl.style.display = 'block';
-    return;
-  }
-  msgEl.textContent = 'Request sent. Check your email to confirm.';
-  msgEl.style.color = 'var(--green)';
-  msgEl.style.display = 'block';
-});
-
-document.getElementById('signup-password').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('signup-submit').click();
 });
 
 // Check existing session
