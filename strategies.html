@@ -96,9 +96,9 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-stat">MaxDD: <span class="num">-30%</span></span>
         <span class="card-stat">Since: <span class="num">2015</span></span>
       </div>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:14px">
-        <a href="/btc.html" class="card-link">View live signal &rarr;</a>
-        <a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>
+      <div id="btc-actions" style="display:flex;align-items:center;gap:12px;margin-top:14px">
+        <button onclick="document.getElementById('login-modal').style.display='flex'" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button onclick="document.getElementById('signup-modal').style.display='flex'" style="padding:8px 20px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.65rem;border:1px solid var(--border);border-radius:5px;cursor:pointer">Request early access</button>
       </div>
     </div>
 
@@ -169,8 +169,9 @@ function unlock(email) {
   document.getElementById('momentum-blur').style.userSelect = 'auto';
   document.getElementById('btc-blur').style.filter = 'none';
   document.getElementById('btc-blur').style.userSelect = 'auto';
-  // Hide sign in/signup buttons
+  // Hide sign in/signup buttons, show strategy links
   document.getElementById('momentum-actions').style.display = 'none';
+  document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
   // Hide Sign In link, show user in nav
   const signinLink = document.getElementById('nav-signin');
   if (signinLink) signinLink.style.display = 'none';

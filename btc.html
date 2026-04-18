@@ -243,5 +243,5 @@ async function updateLivePrice() {
   } catch(e) {}
 }
 </script>
-</body>
+<script type="module">import{createClient}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";const s=createClient("https://efiyeiwdywodjxxnslvu.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg");const{data:{session}}=await s.auth.getSession();if(!session)window.location.href="/strategies.html";</script></body>
 </html>
