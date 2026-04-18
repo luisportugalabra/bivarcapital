@@ -70,6 +70,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/">Home</a>
       <a href="/strategies.html" class="active">Strategies</a>
       <a href="/about.html">About</a>
+      <a href="#" id="nav-signin" onclick="document.getElementById('login-modal').style.display='flex';document.getElementById('login-email').focus();return false;" style="color:var(--accent);font-family:var(--font-mono);font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;margin-left:24px;transition:color 0.2s">Sign In</a>
       <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)">
         <span id="nav-email" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)"></span>
         <a href="#" id="nav-signout" style="font-family:var(--font-mono);font-size:.6rem;color:var(--red);margin-left:12px;text-decoration:none">Sign Out</a>
@@ -151,7 +152,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 <footer>
   <div class="container">
     <p class="brand">Bivar Capital</p>
-    <p>Luis Portugal Bivar</p>
+    <p>Luis Portugal</p>
   </div>
 </footer>
 <script type="module">
@@ -170,7 +171,9 @@ function unlock(email) {
   document.getElementById('btc-blur').style.userSelect = 'auto';
   // Hide sign in/signup buttons
   document.getElementById('momentum-actions').style.display = 'none';
-  // Show user in nav
+  // Hide Sign In link, show user in nav
+  const signinLink = document.getElementById('nav-signin');
+  if (signinLink) signinLink.style.display = 'none';
   document.getElementById('nav-user').style.display = 'inline';
   document.getElementById('nav-email').textContent = email || '';
   document.getElementById('nav-signout').addEventListener('click', async (e) => {
@@ -248,10 +251,6 @@ document.getElementById('signup-password').addEventListener('keydown', e => {
 const { data: { session } } = await supabase.auth.getSession();
 if (session) unlock(session.user.email);
 
-// Enter key handlers
-document.getElementById('login-password').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doLogin();
-});
 </script>
 </body>
 </html>
