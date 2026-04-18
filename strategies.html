@@ -80,21 +80,14 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p class="subtitle">Systematic, rules-based. No discretion, no narrative.</p>
 
     <div class="strategy-card">
-      <a href="/btc.html">
-        <div class="card-header">
-          <div class="card-title">Bitcoin Trend Signal</div>
-          <span class="card-badge badge-live">Live</span>
-        </div>
-        <p class="card-desc">Trend-following system for Bitcoin. RSI(14) + 155-day Moving Average + Volatility filter. Three rules checked daily. Invested 33% of the time, avoids crashes.</p>
-        <div class="card-stats">
-          <span class="card-stat">Sharpe: <span class="num">2.37</span></span>
-          <span class="card-stat">CAGR: <span class="num">+88.8%</span></span>
-          <span class="card-stat">MaxDD: <span class="num">-30%</span></span>
-          <span class="card-stat">Since: <span class="num">2015</span></span>
-        </div>
-        <span class="card-link">View live signal &rarr;</span>
-      </a>
-      <a href="/research/btc_strategy_report.html" style="display:inline-block;margin-top:14px;margin-left:8px;padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none;transition:all .2s">See strategy &amp; backtests &rarr;</a>
+      <div class="card-header">
+        <div class="card-title">Bitcoin Trend Signal</div>
+        <span class="card-badge badge-live">Live</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:14px">
+        <a href="/btc.html" class="card-link">View live signal &rarr;</a>
+        <a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>
+      </div>
     </div>
 
     <div class="strategy-card" id="momentum-card">
@@ -152,13 +145,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p>Luis Portugal Bivar</p>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const supabase = window.supabase.createClient(
-  'https://efiyeiwdywodjxxnslvu.supabase.co',
-  'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha'
-);
-
+// UI functions first — always work regardless of Supabase
 function showLogin() {
   document.getElementById('login-modal').style.display = 'flex';
   document.getElementById('login-email').focus();
@@ -173,6 +161,7 @@ async function doLogin() {
   const password = document.getElementById('login-password').value;
   const errEl = document.getElementById('login-error');
 
+  if (!supabase) { errEl.textContent = 'Loading, try again...'; errEl.style.display = 'block'; return; }
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
@@ -220,6 +209,7 @@ async function doSignup() {
     return;
   }
 
+  if (!supabase) { msgEl.textContent = 'Loading, try again...'; msgEl.style.color = 'var(--red)'; msgEl.style.display = 'block'; return; }
   const { data, error } = await supabase.auth.signUp({ email, password });
 
   if (error) {
@@ -240,7 +230,17 @@ document.getElementById('signup-password').addEventListener('keydown', e => {
   if (e.key === 'Enter') doSignup();
 });
 
-// Check if already logged in
+// Load Supabase
+let supabase = null;
+const sbScript = document.createElement('script');
+sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+sbScript.onload = function() {
+  try {
+    supabase = window.supabase.createClient(
+      'https://efiyeiwdywodjxxnslvu.supabase.co',
+      'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha'
+    );
+    // Check if already logged in
 (async () => {
   const { data: { session } } = await supabase.auth.getSession();
   if (session) {
@@ -249,7 +249,11 @@ document.getElementById('signup-password').addEventListener('keydown', e => {
   }
 })();
 
-// Enter key on password field
+  } catch(e) { console.error('Supabase init failed:', e); }
+};
+document.head.appendChild(sbScript);
+
+// Enter key handlers
 document.getElementById('login-password').addEventListener('keydown', e => {
   if (e.key === 'Enter') doLogin();
 });
