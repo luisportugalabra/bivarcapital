@@ -93,5 +93,5 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p>Luis Portugal</p>
   </div>
 </footer>
-</body>
+<script type="module">import{createClient}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";const s=createClient("https://efiyeiwdywodjxxnslvu.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg");const{data:{session}}=await s.auth.getSession();if(session){const si=document.getElementById("nav-signin");if(si){si.textContent=session.user.email;si.style.cursor="pointer";si.onclick=async()=>{await s.auth.signOut();location.reload()}}}</script></body>
 </html>
