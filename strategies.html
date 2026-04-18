@@ -70,6 +70,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/">Home</a>
       <a href="/strategies.html" class="active">Strategies</a>
       <a href="/about.html">About</a>
+      <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)">
+        <span id="nav-email" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)"></span>
+        <a href="#" id="nav-signout" style="font-family:var(--font-mono);font-size:.6rem;color:var(--red);margin-left:12px;text-decoration:none">Sign Out</a>
+      </span>
     </nav>
   </div>
 </header>
@@ -84,7 +88,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">Bitcoin Trend Signal</div>
         <span class="card-badge badge-live">Live</span>
       </div>
-      <p class="card-desc" style="filter:blur(6px);user-select:none">Trend-following system for Bitcoin. RSI(14) + 155-day Moving Average + Volatility filter. Three rules checked daily. Invested 33% of the time, avoids crashes.</p>
+      <p id="btc-blur" class="card-desc" style="filter:blur(6px);user-select:none">Trend-following system for Bitcoin. RSI(14) + 155-day Moving Average + Volatility filter. Three rules checked daily. Invested 33% of the time, avoids crashes.</p>
       <div class="card-stats">
         <span class="card-stat">Sharpe: <span class="num">2.37</span></span>
         <span class="card-stat">CAGR: <span class="num">+88.8%</span></span>
@@ -158,12 +162,19 @@ const supabase = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg'
 );
 
-function unlock() {
+function unlock(email) {
+  // Unblur both strategies
   document.getElementById('momentum-blur').style.filter = 'none';
-  document.getElementById('momentum-blur').style.pointerEvents = 'auto';
   document.getElementById('momentum-blur').style.userSelect = 'auto';
-  document.getElementById('momentum-actions').innerHTML = '<button id="logout-btn" style="padding:6px 16px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.6rem;border:1px solid var(--border);border-radius:4px;cursor:pointer">Sign Out</button>';
-  document.getElementById('logout-btn').addEventListener('click', async () => {
+  document.getElementById('btc-blur').style.filter = 'none';
+  document.getElementById('btc-blur').style.userSelect = 'auto';
+  // Hide sign in/signup buttons
+  document.getElementById('momentum-actions').style.display = 'none';
+  // Show user in nav
+  document.getElementById('nav-user').style.display = 'inline';
+  document.getElementById('nav-email').textContent = email || '';
+  document.getElementById('nav-signout').addEventListener('click', async (e) => {
+    e.preventDefault();
     await supabase.auth.signOut();
     location.reload();
   });
@@ -190,7 +201,7 @@ document.getElementById('login-submit').addEventListener('click', async () => {
     return;
   }
   document.getElementById('login-modal').style.display = 'none';
-  unlock();
+  unlock(email);
 });
 
 document.getElementById('login-password').addEventListener('keydown', e => {
@@ -235,7 +246,7 @@ document.getElementById('signup-password').addEventListener('keydown', e => {
 
 // Check existing session
 const { data: { session } } = await supabase.auth.getSession();
-if (session) unlock();
+if (session) unlock(session.user.email);
 
 // Enter key handlers
 document.getElementById('login-password').addEventListener('keydown', e => {
