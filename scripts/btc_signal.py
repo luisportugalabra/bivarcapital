@@ -84,9 +84,8 @@ print(f"Current signal: {signal}")
 if prev_signal and prev_signal != signal:
     print(f"\n*** SIGNAL CHANGED: {prev_signal} → {signal} ***")
 
-    # Send Telegram alert
+    # Send Telegram alert to ALL approved subscribers
     tg_token = os.environ.get('TELEGRAM_TOKEN', '8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI')
-    tg_chat = os.environ.get('TELEGRAM_CHAT_ID', '5151262026')
 
     if signal == 'BUY':
         emoji = '🟢'
@@ -106,11 +105,28 @@ Vol20: {vol*100:.0f}%
 
 https://bivarcapital.com/btc.html"""
 
+    # Get approved subscribers from Supabase
+    sb_url = 'https://efiyeiwdywodjxxnslvu.supabase.co'
+    sb_key = os.environ.get('SUPABASE_SERVICE_KEY', '')
+
     try:
-        tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={tg_chat}&text={urllib.parse.quote(tg_msg)}'
-        urllib.request.urlopen(tg_url, context=ctx)
-        print("Telegram alert sent!")
+        req = urllib.request.Request(
+            f'{sb_url}/rest/v1/telegram_subscribers?status=eq.approved&select=chat_id',
+            headers={'apikey': sb_key, 'Authorization': f'Bearer {sb_key}'}
+        )
+        resp = json.loads(urllib.request.urlopen(req, context=ctx).read())
+        chat_ids = [r['chat_id'] for r in resp]
+        print(f"Sending to {len(chat_ids)} approved subscribers...")
     except Exception as e:
-        print(f"Telegram failed: {e}")
+        print(f"Supabase error: {e}, falling back to admin only")
+        chat_ids = [5151262026]
+
+    for chat_id in chat_ids:
+        try:
+            tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={chat_id}&text={urllib.parse.quote(tg_msg)}'
+            urllib.request.urlopen(tg_url, context=ctx)
+            print(f"  Sent to {chat_id}")
+        except Exception as e:
+            print(f"  Failed for {chat_id}: {e}")
 else:
     print("No change. No alert needed.")
