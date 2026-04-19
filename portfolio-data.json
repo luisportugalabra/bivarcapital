@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-19 00:06 UTC",
+  "updated": "2026-04-19 05:22 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -12,10 +12,10 @@
         },
         {
           "ticker": "JD",
-          "qty": 4616.0,
+          "qty": 3875.0,
           "price": 31.6,
-          "mkt_value": 145865.6,
-          "weight": 14.4
+          "mkt_value": 122450.0,
+          "weight": 12.1
         },
         {
           "ticker": "META",
@@ -29,7 +29,7 @@
           "qty": 305.0,
           "price": 250.56,
           "mkt_value": 76420.8,
-          "weight": 7.6
+          "weight": 7.5
         },
         {
           "ticker": "MSFT",
@@ -62,22 +62,22 @@
         {
           "ticker": "EXO",
           "qty": 481.0,
-          "price": 82.43,
-          "mkt_value": 39648.77,
-          "weight": 3.9
-        },
-        {
-          "ticker": "MELI",
-          "qty": 21.0,
-          "price": 1855.83,
-          "mkt_value": 38972.43,
-          "weight": 3.9
+          "price": 84.61,
+          "mkt_value": 40696.52,
+          "weight": 4.0
         },
         {
           "ticker": "GOOGL",
           "qty": 112.0,
           "price": 341.68,
           "mkt_value": 38268.16,
+          "weight": 3.8
+        },
+        {
+          "ticker": "MELI",
+          "qty": 21.0,
+          "price": 1855.83,
+          "mkt_value": 38972.43,
           "weight": 3.8
         },
         {
@@ -92,13 +92,20 @@
           "qty": 100.0,
           "price": 278.39,
           "mkt_value": 27839.0,
-          "weight": 2.8
+          "weight": 2.7
         },
         {
           "ticker": "FISV",
           "qty": 370.0,
           "price": 63.97,
           "mkt_value": 23668.9,
+          "weight": 2.3
+        },
+        {
+          "ticker": "JD",
+          "qty": 741.0,
+          "price": 31.6,
+          "mkt_value": 23415.6,
           "weight": 2.3
         },
         {
@@ -116,6 +123,13 @@
           "weight": 2.0
         },
         {
+          "ticker": "ACN",
+          "qty": 75.0,
+          "price": 197.65,
+          "mkt_value": 14823.75,
+          "weight": 1.5
+        },
+        {
           "ticker": "SFM",
           "qty": 200.0,
           "price": 74.15,
@@ -126,14 +140,7 @@
           "ticker": "WISE",
           "qty": 1000.0,
           "price": 14.74,
-          "mkt_value": 14739.06,
-          "weight": 1.5
-        },
-        {
-          "ticker": "ACN",
-          "qty": 75.0,
-          "price": 197.65,
-          "mkt_value": 14823.75,
+          "mkt_value": 14739.81,
           "weight": 1.5
         },
         {
@@ -165,9 +172,8 @@
           "weight": 1.0
         }
       ],
-      "total_value": 1011914.69,
-      "n_positions": 24,
-      "ytd_2026": 7.0
+      "total_value": 1012963.18,
+      "n_positions": 24
     },
     "vc2": {
       "positions": [
@@ -214,13 +220,6 @@
           "weight": 5.5
         },
         {
-          "ticker": "SSTK",
-          "qty": 304.0,
-          "price": 17.69,
-          "mkt_value": 5377.76,
-          "weight": 5.4
-        },
-        {
           "ticker": "CMCSA",
           "qty": 181.0,
           "price": 29.63,
@@ -228,11 +227,11 @@
           "weight": 5.4
         },
         {
-          "ticker": "SGU",
-          "qty": 423.0,
-          "price": 12.5,
-          "mkt_value": 5287.5,
-          "weight": 5.3
+          "ticker": "SSTK",
+          "qty": 304.0,
+          "price": 17.69,
+          "mkt_value": 5377.76,
+          "weight": 5.4
         },
         {
           "ticker": "EBS",
@@ -242,17 +241,24 @@
           "weight": 5.3
         },
         {
-          "ticker": "ANGI",
-          "qty": 675.0,
-          "price": 7.4,
-          "mkt_value": 4995.0,
-          "weight": 5.1
+          "ticker": "SGU",
+          "qty": 423.0,
+          "price": 12.5,
+          "mkt_value": 5287.5,
+          "weight": 5.3
         },
         {
           "ticker": "ACCO",
           "qty": 1492.0,
           "price": 3.35,
           "mkt_value": 4998.2,
+          "weight": 5.1
+        },
+        {
+          "ticker": "ANGI",
+          "qty": 675.0,
+          "price": 7.4,
+          "mkt_value": 4995.0,
           "weight": 5.1
         },
         {
@@ -299,8 +305,7 @@
         }
       ],
       "total_value": 98888.76,
-      "n_positions": 18,
-      "ytd_2026": 11.2
+      "n_positions": 18
     },
     "vc2trend": {
       "positions": [
@@ -369,14 +374,13 @@
         }
       ],
       "total_value": 45680.78,
-      "n_positions": 9,
-      "ytd_2026": 1.9
+      "n_positions": 9
     }
   },
   "returns": {
     "discretionary": {
       "2025": 46.1,
-      "2026_ytd": 7.0
+      "2026_ytd": 6.8
     },
     "vc2": {
       "2025": 23.1,
@@ -393,26 +397,30 @@
   },
   "sync": {
     "discretionary": {
-      "date": "2026-04-17 05:03 UTC",
-      "value": 1005111.79,
-      "ytd_at_sync": 6.3
+      "date": "2026-04-19 05:22 UTC",
+      "value": 1012963.18,
+      "ytd_at_sync": 6.8
     },
     "vc2": {
-      "date": "2026-04-17 05:03 UTC",
-      "value": 98157.41,
-      "ytd_at_sync": 10.4
+      "date": "2026-04-19 05:22 UTC",
+      "value": 98888.76,
+      "ytd_at_sync": 11.2
     },
     "vc2trend": {
-      "date": "2026-04-17 05:03 UTC",
-      "value": 45009.74,
-      "ytd_at_sync": 0.4
+      "date": "2026-04-19 05:22 UTC",
+      "value": 45680.78,
+      "ytd_at_sync": 1.9
     },
     "sp500": {
-      "date": "2026-04-17 05:03 UTC",
-      "ytd_at_sync": 2.9
+      "date": "2026-04-19 05:22 UTC",
+      "ytd_at_sync": 4.1
     }
   },
   "activity": [
+    {
+      "date": "Apr 19",
+      "text": "Portfolio synced \u2014 positions updated"
+    },
     {
       "date": "Apr 19",
       "text": "Prices updated from market close"
@@ -420,10 +428,6 @@
     {
       "date": "Apr 17",
       "text": "Prices updated from market close"
-    },
-    {
-      "date": "Apr 17",
-      "text": "Portfolio synced \u2014 positions updated"
     },
     {
       "date": "Apr 17",
