@@ -22,9 +22,7 @@ jobs:
 
       - name: Check BTC signal
         env:
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          ALERT_EMAIL: luisportugalabra@gmail.com
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: python scripts/btc_signal.py
 
       - name: Commit signal state
