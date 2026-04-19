@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17 23:40 UTC",
+  "updated": "2026-04-19 00:06 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -15,7 +15,7 @@
           "qty": 4616.0,
           "price": 31.6,
           "mkt_value": 145865.6,
-          "weight": 14.399999999999999
+          "weight": 14.4
         },
         {
           "ticker": "META",
@@ -414,12 +414,12 @@
   },
   "activity": [
     {
-      "date": "Apr 17",
+      "date": "Apr 19",
       "text": "Prices updated from market close"
     },
     {
       "date": "Apr 17",
-      "text": "Portfolio synced \u2014 positions updated"
+      "text": "Prices updated from market close"
     },
     {
       "date": "Apr 17",
