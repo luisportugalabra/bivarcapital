@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-19 05:22 UTC",
+  "updated": "2026-04-19 06:02 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -380,7 +380,7 @@
   "returns": {
     "discretionary": {
       "2025": 46.1,
-      "2026_ytd": 6.8
+      "2026_ytd": 7.6
     },
     "vc2": {
       "2025": 23.1,
@@ -397,22 +397,22 @@
   },
   "sync": {
     "discretionary": {
-      "date": "2026-04-19 05:22 UTC",
+      "date": "2026-04-19 06:02 UTC",
       "value": 1012963.18,
-      "ytd_at_sync": 6.8
+      "ytd_at_sync": 7.6
     },
     "vc2": {
-      "date": "2026-04-19 05:22 UTC",
+      "date": "2026-04-19 06:02 UTC",
       "value": 98888.76,
       "ytd_at_sync": 11.2
     },
     "vc2trend": {
-      "date": "2026-04-19 05:22 UTC",
+      "date": "2026-04-19 06:02 UTC",
       "value": 45680.78,
       "ytd_at_sync": 1.9
     },
     "sp500": {
-      "date": "2026-04-19 05:22 UTC",
+      "date": "2026-04-19 06:02 UTC",
       "ytd_at_sync": 4.1
     }
   },
@@ -423,15 +423,15 @@
     },
     {
       "date": "Apr 19",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Apr 17",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Apr 17",
       "text": "Portfolio synced \u2014 positions updated"
+    },
+    {
+      "date": "Apr 19",
+      "text": "Prices updated from market close"
+    },
+    {
+      "date": "Apr 17",
+      "text": "Prices updated from market close"
     },
     {
       "date": "Apr 17",
