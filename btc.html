@@ -99,6 +99,12 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;text-alig
   </div>
 </div>
 
+<div id="chart-container" style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:24px">
+  <canvas id="btc-chart" width="900" height="350" style="width:100%;height:auto"></canvas>
+  <div id="chart-legend" style="display:flex;gap:16px;justify-content:center;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted)"></div>
+  <div id="chart-returns" style="display:flex;gap:16px;justify-content:center;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:.65rem"></div>
+</div>
+
 <div class="stats">
   <div class="stat"><div class="v" style="color:var(--green)">+88.8%</div><div class="l">Backtest CAGR</div></div>
   <div class="stat"><div class="v" style="color:var(--green)">2.37</div><div class="l">Sharpe</div></div>
@@ -211,6 +217,164 @@ async function fetchBTC() {
     document.getElementById('ind-vol').classList.add(volPass ? 'pass' : 'fail');
     document.getElementById('vol-status').innerHTML = volPass ? '&#10003; Calm market' : '&#10007; Too volatile';
     document.getElementById('vol-status').style.color = volPass ? 'var(--green)' : 'var(--red)';
+
+    // ══════════════════════════════════════════
+    // DRAW CHART
+    // ══════════════════════════════════════════
+    const canvas = document.getElementById('btc-chart');
+    const ctx2 = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = 900 * dpr;
+    canvas.height = 350 * dpr;
+    ctx2.scale(dpr, dpr);
+    const cw = 900, ch = 350;
+    const mg = {t:25, r:60, b:30, l:65};
+    const pw = cw - mg.l - mg.r, ph = ch - mg.t - mg.b;
+
+    // Compute MA155 and signal for each day
+    const chartData = [];
+    for (let i = 0; i < n; i++) {
+      const p = prices[i];
+      let ma = null;
+      if (i >= 154) {
+        let sum = 0;
+        for (let j = i - 154; j <= i; j++) sum += prices[j].close;
+        ma = sum / 155;
+      }
+      // RSI (simplified for chart — just show last value indicator)
+      let signal = null;
+      if (i >= 155 && i >= 20) {
+        // RSI
+        let g = 0, l = 0;
+        for (let j = i - 13; j <= i; j++) {
+          const d = prices[j].close - prices[j-1].close;
+          if (d > 0) g += d; else l -= d;
+        }
+        const rsiVal = l === 0 ? 100 : 100 - 100 / (1 + (g/14)/(l/14));
+        // Vol
+        const vrets = [];
+        for (let j = i - 19; j <= i; j++) vrets.push(prices[j].close / prices[j-1].close - 1);
+        const vmean = vrets.reduce((a,b)=>a+b,0)/vrets.length;
+        const vvar = vrets.reduce((a,b)=>a+(b-vmean)**2,0)/(vrets.length-1);
+        const volVal = Math.sqrt(vvar) * Math.sqrt(365);
+        signal = (rsiVal > 54 && p.close > ma && volVal < 1.0) ? 1 : 0;
+      }
+      chartData.push({date: p.date, close: p.close, ma: ma, signal: signal});
+    }
+
+    // Strategy cumulative return
+    let stratCum = 1, bhCum = 1;
+    let stratYtd = 1, bhYtd = 1;
+    const yearStart = new Date(prices[0].date.getFullYear() === 2026 ? '2026-01-01' : '2025-01-01');
+    let pos = 0;
+    const stratLine = [100000], bhLine = [100000];
+
+    for (let i = 1; i < chartData.length; i++) {
+      const ret = chartData[i].close / chartData[i-1].close - 1;
+      // Simple signal (no cooldown/buffer for chart simplicity)
+      if (chartData[i-1].signal !== null) pos = chartData[i-1].signal;
+      const sRet = pos * ret;
+      stratCum *= (1 + sRet);
+      bhCum *= (1 + ret);
+      stratLine.push(stratCum * 100000);
+      bhLine.push(bhCum * 100000);
+
+      // YTD
+      if (chartData[i].date >= new Date('2026-01-01')) {
+        stratYtd *= (1 + sRet);
+        bhYtd *= (1 + ret);
+      }
+    }
+
+    // Price range
+    const allPrices = chartData.map(d => d.close);
+    const allMA = chartData.filter(d => d.ma).map(d => d.ma);
+    const pMin = Math.min(...allPrices, ...allMA) * 0.95;
+    const pMax = Math.max(...allPrices, ...allMA) * 1.05;
+
+    function yPos(price) { return mg.t + ph - (price - pMin) / (pMax - pMin) * ph; }
+    function xPos(i) { return mg.l + i / (chartData.length - 1) * pw; }
+
+    // Background
+    ctx2.fillStyle = '#0c0c10';
+    ctx2.fillRect(0, 0, cw, ch);
+
+    // Cash zones (red shading)
+    for (let i = 1; i < chartData.length; i++) {
+      if (chartData[i-1].signal === 0) {
+        ctx2.fillStyle = 'rgba(248,113,113,0.05)';
+        ctx2.fillRect(xPos(i-1), mg.t, xPos(i) - xPos(i-1) + 1, ph);
+      }
+    }
+
+    // Grid
+    ctx2.strokeStyle = '#1a1a22';
+    ctx2.lineWidth = 0.5;
+    const gridSteps = 5;
+    for (let i = 0; i <= gridSteps; i++) {
+      const p = pMin + (pMax - pMin) * i / gridSteps;
+      const y = yPos(p);
+      ctx2.beginPath(); ctx2.moveTo(mg.l, y); ctx2.lineTo(cw - mg.r, y); ctx2.stroke();
+      ctx2.fillStyle = '#5a5a68';
+      ctx2.font = '9px JetBrains Mono, monospace';
+      ctx2.textAlign = 'right';
+      ctx2.fillText('$' + (p/1000).toFixed(0) + 'K', mg.l - 6, y + 4);
+    }
+
+    // MA155 line
+    ctx2.strokeStyle = '#c4a265';
+    ctx2.lineWidth = 1.5;
+    ctx2.setLineDash([4, 3]);
+    ctx2.beginPath();
+    let started = false;
+    for (let i = 0; i < chartData.length; i++) {
+      if (chartData[i].ma) {
+        if (!started) { ctx2.moveTo(xPos(i), yPos(chartData[i].ma)); started = true; }
+        else ctx2.lineTo(xPos(i), yPos(chartData[i].ma));
+      }
+    }
+    ctx2.stroke();
+    ctx2.setLineDash([]);
+
+    // Price line
+    ctx2.strokeStyle = '#e8e8ec';
+    ctx2.lineWidth = 1.5;
+    ctx2.beginPath();
+    ctx2.moveTo(xPos(0), yPos(chartData[0].close));
+    for (let i = 1; i < chartData.length; i++) {
+      ctx2.lineTo(xPos(i), yPos(chartData[i].close));
+    }
+    ctx2.stroke();
+
+    // X axis labels (months)
+    ctx2.fillStyle = '#5a5a68';
+    ctx2.font = '8px JetBrains Mono, monospace';
+    ctx2.textAlign = 'center';
+    let lastMonth = -1;
+    for (let i = 0; i < chartData.length; i++) {
+      const m = chartData[i].date.getMonth();
+      if (m !== lastMonth && chartData[i].date.getDate() <= 7) {
+        lastMonth = m;
+        const label = chartData[i].date.toLocaleDateString('en', {month:'short', year:'2-digit'});
+        ctx2.fillText(label, xPos(i), ch - 8);
+      }
+    }
+
+    // Legend
+    const legend = document.getElementById('chart-legend');
+    legend.innerHTML = '<span><span style="display:inline-block;width:16px;height:2px;background:#e8e8ec;vertical-align:middle;margin-right:4px"></span>BTC Price</span>' +
+      '<span><span style="display:inline-block;width:16px;height:2px;background:#c4a265;vertical-align:middle;margin-right:4px;border-top:1px dashed #c4a265"></span>MA155</span>' +
+      '<span><span style="display:inline-block;width:16px;height:8px;background:rgba(248,113,113,0.15);vertical-align:middle;margin-right:4px"></span>Cash zones</span>';
+
+    // Returns
+    const returnsEl = document.getElementById('chart-returns');
+    const stratRet = (stratCum - 1) * 100;
+    const bhRet = (bhCum - 1) * 100;
+    const ytdStrat = (stratYtd - 1) * 100;
+    const ytdBH = (bhYtd - 1) * 100;
+    returnsEl.innerHTML =
+      '<span>Period return: <span style="color:' + (stratRet > 0 ? 'var(--green)' : 'var(--red)') + '">' + (stratRet > 0 ? '+' : '') + stratRet.toFixed(0) + '% strategy</span> vs ' + (bhRet > 0 ? '+' : '') + bhRet.toFixed(0) + '% B&H</span>' +
+      '<span>YTD 2026: <span style="color:' + (ytdStrat > 0 ? 'var(--green)' : 'var(--red)') + '">' + (ytdStrat > 0 ? '+' : '') + ytdStrat.toFixed(1) + '% strategy</span> vs ' + (ytdBH > 0 ? '+' : '') + ytdBH.toFixed(1) + '% B&H</span>';
 
   } catch (e) {
     document.getElementById('signal-text').textContent = 'Error loading data';
