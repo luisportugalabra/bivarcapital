@@ -200,7 +200,7 @@
 </tbody></table>
 
 <div class="callout-green"><p><strong>One combination matches the base Sharpe while cutting drawdown by 9 percentage points.</strong></p>
-<p style="margin-top:8px"><strong>MA200 + skip when VIX &gt; 25 AND VIX &gt; VIX_MA50</strong> achieves Sharpe 0.81 (same as base), CAGR +17.2% (vs +17.6%), and max drawdown of -22.3% (vs -31.1%). It requires 62 months in cash vs 53 for the base &mdash; 9 extra months over 21 years.</p>
+<p style="margin-top:8px"><strong>MA200, skip VIX&gt;25 &amp; rising</strong> achieves Sharpe 0.81 (same as base), CAGR +17.2% (vs +17.6%), and max drawdown of &minus;22.3% (vs &minus;31.1%). It requires 62 months in cash vs 53 for the base &mdash; 9 extra months over 21 years.</p>
 <p style="margin-top:8px">The logic: exit when the VIX is above 25 <em>and</em> rising (above its own 50-day average). This catches the specific scenario of growing fear while ignoring isolated spikes that resolve quickly. The MA200 handles slow downtrends; the VIX condition adds early warning for volatility-driven selloffs.</p></div>
 
 <div class="divider"></div>
