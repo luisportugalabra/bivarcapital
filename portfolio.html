@@ -131,7 +131,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/">Home</a>
       <a href="/strategies.html">Strategies</a>
       <a href="/about.html">About</a>
-      <a href="/strategies.html" style="color:var(--accent)">Sign In</a>
+      <a id="nav-signin" href="/strategies.html" style="color:var(--accent)">Sign In</a>
     </nav>
   </div>
 </header>
@@ -145,9 +145,9 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
   <section class="perf">
     <div class="perf-row">
-      <span class="perf-item">2025: <span class="val pos">+38.7%</span></span>
-      <span class="perf-item">2026 YTD: <span class="val pos" id="ytd-val">+4.0%</span></span>
-      <span class="perf-item">S&amp;P 500 YTD: <span class="val" id="sp-val" style="color:var(--text-secondary)">+1.8%</span></span>
+      <span class="perf-item">2025: <span class="val pos" id="y2025-val">+46.1%</span></span>
+      <span class="perf-item">2026 YTD: <span class="val pos" id="ytd-val">+7.6%</span></span>
+      <span class="perf-item">S&amp;P 500 YTD: <span class="val" id="sp-val" style="color:var(--text-secondary)">+4.1%</span></span>
       <span class="perf-item">Positions: <span class="val" id="n-pos">24</span></span>
     </div>
   </section>
@@ -195,7 +195,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
 <script>
 const SUPABASE_URL = 'https://efiyeiwdywodjxxnslvu.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_IccFybhqHU9RM5rc-Em1KA_G5Dsrqha';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg';
 
 // Migrate old keys
 if (localStorage.getItem('rtw_token') && !localStorage.getItem('bc_token')) {
@@ -211,6 +211,11 @@ fetch('portfolio-data.json')
     const fmt = v => (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
 
     const disc = pd.returns && pd.returns.discretionary;
+    const y2025 = document.getElementById('y2025-val');
+    if (y2025 && disc && disc['2025'] != null) {
+      y2025.textContent = fmt(disc['2025']);
+      y2025.className = 'val ' + (disc['2025'] >= 0 ? 'pos' : 'neg');
+    }
     const ytd = document.getElementById('ytd-val');
     if (ytd && disc && disc['2026_ytd'] != null) {
       ytd.textContent = fmt(disc['2026_ytd']);
