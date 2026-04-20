@@ -42,10 +42,47 @@ td.cash{color:var(--muted)}
 .rule-box ol{margin-left:16px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:16px;margin:14px 0;font-size:0.78rem}
-@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
+@media(max-width:700px){
+.container{padding:24px 16px 60px}
+h1{font-size:1.5rem}
+h1 .it{font-size:0.9rem}
+h2{font-size:1.1rem;margin:32px 0 8px}
+.lead{font-size:0.75rem}
+.grid6{grid-template-columns:repeat(3,1fr);gap:6px}
+.grid4{grid-template-columns:repeat(2,1fr);gap:6px}
+.grid3{grid-template-columns:1fr;gap:6px}
+.two-col{grid-template-columns:1fr}
+.stat{padding:10px 6px}
+.stat .v{font-size:0.9rem}
+.stat .l{font-size:0.42rem}
+table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.rule-box{padding:14px;font-size:0.72rem}
+.callout{padding:10px 14px;font-size:0.72rem}
+.highlight{padding:12px;font-size:0.72rem}
+code{font-size:0.6rem;word-break:break-all}
+}
+@media(max-width:480px){
+.grid6{grid-template-columns:repeat(2,1fr)}
+h1{font-size:1.3rem}
+h1 .it{font-size:0.8rem}
+}
 .footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
 .footer p{font-size:0.5rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
-</style></head><body><header style="position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0"><div style="max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center"><a href="/" style="font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none">Bivar Capital</a><nav><a href="/" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">Home</a><a href="/strategies.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">Strategies</a><a href="/about.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">About</a><a id="nav-signin" href="/strategies.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#c4a265;text-decoration:none;margin-left:24px">Sign In</a></nav></div></header><div class="container">
+</style></head><body><style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a id="nav-signin" href="/strategies.html" class="accent">Sign In</a></nav></div></header><div class="container">
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>BivarOptimalMomentum<span class="it">Systematic momentum with gold regime hedge</span></h1>

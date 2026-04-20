@@ -58,10 +58,22 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;text-alig
 .loading{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.7rem}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .live-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:5px;animation:pulse 2s ease-in-out infinite}
-@media(max-width:500px){.indicators{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.indicators{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.container{padding:32px 16px 60px}h1{font-size:1.6rem}.sub{font-size:.78rem}.signal-text{font-size:1.8rem}.price{font-size:1.1rem}.rules p{font-size:.72rem}}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
 </style>
 </head>
-<body><header style="position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0"><div style="max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center"><a href="/" style="font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none">Bivar Capital</a><nav><a href="/" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">Home</a><a href="/strategies.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">Strategies</a><a href="/about.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">About</a><a id="nav-signin" href="/strategies.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#c4a265;text-decoration:none;margin-left:24px">Sign In</a></nav></div></header>
+<body><header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a id="nav-signin" href="/strategies.html" class="accent">Sign In</a></nav></div></header>
 <div class="container">
 <div class="brand"><a href="/">Bivar Capital</a></div>
 <h1>Bitcoin Signal</h1>
