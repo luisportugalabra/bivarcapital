@@ -158,15 +158,31 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;text-alig
 </div>
 
 <script>
+async function fetchWithRetry(url, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(resp.status);
+      return await resp.json();
+    } catch(e) {
+      if (i === retries - 1) throw e;
+      await new Promise(r => setTimeout(r, 1000 * (i + 1)));
+    }
+  }
+}
+
 async function fetchBTC() {
   try {
-    // TradingView unofficial API — works without CORS
     const end = Math.floor(Date.now() / 1000);
     const start = end - 220 * 86400;
-    const url = `https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=${start*1000}&endTime=${end*1000}&limit=220`;
 
-    const resp = await fetch(url);
-    const data = await resp.json();
+    // Try Binance first, fallback to Binance US
+    let data;
+    try {
+      data = await fetchWithRetry(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=${start*1000}&endTime=${end*1000}&limit=220`);
+    } catch(e) {
+      data = await fetchWithRetry(`https://api.binance.us/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=${start*1000}&endTime=${end*1000}&limit=220`);
+    }
 
     const prices = data.map(k => ({
       date: new Date(k[0]),
@@ -441,8 +457,12 @@ fetchBTC().then(() => {
 
 async function updateLivePrice() {
   try {
-    const resp = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
-    const data = await resp.json();
+    let data;
+    try {
+      data = await fetchWithRetry('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', 2);
+    } catch(e) {
+      data = await fetchWithRetry('https://api.binance.us/api/v3/ticker/price?symbol=BTCUSDT', 2);
+    }
     const livePrice = parseFloat(data.price);
     const now = new Date();
 
