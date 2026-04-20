@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimal Momentum Signal — Bivar Capital</title>
+<meta name="description" content="BivarOptimalMomentum live signal. Top 20 momentum stocks with sector cap selection.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,6,8,0.85); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border); padding: 16px 0;
+}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+nav a { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; margin-left: 24px; transition: color 0.2s; }
+nav a:hover { color: var(--text); }
+.content { padding: 48px 0 80px; }
+h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; margin-bottom: 4px; }
+.subtitle { color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 32px; }
+.regime-box {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px 24px; margin-bottom: 28px;
+}
+.regime-label { font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 6px; }
+.regime-value { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; }
+.regime-detail { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+.regime-momentum { color: var(--green); }
+.regime-gld { color: var(--accent); }
+.stats-row { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+.stat-box {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px 18px; text-align: center; flex: 1; min-width: 100px;
+}
+.stat-val { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600; }
+.stat-lbl { font-size: 0.5rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th {
+  text-align: left; padding: 8px 10px;
+  font-family: var(--font-mono); font-size: 0.52rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+th:not(:first-child):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) { text-align: right; }
+td {
+  padding: 7px 10px; border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 0.68rem;
+}
+td:not(:first-child):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) { text-align: right; }
+tr.selected { background: rgba(74, 222, 128, 0.06); }
+tr.selected td:first-child { border-left: 3px solid var(--green); }
+tr.skipped { opacity: 0.45; }
+.tag-selected {
+  font-family: var(--font-mono); font-size: 0.48rem; font-weight: 700;
+  background: rgba(74, 222, 128, 0.15); color: var(--green);
+  padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em;
+}
+.tag-sector-cap {
+  font-family: var(--font-mono); font-size: 0.48rem;
+  color: var(--text-muted); padding: 2px 4px;
+}
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.date-note { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); margin-bottom: 16px; }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; }
+footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted); }
+#auth-wall { text-align: center; padding: 60px 0; }
+#auth-wall p { color: var(--text-muted); margin-bottom: 16px; }
+#content-area { display: none; }
+@media(max-width:700px) {
+  .stats-row { flex-direction: column; }
+  table { font-size: 0.6rem; }
+  td, th { padding: 5px 6px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <a href="/" class="logo">Bivar Capital</a>
+    <nav>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/research.html">Research</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="container content">
+
+  <h1>Optimal Momentum</h1>
+  <p class="subtitle">Monthly signal. Top 20 ranked by composite momentum, portfolio of 7 selected.</p>
+
+  <div id="auth-wall">
+    <p>Sign in to view the live momentum signal.</p>
+    <button onclick="document.getElementById('login-modal').style.display='flex'" style="padding:11px 28px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+  </div>
+
+  <div id="content-area">
+    <div id="regime-container" class="regime-box"></div>
+    <div id="stats-container" class="stats-row"></div>
+    <div class="date-note">Signal date: <span id="signal-date"></span> &nbsp;|&nbsp; <span id="eligible-count"></span> eligible stocks</div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Status</th>
+          <th>Ticker</th>
+          <th>Name</th>
+          <th>Sector</th>
+          <th>Ret 6M</th>
+          <th>Ret 12M</th>
+          <th>Composite</th>
+          <th>MCap ($B)</th>
+          <th>EBIT ($M)</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+    <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
+      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7, max 3/sector &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; GLD
+    </p>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center">
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:380px;width:90%">
+      <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Sign In</div>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Access momentum signal.</p>
+      <input id="login-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
+      <input id="login-password" type="password" placeholder="Password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
+      <div id="login-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
+      <button id="login-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Sign In</button>
+      <button onclick="document.getElementById('login-modal').style.display='none'" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Bivar Capital &nbsp;|&nbsp; Luis Portugal</p>
+  </div>
+</footer>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const supabase = createClient(
+  'https://efiyeiwdywodjxxnslvu.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg'
+);
+
+async function loadData() {
+  const res = await fetch('/momentum-data.json');
+  const data = await res.json();
+
+  // Regime
+  const rc = document.getElementById('regime-container');
+  const isMom = data.regime === 'momentum';
+  rc.innerHTML = `
+    <div class="regime-label">Market Regime</div>
+    <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM' : 'DEFENSIVE — BUY GLD'}</div>
+    <div class="regime-detail">S&P 500: ${data.sp500?.toLocaleString()} &nbsp;|&nbsp; MA250: ${data.sp500_ma250?.toLocaleString()} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} (${((data.sp500/data.sp500_ma250-1)*100).toFixed(1)}%)</div>
+  `;
+
+  // Stats
+  const sc = document.getElementById('stats-container');
+  const portfolio = data.portfolio || [];
+  sc.innerHTML = portfolio.map((s,i) => `
+    <div class="stat-box">
+      <div class="stat-val">${s.ticker}</div>
+      <div class="stat-lbl">#${s.rank} &middot; ${s.composite > 0 ? '+' : ''}${s.composite}%</div>
+    </div>
+  `).join('');
+
+  // Date
+  document.getElementById('signal-date').textContent = data.date;
+  document.getElementById('eligible-count').textContent = data.total_eligible;
+
+  // Table
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = data.top20.map(s => {
+    let cls = '';
+    let status = '';
+    if (s.selected) {
+      cls = 'selected';
+      status = '<span class="tag-selected">SELECTED</span>';
+    } else if (s.skipped_sector_cap) {
+      cls = 'skipped';
+      status = '<span class="tag-sector-cap">sector cap</span>';
+    }
+    const retCls6 = s.ret_6m >= 0 ? 'pos' : 'neg';
+    const retCls12 = s.ret_12m >= 0 ? 'pos' : 'neg';
+    const compCls = s.composite >= 0 ? 'pos' : 'neg';
+    return `<tr class="${cls}">
+      <td>${s.rank}</td>
+      <td>${status}</td>
+      <td><strong>${s.ticker}</strong></td>
+      <td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td>
+      <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td>
+      <td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td>
+      <td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td>
+      <td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td>
+      <td>${s.mcap_b}</td>
+      <td>${s.ebit_m.toLocaleString()}</td>
+    </tr>`;
+  }).join('');
+}
+
+function unlock() {
+  document.getElementById('auth-wall').style.display = 'none';
+  document.getElementById('content-area').style.display = 'block';
+  loadData();
+}
+
+// Check session
+const { data: { session } } = await supabase.auth.getSession();
+if (session) unlock();
+
+// Login
+document.getElementById('login-submit').addEventListener('click', async () => {
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) {
+    document.getElementById('login-error').textContent = error.message;
+    document.getElementById('login-error').style.display = 'block';
+  } else {
+    document.getElementById('login-modal').style.display = 'none';
+    unlock();
+  }
+});
+</script>
+</body>
+</html>
