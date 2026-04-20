@@ -181,7 +181,7 @@ function unlock(email) {
   document.getElementById('btc-blur').style.filter = 'none';
   document.getElementById('btc-blur').style.userSelect = 'auto';
   // Hide sign in/signup buttons, show strategy links
-  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>';
+  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
   // Unlock portfolio
   document.getElementById('portfolio-blur').style.filter = 'none';
