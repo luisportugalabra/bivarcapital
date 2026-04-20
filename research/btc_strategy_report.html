@@ -15,7 +15,21 @@
 <meta name="description" content="Bitcoin trend-following strategy. RSI + MA155 + Volatility filter. Sharpe 2.37, CAGR +88.8%, MaxDD -30%. Full backtest 2015-2026.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}*{margin:0;padding:0;box-sizing:border-box}body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:"DM Serif Display",serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:"DM Serif Display",serif;font-size:1.3rem;font-weight:400;margin:40px 0 8px}h3{font-family:"JetBrains Mono",monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:36px 0}.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:4px;margin:18px 0;overflow-x:auto}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}.stat .v{font-family:"JetBrains Mono",monospace;font-size:1.1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.pos{color:var(--green)}.neg{color:var(--red)}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.highlight-amber{background:rgba(196,162,101,.06);border:1px solid rgba(196,162,101,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight-amber p{margin:0}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-red p{margin:0;color:var(--text);font-size:.78rem}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:"JetBrains Mono",monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:"JetBrains Mono",monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:"JetBrains Mono",monospace}@media(max-width:700px){.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}</style>
-</head><body><header style="position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0"><div style="max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center"><a href="/" style="font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none">Bivar Capital</a><nav><a href="/" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">Home</a><a href="/strategies.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">Strategies</a><a href="/about.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px">About</a><a id="nav-signin" href="/strategies.html" style="font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#c4a265;text-decoration:none;margin-left:24px">Sign In</a></nav></div></header><div class="container">
+</head><body><style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a id="nav-signin" href="/strategies.html" class="accent">Sign In</a></nav></div></header><div class="container">
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>Bitcoin Trend Strategy<span class="it">RSI + Moving Average + Volatility Filter</span></h1>
@@ -185,7 +199,7 @@
 
 <div class="divider"></div>
 <h2>III. Annual Returns</h2>
-<table>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table>
 <thead><tr><th>Year</th><th>Strategy</th><th>Buy &amp; Hold</th><th>Alpha</th><th>Invested</th></tr></thead>
 <tbody><tr><td>2015</td><td class="pos">+88.9%</td><td class="pos">+37.0%</td><td class="pos">+51.9%</td><td>27%</td></tr>
 <tr><td>2016</td><td class="pos">+82.5%</td><td class="pos">+123.8%</td><td class="neg">-41.3%</td><td>54%</td></tr>
@@ -200,11 +214,11 @@
 <tr><td>2025</td><td class="pos">+5.2%</td><td class="neg">-6.3%</td><td class="pos">+11.6%</td><td>32%</td></tr>
 <tr><td>2026</td><td class="neg">+0.0%</td><td class="neg">-14.1%</td><td class="pos">+14.1%</td><td>0%</td></tr>
 </tbody>
-</table>
+</table></div>
 
 <div class="divider"></div>
 <h2>IV. Sub-Period Analysis</h2>
-<table>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table>
 <thead><tr><th>Period</th><th>Strategy CAGR</th><th>B&amp;H CAGR</th><th>Sharpe</th><th>Strat MaxDD</th><th>B&amp;H MaxDD</th></tr></thead>
 <tbody><tr><td>2015-2020</td><td>+141.3%</td><td>+112.5%</td><td>3.39</td><td>-30.0%</td><td>-83.4%</td></tr>
 <tr><td>2021-2026</td><td>+43.0%</td><td>+19.7%</td><td>1.33</td><td>-22.8%</td><td>-76.6%</td></tr>
@@ -214,7 +228,7 @@
 <tr><td>2024</td><td>+111.2%</td><td>+120.6%</td><td>2.99</td><td>-14.6%</td><td>-26.2%</td></tr>
 <tr><td>2025-26</td><td>+4.0%</td><td>-15.5%</td><td>0.06</td><td>-13.3%</td><td>-49.7%</td></tr>
 </tbody>
-</table>
+</table></div>
 <div class="callout"><p><strong>The strategy works in every regime.</strong> In 2022 (bear market), it returned &minus;0.8% while buy &amp; hold lost &minus;64%. In 2024 (new ATH), it captured +112% vs +121% &mdash; nearly all the upside. The only weak spot is 2023 where it entered late and captured +72% vs +155%.</p></div>
 
 <div class="divider"></div>
@@ -225,7 +239,7 @@
 <div class="stat"><div class="v">0/3028</div><div class="l">Negative windows</div></div>
 <div class="stat"><div class="v">85%</div><div class="l">Beats B&amp;H</div></div>
 </div>
-<table>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table>
 <thead><tr><th>End Date</th><th>Strategy</th><th>Buy &amp; Hold</th><th>Alpha</th></tr></thead>
 <tbody><tr><td>2018-01</td><td>+222.0%</td><td>+255.8%</td><td class="neg">-33.9%</td></tr>
 <tr><td>2018-01</td><td>+222.0%</td><td>+251.3%</td><td class="neg">-29.3%</td></tr>
@@ -347,13 +361,13 @@
 <tr><td>2026-01</td><td>+56.5%</td><td>+76.9%</td><td class="neg">-20.5%</td></tr>
 <tr><td>2026-01</td><td>+56.5%</td><td>+76.8%</td><td class="neg">-20.3%</td></tr>
 </tbody>
-</table>
+</table></div>
 <div class="highlight"><p><strong>The strategy has never produced a negative 3-year return.</strong> Worst rolling 3-year CAGR is +26%. It beats buy &amp; hold in 85% of rolling windows.</p></div>
 
 <div class="divider"></div>
 <h2>VI. MA Period Sensitivity</h2>
 <p>Testing the same RSI14 &gt; 54 + Vol &lt; 100% rules with different moving average periods.</p>
-<table>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table>
 <thead><tr><th>MA Period</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>Invested</th></tr></thead>
 <tbody><tr><td>MA40</td><td>+90.6%</td><td>2.21</td><td>-50.2%</td><td>40%</td></tr>
 <tr><td>MA50</td><td>+94.4%</td><td>2.34</td><td>-53.8%</td><td>39%</td></tr>
@@ -366,7 +380,7 @@
 <tr style="background:rgba(74,222,128,.05);font-weight:600"><td>MA155</td><td>+88.8%</td><td>2.37</td><td>-30.0%</td><td>33%</td></tr>
 <tr><td>MA200</td><td>+81.2%</td><td>2.20</td><td>-30.0%</td><td>32%</td></tr>
 </tbody>
-</table>
+</table></div>
 <div class="callout"><p><strong>The strategy is robust across MA periods.</strong> MA120&ndash;155 all produce Sharpe &gt; 2.3. The specific period (155) is not a magic number &mdash; anything in the 120&ndash;160 range works similarly.</p></div>
 
 <div class="divider"></div>

@@ -120,6 +120,19 @@ footer {
 }
 footer p { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); }
 footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
+.menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:4px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:600px){
+  header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:14px}
+  header nav.open{display:flex}
+  header nav a{margin-left:0;font-size:.7rem}
+  .menu-btn{display:block}
+  .container{padding:0 16px}
+  .hero h1{font-size:1.5rem}
+  .hero{padding:48px 0 28px}
+  .perf-row{flex-direction:column;gap:8px}
+  .preview-table,.full-table{min-width:500px;font-size:.7rem}
+}
 </style>
 </head>
 <body>
@@ -127,6 +140,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 <header>
   <div class="container">
     <a href="/" class="logo">Bivar Capital</a>
+    <button class="menu-btn" onclick="this.parentElement.querySelector('nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
     <nav>
       <a href="/">Home</a>
       <a href="/strategies.html">Strategies</a>
@@ -154,7 +168,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
   <section class="preview">
     <!-- Blurred preview for non-subscribers -->
-    <table class="preview-table" id="blur-table">
+    <div class="table-wrap"><table class="preview-table" id="blur-table">
       <thead><tr><th>Ticker</th><th>Weight</th><th>Price</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>BRK-B</td><td>14.9%</td><td>$474.09</td><td>$147,916</td></tr>
@@ -167,7 +181,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <tr><td>SE</td><td>4.1%</td><td>$90.33</td><td>$40,829</td></tr>
         <tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <!-- Gate -->
     <div class="gate" id="gate">
@@ -178,10 +192,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     </div>
 
     <!-- Full table (hidden until auth) -->
-    <table class="full-table" id="full-table" style="display:none">
+    <div class="table-wrap"><table class="full-table" id="full-table" style="display:none">
       <thead><tr><th>Ticker</th><th>Weight</th><th>Price</th></tr></thead>
       <tbody id="positions-body"></tbody>
-    </table>
+    </table></div>
   </section>
 
 </main>
