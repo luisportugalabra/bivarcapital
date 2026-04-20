@@ -80,10 +80,15 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 #auth-wall { text-align: center; padding: 60px 0; }
 #auth-wall p { color: var(--text-muted); margin-bottom: 16px; }
 #content-area { display: none; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -16px; padding: 0 16px; }
 @media(max-width:700px) {
+  .container { padding: 0 16px; }
   .stats-row { flex-direction: column; }
-  table { font-size: 0.6rem; }
-  td, th { padding: 5px 6px; }
+  .table-wrap { margin: 0 -16px; padding: 0; }
+  .table-wrap table { min-width: 700px; font-size: 0.6rem; }
+  td, th { padding: 5px 6px; white-space: nowrap; }
+  h1 { font-size: 1.4rem; }
+  .subtitle { font-size: 0.75rem; }
 }
 </style>
 </head>
@@ -105,6 +110,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     <div id="regime-container" class="regime-box"></div>
     <div id="stats-container" class="stats-row"></div>
     <div class="date-note">Signal date: <span id="signal-date"></span> &nbsp;|&nbsp; <span id="eligible-count"></span> eligible stocks</div>
+    <div class="table-wrap">
     <table>
       <thead>
         <tr>
@@ -122,6 +128,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       </thead>
       <tbody id="table-body"></tbody>
     </table>
+    </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
       Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7, max 3/sector &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; GLD
       &nbsp;|&nbsp; <a href="/research/momentum_strategy_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &amp; backtests &rarr;</a>
