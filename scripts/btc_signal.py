@@ -80,21 +80,34 @@ with open(signal_file, 'w') as f:
 print(f"\nPrevious signal: {prev_signal}")
 print(f"Current signal: {signal}")
 
-# Send alert if signal changed
+# Send Telegram alert
+tg_token = os.environ.get('TELEGRAM_TOKEN', '8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI')
+
+# Get approved subscribers from Supabase
+sb_url = 'https://efiyeiwdywodjxxnslvu.supabase.co'
+sb_key = os.environ.get('SUPABASE_SERVICE_KEY', '')
+
+try:
+    req = urllib.request.Request(
+        f'{sb_url}/rest/v1/telegram_subscribers?status=eq.approved&select=chat_id',
+        headers={'apikey': sb_key, 'Authorization': f'Bearer {sb_key}'}
+    )
+    resp = json.loads(urllib.request.urlopen(req, context=ctx).read())
+    chat_ids = [r['chat_id'] for r in resp]
+    print(f"Sending to {len(chat_ids)} approved subscribers...")
+except Exception as e:
+    print(f"Supabase error: {e}, falling back to admin only")
+    chat_ids = [5151262026]
+
 if prev_signal and prev_signal != signal:
     print(f"\n*** SIGNAL CHANGED: {prev_signal} → {signal} ***")
-
-    # Send Telegram alert to ALL approved subscribers
-    tg_token = os.environ.get('TELEGRAM_TOKEN', '8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI')
-
     if signal == 'BUY':
         emoji = '🟢'
         action = 'BUY NOW — all conditions met.'
     else:
         emoji = '🔴'
         action = 'SELL / GO TO CASH — conditions no longer met.'
-
-    tg_msg = f"""{emoji} BTC Signal: {prev_signal} → {signal}
+    tg_msg = f"""{emoji} SIGNAL CHANGED: {prev_signal} → {signal}
 
 Price: ${price:,.0f}
 RSI14: {rsi:.1f}
@@ -104,29 +117,26 @@ Vol20: {vol*100:.0f}%
 {action}
 
 https://bivarcapital.com/btc.html"""
-
-    # Get approved subscribers from Supabase
-    sb_url = 'https://efiyeiwdywodjxxnslvu.supabase.co'
-    sb_key = os.environ.get('SUPABASE_SERVICE_KEY', '')
-
-    try:
-        req = urllib.request.Request(
-            f'{sb_url}/rest/v1/telegram_subscribers?status=eq.approved&select=chat_id',
-            headers={'apikey': sb_key, 'Authorization': f'Bearer {sb_key}'}
-        )
-        resp = json.loads(urllib.request.urlopen(req, context=ctx).read())
-        chat_ids = [r['chat_id'] for r in resp]
-        print(f"Sending to {len(chat_ids)} approved subscribers...")
-    except Exception as e:
-        print(f"Supabase error: {e}, falling back to admin only")
-        chat_ids = [5151262026]
-
-    for chat_id in chat_ids:
-        try:
-            tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={chat_id}&text={urllib.parse.quote(tg_msg)}'
-            urllib.request.urlopen(tg_url, context=ctx)
-            print(f"  Sent to {chat_id}")
-        except Exception as e:
-            print(f"  Failed for {chat_id}: {e}")
 else:
-    print("No change. No alert needed.")
+    # Daily status (testing mode — remove later)
+    emoji = '🟢' if signal == 'BUY' else '🔴'
+    rsi_icon = '✓' if rsi > 54 else '✗'
+    ma_icon = '✓' if price > ma155 else '✗'
+    vol_icon = '✓' if vol < 1.0 else '✗'
+    tg_msg = f"""{emoji} Daily BTC: {signal}
+
+Price: ${price:,.0f}
+{rsi_icon} RSI14: {rsi:.1f} (>54)
+{ma_icon} MA155: ${ma155:,.0f} ({'above' if price > ma155 else 'below'})
+{vol_icon} Vol20: {vol*100:.0f}% (<100%)
+
+No change from yesterday.
+https://bivarcapital.com/btc.html"""
+
+for chat_id in chat_ids:
+    try:
+        tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={chat_id}&text={urllib.parse.quote(tg_msg)}'
+        urllib.request.urlopen(tg_url, context=ctx)
+        print(f"  Sent to {chat_id}")
+    except Exception as e:
+        print(f"  Failed for {chat_id}: {e}")
