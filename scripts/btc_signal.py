@@ -11,16 +11,17 @@ import urllib.parse
 import ssl
 from datetime import datetime
 
-# Binance API
+# CoinMetrics community API (no geo-restrictions)
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-end = int(__import__('time').time() * 1000)
-start = end - 220 * 86400 * 1000
-url = f'https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime={start}&endTime={end}&limit=220'
-data = json.loads(urllib.request.urlopen(url, context=ctx).read())
-closes = [float(k[4]) for k in data]
+from datetime import timedelta
+start_date = (datetime.utcnow() - timedelta(days=220)).strftime('%Y-%m-%d')
+cm_url = f'https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=btc&metrics=PriceUSD&frequency=1d&start_time={start_date}&page_size=10000'
+cm_data = json.loads(urllib.request.urlopen(cm_url, context=ctx).read())
+closes = [float(d['PriceUSD']) for d in cm_data['data']]
+print(f"CoinMetrics: {len(closes)} daily closes loaded")
 n = len(closes)
 
 # MA155
@@ -45,7 +46,7 @@ vol = math.sqrt(variance) * math.sqrt(365)
 # Signal
 price = closes[-1]
 signal = "BUY" if rsi > 54 and price > ma155 and vol < 1.0 else "CASH"
-date = datetime.utcfromtimestamp(data[-1][0]/1000).strftime('%Y-%m-%d')
+date = cm_data['data'][-1]['time'][:10]
 
 print(f"Date: {date}")
 print(f"Price: ${price:,.0f}")
