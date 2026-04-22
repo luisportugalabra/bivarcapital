@@ -10,7 +10,7 @@ and outputs:
 Strategy (from FINAL_STRATEGY.md):
   - Momentum = 50% × Perf.6M + 50% × Perf.1Y
   - Universe: US exchanges, market cap > $10B, EBIT > 0, common stock, primary
-  - Select top 7 by composite, max 3 per sector
+  - Select top 7 by composite (no sector cap)
   - Regime: S&P 500 < MA250 → buy GLD instead of stocks
 
 Usage: python3 momentum_signal.py
@@ -19,7 +19,6 @@ import os
 import json
 import sys
 from datetime import datetime
-from collections import defaultdict
 
 import pandas as pd
 import numpy as np
@@ -93,19 +92,9 @@ def check_regime():
         return None, None, True  # assume OK if can't check
 
 
-def select_top(df, n=7, max_per_sector=3):
-    """Select top N by composite with sector cap."""
-    selected = []
-    sc = defaultdict(int)
-    for _, row in df.iterrows():
-        sector = str(row.get('sector', 'Unknown'))
-        if sc[sector] >= max_per_sector:
-            continue
-        selected.append(str(row['ticker']))
-        sc[sector] += 1
-        if len(selected) == n:
-            break
-    return selected
+def select_top(df, n=7):
+    """Select top N by composite (no sector cap)."""
+    return [str(t) for t in df.head(n)['ticker']]
 
 
 def main():
@@ -128,17 +117,6 @@ def main():
         selected = t in sel7
         sector = str(row['sector'])
 
-        # Check if skipped due to sector cap
-        skipped = False
-        if not selected and i <= 20:
-            sc_check = defaultdict(int)
-            for s in sel7:
-                s_row = df[df['ticker'] == s]
-                if len(s_row) > 0:
-                    sc_check[str(s_row.iloc[0]['sector'])] += 1
-            if sc_check.get(sector, 0) >= 3:
-                skipped = True
-
         entry = {
             "rank": i,
             "ticker": t,
@@ -151,7 +129,6 @@ def main():
             "mcap_b": round(float(row['mcap'] / 1e9), 1),
             "ebit_m": round(float(row['ebit'] / 1e6), 0),
             "selected": selected,
-            "skipped_sector_cap": skipped,
         }
         top20.append(entry)
 
@@ -179,11 +156,10 @@ def main():
     print(f"  {'#':>3} {'':>3} {'Ticker':<8} {'Name':<32} {'Sector':<24} {'Ret6m':>8} {'Ret12m':>8} {'Comp':>8} {'MCap$B':>8} {'EBIT$M':>8}")
     print(f"  {'-'*120}")
     for t in top20:
-        sel = ">>>" if t['selected'] else ("(sc)" if t['skipped_sector_cap'] else "")
+        sel = ">>>" if t['selected'] else ""
         print(f"  {t['rank']:3d} {sel:>3} {t['ticker']:<8} {t['name'][:31]:<32} {t['sector'][:23]:<24} {t['ret_6m']:>+7.1f}% {t['ret_12m']:>+7.1f}% {t['composite']:>+7.1f}% {t['mcap_b']:>7.1f} {t['ebit_m']:>7.0f}")
 
-    print(f"\n  >>> = Selected for portfolio (top 7, max 3/sector)")
-    print(f"  (sc) = Skipped due to sector cap")
+    print(f"\n  >>> = Selected for portfolio (top 7)")
     print(f"  Total eligible: {len(df)}")
 
     return output

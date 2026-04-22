@@ -60,7 +60,7 @@ print("Running backtest...")
 
 # Strategy params
 TOP_N = 7
-MAX_SEC = 3
+MAX_SEC = None  # no sector cap
 MIN_MCAP = 10e9
 LB_SHORT = 126
 LB_LONG = 252
@@ -132,15 +132,7 @@ for year in range(2005, 2027):
             positions.append({'date': buy_date, 'status': 'EMPTY', 'stocks': [], 'return': 0.0})
             continue
 
-        ranked = eligible.nlargest(TOP_N * 3)
-        selected = []
-        sec_counts = {}
-        for t in ranked.index:
-            sec = sector_map.get(t, 'Unknown')
-            if sec_counts.get(sec, 0) < MAX_SEC:
-                selected.append(t)
-                sec_counts[sec] = sec_counts.get(sec, 0) + 1
-            if len(selected) >= TOP_N: break
+        selected = eligible.nlargest(TOP_N).index.tolist()
 
         if not selected:
             monthly_rets.append(0.0)
@@ -187,7 +179,7 @@ sortino = (np.mean(rets) - rf) / (ds_vol / np.sqrt(12)) * np.sqrt(12)
 peak = np.maximum.accumulate(cum)
 maxdd = ((cum - peak) / peak).min()
 
-print(f"\nStrategy: Signal D{SIGNAL_DAY} → Buy D{SIGNAL_DAY}+1 | 6+12eq | >${MIN_MCAP/1e9:.0f}B | t{TOP_N} | MA{MA_PERIOD} | EBIT | sec{MAX_SEC}")
+print(f"\nStrategy: Signal D{SIGNAL_DAY} → Buy D{SIGNAL_DAY}+1 | 6+12eq | >${MIN_MCAP/1e9:.0f}B | t{TOP_N} | MA{MA_PERIOD} | EBIT | no sector cap")
 print(f"CAGR: {cagr*100:+.1f}%  Alpha: {(cagr-sp_cagr)*100:+.1f}%  Sharpe: {sharpe:.2f}  Sortino: {sortino:.2f}")
 print(f"MaxDD: {maxdd*100:.1f}%  Vol: {vol*100:.1f}%  Months: {n}")
 
@@ -197,7 +189,7 @@ print(f"MaxDD: {maxdd*100:.1f}%  Vol: {vol*100:.1f}%  Months: {n}")
 fig, axes = plt.subplots(4, 1, figsize=(16, 18), height_ratios=[2, 2.5, 1, 1.5],
                           gridspec_kw={'hspace': 0.3})
 fig.patch.set_facecolor('#fafbfc')
-fig.suptitle(f'Momentum Strategy Report — Signal D{SIGNAL_DAY}, Buy D{SIGNAL_DAY+1}  |  6+12eq  |  >${MIN_MCAP/1e9:.0f}B  |  Top {TOP_N}  |  MA{MA_PERIOD}  |  EBIT>0  |  sec{MAX_SEC}',
+fig.suptitle(f'Momentum Strategy Report — Signal D{SIGNAL_DAY}, Buy D{SIGNAL_DAY+1}  |  6+12eq  |  >${MIN_MCAP/1e9:.0f}B  |  Top {TOP_N}  |  MA{MA_PERIOD}  |  EBIT>0  |  no sector cap',
              fontsize=14, fontweight='bold', color='#1a2332', y=0.98)
 
 # Panel 1: S&P 500 + MA250 + Cash/Invested shading

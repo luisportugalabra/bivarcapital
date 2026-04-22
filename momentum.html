@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Optimal Momentum Signal — Bivar Capital</title>
-<meta name="description" content="BivarOptimalMomentum live signal. Top 20 momentum stocks with sector cap selection.">
+<meta name="description" content="BivarOptimalMomentum live signal. Top 20 momentum stocks ranked by composite momentum.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -67,10 +67,6 @@ tr.skipped { opacity: 0.45; }
   font-family: var(--font-mono); font-size: 0.48rem; font-weight: 700;
   background: rgba(74, 222, 128, 0.15); color: var(--green);
   padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em;
-}
-.tag-sector-cap {
-  font-family: var(--font-mono); font-size: 0.48rem;
-  color: var(--text-muted); padding: 2px 4px;
 }
 .pos { color: var(--green); }
 .neg { color: var(--red); }
@@ -144,7 +140,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7, max 3/sector &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; GLD
+      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7 &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; GLD
       &nbsp;|&nbsp; <a href="/research/momentum_strategy_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &amp; backtests &rarr;</a>
     </p>
   </div>
@@ -214,9 +210,6 @@ async function loadData() {
     if (s.selected) {
       cls = 'selected';
       status = '<span class="tag-selected">SELECTED</span>';
-    } else if (s.skipped_sector_cap) {
-      cls = 'skipped';
-      status = '<span class="tag-sector-cap">sector cap</span>';
     }
     const retCls6 = s.ret_6m >= 0 ? 'pos' : 'neg';
     const retCls12 = s.ret_12m >= 0 ? 'pos' : 'neg';

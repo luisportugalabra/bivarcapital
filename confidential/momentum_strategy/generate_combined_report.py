@@ -124,13 +124,7 @@ for year in range(2015, 2027):
         if len(eligible) == 0:
             mom_data.append(dict(date=buy, ret=0, sp_ret=sp_ret, mode='EMPTY', stocks=[])); continue
 
-        ranked = eligible.nlargest(21)
-        selected = []; sec_counts = {}
-        for t in ranked.index:
-            sec = sector_map.get(t, 'Unknown')
-            if sec_counts.get(sec, 0) < 3:
-                selected.append(t); sec_counts[sec] = sec_counts.get(sec, 0) + 1
-            if len(selected) >= 7: break
+        selected = eligible.nlargest(7).index.tolist()
 
         bp = daily.loc[buy, selected]; sp_p = daily.loc[sell, selected]
         common = bp.dropna().index.intersection(sp_p.dropna().index)
@@ -465,7 +459,7 @@ td.btc-in{{color:var(--btc)}}
             <li>Check S&P 500 vs MA250. Below → <strong>buy GLD</strong></li>
             <li>Momentum = 50% &times; 6-month return + 50% &times; 12-month return</li>
             <li>Filter: mcap &gt;$10B, EBIT &gt; 0, US common stock</li>
-            <li>Select top 7 by momentum, max 3 per sector</li>
+            <li>Select top 7 by momentum (no sector cap)</li>
             <li>Equal weight (~14.3% each)</li>
         </ol>
     </div>

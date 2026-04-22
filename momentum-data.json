@@ -16,8 +16,7 @@
       "composite": 1661.3,
       "mcap_b": 133.4,
       "ebit_m": 1276.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 2,
@@ -30,8 +29,7 @@
       "composite": 995.9,
       "mcap_b": 59.8,
       "ebit_m": 12.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 3,
@@ -44,8 +42,7 @@
       "composite": 681.0,
       "mcap_b": 62.4,
       "ebit_m": 111.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 4,
@@ -58,8 +55,7 @@
       "composite": 589.1,
       "mcap_b": 130.1,
       "ebit_m": 2993.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 5,
@@ -72,36 +68,33 @@
       "composite": 569.5,
       "mcap_b": 25.2,
       "ebit_m": 1273.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
-      "rank": 15,
-      "ticker": "VIAV",
-      "name": "Viavi Solutions Inc.",
-      "sector": "Technology Services",
-      "price": 44.26,
-      "ret_6m": 234.3,
-      "ret_12m": 353.5,
-      "composite": 293.9,
-      "mcap_b": 10.2,
-      "ebit_m": 93.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "rank": 6,
+      "ticker": "CIEN",
+      "name": "Ciena Corporation",
+      "sector": "Electronic Technology",
+      "price": 505.93,
+      "ret_6m": 207.6,
+      "ret_12m": 757.4,
+      "composite": 482.5,
+      "mcap_b": 71.5,
+      "ebit_m": 420.0,
+      "selected": true
     },
     {
-      "rank": 16,
-      "ticker": "FIX",
-      "name": "Comfort Systems USA, Inc.",
-      "sector": "Industrial Services",
-      "price": 1674.16,
-      "ret_6m": 111.6,
-      "ret_12m": 385.1,
-      "composite": 248.3,
-      "mcap_b": 58.9,
-      "ebit_m": 1313.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "rank": 7,
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
+      "sector": "Electronic Technology",
+      "price": 559.9,
+      "ret_6m": 156.5,
+      "ret_12m": 652.0,
+      "composite": 404.3,
+      "mcap_b": 122.1,
+      "ebit_m": 2575.0,
+      "selected": true
     }
   ],
   "top20": [
@@ -116,8 +109,7 @@
       "composite": 1661.3,
       "mcap_b": 133.4,
       "ebit_m": 1276.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 2,
@@ -130,8 +122,7 @@
       "composite": 995.9,
       "mcap_b": 59.8,
       "ebit_m": 12.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 3,
@@ -144,8 +135,7 @@
       "composite": 681.0,
       "mcap_b": 62.4,
       "ebit_m": 111.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 4,
@@ -158,8 +148,7 @@
       "composite": 589.1,
       "mcap_b": 130.1,
       "ebit_m": 2993.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 5,
@@ -172,8 +161,7 @@
       "composite": 569.5,
       "mcap_b": 25.2,
       "ebit_m": 1273.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": true
     },
     {
       "rank": 6,
@@ -186,8 +174,7 @@
       "composite": 482.5,
       "mcap_b": 71.5,
       "ebit_m": 420.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": true
     },
     {
       "rank": 7,
@@ -200,8 +187,7 @@
       "composite": 404.3,
       "mcap_b": 122.1,
       "ebit_m": 2575.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": true
     },
     {
       "rank": 8,
@@ -214,8 +200,7 @@
       "composite": 369.7,
       "mcap_b": 67.1,
       "ebit_m": 742.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 9,
@@ -228,8 +213,7 @@
       "composite": 364.4,
       "mcap_b": 11.1,
       "ebit_m": 65.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 10,
@@ -242,8 +226,7 @@
       "composite": 361.4,
       "mcap_b": 24.2,
       "ebit_m": 194.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 11,
@@ -256,8 +239,7 @@
       "composite": 355.0,
       "mcap_b": 13.0,
       "ebit_m": 263.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 12,
@@ -270,8 +252,7 @@
       "composite": 345.8,
       "mcap_b": 506.8,
       "ebit_m": 28277.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 13,
@@ -284,8 +265,7 @@
       "composite": 316.8,
       "mcap_b": 11.2,
       "ebit_m": 37.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 14,
@@ -298,8 +278,7 @@
       "composite": 310.8,
       "mcap_b": 59.5,
       "ebit_m": 693.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 15,
@@ -312,8 +291,7 @@
       "composite": 293.9,
       "mcap_b": 10.2,
       "ebit_m": 93.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": false
     },
     {
       "rank": 16,
@@ -326,8 +304,7 @@
       "composite": 248.3,
       "mcap_b": 58.9,
       "ebit_m": 1313.0,
-      "selected": true,
-      "skipped_sector_cap": false
+      "selected": false
     },
     {
       "rank": 17,
@@ -340,8 +317,7 @@
       "composite": 245.4,
       "mcap_b": 17.4,
       "ebit_m": 467.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 18,
@@ -354,8 +330,7 @@
       "composite": 228.9,
       "mcap_b": 14.6,
       "ebit_m": 206.0,
-      "selected": false,
-      "skipped_sector_cap": true
+      "selected": false
     },
     {
       "rank": 19,
@@ -368,8 +343,7 @@
       "composite": 224.4,
       "mcap_b": 33.8,
       "ebit_m": 324.0,
-      "selected": false,
-      "skipped_sector_cap": false
+      "selected": false
     },
     {
       "rank": 20,
@@ -382,8 +356,7 @@
       "composite": 223.6,
       "mcap_b": 18.4,
       "ebit_m": 570.0,
-      "selected": false,
-      "skipped_sector_cap": false
+      "selected": false
     }
   ]
 }

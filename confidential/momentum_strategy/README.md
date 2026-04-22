@@ -5,7 +5,7 @@
 
 ## Estratégia Final
 
-**6+12eq Composite Momentum | >$10B | Top 7 | MA250 | EBIT>0 | Max 3/sector | Signal D18 → Buy D19**
+**6+12eq Composite Momentum | >$10B | Top 7 | MA250 | EBIT>0 | Signal D18 → Buy D19**
 
 ### Backtest (2005–2026, dados diários, sem look-ahead bias)
 
@@ -48,8 +48,7 @@ Depois do fecho do mercado (16h EST), usar os preços de fecho desse dia para:
 
 **d) Rankear e selecionar:**
 - Ordenar por momentum composto, do maior para o menor
-- Selecionar as top 7, com máximo de 3 stocks por sector
-- Se um sector já tem 3, saltar para a próxima stock na lista
+- Selecionar as top 7 (sem limite de sector)
 
 ### 2. Dia 19 de cada mês — Executar
 
@@ -79,8 +78,8 @@ Abaixo de $10B, o momentum captura muito ruído — pump-and-dumps, stocks ilíq
 ### Porque EBIT > 0?
 Filtra empresas que perdem dinheiro. Sem este filtro, o momentum apanha stocks hyped sem fundamentais (tipo meme stocks). Com EBIT > 0, garantes que a empresa pelo menos tem lucro operacional. Nos testes, tirar o EBIT reduz o Sharpe em ~0.10-0.15.
 
-### Porque max 3 por sector?
-Sem limite de sector, o portfolio facilmente carrega 5-6 stocks de tech. Se tech corrige, perdes em todas. O cap de 3 força diversificação — reduz o drawdown ~5pp sem custar CAGR significativo.
+### Porque sem sector cap?
+Testámos max 2, 3, 4, 5 e sem limite. O sector cap não melhora a performance — na verdade piora o drawdown (de -41.9% sem cap para -53.1% com max 3). Forçar diversificação para fora do sector dominante coloca stocks piores no portfolio que caem mais nos crashes. Além disso, os sectores do Sharadar (backtest) e do TradingView (produção) usam taxonomias diferentes, o que faz o sector cap comportar-se de forma inconsistente entre backtest e live.
 
 ### Porque MA250?
 A média móvel de 250 dias do S&P 500 é um filtro de regime simples: se o mercado está em tendência de baixa (abaixo da MA), a estratégia vai para cash. Isto evita os piores drawdowns:
@@ -192,12 +191,12 @@ Portfolio actual (sinal 15 Abril, compra 17 Abril):
 Estou no directório ~/sharadar. Tenho dados Sharadar em parquet (sep_daily.parquet, sf1_quarterly_ttm.parquet, tickers.parquet, sp500_daily.parquet).
 
 ## Estratégia FINAL (live com $100k desde 17 Abril 2026)
-6+12eq Composite Momentum | >$10B | Top 7 | MA250 | EBIT>0 | Max 3/sector | Signal D18 → Buy D19
+6+12eq Composite Momentum | >$10B | Top 7 | MA250 | EBIT>0 | Signal D18 → Buy D19
 
 Regras:
 - Momentum: 50% × retorno 6 meses (126 trading days) + 50% × retorno 12 meses (252 trading days)
 - Universo: Market cap > $10B, EBIT > 0, US domestic common stock
-- Selecção: Top 7 por momentum composto, max 3 por sector
+- Selecção: Top 7 por momentum composto (sem sector cap)
 - Regime: Se S&P 500 close < MA250 dias → 100% cash
 - Signal: Dia 18 do mês (usar preços de fecho)
 - Execução: Dia 19 do mês (comprar na abertura)

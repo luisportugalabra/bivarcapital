@@ -44,8 +44,7 @@ Eliminar stocks que não passam TODOS estes critérios:
 
 **Passo 4 — Selecionar**
 - Ordenar as stocks restantes por momentum composto, do maior para o menor
-- Selecionar as top 7
-- **Regra de sector:** máximo 3 stocks do mesmo sector. Se um sector já tem 3, saltar para a próxima stock na lista.
+- Selecionar as top 7 (sem limite de sector)
 
 **Passo 5 — Executar (primeiro dia de trading do mês seguinte)**
 - Vender as stocks que saíram do portfolio (ou vender GLD se vinha do modo defensivo)
@@ -54,23 +53,21 @@ Eliminar stocks que não passam TODOS estes critérios:
 
 #### Repetir no último dia de trading de cada mês.
 
-### Performance (backtest 1999–2026, dados diários, sem look-ahead, GLD com 0.2% round-trip cost)
+### Performance (backtest 1998–2026, dados diários, sem look-ahead, GLD nos bear months)
 
 | Métrica | Com GLD nos bear months |
 |---|---|
-| CAGR | +28.7% |
-| Alpha vs S&P 500 | +21.5% |
-| Sharpe Ratio | 1.10 |
-| Sortino Ratio | 2.01 |
-| Max Drawdown | -36.2% |
-| Volatilidade | 26.1% |
-| Win Rate | 62.3% |
-| Meses em momentum | ~83% |
-| Meses em GLD | ~17% |
-| Meses totais | 297 |
-| $10,000 → | $5,179,808 |
+| CAGR | +25.1% |
+| Alpha vs S&P 500 | +17.9% |
+| Sharpe Ratio | 0.88 |
+| Sortino Ratio | 1.42 |
+| Max Drawdown | -41.9% |
+| Volatilidade | 26.0% |
+| Win Rate | 57% |
+| Meses totais | 336 |
+| $10,000 → | $5,269,055 |
 
-Nota: o MaxDD de -36.2% ocorre no crash das dotcom (Jan–Abril 2000). De 2005 em diante o MaxDD é -29.7%.
+Nota: sem sector cap, o drawdown é melhor que com sector cap (-41.9% vs -53.1%).
 
 ### Custos a considerar
 - ~84 trades de stocks por ano (7 stocks × 12 meses, nem todas mudam)
@@ -85,8 +82,8 @@ Nota: o MaxDD de -36.2% ocorre no crash das dotcom (Jan–Abril 2000). De 2005 e
 - **EBIT >0:** filtra empresas que perdem dinheiro — evita meme stocks e hype
 - **MA250 regime:** quando o mercado inteiro cai, sais de stocks e vais para ouro
 - **GLD nos bear months:** ouro sobe em média +1.5%/mês durante crises — hedge natural
-- **Max 3/sector:** evita concentração excessiva (ex: 6 stocks de tech)
-- **Último dia de trading:** testado todos os dias do mês (1, 5, 10, 15, 18, 20, 25, último) — último dia tem o melhor Sharpe (1.10) e menor MaxDD (-36.2%)
+- **Sem sector cap:** testámos max 2, 3, 4, 5 e sem limite — sem limite dá melhor performance e menor drawdown. O sector cap forçava diversificação para stocks piores que caíam mais nos crashes
+- **Último dia de trading:** testado todos os dias do mês (1, 5, 10, 15, 18, 20, 25, último) — último dia tem o melhor Sharpe e menor MaxDD
 
 ---
 
@@ -221,7 +218,7 @@ Estou no directório ~/sharadar. Tenho dados Sharadar em parquet + yfinance para
 ### Estratégia 1: BivarOptimalMomentum (50%)
 - Momentum: 50% × retorno 6m (126 trading days) + 50% × retorno 12m (252 trading days)
 - Universo: Market cap > $10B, EBIT > 0, US domestic common stock
-- Selecção: Top 7, max 3/sector
+- Selecção: Top 7 (sem sector cap)
 - Regime: S&P 500 < MA250 → comprar GLD (não cash)
 - Signal último dia de trading do mês, execução primeiro dia do mês seguinte
 - Forward fill dos fundamentais SEM limite

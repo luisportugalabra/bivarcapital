@@ -5,7 +5,7 @@
 
 ## Estratégia Final (Best)
 
-**6w+9 Composite Momentum | >$10B | Top 7 | MA250 | EBIT>0 | Max 3/sector**
+**6+12eq Composite Momentum | >$10B | Top 7 | MA250 | EBIT>0 | No sector cap**
 
 | Métrica | Backtest (EOM) | Realista (D+1) |
 |---|---|---|
@@ -21,7 +21,7 @@
 ### Regras
 1. **Momentum:** 67% × retorno 6 meses + 33% × retorno 9 meses
 2. **Universo:** Market cap > $10B, EBIT > 0, US domestic common stock
-3. **Selecção:** Top 7 por momentum composto, max 3 por sector
+3. **Selecção:** Top 7 por momentum composto (sem sector cap)
 4. **Regime:** Se S&P 500 < MA250 dias → 100% cash (0% return)
 5. **Rebalance:** Mensal, dia 1 do mês (correr modelo no fim de semana, comprar segunda)
 6. **Pesos:** Equal weight (~14.3% cada)
