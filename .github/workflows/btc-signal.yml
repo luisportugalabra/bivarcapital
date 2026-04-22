@@ -1,12 +1,7 @@
 name: BTC Signal Check
 
 on:
-  schedule:
-    - cron: '10 0 * * *'   # 00:10 UTC (01:10 Lisboa)
-    - cron: '30 0 * * *'   # 00:30 UTC — retry if first missed
-    - cron: '0 1 * * *'    # 01:00 UTC — retry
-    - cron: '0 6 * * *'    # 06:00 UTC — catch-all
-  workflow_dispatch:        # manual trigger
+  workflow_dispatch:  # manual trigger only — daily signal runs via Supabase pg_cron
 
 jobs:
   check:
