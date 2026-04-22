@@ -16,7 +16,7 @@ Uma estratégia que compra as 7 stocks americanas com mais momentum (subida de p
 
 ### Regras — Passo a Passo
 
-#### Dia 18 de cada mês, depois do fecho (16h EST):
+#### Último dia de trading de cada mês, depois do fecho (16h EST):
 
 **Passo 1 — Verificar o mercado**
 - Pegar no preço de fecho do S&P 500
@@ -25,9 +25,9 @@ Uma estratégia que compra as 7 stocks americanas com mais momentum (subida de p
 - Se o preço está **ACIMA** da média → ir para **PASSO 2 (Momentum)**
 
 **Passo 1B — Comprar GLD (modo defensivo)**
-- No dia 19, vender todas as stocks de momentum
+- No primeiro dia de trading do mês seguinte, vender todas as stocks de momentum
 - Comprar GLD (SPDR Gold Shares ETF) com todo o capital desta metade
-- Manter GLD até dia 18 do mês seguinte, repetir o PASSO 1
+- Manter GLD até ao último dia de trading do mês, repetir o PASSO 1
 - Nota: GLD tem fee de entrada/saída de ~0.1%. Considerar no cálculo.
 
 **Passo 2 — Calcular momentum**
@@ -47,26 +47,30 @@ Eliminar stocks que não passam TODOS estes critérios:
 - Selecionar as top 7
 - **Regra de sector:** máximo 3 stocks do mesmo sector. Se um sector já tem 3, saltar para a próxima stock na lista.
 
-**Passo 5 — Executar (dia 19)**
+**Passo 5 — Executar (primeiro dia de trading do mês seguinte)**
 - Vender as stocks que saíram do portfolio (ou vender GLD se vinha do modo defensivo)
 - Comprar as 7 stocks selecionadas
 - **Equal weight:** dividir o capital igualmente por 7 (~14.3% cada)
-- Se dia 19 cai num fim de semana, executar na segunda seguinte
 
-#### Repetir no dia 18 de cada mês.
+#### Repetir no último dia de trading de cada mês.
 
-### Performance (backtest 2005–2026, dados diários, sem look-ahead)
+### Performance (backtest 1999–2026, dados diários, sem look-ahead, GLD com 0.2% round-trip cost)
 
 | Métrica | Com GLD nos bear months |
 |---|---|
-| CAGR | +28.9% |
-| Alpha vs S&P 500 | +20.5% |
-| Sharpe Ratio | 1.03 |
-| Max Drawdown | -29.1% |
-| Volatilidade | 24.8% |
-| Meses em momentum | ~78% |
-| Meses em GLD | ~22% |
-| $10,000 → | $2,162,138 |
+| CAGR | +28.7% |
+| Alpha vs S&P 500 | +21.5% |
+| Sharpe Ratio | 1.10 |
+| Sortino Ratio | 2.01 |
+| Max Drawdown | -36.2% |
+| Volatilidade | 26.1% |
+| Win Rate | 62.3% |
+| Meses em momentum | ~83% |
+| Meses em GLD | ~17% |
+| Meses totais | 297 |
+| $10,000 → | $5,179,808 |
+
+Nota: o MaxDD de -36.2% ocorre no crash das dotcom (Jan–Abril 2000). De 2005 em diante o MaxDD é -29.7%.
 
 ### Custos a considerar
 - ~84 trades de stocks por ano (7 stocks × 12 meses, nem todas mudam)
@@ -82,7 +86,7 @@ Eliminar stocks que não passam TODOS estes critérios:
 - **MA250 regime:** quando o mercado inteiro cai, sais de stocks e vais para ouro
 - **GLD nos bear months:** ouro sobe em média +1.5%/mês durante crises — hedge natural
 - **Max 3/sector:** evita concentração excessiva (ex: 6 stocks de tech)
-- **Dia 18:** testado como o melhor dia do mês para capturar momentum antes do rebalance institucional de fim de mês
+- **Último dia de trading:** testado todos os dias do mês (1, 5, 10, 15, 18, 20, 25, último) — último dia tem o melhor Sharpe (1.10) e menor MaxDD (-36.2%)
 
 ---
 
@@ -174,8 +178,8 @@ Uma estratégia de trend-following em Bitcoin. Compra BTC quando está em uptren
 | Correlação Mom/BTC | 0.11 |
 
 ### Calendário mensal
-- **Dia 18:** Correr modelo de momentum. Verificar S&P vs MA250.
-- **Dia 19:** Executar trades de momentum (ou comprar/vender GLD).
+- **Último dia de trading do mês:** Correr modelo de momentum. Verificar S&P vs MA250.
+- **Primeiro dia de trading do mês seguinte:** Executar trades de momentum (ou comprar/vender GLD).
 - **Todos os dias:** Verificar sinais BTC (RSI, MA155, Vol). Executar se sinal muda.
 
 ### Rebalance entre as duas metades
@@ -219,7 +223,7 @@ Estou no directório ~/sharadar. Tenho dados Sharadar em parquet + yfinance para
 - Universo: Market cap > $10B, EBIT > 0, US domestic common stock
 - Selecção: Top 7, max 3/sector
 - Regime: S&P 500 < MA250 → comprar GLD (não cash)
-- Signal dia 18, execução dia 19
+- Signal último dia de trading do mês, execução primeiro dia do mês seguinte
 - Forward fill dos fundamentais SEM limite
 
 ### Estratégia 2: BTC Systematic (50%)

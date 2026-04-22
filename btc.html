@@ -173,21 +173,35 @@ async function fetchWithRetry(url, retries = 3) {
 
 async function fetchBTC() {
   try {
-    const end = Math.floor(Date.now() / 1000);
-    const start = end - 220 * 86400;
+    let prices;
 
-    // Try Binance first, fallback to Binance US
-    let data;
+    // Source 1: CoinMetrics (no geo-restrictions)
     try {
-      data = await fetchWithRetry(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=${start*1000}&endTime=${end*1000}&limit=220`);
-    } catch(e) {
-      data = await fetchWithRetry(`https://api.binance.us/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=${start*1000}&endTime=${end*1000}&limit=220`);
+      const start = new Date(Date.now() - 220*86400*1000).toISOString().slice(0,10);
+      const cm = await fetchWithRetry(`https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=btc&metrics=PriceUSD&frequency=1d&start_time=${start}&page_size=10000`);
+      prices = cm.data.map(d => ({ date: new Date(d.time), close: parseFloat(d.PriceUSD) }));
+      console.log('CoinMetrics:', prices.length, 'days');
+    } catch(e) { console.warn('CoinMetrics failed:', e); }
+
+    // Source 2: CoinGecko
+    if (!prices || prices.length < 155) {
+      try {
+        const cg = await fetchWithRetry('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=220&interval=daily');
+        prices = cg.prices.map(p => ({ date: new Date(p[0]), close: p[1] }));
+        console.log('CoinGecko:', prices.length, 'days');
+      } catch(e) { console.warn('CoinGecko failed:', e); }
     }
 
-    const prices = data.map(k => ({
-      date: new Date(k[0]),
-      close: parseFloat(k[4]) // close price
-    }));
+    // Source 3: Binance (blocked in some regions)
+    if (!prices || prices.length < 155) {
+      try {
+        const end = Math.floor(Date.now() / 1000);
+        const start = end - 220 * 86400;
+        const data = await fetchWithRetry(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=${start*1000}&endTime=${end*1000}&limit=220`);
+        prices = data.map(k => ({ date: new Date(k[0]), close: parseFloat(k[4]) }));
+        console.log('Binance:', prices.length, 'days');
+      } catch(e) { console.warn('Binance failed:', e); }
+    }
 
     if (prices.length < 155) {
       document.getElementById('signal-text').textContent = 'Insufficient data';
@@ -457,13 +471,19 @@ fetchBTC().then(() => {
 
 async function updateLivePrice() {
   try {
-    let data;
+    let livePrice;
     try {
-      data = await fetchWithRetry('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', 2);
+      const cg = await fetchWithRetry('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', 2);
+      livePrice = cg.bitcoin.usd;
     } catch(e) {
-      data = await fetchWithRetry('https://api.binance.us/api/v3/ticker/price?symbol=BTCUSDT', 2);
+      try {
+        const data = await fetchWithRetry('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', 2);
+        livePrice = parseFloat(data.price);
+      } catch(e2) {
+        const data = await fetchWithRetry('https://api.binance.us/api/v3/ticker/price?symbol=BTCUSDT', 2);
+        livePrice = parseFloat(data.price);
+      }
     }
-    const livePrice = parseFloat(data.price);
     const now = new Date();
 
     document.getElementById('proximity').style.display = 'block';

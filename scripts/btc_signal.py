@@ -68,13 +68,23 @@ mean_ret = sum(rets) / len(rets)
 variance = sum((r - mean_ret)**2 for r in rets) / (len(rets)-1)
 vol = math.sqrt(variance) * math.sqrt(365)
 
-# Signal
+# Signal (uses daily close for calculation)
 price = closes[-1]
 signal = "BUY" if rsi > 54 and price > ma155 and vol < 1.0 else "CASH"
 date = datetime.utcnow().strftime('%Y-%m-%d')
 
+# Fetch live price for display
+live_price = price
+try:
+    cg = json.loads(urllib.request.urlopen('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', context=ctx).read())
+    live_price = cg['bitcoin']['usd']
+    print(f"Live price (CoinGecko): ${live_price:,.0f}")
+except Exception as e:
+    print(f"Live price fetch failed: {e}, using daily close")
+
 print(f"Date: {date}")
-print(f"Price: ${price:,.0f}")
+print(f"Daily close: ${price:,.0f}")
+print(f"Live price: ${live_price:,.0f}")
 print(f"RSI14: {rsi:.1f} (need >54)")
 print(f"MA155: ${ma155:,.0f} (price {'ABOVE' if price > ma155 else 'BELOW'})")
 print(f"Vol20: {vol*100:.0f}% (need <100%)")
@@ -97,7 +107,7 @@ already_ran_today = (prev_date == date)
 # Save current signal
 signal_data = {
     'date': date,
-    'price': round(price, 2),
+    'price': round(live_price, 2),
     'rsi': round(rsi, 1),
     'ma155': round(ma155, 2),
     'vol': round(vol * 100, 1),
@@ -143,7 +153,7 @@ else:
             action = 'SELL / GO TO CASH — conditions no longer met.'
         tg_msg = f"""{emoji} SIGNAL CHANGED: {prev_signal} → {signal}
 
-Price: ${price:,.0f}
+Price: ${live_price:,.0f}
 RSI14: {rsi:.1f}
 MA155: ${ma155:,.0f}
 Vol20: {vol*100:.0f}%
@@ -158,7 +168,7 @@ https://bivarcapital.com/btc.html"""
         vol_icon = '✓' if vol < 1.0 else '✗'
         tg_msg = f"""{emoji} Daily BTC: {signal}
 
-Price: ${price:,.0f}
+Price: ${live_price:,.0f}
 {rsi_icon} RSI14: {rsi:.1f} (>54)
 {ma_icon} MA155: ${ma155:,.0f} ({'above' if price > ma155 else 'below'})
 {vol_icon} Vol20: {vol*100:.0f}% (<100%)
