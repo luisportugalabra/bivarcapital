@@ -115,10 +115,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
       <p id="momentum-blur" class="card-desc" style="filter:blur(6px);user-select:none">Systematic momentum strategy on US large-cap equities. Composite 6+12 month momentum with profitability filter and MA250 regime overlay. GLD hedge in bear months. Monthly rebalance, top 7 stocks.</p>
       <div class="card-stats">
-        <span class="card-stat">Sharpe: <span class="num">1.10</span></span>
-        <span class="card-stat">CAGR: <span class="num">+28.7%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-36%</span></span>
-        <span class="card-stat"><span class="num">1999&ndash;2026</span></span>
+        <span class="card-stat">Sharpe: <span class="num">1.03</span></span>
+        <span class="card-stat">CAGR: <span class="num">+29.1%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-29%</span></span>
+        <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
       </div>
       <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
         <button id="signin-btn" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
@@ -195,7 +195,7 @@ function unlock(email) {
   document.getElementById('btc-blur').style.filter = 'none';
   document.getElementById('btc-blur').style.userSelect = 'auto';
   // Hide sign in/signup buttons, show strategy links
-  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
+  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/signal_day_sensitivity.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Signal day test &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
   // Unlock portfolio
   document.getElementById('portfolio-blur').style.filter = 'none';
