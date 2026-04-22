@@ -11,17 +11,42 @@ import urllib.parse
 import ssl
 from datetime import datetime
 
-# CoinMetrics community API (no geo-restrictions)
+# SSL context for API calls
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 from datetime import timedelta
-start_date = (datetime.utcnow() - timedelta(days=220)).strftime('%Y-%m-%d')
-cm_url = f'https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=btc&metrics=PriceUSD&frequency=1d&start_time={start_date}&page_size=10000'
-cm_data = json.loads(urllib.request.urlopen(cm_url, context=ctx).read())
-closes = [float(d['PriceUSD']) for d in cm_data['data']]
-print(f"CoinMetrics: {len(closes)} daily closes loaded")
+
+def fetch_coinmetrics():
+    start_date = (datetime.utcnow() - timedelta(days=220)).strftime('%Y-%m-%d')
+    cm_url = f'https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=btc&metrics=PriceUSD&frequency=1d&start_time={start_date}&page_size=10000'
+    cm_data = json.loads(urllib.request.urlopen(cm_url, context=ctx).read())
+    closes = [float(d['PriceUSD']) for d in cm_data['data']]
+    print(f"CoinMetrics: {len(closes)} daily closes loaded")
+    return closes
+
+def fetch_coingecko():
+    url = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=220&interval=daily'
+    data = json.loads(urllib.request.urlopen(url, context=ctx).read())
+    closes = [p[1] for p in data['prices']]
+    print(f"CoinGecko: {len(closes)} daily closes loaded")
+    return closes
+
+# Try multiple sources with fallback
+closes = None
+for source_fn in [fetch_coinmetrics, fetch_coingecko]:
+    try:
+        closes = source_fn()
+        if closes and len(closes) >= 155:
+            break
+    except Exception as e:
+        print(f"  {source_fn.__name__} failed: {e}")
+        closes = None
+
+if not closes or len(closes) < 155:
+    raise RuntimeError("All data sources failed — cannot compute signal")
+
 n = len(closes)
 
 # MA155
@@ -46,7 +71,7 @@ vol = math.sqrt(variance) * math.sqrt(365)
 # Signal
 price = closes[-1]
 signal = "BUY" if rsi > 54 and price > ma155 and vol < 1.0 else "CASH"
-date = cm_data['data'][-1]['time'][:10]
+date = datetime.utcnow().strftime('%Y-%m-%d')
 
 print(f"Date: {date}")
 print(f"Price: ${price:,.0f}")
@@ -58,12 +83,16 @@ print(f"Signal: {signal}")
 # Load previous signal
 signal_file = os.path.join(os.path.dirname(__file__), '..', 'btc-signal.json')
 prev_signal = None
+prev_date = None
 try:
     with open(signal_file, 'r') as f:
         prev_data = json.load(f)
         prev_signal = prev_data.get('signal')
+        prev_date = prev_data.get('date')
 except (FileNotFoundError, json.JSONDecodeError):
     pass
+
+already_ran_today = (prev_date == date)
 
 # Save current signal
 signal_data = {
@@ -78,37 +107,41 @@ signal_data = {
 with open(signal_file, 'w') as f:
     json.dump(signal_data, f, indent=2)
 
-print(f"\nPrevious signal: {prev_signal}")
-print(f"Current signal: {signal}")
+print(f"\nPrevious signal: {prev_signal} (date: {prev_date})")
+print(f"Current signal: {signal} (date: {date})")
+print(f"Already ran today: {already_ran_today}")
 
-# Send Telegram alert
-tg_token = os.environ.get('TELEGRAM_TOKEN', '8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI')
+# Send Telegram alert (skip if already sent today and signal unchanged)
+if already_ran_today and prev_signal == signal:
+    print("Telegram already sent today with same signal — skipping.")
+else:
+    tg_token = os.environ.get('TELEGRAM_TOKEN', '8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI')
 
-# Get approved subscribers from Supabase
-sb_url = 'https://efiyeiwdywodjxxnslvu.supabase.co'
-sb_key = os.environ.get('SUPABASE_SERVICE_KEY', '')
+    # Get approved subscribers from Supabase
+    sb_url = 'https://efiyeiwdywodjxxnslvu.supabase.co'
+    sb_key = os.environ.get('SUPABASE_SERVICE_KEY', '')
 
-try:
-    req = urllib.request.Request(
-        f'{sb_url}/rest/v1/telegram_subscribers?status=eq.approved&select=chat_id',
-        headers={'apikey': sb_key, 'Authorization': f'Bearer {sb_key}'}
-    )
-    resp = json.loads(urllib.request.urlopen(req, context=ctx).read())
-    chat_ids = [r['chat_id'] for r in resp]
-    print(f"Sending to {len(chat_ids)} approved subscribers...")
-except Exception as e:
-    print(f"Supabase error: {e}, falling back to admin only")
-    chat_ids = [5151262026]
+    try:
+        req = urllib.request.Request(
+            f'{sb_url}/rest/v1/telegram_subscribers?status=eq.approved&select=chat_id',
+            headers={'apikey': sb_key, 'Authorization': f'Bearer {sb_key}'}
+        )
+        resp = json.loads(urllib.request.urlopen(req, context=ctx).read())
+        chat_ids = [r['chat_id'] for r in resp]
+        print(f"Sending to {len(chat_ids)} approved subscribers...")
+    except Exception as e:
+        print(f"Supabase error: {e}, falling back to admin only")
+        chat_ids = [5151262026]
 
-if prev_signal and prev_signal != signal:
-    print(f"\n*** SIGNAL CHANGED: {prev_signal} → {signal} ***")
-    if signal == 'BUY':
-        emoji = '🟢'
-        action = 'BUY NOW — all conditions met.'
-    else:
-        emoji = '🔴'
-        action = 'SELL / GO TO CASH — conditions no longer met.'
-    tg_msg = f"""{emoji} SIGNAL CHANGED: {prev_signal} → {signal}
+    if prev_signal and prev_signal != signal:
+        print(f"\n*** SIGNAL CHANGED: {prev_signal} → {signal} ***")
+        if signal == 'BUY':
+            emoji = '🟢'
+            action = 'BUY NOW — all conditions met.'
+        else:
+            emoji = '🔴'
+            action = 'SELL / GO TO CASH — conditions no longer met.'
+        tg_msg = f"""{emoji} SIGNAL CHANGED: {prev_signal} → {signal}
 
 Price: ${price:,.0f}
 RSI14: {rsi:.1f}
@@ -118,13 +151,12 @@ Vol20: {vol*100:.0f}%
 {action}
 
 https://bivarcapital.com/btc.html"""
-else:
-    # Daily status (testing mode — remove later)
-    emoji = '🟢' if signal == 'BUY' else '🔴'
-    rsi_icon = '✓' if rsi > 54 else '✗'
-    ma_icon = '✓' if price > ma155 else '✗'
-    vol_icon = '✓' if vol < 1.0 else '✗'
-    tg_msg = f"""{emoji} Daily BTC: {signal}
+    else:
+        emoji = '🟢' if signal == 'BUY' else '🔴'
+        rsi_icon = '✓' if rsi > 54 else '✗'
+        ma_icon = '✓' if price > ma155 else '✗'
+        vol_icon = '✓' if vol < 1.0 else '✗'
+        tg_msg = f"""{emoji} Daily BTC: {signal}
 
 Price: ${price:,.0f}
 {rsi_icon} RSI14: {rsi:.1f} (>54)
@@ -134,10 +166,10 @@ Price: ${price:,.0f}
 No change from yesterday.
 https://bivarcapital.com/btc.html"""
 
-for chat_id in chat_ids:
-    try:
-        tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={chat_id}&text={urllib.parse.quote(tg_msg)}'
-        urllib.request.urlopen(tg_url, context=ctx)
-        print(f"  Sent to {chat_id}")
-    except Exception as e:
-        print(f"  Failed for {chat_id}: {e}")
+    for chat_id in chat_ids:
+        try:
+            tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={chat_id}&text={urllib.parse.quote(tg_msg)}'
+            urllib.request.urlopen(tg_url, context=ctx)
+            print(f"  Sent to {chat_id}")
+        except Exception as e:
+            print(f"  Failed for {chat_id}: {e}")
