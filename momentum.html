@@ -176,7 +176,7 @@ const supabase = createClient(
 );
 
 async function loadData() {
-  const res = await fetch('/momentum-data.json');
+  const res = await fetch('/momentum-data.json?v=' + Date.now());
   const data = await res.json();
 
   // Regime
