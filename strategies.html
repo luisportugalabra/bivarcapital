@@ -115,7 +115,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-badge badge-soon">Pro</span>
       </div>
       <p id="momentum-blur" class="card-desc" style="filter:blur(6px);user-select:none">Systematic momentum strategy on US large-cap equities. Composite 6+12 month momentum with profitability filter and MA250 regime overlay. GLD hedge in bear months. Monthly rebalance, top 7 stocks.</p>
-      <div class="card-stats">
+      <div class="card-stats" id="momentum-stats" style="filter:blur(6px);user-select:none">
         <span class="card-stat">Sharpe: <span class="num">1.03</span></span>
         <span class="card-stat">CAGR: <span class="num">+29.1%</span></span>
         <span class="card-stat">MaxDD: <span class="num">-29%</span></span>
@@ -133,7 +133,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-badge badge-live">Live</span>
       </div>
       <p id="portfolio-blur" class="card-desc" style="filter:blur(6px);user-select:none">Real capital allocation across momentum, BTC systematic, and gold. Full position history with weights, entry/exit dates, and trade rationale.</p>
-      <div class="card-stats">
+      <div class="card-stats" id="portfolio-stats" style="filter:blur(6px);user-select:none">
         <span class="card-stat">2025 return: <span class="num">+38.7%</span></span>
         <span class="card-stat">2026 YTD: <span class="num" id="port-ytd">+4.0%</span></span>
       </div>
@@ -149,7 +149,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-badge badge-live">Live</span>
       </div>
       <p id="btc-blur" class="card-desc" style="filter:blur(6px);user-select:none">Trend-following system for Bitcoin. RSI(14) + 155-day Moving Average + Volatility filter. Three rules checked daily. Invested 33% of the time, avoids crashes.</p>
-      <div class="card-stats">
+      <div class="card-stats" id="btc-stats" style="filter:blur(6px);user-select:none">
         <span class="card-stat">Sharpe: <span class="num">2.37</span></span>
         <span class="card-stat">CAGR: <span class="num">+88.8%</span></span>
         <span class="card-stat">MaxDD: <span class="num">-30%</span></span>
@@ -179,6 +179,12 @@ window.onUnlock = function(email) {
   document.getElementById('btc-blur').style.userSelect = 'auto';
   document.getElementById('portfolio-blur').style.filter = 'none';
   document.getElementById('portfolio-blur').style.userSelect = 'auto';
+  document.getElementById('momentum-stats').style.filter = 'none';
+  document.getElementById('momentum-stats').style.userSelect = 'auto';
+  document.getElementById('portfolio-stats').style.filter = 'none';
+  document.getElementById('portfolio-stats').style.userSelect = 'auto';
+  document.getElementById('btc-stats').style.filter = 'none';
+  document.getElementById('btc-stats').style.userSelect = 'auto';
   document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/signal_day_sensitivity.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Signal day test &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
   document.getElementById('portfolio-actions').innerHTML = '<a href="/portfolio.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View portfolio &rarr;</a>';

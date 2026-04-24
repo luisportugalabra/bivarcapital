@@ -188,15 +188,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p class="sub">Every position, every thesis, every mistake. Real capital.</p>
   </section>
 
-  <section class="portfolio-strip">
-    <div class="label">Live Portfolio</div>
-    <div class="port-row">
-      <span class="port-item">2025 return: <span class="val">+38.7%</span></span>
-      <span class="port-item">2026 YTD: <span class="ytd pos" id="ytd-port">+4.0%</span></span>
-      <span class="port-item">S&amp;P 500 YTD: <span class="ytd" id="ytd-sp" style="color:var(--text-secondary)">+1.8%</span></span>
-    </div>
-    <div class="port-updated" id="port-updated">Updated daily from market close</div>
-  </section>
 
   <section class="log">
     <div class="log-title">Log</div>
@@ -311,33 +302,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
   </div>
 </footer>
 
-<script>
-fetch('portfolio-data.json')
-  .then(r => r.json())
-  .then(pd => {
-    const fmt = v => (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
-
-    // Portfolio YTD (discretionary)
-    const disc = pd.returns && pd.returns.discretionary;
-    const el = document.getElementById('ytd-port');
-    if (el && disc && disc['2026_ytd'] != null) {
-      const v = disc['2026_ytd'];
-      el.textContent = fmt(v);
-      el.className = 'ytd ' + (v >= 0 ? 'pos' : 'neg');
-    }
-
-    // S&P 500 YTD
-    const spEl = document.getElementById('ytd-sp');
-    if (spEl && pd.sp500_returns && pd.sp500_returns['2026_ytd'] != null) {
-      spEl.textContent = fmt(pd.sp500_returns['2026_ytd']);
-    }
-
-    // Updated timestamp
-    const upd = document.getElementById('port-updated');
-    if (upd && pd.updated) upd.textContent = 'Updated ' + pd.updated;
-  })
-  .catch(() => {});
-</script>
 
 <script src="/auth.js" type="module"></script></body>
 </html>
