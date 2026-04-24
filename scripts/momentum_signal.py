@@ -112,7 +112,7 @@ def main():
 
     # Build top 20 data
     top20 = []
-    for i, (_, row) in enumerate(df.head(20).iterrows(), 1):
+    for i, (_, row) in enumerate(df.head(30).iterrows(), 1):
         t = str(row['ticker'])
         selected = t in sel7
         sector = str(row['sector'])
