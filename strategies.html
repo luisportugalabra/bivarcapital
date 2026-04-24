@@ -94,7 +94,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/">Home</a>
       <a href="/strategies.html" class="active">Strategies</a>
       <a href="/about.html">About</a>
-      <a href="#" id="nav-signin" onclick="document.getElementById('login-modal').style.display='flex';document.getElementById('login-email').focus();return false;" style="color:var(--accent);font-family:var(--font-mono);font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;margin-left:24px;transition:color 0.2s">Sign In</a>
+      <a href="#" id="nav-signin" onclick="openModal('signin');return false;" style="color:var(--accent);font-family:var(--font-mono);font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;margin-left:24px;transition:color 0.2s">Sign In</a>
+      <a href="#" onclick="openModal('signupEmail');return false;" id="nav-signup" style="background:var(--accent);color:var(--bg);padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;font-family:var(--font-mono);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;margin-left:12px">Sign Up</a>
       <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)">
         <span id="nav-email" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)"></span>
         <a href="#" id="nav-signout" style="font-family:var(--font-mono);font-size:.6rem;color:var(--red);margin-left:12px;text-decoration:none">Sign Out</a>
@@ -122,6 +123,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
       <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
         <button id="signin-btn" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button onclick="openModal('signupEmail')" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
     </div>
 
@@ -136,7 +138,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-stat">2026 YTD: <span class="num" id="port-ytd">+4.0%</span></span>
       </div>
       <div id="portfolio-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
-        <button onclick="document.getElementById('login-modal').style.display='flex'" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button onclick="openModal('signin')" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
       </div>
     </div>
 
@@ -153,21 +155,54 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-stat">Since: <span class="num">2015</span></span>
       </div>
       <div id="btc-actions" style="display:flex;align-items:center;gap:12px;margin-top:14px">
-        <button onclick="document.getElementById('login-modal').style.display='flex'" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button onclick="openModal('signin')" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
       </div>
     </div>
 
-    <!-- Login Modal -->
-    <div id="login-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center">
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:380px;width:90%">
-        <div id="modal-title" style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Sign In</div>
-        <p id="modal-subtitle" style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Access restricted strategies.</p>
-        <input id="login-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
-        <input id="login-password" type="password" placeholder="Password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
-        <div id="login-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
-        <button id="login-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Sign In</button>
-        <p id="modal-toggle" style="text-align:center;margin-top:6px;font-size:.72rem;color:var(--text-muted)">Don't have an account? <a href="#" id="toggle-mode" style="color:var(--accent);text-decoration:none">Sign Up</a></p>
-        <button id="login-cancel" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
+    <!-- Auth Modal -->
+    <div id="auth-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:380px;width:90%;position:relative">
+        <button id="auth-close" style="position:absolute;top:12px;right:16px;background:none;border:none;color:var(--text-muted);font-size:1.2rem;cursor:pointer;padding:4px">&times;</button>
+
+        <!-- Sign In View -->
+        <div id="view-signin">
+          <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Sign In</div>
+          <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Access your account.</p>
+          <input id="signin-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
+          <input id="signin-password" type="password" placeholder="Password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
+          <div id="signin-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
+          <button id="signin-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+          <p style="text-align:center;margin-top:14px;font-size:.72rem;color:var(--text-muted)">Don't have an account? <a href="#" id="goto-signup" style="color:var(--accent);text-decoration:none">Sign Up</a></p>
+        </div>
+
+        <!-- Sign Up Step 1: Email -->
+        <div id="view-signup-email" style="display:none">
+          <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Sign Up</div>
+          <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Enter your email to get started.</p>
+          <input id="signup-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
+          <div id="signup-email-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
+          <button id="signup-continue" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer">Continue</button>
+          <p style="text-align:center;margin-top:14px;font-size:.72rem;color:var(--text-muted)">Already have an account? <a href="#" id="goto-signin" style="color:var(--accent);text-decoration:none">Sign In</a></p>
+        </div>
+
+        <!-- Sign Up Step 2: Password -->
+        <div id="view-signup-password" style="display:none">
+          <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Create password</div>
+          <p id="signup-email-display" style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px"></p>
+          <input id="signup-password" type="password" placeholder="Password (min 6 characters)" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
+          <div id="signup-pass-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
+          <button id="signup-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer">Create Account</button>
+          <p style="margin-top:14px"><a href="#" id="signup-back" style="font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);text-decoration:none">&larr; Back</a></p>
+        </div>
+
+        <!-- Sign Up Success -->
+        <div id="view-signup-done" style="display:none;text-align:center;padding:12px 0">
+          <div style="font-size:2rem;margin-bottom:12px">&#10003;</div>
+          <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:8px">Account created</div>
+          <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Your account is pending activation. You'll receive access shortly.</p>
+          <button id="done-close" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer">Done</button>
+        </div>
+
       </div>
     </div>
 
@@ -205,6 +240,8 @@ function unlock(email) {
   // Hide Sign In link, show user in nav
   const signinLink = document.getElementById('nav-signin');
   if (signinLink) signinLink.style.display = 'none';
+  const signupLink = document.getElementById('nav-signup');
+  if (signupLink) signupLink.style.display = 'none';
   document.getElementById('nav-user').style.display = 'inline';
   document.getElementById('nav-email').textContent = email || '';
   document.getElementById('nav-signout').addEventListener('click', async (e) => {
@@ -214,68 +251,86 @@ function unlock(email) {
   });
 }
 
-// Sign In modal
-document.getElementById('signin-btn').addEventListener('click', () => {
-  document.getElementById('login-modal').style.display = 'flex';
-  document.getElementById('login-email').focus();
-});
+// --- Auth modal logic ---
+const modal = document.getElementById('auth-modal');
+const views = {
+  signin: document.getElementById('view-signin'),
+  signupEmail: document.getElementById('view-signup-email'),
+  signupPass: document.getElementById('view-signup-password'),
+  signupDone: document.getElementById('view-signup-done'),
+};
 
-document.getElementById('login-cancel').addEventListener('click', () => {
-  document.getElementById('login-modal').style.display = 'none';
-});
-
-let isSignUp = false;
-
-function setModalMode(signup) {
-  isSignUp = signup;
-  document.getElementById('modal-title').textContent = signup ? 'Sign Up' : 'Sign In';
-  document.getElementById('modal-subtitle').textContent = signup ? 'Create your account.' : 'Access restricted strategies.';
-  document.getElementById('login-submit').textContent = signup ? 'Sign Up' : 'Sign In';
-  document.getElementById('toggle-mode').textContent = signup ? 'Sign In' : 'Sign Up';
-  document.getElementById('modal-toggle').firstChild.textContent = signup ? 'Already have an account? ' : "Don't have an account? ";
-  document.getElementById('login-error').style.display = 'none';
+function showView(name) {
+  Object.values(views).forEach(v => v.style.display = 'none');
+  views[name].style.display = 'block';
 }
 
-document.getElementById('toggle-mode').addEventListener('click', (e) => {
-  e.preventDefault();
-  setModalMode(!isSignUp);
-});
+function openModal(view) {
+  showView(view);
+  modal.style.display = 'flex';
+  if (view === 'signin') document.getElementById('signin-email').focus();
+  if (view === 'signupEmail') document.getElementById('signup-email').focus();
+}
 
-document.getElementById('login-submit').addEventListener('click', async () => {
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value;
-  const errEl = document.getElementById('login-error');
-  let result;
-  if (isSignUp) {
-    result = await supabase.auth.signUp({ email, password });
-  } else {
-    result = await supabase.auth.signInWithPassword({ email, password });
-  }
-  if (result.error) {
-    errEl.textContent = result.error.message;
-    errEl.style.display = 'block';
-    return;
-  }
-  if (isSignUp && result.data.user && !result.data.session) {
-    errEl.style.display = 'block';
-    errEl.style.color = 'var(--green)';
-    errEl.textContent = 'Check your email to confirm your account.';
-    return;
-  }
-  document.getElementById('login-modal').style.display = 'none';
+function closeModal() {
+  modal.style.display = 'none';
+  document.querySelectorAll('#auth-modal input').forEach(i => i.value = '');
+  document.querySelectorAll('#auth-modal [id$="-error"]').forEach(e => e.style.display = 'none');
+}
+
+// Open triggers
+document.getElementById('signin-btn').addEventListener('click', () => openModal('signin'));
+document.getElementById('auth-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+// Navigation between views
+document.getElementById('goto-signup').addEventListener('click', e => { e.preventDefault(); showView('signupEmail'); document.getElementById('signup-email').focus(); });
+document.getElementById('goto-signin').addEventListener('click', e => { e.preventDefault(); showView('signin'); document.getElementById('signin-email').focus(); });
+document.getElementById('signup-back').addEventListener('click', e => { e.preventDefault(); showView('signupEmail'); });
+document.getElementById('done-close').addEventListener('click', closeModal);
+
+// Sign In submit
+document.getElementById('signin-submit').addEventListener('click', async () => {
+  const email = document.getElementById('signin-email').value.trim();
+  const password = document.getElementById('signin-password').value;
+  const errEl = document.getElementById('signin-error');
+  errEl.style.display = 'none';
+  if (!email || !password) { errEl.textContent = 'Enter email and password.'; errEl.style.display = 'block'; return; }
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) { errEl.textContent = error.message; errEl.style.display = 'block'; return; }
+  closeModal();
   unlock(email);
 });
+document.getElementById('signin-password').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signin-submit').click(); });
+document.getElementById('signin-email').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signin-password').focus(); });
 
-document.getElementById('login-password').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('login-submit').click();
+// Sign Up step 1: email → continue
+document.getElementById('signup-continue').addEventListener('click', () => {
+  const email = document.getElementById('signup-email').value.trim();
+  const errEl = document.getElementById('signup-email-error');
+  errEl.style.display = 'none';
+  if (!email || !email.includes('@')) { errEl.textContent = 'Enter a valid email.'; errEl.style.display = 'block'; return; }
+  document.getElementById('signup-email-display').textContent = email;
+  showView('signupPass');
+  document.getElementById('signup-password').focus();
 });
+document.getElementById('signup-email').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signup-continue').click(); });
+
+// Sign Up step 2: password → create account
+document.getElementById('signup-submit').addEventListener('click', async () => {
+  const email = document.getElementById('signup-email').value.trim();
+  const password = document.getElementById('signup-password').value;
+  const errEl = document.getElementById('signup-pass-error');
+  errEl.style.display = 'none';
+  if (password.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; errEl.style.display = 'block'; return; }
+  const { error } = await supabase.auth.signUp({ email, password });
+  if (error) { errEl.textContent = error.message; errEl.style.display = 'block'; return; }
+  showView('signupDone');
+});
+document.getElementById('signup-password').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signup-submit').click(); });
 
 // Open signup modal if #signup hash
-if (window.location.hash === '#signup') {
-  setModalMode(true);
-  document.getElementById('login-modal').style.display = 'flex';
-  document.getElementById('login-email').focus();
-}
+if (window.location.hash === '#signup') openModal('signupEmail');
 
 // Check existing session
 const { data: { session } } = await supabase.auth.getSession();
