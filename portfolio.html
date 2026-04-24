@@ -145,7 +145,12 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/">Home</a>
       <a href="/strategies.html">Strategies</a>
       <a href="/about.html">About</a>
-      <a id="nav-signin" href="/strategies.html" style="color:var(--accent)">Sign In</a>
+      <a href="#" id="nav-signin" style="color:var(--accent)">Sign In</a>
+      <a href="#" id="nav-signup" style="background:var(--accent);color:var(--bg);padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px">Sign Up</a>
+      <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)">
+        <span id="nav-email" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)"></span>
+        <a href="#" id="nav-signout" style="font-family:var(--font-mono);font-size:.6rem;color:var(--red);margin-left:12px;text-decoration:none">Sign Out</a>
+      </span>
     </nav>
   </div>
 </header>
@@ -253,41 +258,23 @@ fetch('portfolio-data.json')
   })
   .catch(() => {});
 
-// Auth check using Supabase client
-async function checkAuth() {
-  const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-  const { data: { session } } = await supabase.auth.getSession();
-
-  if (session) {
-    showPortfolio();
-    const si = document.getElementById('nav-signin');
-    if (si) {
-      si.textContent = session.user.email;
-      si.style.cursor = 'pointer';
-      si.onclick = async () => { await supabase.auth.signOut(); location.reload(); };
-    }
-  }
-}
-
 function showPortfolio() {
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('blur-table').style.display = 'none';
-  document.getElementById('full-table').style.display = 'table';
+  const gate = document.getElementById('gate');
+  const blur = document.getElementById('blur-table');
+  const full = document.getElementById('full-table');
+  if (gate) gate.style.display = 'none';
+  if (blur) blur.style.display = 'none';
+  if (full) full.style.display = 'table';
 }
 
-// Subscribe/signin buttons redirect to strategies page
-document.getElementById('subscribe-btn').addEventListener('click', (e) => {
-  e.preventDefault();
-  window.location.href = '/strategies.html';
-});
+window.onUnlock = function(email) { showPortfolio(); };
 
-document.getElementById('signin-link').addEventListener('click', (e) => {
-  e.preventDefault();
-  window.location.href = '/strategies.html';
-});
-
-checkAuth();
+// Subscribe/signin buttons open auth modal instead of redirecting
+const subBtn = document.getElementById('subscribe-btn');
+if (subBtn) subBtn.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('nav-signup').click(); });
+const siLink = document.getElementById('signin-link');
+if (siLink) siLink.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('nav-signin').click(); });
 </script>
+<script src="/auth.js" type="module"></script>
 </body>
 </html>

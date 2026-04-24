@@ -29,7 +29,7 @@
 .menu-btn{display:block}
 }
 </style>
-<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a id="nav-signin" href="/strategies.html" class="accent">Sign In</a></nav></div></header><div class="container">
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a href="#" id="nav-signin" class="accent">Sign In</a><a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a><span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span></nav></div></header><div class="container">
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>Momentum Factor<span class="it">Parameter sensitivity, optimisation &amp; robustness analysis</span></h1>
@@ -604,4 +604,4 @@
 <p>Quantitative Research &middot; April 2026</p>
 <p style="margin-top:8px">This is not investment advice. Past performance does not guarantee future results.</p>
 </div>
-</div><script type="module">import{createClient}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";const s=createClient("https://efiyeiwdywodjxxnslvu.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg");const{data:{session}}=await s.auth.getSession();if(session){const si=document.getElementById("nav-signin");if(si){si.textContent=session.user.email;si.style.cursor="pointer";si.onclick=async()=>{await s.auth.signOut();location.reload()}}}</script></body></html>
+</div><script src="/auth.js" type="module"></script></body></html>
