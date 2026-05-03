@@ -1,9 +1,9 @@
 {
-  "date": "2026-05-02",
+  "date": "2026-05-03",
   "regime": "momentum",
   "sp500": 7230.12,
   "sp500_ma250": 6583.07,
-  "total_eligible": 694,
+  "total_eligible": 698,
   "portfolio": [
     {
       "rank": 1,
@@ -15,7 +15,7 @@
       "ret_12m": 3554.6,
       "composite": 2018.9,
       "mcap_b": 175.2,
-      "ebit_m": 1276.0,
+      "ebit_m": 5482.0,
       "selected": true
     },
     {
@@ -108,7 +108,7 @@
       "ret_12m": 3554.6,
       "composite": 2018.9,
       "mcap_b": 175.2,
-      "ebit_m": 1276.0,
+      "ebit_m": 5482.0,
       "selected": true
     },
     {
@@ -212,7 +212,7 @@
       "ret_12m": 550.9,
       "composite": 351.3,
       "mcap_b": 16.5,
-      "ebit_m": 287.0,
+      "ebit_m": 285.0,
       "selected": false
     },
     {
@@ -238,7 +238,7 @@
       "ret_12m": 415.7,
       "composite": 317.6,
       "mcap_b": 12.8,
-      "ebit_m": 111.0,
+      "ebit_m": 115.0,
       "selected": false
     },
     {
@@ -316,7 +316,7 @@
       "ret_12m": 359.6,
       "composite": 225.7,
       "mcap_b": 54.1,
-      "ebit_m": 1032.0,
+      "ebit_m": 1030.0,
       "selected": false
     },
     {
@@ -407,7 +407,7 @@
       "ret_12m": 254.3,
       "composite": 163.9,
       "mcap_b": 136.0,
-      "ebit_m": 2559.0,
+      "ebit_m": 2633.0,
       "selected": false
     },
     {
