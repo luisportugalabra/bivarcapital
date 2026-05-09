@@ -1,5 +1,5 @@
 {
-  "date": "2026-05-08",
+  "date": "2026-05-09",
   "regime": "momentum",
   "sp500": 7398.93,
   "sp500_ma250": 6616.46,
@@ -393,7 +393,7 @@
       "ret_6m": 105.0,
       "ret_12m": 323.1,
       "composite": 214.0,
-      "mcap_b": 21.1,
+      "mcap_b": 21.2,
       "ebit_m": 612.0,
       "selected": false
     },
@@ -471,7 +471,7 @@
       "ret_6m": 119.6,
       "ret_12m": 205.0,
       "composite": 162.3,
-      "mcap_b": 27.0,
+      "mcap_b": 27.5,
       "ebit_m": 171.0,
       "selected": false
     },
