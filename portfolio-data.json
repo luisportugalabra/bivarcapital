@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-30 00:12 UTC",
+  "updated": "2026-05-31 00:04 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -421,6 +421,10 @@
   },
   "activity": [
     {
+      "date": "May 31",
+      "text": "Prices updated from market close"
+    },
+    {
       "date": "May 30",
       "text": "Prices updated from market close"
     },
@@ -434,10 +438,6 @@
     },
     {
       "date": "May 27",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "May 26",
       "text": "Prices updated from market close"
     }
   ]
