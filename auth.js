@@ -174,12 +174,14 @@ function onAuth(email) {
 if (window.location.hash === '#signup') openModal('signupEmail');
 
 // ── Check existing session ──
-const { data: { session } } = await supabase.auth.getSession();
-if (session) {
-  onAuth(session.user.email);
-  // For gated pages: show body
-  if (window.authRequired) document.body.style.display = 'block';
-} else if (window.authRequired) {
-  // Gated page but no session: redirect to strategies
-  window.location.href = '/strategies.html';
-}
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) {
+    onAuth(session.user.email);
+    // For gated pages: show body
+    if (window.authRequired) document.body.style.display = 'block';
+  } else if (window.authRequired) {
+    // Gated page but no session: redirect to strategies
+    window.location.href = '/strategies.html';
+  }
+})();
