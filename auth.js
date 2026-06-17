@@ -7,7 +7,7 @@
         └ span    id="nav-email"
         └ a       id="nav-signout"
 */
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const supabase = createClient(
   'https://efiyeiwdywodjxxnslvu.supabase.co',
@@ -77,8 +77,11 @@ function showView(name) {
 function openModal(view) {
   showView(view);
   modal.style.display = 'flex';
-  if (view === 'signin') document.getElementById('signin-email').focus();
-  if (view === 'signupEmail') document.getElementById('signup-email').focus();
+  // Delay focus to avoid iOS Safari keyboard-scroll issues on fixed modals
+  setTimeout(() => {
+    if (view === 'signin') document.getElementById('signin-email').focus();
+    if (view === 'signupEmail') document.getElementById('signup-email').focus();
+  }, 300);
 }
 
 function closeModal() {
