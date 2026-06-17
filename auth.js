@@ -1,5 +1,7 @@
 /*  Bivar Capital — shared auth (sign in / sign up / sign out)
-    Include on every page:  <script src="/auth.js" type="module"></script>
+    Include on every page AFTER the Supabase UMD script:
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+      <script src="/auth.js"></script>
     Required in HTML:
       - nav link  id="nav-signin"
       - nav link  id="nav-signup"
@@ -7,9 +9,8 @@
         └ span    id="nav-email"
         └ a       id="nav-signout"
 */
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-const supabase = createClient(
+const supabaseClient = supabase.createClient(
   'https://efiyeiwdywodjxxnslvu.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmaXllaXdkeXdvZGp4eG5zbHZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MzkzNDksImV4cCI6MjA5MTUxNTM0OX0.nZvXoWgnJdXhhJ4-kWD2iCDIADZ8K16ElzlSoRxEOxg'
 );
@@ -70,7 +71,7 @@ const views = {
 };
 
 function showView(name) {
-  Object.values(views).forEach(v => v.style.display = 'none');
+  Object.values(views).forEach(function(v) { v.style.display = 'none'; });
   views[name].style.display = 'block';
 }
 
@@ -78,7 +79,7 @@ function openModal(view) {
   showView(view);
   modal.style.display = 'flex';
   // Delay focus to avoid iOS Safari keyboard-scroll issues on fixed modals
-  setTimeout(() => {
+  setTimeout(function() {
     if (view === 'signin') document.getElementById('signin-email').focus();
     if (view === 'signupEmail') document.getElementById('signup-email').focus();
   }, 300);
@@ -86,87 +87,86 @@ function openModal(view) {
 
 function closeModal() {
   modal.style.display = 'none';
-  modal.querySelectorAll('input').forEach(i => i.value = '');
-  modal.querySelectorAll('[id$="-error"]').forEach(e => { e.style.display = 'none'; e.style.color = '#f87171'; });
+  modal.querySelectorAll('input').forEach(function(i) { i.value = ''; });
+  modal.querySelectorAll('[id$="-error"]').forEach(function(e) { e.style.display = 'none'; e.style.color = '#f87171'; });
 }
 
 // ── Nav wiring ──
-const navSignin = document.getElementById('nav-signin');
-const navSignup = document.getElementById('nav-signup');
-if (navSignin) navSignin.addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
-if (navSignup) navSignup.addEventListener('click', e => { e.preventDefault(); openModal('signupEmail'); });
+var navSignin = document.getElementById('nav-signin');
+var navSignup = document.getElementById('nav-signup');
+if (navSignin) navSignin.addEventListener('click', function(e) { e.preventDefault(); openModal('signin'); });
+if (navSignup) navSignup.addEventListener('click', function(e) { e.preventDefault(); openModal('signupEmail'); });
 
 // Wire all buttons with data-auth attribute (for strategy cards etc.)
-document.querySelectorAll('[data-auth]').forEach(btn => {
-  btn.addEventListener('click', () => openModal(btn.dataset.auth));
+document.querySelectorAll('[data-auth]').forEach(function(btn) {
+  btn.addEventListener('click', function() { openModal(btn.dataset.auth); });
 });
 
 // ── Modal navigation ──
 document.getElementById('auth-close').addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-document.getElementById('goto-signup').addEventListener('click', e => { e.preventDefault(); showView('signupEmail'); document.getElementById('signup-email').focus(); });
-document.getElementById('goto-signin').addEventListener('click', e => { e.preventDefault(); showView('signin'); document.getElementById('signin-email').focus(); });
-document.getElementById('signup-back').addEventListener('click', e => { e.preventDefault(); showView('signupEmail'); });
+modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+document.getElementById('goto-signup').addEventListener('click', function(e) { e.preventDefault(); showView('signupEmail'); document.getElementById('signup-email').focus(); });
+document.getElementById('goto-signin').addEventListener('click', function(e) { e.preventDefault(); showView('signin'); document.getElementById('signin-email').focus(); });
+document.getElementById('signup-back').addEventListener('click', function(e) { e.preventDefault(); showView('signupEmail'); });
 document.getElementById('done-close').addEventListener('click', closeModal);
 
 // ── Sign In ──
-document.getElementById('signin-submit').addEventListener('click', async () => {
-  const email = document.getElementById('signin-email').value.trim();
-  const password = document.getElementById('signin-password').value;
-  const errEl = document.getElementById('signin-error');
+document.getElementById('signin-submit').addEventListener('click', function() {
+  var email = document.getElementById('signin-email').value.trim();
+  var password = document.getElementById('signin-password').value;
+  var errEl = document.getElementById('signin-error');
   errEl.style.display = 'none';
   if (!email || !password) { errEl.textContent = 'Enter email and password.'; errEl.style.display = 'block'; return; }
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) { errEl.textContent = error.message; errEl.style.display = 'block'; return; }
-  closeModal();
-  onAuth(email);
+  supabaseClient.auth.signInWithPassword({ email: email, password: password }).then(function(result) {
+    if (result.error) { errEl.textContent = result.error.message; errEl.style.display = 'block'; return; }
+    closeModal();
+    onAuth(email);
+  });
 });
-document.getElementById('signin-email').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signin-password').focus(); });
-document.getElementById('signin-password').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signin-submit').click(); });
+document.getElementById('signin-email').addEventListener('keydown', function(e) { if (e.key === 'Enter') document.getElementById('signin-password').focus(); });
+document.getElementById('signin-password').addEventListener('keydown', function(e) { if (e.key === 'Enter') document.getElementById('signin-submit').click(); });
 
 // ── Sign Up step 1 ──
-document.getElementById('signup-continue').addEventListener('click', () => {
-  const email = document.getElementById('signup-email').value.trim();
-  const errEl = document.getElementById('signup-email-error');
+document.getElementById('signup-continue').addEventListener('click', function() {
+  var email = document.getElementById('signup-email').value.trim();
+  var errEl = document.getElementById('signup-email-error');
   errEl.style.display = 'none';
   if (!email || !email.includes('@')) { errEl.textContent = 'Enter a valid email.'; errEl.style.display = 'block'; return; }
   document.getElementById('signup-email-display').textContent = email;
   showView('signupPass');
   document.getElementById('signup-password').focus();
 });
-document.getElementById('signup-email').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signup-continue').click(); });
+document.getElementById('signup-email').addEventListener('keydown', function(e) { if (e.key === 'Enter') document.getElementById('signup-continue').click(); });
 
 // ── Sign Up step 2 ──
-document.getElementById('signup-submit').addEventListener('click', async () => {
-  const email = document.getElementById('signup-email').value.trim();
-  const password = document.getElementById('signup-password').value;
-  const errEl = document.getElementById('signup-pass-error');
+document.getElementById('signup-submit').addEventListener('click', function() {
+  var email = document.getElementById('signup-email').value.trim();
+  var password = document.getElementById('signup-password').value;
+  var errEl = document.getElementById('signup-pass-error');
   errEl.style.display = 'none';
   if (password.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; errEl.style.display = 'block'; return; }
-  const { error } = await supabase.auth.signUp({ email, password });
-  if (error) { errEl.textContent = error.message; errEl.style.display = 'block'; return; }
-  showView('signupDone');
+  supabaseClient.auth.signUp({ email: email, password: password }).then(function(result) {
+    if (result.error) { errEl.textContent = result.error.message; errEl.style.display = 'block'; return; }
+    showView('signupDone');
+  });
 });
-document.getElementById('signup-password').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('signup-submit').click(); });
+document.getElementById('signup-password').addEventListener('keydown', function(e) { if (e.key === 'Enter') document.getElementById('signup-submit').click(); });
 
 // ── Auth state handler ──
 function onAuth(email) {
-  // Nav: hide sign in/up, show user
   if (navSignin) navSignin.style.display = 'none';
   if (navSignup) navSignup.style.display = 'none';
-  const navUser = document.getElementById('nav-user');
+  var navUser = document.getElementById('nav-user');
   if (navUser) {
     navUser.style.display = 'inline';
-    const navEmail = document.getElementById('nav-email');
+    var navEmail = document.getElementById('nav-email');
     if (navEmail) navEmail.textContent = email || '';
-    const navSignout = document.getElementById('nav-signout');
-    if (navSignout) navSignout.addEventListener('click', async (e) => {
+    var navSignout = document.getElementById('nav-signout');
+    if (navSignout) navSignout.addEventListener('click', function(e) {
       e.preventDefault();
-      await supabase.auth.signOut();
-      location.reload();
+      supabaseClient.auth.signOut().then(function() { location.reload(); });
     });
   }
-  // Page-specific unlock (strategies.html)
   if (typeof window.onUnlock === 'function') window.onUnlock(email);
 }
 
@@ -174,14 +174,12 @@ function onAuth(email) {
 if (window.location.hash === '#signup') openModal('signupEmail');
 
 // ── Check existing session ──
-(async () => {
-  const { data: { session } } = await supabase.auth.getSession();
+supabaseClient.auth.getSession().then(function(result) {
+  var session = result.data.session;
   if (session) {
     onAuth(session.user.email);
-    // For gated pages: show body
     if (window.authRequired) document.body.style.display = 'block';
   } else if (window.authRequired) {
-    // Gated page but no session: redirect to strategies
     window.location.href = '/strategies.html';
   }
-})();
+});
