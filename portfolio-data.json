@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19 01:46 UTC",
+  "updated": "2026-06-20 00:13 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -8,7 +8,7 @@
           "qty": 312.0,
           "price": 489.46,
           "mkt_value": 152711.52,
-          "weight": 15.7
+          "weight": 15.8
         },
         {
           "ticker": "JD",
@@ -34,8 +34,8 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 32.54,
-          "mkt_value": 60814.79,
+          "price": 32.63,
+          "mkt_value": 60985.26,
           "weight": 6.3
         },
         {
@@ -67,18 +67,18 @@
           "weight": 4.3
         },
         {
-          "ticker": "PRX",
-          "qty": 910.0,
-          "price": 44.8,
-          "mkt_value": 40770.08,
-          "weight": 4.2
-        },
-        {
           "ticker": "EXO",
           "qty": 481.0,
           "price": 84.61,
           "mkt_value": 40696.52,
           "weight": 4.2
+        },
+        {
+          "ticker": "PRX",
+          "qty": 910.0,
+          "price": 43.83,
+          "mkt_value": 39884.9,
+          "weight": 4.1
         },
         {
           "ticker": "MELI",
@@ -147,7 +147,7 @@
           "ticker": "WISE",
           "qty": 1000.0,
           "price": 10.83,
-          "mkt_value": 10825.8,
+          "mkt_value": 10827.98,
           "weight": 1.1
         },
         {
@@ -172,9 +172,9 @@
           "weight": 0.7
         }
       ],
-      "total_value": 969836.13,
+      "total_value": 969123.6,
       "n_positions": 24,
-      "ytd_2026": 3.0
+      "ytd_2026": 2.9
     },
     "vc2": {
       "positions": [
@@ -383,7 +383,7 @@
   "returns": {
     "discretionary": {
       "2025": 46.1,
-      "2026_ytd": 3.0
+      "2026_ytd": 2.9
     },
     "vc2": {
       "2025": 23.1,
@@ -421,6 +421,10 @@
   },
   "activity": [
     {
+      "date": "Jun 20",
+      "text": "Prices updated from market close"
+    },
+    {
       "date": "Jun 19",
       "text": "Prices updated from market close"
     },
@@ -434,10 +438,6 @@
     },
     {
       "date": "Jun 16",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Jun 14",
       "text": "Prices updated from market close"
     }
   ]
