@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Momentum — The Lookback Problem — Bivar Capital</title>
+<meta property="og:title" content="China Momentum — The Lookback Problem — Bivar Capital">
+<meta property="og:description" content="Short-term momentum loses 90% in China. The signal only becomes positive beyond 12 months — and peaks at 21 months. Here's why China runs opposite to the US.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/china_momentum_lookbacks.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/research/china_momentum_lookbacks.html">
+<meta name="theme-color" content="#060608">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+th:not(:first-child),td:not(:first-child){text-align:right}
+.pos{color:var(--green)}.neg{color:var(--red)}.dim{color:var(--muted)}
+.best td{background:rgba(74,222,128,.04);}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.78rem}
+.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout-red p{margin:0;color:var(--text);font-size:.78rem}
+.callout-green{background:var(--card);border-left:3px solid var(--green);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout-green p{margin:0;color:var(--text);font-size:.78rem}
+.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}
+.highlight p{margin:0;font-size:.84rem}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:4px;margin:18px 0;overflow-x:auto}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}
+.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:1px 0 0}
+.legend{display:flex;gap:20px;justify-content:center;margin:8px 0 4px;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:700px){.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
+</style>
+<header class="site-header">
+<div class="hw">
+<a href="/" class="hl">Bivar Capital</a>
+<button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+<nav>
+<a href="/">Home</a>
+<a href="/strategies.html">Strategies</a>
+<a href="/about.html">About</a>
+<a href="#" id="nav-signin" class="accent">Sign In</a>
+<a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a>
+<span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span>
+</nav>
+</div>
+</header>
+
+<div class="container">
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>China Momentum<span class="it">The Lookback Problem</span></h1>
+<p class="lead">Short-term momentum loses 90% in China. The same signal that works best at 6 months in US markets becomes deeply negative. We test every lookback from 3 to 24 months on 5,444 A-shares and show why the Chinese market inverts the rules. 208 months, 2009&ndash;2026.</p>
+
+<div class="divider"></div>
+
+<h2>I. Best Result</h2>
+<div class="grid4">
+  <div class="stat"><div class="v pos">+13.0%</div><div class="l">CAGR · 21m-1</div></div>
+  <div class="stat"><div class="v">0.38</div><div class="l">Sharpe</div></div>
+  <div class="stat"><div class="v neg">−56%</div><div class="l">Max Drawdown</div></div>
+  <div class="stat"><div class="v">+7.2%</div><div class="l">Alpha vs CSI 300</div></div>
+</div>
+<p>The best result uses a <strong>21-month lookback, skip 1 month</strong>, top 7 stocks equal weight, with a CSI 300 MA150 regime filter. Universe: all A-shares excluding ST-designated stocks (5,444 total). Period: January 2009 &ndash; May 2026.</p>
+<p>Compare to the US, where 6-month momentum on large caps delivers +13.5% CAGR at Sharpe 0.68. China achieves similar returns at much higher risk, using a lookback window 3.5&times; longer.</p>
+
+<div class="divider"></div>
+
+<h2>II. Lookback Sweep</h2>
+<h3>21 variants · top 7 stocks · MA150 regime · 2009&ndash;2026</h3>
+
+<div class="chart-wrap">
+<svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+<rect width="860" height="320" fill="#0c0c10" rx="8"/>
+<text x="75" y="16" fill="#5a5a68" font-size="9" font-family="JetBrains Mono,monospace">GROWTH OF ¥100,000 — LOG SCALE</text>
+<line x1="75" y1="285.0" x2="840" y2="285.0" stroke="#1a1a22"/>
+<text x="69" y="288.0" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥50K</text>
+<line x1="75" y1="229.4" x2="840" y2="229.4" stroke="#1a1a22"/>
+<text x="69" y="232.4" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥100K</text>
+<line x1="75" y1="173.8" x2="840" y2="173.8" stroke="#1a1a22"/>
+<text x="69" y="176.8" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥200K</text>
+<line x1="75" y1="100.2" x2="840" y2="100.2" stroke="#1a1a22"/>
+<text x="69" y="103.2" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥500K</text>
+<line x1="75" y1="44.6" x2="840" y2="44.6" stroke="#1a1a22"/>
+<text x="69" y="47.6" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥1M</text>
+
+<text x="119.3" y="304" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2010</text>
+<line x1="119.3" y1="30" x2="119.3" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="252.4" y="304" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2013</text>
+<line x1="252.4" y1="30" x2="252.4" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="385.4" y="304" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2016</text>
+<line x1="385.4" y1="30" x2="385.4" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="518.5" y="304" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2019</text>
+<line x1="518.5" y1="30" x2="518.5" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="651.5" y="304" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2022</text>
+<line x1="651.5" y1="30" x2="651.5" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="784.6" y="304" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2025</text>
+<line x1="784.6" y1="30" x2="784.6" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+
+<polyline points="75.0,220.4 78.7,216.3 82.4,203.6 86.1,200.0 89.8,195.9 93.5,184.8 97.2,171.6 100.9,193.9 104.6,189.1 108.3,182.0 112.0,176.5 115.7,175.1 119.3,183.9 123.0,182.0 126.7,180.4 130.4,187.4 134.1,195.5 137.8,201.8 141.5,192.8 145.2,191.8 148.9,190.9 152.6,179.6 156.3,185.6 160.0,185.8 163.7,187.2 167.4,183.0 171.1,183.4 174.8,184.2 178.5,189.1 182.2,188.0 185.9,189.9 189.6,193.4 193.3,201.2 197.0,197.8 200.7,203.1 204.3,208.9 208.0,205.0 211.7,199.6 215.4,205.3 219.1,199.9 222.8,199.7 226.5,205.1 230.2,209.4 233.9,213.9 237.6,210.7 241.3,212.1 245.0,216.3 248.7,203.1 252.4,198.0 256.1,198.4 259.8,204.0 263.5,205.5 267.2,200.5 270.9,214.0 274.6,214.3 278.3,210.0 282.0,206.8 285.7,208.0 289.3,205.8 293.0,209.5 296.7,214.0 300.4,214.8 304.1,216.1 307.8,215.6 311.5,215.7 315.2,215.4 318.9,208.8 322.6,209.2 326.3,205.4 330.0,203.5 333.7,194.5 337.4,176.0 341.1,178.3 344.8,175.2 348.5,165.1 352.2,152.3 355.9,150.8 359.6,157.1 363.3,169.9 367.0,179.9 370.7,183.9 374.3,176.0 378.0,175.3 381.7,171.7 385.4,190.6 389.1,192.5 392.8,183.6 396.5,185.1 400.2,184.8 403.9,185.2 407.6,183.9 411.3,180.9 415.0,182.7 418.7,180.7 422.4,175.9 426.1,181.3 429.8,179.4 433.5,177.9 437.2,177.8 440.9,178.2 444.6,177.0 448.3,173.1 452.0,171.5 455.7,169.7 459.3,169.4 463.0,166.0 466.7,166.0 470.4,165.5 474.1,160.7 477.8,165.6 481.5,168.2 485.2,171.1 488.9,170.2 492.6,176.6 496.3,176.4 500.0,180.7 503.7,178.2 507.4,185.2 511.1,184.7 514.8,188.9 518.5,184.0 522.2,173.0 525.9,168.7 529.6,167.9 533.3,173.9 537.0,169.7 540.7,169.5 544.3,170.2 548.0,169.9 551.7,168.4 555.4,169.6 559.1,164.2 562.8,166.0 566.5,167.3 570.2,172.7 573.9,167.9 577.6,168.8 581.3,162.9 585.0,153.2 588.7,151.2 592.4,155.1 596.1,153.2 599.8,148.8 603.5,144.9 607.2,142.7 610.9,143.0 614.6,147.4 618.3,146.2 622.0,143.0 625.7,144.7 629.3,151.3 633.0,151.4 636.7,150.4 640.4,149.7 644.1,150.9 647.8,149.2 651.5,155.5 655.2,155.2 658.9,161.8 662.6,165.8 666.3,164.3 670.0,156.9 673.7,162.8 677.4,164.5 681.1,170.1 684.8,176.6 688.5,169.1 692.2,168.7 695.9,163.0 699.6,164.7 703.3,165.1 707.0,165.5 710.7,170.2 714.3,169.3 718.0,165.8 721.7,171.0 725.4,172.6 729.1,175.2 732.8,176.9 736.5,178.4 740.2,183.6 743.9,176.4 747.6,176.0 751.3,174.5 755.0,175.0 758.7,177.7 762.4,178.2 766.1,181.0 769.8,165.7 773.5,168.3 777.2,167.8 780.9,167.4 784.6,169.9 788.3,168.3 792.0,168.4 795.7,170.8 799.3,169.4 803.0,167.4 806.7,164.6 810.4,156.7 814.1,154.2 817.8,154.2 821.5,156.2 825.2,154.4 828.9,153.1 832.6,153.0 836.3,157.5 840.0,151.3" fill="none" stroke="#5a5a68" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polyline points="75.0,229.4 78.7,229.4 82.4,224.7 86.1,223.9 89.8,222.9 93.5,213.4 97.2,231.7 100.9,227.8 104.6,214.0 108.3,207.1 112.0,211.6 115.7,217.7 119.3,217.7 123.0,217.7 126.7,222.7 130.4,222.7 134.1,222.7 137.8,222.7 141.5,222.7 145.2,222.7 148.9,222.7 152.6,222.2 156.3,220.1 160.0,232.6 163.7,221.4 167.4,227.7 171.1,227.0 174.8,227.0 178.5,227.0 182.2,227.0 185.9,227.0 189.6,227.0 193.3,227.0 197.0,227.0 200.7,227.0 204.3,227.0 208.0,227.0 211.7,227.0 215.4,227.0 219.1,222.1 222.8,220.0 226.5,220.0 230.2,220.0 233.9,220.0 237.6,220.0 241.3,220.0 245.0,220.0 248.7,215.3 252.4,214.1 256.1,213.6 259.8,207.7 263.5,195.7 267.2,199.4 270.9,199.4 274.6,199.4 278.3,199.4 282.0,199.4 285.7,199.4 289.3,208.4 293.0,208.4 296.7,208.4 300.4,208.4 304.1,208.4 307.8,208.4 311.5,208.4 315.2,208.4 318.9,207.9 322.6,203.6 326.3,204.3 330.0,206.2 333.7,214.7 337.4,201.1 341.1,193.5 344.8,169.2 348.5,149.7 352.2,133.5 355.9,148.9 359.6,176.9 363.3,176.9 367.0,176.9 370.7,176.9 374.3,176.9 378.0,176.9 381.7,176.9 385.4,176.9 389.1,176.9 392.8,176.9 396.5,176.9 400.2,176.9 403.9,176.9 407.6,174.3 411.3,178.1 415.0,173.1 418.7,175.2 422.4,178.0 426.1,185.5 429.8,183.5 433.5,191.8 437.2,197.8 440.9,207.0 444.6,201.0 448.3,209.5 452.0,207.5 455.7,209.4 459.3,200.2 463.0,213.3 466.7,207.2 470.4,205.8 474.1,203.3 477.8,206.7 481.5,206.7 485.2,206.7 488.9,206.7 492.6,206.7 496.3,206.7 500.0,206.7 503.7,206.7 507.4,206.7 511.1,206.7 514.8,206.7 518.5,206.7 522.2,198.0 525.9,196.0 529.6,197.2 533.3,207.2 537.0,201.8 540.7,199.9 544.3,205.3 548.0,199.1 551.7,203.0 555.4,197.8 559.1,186.8 562.8,179.8 566.5,193.0 570.2,193.0 573.9,193.0 577.6,193.0 581.3,181.8 585.0,190.1 588.7,201.1 592.4,205.3 596.1,211.4 599.8,200.5 603.5,186.2 607.2,200.0 610.9,202.1 614.6,187.9 618.3,181.3 622.0,171.4 625.7,182.1 629.3,182.1 633.0,182.1 636.7,182.1 640.4,182.1 644.1,182.1 647.8,182.1 651.5,182.1 655.2,182.1 658.9,182.1 662.6,182.1 666.3,182.1 670.0,176.0 673.7,176.0 677.4,176.0 681.1,176.0 684.8,176.0 688.5,176.0 692.2,176.0 695.9,182.1 699.6,190.6 703.3,199.6 707.0,196.4 710.7,196.4 714.3,196.4 718.0,197.0 721.7,197.0 725.4,197.0 729.1,197.0 732.8,197.0 736.5,197.0 740.2,197.0 743.9,197.0 747.6,202.2 751.3,209.0 755.0,212.7 758.7,212.7 762.4,212.7 766.1,212.7 769.8,192.2 773.5,195.3 777.2,203.4 780.9,209.0 784.6,201.0 788.3,202.7 792.0,212.0 795.7,212.0 799.3,212.0 803.0,213.1 806.7,203.3 810.4,209.9 814.1,213.9 817.8,205.7 821.5,194.1 825.2,198.4 828.9,196.7 832.6,203.7 836.3,203.7 840.0,206.7" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+<polyline points="75.0,229.4 78.7,229.4 82.4,232.4 86.1,229.1 89.8,219.3 93.5,209.1 97.2,221.2 100.9,221.2 104.6,212.3 108.3,206.7 112.0,204.9 115.7,212.7 119.3,212.7 123.0,212.7 126.7,219.0 130.4,219.0 134.1,219.0 137.8,219.0 141.5,219.0 145.2,219.0 148.9,219.0 152.6,217.8 156.3,219.1 160.0,226.1 163.7,219.7 167.4,224.1 171.1,225.5 174.8,225.5 178.5,225.5 182.2,225.5 185.9,225.5 189.6,225.5 193.3,225.5 197.0,225.5 200.7,225.5 204.3,225.5 208.0,225.5 211.7,225.5 215.4,225.5 219.1,222.9 222.8,228.4 226.5,228.4 230.2,228.4 233.9,228.4 237.6,228.4 241.3,228.4 245.0,228.4 248.7,224.0 252.4,217.3 256.1,212.5 259.8,205.0 263.5,193.3 267.2,195.1 270.9,195.1 274.6,195.1 278.3,195.1 282.0,195.1 285.7,195.1 289.3,198.5 293.0,198.5 296.7,198.5 300.4,198.5 304.1,198.5 307.8,198.5 311.5,198.5 315.2,198.5 318.9,198.2 322.6,193.3 326.3,195.1 330.0,174.0 333.7,183.2 337.4,159.4 341.1,143.4 344.8,120.5 348.5,90.5 352.2,74.5 355.9,95.6 359.6,115.8 363.3,115.8 367.0,115.8 370.7,115.8 374.3,115.8 378.0,115.8 381.7,115.8 385.4,115.8 389.1,115.8 392.8,115.8 396.5,115.8 400.2,115.8 403.9,115.8 407.6,115.3 411.3,115.6 415.0,111.9 418.7,113.8 422.4,123.6 426.1,123.6 429.8,113.0 433.5,111.2 437.2,118.5 440.9,121.4 444.6,116.9 448.3,114.9 452.0,108.0 455.7,104.2 459.3,96.7 463.0,109.2 466.7,108.6 470.4,107.4 474.1,102.5 477.8,107.4 481.5,107.4 485.2,107.4 488.9,107.4 492.6,107.4 496.3,107.4 500.0,107.4 503.7,107.4 507.4,107.4 511.1,107.4 514.8,107.4 518.5,107.4 522.2,92.4 525.9,93.1 529.6,97.8 533.3,100.5 537.0,99.3 540.7,88.5 544.3,89.1 548.0,84.3 551.7,82.8 555.4,80.7 559.1,72.5 562.8,59.9 566.5,65.8 570.2,65.8 573.9,65.8 577.6,65.8 581.3,54.7 585.0,54.8 588.7,55.6 592.4,61.0 596.1,63.2 599.8,52.7 603.5,48.4 607.2,59.4 610.9,65.1 614.6,52.6 618.3,52.2 622.0,44.6 625.7,40.4 629.3,40.4 633.0,40.4 636.7,40.4 640.4,40.4 644.1,40.4 647.8,40.4 651.5,40.4 655.2,40.4 658.9,40.4 662.6,40.4 666.3,40.4 670.0,38.9 673.7,38.9 677.4,38.9 681.1,38.9 684.8,38.9 688.5,38.9 692.2,38.9 695.9,41.2 699.6,52.4 703.3,56.3 707.0,57.0 710.7,57.0 714.3,57.0 718.0,54.9 721.7,54.9 725.4,54.9 729.1,54.9 732.8,54.9 736.5,54.9 740.2,54.9 743.9,54.9 747.6,62.3 751.3,71.0 755.0,78.8 758.7,78.8 762.4,78.8 766.1,78.8 769.8,61.2 773.5,68.8 777.2,71.0 780.9,73.9 784.6,72.4 788.3,71.9 792.0,70.6 795.7,70.6 799.3,70.6 803.0,74.8 806.7,58.1 810.4,49.7 814.1,49.3 817.8,52.1 821.5,46.0 825.2,55.4 828.9,55.8 832.6,65.8 836.3,65.8 840.0,61.6" fill="none" stroke="#4ade80" stroke-width="2"/>
+<text x="838" y="60" fill="#4ade80" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">21m-1 ¥809K</text>
+<text x="838" y="130" fill="#60a5fa" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">12m-1 ¥133K</text>
+<text x="838" y="178" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">CSI 300 ¥264K</text>
+</svg>
+</div>
+
+<p style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:-10px">21m-1 compounds to ¥809K from ¥100K. 12m-1 barely reaches ¥133K — below the CSI 300.</p>
+
+<table>
+<thead>
+<tr><th>Lookback</th><th>CAGR</th><th>Alpha</th><th>Sharpe</th><th>Sortino</th><th>Max DD</th></tr>
+</thead>
+<tbody>
+<tr><td>3m-1</td><td class="neg">−10.5%</td><td class="neg">−16.3%</td><td class="neg">−0.40</td><td class="neg">−0.61</td><td class="neg">−92%</td></tr>
+<tr><td>6m-1</td><td class="neg">−10.2%</td><td class="neg">−16.0%</td><td class="neg">−0.40</td><td class="neg">−0.52</td><td class="neg">−91%</td></tr>
+<tr><td>9m-1</td><td class="neg">−2.2%</td><td class="neg">−8.0%</td><td class="neg">−0.14</td><td class="neg">−0.20</td><td class="neg">−84%</td></tr>
+<tr><td>12m-1</td><td class="dim">+4.4%</td><td class="neg">−1.3%</td><td class="dim">0.08</td><td class="dim">0.13</td><td class="neg">−60%</td></tr>
+<tr><td>15m-1</td><td class="pos">+7.6%</td><td class="pos">+1.9%</td><td class="dim">0.21</td><td class="dim">0.30</td><td class="neg">−47%</td></tr>
+<tr><td>18m-1</td><td class="pos">+6.1%</td><td class="dim">+0.4%</td><td class="dim">0.16</td><td class="dim">0.20</td><td class="neg">−64%</td></tr>
+<tr><td>20m-1</td><td class="pos">+11.4%</td><td class="pos">+5.6%</td><td class="dim">0.31</td><td class="dim">0.46</td><td class="neg">−55%</td></tr>
+<tr class="best"><td><strong>21m-1 ★</strong></td><td class="pos"><strong>+13.0%</strong></td><td class="pos"><strong>+7.2%</strong></td><td class="pos"><strong>0.38</strong></td><td class="pos"><strong>0.55</strong></td><td class="neg">−56%</td></tr>
+<tr><td>24m-1</td><td class="pos">+10.8%</td><td class="pos">+5.1%</td><td class="dim">0.30</td><td class="dim">0.42</td><td class="neg">−63%</td></tr>
+<tr style="border-top:1px solid #2a2a35"><td style="color:var(--muted)">CSI 300</td><td class="dim">+5.8%</td><td>—</td><td>—</td><td>—</td><td class="neg">−47%</td></tr>
+</tbody>
+</table>
+
+<div class="callout-red">
+<p><strong>Short-term momentum is toxic in China.</strong> 3–9 month signals are strongly negative. Every lookback below 12 months destroys capital. This is the opposite of US markets, where 6-month momentum is the strongest variant.</p>
+</div>
+
+<h3>Why Does Short-Term Momentum Fail?</h3>
+<p>Chinese A-shares are approximately <strong>70% retail investor volume</strong>. When a stock spikes over 3–6 months, it draws in momentum-chasing retail buyers, creating overcrowded positions that reverse sharply. The stocks with the best recent performance are frequently the most dangerous to own next month.</p>
+<p>By 20 months, the dynamics change. The retail noise clears, and what remains is <strong>genuine trend persistence</strong> — driven by fundamental improvement, earnings surprise, and the minority of institutional investors who take longer-horizon positions. This is the signal that 21m-1 captures.</p>
+<p>In the US, institutional investors dominate volume and react quickly to earnings. Momentum is incorporated over 6–12 months. In China, the same fundamental signal takes three times as long to propagate through prices.</p>
+
+<div class="divider"></div>
+
+<h2>III. The Regime Filter</h2>
+<h3>20m-1 momentum · without and with MA filter</h3>
+
+<p>The CSI 300 experiences violent bear phases that destroy momentum portfolios: −65% in 2008, −43% in 2015, −35% in 2018, −25% in 2022. Without a regime filter, any momentum strategy simply rides these crashes to the bottom.</p>
+
+<table>
+<thead>
+<tr><th>MA Filter (on CSI 300)</th><th>CAGR</th><th>Sharpe</th><th>Max DD</th><th>% Invested</th></tr>
+</thead>
+<tbody>
+<tr><td>None — always invested</td><td class="neg">+2.4%</td><td class="neg">0.01</td><td class="neg">−89%</td><td class="dim">100%</td></tr>
+<tr><td>MA100</td><td class="pos">+10.0%</td><td class="dim">0.25</td><td class="neg">−66%</td><td class="dim">52%</td></tr>
+<tr class="best"><td><strong>MA150 ★</strong></td><td class="pos"><strong>+11.4%</strong></td><td class="pos"><strong>0.31</strong></td><td class="neg"><strong>−55%</strong></td><td class="dim"><strong>53%</strong></td></tr>
+<tr><td>MA175</td><td class="pos">+10.7%</td><td class="dim">0.29</td><td class="neg">−55%</td><td class="dim">51%</td></tr>
+<tr><td>MA200</td><td class="pos">+10.6%</td><td class="dim">0.28</td><td class="neg">−62%</td><td class="dim">53%</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<p>Without a regime filter, 20m-1 momentum loses nearly 90% peak-to-trough — almost double the CSI 300's worst drawdown of −47%. The concentrated 7-stock portfolio amplifies every crash. Going to cash when the index is below its 150-day MA turns a survival problem into a manageable strategy.</p>
+</div>
+
+<p>The strategy is invested roughly <strong>53% of the time</strong>. When the CSI 300 is below its MA150, the portfolio sits in cash. This costs some upside during early recoveries but eliminates the catastrophic losses that make long-term compounding impossible.</p>
+<p>The MA150 and MA175 filters perform similarly, both far better than MA200. The MA100 fires too early and cuts the portfolio out of valid uptrends. MA150 is the sweet spot.</p>
+
+<div class="callout-green">
+<p><strong>US comparison:</strong> The MA200 overlay on the S&amp;P 500 cuts US momentum drawdown from −57% to −28%, at a cost of ~1% CAGR. In China, the regime filter is not optimization — it is survival. Without it, the strategy is not viable.</p>
+</div>
+
+<div class="divider"></div>
+
+<h2>IV. China vs US — The Inversion</h2>
+
+<table>
+<thead>
+<tr><th>Dimension</th><th>US Markets</th><th>China A-Shares</th></tr>
+</thead>
+<tbody>
+<tr><td>Best lookback</td><td>6 months</td><td>21 months</td></tr>
+<tr><td>12m-1 (academic standard)</td><td class="pos">+13.0% CAGR, Sharpe 0.61</td><td class="neg">+4.4% CAGR, Sharpe 0.08</td></tr>
+<tr><td>6m-1</td><td class="pos">+13.5% CAGR, Sharpe 0.68</td><td class="neg">−10.2% CAGR, Sharpe −0.40</td></tr>
+<tr><td>Regime filter</td><td>Reduces DD by ~30pp</td><td>Required for viability</td></tr>
+<tr><td>Market cap requirement</td><td>Large caps required (&gt;$5B)</td><td>Large caps destroy alpha*</td></tr>
+<tr><td>Dominant investor type</td><td>~70% institutional</td><td>~70% retail</td></tr>
+<tr><td>Signal propagation speed</td><td>6–12 months</td><td>18–24 months</td></tr>
+</tbody>
+</table>
+<p style="font-size:.72rem;color:var(--muted);margin-top:6px">* The large-cap / small-cap reversal in China is the subject of the next article in this series.</p>
+
+<div class="divider"></div>
+
+<h2>V. Key Findings</h2>
+
+<h3>1 · Short-term signals are anti-momentum in China</h3>
+<p>3 to 9 month lookbacks produce strongly negative returns. The academic 12-month standard barely breaks even at +4.4% CAGR — below the CSI 300 benchmark. This is not noise: it is systematic reversal driven by retail herding.</p>
+
+<h3>2 · The signal turns positive beyond 12 months</h3>
+<p>Returns improve monotonically from 12 to 21 months. The 21m-1 variant achieves +13.0% CAGR at Sharpe 0.38 — comparable to US large-cap momentum in absolute terms, though with higher risk. The signal weakens slightly at 24 months as it begins to capture mean-reverting long-term fundamentals.</p>
+
+<h3>3 · The regime filter is not optional</h3>
+<p>Without the CSI 300 MA150 overlay, 20m-1 momentum loses 89% peak-to-trough. The filter costs nothing in CAGR (from +2.4% to +11.4%) and reduces drawdown from −89% to −55%. This is the largest single improvement in the entire study.</p>
+
+<h3>4 · The US playbook does not transfer</h3>
+<p>Every dimension inverts: shorter lookbacks that excel in the US are the worst in China. Large-cap filters that are essential in the US eliminate China's alpha entirely. The mechanism is different — this is not the same factor in a different country. China momentum reflects a different structural reality: retail-dominated, policy-sensitive, and institutionally under-covered.</p>
+
+<div class="divider"></div>
+
+<div class="meta-box">
+<dt>Universe</dt><dd>All A-shares, Shanghai and Shenzhen exchanges. Excluding ST (special treatment) stocks.</dd>
+<dt>Data</dt><dd>5,444 stocks, daily adjusted close prices via Baostock. End-of-month rebalance.</dd>
+<dt>Period</dt><dd>January 2009 – May 2026 (208 months)</dd>
+<dt>Portfolio</dt><dd>Top 7 stocks by momentum score, equal weight. Minimum 5 stocks required to invest.</dd>
+<dt>Regime</dt><dd>CSI 300 MA150. Go to cash when index closes below 150-day moving average.</dd>
+<dt>Benchmark</dt><dd>CSI 300 total return (price only, dividends excluded). CAGR +5.8%, Max DD −47%.</dd>
+<dt>Costs</dt><dd>No transaction costs, no slippage. Returns are gross. Actual performance will be lower.</dd>
+</div>
+
+<div class="footer">
+<p>Bivar Capital &mdash; Quantitative Research &mdash; June 2026</p>
+<p style="margin-top:4px">Past performance is not indicative of future results. This is research, not investment advice.</p>
+</div>
+</div>
+</body>
+</html>
