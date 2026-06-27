@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JD.com — Investment Case — Bivar Capital</title>
+<meta name="description" content="JD.com at $25.24: $30B in cash on a $34B market cap. The market is paying for food delivery losses and ignoring China's largest retailer with retail margins at all-time highs.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.5vw,1.4rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.neutral{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+td.pos{color:var(--green)}
+td.neg{color:var(--red)}
+td.accent{color:var(--accent);font-weight:600}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.82rem}
+.callout.green{border-left-color:var(--green)}
+.callout.red{border-left-color:var(--red)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:2px 0 0;font-family:'JetBrains Mono',monospace;font-size:.72rem}
+.meta-box .big-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);display:block;margin-top:4px}
+.scenario-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:8px 0}
+.scenario-box .price{font-family:'DM Serif Display',serif;font-size:2rem;display:block;margin:8px 0}
+.scenario-box .prob{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.tag.buy{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+.tag.risk{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.tag.neutral{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.progress-bar{background:var(--border);border-radius:4px;height:4px;margin-top:6px}
+.progress-bar .fill{height:100%;border-radius:4px;background:var(--accent)}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.risk-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.risk-item:last-child{border-bottom:none}
+.risk-num{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--border);flex-shrink:0;width:28px}
+.risk-body p{margin-bottom:0;font-size:.82rem}
+.risk-body strong{font-size:.82rem}
+.catalyst-row{display:grid;grid-template-columns:1fr 1fr 80px;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.72rem;font-family:'JetBrains Mono',monospace}
+.catalyst-row:first-child{font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.catalyst-row .impact-high{color:var(--green)}
+.catalyst-row .impact-med{color:var(--accent)}
+@media(max-width:700px){.two-col,.three-col{grid-template-columns:1fr}.catalyst-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hw">
+    <a href="/" class="hl">Bivar Capital</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" class="accent">Research</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="brand">Bivar Capital &mdash; Investment Research &mdash; June 2026</div>
+
+  <h1>JD.com (NASDAQ: JD)<span class="it">China's largest retailer. Almost free.</span></h1>
+
+  <p class="lead">
+    $34B market cap. $30B in cash. $187B in revenue. Retail margins at all-time highs for 16 consecutive quarters.
+    The market is pricing in food delivery losses forever — and ignoring everything else.
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- Snapshot -->
+  <h3>Snapshot — June 26, 2026</h3>
+  <div class="three-col">
+    <div class="meta-box">
+      <dt>Price</dt>
+      <dd class="big-num">$25.24</dd>
+      <dt>52-Week Range</dt>
+      <dd>$24.51 — $36.86</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Market Cap</dt>
+      <dd class="big-num" style="font-size:1.3rem">$34.4B</dd>
+      <dt>Implied Enterprise Value</dt>
+      <dd>~$4–5B</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Cash &amp; Equivalents</dt>
+      <dd class="big-num" style="font-size:1.3rem">~$30B</dd>
+      <dt>% of Market Cap</dt>
+      <dd>87%</dd>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:14px">
+    <div class="meta-box">
+      <dt>Forward P/E (FY2026E)</dt><dd>14.7×</dd>
+      <dt>Dividend Yield</dt><dd>3.97%</dd>
+      <dt>FCF LTM</dt><dd>RMB 22B (~$3B)</dd>
+      <dt>Revenue FY2025</dt><dd>RMB 1,309B (~$187B)</dd>
+    </div>
+    <div class="meta-box">
+      <dt>JD Retail Op. Margin Q1 2026</dt><dd style="color:var(--green)">5.6% — All-time high</dd>
+      <dt>Analyst Consensus</dt><dd style="color:var(--green)">Strong Buy (27/37)</dd>
+      <dt>Average Price Target (37 analysts)</dt><dd>$40.55 (+61%)</dd>
+      <dt>Dual Listing</dt><dd>HKEX: 9618.HK</dd>
+    </div>
+  </div>
+
+  <!-- Investment Thesis -->
+  <div class="divider"></div>
+  <h2>Investment Thesis</h2>
+
+  <div class="callout">
+    <p>JD.com is the most extreme value case we have found in a large-cap name. We are buying a retail business with $187B in revenue and expanding margins for essentially zero enterprise value, backed by $30B in cash and a 4% dividend yield. The only thing standing between the current price and intrinsic value is food delivery — and the numbers show the worst is behind us.</p>
+  </div>
+
+  <p>The market is pricing food delivery losses as permanent. We think they are temporary and measurable. In Q1 2026, JD reported the largest sequential loss reduction since the app launched. JP Morgan revised its FY2026 loss estimate from RMB 45B down to RMB 35B. The path to break-even exists — it is not linear, but it is real.</p>
+  <p>While the market focuses on the consolidated loss, core JD Retail hit an all-time high operating margin of 5.6% in Q1 2026, in an environment where the Chinese consumer is under meaningful pressure. That is 16 consecutive quarters of gross margin expansion. This is a business becoming structurally more profitable every single quarter.</p>
+
+  <div class="divider"></div>
+
+  <!-- BULL POINTS -->
+  <h2>Bull Points</h2>
+
+  <h3>01 — Core Retail: Margins at All-Time Highs</h3>
+  <p>JD Retail reached a <strong>5.6% operating margin in Q1 2026</strong>, the highest in company history. Gross margin of 18.6%, +180bps YoY. Sixteen consecutive quarters of expansion — this is not a fluke, it is structural. The business is benefiting from supply chain scale economies, a favorable mix shift toward general merchandise, and growth in high-margin advertising. Management targets high single-digit margins long-term, and the headroom is real.</p>
+
+  <table>
+    <thead><tr><th>Metric</th><th>Q1 2025</th><th>Q1 2026</th><th>Δ</th></tr></thead>
+    <tbody>
+      <tr><td>Gross Margin</td><td>16.8%</td><td>18.6%</td><td class="pos">+180bps</td></tr>
+      <tr><td>Op. Margin (Retail)</td><td>4.9%</td><td>5.6%</td><td class="pos">+70bps</td></tr>
+      <tr><td>Op. Income (Retail)</td><td>RMB 12.9B</td><td>RMB 15B</td><td class="pos">+16.5%</td></tr>
+      <tr><td>Marketing Expense Ratio</td><td>—</td><td>↓ YoY</td><td class="pos">3rd consecutive quarter</td></tr>
+    </tbody>
+  </table>
+
+  <h3>02 — General Merchandise: The New Growth Engine</h3>
+  <p>Electronics and home appliances face cyclical headwinds (high base from government trade-in subsidies in 2025 + smartphone price increases). But <strong>general merchandise grew 14.9% in Q1 2026</strong> and now accounts for more than 50% of total GMV. Six consecutive quarters of double-digit growth. Supermarket grew double-digits for the <strong>9th consecutive quarter</strong>. Higher margins, lower cyclicality, more purchase frequency.</p>
+
+  <div class="callout green">
+    <p><strong>The mix shift is structurally positive.</strong> General merchandise carries ~5–8pp higher gross margins than electronics. As its GMV share grows, consolidated margins expand automatically — no cost-cutting required.</p>
+  </div>
+
+  <h3>03 — JD Logistics: The Hidden Asset</h3>
+  <p>JD Logistics (HKEX: 2618.HK) grew <strong>29% in revenue and 95% in operating profit</strong> in Q1 2026 YoY. FY2025 revenue: RMB 217B. The company is deploying AI and robotics (LangzuTech series) to automate fulfillment. External customers outside the JD ecosystem are the fastest-growing segment. In any sum-of-parts analysis, this asset alone could justify $10–15B of independent valuation.</p>
+
+  <h3>04 — User Engagement: +37% Shopping Frequency</h3>
+  <p>The most important number from the last earnings call: <strong>shopping frequency grew 37% YoY in Q1 2026</strong>. Annual active customers at a record high, +20% YoY. JD Plus members (high lifetime value) in double-digit growth. Food delivery, despite its losses, is working exactly as intended — driving engagement and purchase frequency for core retail.</p>
+
+  <h3>05 — Food Delivery: The Worst Is Behind Us</h3>
+  <p>The <strong>RMB 46.6B in losses in FY2025</strong> was the peak. Q1 2026 showed the largest sequential loss reduction since launch. Food delivery commission and advertising revenues almost doubled QoQ. JP Morgan revised its FY2026 loss estimate from RMB 45B to <strong>RMB 35B</strong> — a RMB 10B improvement in one year. The path to break-even is clear, even if not guaranteed.</p>
+
+  <h3>06 — Cash Fortress: $30B on a $34B Market Cap</h3>
+  <p>RMB 216B (~$30B) in cash and equivalents. The company returned <strong>$631M in buybacks</strong> in Q1 2026 alone (~1.6% of shares outstanding), plus $1.4B in annual dividends. Total capital return >$3B/year — an implied yield of ~9%. Even in the bear case, the cash provides a real floor.</p>
+
+  <h3>07 — Joybuy Europe: New TAM, Infrastructure Already Built</h3>
+  <p>Launched March 2026 with $2.1B already invested in European logistics, acquisition of Ceconomy (MediaMarkt/Saturn, €2.2B), same/next-day delivery across 30+ European cities. Seller fees 3–5% below Amazon. European last-mile market: $41.9B in 2025, projected $85B by 2033. Early-stage but with meaningful physical infrastructure already on the ground.</p>
+
+  <h3>08 — Delisting Risk Is Mitigated</h3>
+  <p>JD has a <strong>primary dual listing on HKEX (9618.HK)</strong>. In a forced US delisting scenario, ADR holders convert to HK shares. This is the single most important mitigant for the risk most cited by Western investors. JD is not in the high-risk group of US-only listed Chinese companies like PDD or Full Truck Alliance.</p>
+
+  <div class="divider"></div>
+
+  <!-- RISKS -->
+  <h2>Risks &amp; Bear Points</h2>
+
+  <div class="risk-item">
+    <div class="risk-num">01</div>
+    <div class="risk-body">
+      <strong>Food Delivery: A Real and Deep Financial Hole</strong>
+      <p>In FY2025, the new business segment generated RMB 49.3B in revenue and RMB 46.6B in operating losses — essentially 1:1. Meituan holds ~70% market share, has decades of operational edge, and delivers in 25 minutes vs. JD's 49 minutes. The path to profitability exists but is not linear. If the subsidy war intensifies, losses may not narrow at the expected pace.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">02</div>
+    <div class="risk-body">
+      <strong>Free Cash Flow Has Collapsed</strong>
+      <p>LTM FCF fell from ~RMB 52B ($7.2B) in 2024 to RMB 22B ($3B) in Q1 2026. The cash pile is enormous but it is being consumed. If losses persist longer than expected, the downside floor gradually narrows.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">03</div>
+    <div class="risk-body">
+      <strong>China Macro: A Cautious Consumer</strong>
+      <p>Consumer spending intent fell ~18 percentage points YoY in China in 2026. GDP decelerating toward 4.5%. Property market remains depressed. This environment affects the H2 2026 electronics recovery and the food delivery ramp-up simultaneously.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">04</div>
+    <div class="risk-body">
+      <strong>US-China Geopolitical Risk</strong>
+      <p>145% US tariffs on Chinese goods. JD is a domestic China business with no direct material tariff exposure, but Chinese ADR sentiment is systematically affected by geopolitical headlines. Joybuy Europe may also attract EU regulatory scrutiny of Chinese-linked platforms.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">05</div>
+    <div class="risk-body">
+      <strong>Europe Execution Is Not Guaranteed</strong>
+      <p>Ochama, JD's previous European attempt in the Netherlands in 2022, failed. Europe has regulatory complexity, high labor costs, and a deeply entrenched Amazon. $2.1B already invested. The model needs to confirm product-market fit before it can scale.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">06</div>
+    <div class="risk-body">
+      <strong>VIE Structure &amp; Chinese Regulation</strong>
+      <p>Like all Chinese ADRs, JD operates via a VIE structure. This risk cannot be fully eliminated. The SAMR fine of RMB 0.6B in Q1 2026 and the ongoing antitrust review of food delivery platforms are reminders that regulation remains active.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FINANCIAL MODEL -->
+  <h2>Financial Model — FY2028E</h2>
+  <p>The determining swing factor is how fast food delivery losses narrow. The core business — JD Retail plus JD Logistics — is solid and predictable. Everything else depends on the subsidy war with Meituan.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>FY2025A</th>
+        <th>FY2026E</th>
+        <th>FY2027E</th>
+        <th>FY2028E Bull</th>
+        <th>FY2028E Base</th>
+        <th>FY2028E Bear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>JD Retail Revenue (RMB B)</td><td>~1,200</td><td>~1,260</td><td>~1,330</td><td class="pos">1,430</td><td>1,360</td><td class="neg">1,270</td></tr>
+      <tr><td>Retail Op. Margin</td><td>~5.3%</td><td>~5.7%</td><td>~6.1%</td><td class="pos">7.5%</td><td>6.5%</td><td class="neg">5.5%</td></tr>
+      <tr><td>Retail Op. Income (RMB B)</td><td>~63</td><td>~72</td><td>~81</td><td class="pos">107</td><td>88</td><td class="neg">70</td></tr>
+      <tr><td>JD Logistics Op. Income (RMB B)</td><td>~1.5</td><td>~4</td><td>~6</td><td class="pos">10</td><td>7</td><td class="neg">3</td></tr>
+      <tr><td>New Business Op. Loss (RMB B)</td><td class="neg">(46.6)</td><td class="neg">(35)</td><td class="neg">(20)</td><td class="pos">0</td><td class="neg">(10)</td><td class="neg">(25)</td></tr>
+      <tr><td>EPS per ADS ($)</td><td>~$1.40</td><td>~$1.72</td><td>~$2.17</td><td class="pos">~$4.50</td><td>~$3.00</td><td class="neg">~$1.50</td></tr>
+      <tr><td>P/E Applied</td><td>—</td><td>—</td><td>—</td><td class="pos">18×</td><td>14×</td><td class="neg">10×</td></tr>
+      <tr style="background:rgba(255,255,255,0.03)"><td><strong>3-Year Price Target</strong></td><td>—</td><td>—</td><td>—</td><td class="pos accent"><strong>$81</strong></td><td class="accent"><strong>$42</strong></td><td class="neg"><strong>$15</strong></td></tr>
+      <tr style="background:rgba(255,255,255,0.03)"><td><strong>Return from $25.24</strong></td><td>—</td><td>—</td><td>—</td><td class="pos"><strong>+221%</strong></td><td class="pos"><strong>+66%</strong></td><td class="neg"><strong>−41%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider"></div>
+
+  <!-- SCENARIOS -->
+  <h2>Scenario Analysis</h2>
+
+  <div class="three-col">
+
+    <div class="scenario-box">
+      <span class="tag buy">Bull Case</span>
+      <span class="prob">Estimated probability: 25%</span>
+      <span class="price pos">$81</span>
+      <p style="font-size:.75rem;margin-bottom:12px">+221% from $25.24</p>
+      <p style="font-size:.75rem"><strong>What needs to happen:</strong><br>Food delivery reaches operational break-even by FY2028. JD Retail expands margin to 7.5%+ via mix shift and advertising. Joybuy Europe confirms product-market fit in 2–3 countries. China launches a new consumer stimulus program in 2027. Multiple re-rates to 18× as EPS visibly grows toward $4.50.</p>
+    </div>
+
+    <div class="scenario-box">
+      <span class="tag neutral">Base Case</span>
+      <span class="prob">Estimated probability: 50%</span>
+      <span class="price" style="color:var(--blue)">$42</span>
+      <p style="font-size:.75rem;margin-bottom:12px">+66% from $25.24</p>
+      <p style="font-size:.75rem"><strong>What happens:</strong><br>Food delivery narrows losses to RMB 10–15B in FY2028 but does not reach break-even. JD Retail maintains its trajectory: 6–6.5% margin, 5% annual revenue growth. JD Logistics grows 15–20% with improving margins. China macro stabilizes without acceleration. Multiple of 14×.</p>
+    </div>
+
+    <div class="scenario-box">
+      <span class="tag risk">Bear Case</span>
+      <span class="prob">Estimated probability: 25%</span>
+      <span class="price neg">$15</span>
+      <p style="font-size:.75rem;margin-bottom:12px">−41% from $25.24</p>
+      <p style="font-size:.75rem"><strong>What happens:</strong><br>Food delivery keeps losses above RMB 25B through 2028. Electronics does not recover. China macro deteriorates with persistent deflation. Joybuy Europe fails to scale. ADR sentiment worsens with a new US-China escalation. Multiple of 10×. Partial floor: $30B in cash limits absolute downside.</p>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <p><strong>Note on the Bear Case:</strong> even at $15 per ADS, the market would be valuing the operating business at negative enterprise value given the existing cash. This implies the bear case requires significant cash destruction — either from persistent losses above $4B/year or an unexpected deterioration in the core business. We consider this possible but unlikely if JD maintains its current financial discipline.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CATALYSTS -->
+  <h2>Catalysts to Watch</h2>
+
+  <div style="margin-top:16px">
+    <div class="catalyst-row">
+      <div>Catalyst</div>
+      <div>Expected Timing</div>
+      <div>Impact</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Q2 2026 earnings — food delivery losses</div>
+      <div>August 2026</div>
+      <div class="impact-high">High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Electronics recovery in H2 2026</div>
+      <div>Oct/Nov 2026</div>
+      <div class="impact-high">High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>China trade-in stimulus program 2.0</div>
+      <div>H2 2026</div>
+      <div class="impact-high">High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Joybuy Europe — new country expansion</div>
+      <div>H2 2026</div>
+      <div class="impact-med">Medium</div>
+    </div>
+    <div class="catalyst-row">
+      <div>JD Logistics — FY2026 annual results</div>
+      <div>Mar 2027</div>
+      <div class="impact-med">Medium</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Food delivery — first quarter with losses &lt;RMB 5B</div>
+      <div>2027</div>
+      <div class="impact-high">Very High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Food delivery operational break-even</div>
+      <div>2027–2028</div>
+      <div class="impact-high">Very High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>US-China trade environment resolution</div>
+      <div>Uncertain</div>
+      <div class="impact-high">Systemic</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- VERDICT -->
+  <h2>Verdict</h2>
+
+  <div class="verdict">
+    <span class="tag buy" style="margin-bottom:16px">Rating: BUY</span>
+    <div class="big">Base Price Target: <span class="pos">$42</span> &nbsp;|&nbsp; 3-Year Horizon</div>
+    <div class="sub">From $25.24 &nbsp;·&nbsp; Base upside: +66% &nbsp;·&nbsp; Bull: +221% &nbsp;·&nbsp; Bear: −41%</div>
+  </div>
+
+  <p>JD.com is one of the most extreme value cases we have found in a large-cap name. The market is pricing in short-term pessimism and ignoring a retail business with $187B in revenue, 16 quarters of margin expansion, $30B in cash, and a logistics engine growing 29% per year.</p>
+
+  <p>The most serious risk is not operational — it is geopolitical and sentiment-driven. As long as the Chinese ADR discount remains elevated, multiples may not expand even as fundamentals improve. That is why we assign 25% probability to the bear case. But at the current price, the market is offering a rare asymmetry: 3× upside in the bull, cash-floored downside in the bear.</p>
+
+  <p>The question is not whether JD is cheap. It is whether food delivery will destroy the business before it becomes profitable. The Q1 2026 data suggests it will not.</p>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <p>Bivar Capital &mdash; Investment Research &mdash; June 2026</p>
+    <p style="margin-top:6px">Sources: JD.com Q1 2026 Earnings Call &middot; JD.com FY2025 Annual Results &middot; JP Morgan Research &middot; StockAnalysis.com &middot; MarketBeat &middot; Mordor Intelligence &middot; AlixPartners China Consumer Outlook 2026 &middot; CEP Research &middot; CNBC &middot; Bamboo Works &middot; SEC 6-K filings</p>
+    <p style="margin-top:6px">This document is for informational purposes only and does not constitute investment advice.</p>
+  </div>
+
+</div>
+</body>
+</html>

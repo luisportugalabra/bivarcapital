@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charter Communications — Investment Case — Bivar Capital</title>
+<meta name="description" content="Charter at $134: 5x EV/EBITDA on a $55B revenue cable business. The market is pricing in a debt spiral. We think it's pricing in a worst case that won't happen.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.5vw,1.4rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.neutral{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+td.pos{color:var(--green)}
+td.neg{color:var(--red)}
+td.accent{color:var(--accent);font-weight:600}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.82rem}
+.callout.green{border-left-color:var(--green)}
+.callout.red{border-left-color:var(--red)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:2px 0 0;font-family:'JetBrains Mono',monospace;font-size:.72rem}
+.meta-box .big-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);display:block;margin-top:4px}
+.scenario-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:8px 0}
+.scenario-box .price{font-family:'DM Serif Display',serif;font-size:2rem;display:block;margin:8px 0}
+.scenario-box .prob{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.tag.buy{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+.tag.risk{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.tag.neutral{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.risk-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.risk-item:last-child{border-bottom:none}
+.risk-num{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--border);flex-shrink:0;width:28px}
+.risk-body p{margin-bottom:0;font-size:.82rem}
+.risk-body strong{font-size:.82rem}
+.catalyst-row{display:grid;grid-template-columns:1fr 1fr 80px;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.72rem;font-family:'JetBrains Mono',monospace}
+.catalyst-row:first-child{font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.catalyst-row .impact-high{color:var(--green)}
+.catalyst-row .impact-med{color:var(--accent)}
+.sensitivity{overflow-x:auto;margin:16px 0}
+.sensitivity table td:first-child{color:var(--muted)}
+.sensitivity table td.highlight{background:rgba(196,162,101,.08);color:var(--accent);font-weight:600}
+@media(max-width:700px){.two-col,.three-col{grid-template-columns:1fr}.catalyst-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hw">
+    <a href="/" class="hl">Bivar Capital</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" class="accent">Research</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="brand">Bivar Capital &mdash; Investment Research &mdash; June 2026</div>
+
+  <h1>Charter Communications (NASDAQ: CHTR)<span class="it">The most levered bet on American broadband.</span></h1>
+
+  <p class="lead">
+    Down 66% in 12 months. Trading at 5× EV/EBITDA on a $55B revenue business with 29.5M broadband subscribers.
+    The market is pricing in a debt spiral from subscriber losses. The bull case is that it's wrong.
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- Snapshot -->
+  <h3>Snapshot — June 26, 2026</h3>
+  <div class="three-col">
+    <div class="meta-box">
+      <dt>Price</dt>
+      <dd class="big-num">$134.71</dd>
+      <dt>52-Week Range</dt>
+      <dd>$124.05 — $422.29</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Market Cap</dt>
+      <dd class="big-num" style="font-size:1.3rem">~$17.6B</dd>
+      <dt>Enterprise Value</dt>
+      <dd>~$111B</dd>
+    </div>
+    <div class="meta-box">
+      <dt>EV / EBITDA</dt>
+      <dd class="big-num" style="font-size:1.3rem">~5.0×</dd>
+      <dt>Historical Range</dt>
+      <dd>8× — 13× (2018–2022)</dd>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:14px">
+    <div class="meta-box">
+      <dt>Revenue FY2025</dt><dd>$54.8B (-0.6% YoY)</dd>
+      <dt>Adjusted EBITDA FY2025</dt><dd>$22.7B (+0.6% YoY)</dd>
+      <dt>EBITDA Margin</dt><dd>41.4%</dd>
+      <dt>Free Cash Flow FY2025</dt><dd>$5.0B (FCF yield: 28.4%)</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Total Debt</dt><dd style="color:var(--red)">$94.3B</dd>
+      <dt>Cash</dt><dd>$517M</dd>
+      <dt>Broadband Subscribers</dt><dd>29.56M (-455K YoY)</dd>
+      <dt>Spectrum Mobile Lines</dt><dd style="color:var(--green)">12.1M (+17.1% YoY)</dd>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Investment Thesis -->
+  <h2>Investment Thesis</h2>
+
+  <div class="callout">
+    <p>Charter is a high-conviction, high-variance bet on one core question: will broadband subscriber losses stabilize before the debt load becomes unmanageable? At 5× EV/EBITDA — half of what private cable infrastructure transacts at — the market is pricing in a secular decline that we believe overstates the structural risk. The leverage amplifies every outcome, in both directions. This is not a bond proxy. It is a call option on broadband stabilization dressed as a cable stock.</p>
+  </div>
+
+  <p>The bear thesis — that FWA and fiber overbuilders permanently erode Charter's broadband base — is coherent. T-Mobile and Verizon combined can address up to 32 million FWA customers, a ceiling that directly threatens Charter's 29.5M subscriber base. Charter lost 455,000 internet subs in 2025 and another 120,000 in Q1 2026 alone. The trend is real.</p>
+
+  <p>But the bull thesis is equally coherent. Charter is spending $11.4B per year in CapEx to upgrade its entire HFC network to DOCSIS 4.0 — a technology capable of 10 Gbps symmetrical speeds that equals or exceeds any fiber deployment commercially available today. When that upgrade is 80–100% complete (2027–2028), the competitive narrative changes. And at the current price, buying back 4% of the market cap per quarter, the share count collapse creates enormous per-share value even in a flat-EBITDA world.</p>
+
+  <div class="divider"></div>
+
+  <!-- Bull Points -->
+  <h2>Bull Points</h2>
+
+  <h3>01 — 5× EV/EBITDA: A Historically Unprecedented Discount</h3>
+  <p>Charter has never traded at 5× EV/EBITDA in its modern history. The company commanded 10–13× EV/EBITDA from 2018 to 2022. Even in periods of elevated competition anxiety, it rarely dropped below 7–8×. Private cable infrastructure transactions have consistently cleared at 10–12×. At 5×, the market is not pricing in a difficult environment — it is pricing in secular impairment that permanently destroys EBITDA.</p>
+
+  <div class="callout green">
+    <p><strong>The math is simple and powerful.</strong> Every 1× turn of EV/EBITDA multiple expansion on $22.7B of EBITDA = +$22.7B of enterprise value, most of which flows directly to equity given the fixed nature of the debt. At 100M shares, that is +$227 per share per turn of re-rating.</p>
+  </div>
+
+  <h3>02 — DOCSIS 4.0: A Real Competitive Answer</h3>
+  <p>Charter's HFC network upgrade is the most important strategic project in US cable. When complete, DOCSIS 4.0 at 1.8GHz enables symmetrical speeds of up to 10 Gbps — a spec that equals or exceeds any currently deployed fiber network. Charter's CEO confirmed that the upgrade will be <strong>~50% complete by end of 2026</strong>, with the remainder deployed through 2027–2028. Upgraded markets have measurably improved customer satisfaction and lower churn. The competitive headwind is real today; the competitive answer is being built right now.</p>
+
+  <table>
+    <thead><tr><th>Technology</th><th>Max Downstream</th><th>Max Upstream</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Charter DOCSIS 4.0 (complete)</td><td>10 Gbps</td><td>6 Gbps</td><td class="pos">50% deployed by end 2026</td></tr>
+      <tr><td>AT&T Fiber (XGS-PON)</td><td>10 Gbps</td><td>10 Gbps</td><td>Rolling nationally</td></tr>
+      <tr><td>T-Mobile FWA (5G)</td><td>~300 Mbps</td><td>~50 Mbps</td><td class="neg">No upgrade path to gigabit</td></tr>
+      <tr><td>Verizon FWA (mmWave)</td><td>~1 Gbps</td><td>~200 Mbps</td><td class="neg">Limited coverage area</td></tr>
+    </tbody>
+  </table>
+
+  <h3>03 — Spectrum Mobile: The Hidden Growth Engine</h3>
+  <p>Spectrum Mobile now has <strong>12.1 million lines, growing at 17.1% YoY</strong>, generating over $1 billion in quarterly service revenue (+15.1% YoY). This is the fastest-growing wireless brand in the US by net adds. Charter operates as an MVNO on Verizon's network, offering mobile at prices 30–40% below the major carriers when bundled with Spectrum Internet. Mobile deepens customer relationships, reduces churn, and creates a genuine product bundle that FWA cannot easily replicate. In 2 years, mobile could be a $5B+ annual revenue line with improving unit economics.</p>
+
+  <h3>04 — Share Buybacks at Distressed Prices: Enormous Per-Share Accretion</h3>
+  <p>Charter repurchased <strong>$963M of stock in Q1 2026 alone</strong> (~4% of market cap in a single quarter). With the stock at multi-year lows and a market cap of only $17.6B against $5B+ in annual FCF, buybacks are generating extraordinary per-share value. A 20% reduction in shares outstanding in 2026 — plausible given the pace — would meaningfully boost EPS, FCF per share, and ultimately the share price even if EBITDA remains flat. The company is effectively leveraging its distressed equity price to destroy shares at highly accretive prices.</p>
+
+  <h3>05 — Cox Merger: Scale That Changes the Math</h3>
+  <p>The proposed <strong>$34.5B acquisition of Cox Communications</strong> adds ~6M broadband subscribers and ~$5–6B in EBITDA, creating the unambiguous #1 cable operator in the US with 36M broadband subscribers. Scale reduces procurement costs, content costs, and CapEx per-subscriber. The deal has received DOJ and FCC approval. Only California's CPUC remains pending, with a vote targeted August 13, 2026. If approved, the combined entity's negotiating power — with content studios, equipment vendors, and mobile network partners — improves materially.</p>
+
+  <h3>06 — FWA Has a Capacity Ceiling</h3>
+  <p>The major FWA operators (T-Mobile, Verizon, AT&T) collectively have capacity for approximately <strong>32 million FWA customers</strong> on their current spectrum allocations. T-Mobile has explicitly guided that its capacity ceiling is ~12M FWA subs. Verizon has targeted 8–9M by 2028. Beyond those thresholds, additional FWA customers degrade network quality for all mobile users — creating political and regulatory pressure to limit expansion. Charter's exposure to FWA is real but bounded by spectrum physics.</p>
+
+  <h3>07 — FCF Yield of 28%: The Floor Is Real</h3>
+  <p>Charter generated <strong>$5.0B in free cash flow in FY2025</strong> on a market cap of $17.6B — a FCF yield of 28.4%. Even after the Cox-related increase in CapEx, the combined entity should generate $7–8B in annual FCF by FY2028. At any rational multiple of that cash flow, the equity is worth multiples of its current price. The leverage amplifies risk but also amplifies the return when and if the broadband trend stabilizes.</p>
+
+  <h3>08 — BEAD Subsidizes Rural Buildout</h3>
+  <p>The federal $42.45B BEAD program is subsidizing Charter's rural network expansion — CapEx that would otherwise be uneconomical. Charter is positioned to receive meaningful BEAD allocation across its 41-state footprint. This extends its addressable market, improves rural broadband economics, and is already embedded in the $11.4B CapEx plan for 2026.</p>
+
+  <div class="divider"></div>
+
+  <!-- Risks -->
+  <h2>Risks &amp; Bear Points</h2>
+
+  <div class="risk-item">
+    <div class="risk-num">01</div>
+    <div class="risk-body">
+      <strong>Broadband Sub Losses Are Accelerating, Not Stabilizing</strong>
+      <p>Charter lost 455,000 internet subscribers in 2025 and 120,000 in Q1 2026 alone — worse than Comcast's -65,000 in the same period. If T-Mobile and Verizon reach 20–25M combined FWA subs by 2028, the math on Charter's 29.5M subscriber base becomes uncomfortable. DOCSIS 4.0 helps in upgraded markets, but the upgrade is 2–3 years from full completion. The competition is winning customers today.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">02</div>
+    <div class="risk-body">
+      <strong>$94B in Debt With Declining EBITDA: The Dangerous Combination</strong>
+      <p>Charter carries $94.3B in debt against $22.7B in EBITDA — approximately 4.1× net leverage. Annual interest expense is ~$4.9B, representing 22% of EBITDA. In Q1 2026, EBITDA fell -2.2% YoY. If EBITDA declines 10–15% from here (plausible under a sustained broadband loss scenario), interest coverage ratios compress to levels that constrain capital allocation. The Cox deal adds ~$34.5B more. This is the existential risk.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">03</div>
+    <div class="risk-body">
+      <strong>Cox: California Could Derail the Entire Deal</strong>
+      <p>Charter and Cox have explicitly warned that if California's CPUC does not approve the merger by August 13, 2026, the deal could miss the September 15 DOJ HSR clearance deadline — requiring a full federal re-review. A failed or delayed Cox deal removes the scale narrative, leaves Charter with elevated CapEx commitments, and is a significant negative catalyst for the stock.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">04</div>
+    <div class="risk-body">
+      <strong>CapEx Consuming Most of FCF During the Upgrade Cycle</strong>
+      <p>Charter spent $2.9B in CapEx in Q1 2026 (+19% YoY), generating only $1.4B in FCF (-12% YoY). The network upgrade is consuming cash that would otherwise service debt or fund buybacks. If broadband revenue declines accelerate, the company faces a difficult choice between strategic CapEx and financial flexibility. Slowing the upgrade accelerates the competitive problem; maintaining it pressures the balance sheet.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">05</div>
+    <div class="risk-body">
+      <strong>DOCSIS 4.0 Timeline Has Slipped Repeatedly</strong>
+      <p>Charter's DOCSIS 4.0 deployment was originally targeted for broader completion in 2025. The timeline has slipped multiple times. If the upgrade takes longer than guided, competitors gain additional runway to deepen relationships with churned Charter customers — making win-backs harder and more expensive.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">06</div>
+    <div class="risk-body">
+      <strong>Spectrum Mobile MVNO Economics Have a Structural Ceiling</strong>
+      <p>Charter does not own wireless spectrum or infrastructure. It is an MVNO — it resells Verizon's network capacity. MVNO gross margins are structurally lower than a facilities-based operator. Long-term mobile profitability depends on favorable MVNO contract renewals. Any deterioration in the Verizon relationship, or a spectrum acquisition requirement, would dramatically change the mobile economics.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">07</div>
+    <div class="risk-body">
+      <strong>Equity Can Go to Zero in a Severe Scenario</strong>
+      <p>Unlike JD.com, which has $30B in cash as a downside floor, Charter's equity is junior to $94B+ in debt. In a scenario where EBITDA falls to $19–20B and the market assigns 4–4.5× EV/EBITDA, the enterprise value is $76–90B — below the debt stack. That is not a prediction; it is a mathematical statement of what "bear case" means for a highly leveraged company. Equity holders own a call option on the business — valuable if things go right, worth near zero if they go very wrong.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Financial Model -->
+  <h2>Financial Model — FY2028E</h2>
+  <p>The key variable is the EV/EBITDA multiple the market assigns. Because of Charter's leverage, every turn of multiple change translates to approximately <strong>+/- $225 per share in equity value</strong> (at ~100M shares). EBITDA trajectory is secondary to multiple re-rating in driving the outcome.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>FY2025A</th>
+        <th>Q1 2026</th>
+        <th>FY2028E Bull</th>
+        <th>FY2028E Base</th>
+        <th>FY2028E Bear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Revenue</td><td>$54.8B</td><td>$13.6B</td><td class="pos">$58B</td><td>$55B</td><td class="neg">$51B</td></tr>
+      <tr><td>Adjusted EBITDA</td><td>$22.7B</td><td>$5.6B (ann.)</td><td class="pos">$24B</td><td>$22B</td><td class="neg">$20B</td></tr>
+      <tr><td>EBITDA Margin</td><td>41.4%</td><td>41.5%</td><td class="pos">41.4%</td><td>40%</td><td class="neg">39.2%</td></tr>
+      <tr><td>CapEx</td><td>$11.7B</td><td>$2.9B</td><td class="pos">$9B (declining)</td><td>$10B</td><td class="neg">$11B</td></tr>
+      <tr><td>Free Cash Flow</td><td>$5.0B</td><td>$1.4B</td><td class="pos">$7B</td><td>$5.5B</td><td class="neg">$3.5B</td></tr>
+      <tr><td>Total Net Debt</td><td>$93.8B</td><td>$93.8B</td><td class="pos">$87B</td><td>$91B</td><td class="neg">$96B</td></tr>
+      <tr><td>Broadband Subs</td><td>~30M</td><td>29.56M</td><td class="pos">29.5M (stable)</td><td>28M</td><td class="neg">26M</td></tr>
+      <tr><td>Spectrum Mobile Lines</td><td>~10.5M</td><td>12.1M</td><td class="pos">18M</td><td>16M</td><td class="neg">13M</td></tr>
+      <tr><td>Diluted Shares</td><td>~135M</td><td>~131M</td><td class="pos">~100M</td><td>~110M</td><td class="neg">~120M</td></tr>
+      <tr><td>EV/EBITDA Applied</td><td>~5.0×</td><td>—</td><td class="pos">7×</td><td>5.5×</td><td class="neg">4.5×</td></tr>
+      <tr style="background:rgba(255,255,255,0.03)"><td><strong>3-Year Price Target</strong></td><td>—</td><td>—</td><td class="pos accent"><strong>$600</strong></td><td class="accent"><strong>$270</strong></td><td class="neg"><strong>$50</strong></td></tr>
+      <tr style="background:rgba(255,255,255,0.03)"><td><strong>Return from $134.71</strong></td><td>—</td><td>—</td><td class="pos"><strong>+346%</strong></td><td class="pos"><strong>+100%</strong></td><td class="neg"><strong>−63%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>EV/EBITDA Sensitivity — Equity Value per Share (FY2028E, ~100M shares)</h3>
+  <p>This table shows why Charter is a multiple story more than an earnings story. A 2-turn re-rating on stable EBITDA is worth $400+ per share.</p>
+  <div class="sensitivity">
+    <table>
+      <thead><tr><th>EBITDA →</th><th>$20B</th><th>$22B</th><th>$24B</th><th>$26B</th></tr></thead>
+      <tbody>
+        <tr><td>4.0× EV/EBITDA</td><td class="neg">~$0</td><td class="neg">~$50</td><td class="neg">~$90</td><td class="neg">~$130</td></tr>
+        <tr><td>4.5× EV/EBITDA</td><td class="neg">~$50</td><td class="neg">~$140</td><td>~$230</td><td>~$315</td></tr>
+        <tr><td>5.0× EV/EBITDA</td><td class="neg">~$100</td><td class="highlight">~$230</td><td>~$365</td><td>~$495</td></tr>
+        <tr><td>5.5× EV/EBITDA</td><td>~$150</td><td>~$320</td><td class="highlight">~$495</td><td>~$665</td></tr>
+        <tr><td>6.0× EV/EBITDA</td><td>~$200</td><td>~$410</td><td>~$620</td><td>~$840</td></tr>
+        <tr><td>7.0× EV/EBITDA</td><td>~$295</td><td>~$590</td><td class="pos highlight">~$880</td><td>~$1,175</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.72rem;margin-top:6px">* Assumes $91B net debt, ~100M diluted shares in FY2028. Current scenario highlighted.</p>
+
+  <div class="divider"></div>
+
+  <!-- Scenarios -->
+  <h2>Scenario Analysis</h2>
+
+  <div class="three-col">
+
+    <div class="scenario-box">
+      <span class="tag buy">Bull Case</span>
+      <span class="prob">Estimated probability: 30%</span>
+      <span class="price pos">$600</span>
+      <p style="font-size:.75rem;margin-bottom:12px">+346% from $134.71</p>
+      <p style="font-size:.75rem"><strong>What needs to happen:</strong><br>DOCSIS 4.0 upgrade completes on schedule (2027). Broadband losses stabilize as upgraded markets outcompete FWA. Cox closes without California complications and delivers synergies. Spectrum Mobile reaches 18M+ lines. EBITDA recovers to $24B+. Market re-rates to 7× EV/EBITDA as the secular decline narrative breaks. CapEx normalizes post-2027, FCF surges.</p>
+    </div>
+
+    <div class="scenario-box">
+      <span class="tag neutral">Base Case</span>
+      <span class="prob">Estimated probability: 45%</span>
+      <span class="price" style="color:var(--blue)">$270</span>
+      <p style="font-size:.75rem;margin-bottom:12px">+100% from $134.71</p>
+      <p style="font-size:.75rem"><strong>What happens:</strong><br>Broadband losses moderate but don't stop — Charter loses 1–1.5M subs over 3 years. Mobile grows to 16M lines, partially offsetting revenue pressure. Cox closes and adds modest synergies. EBITDA holds at ~$22B. Market re-rates slightly to 5.5×. Aggressive buybacks collapse share count to ~110M, driving per-share value even on flat EBITDA.</p>
+    </div>
+
+    <div class="scenario-box">
+      <span class="tag risk">Bear Case</span>
+      <span class="prob">Estimated probability: 25%</span>
+      <span class="price neg">$50</span>
+      <p style="font-size:.75rem;margin-bottom:12px">−63% from $134.71</p>
+      <p style="font-size:.75rem"><strong>What happens:</strong><br>Broadband losses accelerate — Charter loses 3M+ subs by 2028. EBITDA falls to $20B or below. Cox integration disappoints. Debt service absorbs most FCF, constraining buybacks. Market assigns 4.5× EV/EBITDA reflecting solvency concerns. Unlike JD's $30B cash floor, Charter's equity has no hard floor — leverage makes this a genuine near-zero scenario if EBITDA erodes materially.</p>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <p><strong>Note on the Bear Case:</strong> Charter does not have a cash cushion backstopping the downside. This is a pure leveraged bet — the same leverage that makes $600 possible also makes $50 possible. Position sizing should reflect this binary character. Unlike a net-cash business, equity here is junior to $94B in debt obligations.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Catalysts -->
+  <h2>Catalysts to Watch</h2>
+
+  <div style="margin-top:16px">
+    <div class="catalyst-row">
+      <div>Catalyst</div>
+      <div>Expected Timing</div>
+      <div>Impact</div>
+    </div>
+    <div class="catalyst-row">
+      <div>California CPUC approves Cox merger</div>
+      <div>Aug 13, 2026</div>
+      <div class="impact-high">Very High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Q2 2026 earnings — broadband sub trend</div>
+      <div>July 2026</div>
+      <div class="impact-high">Very High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>First quarter of broadband net add improvement</div>
+      <div>H2 2026 / 2027</div>
+      <div class="impact-high">Very High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>DOCSIS 4.0 hits 75%+ completion — competitor data</div>
+      <div>2027</div>
+      <div class="impact-high">High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Spectrum Mobile crosses $5B annual revenue</div>
+      <div>2027</div>
+      <div class="impact-med">Medium</div>
+    </div>
+    <div class="catalyst-row">
+      <div>CapEx guidance reduction post-upgrade cycle</div>
+      <div>2027–2028</div>
+      <div class="impact-high">High</div>
+    </div>
+    <div class="catalyst-row">
+      <div>Cox integration synergy update</div>
+      <div>H1 2027</div>
+      <div class="impact-med">Medium</div>
+    </div>
+    <div class="catalyst-row">
+      <div>FWA capacity constraints become visible in carrier data</div>
+      <div>2027</div>
+      <div class="impact-high">High</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="divider"></div>
+
+  <!-- Verdict -->
+  <h2>Verdict</h2>
+
+  <div class="verdict">
+    <span class="tag neutral" style="margin-bottom:16px">Rating: SPECULATIVE BUY</span>
+    <div class="big">Base Price Target: <span class="pos">$270</span> &nbsp;|&nbsp; 3-Year Horizon</div>
+    <div class="sub">From $134.71 &nbsp;·&nbsp; Base: +100% &nbsp;·&nbsp; Bull: +346% &nbsp;·&nbsp; Bear: −63%</div>
+  </div>
+
+  <p>Charter Communications is one of the most asymmetric situations in US large-cap equities right now. At 5× EV/EBITDA — a multiple that implies no recovery, no cable infrastructure scarcity premium, and perpetual subscriber decline — the stock prices in an outcome that requires multiple structural failures simultaneously: DOCSIS 4.0 failing to compete, Cox synergies not materializing, and mobile growth stalling.</p>
+
+  <p>We do not think all three fail. We think one or two headwinds persist and one or two resolve. That is the base case, and it delivers +100% from current levels through a combination of moderate EBITDA stability, slight multiple re-rating, and relentless share buybacks that collapse the denominator.</p>
+
+  <p>The rating is <em>Speculative</em> Buy — not because we are unconvinced by the thesis, but because the leverage means this is not a position for investors without the temperament for volatility. If you are right, the payoff is exceptional. If you are wrong, the loss is severe. This is a high-conviction, appropriately-sized bet — not a core holding.</p>
+
+  <p>The most important near-term data point: <strong>California's CPUC vote on August 13, 2026.</strong> If Cox clears, the stock likely re-rates immediately. If it fails to clear, expect a significant negative reaction and a re-evaluation of the timeline.</p>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <p>Bivar Capital &mdash; Investment Research &mdash; June 2026</p>
+    <p style="margin-top:6px">Sources: Charter Q1 2026 Earnings (PR Newswire) &middot; Charter FY2025 Annual Results &middot; Fierce Network &middot; LightReading &middot; Broadband Breakfast &middot; StockAnalysis.com &middot; Gurufocus &middot; NTIA BEAD Program &middot; BroadbandSearch (Net Neutrality) &middot; AInvest (Refinancing) &middot; Seeking Alpha &middot; IndexBox &middot; Communications Daily (Cox/CPUC)</p>
+    <p style="margin-top:6px">This document is for informational purposes only and does not constitute investment advice.</p>
+  </div>
+
+</div>
+</body>
+</html>
