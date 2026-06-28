@@ -1,8 +1,8 @@
 {
-  "date": "2026-06-27",
-  "regime": "momentum",
-  "sp500": 7354.02,
-  "sp500_ma250": 6812.66,
+  "date": "2026-06-28",
+  "regime": "gld",
+  "sp500": NaN,
+  "sp500_ma250": 6810.49,
   "total_eligible": 714,
   "portfolio": [
     {
@@ -40,7 +40,7 @@
       "ret_6m": 289.3,
       "ret_12m": 774.2,
       "composite": 531.8,
-      "mcap_b": 1277.0,
+      "mcap_b": 1278.8,
       "ebit_m": 59353.0,
       "selected": true
     },
@@ -133,7 +133,7 @@
       "ret_6m": 289.3,
       "ret_12m": 774.2,
       "composite": 531.8,
-      "mcap_b": 1277.0,
+      "mcap_b": 1278.8,
       "ebit_m": 59353.0,
       "selected": true
     },
