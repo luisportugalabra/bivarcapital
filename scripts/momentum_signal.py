@@ -81,12 +81,18 @@ def check_regime():
     """Check S&P 500 vs MA250 via yfinance."""
     try:
         import yfinance as yf
+        import math
         import warnings
         warnings.filterwarnings('ignore')
         data = yf.download('^GSPC', period='2y', progress=False)
-        close = data['Close'].squeeze()
+        close = data['Close'].squeeze().dropna()
+        if len(close) == 0:
+            return None, None, True  # no data, assume OK
         last = float(close.iloc[-1])
         ma250 = float(close.tail(250).mean())
+        # Guard against NaN (e.g. weekend/holiday runs with no market data)
+        if math.isnan(last) or math.isnan(ma250):
+            return None, None, True  # assume OK if can't determine
         return last, ma250, last >= ma250
     except Exception:
         return None, None, True  # assume OK if can't check
