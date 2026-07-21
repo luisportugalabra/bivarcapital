@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Access — Bivar Capital</title>
+<meta name="description" content="Follow systematic equity and BTC signals built on 28 years of backtested research. €40/month.">
+<meta property="og:title" content="Get Access — Bivar Capital">
+<meta property="og:description" content="Monthly momentum signal + BTC trend signal. Rules-based, no discretion.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bivarcapital.com/access.html">
+<meta name="theme-color" content="#060608">
+<link rel="canonical" href="https://bivarcapital.com/access.html">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+.container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+/* Nav */
+header { position: sticky; top: 0; z-index: 100; background: rgba(6,6,8,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 16px 0; }
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+nav a { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; margin-left: 24px; transition: color 0.2s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; padding: 4px; }
+@media(max-width:600px) {
+  header nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(6,6,8,0.97); border-bottom: 1px solid var(--border); padding: 16px 24px; flex-direction: column; gap: 14px; }
+  header nav.open { display: flex; }
+  header nav a { margin-left: 0; font-size: .7rem; }
+  .menu-btn { display: block; }
+}
+
+/* Content */
+.content { padding: 72px 0 80px; }
+.page-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+.content h1 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 400; margin-bottom: 14px; line-height: 1.15; }
+.content .lead { font-size: 0.95rem; color: var(--text-secondary); max-width: 520px; line-height: 1.8; margin-bottom: 56px; }
+
+/* How it works */
+.section-title { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+.steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 56px; }
+.step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+.step:first-child { border-top: 1px solid var(--border); }
+.step-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); min-width: 24px; padding-top: 3px; }
+.step-body h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.step-body p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.75; }
+
+/* Includes */
+.includes { margin-bottom: 56px; }
+.include-item { display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.include-item:first-child { border-top: 1px solid var(--border); }
+.check { color: var(--green); font-size: 0.8rem; margin-top: 2px; flex-shrink: 0; }
+.include-body strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.include-body span { font-size: 0.82rem; color: var(--text-muted); }
+
+/* Pricing */
+.pricing-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px; padding: 36px; margin-bottom: 16px; }
+.price-options { display: flex; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+.price-option { flex: 1; min-width: 180px; border: 1px solid var(--border); border-radius: 8px; padding: 20px; cursor: pointer; transition: border-color 0.2s; }
+.price-option.selected { border-color: var(--accent); }
+.price-option .amount { font-family: var(--font-display); font-size: 1.8rem; color: var(--text); margin-bottom: 2px; }
+.price-option .period { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.price-option .saving { font-family: var(--font-mono); font-size: 0.58rem; color: var(--green); margin-top: 6px; }
+.btn-subscribe { display: block; width: 100%; padding: 14px; background: var(--accent); color: #060608; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: none; border-radius: 7px; cursor: pointer; transition: opacity 0.2s; text-align: center; text-decoration: none; }
+.btn-subscribe:hover { opacity: 0.88; }
+.fine-print { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); text-align: center; margin-top: 14px; line-height: 1.7; }
+
+/* Footer */
+footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); }
+footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
+
+@media(max-width:600px) {
+  .content h1 { font-size: 1.6rem; }
+  .price-options { flex-direction: column; }
+  .pricing-card { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">Bivar Capital</a>
+    <button class="menu-btn" onclick="this.parentElement.querySelector('nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" id="nav-signin" style="color:var(--accent)">Sign In</a>
+      <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22">
+        <span id="nav-email" style="font-family:var(--font-mono);font-size:.6rem;color:#5a5a68"></span>
+        <a href="#" id="nav-signout" style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="content">
+
+    <p class="page-label">Access</p>
+    <h1>Follow the signals.</h1>
+    <p class="lead">Two systematic strategies, running on real capital. No discretion, no narrative — just rules, data, and monthly execution. You get the exact same signal I act on.</p>
+
+    <!-- How it works -->
+    <p class="section-title">How it works</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-body">
+          <h3>Signal generated on the 1st of each month</h3>
+          <p>The momentum strategy scans US large-cap equities and ranks them by systematic criteria. The output is a list of positions to hold for the month — no intraday decisions, no noise.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-body">
+          <h3>You see the exact positions</h3>
+          <p>Log in on the 1st, see the current holdings. Rebalance your portfolio to match — or don't. The signal is yours to use as you see fit.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-body">
+          <h3>BTC signal checked monthly</h3>
+          <p>The Bitcoin trend strategy is binary: long or cash. One decision per month, based on three systematic rules. No leverage, no derivatives.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <div class="step-body">
+          <h3>Full research library included</h3>
+          <p>Every backtest and parameter study that built these strategies is available in full. No black boxes — you can read exactly why each rule exists.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What's included -->
+    <p class="section-title">What's included</p>
+    <div class="includes">
+      <div class="include-item">
+        <span class="check">&#10003;</span>
+        <div class="include-body">
+          <strong>Optimal Momentum signal</strong>
+          <span>Monthly positions in US equities — updated on the 1st. 28-year backtest, +28.6% CAGR, Sharpe 0.88.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="check">&#10003;</span>
+        <div class="include-body">
+          <strong>Bitcoin Trend Signal</strong>
+          <span>Long or cash. Monthly decision based on RSI, moving average, and volatility. Avoids the major drawdowns.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="check">&#10003;</span>
+        <div class="include-body">
+          <strong>Full research library</strong>
+          <span>All strategy reports, factor studies, parameter sensitivity analyses, and investment cases — published in full.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="check">&#10003;</span>
+        <div class="include-body">
+          <strong>New research as it's published</strong>
+          <span>Every new backtest, investment case, or factor study added to the library as it's completed.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <p class="section-title">Pricing</p>
+    <div class="pricing-card">
+      <div class="price-options">
+        <div class="price-option" id="opt-monthly" onclick="selectPlan('monthly')">
+          <div class="amount">€40</div>
+          <div class="period">per month</div>
+        </div>
+        <div class="price-option selected" id="opt-annual" onclick="selectPlan('annual')">
+          <div class="amount">€400</div>
+          <div class="period">per year</div>
+          <div class="saving">Save €80 — 2 months free</div>
+        </div>
+      </div>
+      <a href="#" class="btn-subscribe" id="subscribe-btn">Subscribe</a>
+      <p class="fine-print">Cancel anytime. No commitment.</p>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p class="brand">Bivar Capital</p>
+    <p>Luis Portugal</p>
+  </div>
+</footer>
+
+<script>
+function selectPlan(plan) {
+  document.getElementById('opt-monthly').classList.toggle('selected', plan === 'monthly');
+  document.getElementById('opt-annual').classList.toggle('selected', plan === 'annual');
+  // Update subscribe link when Stripe links are added
+  // document.getElementById('subscribe-btn').href = plan === 'monthly' ? STRIPE_MONTHLY : STRIPE_ANNUAL;
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="/auth.js"></script>
+</body>
+</html>
