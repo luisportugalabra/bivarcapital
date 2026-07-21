@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Momentum: Why Size Inverts Everything — Bivar Capital</title>
+<meta property="og:title" content="China Momentum: Why Size Inverts Everything — Bivar Capital">
+<meta property="og:description" content="In the US, momentum only works in large caps. In China, it only works in micro caps. Q1 micro delivers +15.3% CAGR, Sharpe 0.46. Q4 large caps lose money. The data is unambiguous.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/china_momentum_size.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/research/china_momentum_size.html">
+<meta name="theme-color" content="#060608">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+th:not(:first-child),td:not(:first-child){text-align:right}
+.pos{color:var(--green)}.neg{color:var(--red)}.dim{color:var(--muted)}
+.best td{background:rgba(74,222,128,.04)}
+.worst td{background:rgba(248,113,113,.04)}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.78rem}
+.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout-red p{margin:0;color:var(--text);font-size:.78rem}
+.callout-green{background:var(--card);border-left:3px solid var(--green);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout-green p{margin:0;color:var(--text);font-size:.78rem}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:4px;margin:18px 0;overflow-x:auto}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}
+.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:1px 0 0}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.q1c{color:#4ade80}.q2c{color:#60a5fa}.q3c{color:#c4a265}.q4c{color:#f87171}.q5c{color:#a78bfa}
+@media(max-width:700px){.grid4{grid-template-columns:repeat(2,1fr)}.grid5{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
+</style>
+<header class="site-header">
+<div class="hw">
+<a href="/" class="hl">Bivar Capital</a>
+<button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+<nav>
+<a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a>
+<a href="#" id="nav-signin" class="accent">Sign In</a>
+<a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a>
+<span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span>
+</nav>
+</div>
+</header>
+
+<div class="container">
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>China Momentum<span class="it">Why Size Inverts Everything</span></h1>
+<p class="lead">In the US, momentum gets stronger as market cap increases — peaking at +20.4% CAGR in mega caps. In China, the opposite is true. We divide 5,444 A-shares into five market cap quintiles and run 21m-1 momentum independently in each. The result is unambiguous: alpha disappears monotonically as size increases. Large caps lose money. Micro caps compound at +15% per year.</p>
+
+<div class="divider"></div>
+
+<h2>I. The Result in One Chart</h2>
+<div class="chart-wrap">
+<svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+<rect width="860" height="320" fill="#0c0c10" rx="8"/>
+<text x="75" y="16" fill="#5a5a68" font-size="9" font-family="JetBrains Mono,monospace">GROWTH OF ¥100,000 BY MARKET CAP QUINTILE — LOG SCALE</text>
+<line x1="75" y1="269.6" x2="840" y2="269.6" stroke="#1a1a22"/>
+<text x="69" y="272.6" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥50K</text>
+<line x1="75" y1="221.7" x2="840" y2="221.7" stroke="#1a1a22"/>
+<text x="69" y="224.7" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥100K</text>
+<line x1="75" y1="173.7" x2="840" y2="173.7" stroke="#1a1a22"/>
+<text x="69" y="176.7" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥200K</text>
+<line x1="75" y1="110.4" x2="840" y2="110.4" stroke="#1a1a22"/>
+<text x="69" y="113.4" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥500K</text>
+<line x1="75" y1="62.5" x2="840" y2="62.5" stroke="#1a1a22"/>
+<text x="69" y="65.5" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">¥1M</text>
+
+<text x="119.3" y="299" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2010</text>
+<line x1="119.3" y1="30" x2="119.3" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="252.4" y="299" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2013</text>
+<line x1="252.4" y1="30" x2="252.4" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="385.4" y="299" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2016</text>
+<line x1="385.4" y1="30" x2="385.4" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="518.5" y="299" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2019</text>
+<line x1="518.5" y1="30" x2="518.5" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="651.5" y="299" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2022</text>
+<line x1="651.5" y1="30" x2="651.5" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+<text x="784.6" y="299" fill="#5a5a68" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">2025</text>
+<line x1="784.6" y1="30" x2="784.6" y2="285" stroke="#1a1a22" stroke-width="0.5"/>
+
+<polyline points="75.0,221.7 78.7,221.7 82.4,221.7 86.1,221.7 89.8,221.7 93.5,221.7 97.2,221.7 100.9,221.7 104.6,221.7 108.3,221.7 112.0,221.7 115.7,234.4 119.3,234.4 123.0,234.4 126.7,243.6 130.4,243.6 134.1,243.6 137.8,243.6 141.5,243.6 145.2,243.6 148.9,243.6 152.6,241.5 156.3,237.6 160.0,247.6 163.7,240.9 167.4,246.7 171.1,246.7 174.8,246.7 178.5,246.7 182.2,246.7 185.9,246.7 189.6,246.7 193.3,246.7 197.0,246.7 200.7,246.7 204.3,246.7 208.0,246.7 211.7,246.7 215.4,246.7 219.1,241.5 222.8,242.4 226.5,242.4 230.2,242.4 233.9,242.4 237.6,242.4 241.3,242.4 245.0,242.4 248.7,244.8 252.4,242.7 256.1,237.5 259.8,232.7 263.5,227.0 267.2,233.0 270.9,233.0 274.6,233.0 278.3,233.0 282.0,233.0 285.7,233.0 289.3,243.3 293.0,243.3 296.7,243.3 300.4,243.3 304.1,243.3 307.8,243.3 311.5,243.3 315.2,243.3 318.9,242.8 322.6,242.7 326.3,239.5 330.0,240.7 333.7,240.9 337.4,233.4 341.1,225.2 344.8,213.7 348.5,209.6 352.2,202.5 355.9,224.5 359.6,247.2 363.3,247.2 367.0,247.2 370.7,247.2 374.3,247.2 378.0,247.2 381.7,247.2 385.4,247.2 389.1,247.2 392.8,247.2 396.5,247.2 400.2,247.2 403.9,247.2 407.6,246.3 411.3,247.5 415.0,246.5 418.7,244.8 422.4,250.3 426.1,257.0 429.8,246.9 433.5,250.2 437.2,253.9 440.9,260.7 444.6,252.4 448.3,252.8 452.0,249.0 455.7,248.2 459.3,249.6 463.0,257.4 466.7,255.4 470.4,247.9 474.1,246.3 477.8,253.2 481.5,253.2 485.2,253.2 488.9,253.2 492.6,253.2 496.3,253.2 500.0,253.2 503.7,253.2 507.4,253.2 511.1,253.2 514.8,253.2 518.5,253.2 522.2,237.6 525.9,238.3 529.6,237.5 533.3,239.6 537.0,236.8 540.7,225.2 544.3,226.5 548.0,222.3 551.7,221.0 555.4,217.2 559.1,216.0 562.8,208.0 566.5,219.5 570.2,219.5 573.9,219.5 577.6,219.5 581.3,209.7 585.0,213.6 588.7,215.5 592.4,215.8 596.1,220.6 599.8,205.9 603.5,191.8 607.2,201.8 610.9,204.5 614.6,194.2 618.3,196.2 622.0,193.0 625.7,187.7 629.3,187.7 633.0,187.7 636.7,187.7 640.4,187.7 644.1,187.7 647.8,187.7 651.5,187.7 655.2,187.7 658.9,187.7 662.6,187.7 666.3,187.7 670.0,194.6 673.7,194.6 677.4,194.6 681.1,194.6 684.8,194.6 688.5,194.6 692.2,194.6 695.9,198.6 699.6,209.5 703.3,211.6 707.0,208.0 710.7,208.0 714.3,208.0 718.0,205.4 721.7,205.4 725.4,205.4 729.1,205.4 732.8,205.4 736.5,205.4 740.2,205.4 743.9,205.4 747.6,205.6 751.3,208.4 755.0,208.5 758.7,208.5 762.4,208.5 766.1,208.5 769.8,195.0 773.5,198.5 777.2,202.7 780.9,210.9 784.6,208.8 788.3,215.9 792.0,213.0 795.7,213.0 799.3,213.0 803.0,207.8 806.7,179.0 810.4,175.8 814.1,175.6 817.8,175.6 821.5,165.4 825.2,172.1 828.9,173.1 832.6,175.2 836.3,175.2 840.0,174.8" fill="none" stroke="#a78bfa" stroke-width="1.2"/>
+<polyline points="75.0,221.7 78.7,221.7 82.4,221.7 86.1,221.7 89.8,221.7 93.5,221.7 97.2,221.7 100.9,221.7 104.6,221.7 108.3,221.7 112.0,221.7 115.7,216.6 119.3,216.6 123.0,216.6 126.7,220.8 130.4,220.8 134.1,220.8 137.8,220.8 141.5,220.8 145.2,220.8 148.9,220.8 152.6,220.0 156.3,223.6 160.0,234.8 163.7,226.6 167.4,230.4 171.1,235.8 174.8,235.8 178.5,235.8 182.2,235.8 185.9,235.8 189.6,235.8 193.3,235.8 197.0,235.8 200.7,235.8 204.3,235.8 208.0,235.8 211.7,235.8 215.4,235.8 219.1,231.9 222.8,240.2 226.5,240.2 230.2,240.2 233.9,240.2 237.6,240.2 241.3,240.2 245.0,240.2 248.7,236.6 252.4,231.9 256.1,229.9 259.8,225.2 263.5,211.0 267.2,213.8 270.9,213.8 274.6,213.8 278.3,213.8 282.0,213.8 285.7,213.8 289.3,216.7 293.0,216.7 296.7,216.7 300.4,216.7 304.1,216.7 307.8,216.7 311.5,216.7 315.2,216.7 318.9,209.9 322.6,204.2 326.3,199.1 330.0,193.8 333.7,199.0 337.4,183.0 341.1,173.9 344.8,154.1 348.5,152.0 352.2,132.3 355.9,143.7 359.6,155.0 363.3,155.0 367.0,155.0 370.7,155.0 374.3,155.0 378.0,155.0 381.7,155.0 385.4,155.0 389.1,155.0 392.8,155.0 396.5,155.0 400.2,155.0 403.9,155.0 407.6,152.8 411.3,149.7 415.0,148.3 418.7,148.4 422.4,150.2 426.1,153.9 429.8,151.3 433.5,153.8 437.2,162.9 440.9,171.2 444.6,165.3 448.3,155.8 452.0,155.4 455.7,156.6 459.3,160.4 463.0,158.7 466.7,155.0 470.4,154.0 474.1,157.6 477.8,161.8 481.5,161.8 485.2,161.8 488.9,161.8 492.6,161.8 496.3,161.8 500.0,161.8 503.7,161.8 507.4,161.8 511.1,161.8 514.8,161.8 518.5,161.8 522.2,149.6 525.9,148.4 529.6,156.4 533.3,148.3 537.0,150.8 540.7,148.0 544.3,147.7 548.0,146.2 551.7,148.2 555.4,141.4 559.1,133.0 562.8,128.8 566.5,138.0 570.2,138.0 573.9,138.0 577.6,138.0 581.3,128.5 585.0,126.4 588.7,139.2 592.4,143.3 596.1,153.3 599.8,164.8 603.5,173.2 607.2,177.7 610.9,166.0 614.6,162.2 618.3,163.2 622.0,165.3 625.7,163.2 629.3,163.2 633.0,163.2 636.7,163.2 640.4,163.2 644.1,163.2 647.8,163.2 651.5,163.2 655.2,163.2 658.9,163.2 662.6,163.2 666.3,163.2 670.0,163.3 673.7,163.3 677.4,163.3 681.1,163.3 684.8,163.3 688.5,163.3 692.2,163.3 695.9,165.9 699.6,176.7 703.3,181.3 707.0,176.5 710.7,176.5 714.3,176.5 718.0,177.4 721.7,177.4 725.4,177.4 729.1,177.4 732.8,177.4 736.5,177.4 740.2,177.4 743.9,177.4 747.6,176.4 751.3,177.2 755.0,181.9 758.7,181.9 762.4,181.9 766.1,181.9 769.8,172.7 773.5,174.3 777.2,186.6 780.9,187.2 784.6,184.5 788.3,185.9 792.0,189.6 795.7,189.6 799.3,189.6 803.0,194.5 806.7,188.8 810.4,176.7 814.1,178.7 817.8,179.2 821.5,178.4 825.2,176.2 828.9,172.7 832.6,183.2 836.3,183.2 840.0,188.1" fill="none" stroke="#c4a265" stroke-width="1.2"/>
+<polyline points="75.0,221.7 78.7,221.7 82.4,221.7 86.1,221.7 89.8,221.7 93.5,221.7 97.2,221.7 100.9,221.7 104.6,221.7 108.3,221.7 112.0,221.7 115.7,222.7 119.3,222.7 123.0,222.7 126.7,225.7 130.4,225.7 134.1,225.7 137.8,225.7 141.5,225.7 145.2,225.7 148.9,225.7 152.6,216.5 156.3,213.5 160.0,220.2 163.7,214.3 167.4,221.7 171.1,220.1 174.8,220.1 178.5,220.1 182.2,220.1 185.9,220.1 189.6,220.1 193.3,220.1 197.0,220.1 200.7,220.1 204.3,220.1 208.0,220.1 211.7,220.1 215.4,220.1 219.1,218.8 222.8,224.9 226.5,224.9 230.2,224.9 233.9,224.9 237.6,224.9 241.3,224.9 245.0,224.9 248.7,218.6 252.4,212.0 256.1,200.6 259.8,195.2 263.5,185.2 267.2,189.1 270.9,189.1 274.6,189.1 278.3,189.1 282.0,189.1 285.7,189.1 289.3,188.1 293.0,188.1 296.7,188.1 300.4,188.1 304.1,188.1 307.8,188.1 311.5,188.1 315.2,188.1 318.9,187.0 322.6,177.4 326.3,179.8 330.0,165.5 333.7,175.3 337.4,161.5 341.1,153.2 344.8,142.4 348.5,128.0 352.2,115.0 355.9,134.1 359.6,146.9 363.3,146.9 367.0,146.9 370.7,146.9 374.3,146.9 378.0,146.9 381.7,146.9 385.4,146.9 389.1,146.9 392.8,146.9 396.5,146.9 400.2,146.9 403.9,146.9 407.6,145.9 411.3,152.1 415.0,141.5 418.7,142.7 422.4,143.9 426.1,148.6 429.8,148.5 433.5,147.8 437.2,153.1 440.9,156.1 444.6,153.4 448.3,163.5 452.0,161.7 455.7,163.5 459.3,168.5 463.0,166.7 466.7,168.8 470.4,175.0 474.1,176.4 477.8,175.8 481.5,175.8 485.2,175.8 488.9,175.8 492.6,175.8 496.3,175.8 500.0,175.8 503.7,175.8 507.4,175.8 511.1,175.8 514.8,175.8 518.5,175.8 522.2,170.0 525.9,171.4 529.6,174.2 533.3,172.7 537.0,176.3 540.7,170.9 544.3,165.0 548.0,164.5 551.7,167.9 555.4,168.9 559.1,170.3 562.8,172.0 566.5,181.6 570.2,181.6 573.9,181.6 577.6,181.6 581.3,178.6 585.0,180.2 588.7,187.7 592.4,189.2 596.1,194.7 599.8,194.7 603.5,202.6 607.2,199.0 610.9,199.3 614.6,200.6 618.3,198.0 622.0,191.0 625.7,181.3 629.3,181.3 633.0,181.3 636.7,181.3 640.4,181.3 644.1,181.3 647.8,181.3 651.5,181.3 655.2,181.3 658.9,181.3 662.6,181.3 666.3,181.3 670.0,176.3 673.7,176.3 677.4,176.3 681.1,176.3 684.8,176.3 688.5,176.3 692.2,176.3 695.9,176.4 699.6,187.1 703.3,194.2 707.0,190.1 710.7,190.1 714.3,190.1 718.0,190.2 721.7,190.2 725.4,190.2 729.1,190.2 732.8,190.2 736.5,190.2 740.2,190.2 743.9,190.2 747.6,190.8 751.3,192.9 755.0,199.1 758.7,199.1 762.4,199.1 766.1,199.1 769.8,190.3 773.5,189.5 777.2,190.9 780.9,189.2 784.6,187.1 788.3,187.1 792.0,185.6 795.7,185.6 799.3,185.6 803.0,182.7 806.7,160.0 810.4,161.2 814.1,163.9 817.8,168.2 821.5,163.5 825.2,154.8 828.9,151.4 832.6,157.2 836.3,157.2 840.0,148.3" fill="none" stroke="#60a5fa" stroke-width="1.2"/>
+<polyline points="75.0,213.9 78.7,210.4 82.4,199.4 86.1,196.3 89.8,192.8 93.5,183.3 97.2,171.9 100.9,191.1 104.6,186.9 108.3,180.8 112.0,176.1 115.7,174.9 119.3,182.5 123.0,180.8 126.7,179.5 130.4,185.5 134.1,192.5 137.8,197.9 141.5,190.1 145.2,189.3 148.9,188.5 152.6,178.8 156.3,183.9 160.0,184.1 163.7,185.3 167.4,181.7 171.1,182.1 174.8,182.7 178.5,187.0 182.2,186.0 185.9,187.7 189.6,190.6 193.3,197.4 197.0,194.4 200.7,199.0 204.3,204.0 208.0,200.6 211.7,196.0 215.4,200.9 219.1,196.2 222.8,196.1 226.5,200.7 230.2,204.4 233.9,208.3 237.6,205.6 241.3,206.8 245.0,210.4 248.7,199.0 252.4,194.6 256.1,195.0 259.8,199.8 263.5,201.1 267.2,196.7 270.9,208.4 274.6,208.7 278.3,205.0 282.0,202.2 285.7,203.2 289.3,201.3 293.0,204.5 296.7,208.4 300.4,209.1 304.1,210.2 307.8,209.8 311.5,209.8 315.2,209.6 318.9,203.9 322.6,204.3 326.3,201.0 330.0,199.4 333.7,191.6 337.4,175.7 341.1,177.7 344.8,174.9 348.5,166.3 352.2,155.3 355.9,154.0 359.6,159.4 363.3,170.4 367.0,179.1 370.7,182.5 374.3,175.7 378.0,175.1 381.7,172.0 385.4,188.3 389.1,189.9 392.8,182.2 396.5,183.5 400.2,183.2 403.9,183.6 407.6,182.5 411.3,179.9 415.0,181.4 418.7,179.7 422.4,175.6 426.1,180.2 429.8,178.6 433.5,177.3 437.2,177.2 440.9,177.6 444.6,176.5 448.3,173.2 452.0,171.8 455.7,170.3 459.3,170.0 463.0,167.0 466.7,167.0 470.4,166.6 474.1,162.5 477.8,166.7 481.5,168.9 485.2,171.5 488.9,170.6 492.6,176.2 496.3,176.0 500.0,179.7 503.7,177.6 507.4,183.6 511.1,183.2 514.8,186.8 518.5,182.5 522.2,173.1 525.9,169.4 529.6,168.7 533.3,173.9 537.0,170.2 540.7,170.0 544.3,170.7 548.0,170.4 551.7,169.1 555.4,170.2 559.1,165.5 562.8,167.1 566.5,168.2 570.2,172.8 573.9,168.7 577.6,169.5 581.3,164.4 585.0,156.1 588.7,154.3 592.4,157.7 596.1,156.1 599.8,152.3 603.5,148.9 607.2,147.0 610.9,147.2 614.6,151.0 618.3,150.0 622.0,147.3 625.7,148.7 629.3,154.4 633.0,154.5 636.7,153.6 640.4,153.0 644.1,154.1 647.8,152.5 651.5,158.0 655.2,157.8 658.9,163.4 662.6,166.9 666.3,165.6 670.0,159.2 673.7,164.3 677.4,165.8 681.1,170.6 684.8,176.2 688.5,169.7 692.2,169.4 695.9,164.5 699.6,165.9 703.3,166.3 707.0,166.6 710.7,170.7 714.3,169.9 718.0,166.9 721.7,171.3 725.4,172.7 729.1,175.0 732.8,176.4 736.5,177.7 740.2,182.2 743.9,176.1 747.6,175.6 751.3,174.3 755.0,174.8 758.7,177.1 762.4,177.5 766.1,180.0 769.8,166.8 773.5,169.0 777.2,168.6 780.9,168.3 784.6,170.4 788.3,169.1 792.0,169.1 795.7,171.2 799.3,170.0 803.0,168.3 806.7,165.8 810.4,159.0 814.1,156.9 817.8,156.9 821.5,158.6 825.2,157.0 828.9,155.9 832.6,155.8 836.3,159.8 840.0,154.4" fill="none" stroke="#5a5a68" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polyline points="75.0,221.7 78.7,221.7 82.4,221.7 86.1,221.7 89.8,221.7 93.5,221.7 97.2,221.7 100.9,221.7 104.6,221.7 108.3,221.7 112.0,221.7 115.7,222.9 119.3,222.9 123.0,222.9 126.7,228.9 130.4,228.9 134.1,228.9 137.8,228.9 141.5,228.9 145.2,228.9 148.9,228.9 152.6,227.1 156.3,229.6 160.0,234.7 163.7,225.5 167.4,229.6 171.1,233.5 174.8,233.5 178.5,233.5 182.2,233.5 185.9,233.5 189.6,233.5 193.3,233.5 197.0,233.5 200.7,233.5 204.3,233.5 208.0,233.5 211.7,233.5 215.4,233.5 219.1,230.8 222.8,244.3 226.5,244.3 230.2,244.3 233.9,244.3 237.6,244.3 241.3,244.3 245.0,244.3 248.7,241.3 252.4,227.4 256.1,222.2 259.8,221.9 263.5,215.2 267.2,216.7 270.9,216.7 274.6,216.7 278.3,216.7 282.0,216.7 285.7,216.7 289.3,220.4 293.0,220.4 296.7,220.4 300.4,220.4 304.1,220.4 307.8,220.4 311.5,220.4 315.2,220.4 318.9,214.6 322.6,203.0 326.3,207.9 330.0,206.8 333.7,212.8 337.4,201.7 341.1,192.6 344.8,175.8 348.5,165.2 352.2,147.0 355.9,165.8 359.6,184.6 363.3,184.6 367.0,184.6 370.7,184.6 374.3,184.6 378.0,184.6 381.7,184.6 385.4,184.6 389.1,184.6 392.8,184.6 396.5,184.6 400.2,184.6 403.9,184.6 407.6,182.9 411.3,184.4 415.0,181.7 418.7,186.6 422.4,193.2 426.1,196.2 429.8,193.5 433.5,196.8 437.2,204.2 440.9,211.6 444.6,208.4 448.3,213.4 452.0,214.6 455.7,216.0 459.3,217.4 463.0,219.1 466.7,220.9 470.4,216.4 474.1,225.5 477.8,228.4 481.5,228.4 485.2,228.4 488.9,228.4 492.6,228.4 496.3,228.4 500.0,228.4 503.7,228.4 507.4,228.4 511.1,228.4 514.8,228.4 518.5,228.4 522.2,216.5 525.9,215.8 529.6,219.0 533.3,226.8 537.0,222.0 540.7,220.4 544.3,220.9 548.0,215.1 551.7,221.8 555.4,219.8 559.1,224.1 562.8,219.8 566.5,230.4 570.2,230.4 573.9,230.4 577.6,230.4 581.3,227.3 585.0,228.9 588.7,235.7 592.4,238.1 596.1,239.3 599.8,232.2 603.5,229.5 607.2,233.8 610.9,234.5 614.6,223.5 618.3,217.9 622.0,211.5 625.7,201.5 629.3,201.5 633.0,201.5 636.7,201.5 640.4,201.5 644.1,201.5 647.8,201.5 651.5,201.5 655.2,201.5 658.9,201.5 662.6,201.5 666.3,201.5 670.0,196.3 673.7,196.3 677.4,196.3 681.1,196.3 684.8,196.3 688.5,196.3 692.2,196.3 695.9,200.5 699.6,209.0 703.3,212.5 707.0,217.0 710.7,217.0 714.3,217.0 718.0,217.2 721.7,217.2 725.4,217.2 729.1,217.2 732.8,217.2 736.5,217.2 740.2,217.2 743.9,217.2 747.6,222.3 751.3,229.1 755.0,233.7 758.7,233.7 762.4,233.7 766.1,233.7 769.8,226.9 773.5,220.8 777.2,224.8 780.9,227.3 784.6,226.9 788.3,229.7 792.0,239.3 795.7,239.3 799.3,239.3 803.0,242.5 806.7,229.1 810.4,229.6 814.1,227.4 817.8,226.0 821.5,233.6 825.2,235.2 828.9,234.2 832.6,234.2 836.3,234.2 840.0,230.4" fill="none" stroke="#f87171" stroke-width="2"/>
+<polyline points="75.0,221.7 78.7,221.7 82.4,221.7 86.1,221.7 89.8,221.7 93.5,221.7 97.2,221.7 100.9,221.7 104.6,221.7 108.3,221.7 112.0,221.7 115.7,222.2 119.3,222.2 123.0,222.2 126.7,219.1 130.4,219.1 134.1,219.1 137.8,219.1 141.5,219.1 145.2,219.1 148.9,219.1 152.6,219.8 156.3,225.7 160.0,234.4 163.7,227.1 167.4,231.8 171.1,232.3 174.8,232.3 178.5,232.3 182.2,232.3 185.9,232.3 189.6,232.3 193.3,232.3 197.0,232.3 200.7,232.3 204.3,232.3 208.0,232.3 211.7,232.3 215.4,232.3 219.1,229.8 222.8,236.5 226.5,236.5 230.2,236.5 233.9,236.5 237.6,236.5 241.3,236.5 245.0,236.5 248.7,231.8 252.4,223.7 256.1,219.3 259.8,220.8 263.5,207.0 267.2,211.7 270.9,211.7 274.6,211.7 278.3,211.7 282.0,211.7 285.7,211.7 289.3,213.1 293.0,213.1 296.7,213.1 300.4,213.1 304.1,213.1 307.8,213.1 311.5,213.1 315.2,213.1 318.9,208.6 322.6,202.2 326.3,200.7 330.0,200.8 333.7,203.2 337.4,189.2 341.1,175.3 344.8,158.6 348.5,142.3 352.2,106.9 355.9,121.1 359.6,131.1 363.3,131.1 367.0,131.1 370.7,131.1 374.3,131.1 378.0,131.1 381.7,131.1 385.4,131.1 389.1,131.1 392.8,131.1 396.5,131.1 400.2,131.1 403.9,131.1 407.6,121.8 411.3,119.2 415.0,111.9 418.7,110.0 422.4,115.3 426.1,117.7 429.8,113.7 433.5,117.7 437.2,127.7 440.9,129.4 444.6,125.2 448.3,127.7 452.0,128.5 455.7,121.8 459.3,116.5 463.0,120.1 466.7,122.9 470.4,129.1 474.1,131.5 477.8,123.5 481.5,123.5 485.2,123.5 488.9,123.5 492.6,123.5 496.3,123.5 500.0,123.5 503.7,123.5 507.4,123.5 511.1,123.5 514.8,123.5 518.5,123.5 522.2,115.2 525.9,119.7 529.6,116.3 533.3,111.9 537.0,99.1 540.7,91.4 544.3,93.0 548.0,95.9 551.7,104.4 555.4,94.8 559.1,93.6 562.8,93.2 566.5,98.0 570.2,98.0 573.9,98.0 577.6,98.0 581.3,89.9 585.0,94.1 588.7,96.5 592.4,99.6 596.1,102.5 599.8,102.4 603.5,108.6 607.2,101.7 610.9,101.5 614.6,104.6 618.3,104.2 622.0,101.9 625.7,105.9 629.3,105.9 633.0,105.9 636.7,105.9 640.4,105.9 644.1,105.9 647.8,105.9 651.5,105.9 655.2,105.9 658.9,105.9 662.6,105.9 666.3,105.9 670.0,102.6 673.7,102.6 677.4,102.6 681.1,102.6 684.8,102.6 688.5,102.6 692.2,102.6 695.9,99.4 699.6,102.9 703.3,110.7 707.0,108.4 710.7,108.4 714.3,108.4 718.0,109.6 721.7,109.6 725.4,109.6 729.1,109.6 732.8,109.6 736.5,109.6 740.2,109.6 743.9,109.6 747.6,112.1 751.3,116.7 755.0,123.5 758.7,123.5 762.4,123.5 766.1,123.5 769.8,99.2 773.5,98.1 777.2,99.4 780.9,97.6 784.6,87.6 788.3,86.4 792.0,83.4 795.7,83.4 799.3,83.4 803.0,83.1 806.7,71.4 810.4,68.5 814.1,68.0 817.8,69.2 821.5,65.3 825.2,50.6 828.9,48.5 832.6,45.4 836.3,45.4 840.0,50.7" fill="none" stroke="#4ade80" stroke-width="2"/>
+
+<text x="838" y="53.7" fill="#4ade80" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">Q1 ¥1.19M</text>
+<text x="838" y="151.3" fill="#60a5fa" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">Q2 ¥289K</text>
+<text x="838" y="157.4" fill="#5a5a68" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">CSI 300 ¥264K</text>
+<text x="838" y="177.8" fill="#a78bfa" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">Q5 ¥197K</text>
+<text x="838" y="191.1" fill="#c4a265" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">Q3 ¥163K</text>
+<text x="838" y="233.4" fill="#f87171" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">Q4 ¥88K</text>
+
+</svg>
+</div>
+<p style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:-10px">21m-1 momentum · top 7 stocks · MA150 regime · equal weight · ¥100K starting capital · 2009–2026</p>
+
+<div class="grid5">
+  <div class="stat"><div class="v q1c">+15.3%</div><div class="l">Q1 Micro CAGR</div></div>
+  <div class="stat"><div class="v q2c">+6.3%</div><div class="l">Q2 Small CAGR</div></div>
+  <div class="stat"><div class="v" style="color:var(--accent)">+2.8%</div><div class="l">Q3 Mid CAGR</div></div>
+  <div class="stat"><div class="v q4c">−0.7%</div><div class="l">Q4 Large CAGR</div></div>
+  <div class="stat"><div class="v q5c">+4.0%</div><div class="l">Q5 Mega CAGR</div></div>
+</div>
+
+<div class="divider"></div>
+
+<h2>II. Full Results by Quintile</h2>
+<h3>21m-1 · top 7 · MA150 · 2009&ndash;2026</h3>
+
+<div class="chart-wrap">
+<svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+<rect width="860" height="220" fill="#0c0c10" rx="8"/>
+<text x="60" y="16" fill="#5a5a68" font-size="9" font-family="JetBrains Mono,monospace">SHARPE RATIO BY MARKET CAP QUINTILE (21m-1, MA150, 2009–2026)</text>
+<line x1="60" y1="135.0" x2="840" y2="135.0" stroke="#2a2a35" stroke-width="1"/>
+<text x="56" y="138.0" fill="#5a5a68" font-size="8" text-anchor="end" font-family="JetBrains Mono,monospace">0</text>
+<rect x="91.2" y="54.5" width="93.6" height="80.5" fill="#4ade80" opacity="0.8" rx="2"/>
+<text x="138.0" y="50.5" fill="#4ade80" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">0.46</text>
+<text x="138.0" y="184.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Q1 Micro</text>
+<text x="138.0" y="196.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">¥17亿</text>
+<rect x="247.2" y="103.5" width="93.6" height="31.5" fill="#60a5fa" opacity="0.8" rx="2"/>
+<text x="294.0" y="99.5" fill="#60a5fa" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">0.18</text>
+<text x="294.0" y="184.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Q2 Small</text>
+<text x="294.0" y="196.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">¥30亿</text>
+<rect x="403.2" y="129.8" width="93.6" height="5.2" fill="#c4a265" opacity="0.8" rx="2"/>
+<text x="450.0" y="125.8" fill="#c4a265" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">0.03</text>
+<text x="450.0" y="184.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Q3 Mid</text>
+<text x="450.0" y="196.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">¥48亿</text>
+<rect x="559.2" y="135.0" width="93.6" height="19.2" fill="#f87171" opacity="0.8" rx="2"/>
+<text x="606.0" y="164.2" fill="#f87171" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">-0.11</text>
+<text x="606.0" y="184.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Q4 Large</text>
+<text x="606.0" y="196.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">¥86亿</text>
+<rect x="715.2" y="122.8" width="93.6" height="12.3" fill="#a78bfa" opacity="0.8" rx="2"/>
+<text x="762.0" y="118.8" fill="#a78bfa" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">0.07</text>
+<text x="762.0" y="184.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Q5 Mega</text>
+<text x="762.0" y="196.0" fill="#9898a4" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">¥549亿</text>
+</svg>
+</div>
+
+<table>
+<thead>
+<tr><th>Quintile</th><th>Avg Mcap</th><th>CAGR</th><th>Alpha</th><th>Sharpe</th><th>Sortino</th><th>Max DD</th><th>¥100K &rarr;</th></tr>
+</thead>
+<tbody>
+<tr class="best"><td><strong class="q1c">Q1 Micro ★</strong></td><td class="dim">¥17亿</td><td class="pos"><strong>+15.3%</strong></td><td class="pos"><strong>+9.6%</strong></td><td class="pos"><strong>0.46</strong></td><td class="pos"><strong>0.97</strong></td><td class="neg">−39%</td><td class="pos">¥1,185K</td></tr>
+<tr><td class="q2c">Q2 Small</td><td class="dim">¥30亿</td><td class="pos">+6.3%</td><td class="dim">+0.5%</td><td class="dim">0.18</td><td class="dim">0.25</td><td class="neg">−72%</td><td class="dim">¥289K</td></tr>
+<tr><td style="color:var(--accent)">Q3 Mid</td><td class="dim">¥48亿</td><td class="dim">+2.8%</td><td class="neg">−2.9%</td><td class="dim">0.03</td><td class="dim">0.05</td><td class="neg">−63%</td><td class="dim">¥163K</td></tr>
+<tr class="worst"><td><strong class="q4c">Q4 Large</strong></td><td class="dim">¥86亿</td><td class="neg"><strong>−0.7%</strong></td><td class="neg"><strong>−6.5%</strong></td><td class="neg"><strong>−0.11</strong></td><td class="neg"><strong>−0.16</strong></td><td class="neg">−75%</td><td class="neg">¥88K</td></tr>
+<tr><td class="q5c">Q5 Mega</td><td class="dim">¥549亿</td><td class="dim">+4.0%</td><td class="neg">−1.8%</td><td class="dim">0.07</td><td class="dim">0.09</td><td class="neg">−57%</td><td class="dim">¥197K</td></tr>
+<tr style="border-top:1px solid #2a2a35"><td style="color:var(--muted)">CSI 300</td><td>—</td><td class="dim">+5.8%</td><td>—</td><td>—</td><td>—</td><td class="neg">−47%</td><td class="dim">¥264K</td></tr>
+</tbody>
+</table>
+
+<div class="callout-green">
+<p><strong>Q1 micro compounds ¥100K into ¥1.19M.</strong> Q4 large caps turn ¥100K into ¥88K — a loss after 17 years. The monotonic relationship between market cap and momentum returns is one of the cleanest signals in this entire dataset.</p>
+</div>
+
+<div class="divider"></div>
+
+<h2>III. The US Comparison</h2>
+
+<p>This is the exact inversion of how momentum behaves in the United States.</p>
+
+<table>
+<thead>
+<tr><th>Market</th><th>Small caps</th><th>Large caps</th><th>Best config</th><th>Mechanism</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>US</strong></td><td class="neg">Noise.<br><span style="font-size:.6rem">&lt;$1B: +15.2% CAGR, Sharpe 0.54, DD −45%</span></td><td class="pos">Best signal.<br><span style="font-size:.6rem">6-0 &gt;$10B top10 MA200: <strong>+20.4%, Sharpe 0.83</strong></span></td><td class="dim">6-0 &gt;$10B top10<br>MA200 + EBIT&gt;0</td><td class="dim">Institutional flows,<br>earnings surprise</td></tr>
+<tr><td><strong>China</strong></td><td class="pos">Best signal.<br><span style="font-size:.6rem">Q1 micro 21m-1 MA150: <strong>+15.3%, Sharpe 0.46</strong></span></td><td class="neg">Destroys value.<br><span style="font-size:.6rem">Q4 large: −0.7% CAGR, Sharpe −0.11</span></td><td class="dim">21m-1 Q1 micro<br>MA150</td><td class="dim">Retail neglect,<br>delayed price discovery</td></tr>
+</tbody>
+</table>
+<p style="font-size:.75rem;color:var(--muted);margin-top:6px">US: 254 months Jan 2005–Mar 2026, S&amp;P 500 TR benchmark, EBIT&gt;0 filter. China: 208 months Jan 2009–May 2026, CSI 300 benchmark, no fundamental filter. Both use MA regime filter.</p>
+
+<p>In the US, small-cap momentum is polluted by speculative stocks that spike temporarily with no fundamental basis. Filtering to large caps eliminates the noise and leaves only stocks where genuine institutional flows drive sustained trends.</p>
+<p>China runs the opposite logic in every dimension.</p>
+
+<div class="divider"></div>
+
+<h2>IV. Why Large Caps Fail in China</h2>
+
+<h3>State-owned enterprises dominate the top quintile</h3>
+<p>Q5 mega-caps (average ¥549亿, ~$7.5B USD) are dominated by state-owned enterprises: the four largest banks, PetroChina, CNOOC, China Telecom, SAIC Motor. These companies do not respond to momentum signals. Their share prices move on <strong>policy announcements, government capital injections, and regulatory decisions</strong> — not earnings momentum or competitive dynamics. Buying them when they've been going up is not momentum investing; it is betting on continued policy support.</p>
+
+<h3>Q4 large caps are the worst of both worlds</h3>
+<p>Q4 (average ¥86亿, ~$1.2B USD) is neither large enough to benefit from institutional flows nor small enough to exhibit the retail-neglect dynamic that drives micro-cap momentum. These stocks underperform the CSI 300 by −6.5% per year when selected by 21-month momentum. They are the <strong>most dangerous quintile</strong> in this study.</p>
+
+<h3>Analyst coverage drops dramatically below ¥50亿</h3>
+<p>The bottom two quintiles (Q1 and Q2, below ~¥30亿) have near-zero institutional analyst coverage. When a company in this range improves its fundamentals — revenue growth, margin expansion, contract wins — the price adjustment is <strong>slow and persistent</strong>. The momentum signal at 21 months captures this delayed repricing. By the time the stock reaches Q3 or above, institutional analysts have covered it, the fast money has traded it, and the momentum signal is gone.</p>
+
+<div class="callout">
+<p><strong>China momentum is structural neglect, not institutional flows.</strong> The alpha comes from buying unloved small companies where price discovery is slow. As soon as a company gets big enough to attract analyst coverage and institutional attention, the edge disappears.</p>
+</div>
+
+<div class="divider"></div>
+
+<h2>V. The Practical Catch</h2>
+
+<p>Q1 micro (average ¥17亿, ~$235M USD) sits below the formal Stock Connect eligibility threshold, which requires approximately ¥60亿 market cap for Shanghai-listed stocks. This means most of these stocks are <strong>not accessible via IBKR's standard Stock Connect interface</strong>.</p>
+
+<p>However, platforms with broader A-share access — Moomoo, Futu — can execute in this size range. We verified this for the current 21m-1 portfolio: all 10 top-ranked micro-cap stocks as of May 2026 are Shanghai-listed (SSE 6xxxxx series) and accessible through Moomoo with standard commissions.</p>
+
+<p>Transaction costs in micro caps are meaningful. Spread + commission on ¥17亿 stocks averages ~0.3–0.5% per side. At monthly rebalancing with typical 30–40% turnover, this costs ~2–3% per year — reducing the +15.3% gross CAGR to approximately +12–13% net. Still well above the CSI 300.</p>
+
+<div class="divider"></div>
+
+<h2>VI. Key Findings</h2>
+
+<h3>1 · The relationship is monotonic</h3>
+<p>Sharpe falls from 0.46 (Q1) to −0.11 (Q4), then recovers slightly to 0.07 (Q5 mega). This is not noise — the pattern is consistent across the full 17-year test period and across different lookback windows. Larger is worse, except at the very top where policy effects provide a floor.</p>
+
+<h3>2 · Large caps actively destroy value</h3>
+<p>Q4 loses −6.5% per year versus the CSI 300. Applying the standard US filter of "large caps only" would eliminate all alpha in the China dataset and replace it with significant underperformance. This is the single most important difference from US momentum research.</p>
+
+<h3>3 · Q1 micro has the best risk-adjusted return in this study</h3>
+<p>Sharpe 0.46, Sortino 0.97, Max DD −39%. The drawdown is dramatically lower than any other quintile — Q2 through Q4 all draw down 62–75%. This is counter-intuitive: the smallest, least-liquid stocks have the <em>lowest</em> drawdown when selected by momentum. The regime filter (go to cash when CSI 300 is below MA150) protects the portfolio during the market crashes that devastate the larger quintiles.</p>
+
+<h3>4 · Q5 mega partially works — for a different reason</h3>
+<p>Q5 (¥549亿 average) slightly outperforms Q4 at +4.0% CAGR. This is likely not momentum but policy mean-reversion: when large SOEs have been going up for 21 months, it sometimes reflects genuine policy tailwinds that persist. But at Sharpe 0.07, it is barely distinguishable from the benchmark.</p>
+
+<div class="divider"></div>
+
+<div class="meta-box">
+<dt>Universe</dt><dd>5,444 A-shares, Shanghai and Shenzhen. Excluding ST stocks. Stocks with market cap data only (~4,800 per month).</dd>
+<dt>Quintile Definition</dt><dd>Bottom 20% (Q1) to top 20% (Q5) by market cap among eligible stocks each month. Quintiles are dynamic — a stock can move between quintiles as its market cap changes.</dd>
+<dt>Signal</dt><dd>21-month momentum, skip 1 month (return from month −22 to month −1). Top 7 stocks per quintile, equal weight.</dd>
+<dt>Regime</dt><dd>CSI 300 MA150. Cash when below. Minimum 5 stocks required to invest.</dd>
+<dt>Period</dt><dd>January 2009 – May 2026 (208 months)</dd>
+<dt>Costs</dt><dd>Gross returns. No transaction costs or slippage included. Net returns in micro caps will be ~2–3% lower.</dd>
+<dt>Part of series</dt><dd><a href="/research/china_momentum_lookbacks.html" style="color:var(--accent)">Part 1: China Momentum — The Lookback Problem &rarr;</a></dd>
+</div>
+
+<div class="footer">
+<p>Bivar Capital &mdash; Quantitative Research &mdash; June 2026</p>
+<p style="margin-top:4px">Past performance is not indicative of future results. This is research, not investment advice.</p>
+</div>
+</div>
+</body>
+</html>

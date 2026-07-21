@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:72px; display:flex; flex-direction:column; justify-content:space-between; }
+.label { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c4a265; margin-bottom:24px; }
+h1 { font-family:'DM Serif Display',serif; font-size:44px; font-weight:400; line-height:1.15; color:#e8e8ec; }
+h1 em { font-style:italic; color:#f87171; }
+.sub { font-family:'DM Sans',sans-serif; font-size:16px; color:#9898a4; line-height:1.6; margin-top:12px; }
+
+.comparison { display:flex; gap:24px; align-items:stretch; }
+.box { flex:1; border-radius:12px; padding:32px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.box-book { background:#0c0c10; border:2px solid rgba(248,113,113,0.3); }
+.box-reality { background:#0c0c10; border:2px solid rgba(196,162,101,0.3); }
+.box-label { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#5a5a68; margin-bottom:16px; }
+.box-val { font-family:'JetBrains Mono',monospace; font-size:72px; font-weight:700; line-height:1; }
+.box-unit { font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:700; }
+.box-sub { font-family:'DM Sans',sans-serif; font-size:14px; color:#5a5a68; margin-top:12px; line-height:1.5; }
+.red { color:#f87171; }
+.gold { color:#c4a265; }
+.arrow { display:flex; align-items:center; justify-content:center; font-size:40px; color:#5a5a68; }
+
+.context { background:#0c0c10; border:1px solid #1a1a22; border-radius:10px; padding:20px 28px; }
+.context-text { font-family:'DM Sans',sans-serif; font-size:15px; color:#9898a4; line-height:1.6; }
+.context-text strong { color:#e8e8ec; }
+
+.footer-bar { display:flex; justify-content:space-between; align-items:center; }
+.note { font-family:'DM Sans',sans-serif; font-size:13px; color:#5a5a68; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+</style></head><body>
+<div class="frame">
+  <div>
+    <div class="label">Myth Busting</div>
+    <h1>O'Shaughnessy promised <em>21% CAGR.</em><br>We tested it.</h1>
+    <div class="sub">Value Composite strategies, real quarterly fundamentals, 2005-2026.</div>
+  </div>
+
+  <div class="comparison">
+    <div class="box box-book">
+      <div class="box-label">What the book claims</div>
+      <div class="box-val red">21<span class="box-unit red">%</span></div>
+      <div class="box-sub">CAGR<br>"What Works on Wall Street"</div>
+    </div>
+    <div class="arrow">&rarr;</div>
+    <div class="box box-reality">
+      <div class="box-label">What we actually found</div>
+      <div class="box-val gold">5-12<span class="box-unit gold">%</span></div>
+      <div class="box-sub">CAGR<br>With quarterly TTM data</div>
+    </div>
+  </div>
+
+  <div class="context">
+    <div class="context-text"><strong>Why the gap?</strong> The book used point-in-time annual data (Compustat). Real quarterly TTM fundamentals, survivorship-bias-free data, and proper transaction costs paint a very different picture. Alpha exists, but it's a fraction of what was claimed.</div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="note">3 composites tested &middot; Annual & monthly rebalance</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+</div>
+</body></html>

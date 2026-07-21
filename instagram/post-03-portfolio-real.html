@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:72px; display:flex; flex-direction:column; justify-content:space-between; }
+.label { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c4a265; margin-bottom:24px; }
+h1 { font-family:'DM Serif Display',serif; font-size:44px; font-weight:400; line-height:1.15; color:#e8e8ec; margin-bottom:8px; }
+h1 em { font-style:italic; color:#4ade80; }
+.sub { font-family:'DM Sans',sans-serif; font-size:15px; color:#9898a4; }
+
+.top-holdings { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.holding { display:flex; align-items:center; justify-content:space-between; background:#0c0c10; border:1px solid #1a1a22; border-radius:8px; padding:14px 18px; }
+.holding-left { display:flex; align-items:center; gap:12px; }
+.ticker { font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; color:#e8e8ec; }
+.weight { font-family:'JetBrains Mono',monospace; font-size:12px; color:#5a5a68; }
+.holding-val { font-family:'JetBrains Mono',monospace; font-size:13px; color:#9898a4; text-align:right; }
+
+.returns-row { display:flex; gap:16px; }
+.return-card { flex:1; background:#0c0c10; border:1px solid #1a1a22; border-radius:10px; padding:20px; text-align:center; }
+.return-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#5a5a68; margin-bottom:6px; }
+.return-val { font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:700; }
+.return-sub { font-family:'JetBrains Mono',monospace; font-size:11px; color:#5a5a68; margin-top:4px; }
+.green { color:#4ade80; }
+.muted { color:#9898a4; }
+
+.footer-bar { display:flex; justify-content:space-between; align-items:center; }
+.note { font-family:'DM Sans',sans-serif; font-size:13px; color:#5a5a68; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+</style></head><body>
+<div class="frame">
+  <div>
+    <div class="label">Live Portfolio &middot; $1.01M</div>
+    <h1>24 positions. <em>+7.6% YTD.</em></h1>
+    <div class="sub">Real capital, updated daily. Every position public.</div>
+  </div>
+
+  <div class="top-holdings">
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">BRK-B</span><span class="weight">14.6%</span></div>
+      <div class="holding-val">$148K</div>
+    </div>
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">JD</span><span class="weight">14.4%</span></div>
+      <div class="holding-val">$146K</div>
+    </div>
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">META</span><span class="weight">9.0%</span></div>
+      <div class="holding-val">$92K</div>
+    </div>
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">AMZN</span><span class="weight">7.5%</span></div>
+      <div class="holding-val">$76K</div>
+    </div>
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">MSFT</span><span class="weight">6.5%</span></div>
+      <div class="holding-val">$66K</div>
+    </div>
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">CLNX</span><span class="weight">6.3%</span></div>
+      <div class="holding-val">$63K</div>
+    </div>
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">PRX</span><span class="weight">4.7%</span></div>
+      <div class="holding-val">$47K</div>
+    </div>
+    <div class="holding">
+      <div class="holding-left"><span class="ticker">SE</span><span class="weight">4.1%</span></div>
+      <div class="holding-val">$41K</div>
+    </div>
+  </div>
+
+  <div class="returns-row">
+    <div class="return-card">
+      <div class="return-label">2025 Return</div>
+      <div class="return-val green">+46.1%</div>
+      <div class="return-sub">vs S&P +17.9%</div>
+    </div>
+    <div class="return-card">
+      <div class="return-label">2026 YTD</div>
+      <div class="return-val green">+7.6%</div>
+      <div class="return-sub">vs S&P +4.1%</div>
+    </div>
+    <div class="return-card">
+      <div class="return-label">Portfolio Value</div>
+      <div class="return-val muted">$1.01M</div>
+      <div class="return-sub">24 positions</div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="note">Updated Apr 19, 2026 &middot; bivarcapital.com</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+</div>
+</body></html>

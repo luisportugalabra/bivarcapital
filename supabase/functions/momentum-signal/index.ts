@@ -47,14 +47,16 @@ serve(async (req) => {
       .eq("id", 1)
       .single();
 
-    const currentMonth = new Date().toISOString().slice(0, 7); // "2026-04"
+    // Daily idempotency during testing, switch to monthly later
+    const currentPeriod = new Date().toISOString().slice(0, 10); // "2026-04-23" (daily)
+    // const currentPeriod = new Date().toISOString().slice(0, 7); // "2026-04" (monthly — uncomment for production)
     const prevMonth = prevRow?.month || null;
-    const alreadySent = prevMonth === currentMonth;
+    const alreadySent = prevMonth === currentPeriod;
 
     // Save state
     await sb.from("momentum_signal_state").upsert({
       id: 1,
-      month: currentMonth,
+      month: currentPeriod,
       date,
       regime,
       portfolio: JSON.stringify(portfolio.map((s: any) => s.ticker)),

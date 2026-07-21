@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:56px; display:flex; flex-direction:column; justify-content:space-between; }
+
+h1 { font-family:'DM Serif Display',serif; font-size:62px; font-weight:400; line-height:1.06; color:#e8e8ec; text-align:center; }
+h1 .red { color:#f87171; }
+
+/* 3 mini charts of stocks crashing */
+.charts { display:flex; gap:14px; }
+.chart-card { flex:1; background:#0c0c10; border:1px solid #1a1a22; border-radius:12px; padding:20px 16px 16px; position:relative; }
+.chart-header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+.chart-ticker { font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:700; color:#e8e8ec; }
+.chart-change { font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; }
+.chart-name { font-family:'DM Sans',sans-serif; font-size:11px; color:#5a5a68; margin-bottom:10px; }
+.chart-svg { width:100%; }
+.chart-question { font-family:'DM Serif Display',serif; font-style:italic; font-size:17px; color:#f87171; text-align:center; margin-top:12px; opacity:0.9; }
+
+/* Big question in the middle */
+.big-question { text-align:center; }
+.bq-text { font-family:'DM Serif Display',serif; font-size:42px; font-style:italic; color:#f87171; opacity:0.7; }
+.bq-sub { font-family:'DM Sans',sans-serif; font-size:16px; color:#5a5a68; margin-top:8px; }
+
+/* Answer */
+.answer { text-align:center; background:rgba(74,222,128,0.04); border:1px solid rgba(74,222,128,0.15); border-radius:14px; padding:28px; }
+.answer-or { font-family:'DM Sans',sans-serif; font-size:14px; color:#5a5a68; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px; }
+.answer-text { font-family:'DM Serif Display',serif; font-size:40px; color:#4ade80; }
+.answer-sub { font-family:'DM Sans',sans-serif; font-size:15px; color:#9898a4; margin-top:8px; }
+.answer-sub strong { color:#e8e8ec; }
+
+.bottom { display:flex; justify-content:space-between; align-items:center; }
+.cta { font-family:'DM Sans',sans-serif; font-size:17px; color:#c4a265; font-weight:600; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+</style></head><body>
+<div class="frame">
+
+  <h1>Your stocks are <span class="red">bleeding.</span><br>Now what?</h1>
+
+  <div class="charts">
+    <!-- NVDA crash -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-ticker">NVDA</span>
+        <span class="chart-change" style="color:#f87171;">-32%</span>
+      </div>
+      <div class="chart-name">Nvidia</div>
+      <svg class="chart-svg" viewBox="0 0 280 100" preserveAspectRatio="none">
+        <defs><linearGradient id="r1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f87171" stop-opacity="0.2"/><stop offset="100%" stop-color="#f87171" stop-opacity="0"/></linearGradient></defs>
+        <path d="M0,60 C20,55 40,40 70,25 C100,12 120,15 140,20 C160,28 180,45 200,58 C220,68 250,78 280,82" fill="none" stroke="#f87171" stroke-width="2"/>
+        <path d="M0,60 C20,55 40,40 70,25 C100,12 120,15 140,20 C160,28 180,45 200,58 C220,68 250,78 280,82 L280,100 L0,100 Z" fill="url(#r1)"/>
+      </svg>
+      <div class="chart-question">Should I sell?</div>
+    </div>
+
+    <!-- TSLA crash -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-ticker">TSLA</span>
+        <span class="chart-change" style="color:#f87171;">-45%</span>
+      </div>
+      <div class="chart-name">Tesla</div>
+      <svg class="chart-svg" viewBox="0 0 280 100" preserveAspectRatio="none">
+        <defs><linearGradient id="r2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f87171" stop-opacity="0.2"/><stop offset="100%" stop-color="#f87171" stop-opacity="0"/></linearGradient></defs>
+        <path d="M0,30 C30,20 60,15 90,12 C110,10 130,18 150,35 C180,55 210,72 240,82 C260,88 270,90 280,92" fill="none" stroke="#f87171" stroke-width="2"/>
+        <path d="M0,30 C30,20 60,15 90,12 C110,10 130,18 150,35 C180,55 210,72 240,82 C260,88 270,90 280,92 L280,100 L0,100 Z" fill="url(#r2)"/>
+      </svg>
+      <div class="chart-question">Buy the dip?</div>
+    </div>
+
+    <!-- INTC crash -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-ticker">INTC</span>
+        <span class="chart-change" style="color:#f87171;">-58%</span>
+      </div>
+      <div class="chart-name">Intel</div>
+      <svg class="chart-svg" viewBox="0 0 280 100" preserveAspectRatio="none">
+        <defs><linearGradient id="r3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f87171" stop-opacity="0.2"/><stop offset="100%" stop-color="#f87171" stop-opacity="0"/></linearGradient></defs>
+        <path d="M0,22 C40,18 70,25 100,35 C130,48 160,60 190,72 C210,78 240,85 270,90 C275,91 278,92 280,93" fill="none" stroke="#f87171" stroke-width="2"/>
+        <path d="M0,22 C40,18 70,25 100,35 C130,48 160,60 190,72 C210,78 240,85 270,90 C275,91 278,92 280,93 L280,100 L0,100 Z" fill="url(#r3)"/>
+      </svg>
+      <div class="chart-question">Is it over?</div>
+    </div>
+  </div>
+
+  <div class="big-question">
+    <div class="bq-text">Should I hold? Should I sell? Should I buy more?</div>
+    <div class="bq-sub">You've been staring at the screen for 3 hours. Still no answer.</div>
+  </div>
+
+  <div class="answer">
+    <div class="answer-or">Or</div>
+    <div class="answer-text">Let the algorithm decide.</div>
+    <div class="answer-sub">No emotions. No overthinking. Just <strong>data-driven rules</strong> that tell you exactly when to buy, hold, or exit.</div>
+  </div>
+
+  <div class="bottom">
+    <div class="cta">bivarcapital.com</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+
+</div>
+</body></html>

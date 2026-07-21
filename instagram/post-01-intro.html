@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.frame { width:1080px; height:1080px; padding:80px; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+.frame::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; border:1px solid #1a1a22; margin:32px; border-radius:2px; }
+.top { position:relative; z-index:1; }
+.label { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c4a265; margin-bottom:48px; }
+h1 { font-family:'DM Serif Display',serif; font-size:72px; font-weight:400; line-height:1.1; color:#e8e8ec; max-width:700px; }
+h1 em { font-style:italic; color:#c4a265; }
+.bottom { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; }
+.desc { font-family:'DM Sans',sans-serif; font-size:18px; color:#9898a4; line-height:1.7; max-width:500px; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+.glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(circle, rgba(196,162,101,0.06) 0%, transparent 70%); pointer-events:none; }
+</style></head><body>
+<div class="frame">
+  <div class="glow"></div>
+  <div class="top">
+    <div class="label">Introducing</div>
+    <h1>A public record of <em>capital allocation</em> decisions.</h1>
+  </div>
+  <div class="bottom">
+    <div class="desc">Every position. Every thesis. Every mistake.<br>Real capital. Full transparency.</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:80px; display:flex; flex-direction:column; justify-content:space-between; }
+.label { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c4a265; margin-bottom:32px; }
+h1 { font-family:'DM Serif Display',serif; font-size:52px; font-weight:400; line-height:1.15; color:#e8e8ec; }
+h1 em { font-style:italic; color:#4ade80; }
+.visual { display:flex; align-items:flex-end; gap:48px; justify-content:center; padding:20px 0; }
+.bar-group { display:flex; flex-direction:column; align-items:center; gap:12px; }
+.bar { width:120px; border-radius:8px 8px 0 0; position:relative; }
+.bar-label { font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:700; position:absolute; top:16px; left:50%; transform:translateX(-50%); }
+.bar-name { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#5a5a68; }
+.insight { background:#0c0c10; border:1px solid #1a1a22; border-radius:10px; padding:28px 32px; }
+.insight-text { font-family:'DM Sans',sans-serif; font-size:18px; color:#9898a4; line-height:1.6; }
+.insight-text strong { color:#e8e8ec; font-weight:600; }
+.insight-text .gold { color:#c4a265; }
+.footer-bar { display:flex; justify-content:space-between; align-items:center; }
+.footer-note { font-family:'DM Sans',sans-serif; font-size:14px; color:#5a5a68; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+</style></head><body>
+<div class="frame">
+  <div>
+    <div class="label">Risk Management</div>
+    <h1>Can the VIX <em>reduce</em> momentum drawdowns?</h1>
+  </div>
+  <div class="visual">
+    <div class="bar-group">
+      <div class="bar" style="height:240px; background:linear-gradient(180deg, #f87171 0%, #991b1b 100%);">
+        <div class="bar-label" style="color:#fca5a5;">&minus;31%</div>
+      </div>
+      <div class="bar-name">Without VIX</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:170px; background:linear-gradient(180deg, #4ade80 0%, #166534 100%);">
+        <div class="bar-label" style="color:#bbf7d0;">&minus;22%</div>
+      </div>
+      <div class="bar-name">With VIX Filter</div>
+    </div>
+  </div>
+  <div class="insight">
+    <div class="insight-text"><strong>MA200 drives returns.</strong> Adding a VIX > 25 & rising exit cuts max drawdown by <span class="gold">9 percentage points</span> at less than 0.5% CAGR cost. 28 variants tested.</div>
+  </div>
+  <div class="footer-bar">
+    <div class="footer-note">Full report at bivarcapital.com</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+</div>
+</body></html>

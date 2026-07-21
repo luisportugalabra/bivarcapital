@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazil Carry Trade (BLTN) — Bivar Capital</title>
+<meta name="description" content="SELIC at 14.25%, BRL/USD flat over 5 years, and a trade surplus of $75B. Brazil is quietly the most attractive carry trade available today. Here's the math — and the risks.">
+<meta property="og:title" content="Brazil Carry Trade: 13% in USD with BRL Risk You Can Model — Bivar Capital">
+<meta property="og:description" content="SELIC at 14.25%, BRL/USD flat over 5 years, and a trade surplus of $75B. The most attractive carry trade available today.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/brazil_carry_bltn.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brazil Carry Trade: 13% in USD with BRL Risk You Can Model">
+<meta name="twitter:description" content="SELIC at 14.25%, BRL/USD flat over 5 years, $365B in FX reserves. Here's the math.">
+<meta name="twitter:image" content="https://bivarcapital.com/og-image.png">
+<link rel="canonical" href="https://bivarcapital.com/research/brazil_carry_bltn.html">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+td.pos{color:var(--green)}
+td.neg{color:var(--red)}
+td.accent{color:var(--accent);font-weight:600}
+td.neutral{color:var(--blue)}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.82rem}
+.callout.green{border-left-color:var(--green)}
+.callout.red{border-left-color:var(--red)}
+.callout.blue{border-left-color:var(--blue)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:2px 0 0;font-family:'JetBrains Mono',monospace;font-size:.72rem}
+.meta-box .big-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);display:block;margin-top:4px}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.5vw,1.4rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.tag.buy{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+.tag.risk{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.tag.neutral{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.neutral{color:var(--blue)}
+.risk-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.risk-item:last-child{border-bottom:none}
+.risk-num{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--border);flex-shrink:0;width:28px}
+.risk-body p{margin-bottom:0;font-size:.82rem}
+.risk-body strong{font-size:.82rem}
+.math-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:20px 0}
+.math-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.72rem}
+.math-row:last-child{border-bottom:none;padding-top:14px;margin-top:4px}
+.math-row .label{color:var(--secondary)}
+.math-row .value{color:var(--text)}
+.math-row.total .label{color:var(--text);font-weight:600}
+.math-row.total .value{color:var(--accent);font-size:.9rem;font-weight:600}
+.math-row.neg-line .value{color:var(--red)}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.sensitivity{overflow-x:auto;margin:16px 0}
+.sensitivity table td.highlight{background:rgba(196,162,101,.08);color:var(--accent);font-weight:600}
+@media(max-width:700px){.two-col,.three-col{grid-template-columns:1fr}.math-row{font-size:.65rem}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hw">
+    <a href="/" class="hl">Bivar Capital</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" class="accent">Research</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="brand">Bivar Capital &mdash; Investment Research &mdash; July 2026</div>
+
+  <h1>Brazil Carry via BLTN<span class="it">13% per year in USD. With risk you can model.</span></h1>
+
+  <p class="lead">
+    SELIC at 14.25%. BRL/USD practically flat over five years. A trade surplus second only in Brazilian history.
+    The most attractive carry trade available today is not in some obscure frontier market —
+    it's in the world's 9th largest economy, accessible through a liquid ETF on the LSE.
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- Snapshot -->
+  <h3>The Setup — July 2026</h3>
+  <div class="three-col">
+    <div class="meta-box">
+      <dt>SELIC Rate</dt>
+      <dd class="big-num">14.25%</dd>
+      <dt>Fed Funds Rate</dt>
+      <dd>3.75%</dd>
+      <dt>Rate Differential</dt>
+      <dd style="color:var(--green);font-size:.85rem;font-weight:600">+10.5 pp</dd>
+    </div>
+    <div class="meta-box">
+      <dt>BRL/USD 5Y Change</dt>
+      <dd class="big-num" style="font-size:1.2rem">−0.54%/yr</dd>
+      <dt>BRL/USD Last 12M</dt>
+      <dd style="color:var(--green)">BRL +8.0%</dd>
+      <dt>Consensus 12M Target</dt>
+      <dd>4.99 USD/BRL</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Vehicle</dt>
+      <dd class="big-num" style="font-size:1.2rem">BLTN</dd>
+      <dt>Full Name</dt>
+      <dd>iShares Brazil LTN BRL Govt Bond UCITS ETF (LSE)</dd>
+      <dt>ETF Cost (TER)</dt>
+      <dd>0.30%/yr</dd>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- What is BLTN -->
+  <h2>What You're Buying</h2>
+
+  <p>BLTN is an iShares UCITS ETF listed on the London Stock Exchange that holds <strong>Brazilian LTN bonds</strong> — zero-coupon fixed-rate government securities issued by the Tesouro Nacional and denominated in Brazilian reais. These are the most liquid instruments in the Brazilian local government bond market, used by global institutions as the primary vehicle for BRL carry.</p>
+
+  <p>When you buy BLTN in USD, you are making two simultaneous bets: (1) that Brazilian government interest rates of 14.25% compound in your favour, and (2) that the BRL does not depreciate fast enough to wipe out that yield. You hold BRL-denominated bonds and convert back to USD when you exit.</p>
+
+  <div class="callout blue">
+    <p><strong>Via IBKR:</strong> BLTN trades on the LSE in USD. Accessible to retail and institutional investors via Interactive Brokers with standard equity-style execution. No FX forward overlay required — the ETF holds the bonds directly in BRL and converts at NAV.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- The Carry Math -->
+  <h2>The Carry Math</h2>
+
+  <p>Carry trades are simple to model but seductive to misunderstand. The gross yield is SELIC. From that, you subtract BRL depreciation and costs. What remains is your USD return. Here's the full decomposition:</p>
+
+  <div class="math-block">
+    <div class="math-row">
+      <span class="label">SELIC Rate (gross yield on LTNs)</span>
+      <span class="value pos">+14.25%</span>
+    </div>
+    <div class="math-row neg-line">
+      <span class="label">BRL/USD avg. annual depreciation (5Y historical)</span>
+      <span class="value neg">−0.54%</span>
+    </div>
+    <div class="math-row neg-line">
+      <span class="label">ETF total expense ratio (TER)</span>
+      <span class="value neg">−0.30%</span>
+    </div>
+    <div class="math-row total">
+      <span class="label">Estimated Net Return in USD (base)</span>
+      <span class="value">≈ +13.4%/yr</span>
+    </div>
+  </div>
+
+  <p>The 5-year average BRL depreciation of 0.54%/year is the key input. It sounds too good to be true — the BRL is not a stable currency. But it reflects a genuinely unusual structural feature of Brazil: the SELIC is set so high partly <em>because</em> of currency risk, which keeps the carry intact even in periods of BRL weakness. The market has been pricing Brazil's fiscal problems for years; the BRL already embeds a significant risk premium.</p>
+
+  <div class="callout green">
+    <p><strong>BRL tailwind in last 12 months:</strong> The BRL appreciated 8% against the USD over the past year. If this partially persists — even at 4% appreciation rather than 8% — the USD return moves to <strong>17–18%/year</strong>. Consensus forecasts BRL/USD at 4.99 in 12 months, implying modest additional appreciation from current levels.</p>
+  </div>
+
+  <h3>Sensitivity: USD Return at Different BRL Depreciation Rates</h3>
+  <div class="sensitivity">
+    <table>
+      <tr><th>BRL/USD Annual Change</th><th>Gross SELIC</th><th>Less ETF Cost</th><th>Net USD Return</th><th>Scenario</th></tr>
+      <tr>
+        <td class="pos">BRL +5% (appreciation)</td>
+        <td>14.25%</td>
+        <td>−0.30%</td>
+        <td class="pos accent">+18.95%</td>
+        <td>Bull</td>
+      </tr>
+      <tr>
+        <td class="pos">BRL +2%</td>
+        <td>14.25%</td>
+        <td>−0.30%</td>
+        <td class="pos">+15.95%</td>
+        <td>Favourable</td>
+      </tr>
+      <tr>
+        <td>BRL flat</td>
+        <td>14.25%</td>
+        <td>−0.30%</td>
+        <td class="pos">+13.95%</td>
+        <td>Neutral</td>
+      </tr>
+      <tr>
+        <td class="neg">BRL −5%</td>
+        <td>14.25%</td>
+        <td>−0.30%</td>
+        <td class="pos">+8.95%</td>
+        <td>Modest weakness</td>
+      </tr>
+      <tr>
+        <td class="neg">BRL −10%</td>
+        <td>14.25%</td>
+        <td>−0.30%</td>
+        <td class="neutral">+3.95%</td>
+        <td>Base stress</td>
+      </tr>
+      <tr>
+        <td class="neg">BRL −15%</td>
+        <td>14.25%</td>
+        <td>−0.30%</td>
+        <td class="neg">−1.05%</td>
+        <td>Significant stress</td>
+      </tr>
+      <tr>
+        <td class="neg highlight">BRL −20%</td>
+        <td>14.25%</td>
+        <td>−0.30%</td>
+        <td class="neg highlight">−6.05%</td>
+        <td>Crisis / fiscal shock</td>
+      </tr>
+    </table>
+  </div>
+
+  <p>The carry only goes negative if BRL depreciates more than 14% in a year. That has happened — but it is not the base case, and it requires a genuine fiscal or political crisis. Even in a mild stress scenario (−10% BRL), you still make ~4% in USD — roughly equivalent to a US money market fund, with a much more attractive upside.</p>
+
+  <div class="divider"></div>
+
+  <!-- Why BRL Risk Is Contained -->
+  <h2>Why the FX Risk Is Lower Than It Looks</h2>
+
+  <p>Brazil has a reputation for currency volatility. That reputation is partly deserved and partly overstated. Three structural factors make BRL risk more manageable than in most EM carry trades:</p>
+
+  <h3>1 — Trade Surplus of $75 Billion</h3>
+  <p>Brazil ran a trade surplus of <strong>$75 billion in 2024</strong> — the second largest in its history. This is a country that exports soybeans, iron ore, oil, and beef in large volumes to China and the rest of the world. A persistent trade surplus creates structural USD inflows that put a natural floor under the BRL. You cannot have a sustained BRL collapse while the country is running one of the world's largest trade surpluses.</p>
+
+  <h3>2 — $365 Billion in FX Reserves</h3>
+  <p>The Banco Central do Brasil holds <strong>$365 billion in foreign exchange reserves</strong> — equivalent to 14 months of imports and approximately 20% of GDP. This is a structural backstop. In periods of BRL stress, the BCB can and does intervene in the spot and futures markets. Brazil is not Argentina: it has the ammunition to defend the currency if a disorderly move begins.</p>
+
+  <h3>3 — High Rates Are the Shock Absorber</h3>
+  <p>The SELIC at 14.25% means the BCB has enormous room to tighten further if the BRL comes under pressure. Higher rates attract carry capital, which supports the currency. This self-correcting mechanism is exactly why the 5-year average depreciation has been only 0.54%/year despite Brazil's well-documented fiscal problems. The carry keeps replenishing itself.</p>
+
+  <div class="divider"></div>
+
+  <!-- The Fiscal Reality -->
+  <h2>The Fiscal Reality — Eyes Open</h2>
+
+  <p>Intellectual honesty requires acknowledging what Brazil's balance sheet actually looks like. This is not a country with clean finances:</p>
+
+  <div class="two-col">
+    <div class="meta-box">
+      <dt>Public Debt / GDP (BCB methodology)</dt>
+      <dd style="color:var(--red);font-family:'DM Serif Display',serif;font-size:1.4rem;display:block;margin-top:4px">81%</dd>
+      <dt>Public Debt / GDP (IMF methodology)</dt>
+      <dd style="color:var(--red);font-family:'DM Serif Display',serif;font-size:1.4rem;display:block;margin-top:4px">96%</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Nominal Fiscal Deficit / GDP</dt>
+      <dd style="color:var(--red);font-family:'DM Serif Display',serif;font-size:1.4rem;display:block;margin-top:4px">9.4%</dd>
+      <dt>GDP Growth Forecast (2026)</dt>
+      <dd style="color:var(--accent);font-family:'DM Serif Display',serif;font-size:1.4rem;display:block;margin-top:4px">+1.8%</dd>
+    </div>
+  </div>
+
+  <p>A nominal deficit of 9.4% of GDP with debt already at 81–96% of GDP and rising is a genuine medium-term risk. This is not a sustainable fiscal path, and the market knows it. The question for a carry investor is not whether Brazil's fiscal situation is good — it is not — but whether it will deteriorate fast enough to trigger a currency crisis within the investment horizon.</p>
+
+  <div class="callout red">
+    <p><strong>The debt dynamic:</strong> At 14.25% SELIC and 81% debt/GDP, Brazil spends roughly <strong>7–8% of GDP</strong> on interest alone annually — one of the highest interest burdens in the world. Every year the debt/GDP ratio climbs unless nominal GDP growth exceeds the nominal interest rate. At +1.8% real growth and ~5% inflation, the arithmetic does not close at current SELIC levels. This is the structural vulnerability.</p>
+  </div>
+
+  <p>The carry investor's counter-argument: Brazil has been running this fiscal dynamic for years without a crisis, precisely because the high SELIC attracts the capital that funds the deficit. It is a self-reinforcing equilibrium — fragile, but stable as long as confidence holds. The risk is not a slow deterioration; it is a sudden break in confidence that causes a non-linear BRL move. That's what position sizing is for.</p>
+
+  <div class="divider"></div>
+
+  <!-- Risks -->
+  <h2>Risks</h2>
+
+  <div class="risk-item">
+    <div class="risk-num">01</div>
+    <div class="risk-body">
+      <strong>October 2026 Elections — Primary Risk</strong>
+      <p>Presidential elections in October 2026 are the single most important near-term catalyst. The current Lula government has shown willingness to loosen fiscal rules and expand spending — the BRL weakened significantly in late 2024 when the fiscal framework appeared under threat. If an election result (or pre-election spending) re-ignites fiscal credibility concerns, BRL could move 10–15% rapidly. The positive scenario: a market-friendly outcome or fiscal consolidation commitments could trigger BRL appreciation and boost USD returns well above the base case.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">02</div>
+    <div class="risk-body">
+      <strong>Fiscal Framework Credibility</strong>
+      <p>Brazil adopted a fiscal framework in 2023 designed to stabilise debt/GDP. Any amendment, waiver, or de facto breach of this framework — through off-budget spending, social transfers, or state-owned enterprise subsidies — risks a confidence shock. This is a slow-moving but real risk. Rating agencies (S&amp;P, Moody's, Fitch) watch the primary balance closely; a downgrade trajectory would widen sovereign spreads and pressure BRL.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">03</div>
+    <div class="risk-body">
+      <strong>China Slowdown / Commodity Shock</strong>
+      <p>Brazil's trade surplus is largely a function of commodity exports to China: soybeans, iron ore, crude oil. A hard landing in China, or a structural shift in Chinese demand for raw materials, compresses Brazil's terms of trade, reduces USD inflows, and removes the natural BRL floor. The 2014–2016 commodity bust drove BRL from 2.2 to 4.2 — a 48% devaluation. A repeat is low-probability but non-negligible.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">04</div>
+    <div class="risk-body">
+      <strong>SELIC Cycle Risk</strong>
+      <p>The BCB may begin cutting rates if inflation falls or growth weakens. Each 100bps cut reduces the gross carry by 1pp. A full easing cycle back to 10% SELIC (not the base case today, but possible by 2027–2028) would roughly halve the net USD return. Position sizing and monitoring the BCB's forward guidance is essential.</p>
+    </div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-num">05</div>
+    <div class="risk-body">
+      <strong>Global Risk-Off</strong>
+      <p>In a global risk-off episode — US recession, financial crisis, geopolitical shock — EM carry trades unwind indiscriminately. The BRL has historically been one of the more volatile EM currencies in risk-off environments because of its large carry position and liquid futures market. A 2008-style shock could generate 20–30% BRL drawdown in weeks, temporarily overwhelming the carry cushion.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Macro Scorecard -->
+  <h2>Brazil Macro Scorecard</h2>
+
+  <table>
+    <tr><th>Indicator</th><th>Value</th><th>Assessment</th></tr>
+    <tr>
+      <td><strong>SELIC Rate</strong></td>
+      <td class="pos">14.25%</td>
+      <td class="pos">Highly attractive carry; significant buffer</td>
+    </tr>
+    <tr>
+      <td><strong>BRL/USD 5Y Drift</strong></td>
+      <td class="pos">−0.54%/yr</td>
+      <td class="pos">Historically contained given macro profile</td>
+    </tr>
+    <tr>
+      <td><strong>Trade Surplus</strong></td>
+      <td class="pos">$75B (2024)</td>
+      <td class="pos">Structural BRL support; 2nd largest ever</td>
+    </tr>
+    <tr>
+      <td><strong>FX Reserves</strong></td>
+      <td class="pos">$365B</td>
+      <td class="pos">14 months of imports; strong intervention capacity</td>
+    </tr>
+    <tr>
+      <td><strong>GDP Growth 2026F</strong></td>
+      <td class="neutral">+1.8%</td>
+      <td class="neutral">Modest; not recessionary</td>
+    </tr>
+    <tr>
+      <td><strong>Nominal Deficit / GDP</strong></td>
+      <td class="neg">9.4%</td>
+      <td class="neg">Unsustainable medium-term; primary risk</td>
+    </tr>
+    <tr>
+      <td><strong>Debt / GDP (BCB)</strong></td>
+      <td class="neg">81%</td>
+      <td class="neg">Elevated and rising; on accelerating path</td>
+    </tr>
+    <tr>
+      <td><strong>Debt / GDP (IMF)</strong></td>
+      <td class="neg">96%</td>
+      <td class="neg">Near developed-market debt levels, EM risk profile</td>
+    </tr>
+    <tr>
+      <td><strong>Elections</strong></td>
+      <td class="neg">Oct 2026</td>
+      <td class="neg">Key near-term political risk</td>
+    </tr>
+  </table>
+
+  <div class="divider"></div>
+
+  <!-- Position Sizing -->
+  <h2>Position Sizing</h2>
+
+  <p>This is not a riskless bond. It is a carry trade with embedded FX optionality — the upside is asymmetric (13–19% USD return) but the tail risk is real (−6% to −20% in a genuine fiscal crisis year). The right sizing reflects that asymmetry.</p>
+
+  <div class="callout green">
+    <p><strong>Suggested allocation: 10–15% of portfolio.</strong> Large enough to be meaningful — at 13.4% expected return, a 10% allocation contributes ~130bps to total portfolio return. Small enough that a 20% BRL shock in a bad year (−6% contribution) does not impair overall portfolio performance.</p>
+  </div>
+
+  <p>The case for the upper end of the range (15%) is stronger if: (1) the elections are resolved with a market-friendly outcome, (2) BRL momentum continues, or (3) the fiscal framework holds and gets an upgrade signal from rating agencies. Reduce toward 10% or below if: (1) election polls show a spendthrift candidate consolidating, (2) BCB signals an early SELIC cut cycle, or (3) China growth prints below 4%.</p>
+
+  <h3>Return Contribution to Portfolio at Different Allocation Sizes</h3>
+  <div class="sensitivity">
+    <table>
+      <tr><th>Allocation</th><th>Base Return (13.4%)</th><th>Bull Return (19%)</th><th>Bear Return (−6%)</th></tr>
+      <tr><td>5%</td><td class="pos">+67 bps</td><td class="pos">+95 bps</td><td class="neg">−30 bps</td></tr>
+      <tr><td class="accent highlight">10%</td><td class="pos highlight">+134 bps</td><td class="pos highlight">+190 bps</td><td class="neg highlight">−60 bps</td></tr>
+      <tr><td class="accent highlight">15%</td><td class="pos highlight">+201 bps</td><td class="pos highlight">+285 bps</td><td class="neg highlight">−90 bps</td></tr>
+      <tr><td>20%</td><td class="pos">+268 bps</td><td class="pos">+380 bps</td><td class="neg">−120 bps</td></tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Verdict -->
+  <h2>Verdict</h2>
+
+  <div class="verdict">
+    <span class="tag buy" style="margin-bottom:16px">ATTRACTIVE — WITH DISCIPLINE</span>
+    <p class="big">Brazil is offering you 13% per year in USD to own the local currency debt of the world's 9th largest economy — with $365B in FX reserves, a $75B trade surplus, and a central bank with both the tools and the mandate to defend it.</p>
+    <p style="max-width:640px;margin:16px auto 0;color:var(--secondary);font-size:.84rem">The fiscal situation is genuinely concerning and the elections are a real risk. But Brazil's carry has been intact for years precisely because the SELIC is set high enough to compensate for exactly these risks. The BRL has drifted only 0.54%/year over five years despite chronic fiscal deficits and multiple political crises. The carry absorbs the noise. What it cannot absorb is a non-linear confidence break — which is why 10–15% of portfolio is the right sizing, not 30%. Inside that position, the risk/reward is compelling: ~13.4% expected USD return, with a bear case that still lands in positive territory unless the BRL depreciates more than 14% in a single year.</p>
+    <p class="sub">Vehicle: BLTN on LSE via IBKR &nbsp;|&nbsp; Target allocation: 10–15% &nbsp;|&nbsp; Key risk: October 2026 elections</p>
+  </div>
+
+  <div class="footer">
+    <p>Bivar Capital &mdash; July 2026 &mdash; Not investment advice. For informational purposes only.</p>
+    <p style="margin-top:4px">Data: Banco Central do Brasil, IMF Article IV, iShares BLTN factsheet, Bloomberg consensus.</p>
+  </div>
+
+</div>
+</body>
+</html>

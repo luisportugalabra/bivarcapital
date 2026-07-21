@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:56px; display:flex; flex-direction:column; justify-content:space-between; }
+
+.top-label { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#c4a265; margin-bottom:16px; }
+h1 { font-family:'DM Serif Display',serif; font-size:56px; font-weight:400; line-height:1.06; color:#e8e8ec; }
+h1 .dim { color:#5a5a68; }
+h1 .green { color:#4ade80; }
+
+/* Timeline of a stock with buy/sell markers */
+.timeline { background:#0c0c10; border:1px solid #1a1a22; border-radius:14px; padding:24px; position:relative; }
+.timeline-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.timeline-title { font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; color:#e8e8ec; }
+.timeline-return { font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; }
+.timeline svg { width:100%; display:block; }
+
+/* vs strip */
+.vs-strip { display:flex; gap:14px; }
+.vs-card { flex:1; border-radius:12px; padding:24px; text-align:center; }
+.vs-you { background:rgba(248,113,113,0.05); border:1px solid rgba(248,113,113,0.15); }
+.vs-algo { background:rgba(74,222,128,0.05); border:1px solid rgba(74,222,128,0.15); }
+.vs-label { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#5a5a68; margin-bottom:12px; }
+.vs-action { font-family:'DM Serif Display',serif; font-size:24px; margin-bottom:6px; }
+.vs-result { font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; }
+.vs-detail { font-family:'DM Sans',sans-serif; font-size:13px; color:#5a5a68; margin-top:6px; line-height:1.4; }
+
+.punchline { text-align:center; }
+.punch-text { font-family:'DM Serif Display',serif; font-size:36px; color:#e8e8ec; }
+.punch-text .gold { color:#c4a265; }
+.punch-sub { font-family:'DM Sans',sans-serif; font-size:15px; color:#5a5a68; margin-top:8px; }
+
+.bottom { display:flex; justify-content:space-between; align-items:center; }
+.cta { font-family:'DM Sans',sans-serif; font-size:17px; color:#c4a265; font-weight:600; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+</style></head><body>
+<div class="frame">
+
+  <div>
+    <div class="top-label">You vs. the algorithm</div>
+    <h1>Same stock.<br><span class="dim">Different decisions.</span><br><span class="green">Different results.</span></h1>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-header">
+      <span class="timeline-title">NVDA &mdash; 12 month chart</span>
+      <span class="timeline-return" style="color:#5a5a68;">Volatile year</span>
+    </div>
+    <svg viewBox="0 0 920 140" preserveAspectRatio="none">
+      <!-- Grid -->
+      <line x1="0" y1="35" x2="920" y2="35" stroke="#1a1a22" stroke-width="0.5"/>
+      <line x1="0" y1="70" x2="920" y2="70" stroke="#1a1a22" stroke-width="0.5"/>
+      <line x1="0" y1="105" x2="920" y2="105" stroke="#1a1a22" stroke-width="0.5"/>
+      <!-- Stock line: rally, peak, crash, partial recovery -->
+      <path d="M0,90 C40,85 80,70 130,50 C180,30 220,18 270,12 C320,8 360,14 400,30 C440,48 480,70 530,88 C580,100 620,105 660,95 C700,82 740,68 780,55 C820,48 860,42 920,38" fill="none" stroke="#e8e8ec" stroke-width="2.5"/>
+
+      <!-- YOU: bought at the top -->
+      <circle cx="270" cy="12" r="7" fill="none" stroke="#f87171" stroke-width="2"/>
+      <rect x="210" y="120" width="120" height="18" rx="4" fill="rgba(248,113,113,0.15)"/>
+      <text x="270" y="133" font-family="JetBrains Mono" font-size="10" fill="#f87171" font-weight="600" text-anchor="middle">YOU BOUGHT HERE</text>
+
+      <!-- YOU: panic sold at bottom -->
+      <circle cx="530" cy="88" r="7" fill="none" stroke="#f87171" stroke-width="2"/>
+      <rect x="470" y="120" width="120" height="18" rx="4" fill="rgba(248,113,113,0.15)"/>
+      <text x="530" y="133" font-family="JetBrains Mono" font-size="10" fill="#f87171" font-weight="600" text-anchor="middle">YOU PANIC SOLD</text>
+
+      <!-- ALGO: bought early -->
+      <circle cx="80" cy="70" r="7" fill="none" stroke="#4ade80" stroke-width="2"/>
+      <rect x="30" y="0" width="100" height="18" rx="4" fill="rgba(74,222,128,0.15)"/>
+      <text x="80" y="12" font-family="JetBrains Mono" font-size="10" fill="#4ade80" font-weight="600" text-anchor="middle">ALGO BOUGHT</text>
+
+      <!-- ALGO: sold before crash -->
+      <circle cx="340" cy="18" r="7" fill="none" stroke="#4ade80" stroke-width="2"/>
+      <rect x="290" y="0" width="100" height="18" rx="4" fill="rgba(74,222,128,0.15)"/>
+      <text x="340" y="12" font-family="JetBrains Mono" font-size="10" fill="#4ade80" font-weight="600" text-anchor="middle">ALGO EXITED</text>
+
+      <!-- ALGO: re-entered on recovery -->
+      <circle cx="680" cy="90" r="7" fill="none" stroke="#4ade80" stroke-width="2"/>
+      <rect x="625" y="120" width="110" height="18" rx="4" fill="rgba(74,222,128,0.15)"/>
+      <text x="680" y="133" font-family="JetBrains Mono" font-size="10" fill="#4ade80" font-weight="600" text-anchor="middle">ALGO RE-ENTERED</text>
+    </svg>
+  </div>
+
+  <div class="vs-strip">
+    <div class="vs-card vs-you">
+      <div class="vs-label">You</div>
+      <div class="vs-action" style="color:#f87171;">Bought the top. Sold the bottom.</div>
+      <div class="vs-result" style="color:#f87171;">-34%</div>
+      <div class="vs-detail">FOMO in, panic out.<br>The classic retail cycle.</div>
+    </div>
+    <div class="vs-card vs-algo">
+      <div class="vs-label">The algorithm</div>
+      <div class="vs-action" style="color:#4ade80;">Bought early. Exited before the crash.</div>
+      <div class="vs-result" style="color:#4ade80;">+41%</div>
+      <div class="vs-detail">No emotions. No opinions.<br>Just momentum signals.</div>
+    </div>
+  </div>
+
+  <div class="punchline">
+    <div class="punch-text">Stop trading on feelings.<br>Start trading on <span class="gold">data.</span></div>
+  </div>
+
+  <div class="bottom">
+    <div class="cta">bivarcapital.com</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+
+</div>
+</body></html>

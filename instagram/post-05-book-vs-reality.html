@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:80px; display:flex; flex-direction:column; justify-content:space-between; }
+.label { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c4a265; margin-bottom:32px; }
+h1 { font-family:'DM Serif Display',serif; font-size:48px; font-weight:400; line-height:1.15; color:#e8e8ec; margin-bottom:16px; }
+h1 em { font-style:italic; color:#c4a265; }
+.subtitle { font-family:'DM Sans',sans-serif; font-size:18px; color:#9898a4; line-height:1.6; max-width:700px; }
+.comparison { display:flex; gap:32px; }
+.box { flex:1; border:1px solid #1a1a22; border-radius:10px; padding:36px; background:#0c0c10; }
+.box-label { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#5a5a68; margin-bottom:16px; }
+.box-val { font-family:'JetBrains Mono',monospace; font-size:56px; font-weight:700; line-height:1.1; margin-bottom:8px; }
+.box-sub { font-family:'DM Sans',sans-serif; font-size:14px; color:#5a5a68; }
+.red { color:#f87171; }
+.green { color:#4ade80; }
+.gold { color:#c4a265; }
+.arrow { display:flex; align-items:center; justify-content:center; font-size:48px; color:#5a5a68; padding:0 8px; }
+.footer-bar { display:flex; justify-content:space-between; align-items:center; }
+.footer-note { font-family:'DM Sans',sans-serif; font-size:14px; color:#5a5a68; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+</style></head><body>
+<div class="frame">
+  <div>
+    <div class="label">Myth vs Reality</div>
+    <h1>The book promised <em>21% CAGR.</em><br>Reality is different.</h1>
+    <div class="subtitle">Value Composite strategies tested with real quarterly data, 2005-2026.</div>
+  </div>
+  <div class="comparison">
+    <div class="box">
+      <div class="box-label">What the book says</div>
+      <div class="box-val red">21%</div>
+      <div class="box-sub">CAGR claimed by O'Shaughnessy</div>
+    </div>
+    <div class="arrow">&rarr;</div>
+    <div class="box">
+      <div class="box-label">What we found</div>
+      <div class="box-val gold">5.6-12%</div>
+      <div class="box-sub">CAGR with real quarterly data</div>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <div class="footer-note">3 composites tested | Annual & monthly rebalance</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+</div>
+</body></html>

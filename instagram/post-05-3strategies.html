@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:72px; display:flex; flex-direction:column; justify-content:space-between; }
+.label { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c4a265; margin-bottom:24px; }
+h1 { font-family:'DM Serif Display',serif; font-size:46px; font-weight:400; line-height:1.15; color:#e8e8ec; margin-bottom:8px; }
+h1 em { font-style:italic; color:#c4a265; }
+.sub { font-family:'DM Sans',sans-serif; font-size:15px; color:#9898a4; }
+
+.strategies { display:flex; flex-direction:column; gap:14px; }
+.strategy { background:#0c0c10; border:1px solid #1a1a22; border-radius:12px; padding:24px 28px; display:flex; align-items:center; gap:24px; }
+.strategy-name { min-width:180px; }
+.strategy-title { font-family:'DM Serif Display',serif; font-size:20px; color:#e8e8ec; }
+.strategy-desc { font-family:'DM Sans',sans-serif; font-size:12px; color:#5a5a68; margin-top:2px; }
+.strategy-stats { display:flex; gap:24px; flex:1; }
+.s-stat { text-align:center; }
+.s-stat-val { font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; }
+.s-stat-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#5a5a68; margin-top:2px; }
+.strategy-value { font-family:'JetBrains Mono',monospace; font-size:14px; color:#5a5a68; text-align:right; min-width:80px; }
+
+.green { color:#4ade80; }
+.gold { color:#c4a265; }
+
+.benchmark { background:#0c0c10; border:1px solid #1a1a22; border-radius:10px; padding:18px 28px; display:flex; justify-content:space-between; align-items:center; }
+.bench-label { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#5a5a68; }
+.bench-stats { display:flex; gap:24px; }
+.bench-stat { text-align:center; }
+.bench-val { font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:600; color:#9898a4; }
+.bench-lbl { font-family:'JetBrains Mono',monospace; font-size:9px; color:#5a5a68; text-transform:uppercase; letter-spacing:0.1em; }
+
+.footer-bar { display:flex; justify-content:space-between; align-items:center; }
+.note { font-family:'DM Sans',sans-serif; font-size:13px; color:#5a5a68; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; }
+</style></head><body>
+<div class="frame">
+  <div>
+    <div class="label">All Strategies &middot; Live Performance</div>
+    <h1>Three strategies. <em>All beating</em> the S&P.</h1>
+    <div class="sub">Real money. Updated weekly. Full transparency.</div>
+  </div>
+
+  <div class="strategies">
+    <div class="strategy">
+      <div class="strategy-name">
+        <div class="strategy-title">Discretionary</div>
+        <div class="strategy-desc">24 positions &middot; Concentrated bets</div>
+      </div>
+      <div class="strategy-stats">
+        <div class="s-stat">
+          <div class="s-stat-val green">+46.1%</div>
+          <div class="s-stat-label">2025</div>
+        </div>
+        <div class="s-stat">
+          <div class="s-stat-val green">+7.6%</div>
+          <div class="s-stat-label">2026 YTD</div>
+        </div>
+      </div>
+      <div class="strategy-value">$1.01M</div>
+    </div>
+
+    <div class="strategy">
+      <div class="strategy-name">
+        <div class="strategy-title">Value Composite 2</div>
+        <div class="strategy-desc">18 positions &middot; Systematic value</div>
+      </div>
+      <div class="strategy-stats">
+        <div class="s-stat">
+          <div class="s-stat-val green">+23.1%</div>
+          <div class="s-stat-label">2025</div>
+        </div>
+        <div class="s-stat">
+          <div class="s-stat-val green">+11.2%</div>
+          <div class="s-stat-label">2026 YTD</div>
+        </div>
+      </div>
+      <div class="strategy-value">$99K</div>
+    </div>
+
+    <div class="strategy">
+      <div class="strategy-name">
+        <div class="strategy-title">Trending Value</div>
+        <div class="strategy-desc">9 positions &middot; Value + momentum</div>
+      </div>
+      <div class="strategy-stats">
+        <div class="s-stat">
+          <div class="s-stat-val green">+24.0%</div>
+          <div class="s-stat-label">2025</div>
+        </div>
+        <div class="s-stat">
+          <div class="s-stat-val green">+1.9%</div>
+          <div class="s-stat-label">2026 YTD</div>
+        </div>
+      </div>
+      <div class="strategy-value">$46K</div>
+    </div>
+  </div>
+
+  <div class="benchmark">
+    <div class="bench-label">Benchmark: S&P 500</div>
+    <div class="bench-stats">
+      <div class="bench-stat">
+        <div class="bench-val">+17.9%</div>
+        <div class="bench-lbl">2025</div>
+      </div>
+      <div class="bench-stat">
+        <div class="bench-val">+4.1%</div>
+        <div class="bench-lbl">2026 YTD</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="note">As of Apr 19, 2026 &middot; bivarcapital.com</div>
+    <div class="logo">Bivar Capital</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1080px; background:#060608; overflow:hidden; }
+.frame { width:100%; height:100%; padding:80px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; }
+.glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:800px; height:800px; background:radial-gradient(circle, rgba(196,162,101,0.05) 0%, transparent 60%); pointer-events:none; }
+.quote { font-family:'DM Serif Display',serif; font-size:48px; font-style:italic; font-weight:400; line-height:1.35; color:#e8e8ec; max-width:750px; margin-bottom:48px; position:relative; z-index:1; }
+.quote .gold { color:#c4a265; }
+.divider { width:60px; height:2px; background:#c4a265; opacity:0.4; margin-bottom:32px; position:relative; z-index:1; }
+.principles { display:flex; gap:40px; position:relative; z-index:1; margin-bottom:48px; }
+.principle { text-align:center; }
+.principle-num { font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:700; color:#c4a265; margin-bottom:8px; }
+.principle-text { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#9898a4; }
+.logo { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#5a5a68; position:relative; z-index:1; }
+</style></head><body>
+<div class="frame">
+  <div class="glow"></div>
+  <div class="quote">Test everything. <span class="gold">Trust nothing</span> until the data confirms it.</div>
+  <div class="divider"></div>
+  <div class="principles">
+    <div class="principle">
+      <div class="principle-num">01</div>
+      <div class="principle-text">Backtest first</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">02</div>
+      <div class="principle-text">Real capital</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">03</div>
+      <div class="principle-text">Full transparency</div>
+    </div>
+  </div>
+  <div class="logo">Bivar Capital</div>
+</div>
+</body></html>
