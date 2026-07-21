@@ -53,9 +53,8 @@ nav a.active { color: var(--accent); }
 /* How it works */
 .section-title { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
 .steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 56px; }
-.step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+.step { padding: 28px 0; border-bottom: 1px solid var(--border); }
 .step:first-child { border-top: 1px solid var(--border); }
-.step-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); min-width: 24px; padding-top: 3px; }
 .step-body h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
 .step-body p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.75; }
 
@@ -121,32 +120,40 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p class="section-title">How it works</p>
     <div class="steps">
       <div class="step">
-        <span class="step-num">01</span>
         <div class="step-body">
-          <h3>Signal generated on the 1st of each month</h3>
-          <p>The momentum strategy scans US large-cap equities and ranks them by systematic criteria. The output is a list of positions to hold for the month — no intraday decisions, no noise.</p>
+          <h3>One decision per month</h3>
+          <p>On the 1st of each month, both signals update. The momentum strategy outputs the exact positions to hold in US equities. The BTC signal is binary: long or cash. You log in, see the signal, and act — or don't. No intraday noise, no daily decisions.</p>
         </div>
       </div>
       <div class="step">
-        <span class="step-num">02</span>
         <div class="step-body">
-          <h3>You see the exact positions</h3>
-          <p>Log in on the 1st, see the current holdings. Rebalance your portfolio to match — or don't. The signal is yours to use as you see fit.</p>
+          <h3>You get what I act on</h3>
+          <p>Both strategies run on real capital. The signal you see is the one I trade. No separate "subscriber version" — same positions, same timing.</p>
         </div>
       </div>
       <div class="step">
-        <span class="step-num">03</span>
         <div class="step-body">
-          <h3>BTC signal checked monthly</h3>
-          <p>The Bitcoin trend strategy is binary: long or cash. One decision per month, based on three systematic rules. No leverage, no derivatives.</p>
+          <h3>The research is open</h3>
+          <p>Every backtest, parameter study, and decision behind the strategies is published in full. You can read exactly why each rule exists and stress-test the assumptions yourself.</p>
         </div>
       </div>
-      <div class="step">
-        <span class="step-num">04</span>
-        <div class="step-body">
-          <h3>Full research library included</h3>
-          <p>Every backtest and parameter study that built these strategies is available in full. No black boxes — you can read exactly why each rule exists.</p>
-        </div>
+    </div>
+
+    <!-- Correlations -->
+    <p class="section-title">Portfolio diversification</p>
+    <p style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:20px;line-height:1.75;">Both strategies have near-zero correlation with the S&P 500 and with each other — they move independently, which matters for portfolio construction.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:56px;">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center;">
+        <div style="font-family:var(--font-display);font-size:1.6rem;color:var(--text);margin-bottom:4px;">0.04</div>
+        <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);line-height:1.5;">Momentum<br>vs S&amp;P 500</div>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center;">
+        <div style="font-family:var(--font-display);font-size:1.6rem;color:var(--text);margin-bottom:4px;">0.17</div>
+        <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);line-height:1.5;">BTC Trend<br>vs S&amp;P 500</div>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center;">
+        <div style="font-family:var(--font-display);font-size:1.6rem;color:var(--text);margin-bottom:4px;">&minus;0.01</div>
+        <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);line-height:1.5;">BTC Trend<br>vs Momentum</div>
       </div>
     </div>
 
