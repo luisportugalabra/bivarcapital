@@ -127,22 +127,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <div class="strategy-card" id="portfolio-card">
-      <div class="card-header">
-        <div class="card-title">Live Portfolio</div>
-        <span class="card-badge badge-live">Live</span>
-      </div>
-      <p id="portfolio-blur" class="card-desc" style="filter:blur(6px);user-select:none">Real capital allocation across momentum, BTC systematic, and gold. Full position history with weights, entry/exit dates, and trade rationale.</p>
-      <div class="card-stats" id="portfolio-stats" style="filter:blur(6px);user-select:none">
-        <span class="card-stat">2025 return: <span class="num">+38.7%</span></span>
-        <span class="card-stat">2026 YTD: <span class="num" id="port-ytd">+4.0%</span></span>
-      </div>
-      <div id="portfolio-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
     <div class="strategy-card">
       <div class="card-header">
         <div class="card-title">Bitcoin Trend Signal</div>
@@ -177,28 +161,13 @@ window.onUnlock = function(email) {
   document.getElementById('momentum-blur').style.userSelect = 'auto';
   document.getElementById('btc-blur').style.filter = 'none';
   document.getElementById('btc-blur').style.userSelect = 'auto';
-  document.getElementById('portfolio-blur').style.filter = 'none';
-  document.getElementById('portfolio-blur').style.userSelect = 'auto';
   document.getElementById('momentum-stats').style.filter = 'none';
   document.getElementById('momentum-stats').style.userSelect = 'auto';
-  document.getElementById('portfolio-stats').style.filter = 'none';
-  document.getElementById('portfolio-stats').style.userSelect = 'auto';
   document.getElementById('btc-stats').style.filter = 'none';
   document.getElementById('btc-stats').style.userSelect = 'auto';
-  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/signal_day_sensitivity.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Signal day test &rarr;</a>';
+  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
-  document.getElementById('portfolio-actions').innerHTML = '<a href="/portfolio.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View portfolio &rarr;</a>';
 };
-// Fetch portfolio YTD
-fetch('/portfolio-data.json').then(r=>r.json()).then(d=>{
-  const disc = d.strategies && d.strategies.discretionary;
-  const el = document.getElementById('port-ytd');
-  const v = disc && (disc['ytd_2026'] != null ? disc['ytd_2026'] : disc['2026_ytd']);
-  if (el && v != null) {
-    el.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
-    el.style.color = v >= 0 ? 'var(--green)' : 'var(--red)';
-  }
-}).catch(()=>{});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="/auth.js"></script>
 </body>
