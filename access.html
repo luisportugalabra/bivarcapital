@@ -123,13 +123,13 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <div class="step">
         <div class="step-body">
           <h3>What it is</h3>
-          <p>A systematic strategy that holds a concentrated portfolio of US large-cap equities selected by price momentum, filtered by profitability and market regime. No discretion, no overrides — the model decides.</p>
+          <p>A systematic strategy that holds a concentrated portfolio of 7 US large-cap equities selected by price momentum, filtered by profitability and market regime. No discretion, no overrides — the model decides.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-body">
           <h3>How you follow it</h3>
-          <p>On the 1st of each month, the signal updates with the new positions. You receive them via the site, email, and Telegram — then rebalance your portfolio accordingly. One decision per month.</p>
+          <p>On the 1st of each month, the signal updates with the 7 new positions. You receive them via the site, email, and Telegram — then rebalance your portfolio accordingly. Takes about 5 minutes. One decision per month.</p>
         </div>
       </div>
     </div>
@@ -146,6 +146,9 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--text);margin-bottom:4px;">0.04</div>
         <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);">Correlation<br>vs S&amp;P 500</div>
       </div>
+    </div>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:52px;">
+      <canvas id="chartMom" height="80"></canvas>
     </div>
 
     <!-- BTC -->
@@ -177,6 +180,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--text);margin-bottom:4px;">0.17</div>
         <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);">Correlation<br>vs S&amp;P 500</div>
       </div>
+    </div>
+
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:52px;">
+      <canvas id="chartBtc" height="80"></canvas>
     </div>
 
     <!-- Correlations -->
@@ -248,7 +255,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <p class="fine-print">Cancel anytime. No commitment.</p>
     </div>
 
-    <p style="font-size:0.84rem;color:var(--text-muted);text-align:center;margin-top:32px;line-height:1.8;">Questions? Feel free to reach out — <a href="https://x.com/LuisBivar" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">@LuisBivar</a> on X or <a href="https://linkedin.com/in/luís-portugal-6a252441" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">LinkedIn</a>.</p>
+    <p style="font-size:0.84rem;color:var(--text-muted);text-align:center;margin-top:32px;line-height:1.8;">Questions? Feel free to reach out — <a href="https://x.com/luisbivar" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">@luisbivar</a> on X or <a href="https://linkedin.com/in/luís-portugal-6a252441" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">LinkedIn</a>.</p>
 
   </section>
 </main>
@@ -267,6 +274,43 @@ function selectPlan(plan) {
   // Update subscribe link when Stripe links are added
   // document.getElementById('subscribe-btn').href = plan === 'monthly' ? STRIPE_MONTHLY : STRIPE_ANNUAL;
 }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script>
+const momDates = ["2004-01","2004-10","2005-06","2006-01","2007-01","2008-01","2009-06","2010-01","2011-01","2012-01","2013-01","2014-01","2015-01","2016-01","2017-01","2018-01","2019-01","2020-01","2021-01","2022-01","2023-01","2024-01","2025-01","2026-03"];
+const momFull = [100.0,100.0,120.65,158.66,141.75,208.32,232.84,255.16,298.37,280.48,358.59,503.74,467.82,448.76,743.33,739.28,725.32,1773.44,2227.47,2906.7,1662.19,4259.23,6557.04,6232.26];
+const sp500Full = [101.22,103.77,109.11,113.17,124.37,117.64,87.3,97.64,117.34,120.74,138.73,163.41,186.05,191.69,249.65,239.74,260.07,228.5,369.65,365.29,363.29,533.31,604.72,629.99];
+
+const btcDates = ["2015-01","2016-01","2017-01","2018-01","2019-01","2020-01","2021-01","2022-01","2023-01","2024-01","2025-01","2026-04"];
+const btcTrend = [100,126.46,255.93,1150.41,1024.64,2626.95,9480.03,7193.05,7141.47,12775.48,23499.68,22622.49];
+const btcPassive = [67.78,114.25,302.03,3134.17,1063.47,2918.11,18334.61,13653.48,7213.21,13281.72,31891.2,23047.68];
+
+const opts = (labels, datasets) => ({
+  type: 'line',
+  data: { labels, datasets },
+  options: {
+    responsive: true,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { labels: { color: '#9898a4', font: { family: 'JetBrains Mono', size: 10 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(0) } }
+    },
+    scales: {
+      x: { ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 8 }, grid: { color: '#1a1a22' } },
+      y: { type: 'logarithmic', ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v }, grid: { color: '#1a1a22' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartMom'), opts(momDates, [
+  { label: 'Optimal Momentum', data: momFull, borderColor: '#c4a265', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
+  { label: 'S&P 500', data: sp500Full, borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.3 }
+]));
+
+new Chart(document.getElementById('chartBtc'), opts(btcDates, [
+  { label: 'BTC Trend', data: btcTrend, borderColor: '#f97316', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
+  { label: 'Passive BTC', data: btcPassive, borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.3 }
+]));
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="/auth.js"></script>
