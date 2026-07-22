@@ -71,6 +71,18 @@ p.note strong{color:var(--text)}
 </head>
 <body>
 
+<header style="position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 0">
+  <div style="max-width:1050px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center">
+    <a href="/" style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--text);text-decoration:none">Bivar Capital</a>
+    <nav style="display:flex;align-items:center;gap:24px">
+      <a href="/" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">Home</a>
+      <a href="/strategies.html" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">Strategies</a>
+      <a href="/about.html" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">About</a>
+      <a href="/access.html" style="background:var(--accent);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
+    </nav>
+  </div>
+</header>
+
 <div class="container">
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
@@ -93,7 +105,6 @@ p.note strong{color:var(--text)}
     <div class="stat-card"><div class="stat-val">57%</div><div class="stat-label">Win Rate</div></div>
     <div class="stat-card"><div class="stat-val">22</div><div class="stat-label">Trades / Year</div></div>
   </div>
-</div>
 
 <div class="divider"></div>
 
@@ -115,7 +126,6 @@ p.note strong{color:var(--text)}
       <p><strong>Buy &amp; Hold:</strong> $10,000 invested &rarr; MaxDD &minus;83.8%</p>
     </div>
   </div>
-</div>
 
 <div class="divider"></div>
 
@@ -128,7 +138,6 @@ p.note strong{color:var(--text)}
     </div>
   </div>
   <p class="note">Strategy max drawdown: <strong>&minus;33.2%</strong>. Buy &amp; hold: <strong>&minus;83.8%</strong>. The strategy avoids every major crash.</p>
-</div>
 
 <div class="divider"></div>
 
@@ -152,7 +161,6 @@ p.note strong{color:var(--text)}
     </table>
   </div>
   <p class="note">The strategy beats buy &amp; hold in <strong>7 of 12 years</strong>. It underperforms in strong bull years (2016, 2017, 2020, 2023, 2024) but protects capital in bear years (2018: &minus;17% vs &minus;72%, 2022: &minus;1% vs &minus;65%).</p>
-</div>
 
 <div class="divider"></div>
 
@@ -180,7 +188,6 @@ p.note strong{color:var(--text)}
     </table>
   </div>
   <p class="note">Total: <strong>248 trades</strong> (124 round trips), avg <strong>22/year</strong>.</p>
-</div>
 
 <div class="divider"></div>
 
@@ -201,7 +208,6 @@ p.note strong{color:var(--text)}
   <div class="callout">
     <p><strong>Degradation:</strong> Sharpe falls from 2.06 to 1.27 as BTC matures. Forward estimate: Sharpe 1.0&ndash;1.3, CAGR +30&ndash;50%.</p>
   </div>
-</div>
 
 <div class="divider"></div>
 
@@ -227,7 +233,6 @@ p.note strong{color:var(--text)}
       </tbody>
     </table>
   </div>
-</div>
 
 <div class="divider"></div>
 
@@ -249,7 +254,6 @@ p.note strong{color:var(--text)}
       </tbody>
     </table>
   </div>
-</div>
 
 <div class="divider"></div>
 
@@ -259,14 +263,12 @@ p.note strong{color:var(--text)}
   <div class="callout-red"><p><strong>Overfitting.</strong> Parameters optimised on this data. Expect 20&ndash;30% Sharpe degradation.</p></div>
   <div class="callout-red"><p><strong>Costs.</strong> ~22 trades/yr &times; 0.2% = ~4%/yr drag. Not in backtest.</p></div>
   <div class="callout-red"><p><strong>Cash drag.</strong> In cash 66% of the time at 0% yield.</p></div>
-</div>
 
 
 <!-- FOOTER -->
 <div class="footer">
   <p>Bivar Capital &nbsp;&bull;&nbsp; April 2026</p>
   <p>CoinMetrics &nbsp;&bull;&nbsp; Jan 2015 &ndash; Apr 2026 &nbsp;&bull;&nbsp; 11.3 years</p>
-</div>
 
 </div><!-- /container -->
 
