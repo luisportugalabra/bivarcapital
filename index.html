@@ -155,7 +155,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 .ytd-main { font-family: var(--font-display); font-size: 2rem; color: var(--green); line-height: 1; }
 .ytd-bench { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); margin-top: 5px; }
 .ytd-bench span { color: var(--text-secondary); }
+.ytd-dot { display: inline-block; width: 6px; height: 6px; background: var(--green); border-radius: 50%; margin-right: 6px; vertical-align: middle; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 .ytd-cagr { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.04em; }
+.ytd-holdings { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); margin-top: 6px; }
 .ytd-chart-wrap { flex: 1; height: 100px; min-width: 0; }
 .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:4px}
 @media (max-width: 600px) {
@@ -199,10 +202,11 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
   <div class="ytd-widget">
     <div class="ytd-numbers">
-      <div class="ytd-label">Optimal Momentum YTD</div>
+      <div class="ytd-label"><span class="ytd-dot"></span>Optimal Momentum</div>
       <div class="ytd-main" id="ytd-main">—</div>
-      <div class="ytd-bench">vs S&amp;P 500 <span id="ytd-spy">—</span></div>
+      <div class="ytd-bench">vs S&amp;P 500 <span id="ytd-spy">—</span> &middot; YTD</div>
       <div class="ytd-cagr">CAGR +28.6% since '98</div>
+      <div class="ytd-holdings" id="ytd-holdings"></div>
     </div>
     <div class="ytd-chart-wrap">
       <canvas id="ytdChart"></canvas>
@@ -367,17 +371,33 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <script>
-fetch('/ytd-data.json').then(r=>r.json()).then(d=>{
+Promise.all([
+  fetch('/ytd-data.json').then(r=>r.json()),
+  fetch('/momentum-data.json').then(r=>r.json())
+]).then(([d, m]) => {
   const sign = v => (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
   document.getElementById('ytd-main').textContent = sign(d.ytd_strat);
   document.getElementById('ytd-spy').textContent = sign(d.ytd_spy);
 
+  // Holdings: show first 2 tickers + blend count
+  const tickers = (m.portfolio || []).map(p => p.ticker);
+  if (tickers.length) {
+    const shown = tickers.slice(0, 2).join(' · ');
+    const rest = tickers.length - 2;
+    document.getElementById('ytd-holdings').textContent = shown + (rest > 0 ? ` +${rest}` : '');
+  }
+
+  // Date
+  const dt = new Date(d.updated + 'T12:00:00');
+  const dateStr = dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  document.getElementById('ytd-main').title = 'Updated ' + dateStr;
+
   // Build sparse month labels: show label only on first day of each new month
   const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const labels = d.dates.map((s, i) => {
-    const m = new Date(s).getMonth();
-    if (i === 0) return monthNames[m];
-    return new Date(d.dates[i-1]).getMonth() !== m ? monthNames[m] : '';
+    const mo = new Date(s).getMonth();
+    if (i === 0) return monthNames[mo];
+    return new Date(d.dates[i-1]).getMonth() !== mo ? monthNames[mo] : '';
   });
 
   new Chart(document.getElementById('ytdChart'), {
