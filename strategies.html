@@ -145,22 +145,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <div style="margin-top:32px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:6px">
-        <div>
-          <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Optimal Momentum — YTD 2026</div>
-          <div style="display:flex;gap:20px;align-items:center">
-            <span id="ytd-strat-val" style="font-family:var(--font-display);font-size:1.6rem;color:var(--green)">—</span>
-            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)">vs S&amp;P 500 <span id="ytd-spy-val" style="color:var(--text-secondary)">—</span></span>
-          </div>
-        </div>
-        <div style="font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-align:right">Updated <span id="ytd-updated">—</span></div>
-      </div>
-      <div style="height:180px;position:relative">
-        <canvas id="ytdChart"></canvas>
-      </div>
-    </div>
-
   </section>
 </main>
 
@@ -184,54 +168,6 @@ window.onUnlock = function(email) {
   document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
 };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
-<script>
-fetch('/ytd-data.json').then(r=>r.json()).then(d=>{
-  document.getElementById('ytd-strat-val').textContent = (d.ytd_strat >= 0 ? '+' : '') + d.ytd_strat.toFixed(1) + '%';
-  document.getElementById('ytd-spy-val').textContent = (d.ytd_spy >= 0 ? '+' : '') + d.ytd_spy.toFixed(1) + '%';
-  document.getElementById('ytd-updated').textContent = d.updated;
-
-  // Downsample to ~60 points for clean chart
-  const step = Math.max(1, Math.floor(d.dates.length / 60));
-  const dates = [], strat = [], spy = [];
-  for (let i = 0; i < d.dates.length; i += step) {
-    dates.push(d.dates[i]);
-    strat.push(d.strat[i]);
-    spy.push(d.spy[i]);
-  }
-  // Always include last point
-  if (dates[dates.length-1] !== d.dates[d.dates.length-1]) {
-    dates.push(d.dates[d.dates.length-1]);
-    strat.push(d.strat[d.strat.length-1]);
-    spy.push(d.spy[d.spy.length-1]);
-  }
-
-  new Chart(document.getElementById('ytdChart'), {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [
-        { data: strat, borderColor: '#c4a265', borderWidth: 2, pointRadius: 0, tension: 0.3, fill: false },
-        { data: spy, borderColor: '#4a4a5a', borderWidth: 1.5, pointRadius: 0, tension: 0.3, fill: false, borderDash: [4,3] }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false, animation: false,
-      plugins: { legend: { display: false }, tooltip: {
-        mode: 'index', intersect: false,
-        callbacks: { label: ctx => (ctx.dataset.borderColor === '#c4a265' ? 'Momentum: ' : 'S&P 500: ') + (ctx.raw >= 0 ? '+' : '') + ctx.raw.toFixed(1) + '%' }
-      }},
-      scales: {
-        x: { ticks: { display: false }, grid: { display: false }, border: { display: false } },
-        y: {
-          ticks: { font: { family: "'JetBrains Mono'", size: 9 }, color: '#5a5a68', callback: v => (v >= 0 ? '+' : '') + v + '%' },
-          grid: { color: '#1a1a22' }, border: { display: false }
-        }
-      }
-    }
-  });
-});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="/auth.js"></script>
 </body>

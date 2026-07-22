@@ -28,6 +28,7 @@ from tradingview_screener import Query, col
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SITE_DIR = os.path.dirname(SCRIPT_DIR)  # bivarcapital/
 JSON_PATH = os.path.join(SITE_DIR, "momentum-data.json")
+PICKS_HISTORY_PATH = os.path.join(SITE_DIR, "ytd-picks-history.json")
 
 
 def fetch_stocks():
@@ -103,6 +104,52 @@ def select_top(df, n=7):
     return [str(t) for t in df.head(n)['ticker']]
 
 
+def _update_picks_history(tickers, today_str):
+    """
+    Append new period to ytd-picks-history.json when a new month starts.
+    The previous period's end date is today, and the new period starts today.
+    Only appends if the last entry's end month is before this month.
+    """
+    import calendar
+    from datetime import datetime, date
+
+    if not os.path.exists(PICKS_HISTORY_PATH):
+        return
+
+    with open(PICKS_HISTORY_PATH) as f:
+        history = json.load(f)
+
+    today = datetime.strptime(today_str, '%Y-%m-%d').date()
+    today_ym = (today.year, today.month)
+
+    if history:
+        last_end = datetime.strptime(history[-1]['end'], '%Y-%m-%d').date()
+        last_end_ym = (last_end.year, last_end.month)
+
+        # Only add if we're in a new month vs the last period's end
+        if today_ym <= last_end_ym:
+            print(f"  Picks history: already up to date ({history[-1]['end']})")
+            return
+
+        # End date of new period = last day of current month
+        last_day = calendar.monthrange(today.year, today.month)[1]
+        new_end = date(today.year, today.month, last_day).isoformat()
+
+        new_period = {
+            "start": history[-1]['end'],
+            "end": new_end,
+            "tickers": list(tickers),
+        }
+        history.append(new_period)
+
+        with open(PICKS_HISTORY_PATH, 'w') as f:
+            json.dump(history, f, indent=2)
+
+        print(f"  Picks history: added {new_period['start']} → {new_period['end']}: {tickers}")
+    else:
+        print("  Picks history: empty, skipping")
+
+
 def main():
     print("Fetching TradingView data...")
     df = fetch_stocks()
@@ -153,6 +200,9 @@ def main():
     with open(JSON_PATH, 'w') as f:
         json.dump(output, f, indent=2)
     print(f"  Saved: {JSON_PATH}")
+
+    # Update YTD picks history on the 1st trading day of each month
+    _update_picks_history(sel7, output['date'])
 
     # Print
     print(f"\n{'='*120}")

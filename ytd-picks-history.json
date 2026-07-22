@@ -1,0 +1,9 @@
+[
+  {"start": "2025-12-31", "end": "2026-01-31", "tickers": ["LITE", "WDC", "SNDK", "MU", "CIEN", "WBD", "STX"]},
+  {"start": "2026-01-31", "end": "2026-02-28", "tickers": ["SNDK", "MU", "WDC", "LITE", "STX", "CIEN", "CDE"]},
+  {"start": "2026-02-28", "end": "2026-03-31", "tickers": ["SNDK", "LITE", "BE", "WDC", "CIEN", "MU", "HL"]},
+  {"start": "2026-03-31", "end": "2026-04-30", "tickers": ["SNDK", "LITE", "CIEN", "WDC", "BE", "STX", "FIX"]},
+  {"start": "2026-04-30", "end": "2026-05-31", "tickers": ["SNDK", "LITE", "BE", "WDC", "CIEN", "STX", "MU"]},
+  {"start": "2026-05-31", "end": "2026-06-30", "tickers": ["SNDK", "LITE", "BE", "WDC", "CIEN", "STX", "MU"]},
+  {"start": "2026-06-30", "end": "2026-07-31", "tickers": ["SNDK", "MU", "LITE", "BE", "WDC", "STX", "DOCN"]}
+]
