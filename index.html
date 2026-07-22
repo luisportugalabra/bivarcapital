@@ -389,12 +389,13 @@ Promise.all([
   document.getElementById('ytd-main').textContent = sign(d.ytd_strat);
   document.getElementById('ytd-spy').textContent = sign(d.ytd_spy);
 
-  // Holdings: show first 2 tickers + blend count
+  // Holdings: show first 2 tickers + blend indicator
   const tickers = (m.portfolio || []).map(p => p.ticker);
   if (tickers.length) {
     const shown = tickers.slice(0, 2).join(' · ');
     const rest = tickers.length - 2;
-    document.getElementById('ytd-holdings').textContent = shown + (rest > 0 ? ` +${rest}` : '');
+    const el = document.getElementById('ytd-holdings');
+    el.innerHTML = '<span style="color:var(--text-muted)">Holdings </span>' + shown + (rest > 0 ? `<span style="color:var(--text-muted)"> · +${rest} more</span>` : '');
   }
 
   // Date
