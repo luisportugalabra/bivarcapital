@@ -132,7 +132,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">Bitcoin Trend Signal</div>
         <span class="card-badge badge-live">Live</span>
       </div>
-      <p id="btc-blur" class="card-desc" style="filter:blur(6px);user-select:none">Trend-following system for Bitcoin. RSI(14) + 155-day Moving Average + Volatility filter. Three rules checked daily. Invested 33% of the time, avoids crashes.</p>
+      <p id="btc-blur" class="card-desc" style="filter:blur(6px);user-select:none">Trend-following system for Bitcoin. Invested 33% of the time, avoids major crashes.</p>
       <div class="card-stats" id="btc-stats" style="filter:blur(6px);user-select:none">
         <span class="card-stat">Sharpe: <span class="num">2.37</span></span>
         <span class="card-stat">CAGR: <span class="num">+88.8%</span></span>
@@ -166,7 +166,7 @@ window.onUnlock = function(email) {
   document.getElementById('btc-stats').style.filter = 'none';
   document.getElementById('btc-stats').style.userSelect = 'auto';
   document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
-  document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">See strategy &amp; backtests &rarr;</a>';
+  document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
 };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="/auth.js"></script>
