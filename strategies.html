@@ -67,6 +67,40 @@ h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin
   text-decoration: none; transition: color 0.2s;
 }
 .card-link:hover { color: var(--text); }
+/* Modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg-card); border: 1px solid var(--border-light);
+  border-radius: 14px; padding: 32px; max-width: 480px; width: 100%;
+  position: relative; max-height: 90vh; overflow-y: auto;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; color: var(--text-muted);
+  font-size: 1.2rem; cursor: pointer; line-height: 1;
+}
+.modal-close:hover { color: var(--text); }
+.modal h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: 20px; }
+.modal-step { margin-bottom: 18px; }
+.modal-step-num {
+  font-family: var(--font-mono); font-size: 0.55rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
+}
+.modal-step p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.65; }
+.modal-step p strong { color: var(--text); }
+.modal-divider { height: 1px; background: var(--border); margin: 20px 0; }
+.hiw-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted);
+  text-decoration: underline; text-underline-offset: 3px; padding: 0;
+  transition: color 0.2s;
+}
+.hiw-btn:hover { color: var(--text); }
 footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
 footer p { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); }
 footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
@@ -121,7 +155,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-stat">MaxDD: <span class="num">-34.3%</span></span>
         <span class="card-stat"><span class="num">1998&ndash;2026</span></span>
       </div>
-      <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:16px">
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-mom').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
         <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
@@ -139,7 +176,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <span class="card-stat">MaxDD: <span class="num">-30%</span></span>
         <span class="card-stat">Since: <span class="num">2015</span></span>
       </div>
-      <div id="btc-actions" style="display:flex;align-items:center;gap:12px;margin-top:14px">
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-btc').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="btc-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
         <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
@@ -147,6 +187,58 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
   </section>
 </main>
+
+<!-- MODAL: Optimal Momentum -->
+<div class="modal-overlay" id="modal-mom" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-mom').classList.remove('open')">&times;</button>
+    <h3>How to follow Optimal Momentum</h3>
+
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 — Once a month</div>
+      <p>On the <strong>1st business day of each month</strong>, check the signal on this site or wait for the email notification. The rebalance takes ~5 minutes.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 — Check the regime</div>
+      <p>The strategy has two modes. If the S&P 500 is <strong>above its 250-day moving average</strong>: hold momentum stocks. If it is below: sell everything and buy <strong>GLD</strong> (SPDR Gold Shares ETF, ticker: GLD).</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 — Execute</div>
+      <p>In momentum mode: sell previous holdings and buy the <strong>7 stocks listed</strong> in equal weight (~14.3% each). In gold mode: hold GLD until the regime flips back.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-step">
+      <div class="modal-step-num">Key details</div>
+      <p>Universe: US large-cap equities, market cap &gt;$10B, positive operating income. Composite momentum = 50% 6-month + 50% 12-month return. No intra-month changes — set and forget until next 1st.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Bitcoin Trend Signal -->
+<div class="modal-overlay" id="modal-btc" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-btc').classList.remove('open')">&times;</button>
+    <h3>How to follow the Bitcoin Trend Signal</h3>
+
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 — Check daily</div>
+      <p>The signal updates <strong>every day after market close</strong>. Check the signal page on this site — it shows BUY or OUT clearly at the top.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 — Two positions only</div>
+      <p>The strategy is binary: either <strong>fully invested in Bitcoin</strong> (spot, on your exchange of choice) or <strong>fully in cash</strong>. No partial positions, no leverage.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 — Act on signal changes</div>
+      <p>You only need to act when the signal <strong>changes</strong>. If it was BUY yesterday and is BUY today — do nothing. When it flips to OUT: sell. When it flips to BUY: buy. On average the signal changes ~22 times per year.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-step">
+      <div class="modal-step-num">Key details</div>
+      <p>The strategy is invested ~34% of the time. Cash earns 0% in the backtest — any yield on idle cash is upside. Signal is based on daily closing prices.</p>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="container">
