@@ -75,7 +75,7 @@ nav a {
 }
 nav a:hover { color: var(--text); }
 
-.hero { padding: 80px 0 48px; border-bottom: 1px solid var(--border); }
+.hero { padding: 48px 0 40px; border-bottom: 1px solid var(--border); }
 .hero h1 {
   font-family: var(--font-display); font-size: 2.4rem; font-weight: 400;
   line-height: 1.15; margin-bottom: 16px;
@@ -147,22 +147,22 @@ footer p { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-m
 footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
 
 .ytd-widget {
-  padding: 20px 0 24px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 24px;
+  padding: 24px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 28px;
 }
-.ytd-numbers { flex-shrink: 0; min-width: 120px; }
-.ytd-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
-.ytd-main { font-family: var(--font-display); font-size: 1.8rem; color: var(--green); line-height: 1; }
-.ytd-bench { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); margin-top: 3px; }
+.ytd-numbers { flex-shrink: 0; min-width: 130px; }
+.ytd-label { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
+.ytd-main { font-family: var(--font-display); font-size: 2rem; color: var(--green); line-height: 1; }
+.ytd-bench { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); margin-top: 5px; }
 .ytd-bench span { color: var(--text-secondary); }
-.ytd-chart-wrap { flex: 1; height: 72px; min-width: 0; }
+.ytd-chart-wrap { flex: 1; height: 100px; min-width: 0; }
 .ytd-cta { flex-shrink: 0; }
 .ytd-cta a {
   display: inline-block;
   font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
   letter-spacing: 0.08em; text-transform: uppercase;
   background: var(--accent); color: #060608;
-  padding: 8px 16px; border-radius: 5px; text-decoration: none;
+  padding: 9px 18px; border-radius: 5px; text-decoration: none;
   white-space: nowrap;
 }
 .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:4px}
@@ -178,8 +178,9 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
   .entry-title { font-size: 1rem; }
   .entry-body { font-size: 0.78rem; }
   .ytd-cta { display: none; }
-  .ytd-chart-wrap { height: 56px; }
-  .ytd-main { font-size: 1.4rem; }
+  .ytd-chart-wrap { height: 70px; }
+  .ytd-main { font-size: 1.6rem; }
+  .hero { padding: 32px 0 32px; }
 }
 </style>
 </head>
@@ -382,17 +383,21 @@ fetch('/ytd-data.json').then(r=>r.json()).then(d=>{
   document.getElementById('ytd-main').textContent = sign(d.ytd_strat);
   document.getElementById('ytd-spy').textContent = sign(d.ytd_spy);
 
-  // Month labels from dates
+  // Build sparse month labels: show label only on first day of each new month
   const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const labels = d.dates.map(s => { const dt = new Date(s); return monthNames[dt.getMonth()]; });
+  const labels = d.dates.map((s, i) => {
+    const m = new Date(s).getMonth();
+    if (i === 0) return monthNames[m];
+    return new Date(d.dates[i-1]).getMonth() !== m ? monthNames[m] : '';
+  });
 
   new Chart(document.getElementById('ytdChart'), {
     type: 'line',
     data: {
       labels,
       datasets: [
-        { data: d.strat, borderColor: '#c4a265', borderWidth: 2, pointRadius: 0, tension: 0.3, fill: false },
-        { data: d.spy, borderColor: '#3a3a50', borderWidth: 1.5, pointRadius: 0, tension: 0.3, fill: false, borderDash: [4,3] }
+        { data: d.strat, borderColor: '#c4a265', borderWidth: 2, pointRadius: 0, tension: 0.2, fill: false },
+        { data: d.spy,   borderColor: '#52526a', borderWidth: 1.5, pointRadius: 0, tension: 0.2, fill: false, borderDash: [4,3] }
       ]
     },
     options: {
@@ -403,20 +408,13 @@ fetch('/ytd-data.json').then(r=>r.json()).then(d=>{
       }},
       scales: {
         x: {
-          ticks: {
-            font: { family: "'JetBrains Mono'", size: 9 }, color: '#5a5a68',
-            maxTicksLimit: 7, maxRotation: 0,
-            callback: function(val, i) {
-              // Show only when month changes
-              if (i === 0) return labels[0];
-              return labels[i] !== labels[i-1] ? labels[i] : '';
-            }
-          },
+          ticks: { font: { family: "'JetBrains Mono'", size: 9 }, color: '#5a5a68', maxRotation: 0, autoSkip: false },
           grid: { display: false }, border: { display: false }
         },
         y: {
-          ticks: { font: { family: "'JetBrains Mono'", size: 9 }, color: '#5a5a68', callback: v => (v >= 0 ? '+' : '') + v + '%', maxTicksLimit: 4 },
-          grid: { color: '#1a1a22' }, border: { display: false }
+          min: 0,
+          ticks: { font: { family: "'JetBrains Mono'", size: 9 }, color: '#5a5a68', callback: v => '+' + v + '%', maxTicksLimit: 4 },
+          grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false }
         }
       }
     }
