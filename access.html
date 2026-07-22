@@ -149,6 +149,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     </div>
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:52px;">
       <canvas id="chartMom" height="80"></canvas>
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);text-align:right;margin-top:12px;letter-spacing:0.06em;">$100k invested Jan 1998 &nbsp;·&nbsp; log scale</p>
     </div>
 
     <!-- BTC -->
@@ -184,6 +185,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:52px;">
       <canvas id="chartBtc" height="80"></canvas>
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);text-align:right;margin-top:12px;letter-spacing:0.06em;">$100k invested Jan 2015 &nbsp;·&nbsp; log scale</p>
     </div>
 
     <!-- Correlations -->
@@ -277,40 +279,49 @@ function selectPlan(plan) {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <script>
-const momDates = ["2004-01","2004-10","2005-06","2006-01","2007-01","2008-01","2009-06","2010-01","2011-01","2012-01","2013-01","2014-01","2015-01","2016-01","2017-01","2018-01","2019-01","2020-01","2021-01","2022-01","2023-01","2024-01","2025-01","2026-03"];
-const momFull = [100.0,100.0,120.65,158.66,141.75,208.32,232.84,255.16,298.37,280.48,358.59,503.74,467.82,448.76,743.33,739.28,725.32,1773.44,2227.47,2906.7,1662.19,4259.23,6557.04,6232.26];
-const sp500Full = [101.22,103.77,109.11,113.17,124.37,117.64,87.3,97.64,117.34,120.74,138.73,163.41,186.05,191.69,249.65,239.74,260.07,228.5,369.65,365.29,363.29,533.31,604.72,629.99];
+// Momentum: $100k from Jan 1998 (annual, from yearly returns in strategy report)
+const momDates = ["1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
+const momEq    = [100000,143400,350326,460329,487028,691579,875539,1133824,1360588,1323852,2290265,2326909,2834175,3281975,2536966,3473107,4963070,6188948,6393183,9257330,12219675,10533360,11439229,19458128,15741626,15206410,18764710,50176836,70849692,121719771];
+const spEq     = [100000,122700,145400,128242,115418,90834,110727,120028,126749,141452,144564,93099,113209,127133,127642,146150,183126,205651,201126,225664,269442,250851,325604,369887,479373,382060,473755,586035,685075,722069];
 
-const btcDates = ["2015-01","2016-01","2017-01","2018-01","2019-01","2020-01","2021-01","2022-01","2023-01","2024-01","2025-01","2026-04"];
-const btcTrend = [100,126.46,255.93,1150.41,1024.64,2626.95,9480.03,7193.05,7141.47,12775.48,23499.68,22622.49];
-const btcPassive = [67.78,114.25,302.03,3134.17,1063.47,2918.11,18334.61,13653.48,7213.21,13281.72,31891.2,23047.68];
+// BTC: $100k from Jan 2015 (annual)
+const btcDates   = ["2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
+const btcTrendEq = [100000,100000,126460,255930,1150410,1024640,2626950,9480030,7193050,7141470,12775480,23499680,22622490];
+const btcPassEq  = [100000,67780,114250,302030,3134170,1063470,2918110,18334610,13653480,7213210,13281720,31891200,23047680];
 
-const opts = (labels, datasets) => ({
+function fmtM(v) {
+  if (v >= 1e6) return '$' + (v/1e6).toFixed(v >= 10e6 ? 0 : 1) + 'M';
+  return '$' + (v/1e3).toFixed(0) + 'k';
+}
+
+const mkChart = (id, labels, datasets) => new Chart(document.getElementById(id), {
   type: 'line',
   data: { labels, datasets },
   options: {
     responsive: true,
     interaction: { mode: 'index', intersect: false },
     plugins: {
-      legend: { labels: { color: '#9898a4', font: { family: 'JetBrains Mono', size: 10 }, boxWidth: 12 } },
-      tooltip: { callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(0) } }
+      legend: { labels: { color: '#9898a4', font: { family: 'JetBrains Mono', size: 10 }, boxWidth: 10, padding: 16 } },
+      tooltip: {
+        backgroundColor: '#0c0c10', borderColor: '#2a2a35', borderWidth: 1,
+        callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmtM(ctx.parsed.y) }
+      }
     },
     scales: {
-      x: { ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 8 }, grid: { color: '#1a1a22' } },
-      y: { type: 'logarithmic', ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v }, grid: { color: '#1a1a22' } }
+      x: { ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }, grid: { color: '#1a1a22' } },
+      y: { type: 'logarithmic', ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, callback: fmtM }, grid: { color: '#1a1a22' } }
     }
   }
 });
 
-new Chart(document.getElementById('chartMom'), opts(momDates, [
-  { label: 'Optimal Momentum', data: momFull, borderColor: '#c4a265', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
-  { label: 'S&P 500', data: sp500Full, borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.3 }
-]));
-
-new Chart(document.getElementById('chartBtc'), opts(btcDates, [
-  { label: 'BTC Trend', data: btcTrend, borderColor: '#f97316', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
-  { label: 'Passive BTC', data: btcPassive, borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.3 }
-]));
+mkChart('chartMom', momDates, [
+  { label: 'Optimal Momentum', data: momEq,  borderColor: '#c4a265', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.2 },
+  { label: 'S&P 500',          data: spEq,   borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.2 }
+]);
+mkChart('chartBtc', btcDates, [
+  { label: 'BTC Trend',   data: btcTrendEq, borderColor: '#f97316', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.2 },
+  { label: 'Passive BTC', data: btcPassEq,  borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.2 }
+]);
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="/auth.js"></script>
