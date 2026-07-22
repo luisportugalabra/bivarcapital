@@ -16,474 +16,70 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 <style>
-:root {
-  --bg: #07070b;
-  --bg2: #0d0d13;
-  --bg3: #12121a;
-  --card: #0f0f17;
-  --card-hover: #141420;
-  --border: #1c1c2a;
-  --border-light: #252538;
-  --text: #e4e4ec;
-  --text-dim: #b0b0be;
-  --muted: #6a6a7e;
-  --accent: #c9a84c;
-  --accent-dim: rgba(201,168,76,0.15);
-  --accent-glow: rgba(201,168,76,0.08);
-  --green: #34d399;
-  --green-dim: rgba(52,211,153,0.12);
-  --red: #f87171;
-  --red-dim: rgba(248,113,113,0.10);
-  --blue: #60a5fa;
-}
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--text-dim:#9898a4;--muted:#5a5a68;--accent:#c4a265;--green:#4ade80;--green-dim:rgba(74,222,128,0.1);--red:#f87171;--accent-dim:rgba(196,162,101,0.12);}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  font-size: 15px;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* === HEADER === */
-.site-header {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(7,7,11,0.88);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom: 1px solid var(--border);
-  padding: 0;
-}
-.site-header .hw {
-  max-width: 1080px; margin: 0 auto; padding: 16px 32px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.site-header .hl {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem; font-weight: 600;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--accent); text-decoration: none;
-}
-.site-header nav { display: flex; align-items: center; gap: 28px; }
-.site-header nav a {
-  font-family: 'DM Sans', -apple-system, sans-serif;
-  font-size: 0.78rem; font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--muted); text-decoration: none;
-  transition: color 0.25s;
-}
-.site-header nav a:hover { color: var(--text); }
-.site-header nav a.accent { color: var(--accent); font-weight: 500; }
-.menu-btn {
-  display: none; background: none; border: none;
-  color: var(--text); font-size: 1.3rem; cursor: pointer;
-}
-
-/* === LAYOUT === */
-.container {
-  max-width: 1080px; margin: 0 auto;
-  padding: 0 32px 100px;
-}
-
-/* === HERO === */
-.hero {
-  padding: 72px 0 56px;
-  text-align: center;
-  position: relative;
-}
-.hero::before {
-  content: '';
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 400px;
-  background: radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-.hero-tag span { color: var(--accent); }
-h1 {
-  font-family: 'DM Serif Display', Georgia, serif;
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  font-weight: 300; line-height: 1.15;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-h1 em {
-  display: block;
-  font-style: italic; font-weight: 400;
-  color: var(--accent);
-  font-size: 0.72em;
-  margin-top: 4px;
-}
-.lead {
-  font-size: 0.95rem; font-weight: 300;
-  color: var(--text-dim);
-  max-width: 680px; margin: 20px auto 0;
-  line-height: 1.8;
-}
-
-/* === SECTIONS === */
-.section { margin-top: 64px; }
-.section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-label::after {
-  content: '';
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
-}
-h2 {
-  font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 1.65rem; font-weight: 400;
-  color: var(--text);
-  margin-bottom: 24px;
-}
-
-/* === STATS GRID === */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.stat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 22px 16px;
-  text-align: center;
-  transition: border-color 0.3s, background 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.stat-card:hover {
-  border-color: var(--border-light);
-  background: var(--card-hover);
-}
-.stat-card.primary {
-  border-color: rgba(201,168,76,0.25);
-  background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, var(--card) 100%);
-}
-.stat-val {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.5rem; font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 4px;
-}
-.stat-label {
-  font-size: 0.7rem; font-weight: 400;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.pos { color: var(--green); }
-.neg { color: var(--red); }
-
-/* === CHART CONTAINER === */
-.chart-container {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 24px 20px;
-  margin: 24px 0;
-  position: relative;
-}
-.chart-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem; font-weight: 500;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-.chart-canvas-wrap {
-  position: relative;
-  width: 100%;
-  height: 380px;
-}
-.chart-canvas-wrap.short { height: 240px; }
-.chart-canvas-wrap canvas { width: 100% !important; height: 100% !important; }
-
-/* === HIGHLIGHT BOXES === */
-.highlight-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin: 20px 0;
-}
-.highlight-box {
-  border-radius: 12px;
-  padding: 22px 24px;
-  position: relative;
-  overflow: hidden;
-}
-.highlight-box.green {
-  background: var(--green-dim);
-  border: 1px solid rgba(52,211,153,0.18);
-}
-.highlight-box.gold {
-  background: var(--accent-dim);
-  border: 1px solid rgba(201,168,76,0.2);
-}
-.highlight-box p {
-  margin: 0; font-size: 0.9rem; color: var(--text-dim);
-}
-.highlight-box p strong { color: var(--text); }
-.highlight-box .big {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.3rem; font-weight: 600;
-  color: var(--text);
-  display: block; margin-bottom: 4px;
-}
-
-/* === TABLES === */
-.table-wrap {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 20px 0;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.82rem;
-}
-thead th {
-  text-align: left;
-  padding: 14px 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem; font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  background: var(--bg3);
-  border-bottom: 1px solid var(--border);
-}
-thead th:not(:first-child) { text-align: right; }
-td {
-  padding: 11px 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
-  border-bottom: 1px solid rgba(28,28,42,0.5);
-  color: var(--text-dim);
-}
-td:not(:first-child) { text-align: right; }
-td:first-child { color: var(--text); font-weight: 500; }
-tbody tr { transition: background 0.2s; }
-tbody tr:hover { background: rgba(255,255,255,0.02); }
-tbody tr:last-child td { border-bottom: none; }
-
-/* === CALLOUT === */
-.callout {
-  background: var(--card);
-  border-left: 3px solid var(--accent);
-  padding: 20px 24px;
-  margin: 20px 0;
-  border-radius: 0 12px 12px 0;
-}
-.callout p {
-  margin: 0; color: var(--text);
-  font-size: 0.88rem; line-height: 1.7;
-}
-.callout-red {
-  background: var(--card);
-  border-left: 3px solid var(--red);
-  padding: 16px 24px;
-  margin: 12px 0;
-  border-radius: 0 12px 12px 0;
-}
-.callout-red p {
-  margin: 0; color: var(--text-dim);
-  font-size: 0.85rem;
-}
-.callout-red p strong { color: var(--text); }
-
-/* === RULES === */
-.rules-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin: 20px 0;
-}
-.rule-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px 20px;
-  text-align: center;
-  transition: border-color 0.3s;
-}
-.rule-card:hover { border-color: var(--accent); }
-.rule-num {
-  font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 2rem; font-weight: 300;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 12px;
-}
-.rule-indicator {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem; font-weight: 600;
-  color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-}
-.rule-condition {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.05rem; font-weight: 600;
-  color: var(--green);
-  margin-bottom: 8px;
-}
-.rule-purpose {
-  font-size: 0.78rem; color: var(--muted);
-}
-
-/* === METHODOLOGY === */
-.method-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin: 20px 0;
-}
-.method-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px 24px;
-}
-.method-card dt {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.58rem; font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-.method-card dd {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  margin: 0 0 14px;
-}
-.method-card dd:last-child { margin-bottom: 0; }
-
-/* === DIVIDER === */
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
-  margin: 48px 0;
-}
-
-/* === FOOTER === */
-.footer {
-  margin-top: 72px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-.footer p {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem; color: var(--muted);
-  letter-spacing: 0.06em;
-  margin-bottom: 4px;
-}
-
-/* === PARAGRAPH === */
-p.note {
-  font-size: 0.88rem; color: var(--text-dim);
-  margin: 16px 0; line-height: 1.8;
-}
-p.note strong { color: var(--text); }
-
-/* === SCROLL REVEAL === */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .container { padding: 0 20px 80px; }
-  .site-header .hw { padding: 14px 20px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .rules-grid { grid-template-columns: 1fr; }
-  .highlight-row { grid-template-columns: 1fr; }
-  .method-grid { grid-template-columns: 1fr; }
-  .chart-canvas-wrap { height: 280px; }
-  .chart-canvas-wrap.short { height: 200px; }
-  h1 { font-size: 2rem; }
-  .stat-val { font-size: 1.2rem; }
-  .hero { padding: 48px 0 40px; }
-  .table-wrap { overflow-x: auto; }
-  table { min-width: 600px; }
-}
-@media (max-width: 600px) {
-  .site-header nav:not(.open) { display: none; }
-  .site-header nav {
-    position: absolute; top: 100%; left: 0; right: 0;
-    background: rgba(7,7,11,0.97);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 20px; flex-direction: column; gap: 16px;
-  }
-  .menu-btn { display: block; }
-  .stats-grid { gap: 8px; }
-  .stat-card { padding: 16px 12px; }
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14px;-webkit-font-smoothing:antialiased}
+.container{max-width:1050px;margin:0 auto;padding:40px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+h1{font-family:'DM Serif Display',serif;font-size:2.2rem;font-weight:400;line-height:1.15}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:2px;font-size:1.1rem}
+.lead{color:var(--muted);font-size:0.82rem;max-width:700px;margin:10px 0 32px}
+h2{font-family:'DM Serif Display',serif;font-size:1.3rem;font-weight:400;margin:44px 0 10px}
+h3{font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--accent);margin:24px 0 8px}
+p{color:var(--muted);margin-bottom:10px;font-size:0.82rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:36px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:600}
+.stat-label{font-size:0.48rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.highlight-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.highlight-box{border-radius:8px;padding:18px 20px}
+.highlight-box.green{background:var(--green-dim);border:1px solid rgba(74,222,128,0.18)}
+.highlight-box.gold{background:var(--accent-dim);border:1px solid rgba(196,162,101,0.2)}
+.highlight-box p{margin:0;font-size:0.8rem;color:var(--muted)}
+.highlight-box p strong{color:var(--text)}
+.highlight-box .big{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:600;color:var(--text);display:block;margin-bottom:4px}
+.chart-container{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 18px 16px;margin:14px 0}
+.chart-title{font-family:'JetBrains Mono',monospace;font-size:0.5rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.chart-canvas-wrap{position:relative;width:100%;height:340px}
+.chart-canvas-wrap.short{height:200px}
+.chart-canvas-wrap canvas{width:100%!important;height:100%!important}
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:0.7rem}
+thead th{text-align:left;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:0.5rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--card)}
+thead th:not(:first-child){text-align:right}
+td{padding:6px 10px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim)}
+td:not(:first-child){text-align:right}
+td:first-child{color:var(--text)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,0.02)}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:14px 0;border-radius:0 8px 8px 0;font-size:0.78rem}
+.callout p{margin:0;color:var(--text)}
+.callout-red{background:var(--card);border-left:3px solid var(--red);padding:12px 18px;margin:10px 0;border-radius:0 8px 8px 0}
+.callout-red p{margin:0;color:var(--muted);font-size:0.78rem}
+.callout-red p strong{color:var(--text)}
+p.note{font-size:0.82rem;color:var(--muted);margin:12px 0;line-height:1.8}
+p.note strong{color:var(--text)}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:0.5rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+@media(max-width:700px){.stats-grid{grid-template-columns:repeat(2,1fr)}.highlight-row{grid-template-columns:1fr}.table-wrap{overflow-x:auto}table{min-width:500px}}
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="hw">
-    <a href="/" class="hl">Bivar Capital</a>
-    <button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/strategies.html">Strategies</a>
-      <a href="/about.html">About</a>
-      <a href="#" id="nav-signin" class="accent">Sign In</a>
-      <a href="/access.html" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
-      <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span>
-    </nav>
-  </div>
-</header>
-
 <div class="container">
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag"><span>Bivar Capital</span> &mdash; Quantitative Research</div>
-  <h1>Bitcoin Trend Strategy<em>Systematic trend-following for Bitcoin</em></h1>
-  <p class="lead">A rules-based trend-following system for Bitcoin. Invested 34% of the time, beats buy&nbsp;&amp;&nbsp;hold in 7 of 12 years. 11 years of CoinMetrics data (2015&ndash;2026). No look-ahead bias.</p>
-</div>
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>Bitcoin Trend Strategy<span class="it">Systematic trend-following for Bitcoin</span></h1>
+<p class="lead">A rules-based trend-following system for Bitcoin. Invested 34% of the time, beats buy&nbsp;&amp;&nbsp;hold in 7 of 12 years. 11 years of CoinMetrics data (2015&ndash;2026). No look-ahead bias.</p>
 
 <div class="divider"></div>
 
 <!-- I. PERFORMANCE SUMMARY -->
-<div class="section reveal">
-  <div class="section-label">Section I</div>
   <h2>Performance Summary</h2>
   <div class="stats-grid">
     <div class="stat-card primary"><div class="stat-val pos">+75.9%</div><div class="stat-label">CAGR</div></div>
@@ -502,8 +98,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- II. EQUITY CURVE -->
-<div class="section reveal">
-  <div class="section-label">Section II</div>
   <h2>Equity Curve</h2>
   <div class="chart-container">
     <div class="chart-title">Growth of $1 (Log Scale) &mdash; Strategy vs Buy &amp; Hold</div>
@@ -526,8 +120,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- III. DRAWDOWN -->
-<div class="section reveal">
-  <div class="section-label">Section III</div>
   <h2>Drawdown Comparison</h2>
   <div class="chart-container">
     <div class="chart-title">Underwater Equity &mdash; Strategy vs Buy &amp; Hold</div>
@@ -541,8 +133,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- IV. STRATEGY vs BUY & HOLD -->
-<div class="section reveal">
-  <div class="section-label">Section IV</div>
   <h2>Strategy vs Buy &amp; Hold</h2>
   <div class="table-wrap">
     <table>
@@ -567,8 +157,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- VI. ANNUAL RETURNS -->
-<div class="section reveal">
-  <div class="section-label">Section VI</div>
   <h2>Annual Returns</h2>
   <div class="table-wrap">
     <table>
@@ -597,8 +185,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- VII. 5-YEAR SUB-PERIODS -->
-<div class="section reveal">
-  <div class="section-label">Section VII</div>
   <h2>5-Year Sub-Periods</h2>
   <div class="table-wrap">
     <table>
@@ -620,8 +206,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- VIII. ROLLING 3-YEAR WINDOWS -->
-<div class="section reveal">
-  <div class="section-label">Section VIII</div>
   <h2>Rolling 3-Year Windows</h2>
   <p class="note" style="margin-top:0">Every 3-year window since 2015. No cherry-picking &mdash; all windows shown.</p>
   <div class="table-wrap">
@@ -648,8 +232,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- IX. TOP DRAWDOWNS -->
-<div class="section reveal">
-  <div class="section-label">Section IX</div>
   <h2>Top Drawdowns</h2>
   <div class="table-wrap">
     <table>
@@ -672,8 +254,6 @@ p.note strong { color: var(--text); }
 <div class="divider"></div>
 
 <!-- X. CAVEATS -->
-<div class="section reveal">
-  <div class="section-label">Section X</div>
   <h2>Caveats</h2>
   <div class="callout-red"><p><strong>Short history.</strong> 11 years. BTC may change as institutional adoption grows.</p></div>
   <div class="callout-red"><p><strong>Overfitting.</strong> Parameters optimised on this data. Expect 20&ndash;30% Sharpe degradation.</p></div>
