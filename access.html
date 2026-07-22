@@ -155,7 +155,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
           <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">OPTIMAL MOMENTUM</div>
         </div>
         <div>
-          <div style="font-family:var(--font-display);font-size:2rem;color:#3a3a48;line-height:1;">$722k</div>
+          <div style="font-family:var(--font-display);font-size:2rem;color:#6b7280;line-height:1;">$722k</div>
           <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">S&amp;P 500</div>
         </div>
       </div>
@@ -201,7 +201,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
           <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">BTC TREND STRATEGY</div>
         </div>
         <div>
-          <div style="font-family:var(--font-display);font-size:2rem;color:#3a3a48;line-height:1;">$23M</div>
+          <div style="font-family:var(--font-display);font-size:2rem;color:#6b7280;line-height:1;">$23M</div>
           <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">PASSIVE BTC — MAX DD −77%</div>
         </div>
       </div>
@@ -344,11 +344,11 @@ const mkChart = (id, labels, datasets) => new Chart(document.getElementById(id),
 
 mkChart('chartMom', momDates, [
   { label: 'Optimal Momentum', data: momEq,  borderColor: '#c4a265', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.2 },
-  { label: 'S&P 500',          data: spEq,   borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.2 }
+  { label: 'S&P 500',          data: spEq,   borderColor: '#6b7280', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.2 }
 ]);
 mkChart('chartBtc', btcDates, [
   { label: 'BTC Trend',   data: btcTrendEq, borderColor: '#f97316', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.2 },
-  { label: 'Passive BTC', data: btcPassEq,  borderColor: '#3a3a48', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.2 }
+  { label: 'Passive BTC', data: btcPassEq,  borderColor: '#6b7280', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.2 }
 ]);
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
