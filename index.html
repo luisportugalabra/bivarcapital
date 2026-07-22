@@ -155,16 +155,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 .ytd-main { font-family: var(--font-display); font-size: 2rem; color: var(--green); line-height: 1; }
 .ytd-bench { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); margin-top: 5px; }
 .ytd-bench span { color: var(--text-secondary); }
+.ytd-cagr { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.04em; }
 .ytd-chart-wrap { flex: 1; height: 100px; min-width: 0; }
-.ytd-cta { flex-shrink: 0; }
-.ytd-cta a {
-  display: inline-block;
-  font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--accent); color: #060608;
-  padding: 9px 18px; border-radius: 5px; text-decoration: none;
-  white-space: nowrap;
-}
 .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:4px}
 @media (max-width: 600px) {
   .hero h1 { font-size: 1.6rem; }
@@ -177,7 +169,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
   .menu-btn{display:block}
   .entry-title { font-size: 1rem; }
   .entry-body { font-size: 0.78rem; }
-  .ytd-cta { display: none; }
   .ytd-chart-wrap { height: 70px; }
   .ytd-main { font-size: 1.6rem; }
   .hero { padding: 32px 0 32px; }
@@ -211,12 +202,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <div class="ytd-label">Optimal Momentum YTD</div>
       <div class="ytd-main" id="ytd-main">—</div>
       <div class="ytd-bench">vs S&amp;P 500 <span id="ytd-spy">—</span></div>
+      <div class="ytd-cagr">CAGR +28.6% since '98</div>
     </div>
     <div class="ytd-chart-wrap">
       <canvas id="ytdChart"></canvas>
-    </div>
-    <div class="ytd-cta">
-      <a href="/access.html">Get Access &rarr;</a>
     </div>
   </div>
 
