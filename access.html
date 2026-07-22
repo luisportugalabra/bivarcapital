@@ -147,9 +147,19 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);">Correlation<br>vs S&amp;P 500</div>
       </div>
     </div>
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:52px;">
-      <canvas id="chartMom" height="80"></canvas>
-      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);text-align:right;margin-top:12px;letter-spacing:0.06em;">$100k invested Jan 1998 &nbsp;·&nbsp; log scale</p>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:28px;margin-bottom:52px;">
+      <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">$100k invested — Jan 1998</p>
+      <div style="display:flex;gap:32px;margin-bottom:24px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;">$121M</div>
+          <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">OPTIMAL MOMENTUM</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:2rem;color:#3a3a48;line-height:1;">$722k</div>
+          <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">S&amp;P 500</div>
+        </div>
+      </div>
+      <canvas id="chartMom" height="60"></canvas>
     </div>
 
     <!-- BTC -->
@@ -183,9 +193,19 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:52px;">
-      <canvas id="chartBtc" height="80"></canvas>
-      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);text-align:right;margin-top:12px;letter-spacing:0.06em;">$100k invested Jan 2015 &nbsp;·&nbsp; log scale</p>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:28px;margin-bottom:52px;">
+      <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">$100k invested — Jan 2015</p>
+      <div style="display:flex;gap:32px;margin-bottom:24px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--font-display);font-size:2rem;color:#f97316;line-height:1;">$22.6M</div>
+          <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">BTC TREND STRATEGY</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:2rem;color:#3a3a48;line-height:1;">$23M</div>
+          <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.08em;">PASSIVE BTC — MAX DD −77%</div>
+        </div>
+      </div>
+      <canvas id="chartBtc" height="60"></canvas>
     </div>
 
     <!-- Correlations -->
@@ -301,15 +321,23 @@ const mkChart = (id, labels, datasets) => new Chart(document.getElementById(id),
     responsive: true,
     interaction: { mode: 'index', intersect: false },
     plugins: {
-      legend: { labels: { color: '#9898a4', font: { family: 'JetBrains Mono', size: 10 }, boxWidth: 10, padding: 16 } },
+      legend: { display: false },
       tooltip: {
         backgroundColor: '#0c0c10', borderColor: '#2a2a35', borderWidth: 1,
         callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmtM(ctx.parsed.y) }
       }
     },
     scales: {
-      x: { ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }, grid: { color: '#1a1a22' } },
-      y: { type: 'logarithmic', ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, callback: fmtM }, grid: { color: '#1a1a22' } }
+      x: {
+        ticks: { color: '#5a5a68', font: { family: 'JetBrains Mono', size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 },
+        grid: { color: '#1a1a22' }
+      },
+      y: {
+        type: 'logarithmic',
+        ticks: { display: false },
+        grid: { display: false },
+        border: { display: false }
+      }
     }
   }
 });
