@@ -11,7 +11,7 @@
 <meta name="description" content="BTC trend-following. Sharpe 1.71, CAGR +75.9%, MaxDD -33.2%. CoinMetrics 2015-2026.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
@@ -42,7 +42,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'DM Sans', -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -72,7 +72,7 @@ body {
 }
 .site-header nav { display: flex; align-items: center; gap: 28px; }
 .site-header nav a {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'DM Sans', -apple-system, sans-serif;
   font-size: 0.78rem; font-weight: 400;
   letter-spacing: 0.04em;
   color: var(--muted); text-decoration: none;
@@ -113,7 +113,7 @@ body {
 }
 .hero-tag span { color: var(--accent); }
 h1 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 300; line-height: 1.15;
   color: var(--text);
@@ -149,7 +149,7 @@ h1 em {
   background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
 }
 h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 1.65rem; font-weight: 400;
   color: var(--text);
   margin-bottom: 24px;
@@ -331,7 +331,7 @@ tbody tr:last-child td { border-bottom: none; }
 }
 .rule-card:hover { border-color: var(--accent); }
 .rule-num {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 2rem; font-weight: 300;
   color: var(--accent);
   line-height: 1;
@@ -464,7 +464,7 @@ p.note strong { color: var(--text); }
       <a href="/strategies.html">Strategies</a>
       <a href="/about.html">About</a>
       <a href="#" id="nav-signin" class="accent">Sign In</a>
-      <a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a>
+      <a href="/access.html" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
       <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span>
     </nav>
   </div>
@@ -475,8 +475,8 @@ p.note strong { color: var(--text); }
 <!-- HERO -->
 <div class="hero">
   <div class="hero-tag"><span>Bivar Capital</span> &mdash; Quantitative Research</div>
-  <h1>Bitcoin Trend Strategy<em>RSI + Moving Average + Volatility Filter</em></h1>
-  <p class="lead">A trend-following system for Bitcoin. Three rules, checked daily at close. Invested 34% of the time, beats buy&nbsp;&amp;&nbsp;hold in 7/12 years. 11 years of CoinMetrics data (2015&ndash;2026). No look-ahead bias.</p>
+  <h1>Bitcoin Trend Strategy<em>Systematic trend-following for Bitcoin</em></h1>
+  <p class="lead">A rules-based trend-following system for Bitcoin. Invested 34% of the time, beats buy&nbsp;&amp;&nbsp;hold in 7 of 12 years. 11 years of CoinMetrics data (2015&ndash;2026). No look-ahead bias.</p>
 </div>
 
 <div class="divider"></div>
@@ -562,37 +562,6 @@ p.note strong { color: var(--text); }
     </table>
   </div>
   <p class="note">The strategy beats buy &amp; hold in <strong>7 of 12 years</strong>. It underperforms in strong bull years (2016, 2017, 2020, 2023, 2024) but protects capital in bear years (2018: &minus;17% vs &minus;72%, 2022: &minus;1% vs &minus;65%).</p>
-</div>
-
-<div class="divider"></div>
-
-<!-- V. THE RULES -->
-<div class="section reveal">
-  <div class="section-label">Section V</div>
-  <h2>The Rules</h2>
-  <div class="callout">
-    <p>Every day at close (CoinMetrics reference rate, 00:00 UTC), compute three indicators. If <strong>all three</strong> are true, hold BTC. If <strong>any</strong> fails, sell. BTC trades 24/7 &mdash; execution is immediate.</p>
-  </div>
-  <div class="rules-grid">
-    <div class="rule-card">
-      <div class="rule-num">1</div>
-      <div class="rule-indicator">RSI(14)</div>
-      <div class="rule-condition">&gt; 54</div>
-      <div class="rule-purpose">Momentum confirmation</div>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">2</div>
-      <div class="rule-indicator">Price vs MA155</div>
-      <div class="rule-condition">Above SMA</div>
-      <div class="rule-purpose">Long-term trend</div>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">3</div>
-      <div class="rule-indicator">20-Day Vol</div>
-      <div class="rule-condition">&lt; 100%</div>
-      <div class="rule-purpose">Crash avoidance</div>
-    </div>
-  </div>
 </div>
 
 <div class="divider"></div>
@@ -712,35 +681,6 @@ p.note strong { color: var(--text); }
   <div class="callout-red"><p><strong>Cash drag.</strong> In cash 66% of the time at 0% yield.</p></div>
 </div>
 
-<div class="divider"></div>
-
-<!-- XI. METHODOLOGY -->
-<div class="section reveal">
-  <div class="section-label">Section XI</div>
-  <h2>Methodology</h2>
-  <div class="method-grid">
-    <div class="method-card">
-      <dl>
-        <dt>Data Source</dt>
-        <dd>CoinMetrics Community API &mdash; BTC reference rate (daily, 00:00 UTC)</dd>
-        <dt>Period</dt>
-        <dd>January 2015 &ndash; April 2026 (11.3 years)</dd>
-        <dt>RSI Calculation</dt>
-        <dd>SMA-based RSI (14-day rolling mean of gains/losses)</dd>
-      </dl>
-    </div>
-    <div class="method-card">
-      <dl>
-        <dt>Moving Average</dt>
-        <dd>155-day Simple Moving Average</dd>
-        <dt>Volatility</dt>
-        <dd>20-day std &times; &radic;365 (annualised)</dd>
-        <dt>Execution</dt>
-        <dd>Signal at close &rarr; execute same close (BTC 24/7). Costs not included.</dd>
-      </dl>
-    </div>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <div class="footer">
