@@ -124,36 +124,41 @@ else:
         print(f"Supabase error: {e}, falling back to admin only")
         chat_ids = [5151262026]
 
-    gdx_icon = '✓' if gdx_weekly_ret > THR else '✗'
+    chk   = '✅' if gdx_weekly_ret > THR else '❌'
+    gold_str   = ('$' + f'{gold_price:,.1f}') if gold_price else '—'
+    silver_str = ('$' + f'{silver_price:.2f}') if silver_price else '—'
 
     if prev_signal and prev_signal != signal:
-        # Signal changed → priority alert
-        emoji = '🟢' if signal == 'BUY' else '🔴'
-        if signal == 'BUY':
-            action = 'BUY Gold + Silver — open Monday, close Friday.'
-        else:
-            action = 'Go to CASH — no position next week.'
+        emoji  = '🟢' if signal == 'BUY' else '🔴'
+        action = 'Long Gold + Silver — entry Friday close / Monday open.' if signal == 'BUY' else 'Go to CASH — no position next week.'
         tg_msg = f"""{emoji} GDX SIGNAL CHANGED: {prev_signal} → {signal}
+Week ending {week_date}
 
-GDX this week: {gdx_weekly_ret*100:+.2f}% (threshold: >{THR*100:.0f}%)
-GDX close: ${this_close:.2f}
-Gold: {('$'+f'{gold_price:,.1f}') if gold_price else '—'}
-Silver: {('$'+f'{silver_price:.3f}') if silver_price else '—'}
+{chk} GDX weekly return: {gdx_weekly_ret:+.2f}% (need >+{THR*100:.0f}%)
+   GDX close:  ${this_close:.2f}
+   Gold (GC):  {gold_str}
+   Silver (SI): {silver_str}
 
-{action}
+⚡ Action: {action}
 
-https://bivarcapital.com/gdx.html"""
+📊 Strategy: GDX Weekly → Gold + Silver
+   CAGR +10.2% | Active CAGR +32.1% | Sharpe 1.23
+
+bivarcapital.com/gdx.html"""
     else:
         emoji = '🟢' if signal == 'BUY' else '🔴'
-        tg_msg = f"""{emoji} Weekly GDX: {signal}
+        next_action = 'Long Gold + Silver next week.' if signal == 'BUY' else 'No position next week — cash.'
+        tg_msg = f"""{emoji} GDX Weekly Signal — {week_date}
+Signal: {signal} (no change)
 
-{gdx_icon} GDX this week: {gdx_weekly_ret*100:+.2f}% (need >+{THR*100:.0f}%)
-GDX close: ${this_close:.2f}
-Gold: {('$'+f'{gold_price:,.1f}') if gold_price else '—'}
-Silver: {('$'+f'{silver_price:.3f}') if silver_price else '—'}
+{chk} GDX this week: {gdx_weekly_ret:+.2f}% (threshold >+{THR*100:.0f}%)
+   GDX close:   ${this_close:.2f}  (prev ${prev_close:.2f})
+   Gold (GC):   {gold_str}
+   Silver (SI):  {silver_str}
 
-{'Long Gold+Silver next week.' if signal == 'BUY' else 'No position next week.'}
-https://bivarcapital.com/gdx.html"""
+→ {next_action}
+
+bivarcapital.com/gdx.html"""
 
     for chat_id in chat_ids:
         try:
