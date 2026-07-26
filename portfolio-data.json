@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-25 00:08 UTC",
+  "updated": "2026-07-26 00:03 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -147,7 +147,7 @@
           "ticker": "WISE",
           "qty": 1000.0,
           "price": 11.47,
-          "mkt_value": 11467.31,
+          "mkt_value": 11468.99,
           "weight": 1.2
         },
         {
@@ -172,7 +172,7 @@
           "weight": 0.6
         }
       ],
-      "total_value": 986218.75,
+      "total_value": 986220.43,
       "n_positions": 24,
       "ytd_2026": 4.8
     },
@@ -259,7 +259,7 @@
           "ticker": "CMCSA",
           "qty": 181.0,
           "price": 22.3,
-          "mkt_value": 4035.4,
+          "mkt_value": 4036.3,
           "weight": 4.2
         },
         {
@@ -305,7 +305,7 @@
           "weight": 0.5
         }
       ],
-      "total_value": 95902.11,
+      "total_value": 95903.01,
       "n_positions": 18,
       "ytd_2026": 7.8
     },
@@ -421,6 +421,10 @@
   },
   "activity": [
     {
+      "date": "Jul 26",
+      "text": "Prices updated from market close"
+    },
+    {
       "date": "Jul 25",
       "text": "Prices updated from market close"
     },
@@ -434,10 +438,6 @@
     },
     {
       "date": "Jul 21",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Jul 18",
       "text": "Prices updated from market close"
     }
   ]

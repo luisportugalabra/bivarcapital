@@ -1,9 +1,9 @@
 {
-  "date": "2026-07-25",
+  "date": "2026-07-26",
   "regime": "momentum",
   "sp500": 7411.98,
   "sp500_ma250": 6905.38,
-  "total_eligible": 704,
+  "total_eligible": 705,
   "portfolio": [
     {
       "rank": 1,
