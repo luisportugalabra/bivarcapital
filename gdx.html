@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDX Signal — Bivar Capital</title>
+<meta property="og:title" content="GDX Weekly Signal — Bivar Capital">
+<meta property="og:description" content="Gold Miners weekly signal. GDX leads Gold and Silver by one week. Updated every Friday.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/gdx.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/gdx.html">
+<meta name="theme-color" content="#060608">
+<style>body{display:none}</style>
+<script>window.authRequired=true;</script>
+<meta name="description" content="GDX weekly signal. Gold miners as a leading indicator for Gold and Silver. Updated every Friday.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--gold:#f0c040}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:640px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:8px}
+.brand a{color:var(--muted);text-decoration:none}
+h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;text-align:center;margin-bottom:6px}
+.sub{text-align:center;color:var(--secondary);font-size:.85rem;margin-bottom:32px}
+.signal-box{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:32px;text-align:center;margin-bottom:24px}
+.signal-box.buy{border-color:var(--green);box-shadow:0 0 40px rgba(74,222,128,.08)}
+.signal-box.sell{border-color:var(--red);box-shadow:0 0 40px rgba(248,113,113,.08)}
+.signal-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.signal-text{font-family:'DM Serif Display',serif;font-size:2.4rem;font-weight:400}
+.signal-text.buy{color:var(--green)}
+.signal-text.sell{color:var(--red)}
+.signal-sub{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--secondary);margin-top:10px}
+.updated{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);margin-top:6px}
+.ind-single{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.ind-single.pass{border-color:rgba(74,222,128,.3)}
+.ind-single.fail{border-color:rgba(248,113,113,.3)}
+.ind-left{flex:1}
+.ind-label{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ind-value{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600}
+.ind-value.pass{color:var(--green)}
+.ind-value.fail{color:var(--red)}
+.ind-threshold{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);margin-top:4px}
+.ind-status{font-size:.7rem;margin-top:4px}
+.ind-right{text-align:right}
+.ind-ticker{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);margin-bottom:2px}
+.ind-price{font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--text)}
+.prices-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-label{font-family:'JetBrains Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.price-val{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600;color:var(--gold)}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:24px}
+.chart-title{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:600}
+.stat .l{font-size:.45rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.rules{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:24px}
+.rules h3{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.rules p{font-size:.78rem;color:var(--secondary);margin-bottom:6px}
+.rules strong{color:var(--text)}
+.rules code{font-family:'JetBrains Mono',monospace;font-size:.75rem;background:#1a1a22;padding:2px 5px;border-radius:3px;color:var(--accent)}
+.tg-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px;text-align:center}
+.footer{text-align:center;padding-top:24px;border-top:1px solid var(--border)}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.loading{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.7rem}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.live-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:5px;animation:pulse 2s ease-in-out infinite}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
+@media(max-width:500px){.stats{grid-template-columns:repeat(2,1fr)}.container{padding:32px 16px 60px}h1{font-size:1.6rem}.signal-text{font-size:1.8rem}.ind-single{flex-direction:column;text-align:center}.ind-right{text-align:center}.prices-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hw">
+    <a href="/" class="hl">Bivar Capital</a>
+    <button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" id="nav-signin" class="accent">Sign In</a>
+      <a href="/access.html" id="nav-signup" style="background:var(--accent);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
+      <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22">
+        <span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span>
+        <a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="brand"><a href="/">Bivar Capital</a></div>
+  <h1>GDX Weekly Signal</h1>
+  <p class="sub">Gold miners as a leading indicator for Gold &amp; Silver. One rule, checked every Friday.</p>
+
+  <!-- SIGNAL BOX -->
+  <div class="signal-box" id="signal-box">
+    <div class="signal-label"><span class="live-dot"></span>Weekly Signal — Next Week</div>
+    <div class="signal-text loading" id="signal-text">Loading...</div>
+    <div class="signal-sub" id="signal-sub"></div>
+    <div class="updated" id="updated"></div>
+  </div>
+
+  <!-- GDX INDICATOR -->
+  <div class="ind-single" id="ind-gdx">
+    <div class="ind-left">
+      <div class="ind-label">GDX weekly return</div>
+      <div class="ind-value" id="gdx-ret-val">—</div>
+      <div class="ind-threshold">need &gt; +2.0% to trigger BUY</div>
+      <div class="ind-status" id="gdx-status"></div>
+    </div>
+    <div class="ind-right">
+      <div class="ind-ticker">GDX Close</div>
+      <div class="ind-price" id="gdx-price">—</div>
+    </div>
+  </div>
+
+  <!-- GOLD + SILVER PRICES -->
+  <div class="prices-row">
+    <div class="price-card">
+      <div class="price-label">Gold (GC)</div>
+      <div class="price-val" id="gold-price">—</div>
+    </div>
+    <div class="price-card">
+      <div class="price-label">Silver (SI)</div>
+      <div class="price-val" id="silver-price">—</div>
+    </div>
+  </div>
+
+  <!-- WEEKLY BARS CHART -->
+  <div class="chart-wrap">
+    <div class="chart-title">GDX weekly return — last 26 weeks (green = buy signal triggered)</div>
+    <canvas id="gdx-chart" width="900" height="240" style="width:100%;height:auto"></canvas>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="v" style="color:var(--green)">+10.2%</div><div class="l">CAGR (2006–2026)</div></div>
+    <div class="stat"><div class="v" style="color:var(--green)">1.23</div><div class="l">Sharpe (active)</div></div>
+    <div class="stat"><div class="v">-19.8%</div><div class="l">Max Drawdown</div></div>
+    <div class="stat"><div class="v">60.7%</div><div class="l">Win rate</div></div>
+  </div>
+
+  <!-- RULE BOX -->
+  <div class="rules">
+    <h3>Strategy Rule</h3>
+    <p><strong>Signal computed every Friday at close.</strong></p>
+    <p>If <code>GDX return this week &gt; +2%</code> → <strong>BUY</strong> Gold + Silver next week</p>
+    <p>Otherwise → <strong>CASH</strong> (no position)</p>
+    <p style="margin-top:10px">Entry: Monday open &nbsp;|&nbsp; Exit: Friday close</p>
+    <p>Instruments: GLD + SLV (ETFs) or GC=F + SI=F (futures)</p>
+    <p style="margin-top:12px;font-size:.7rem;color:var(--muted)">Backtest: May 2006 – Jul 2026 (1,053 weeks). Invested 34.8% of the time. Not investment advice.</p>
+  </div>
+
+  <!-- TELEGRAM -->
+  <div class="tg-box">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Get notified every Friday when signal updates</div>
+    <a href="https://t.me/Bivarbtcbot" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;padding:12px 28px;border-radius:10px;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram Alerts
+    </a>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:.5rem;color:var(--muted);margin-top:10px">Press Start in the bot to subscribe. Alerts sent every Friday evening.</p>
+  </div>
+
+  <div class="footer">
+    <p><a href="/" style="color:var(--accent)">Bivar Capital</a> &middot; <a href="/research/gdx_weekly_report.html" style="color:var(--muted)">Full Report</a></p>
+    <p style="margin-top:6px">Signal computed from Yahoo Finance data. Updated every Friday after NYSE close.</p>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+<script>
+async function loadSignal() {
+  // ── Load official signal from JSON (computed Friday by GitHub Actions) ──
+  let official = null;
+  try {
+    const r = await fetch('/gdx-signal.json?t=' + Date.now());
+    official = await r.json();
+  } catch(e) { console.warn('gdx-signal.json not found:', e); }
+
+  if (official) {
+    const sig = official.signal;
+    const ret = official.gdx_weekly_ret;
+    const box = document.getElementById('signal-box');
+    const sigText = document.getElementById('signal-text');
+    box.classList.add(sig === 'BUY' ? 'buy' : 'sell');
+    sigText.textContent = sig;
+    sigText.className = 'signal-text ' + (sig === 'BUY' ? 'buy' : 'sell');
+
+    const sub = document.getElementById('signal-sub');
+    if (sig === 'BUY') {
+      sub.textContent = 'Long Gold + Silver this week';
+      sub.style.color = 'var(--green)';
+    } else {
+      sub.textContent = 'No position — wait for next Friday';
+      sub.style.color = 'var(--muted)';
+    }
+
+    document.getElementById('updated').textContent = 'Week ending ' + official.week;
+
+    // Indicator
+    const pass = ret > 2.0;
+    const indEl = document.getElementById('ind-gdx');
+    const retEl = document.getElementById('gdx-ret-val');
+    retEl.textContent = (ret >= 0 ? '+' : '') + ret.toFixed(2) + '%';
+    retEl.className = 'ind-value ' + (pass ? 'pass' : 'fail');
+    indEl.classList.add(pass ? 'pass' : 'fail');
+    const statusEl = document.getElementById('gdx-status');
+    statusEl.innerHTML = pass ? '&#10003; Above threshold — signal active' : '&#10007; Below threshold — no signal';
+    statusEl.style.color = pass ? 'var(--green)' : 'var(--red)';
+
+    document.getElementById('gdx-price').textContent = official.gdx_close ? '$' + official.gdx_close.toFixed(2) : '—';
+    if (official.gold_price) document.getElementById('gold-price').textContent = '$' + official.gold_price.toLocaleString('en-US', {maximumFractionDigits:1});
+    if (official.silver_price) document.getElementById('silver-price').textContent = '$' + official.silver_price.toFixed(3);
+  }
+
+  // ── Fetch GDX weekly history for chart ──
+  try {
+    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/GDX?interval=1wk&range=32wk';
+    const r = await fetch(url, {headers:{'User-Agent':'Mozilla/5.0'}});
+    const data = await r.json();
+    const result = data.chart.result[0];
+    const closes = result.indicators.quote[0].close;
+    const timestamps = result.timestamp;
+
+    // Build weekly returns
+    const weeks = [];
+    for (let i = 1; i < closes.length; i++) {
+      if (closes[i] == null || closes[i-1] == null) continue;
+      const ret = (closes[i] / closes[i-1] - 1) * 100;
+      const d = new Date(timestamps[i] * 1000);
+      const label = d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+      weeks.push({label, ret, isBuy: ret > 2.0});
+    }
+
+    // Take last 26 weeks
+    const display = weeks.slice(-26);
+    drawChart(display);
+  } catch(e) {
+    console.warn('Chart data fetch failed:', e);
+  }
+}
+
+function drawChart(weeks) {
+  const canvas = document.getElementById('gdx-chart');
+  const ctx2 = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = 900 * dpr;
+  canvas.height = 240 * dpr;
+  ctx2.scale(dpr, dpr);
+  const cw = 900, ch = 240;
+  const mg = {t:16, r:20, b:40, l:48};
+  const pw = cw - mg.l - mg.r;
+  const ph = ch - mg.t - mg.b;
+
+  ctx2.fillStyle = '#0c0c10';
+  ctx2.fillRect(0, 0, cw, ch);
+
+  const rets = weeks.map(w => w.ret);
+  const maxR = Math.max(Math.abs(Math.min(...rets)), Math.max(...rets), 3) * 1.15;
+
+  const toY = v => mg.t + ph/2 - (v / maxR) * (ph/2);
+  const barW = pw / weeks.length * 0.65;
+
+  // Grid lines
+  ctx2.strokeStyle = '#1a1a22';
+  ctx2.lineWidth = 0.5;
+  for (const pct of [-4, -2, 0, 2, 4]) {
+    if (Math.abs(pct) > maxR) continue;
+    const y = toY(pct);
+    ctx2.beginPath(); ctx2.moveTo(mg.l, y); ctx2.lineTo(mg.l + pw, y); ctx2.stroke();
+    ctx2.fillStyle = '#5a5a68';
+    ctx2.font = '9px JetBrains Mono, monospace';
+    ctx2.textAlign = 'right';
+    ctx2.fillText((pct >= 0 ? '+' : '') + pct + '%', mg.l - 6, y + 3);
+  }
+
+  // Threshold line at +2%
+  const thY = toY(2);
+  ctx2.strokeStyle = 'rgba(74,222,128,0.35)';
+  ctx2.lineWidth = 1;
+  ctx2.setLineDash([4, 4]);
+  ctx2.beginPath(); ctx2.moveTo(mg.l, thY); ctx2.lineTo(mg.l + pw, thY); ctx2.stroke();
+  ctx2.setLineDash([]);
+
+  // Zero line
+  const zeroY = toY(0);
+  ctx2.strokeStyle = 'rgba(255,255,255,0.15)';
+  ctx2.lineWidth = 0.8;
+  ctx2.beginPath(); ctx2.moveTo(mg.l, zeroY); ctx2.lineTo(mg.l + pw, zeroY); ctx2.stroke();
+
+  // Bars
+  weeks.forEach((w, i) => {
+    const x = mg.l + (i + 0.5) * (pw / weeks.length) - barW/2;
+    const y0 = zeroY;
+    const y1 = toY(w.ret);
+    const h = Math.abs(y1 - y0);
+
+    if (w.isBuy) {
+      ctx2.fillStyle = w.ret >= 0 ? '#4ade80' : '#f87171';
+    } else {
+      ctx2.fillStyle = w.ret >= 0 ? 'rgba(74,222,128,0.25)' : 'rgba(248,113,113,0.25)';
+    }
+    ctx2.fillRect(x, Math.min(y0, y1), barW, h);
+
+    // X-axis label every 4 weeks
+    if (i % 4 === 0 || i === weeks.length - 1) {
+      ctx2.fillStyle = '#5a5a68';
+      ctx2.font = '8px JetBrains Mono, monospace';
+      ctx2.textAlign = 'center';
+      ctx2.fillText(w.label, x + barW/2, ch - mg.b + 14);
+    }
+  });
+
+  // Legend
+  ctx2.fillStyle = '#4ade80';
+  ctx2.fillRect(mg.l, ch - 10, 10, 8);
+  ctx2.fillStyle = '#5a5a68';
+  ctx2.font = '8px JetBrains Mono, monospace';
+  ctx2.textAlign = 'left';
+  ctx2.fillText('BUY triggered (>+2%)', mg.l + 14, ch - 3);
+
+  ctx2.fillStyle = 'rgba(74,222,128,0.25)';
+  ctx2.fillRect(mg.l + 135, ch - 10, 10, 8);
+  ctx2.fillText('no signal', mg.l + 149, ch - 3);
+}
+
+loadSignal();
+</script>
+</body>
+</html>
