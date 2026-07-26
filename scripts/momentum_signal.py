@@ -18,9 +18,6 @@ Usage: python3 momentum_signal.py
 import os
 import json
 import sys
-import ssl
-import urllib.request
-import urllib.parse
 from datetime import datetime
 
 import pandas as pd
@@ -221,76 +218,7 @@ def main():
     print(f"\n  >>> = Selected for portfolio (top 7)")
     print(f"  Total eligible: {len(df)}")
 
-    # ── Send Telegram ────────────────────────────────────────────────────────
-    _send_telegram(output)
-
     return output
-
-
-def _send_telegram(data):
-    """Send monthly momentum signal via Telegram."""
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
-
-    tg_token = os.environ.get('TELEGRAM_TOKEN', '8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI')
-    sb_url = 'https://efiyeiwdywodjxxnslvu.supabase.co'
-    sb_key = os.environ.get('SUPABASE_SERVICE_KEY', '')
-
-    try:
-        req = urllib.request.Request(
-            f'{sb_url}/rest/v1/telegram_subscribers?status=eq.approved&select=chat_id',
-            headers={'apikey': sb_key, 'Authorization': f'Bearer {sb_key}'}
-        )
-        resp = json.loads(urllib.request.urlopen(req, context=ctx, timeout=10).read())
-        chat_ids = [r['chat_id'] for r in resp]
-        print(f"Sending Telegram to {len(chat_ids)} subscribers...")
-    except Exception as e:
-        print(f"Supabase error: {e}, falling back to admin only")
-        chat_ids = [5151262026]
-
-    regime     = data.get('regime', 'momentum')
-    date_str   = data.get('date', '')
-    portfolio  = data.get('portfolio', [])
-    sp500      = data.get('sp500')
-    sp500_ma   = data.get('sp500_ma250')
-
-    if regime == 'gld':
-        emoji = '🟡'
-        regime_line = '⚠️ BEAR REGIME — S&P 500 below MA250'
-        action_line = 'Action: Hold GLD (gold ETF) — no equity momentum this month.'
-        picks_block = '   GLD (SPDR Gold Shares ETF)'
-    else:
-        emoji = '🟢'
-        regime_line = '✅ BULL REGIME — S&P 500 above MA250'
-        action_line = 'Action: Equal weight the 7 stocks below (~14.3% each).'
-        tickers_fmt = '   ' + '  ·  '.join(t['ticker'] for t in portfolio)
-        picks_block = tickers_fmt
-
-    sp_line = f'S&P 500: {sp500:,.0f}  |  MA250: {sp500_ma:,.0f}' if sp500 and sp500_ma else ''
-
-    tg_msg = f"""{emoji} Optimal Momentum — {date_str}
-
-{regime_line}
-{sp_line}
-
-Portfolio this month:
-{picks_block}
-
-{action_line}
-
-📊 Strategy: Monthly rebalance, top 7 large-cap momentum
-   CAGR +28.9% | Sharpe 1.03 | Invested ~90%
-
-bivarcapital.com/momentum.html"""
-
-    for chat_id in chat_ids:
-        try:
-            tg_url = f'https://api.telegram.org/bot{tg_token}/sendMessage?chat_id={chat_id}&text={urllib.parse.quote(tg_msg)}'
-            urllib.request.urlopen(tg_url, context=ctx, timeout=10)
-            print(f"  Sent to {chat_id}")
-        except Exception as e:
-            print(f"  Failed for {chat_id}: {e}")
 
 
 if __name__ == "__main__":
