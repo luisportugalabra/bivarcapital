@@ -1,69 +1,184 @@
 {
-  "last_rebalance": "2026-07-27",
+  "last_rebalance": "2026-06-30",
   "updated": "2026-07-27",
+  "ytd_2026": 213.47,
+  "monthly_breakdown": [
+    {
+      "month": "Jan 2026",
+      "is_current": false,
+      "start": "2025-12-31",
+      "end": "2026-01-31",
+      "tickers": [
+        "LITE",
+        "WDC",
+        "SNDK",
+        "MU",
+        "CIEN",
+        "WBD",
+        "STX"
+      ],
+      "return_pct": 41.56
+    },
+    {
+      "month": "Feb 2026",
+      "is_current": false,
+      "start": "2026-01-31",
+      "end": "2026-02-28",
+      "tickers": [
+        "SNDK",
+        "MU",
+        "WDC",
+        "LITE",
+        "STX",
+        "CIEN",
+        "CDE"
+      ],
+      "return_pct": 24.52
+    },
+    {
+      "month": "Mar 2026",
+      "is_current": false,
+      "start": "2026-02-28",
+      "end": "2026-03-31",
+      "tickers": [
+        "SNDK",
+        "LITE",
+        "BE",
+        "WDC",
+        "CIEN",
+        "MU",
+        "HL"
+      ],
+      "return_pct": -6.84
+    },
+    {
+      "month": "Apr 2026",
+      "is_current": false,
+      "start": "2026-03-31",
+      "end": "2026-04-30",
+      "tickers": [
+        "SNDK",
+        "LITE",
+        "CIEN",
+        "WDC",
+        "BE",
+        "STX",
+        "FIX"
+      ],
+      "return_pct": 58.87
+    },
+    {
+      "month": "May 2026",
+      "is_current": false,
+      "start": "2026-04-30",
+      "end": "2026-05-31",
+      "tickers": [
+        "SNDK",
+        "LITE",
+        "BE",
+        "WDC",
+        "CIEN",
+        "STX",
+        "MU"
+      ],
+      "return_pct": 28.64
+    },
+    {
+      "month": "Jun 2026",
+      "is_current": false,
+      "start": "2026-05-31",
+      "end": "2026-06-30",
+      "tickers": [
+        "SNDK",
+        "LITE",
+        "BE",
+        "WDC",
+        "CIEN",
+        "STX",
+        "MU"
+      ],
+      "return_pct": 10.6
+    },
+    {
+      "month": "Jul 2026 (MTD)",
+      "is_current": true,
+      "start": "2026-06-30",
+      "end": "2026-07-27",
+      "tickers": [
+        "SNDK",
+        "MU",
+        "LITE",
+        "BE",
+        "WDC",
+        "STX",
+        "DOCN"
+      ],
+      "return_pct": -15.55
+    }
+  ],
   "holdings": [
     {
       "ticker": "SNDK",
       "name": "Sandisk Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-07-27",
-      "entry_price": 1436.56,
-      "current_price": 1436.56,
-      "return_pct": 0.0
+      "entry_date": "2026-06-30",
+      "entry_price": 2273.73,
+      "current_price": 1610.33,
+      "return_pct": -29.18
     },
     {
       "ticker": "MU",
       "name": "Micron Technology, Inc.",
       "sector": "Electronic Technology",
-      "entry_date": "2026-07-27",
-      "entry_price": 920.95,
-      "current_price": 920.95,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "WDC",
-      "name": "Western Digital Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-07-27",
-      "entry_price": 519.80,
-      "current_price": 519.80,
-      "return_pct": 0.0
+      "entry_date": "2026-06-30",
+      "entry_price": 1154.11,
+      "current_price": 990.21,
+      "return_pct": -14.2
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings Inc.",
       "sector": "Producer Manufacturing",
-      "entry_date": "2026-07-27",
-      "entry_price": 762.99,
-      "current_price": 762.99,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "STX",
-      "name": "Seagate Technology Holdings PLC",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-07-27",
-      "entry_price": 851.69,
-      "current_price": 851.69,
-      "return_pct": 0.0
+      "entry_date": "2026-06-30",
+      "entry_price": 858.06,
+      "current_price": 833.64,
+      "return_pct": -2.85
     },
     {
       "ticker": "BE",
       "name": "Bloom Energy Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-07-27",
-      "entry_price": 184.89,
-      "current_price": 184.89,
-      "return_pct": 0.0
+      "entry_date": "2026-06-30",
+      "entry_price": 302.7,
+      "current_price": 217.3,
+      "return_pct": -28.21
     },
     {
-      "ticker": "DELL",
-      "name": "Dell Technologies Inc.",
+      "ticker": "WDC",
+      "name": "Western Digital Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-07-27",
-      "entry_price": 437.50,
-      "current_price": 437.50,
-      "return_pct": 0.0
+      "entry_date": "2026-06-30",
+      "entry_price": 638.72,
+      "current_price": 558.3,
+      "return_pct": -12.59
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-06-30",
+      "entry_price": 965.0,
+      "current_price": 913.36,
+      "return_pct": -5.35
+    },
+    {
+      "ticker": "DOCN",
+      "name": "DigitalOcean Holdings, Inc.",
+      "sector": "Technology Services",
+      "entry_date": "2026-06-30",
+      "entry_price": 157.03,
+      "current_price": 131.15,
+      "return_pct": -16.48
     }
   ]
 }

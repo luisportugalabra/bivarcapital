@@ -124,9 +124,20 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     <div id="regime-container" class="regime-box"></div>
     <div id="stats-container" class="stats-row"></div>
 
-    <!-- Current Portfolio -->
+    <!-- YTD stat + Current Portfolio -->
     <div class="port-section">
-      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 7 equal-weight positions · No stop loss · Pure monthly rebalance</span></div>
+      <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+        <div class="stat-box" style="flex:0 0 auto;min-width:130px">
+          <div class="stat-val pos" id="ytd-return">—</div>
+          <div class="stat-lbl">2026 YTD Return</div>
+        </div>
+        <div class="stat-box" style="flex:0 0 auto;min-width:130px">
+          <div class="stat-val" id="mtd-return">—</div>
+          <div class="stat-lbl">Jul 2026 MTD</div>
+        </div>
+      </div>
+
+      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 7 equal-weight · No stop loss · Pure monthly rebalance</span></div>
       <div class="table-wrap">
       <table id="portfolio-table">
         <thead>
@@ -136,13 +147,30 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
             <th class="r">Entry Date</th>
             <th class="r">Entry $</th>
             <th class="r">Current $</th>
-            <th class="r">Return</th>
+            <th class="r">Return (MTD)</th>
           </tr>
         </thead>
         <tbody id="portfolio-body"><tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">Loading…</td></tr></tbody>
       </table>
       </div>
-      <p id="portfolio-updated" style="font-family:var(--font-mono);font-size:0.52rem;color:var(--text-muted);margin-top:8px"></p>
+
+      <div style="margin-top:24px">
+        <div class="port-section-title" style="margin-bottom:8px">Monthly Breakdown 2026</div>
+        <div class="table-wrap">
+        <table id="monthly-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th class="r">Return</th>
+              <th>Holdings</th>
+            </tr>
+          </thead>
+          <tbody id="monthly-body"><tr><td colspan="3" style="color:var(--text-muted);padding:12px">Loading…</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+
+      <p id="portfolio-updated" style="font-family:var(--font-mono);font-size:0.52rem;color:var(--text-muted);margin-top:10px"></p>
     </div>
 
     <hr class="section-divider">
@@ -209,33 +237,58 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 async function loadPortfolio() {
   try {
     const res = await fetch('/momentum-portfolio.json?v=' + Date.now());
-    if (!res.ok) { document.getElementById('portfolio-body').innerHTML = '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">No portfolio data yet.</td></tr>'; return; }
+    if (!res.ok) throw new Error('no data');
     const data = await res.json();
-    const holdings = data.holdings || [];
-    if (!holdings.length) { document.getElementById('portfolio-body').innerHTML = '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">No holdings.</td></tr>'; return; }
+    const fmtP   = v => v != null ? '$' + v.toFixed(2) : '—';
+    const fmtRet = v => v != null ? `<span class="${v >= 0 ? 'pos' : 'neg'}">${v >= 0 ? '+' : ''}${v.toFixed(2)}%</span>` : '—';
 
-    document.getElementById('portfolio-body').innerHTML = holdings.map(h => {
-      const ret = h.return_pct;
-      const retHtml = ret != null
-        ? `<span class="${ret >= 0 ? 'pos' : 'neg'}">${ret >= 0 ? '+' : ''}${ret.toFixed(2)}%</span>`
-        : '—';
-      const fmtP = v => v != null ? '$' + v.toFixed(2) : '—';
-      return `<tr class="selected">
-        <td><strong>${h.ticker}</strong></td>
-        <td style="font-family:var(--font-body);font-size:.7rem">${h.name || ''}</td>
-        <td class="r">${h.entry_date || '—'}</td>
-        <td class="r">${fmtP(h.entry_price)}</td>
-        <td class="r">${fmtP(h.current_price)}</td>
-        <td class="r">${retHtml}</td>
-      </tr>`;
-    }).join('');
-
-    if (data.updated) {
-      document.getElementById('portfolio-updated').textContent =
-        'Prices updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
+    // YTD + MTD stats
+    if (data.ytd_2026 != null) {
+      const ytdEl = document.getElementById('ytd-return');
+      ytdEl.textContent = (data.ytd_2026 >= 0 ? '+' : '') + data.ytd_2026.toFixed(1) + '%';
+      ytdEl.className = 'stat-val ' + (data.ytd_2026 >= 0 ? 'pos' : 'neg');
     }
+    const cur = (data.monthly_breakdown || []).find(m => m.is_current);
+    if (cur) {
+      const mtdEl = document.getElementById('mtd-return');
+      mtdEl.textContent = (cur.return_pct >= 0 ? '+' : '') + cur.return_pct.toFixed(2) + '%';
+      mtdEl.className = 'stat-val ' + (cur.return_pct >= 0 ? 'pos' : 'neg');
+    }
+
+    // Current holdings table
+    const holdings = data.holdings || [];
+    document.getElementById('portfolio-body').innerHTML = holdings.length
+      ? holdings.map(h => `<tr class="selected">
+          <td><strong>${h.ticker}</strong></td>
+          <td style="font-family:var(--font-body);font-size:.7rem">${h.name || ''}</td>
+          <td class="r">${h.entry_date || '—'}</td>
+          <td class="r">${fmtP(h.entry_price)}</td>
+          <td class="r">${fmtP(h.current_price)}</td>
+          <td class="r">${fmtRet(h.return_pct)}</td>
+        </tr>`).join('')
+      : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">No holdings.</td></tr>';
+
+    // Monthly breakdown table
+    const breakdown = (data.monthly_breakdown || []).slice().reverse();
+    document.getElementById('monthly-body').innerHTML = breakdown.length
+      ? breakdown.map(m => {
+          const retHtml = fmtRet(m.return_pct);
+          const isCur = m.is_current ? ' style="opacity:.75"' : '';
+          return `<tr${isCur}>
+            <td style="white-space:nowrap">${m.month}</td>
+            <td class="r">${retHtml}</td>
+            <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${m.tickers.join(', ')}</td>
+          </tr>`;
+        }).join('')
+      : '<tr><td colspan="3" style="color:var(--text-muted);padding:12px">No data.</td></tr>';
+
+    if (data.updated)
+      document.getElementById('portfolio-updated').textContent =
+        'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
+
   } catch(e) {
-    document.getElementById('portfolio-body').innerHTML = '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">Could not load portfolio data.</td></tr>';
+    document.getElementById('portfolio-body').innerHTML =
+      '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">Could not load portfolio data.</td></tr>';
   }
 }
 
