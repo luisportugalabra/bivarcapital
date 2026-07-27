@@ -131,8 +131,19 @@ if os.path.exists(cs_path):
         cs = json.load(f)
     cs_tickers = [h['ticker'] for h in cs.get('holdings', [])]
     if cs_tickers:
+        # Prefer TradingView prices from coiled-spring-data.json
+        cs_tv_prices = {}
+        cs_data_path = os.path.join(ROOT_DIR, 'coiled-spring-data.json')
+        if os.path.exists(cs_data_path):
+            with open(cs_data_path) as f:
+                csd = json.load(f)
+            for s in csd.get('top20', []):
+                # coiled-spring-data doesn't store price directly; use fcf_margin_pct as proxy — skip
+                pass
+
+        # yfinance for all CS tickers (no TV price available in coiled-spring-data.json)
         try:
-            cs_dl = yf.download(cs_tickers, period='1d', progress=False, auto_adjust=True)
+            cs_dl = yf.download(cs_tickers, period='1d', progress=False, auto_adjust=False)
             for h in cs['holdings']:
                 tk = h['ticker']
                 try:
@@ -161,27 +172,45 @@ if os.path.exists(mom_path):
         mom = json.load(f)
     mom_tickers = [h['ticker'] for h in mom.get('holdings', [])]
     if mom_tickers:
-        try:
-            mom_dl = yf.download(mom_tickers, period='1d', progress=False, auto_adjust=True)
-            for h in mom['holdings']:
-                tk = h['ticker']
-                try:
-                    if len(mom_tickers) == 1:
-                        cp = float(mom_dl['Close'].dropna().iloc[-1])
-                    else:
-                        cp = float(mom_dl['Close'][tk].dropna().iloc[-1])
-                    h['current_price'] = round(cp, 2)
-                    ep = h.get('entry_price')
-                    if ep:
-                        h['return_pct'] = round((cp / ep - 1) * 100, 2)
-                except Exception:
-                    pass
-            mom['updated'] = now
-            with open(mom_path, 'w') as f:
-                json.dump(mom, f, indent=2)
-            print(f"  Momentum: {len(mom_tickers)} positions updated")
-        except Exception as e:
-            print(f"  Momentum: error {e}")
+        # Prefer TradingView prices from momentum-data.json (more accurate than yfinance)
+        tv_prices = {}
+        mom_data_path = os.path.join(ROOT_DIR, 'momentum-data.json')
+        if os.path.exists(mom_data_path):
+            with open(mom_data_path) as f:
+                md = json.load(f)
+            for s in md.get('top20', []):
+                if s.get('price'):
+                    tv_prices[s['ticker']] = s['price']
+
+        # yfinance fallback for any ticker not in TradingView data
+        missing = [t for t in mom_tickers if t not in tv_prices]
+        yf_prices = {}
+        if missing:
+            try:
+                dl = yf.download(missing, period='1d', progress=False, auto_adjust=False)
+                for t in missing:
+                    try:
+                        if len(missing) == 1:
+                            yf_prices[t] = float(dl['Close'].dropna().iloc[-1])
+                        else:
+                            yf_prices[t] = float(dl['Close'][t].dropna().iloc[-1])
+                    except Exception:
+                        pass
+            except Exception as e:
+                print(f"  Momentum yfinance fallback: {e}")
+
+        for h in mom['holdings']:
+            tk = h['ticker']
+            cp = tv_prices.get(tk) or yf_prices.get(tk)
+            if cp:
+                h['current_price'] = round(cp, 2)
+                ep = h.get('entry_price')
+                if ep:
+                    h['return_pct'] = round((cp / ep - 1) * 100, 2)
+        mom['updated'] = now
+        with open(mom_path, 'w') as f:
+            json.dump(mom, f, indent=2)
+        print(f"  Momentum: {len(mom_tickers)} positions updated (TV:{len(tv_prices)} yf:{len(yf_prices)})")
 
 # Save
 with open("portfolio-data.json", "w") as f:

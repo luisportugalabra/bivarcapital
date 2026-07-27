@@ -123,8 +123,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-06-30",
       "entry_price": 2273.73,
-      "current_price": 1610.33,
-      "return_pct": -29.18
+      "current_price": 1436.56,
+      "return_pct": -36.82
     },
     {
       "ticker": "MU",
@@ -132,8 +132,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-06-30",
       "entry_price": 1154.11,
-      "current_price": 990.21,
-      "return_pct": -14.2
+      "current_price": 920.95,
+      "return_pct": -20.2
     },
     {
       "ticker": "LITE",
@@ -141,8 +141,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-06-30",
       "entry_price": 858.06,
-      "current_price": 833.64,
-      "return_pct": -2.85
+      "current_price": 762.99,
+      "return_pct": -11.08
     },
     {
       "ticker": "BE",
@@ -150,8 +150,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-06-30",
       "entry_price": 302.7,
-      "current_price": 217.3,
-      "return_pct": -28.21
+      "current_price": 184.89,
+      "return_pct": -38.92
     },
     {
       "ticker": "WDC",
@@ -159,8 +159,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-06-30",
       "entry_price": 638.72,
-      "current_price": 558.3,
-      "return_pct": -12.59
+      "current_price": 519.8,
+      "return_pct": -18.62
     },
     {
       "ticker": "STX",
@@ -168,8 +168,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-06-30",
       "entry_price": 965.0,
-      "current_price": 913.36,
-      "return_pct": -5.35
+      "current_price": 851.69,
+      "return_pct": -11.74
     },
     {
       "ticker": "DOCN",
@@ -177,8 +177,8 @@
       "sector": "Technology Services",
       "entry_date": "2026-06-30",
       "entry_price": 157.03,
-      "current_price": 131.15,
-      "return_pct": -16.48
+      "current_price": 123.54,
+      "return_pct": -21.33
     }
   ]
 }
