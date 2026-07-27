@@ -124,6 +124,36 @@ activity = [a for a in activity if not (a.get("date") == date_short and "Prices 
 activity.insert(0, {"date": date_short, "text": "Prices updated from market close"})
 data["activity"] = activity[:5]
 
+# ── COILED SPRING PORTFOLIO — update current prices ───────────────────────────
+cs_path = os.path.join(ROOT_DIR, 'coiled-spring-portfolio.json')
+if os.path.exists(cs_path):
+    with open(cs_path) as f:
+        cs = json.load(f)
+    cs_tickers = [h['ticker'] for h in cs.get('holdings', [])]
+    if cs_tickers:
+        try:
+            cs_dl = yf.download(cs_tickers, period='1d', progress=False, auto_adjust=True)
+            for h in cs['holdings']:
+                tk = h['ticker']
+                try:
+                    if len(cs_tickers) == 1:
+                        cp = float(cs_dl['Close'].dropna().iloc[-1])
+                    else:
+                        cp = float(cs_dl['Close'][tk].dropna().iloc[-1])
+                    h['current_price'] = round(cp, 2)
+                    sl = h.get('stop_loss')
+                    if sl:
+                        h['stop_triggered'] = cp <= sl
+                        h['pct_from_stop']  = round((cp / sl - 1) * 100, 1)
+                except Exception:
+                    pass
+            cs['updated'] = now
+            with open(cs_path, 'w') as f:
+                json.dump(cs, f, indent=2)
+            print(f"  Coiled Spring: {len(cs_tickers)} positions updated")
+        except Exception as e:
+            print(f"  Coiled Spring: error {e}")
+
 # Save
 with open("portfolio-data.json", "w") as f:
     json.dump(data, f, indent=2)

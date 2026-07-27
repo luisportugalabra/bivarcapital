@@ -184,6 +184,80 @@ with open(JSON_PATH, 'w') as f:
     json.dump(output, f, indent=2)
 print(f"\nSaved: {JSON_PATH}")
 
+# ── PORTFOLIO TRACKER (entry prices + stop losses) ────────────────────────────
+PORTFOLIO_PATH = os.path.join(SITE_DIR, 'coiled-spring-portfolio.json')
+
+try:
+    with open(PORTFOLIO_PATH) as f:
+        existing_portfolio = json.load(f)
+    existing_holdings = {h['ticker']: h for h in existing_portfolio.get('holdings', [])}
+except (FileNotFoundError, json.JSONDecodeError):
+    existing_holdings = {}
+
+# Score lookup for ALL tickers in universe (not just top 20)
+score_lookup   = df.set_index('ticker')['composite'].to_dict()
+name_lookup    = df.set_index('ticker')['name'].to_dict() if 'name' in df.columns else {}
+sector_lookup  = df.set_index('ticker')['sector'].to_dict() if 'sector' in df.columns else {}
+
+new_tickers    = [s['ticker'] for s in portfolio]
+new_ticker_set = set(new_tickers)
+new_entries    = [t for t in new_tickers if t not in existing_holdings]
+
+# Fetch entry prices only for tickers entering the portfolio for the first time
+entry_prices = {}
+if new_entries:
+    print(f"Fetching entry prices for {len(new_entries)} new position(s): {new_entries}")
+    try:
+        ep_dl = yf.download(new_entries, period='1d', progress=False, auto_adjust=True)
+        for t in new_entries:
+            try:
+                if len(new_entries) == 1:
+                    entry_prices[t] = float(ep_dl['Close'].dropna().iloc[-1])
+                else:
+                    entry_prices[t] = float(ep_dl['Close'][t].dropna().iloc[-1])
+            except Exception:
+                entry_prices[t] = None
+    except Exception as e:
+        print(f"  Warning: could not fetch entry prices: {e}")
+
+holdings = []
+for tk in new_tickers:
+    if tk in existing_holdings:
+        h = existing_holdings[tk].copy()
+    else:
+        ep = entry_prices.get(tk)
+        h = {
+            'ticker':      tk,
+            'name':        name_lookup.get(tk, tk),
+            'sector':      sector_lookup.get(tk, ''),
+            'entry_date':  output['date'],
+            'entry_price': round(ep, 2) if ep else None,
+            'stop_loss':   round(ep * 0.75, 2) if ep else None,
+            'current_price': round(ep, 2) if ep else None,
+        }
+    # Update score from current signal
+    h['score'] = round(float(score_lookup.get(tk, 0)), 3)
+    h['score_exit'] = h['score'] < 0.40
+    # Update stop status (with current price if available)
+    cp = h.get('current_price')
+    sl = h.get('stop_loss')
+    if cp and sl:
+        h['stop_triggered'] = cp <= sl
+        h['pct_from_stop']  = round((cp / sl - 1) * 100, 1)
+    else:
+        h['stop_triggered'] = False
+        h['pct_from_stop']  = None
+    holdings.append(h)
+
+portfolio_output = {
+    'last_rebalance': output['date'],
+    'updated':        output['date'],
+    'holdings':       holdings,
+}
+with open(PORTFOLIO_PATH, 'w') as f:
+    json.dump(portfolio_output, f, indent=2)
+print(f"Saved: {PORTFOLIO_PATH}")
+
 # ── PRINT ──────────────────────────────────────────────────────────────────────
 print(f"\n{'='*112}")
 print(f"  COILED SPRING v3 — {output['date']} — {regime.upper()}")
