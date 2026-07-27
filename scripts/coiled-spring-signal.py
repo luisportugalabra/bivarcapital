@@ -4,14 +4,13 @@ Coiled Spring v3 — Live Signal Generator
 =========================================
 Sinal: (roic_lvl + nm_growth + fcf_growth + fcf_lvl) / 4
 
-Fonte de dados: TradingView Screener (100% — sem yfinance)
-  roic_lvl   = rank(return_on_invested_capital)
-  nm_growth  = rank(net_income_yoy_growth_ttm)
-  fcf_growth = rank(free_cash_flow_yoy_growth_ttm)
-  fcf_lvl    = rank(free_cash_flow_margin_ttm)
+Dados:
+  - TradingView Screener: ROIC, FCF margin agora, Ret 6m, universo
+  - Sharadar (actualizado 1x/ano): NM e FCF margin de há 12 meses
 
-Filtros:
-  MCap >= $1B | Net Income > 0 | Ret 6m in [-15%, +15%] | SP500 > MA225
+Crescimento calculado exactamente igual ao backtest:
+  nm_growth  = nm_margin_now  / nm_margin_1y_ago  - 1  (só se base > 0)
+  fcf_growth = fcf_margin_now / fcf_margin_1y_ago - 1  (só se base > 0)
 
 Output: coiled-spring-data.json
 """
@@ -22,10 +21,10 @@ import numpy as np
 
 warnings.filterwarnings('ignore')
 
-SITE_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-JSON_PATH = os.path.join(SITE_DIR, 'coiled-spring-data.json')
+SITE_DIR      = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+JSON_PATH     = os.path.join(SITE_DIR, 'coiled-spring-data.json')
+SHARADAR_DIR  = os.environ.get('SHARADAR_DIR', '/Users/luisabrantes/sharadar')
 
-# ── DEPENDÊNCIAS ───────────────────────────────────────────────────────────────
 for pkg in ['tradingview_screener', 'yfinance']:
     try: __import__(pkg)
     except ImportError: os.system(f"pip install {pkg} -q")
@@ -43,16 +42,37 @@ is_bull  = sp_last >= sp_ma225
 regime   = 'momentum' if is_bull else 'gld'
 print(f"  S&P: {sp_last:,.0f}  MA225: {sp_ma225:,.0f}  → {regime.upper()}")
 
-# ── UNIVERSO VIA TRADINGVIEW ───────────────────────────────────────────────────
+# ── SHARADAR: NM e FCF margin de há 12 meses ──────────────────────────────────
+print("Sharadar (dados 12m atrás)...")
+cutoff = (pd.Timestamp.today() - pd.DateOffset(months=12)).strftime('%Y-%m')
+
+sf1q = pd.read_parquet(os.path.join(SHARADAR_DIR, 'sf1_quarterly_ttm.parquet'),
+                        columns=['ticker','datekey','avail_ym','revenue_ttm','netinc_ttm','fcf_ttm'])
+tkdf = pd.read_parquet(os.path.join(SHARADAR_DIR, 'tickers.parquet'),
+                        columns=['ticker','category'])
+
+valid = set(tkdf.loc[tkdf['category'].isin(
+    ['Domestic Common Stock','Domestic Common Stock Primary Class']), 'ticker'])
+
+sf1q = sf1q[sf1q['ticker'].isin(valid)].dropna(subset=['avail_ym'])
+sf1q['net_margin_1y'] = sf1q['netinc_ttm'] / sf1q['revenue_ttm'].replace(0, np.nan)
+sf1q['fcf_margin_1y'] = sf1q['fcf_ttm']    / sf1q['revenue_ttm'].replace(0, np.nan)
+
+lag = (sf1q[sf1q['avail_ym'] <= cutoff]
+         .sort_values('avail_ym')
+         .groupby('ticker')
+         .last()[['net_margin_1y', 'fcf_margin_1y']])
+
+print(f"  Tickers com dados 12m atrás: {len(lag)}")
+
+# ── UNIVERSO VIA TRADINGVIEW (dados actuais) ───────────────────────────────────
 print("TradingView screener...")
 _, df = (Query()
   .select('name', 'market_cap_basic', 'oper_income_ttm', 'sector',
-          'return_on_invested_capital',       # roic_lvl
-          'free_cash_flow_margin_ttm',        # fcf_lvl
-          'free_cash_flow_yoy_growth_ttm',    # fcf_growth
-          'net_income_yoy_growth_ttm',        # nm_growth
-          'after_tax_margin',                 # nm level (info)
-          'Perf.6M', 'close')
+          'return_on_invested_capital',    # roic_lvl
+          'after_tax_margin',              # nm agora (%)
+          'free_cash_flow_margin_ttm',     # fcf_lvl + fcf agora (%)
+          'Perf.6M')
   .where(
       col('market_cap_basic') > 1_000_000_000,
       col('is_primary') == True,
@@ -65,29 +85,42 @@ _, df = (Query()
   .limit(5_000)
   .get_scanner_data())
 
-# Limpar tickers
 us = ('NASDAQ:', 'NYSE:', 'AMEX:', 'NYSE ARCA:')
 df = df[df['ticker'].str.startswith(us)].copy()
 df['ticker'] = df['ticker'].str.split(':').str[-1]
 df['name']   = df['description'] if 'description' in df.columns else df.get('name', df['ticker'])
 df = df.rename(columns={
-    'market_cap_basic':               'mcap',
-    'oper_income_ttm':                'ebit',
-    'return_on_invested_capital':     'roic_tv',
-    'free_cash_flow_margin_ttm':      'fcf_tv',
-    'free_cash_flow_yoy_growth_ttm':  'fcf_growth_tv',
-    'net_income_yoy_growth_ttm':      'nm_growth_tv',
-    'after_tax_margin':               'nm_tv',
-    'Perf.6M':                        'ret_6m',
+    'market_cap_basic':           'mcap',
+    'oper_income_ttm':            'ebit',
+    'return_on_invested_capital': 'roic_tv',
+    'after_tax_margin':           'nm_now_pct',
+    'free_cash_flow_margin_ttm':  'fcf_now_pct',
+    'Perf.6M':                    'ret_6m',
 })
 
-# Filtros de elegibilidade
-BAND = 15.0
-df = df.dropna(subset=['roic_tv', 'fcf_tv', 'ret_6m'])
-df = df[(df['ret_6m'] >= -BAND) & (df['ret_6m'] <= BAND)].copy()
-print(f"  Após filtros: {len(df)} acções")
+# TV devolve margens em % → converter para decimal
+df['nm_now']  = df['nm_now_pct']  / 100
+df['fcf_now'] = df['fcf_now_pct'] / 100
 
-# ── RANKINGS ───────────────────────────────────────────────────────────────────
+# Filtros base
+BAND = 15.0
+df = df.dropna(subset=['roic_tv', 'fcf_now', 'ret_6m'])
+df = df[(df['ret_6m'] >= -BAND) & (df['ret_6m'] <= BAND)].copy()
+print(f"  Após filtros TV: {len(df)} acções")
+
+# ── JUNTAR DADOS 12M ATRÁS ────────────────────────────────────────────────────
+df = df.join(lag, on='ticker', how='left')
+
+# ── CALCULAR CRESCIMENTOS (igual ao backtest: base > 0) ───────────────────────
+df['nm_growth']  = np.where(df['net_margin_1y'] > 0,
+                             df['nm_now']  / df['net_margin_1y']  - 1, np.nan)
+df['fcf_growth'] = np.where(df['fcf_margin_1y'] > 0,
+                             df['fcf_now'] / df['fcf_margin_1y'] - 1, np.nan)
+
+matched = df[['net_margin_1y','fcf_margin_1y']].notna().all(axis=1).sum()
+print(f"  Match TV↔Sharadar: {matched}/{len(df)} ({matched/len(df)*100:.0f}%)")
+
+# ── RANKINGS ──────────────────────────────────────────────────────────────────
 def winsor(s):
     lo, hi = s.quantile(0.01), s.quantile(0.99)
     return s.clip(lo, hi)
@@ -96,11 +129,10 @@ def rnk(s):
     return winsor(s.replace([np.inf, -np.inf], np.nan)).rank(pct=True)
 
 df['roic_r']      = rnk(df['roic_tv'])
-df['fcf_lvl_r']   = rnk(df['fcf_tv'])
-df['nm_growth_r']  = rnk(df['nm_growth_tv'])  if df['nm_growth_tv'].notna().sum()  > 10 else pd.Series(0.5, index=df.index)
-df['fcf_growth_r'] = rnk(df['fcf_growth_tv']) if df['fcf_growth_tv'].notna().sum() > 10 else df['roic_r']
+df['fcf_lvl_r']   = rnk(df['fcf_now'])
+df['nm_growth_r']  = rnk(df['nm_growth'])  if df['nm_growth'].notna().sum()  > 10 else pd.Series(0.5, index=df.index)
+df['fcf_growth_r'] = rnk(df['fcf_growth']) if df['fcf_growth'].notna().sum() > 10 else pd.Series(0.5, index=df.index)
 
-# Composite: pesos iguais 4 factores
 df['composite'] = (df['roic_r'].fillna(0.5) +
                    df['nm_growth_r'].fillna(0.5) +
                    df['fcf_growth_r'].fillna(0.5) +
@@ -110,30 +142,29 @@ df = df.sort_values('composite', ascending=False).reset_index(drop=True)
 total_eligible = len(df)
 
 # ── CONSTRUIR JSON ─────────────────────────────────────────────────────────────
-TOP_N = 10
+TOP_N    = 10
 selected = set(df.head(TOP_N)['ticker'].tolist())
 
 top20_data = []
-for i, row in df.head(20).iterrows():
+for _, row in df.head(20).iterrows():
     tk  = row['ticker']
-    sel = tk in selected
     entry = {
         "rank":           len(top20_data) + 1,
         "ticker":         tk,
         "name":           str(row.get('name', tk)),
         "sector":         str(row.get('sector', '')),
-        "roic":           round(float(row['roic_r']), 3)       if pd.notna(row['roic_r'])      else None,
-        "nm_growth":      round(float(row['nm_growth_r']), 3)  if pd.notna(row['nm_growth_r']) else None,
-        "fcf_growth":     round(float(row['fcf_growth_r']), 3) if pd.notna(row['fcf_growth_r']) else None,
-        "fcf_lvl":        round(float(row['fcf_lvl_r']), 3)    if pd.notna(row['fcf_lvl_r'])   else None,
+        "roic":           round(float(row['roic_r']), 3)        if pd.notna(row['roic_r'])       else None,
+        "nm_growth":      round(float(row['nm_growth_r']), 3)   if pd.notna(row['nm_growth_r'])  else None,
+        "fcf_growth":     round(float(row['fcf_growth_r']), 3)  if pd.notna(row['fcf_growth_r']) else None,
+        "fcf_lvl":        round(float(row['fcf_lvl_r']), 3)     if pd.notna(row['fcf_lvl_r'])    else None,
         "composite":      round(float(row['composite']), 3),
-        "ret_6m":         round(float(row['ret_6m']), 1)        if pd.notna(row['ret_6m'])      else None,
-        "mcap_b":         round(float(row['mcap']) / 1e9, 1)    if pd.notna(row.get('mcap'))    else None,
-        "roic_pct":       round(float(row['roic_tv']), 1)       if pd.notna(row['roic_tv'])     else None,
-        "fcf_margin_pct": round(float(row['fcf_tv']), 1)        if pd.notna(row['fcf_tv'])      else None,
-        "fcf_growth_pct": round(float(row['fcf_growth_tv']), 1) if pd.notna(row.get('fcf_growth_tv')) else None,
-        "nm_growth_pct":  round(float(row['nm_growth_tv']), 1)  if pd.notna(row.get('nm_growth_tv'))  else None,
-        "selected":       sel,
+        "ret_6m":         round(float(row['ret_6m']), 1)         if pd.notna(row['ret_6m'])       else None,
+        "mcap_b":         round(float(row['mcap']) / 1e9, 1)     if pd.notna(row.get('mcap'))     else None,
+        "roic_pct":       round(float(row['roic_tv']), 1)        if pd.notna(row['roic_tv'])      else None,
+        "fcf_margin_pct": round(float(row['fcf_now_pct']), 1)   if pd.notna(row.get('fcf_now_pct')) else None,
+        "nm_growth_pct":  round(float(row['nm_growth']) * 100, 1)  if pd.notna(row.get('nm_growth'))  else None,
+        "fcf_growth_pct": round(float(row['fcf_growth']) * 100, 1) if pd.notna(row.get('fcf_growth')) else None,
+        "selected":       tk in selected,
     }
     top20_data.append(entry)
 
@@ -154,12 +185,12 @@ with open(JSON_PATH, 'w') as f:
 print(f"\nSaved: {JSON_PATH}")
 
 # ── PRINT ──────────────────────────────────────────────────────────────────────
-print(f"\n{'='*110}")
+print(f"\n{'='*112}")
 print(f"  COILED SPRING v3 — {output['date']} — {regime.upper()}")
 print(f"  S&P: {sp_last:,.0f} | MA225: {sp_ma225:,.0f} | Elegíveis: {total_eligible}")
-print(f"{'='*110}")
+print(f"{'='*112}")
 print(f"  {'#':>2}  {'':>4} {'Ticker':<7} {'Nome':<28} {'Sector':<20} {'ROIC':>6} {'NMg':>6} {'FCFg':>6} {'FCFl':>6}  {'Score':>6}  {'MCap':>7}  {'Ret6m':>7}")
-print(f"  {'-'*108}")
+print(f"  {'-'*110}")
 for s in top20_data:
     sel = ">>>" if s['selected'] else ""
     def f(v): return f"{v:.3f}" if v is not None else "  — "
