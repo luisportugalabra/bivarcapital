@@ -154,6 +154,35 @@ if os.path.exists(cs_path):
         except Exception as e:
             print(f"  Coiled Spring: error {e}")
 
+# ── MOMENTUM PORTFOLIO — update current prices ─────────────────────────────────
+mom_path = os.path.join(ROOT_DIR, 'momentum-portfolio.json')
+if os.path.exists(mom_path):
+    with open(mom_path) as f:
+        mom = json.load(f)
+    mom_tickers = [h['ticker'] for h in mom.get('holdings', [])]
+    if mom_tickers:
+        try:
+            mom_dl = yf.download(mom_tickers, period='1d', progress=False, auto_adjust=True)
+            for h in mom['holdings']:
+                tk = h['ticker']
+                try:
+                    if len(mom_tickers) == 1:
+                        cp = float(mom_dl['Close'].dropna().iloc[-1])
+                    else:
+                        cp = float(mom_dl['Close'][tk].dropna().iloc[-1])
+                    h['current_price'] = round(cp, 2)
+                    ep = h.get('entry_price')
+                    if ep:
+                        h['return_pct'] = round((cp / ep - 1) * 100, 2)
+                except Exception:
+                    pass
+            mom['updated'] = now
+            with open(mom_path, 'w') as f:
+                json.dump(mom, f, indent=2)
+            print(f"  Momentum: {len(mom_tickers)} positions updated")
+        except Exception as e:
+            print(f"  Momentum: error {e}")
+
 # Save
 with open("portfolio-data.json", "w") as f:
     json.dump(data, f, indent=2)

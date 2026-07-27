@@ -28,6 +28,7 @@ from tradingview_screener import Query, col
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SITE_DIR = os.path.dirname(SCRIPT_DIR)  # bivarcapital/
 JSON_PATH = os.path.join(SITE_DIR, "momentum-data.json")
+PORTFOLIO_PATH = os.path.join(SITE_DIR, "momentum-portfolio.json")
 PICKS_HISTORY_PATH = os.path.join(SITE_DIR, "ytd-picks-history.json")
 
 
@@ -203,6 +204,86 @@ def main():
 
     # Update YTD picks history on the 1st trading day of each month
     _update_picks_history(sel7, output['date'])
+
+    # ── PORTFOLIO TRACKER ─────────────────────────────────────────────────────
+    try:
+        with open(PORTFOLIO_PATH) as f:
+            existing_portfolio = json.load(f)
+        existing_holdings = {h['ticker']: h for h in existing_portfolio.get('holdings', [])}
+        last_rebalance_month = existing_portfolio.get('last_rebalance', '')[:7]
+    except (FileNotFoundError, json.JSONDecodeError):
+        existing_holdings = {}
+        last_rebalance_month = ''
+
+    current_month = datetime.now().strftime('%Y-%m')
+    is_new_month  = current_month != last_rebalance_month
+
+    # Build name/sector lookup from current signal
+    name_map   = {str(row['ticker']): str(row['name'])   for _, row in df.head(30).iterrows()}
+    sector_map = {str(row['ticker']): str(row['sector']) for _, row in df.head(30).iterrows()}
+
+    if is_new_month:
+        print(f"  Portfolio: new month ({current_month}), rebalancing...")
+        new_entries = [t for t in sel7 if t not in existing_holdings]
+
+        entry_prices = {}
+        if new_entries:
+            print(f"  Fetching entry prices for: {new_entries}")
+            try:
+                import yfinance as yf
+                ep_dl = yf.download(new_entries, period='1d', progress=False, auto_adjust=True)
+                for t in new_entries:
+                    try:
+                        if len(new_entries) == 1:
+                            entry_prices[t] = float(ep_dl['Close'].dropna().iloc[-1])
+                        else:
+                            entry_prices[t] = float(ep_dl['Close'][t].dropna().iloc[-1])
+                    except Exception:
+                        entry_prices[t] = None
+            except Exception as e:
+                print(f"  Warning: {e}")
+
+        holdings = []
+        for tk in sel7:
+            if tk in existing_holdings:
+                h = existing_holdings[tk].copy()
+            else:
+                ep = entry_prices.get(tk)
+                h = {
+                    'ticker':        tk,
+                    'name':          name_map.get(tk, tk),
+                    'sector':        sector_map.get(tk, ''),
+                    'entry_date':    output['date'],
+                    'entry_price':   round(ep, 2) if ep else None,
+                    'current_price': round(ep, 2) if ep else None,
+                    'return_pct':    0.0,
+                }
+            # Update name/sector in case they changed
+            h['name']   = name_map.get(tk, h.get('name', tk))
+            h['sector'] = sector_map.get(tk, h.get('sector', ''))
+            # Recalculate return
+            ep = h.get('entry_price'); cp = h.get('current_price')
+            h['return_pct'] = round((cp / ep - 1) * 100, 2) if ep and cp else 0.0
+            holdings.append(h)
+        last_rebalance_date = output['date']
+    else:
+        print(f"  Portfolio: same month ({current_month}), keeping holdings...")
+        holdings = []
+        for h in existing_portfolio.get('holdings', []):
+            h = h.copy()
+            ep = h.get('entry_price'); cp = h.get('current_price')
+            h['return_pct'] = round((cp / ep - 1) * 100, 2) if ep and cp else 0.0
+            holdings.append(h)
+        last_rebalance_date = existing_portfolio.get('last_rebalance', output['date'])
+
+    portfolio_output = {
+        'last_rebalance': last_rebalance_date,
+        'updated':        output['date'],
+        'holdings':       holdings,
+    }
+    with open(PORTFOLIO_PATH, 'w') as f:
+        json.dump(portfolio_output, f, indent=2)
+    print(f"  Saved: {PORTFOLIO_PATH}")
 
     # Print
     print(f"\n{'='*120}")
