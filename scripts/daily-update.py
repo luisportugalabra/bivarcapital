@@ -204,6 +204,42 @@ if os.path.exists(mom_path):
             json.dump(mom, f, indent=2)
         print(f"  Momentum: {len(mom_tickers)} positions updated (TV:{len(tv_prices)} yf:{len(yf_prices)})")
 
+# ── UK MOMENTUM PORTFOLIO — update current prices ──────────────────────────────
+uk_path = os.path.join(ROOT_DIR, 'uk-momentum-portfolio.json')
+if os.path.exists(uk_path):
+    with open(uk_path) as f:
+        uk = json.load(f)
+    uk_tickers = [h['ticker'] for h in uk.get('holdings', [])]
+    if uk_tickers:
+        try:
+            yf_tickers = [t + '.L' for t in uk_tickers]
+            uk_dl = yf.download(yf_tickers, period='1d', progress=False, auto_adjust=False)
+            for h in uk['holdings']:
+                yt = h['ticker'] + '.L'
+                try:
+                    if len(yf_tickers) == 1:
+                        cp = float(uk_dl['Close'].dropna().iloc[-1])
+                    else:
+                        cp = float(uk_dl['Close'][yt].dropna().iloc[-1])
+                    h['current_price'] = round(cp, 1)
+                    ep = h.get('entry_price')
+                    if ep:
+                        h['return_pct'] = round((cp / ep - 1) * 100, 2)
+                except Exception:
+                    pass
+            # Update MTD for current month
+            for m in uk.get('monthly_breakdown', []):
+                if m.get('is_current'):
+                    rets = [h['return_pct'] for h in uk['holdings'] if h.get('return_pct') is not None]
+                    if rets:
+                        m['return_pct'] = round(sum(rets) / len(rets), 2)
+            uk['updated'] = now
+            with open(uk_path, 'w') as f:
+                json.dump(uk, f, indent=2)
+            print(f"  UK Momentum: {len(uk_tickers)} positions updated")
+        except Exception as e:
+            print(f"  UK Momentum: error {e}")
+
 # Save
 with open("portfolio-data.json", "w") as f:
     json.dump(data, f, indent=2)

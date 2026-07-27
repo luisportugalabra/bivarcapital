@@ -1,0 +1,186 @@
+{
+  "last_rebalance": "2026-06-30",
+  "updated": "2026-07-27",
+  "ytd_2026": 0.47,
+  "currency": "GBX",
+  "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
+  "monthly_breakdown": [
+    {
+      "month": "Jan 2026",
+      "start": "2025-12-31",
+      "end": "2026-01-31",
+      "tickers": [
+        "GDWN",
+        "PAF",
+        "ALTN",
+        "FRES",
+        "ZEG",
+        "RSG",
+        "ACG"
+      ],
+      "return_pct": 18.72,
+      "is_current": false
+    },
+    {
+      "month": "Feb 2026",
+      "start": "2026-01-31",
+      "end": "2026-02-28",
+      "tickers": [
+        "GDWN",
+        "PAF",
+        "ACG",
+        "TKO",
+        "ATYM",
+        "THX",
+        "FERG"
+      ],
+      "return_pct": 5.04,
+      "is_current": false
+    },
+    {
+      "month": "Mar 2026",
+      "start": "2026-02-28",
+      "end": "2026-03-31",
+      "tickers": [
+        "HOC",
+        "PAF",
+        "GGP",
+        "TKO",
+        "GDWN",
+        "VALT",
+        "RSG"
+      ],
+      "return_pct": -26.36,
+      "is_current": false
+    },
+    {
+      "month": "Apr 2026",
+      "start": "2026-03-31",
+      "end": "2026-04-30",
+      "tickers": [
+        "FERG",
+        "TGA",
+        "ENQ",
+        "SEPL",
+        "S32",
+        "HOC",
+        "GGP"
+      ],
+      "return_pct": 6.75,
+      "is_current": false
+    },
+    {
+      "month": "May 2026",
+      "start": "2026-04-30",
+      "end": "2026-05-31",
+      "tickers": [
+        "FTC",
+        "FERG",
+        "SEPL",
+        "GGP",
+        "TGA",
+        "HOC",
+        "XPP"
+      ],
+      "return_pct": 8.44,
+      "is_current": false
+    },
+    {
+      "month": "Jun 2026",
+      "start": "2026-05-31",
+      "end": "2026-06-30",
+      "tickers": [
+        "FTC",
+        "RPI",
+        "FERG",
+        "SEPL",
+        "GHH",
+        "XPP",
+        "LUCE"
+      ],
+      "return_pct": -5.49,
+      "is_current": false
+    },
+    {
+      "month": "Jul 2026",
+      "start": "2026-06-30",
+      "end": "2026-07-31",
+      "tickers": [
+        "RPI",
+        "CMCX",
+        "ENQ",
+        "LUCE",
+        "KLR",
+        "GHH",
+        "SEPL"
+      ],
+      "return_pct": null,
+      "is_current": true
+    }
+  ],
+  "holdings": [
+    {
+      "ticker": "RPI",
+      "name": "Raspberry Pi Holdings",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 870.0,
+      "current_price": 720.5,
+      "return_pct": -17.18
+    },
+    {
+      "ticker": "CMCX",
+      "name": "CMC Markets",
+      "sector": "Finance",
+      "entry_date": "2026-07-01",
+      "entry_price": 649.9,
+      "current_price": 741.0,
+      "return_pct": 14.02
+    },
+    {
+      "ticker": "ENQ",
+      "name": "EnQuest",
+      "sector": "Energy Minerals",
+      "entry_date": "2026-07-01",
+      "entry_price": 21.6,
+      "current_price": 25.5,
+      "return_pct": 18.06
+    },
+    {
+      "ticker": "LUCE",
+      "name": "Luceco",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 274.0,
+      "current_price": 256.0,
+      "return_pct": -6.57
+    },
+    {
+      "ticker": "KLR",
+      "name": "Keller Group",
+      "sector": "Industrial Services",
+      "entry_date": "2026-07-01",
+      "entry_price": 2712.0,
+      "current_price": 3250.0,
+      "return_pct": 19.84
+    },
+    {
+      "ticker": "GHH",
+      "name": "Gooch & Housego",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 934.0,
+      "current_price": 1225.0,
+      "return_pct": 31.16
+    },
+    {
+      "ticker": "SEPL",
+      "name": "Seplat Energy",
+      "sector": "Energy Minerals",
+      "entry_date": "2026-07-01",
+      "entry_price": 517.0,
+      "current_price": 559.0,
+      "return_pct": 8.12
+    }
+  ]
+}
