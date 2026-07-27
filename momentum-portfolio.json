@@ -121,55 +121,55 @@
       "ticker": "SNDK",
       "name": "Sandisk Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-06-30",
-      "entry_price": 2273.73,
+      "entry_date": "2025-12-31",
+      "entry_price": 237.38,
       "current_price": 1436.56,
-      "return_pct": -36.82
+      "return_pct": 505.17
     },
     {
       "ticker": "MU",
       "name": "Micron Technology, Inc.",
       "sector": "Electronic Technology",
-      "entry_date": "2026-06-30",
-      "entry_price": 1154.11,
+      "entry_date": "2026-04-30",
+      "entry_price": 517.08,
       "current_price": 920.95,
-      "return_pct": -20.2
+      "return_pct": 78.11
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings Inc.",
       "sector": "Producer Manufacturing",
-      "entry_date": "2026-06-30",
-      "entry_price": 858.06,
+      "entry_date": "2025-12-31",
+      "entry_price": 368.59,
       "current_price": 762.99,
-      "return_pct": -11.08
+      "return_pct": 107.0
     },
     {
       "ticker": "BE",
       "name": "Bloom Energy Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-06-30",
-      "entry_price": 302.7,
+      "entry_date": "2026-02-28",
+      "entry_price": 155.67,
       "current_price": 184.89,
-      "return_pct": -38.92
+      "return_pct": 18.77
     },
     {
       "ticker": "WDC",
       "name": "Western Digital Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-06-30",
-      "entry_price": 638.72,
+      "entry_date": "2025-12-31",
+      "entry_price": 172.14,
       "current_price": 519.8,
-      "return_pct": -18.62
+      "return_pct": 201.96
     },
     {
       "ticker": "STX",
       "name": "Seagate Technology Holdings PLC",
       "sector": "Electronic Technology",
-      "entry_date": "2026-06-30",
-      "entry_price": 965.0,
+      "entry_date": "2026-03-31",
+      "entry_price": 391.48,
       "current_price": 851.69,
-      "return_pct": -11.74
+      "return_pct": 117.56
     },
     {
       "ticker": "DOCN",

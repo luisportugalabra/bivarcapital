@@ -129,20 +129,36 @@ try:
 except Exception:
     name_map = {}; sector_map = {}
 
+# ── Find first consecutive entry date for each current ticker ─────────────────
+def first_consecutive_entry(ticker, current_idx):
+    """Walk back through history to find the first consecutive period with this ticker."""
+    first_start = history[current_idx]['start']
+    for i in range(current_idx - 1, -1, -1):
+        if ticker in history[i]['tickers']:
+            first_start = history[i]['start']
+        else:
+            break
+    return first_start
+
+current_idx = len(history) - 1  # index of July period
+
 holdings = []
 if current_period:
-    entry_date = current_period['start']
     for tk in current_period['tickers']:
-        if tk in existing_map and existing_map[tk].get('entry_date') == entry_date:
-            h = existing_map[tk].copy()
+        true_entry_date = first_consecutive_entry(tk, current_idx)
+        existing = existing_map.get(tk, {})
+
+        # Keep existing entry if the true entry date hasn't changed
+        if existing.get('entry_date') == true_entry_date and existing.get('entry_price'):
+            h = existing.copy()
         else:
-            ep = get_price(tk, pd.Timestamp(entry_date))
+            ep = get_price(tk, pd.Timestamp(true_entry_date))
             h = {
-                'ticker':      tk,
-                'name':        name_map.get(tk, tk),
-                'sector':      sector_map.get(tk, ''),
-                'entry_date':  entry_date,
-                'entry_price': round(ep, 2) if ep else None,
+                'ticker':        tk,
+                'name':          name_map.get(tk, tk),
+                'sector':        sector_map.get(tk, ''),
+                'entry_date':    true_entry_date,
+                'entry_price':   round(ep, 2) if ep else None,
                 'current_price': None,
             }
         # Update name/sector
