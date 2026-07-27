@@ -93,8 +93,16 @@ for period in history:
     ytd_factor *= (1 + period_ret)
     print(f"  {label}: {period_ret*100:+.2f}%  ({', '.join(tickers)})")
 
-ytd_return = round((ytd_factor - 1) * 100, 2)
-print(f"\nYTD 2026: {ytd_return:+.2f}%")
+# YTD — lê de ytd-data.json (fonte canónica, calculada por update_ytd.py)
+# Não calculamos independentemente para evitar discrepâncias de preços ajustados
+YTD_PATH = os.path.join(SITE_DIR, 'ytd-data.json')
+try:
+    with open(YTD_PATH) as f:
+        ytd_file = json.load(f)
+    ytd_return = ytd_file.get('ytd_strat', round((ytd_factor - 1) * 100, 2))
+except Exception:
+    ytd_return = round((ytd_factor - 1) * 100, 2)
+print(f"\nYTD 2026: {ytd_return:+.2f}% (from ytd-data.json)")
 
 # ── Build current-month holdings with entry prices ────────────────────────────
 current_period = next((p for p in history if pd.Timestamp(p['end']) > today), None)
