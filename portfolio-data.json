@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-26 00:03 UTC",
+  "updated": "2026-07-27 09:53 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -8,14 +8,14 @@
           "qty": 312.0,
           "price": 494.93,
           "mkt_value": 154418.16,
-          "weight": 15.7
+          "weight": 15.6
         },
         {
           "ticker": "JD",
           "qty": 3875.0,
           "price": 30.19,
           "mkt_value": 116986.25,
-          "weight": 11.9
+          "weight": 11.8
         },
         {
           "ticker": "META",
@@ -41,8 +41,8 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 29.51,
-          "mkt_value": 55149.43,
+          "price": 29.73,
+          "mkt_value": 55567.17,
           "weight": 5.6
         },
         {
@@ -69,9 +69,9 @@
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 41.81,
-          "mkt_value": 38046.92,
-          "weight": 3.9
+          "price": 43.21,
+          "mkt_value": 39322.33,
+          "weight": 4.0
         },
         {
           "ticker": "MELI",
@@ -146,8 +146,8 @@
         {
           "ticker": "WISE",
           "qty": 1000.0,
-          "price": 11.47,
-          "mkt_value": 11468.99,
+          "price": 11.59,
+          "mkt_value": 11587.79,
           "weight": 1.2
         },
         {
@@ -172,9 +172,9 @@
           "weight": 0.6
         }
       ],
-      "total_value": 986220.43,
+      "total_value": 988032.38,
       "n_positions": 24,
-      "ytd_2026": 4.8
+      "ytd_2026": 5.0
     },
     "vc2": {
       "positions": [
@@ -259,7 +259,7 @@
           "ticker": "CMCSA",
           "qty": 181.0,
           "price": 22.3,
-          "mkt_value": 4036.3,
+          "mkt_value": 4035.4,
           "weight": 4.2
         },
         {
@@ -305,7 +305,7 @@
           "weight": 0.5
         }
       ],
-      "total_value": 95903.01,
+      "total_value": 95902.11,
       "n_positions": 18,
       "ytd_2026": 7.8
     },
@@ -383,7 +383,7 @@
   "returns": {
     "discretionary": {
       "2025": 46.1,
-      "2026_ytd": 4.8
+      "2026_ytd": 5.0
     },
     "vc2": {
       "2025": 23.1,
@@ -396,7 +396,7 @@
   },
   "sp500_returns": {
     "2025": 17.9,
-    "2026_ytd": 9.6
+    "2026_ytd": 8.3
   },
   "sync": {
     "discretionary": {
@@ -421,6 +421,10 @@
   },
   "activity": [
     {
+      "date": "Jul 27",
+      "text": "Prices updated from market close"
+    },
+    {
       "date": "Jul 26",
       "text": "Prices updated from market close"
     },
@@ -434,10 +438,6 @@
     },
     {
       "date": "Jul 23",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Jul 21",
       "text": "Prices updated from market close"
     }
   ]

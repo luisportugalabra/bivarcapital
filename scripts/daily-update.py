@@ -182,22 +182,14 @@ if os.path.exists(mom_path):
                 if s.get('price'):
                     tv_prices[s['ticker']] = s['price']
 
-        # yfinance fallback for any ticker not in TradingView data
+        # yfinance fallback for any ticker not in TradingView data (use intraday via fast_info)
         missing = [t for t in mom_tickers if t not in tv_prices]
         yf_prices = {}
-        if missing:
+        for t in missing:
             try:
-                dl = yf.download(missing, period='1d', progress=False, auto_adjust=False)
-                for t in missing:
-                    try:
-                        if len(missing) == 1:
-                            yf_prices[t] = float(dl['Close'].dropna().iloc[-1])
-                        else:
-                            yf_prices[t] = float(dl['Close'][t].dropna().iloc[-1])
-                    except Exception:
-                        pass
-            except Exception as e:
-                print(f"  Momentum yfinance fallback: {e}")
+                yf_prices[t] = yf.Ticker(t).fast_info.last_price
+            except Exception:
+                pass
 
         for h in mom['holdings']:
             tk = h['ticker']

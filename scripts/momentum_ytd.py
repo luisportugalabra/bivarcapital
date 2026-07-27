@@ -37,7 +37,7 @@ for period in history:
 all_tickers = sorted(all_tickers)
 print(f"Fetching price history for {len(all_tickers)} tickers...")
 
-# ── Download price history (2 years to cover all periods) ─────────────────────
+# ── Download price history ─────────────────────────────────────────────────────
 raw = yf.download(all_tickers, start='2025-06-01', progress=False, auto_adjust=True)
 prices = raw['Close'] if isinstance(raw.columns, pd.MultiIndex) else raw
 
@@ -54,6 +54,15 @@ def get_price(ticker, target_date):
         return None
     return float(valid.iloc[-1])
 
+# ── Fetch current intraday prices ─────────────────────────────────────────────
+print("Fetching current intraday prices...")
+intraday_prices = {}
+for tk in all_tickers:
+    try:
+        intraday_prices[tk] = yf.Ticker(tk).fast_info.last_price
+    except Exception:
+        pass
+
 # ── Compute monthly returns ───────────────────────────────────────────────────
 today = pd.Timestamp.today().normalize()
 monthly_breakdown = []
@@ -69,7 +78,11 @@ for period in history:
     returns = []
     for tk in tickers:
         p_start = get_price(tk, start_dt)
-        p_end   = get_price(tk, today if is_current else end_dt)
+        if is_current:
+            # Use intraday price for current period
+            p_end = intraday_prices.get(tk) or get_price(tk, today)
+        else:
+            p_end = get_price(tk, end_dt)
         if p_start and p_end and p_start > 0:
             returns.append(p_end / p_start - 1)
 
@@ -93,16 +106,8 @@ for period in history:
     ytd_factor *= (1 + period_ret)
     print(f"  {label}: {period_ret*100:+.2f}%  ({', '.join(tickers)})")
 
-# YTD — lê de ytd-data.json (fonte canónica, calculada por update_ytd.py)
-# Não calculamos independentemente para evitar discrepâncias de preços ajustados
-YTD_PATH = os.path.join(SITE_DIR, 'ytd-data.json')
-try:
-    with open(YTD_PATH) as f:
-        ytd_file = json.load(f)
-    ytd_return = ytd_file.get('ytd_strat', round((ytd_factor - 1) * 100, 2))
-except Exception:
-    ytd_return = round((ytd_factor - 1) * 100, 2)
-print(f"\nYTD 2026: {ytd_return:+.2f}% (from ytd-data.json)")
+ytd_return = round((ytd_factor - 1) * 100, 2)
+print(f"\nYTD 2026: {ytd_return:+.2f}% (intraday)")
 
 # ── Build current-month holdings with entry prices ────────────────────────────
 current_period = next((p for p in history if pd.Timestamp(p['end']) > today), None)
@@ -143,8 +148,8 @@ if current_period:
         # Update name/sector
         if tk in name_map:   h['name']   = name_map[tk]
         if tk in sector_map: h['sector'] = sector_map[tk]
-        # Update current price
-        cp = get_price(tk, today)
+        # Update current price (intraday preferred over last close)
+        cp = intraday_prices.get(tk) or get_price(tk, today)
         h['current_price'] = round(cp, 2) if cp else h.get('current_price')
         ep = h.get('entry_price'); cph = h.get('current_price')
         h['return_pct'] = round((cph / ep - 1) * 100, 2) if ep and cph else 0.0
