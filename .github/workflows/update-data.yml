@@ -52,11 +52,14 @@ jobs:
       - name: Update YTD performance data
         run: python scripts/update_ytd.py
 
+      - name: Update UK momentum signal
+        run: python scripts/uk_momentum_signal.py
+
       - name: Commit and push
         run: |
           git config user.name  'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add wizard-data.json portfolio-data.json momentum-data.json momentum-portfolio.json coiled-spring-data.json coiled-spring-portfolio.json ytd-data.json ytd-picks-history.json
+          git add wizard-data.json portfolio-data.json momentum-data.json momentum-portfolio.json coiled-spring-data.json coiled-spring-portfolio.json ytd-data.json ytd-picks-history.json uk-momentum-data.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
