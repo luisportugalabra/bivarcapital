@@ -121,64 +121,64 @@
       "ticker": "SNDK",
       "name": "Sandisk Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2025-12-31",
-      "entry_price": 237.38,
+      "entry_date": "2026-01-02",
+      "entry_price": 275.24,
       "current_price": 1436.56,
-      "return_pct": 505.17
+      "return_pct": 421.93
     },
     {
       "ticker": "MU",
       "name": "Micron Technology, Inc.",
       "sector": "Electronic Technology",
-      "entry_date": "2026-04-30",
-      "entry_price": 517.08,
+      "entry_date": "2026-05-01",
+      "entry_price": 542.13,
       "current_price": 920.95,
-      "return_pct": 78.11
+      "return_pct": 69.88
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings Inc.",
       "sector": "Producer Manufacturing",
-      "entry_date": "2025-12-31",
-      "entry_price": 368.59,
+      "entry_date": "2026-01-02",
+      "entry_price": 386.11,
       "current_price": 762.99,
-      "return_pct": 107.0
+      "return_pct": 97.61
     },
     {
       "ticker": "BE",
       "name": "Bloom Energy Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-02-28",
-      "entry_price": 155.67,
+      "entry_date": "2026-03-02",
+      "entry_price": 166.0,
       "current_price": 184.89,
-      "return_pct": 18.77
+      "return_pct": 11.38
     },
     {
       "ticker": "WDC",
       "name": "Western Digital Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2025-12-31",
-      "entry_price": 172.14,
+      "entry_date": "2026-01-02",
+      "entry_price": 187.56,
       "current_price": 519.8,
-      "return_pct": 201.96
+      "return_pct": 177.14
     },
     {
       "ticker": "STX",
       "name": "Seagate Technology Holdings PLC",
       "sector": "Electronic Technology",
-      "entry_date": "2026-03-31",
-      "entry_price": 391.48,
+      "entry_date": "2026-04-01",
+      "entry_price": 422.82,
       "current_price": 851.69,
-      "return_pct": 117.56
+      "return_pct": 101.43
     },
     {
       "ticker": "DOCN",
       "name": "DigitalOcean Holdings, Inc.",
       "sector": "Technology Services",
-      "entry_date": "2026-06-30",
-      "entry_price": 157.03,
+      "entry_date": "2026-07-01",
+      "entry_price": 144.58,
       "current_price": 123.54,
-      "return_pct": -21.33
+      "return_pct": -14.55
     }
   ]
 }

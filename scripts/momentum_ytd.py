@@ -130,8 +130,8 @@ except Exception:
     name_map = {}; sector_map = {}
 
 # ── Find first consecutive entry date for each current ticker ─────────────────
-def first_consecutive_entry(ticker, current_idx):
-    """Walk back through history to find the first consecutive period with this ticker."""
+def first_consecutive_period_start(ticker, current_idx):
+    """Walk back through history to find the start of the first consecutive period."""
     first_start = history[current_idx]['start']
     for i in range(current_idx - 1, -1, -1):
         if ticker in history[i]['tickers']:
@@ -140,24 +140,38 @@ def first_consecutive_entry(ticker, current_idx):
             break
     return first_start
 
+def first_trading_day_after(period_start_str):
+    """Return the first trading day (close) after period_start — i.e. entry day."""
+    start_ts = pd.Timestamp(period_start_str)
+    # Find first date in price history strictly after period_start with valid data
+    col = prices.iloc[:, 0]  # any ticker column to get trading dates
+    valid_dates = prices.index[prices.index > start_ts]
+    # Filter to dates that have at least some non-NaN data
+    for d in valid_dates:
+        if prices.loc[d].notna().any():
+            return d
+    return start_ts  # fallback
+
 current_idx = len(history) - 1  # index of July period
 
 holdings = []
 if current_period:
     for tk in current_period['tickers']:
-        true_entry_date = first_consecutive_entry(tk, current_idx)
+        period_start = first_consecutive_period_start(tk, current_idx)
+        entry_ts = first_trading_day_after(period_start)
+        entry_date_str = entry_ts.strftime('%Y-%m-%d')
         existing = existing_map.get(tk, {})
 
-        # Keep existing entry if the true entry date hasn't changed
-        if existing.get('entry_date') == true_entry_date and existing.get('entry_price'):
+        # Keep existing entry if unchanged
+        if existing.get('entry_date') == entry_date_str and existing.get('entry_price'):
             h = existing.copy()
         else:
-            ep = get_price(tk, pd.Timestamp(true_entry_date))
+            ep = get_price(tk, entry_ts)
             h = {
                 'ticker':        tk,
                 'name':          name_map.get(tk, tk),
                 'sector':        sector_map.get(tk, ''),
-                'entry_date':    true_entry_date,
+                'entry_date':    entry_date_str,
                 'entry_price':   round(ep, 2) if ep else None,
                 'current_price': None,
             }
