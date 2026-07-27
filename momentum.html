@@ -236,18 +236,24 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <script>
 async function loadPortfolio() {
   try {
-    const res = await fetch('/momentum-portfolio.json?v=' + Date.now());
-    if (!res.ok) throw new Error('no data');
-    const data = await res.json();
+    const [portRes, ytdRes] = await Promise.all([
+      fetch('/momentum-portfolio.json?v=' + Date.now()),
+      fetch('/ytd-data.json?v=' + Date.now()),
+    ]);
+    if (!portRes.ok) throw new Error('no data');
+    const data    = await portRes.json();
+    const ytdData = ytdRes.ok ? await ytdRes.json() : null;
     const fmtP   = v => v != null ? '$' + v.toFixed(2) : '—';
     const fmtRet = v => v != null ? `<span class="${v >= 0 ? 'pos' : 'neg'}">${v >= 0 ? '+' : ''}${v.toFixed(2)}%</span>` : '—';
 
-    // YTD + MTD stats
-    if (data.ytd_2026 != null) {
+    // YTD — usa ytd-data.json (mesma fonte que o widget da homepage)
+    const ytdVal = ytdData?.ytd_strat ?? data.ytd_2026;
+    if (ytdVal != null) {
       const ytdEl = document.getElementById('ytd-return');
-      ytdEl.textContent = (data.ytd_2026 >= 0 ? '+' : '') + data.ytd_2026.toFixed(1) + '%';
-      ytdEl.className = 'stat-val ' + (data.ytd_2026 >= 0 ? 'pos' : 'neg');
+      ytdEl.textContent = (ytdVal >= 0 ? '+' : '') + ytdVal.toFixed(1) + '%';
+      ytdEl.className = 'stat-val ' + (ytdVal >= 0 ? 'pos' : 'neg');
     }
+    // MTD — mês corrente do breakdown
     const cur = (data.monthly_breakdown || []).find(m => m.is_current);
     if (cur) {
       const mtdEl = document.getElementById('mtd-return');
