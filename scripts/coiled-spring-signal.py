@@ -191,66 +191,83 @@ try:
     with open(PORTFOLIO_PATH) as f:
         existing_portfolio = json.load(f)
     existing_holdings = {h['ticker']: h for h in existing_portfolio.get('holdings', [])}
+    last_rebalance_month = existing_portfolio.get('last_rebalance', '')[:7]
 except (FileNotFoundError, json.JSONDecodeError):
     existing_holdings = {}
+    last_rebalance_month = ''
 
-# Score lookup for ALL tickers in universe (not just top 20)
-score_lookup   = df.set_index('ticker')['composite'].to_dict()
-name_lookup    = df.set_index('ticker')['name'].to_dict() if 'name' in df.columns else {}
-sector_lookup  = df.set_index('ticker')['sector'].to_dict() if 'sector' in df.columns else {}
+current_month   = datetime.now().strftime('%Y-%m')
+is_new_month    = current_month != last_rebalance_month
 
-new_tickers    = [s['ticker'] for s in portfolio]
-new_ticker_set = set(new_tickers)
-new_entries    = [t for t in new_tickers if t not in existing_holdings]
+# Score lookup for current signal (all universe tickers)
+score_lookup  = df.set_index('ticker')['composite'].to_dict()
+name_lookup   = df.set_index('ticker')['name'].to_dict() if 'name' in df.columns else {}
+sector_lookup = df.set_index('ticker')['sector'].to_dict() if 'sector' in df.columns else {}
 
-# Fetch entry prices only for tickers entering the portfolio for the first time
-entry_prices = {}
-if new_entries:
-    print(f"Fetching entry prices for {len(new_entries)} new position(s): {new_entries}")
-    try:
-        ep_dl = yf.download(new_entries, period='1d', progress=False, auto_adjust=True)
-        for t in new_entries:
-            try:
-                if len(new_entries) == 1:
-                    entry_prices[t] = float(ep_dl['Close'].dropna().iloc[-1])
-                else:
-                    entry_prices[t] = float(ep_dl['Close'][t].dropna().iloc[-1])
-            except Exception:
-                entry_prices[t] = None
-    except Exception as e:
-        print(f"  Warning: could not fetch entry prices: {e}")
+if is_new_month:
+    # ── NEW MONTH: rebalance — new top 10, fetch entry prices for new tickers ──
+    print(f"New month detected ({current_month}). Rebalancing portfolio...")
+    new_tickers = [s['ticker'] for s in portfolio]
+    new_entries = [t for t in new_tickers if t not in existing_holdings]
 
-holdings = []
-for tk in new_tickers:
-    if tk in existing_holdings:
-        h = existing_holdings[tk].copy()
-    else:
-        ep = entry_prices.get(tk)
-        h = {
-            'ticker':      tk,
-            'name':        name_lookup.get(tk, tk),
-            'sector':      sector_lookup.get(tk, ''),
-            'entry_date':  output['date'],
-            'entry_price': round(ep, 2) if ep else None,
-            'stop_loss':   round(ep * 0.75, 2) if ep else None,
-            'current_price': round(ep, 2) if ep else None,
-        }
-    # Update score from current signal
-    h['score'] = round(float(score_lookup.get(tk, 0)), 3)
-    h['score_exit'] = h['score'] < 0.40
-    # Update stop status (with current price if available)
-    cp = h.get('current_price')
-    sl = h.get('stop_loss')
-    if cp and sl:
-        h['stop_triggered'] = cp <= sl
-        h['pct_from_stop']  = round((cp / sl - 1) * 100, 1)
-    else:
-        h['stop_triggered'] = False
-        h['pct_from_stop']  = None
-    holdings.append(h)
+    entry_prices = {}
+    if new_entries:
+        print(f"  Fetching entry prices for {len(new_entries)} new position(s): {new_entries}")
+        try:
+            ep_dl = yf.download(new_entries, period='1d', progress=False, auto_adjust=True)
+            for t in new_entries:
+                try:
+                    if len(new_entries) == 1:
+                        entry_prices[t] = float(ep_dl['Close'].dropna().iloc[-1])
+                    else:
+                        entry_prices[t] = float(ep_dl['Close'][t].dropna().iloc[-1])
+                except Exception:
+                    entry_prices[t] = None
+        except Exception as e:
+            print(f"  Warning: could not fetch entry prices: {e}")
+
+    holdings = []
+    for tk in new_tickers:
+        if tk in existing_holdings:
+            h = existing_holdings[tk].copy()
+        else:
+            ep = entry_prices.get(tk)
+            h = {
+                'ticker':        tk,
+                'name':          name_lookup.get(tk, tk),
+                'sector':        sector_lookup.get(tk, ''),
+                'entry_date':    output['date'],
+                'entry_price':   round(ep, 2) if ep else None,
+                'stop_loss':     round(ep * 0.75, 2) if ep else None,
+                'current_price': round(ep, 2) if ep else None,
+            }
+        h['score']      = round(float(score_lookup.get(tk, 0)), 3)
+        h['score_exit'] = h['score'] < 0.40
+        cp = h.get('current_price'); sl = h.get('stop_loss')
+        if cp and sl:
+            h['stop_triggered'] = cp <= sl
+            h['pct_from_stop']  = round((cp / sl - 1) * 100, 1)
+        else:
+            h['stop_triggered'] = False
+            h['pct_from_stop']  = None
+        holdings.append(h)
+
+    last_rebalance_date = output['date']
+else:
+    # ── SAME MONTH: keep existing portfolio, only refresh scores ─────────────
+    print(f"Same month ({current_month}). Keeping portfolio, refreshing scores only...")
+    holdings = []
+    for h in existing_portfolio.get('holdings', []):
+        h = h.copy()
+        tk = h['ticker']
+        if tk in score_lookup:
+            h['score']      = round(float(score_lookup[tk]), 3)
+            h['score_exit'] = h['score'] < 0.40
+        holdings.append(h)
+    last_rebalance_date = existing_portfolio.get('last_rebalance', output['date'])
 
 portfolio_output = {
-    'last_rebalance': output['date'],
+    'last_rebalance': last_rebalance_date,
     'updated':        output['date'],
     'holdings':       holdings,
 }
