@@ -46,24 +46,28 @@ print(f"  S&P: {sp_last:,.0f}  MA225: {sp_ma225:,.0f}  → {regime.upper()}")
 print("Sharadar (dados 12m atrás)...")
 cutoff = (pd.Timestamp.today() - pd.DateOffset(months=12)).strftime('%Y-%m')
 
-sf1q = pd.read_parquet(os.path.join(SHARADAR_DIR, 'sf1_quarterly_ttm.parquet'),
-                        columns=['ticker','datekey','avail_ym','revenue_ttm','netinc_ttm','fcf_ttm'])
-tkdf = pd.read_parquet(os.path.join(SHARADAR_DIR, 'tickers.parquet'),
-                        columns=['ticker','category'])
+try:
+    sf1q = pd.read_parquet(os.path.join(SHARADAR_DIR, 'sf1_quarterly_ttm.parquet'),
+                            columns=['ticker','datekey','avail_ym','revenue_ttm','netinc_ttm','fcf_ttm'])
+    tkdf = pd.read_parquet(os.path.join(SHARADAR_DIR, 'tickers.parquet'),
+                            columns=['ticker','category'])
 
-valid = set(tkdf.loc[tkdf['category'].isin(
-    ['Domestic Common Stock','Domestic Common Stock Primary Class']), 'ticker'])
+    valid = set(tkdf.loc[tkdf['category'].isin(
+        ['Domestic Common Stock','Domestic Common Stock Primary Class']), 'ticker'])
 
-sf1q = sf1q[sf1q['ticker'].isin(valid)].dropna(subset=['avail_ym'])
-sf1q['net_margin_1y'] = sf1q['netinc_ttm'] / sf1q['revenue_ttm'].replace(0, np.nan)
-sf1q['fcf_margin_1y'] = sf1q['fcf_ttm']    / sf1q['revenue_ttm'].replace(0, np.nan)
+    sf1q = sf1q[sf1q['ticker'].isin(valid)].dropna(subset=['avail_ym'])
+    sf1q['net_margin_1y'] = sf1q['netinc_ttm'] / sf1q['revenue_ttm'].replace(0, np.nan)
+    sf1q['fcf_margin_1y'] = sf1q['fcf_ttm']    / sf1q['revenue_ttm'].replace(0, np.nan)
 
-lag = (sf1q[sf1q['avail_ym'] <= cutoff]
-         .sort_values('avail_ym')
-         .groupby('ticker')
-         .last()[['net_margin_1y', 'fcf_margin_1y']])
+    lag = (sf1q[sf1q['avail_ym'] <= cutoff]
+             .sort_values('avail_ym')
+             .groupby('ticker')
+             .last()[['net_margin_1y', 'fcf_margin_1y']])
 
-print(f"  Tickers com dados 12m atrás: {len(lag)}")
+    print(f"  Tickers com dados 12m atrás: {len(lag)}")
+except Exception as e:
+    print(f"  Sharadar não disponível ({e}). A correr só com dados TradingView.")
+    lag = pd.DataFrame(columns=['net_margin_1y', 'fcf_margin_1y'])
 
 # ── UNIVERSO VIA TRADINGVIEW (dados actuais) ───────────────────────────────────
 print("TradingView screener...")

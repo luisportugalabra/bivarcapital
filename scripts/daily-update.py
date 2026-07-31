@@ -109,7 +109,7 @@ for strat_name in ["discretionary", "vc2", "vc2trend"]:
 try:
     SP500_DEC31_2025 = 6845.5  # S&P 500 index close Dec 31, 2025 (fixed)
     sp_now_data = yf.download("^GSPC", period="1d", progress=False)
-    sp_now = float(sp_now_data["Close"].iloc[-1])
+    sp_now = float(sp_now_data["Close"].squeeze().dropna().iloc[-1])
     sp_ytd = round(((sp_now / SP500_DEC31_2025) - 1) * 100, 1)
     data["sp500_returns"]["2026_ytd"] = sp_ytd
     print(f"  S&P 500: YTD={sp_ytd}%")
