@@ -185,6 +185,27 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
+    <div class="strategy-card" id="china-momentum-card">
+      <div class="card-header">
+        <div class="card-title">China A-shares Momentum</div>
+        <span class="card-badge badge-soon">Pro</span>
+      </div>
+      <p id="china-momentum-blur" class="card-desc" style="filter:blur(6px);user-select:none">21-month momentum strategy on China A-shares (SHG + SHE). Market cap &gt;¥20B CNY, CSI 300 MA150 regime overlay. Monthly rebalance, 10 stocks equal weight.</p>
+      <div class="card-stats" id="china-momentum-stats" style="filter:blur(6px);user-select:none">
+        <span class="card-stat">Sharpe: <span class="num">0.67</span></span>
+        <span class="card-stat">CAGR: <span class="num">+15.2%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-46.6%</span></span>
+        <span class="card-stat"><span class="num">2007&ndash;2026</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-china-mom').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="china-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
+
     <div class="strategy-card">
       <div class="card-header">
         <div class="card-title">Bitcoin Trend Signal</div>
@@ -355,6 +376,31 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
   </div>
 </div>
 
+<!-- MODAL: China A-shares Momentum -->
+<div class="modal-overlay" id="modal-china-mom" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-china-mom').classList.remove('open')">&times;</button>
+    <h3>How to follow China A-shares Momentum</h3>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 — Once a month</div>
+      <p>On the <strong>1st business day of each month</strong>, check the signal on this site. Takes ~5 minutes to execute via Interactive Brokers (Stock Connect access required).</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 — Check the regime</div>
+      <p>If the <strong>CSI 300 is above its 150-day moving average</strong>: hold the 10 stocks. If it is below: sell everything and stay in <strong>cash</strong> until the regime flips back. The strategy is in cash ~47% of the time.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 — Execute</div>
+      <p>Buy the <strong>10 stocks listed</strong> in equal weight (10% each) via Shanghai or Shenzhen Stock Connect on IBKR. Sell the previous month&apos;s holdings no longer in the top 10.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-step">
+      <div class="modal-step-num">Key details</div>
+      <p>Universe: China A-shares (SHG + SHE), market cap &gt;¥20B CNY (~$2.8B USD). Signal = 21-month return, skip last month. No fundamental filter. Backtest 2007–2026: CAGR +15.2%, Sharpe 0.67, MaxDD -46.6%.</p>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: Bitcoin Trend Signal -->
 <div class="modal-overlay" id="modal-btc" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
@@ -404,6 +450,11 @@ window.onUnlock = function(email) {
   document.getElementById('uk-momentum-stats').style.filter = 'none';
   document.getElementById('uk-momentum-stats').style.userSelect = 'auto';
   document.getElementById('uk-momentum-actions').innerHTML = '<a href="/uk-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/uk_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
+  document.getElementById('china-momentum-blur').style.filter = 'none';
+  document.getElementById('china-momentum-blur').style.userSelect = 'auto';
+  document.getElementById('china-momentum-stats').style.filter = 'none';
+  document.getElementById('china-momentum-stats').style.userSelect = 'auto';
+  document.getElementById('china-momentum-actions').innerHTML = '<a href="/china-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/china_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('gdx-blur').style.filter = 'none';
   document.getElementById('gdx-blur').style.userSelect = 'auto';
