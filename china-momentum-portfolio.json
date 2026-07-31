@@ -1,12 +1,13 @@
 {
-  "last_rebalance": "2026-07-31",
+  "last_rebalance": "2026-06-30",
   "updated": "2026-07-31",
-  "ytd_2026": null,
+  "ytd_2026": -49.45,
   "currency": "CNY",
   "currency_note": "Prices in CNY (Chinese Yuan Renminbi).",
   "monthly_breakdown": [
     {
-      "month": "Jul 2026",
+      "month": "Jul 2026 (MTD)",
+      "is_current": true,
       "start": "2026-06-30",
       "end": "2026-07-31",
       "tickers": [
@@ -21,9 +22,109 @@
         "688048",
         "001309"
       ],
-      "return_pct": null,
-      "is_current": true
+      "return_pct": -49.45
     }
   ],
-  "holdings": []
+  "holdings": [
+    {
+      "ticker": "301377",
+      "name": "Guangdong Dtech Technology Co. Ltd. A",
+      "exchange": "SHE",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 555.3,
+      "current_price": 350.1,
+      "return_pct": -36.95
+    },
+    {
+      "ticker": "603256",
+      "name": "Grace Fabric Technology Co Ltd",
+      "exchange": "SHG",
+      "sector": "Basic Materials",
+      "entry_date": "2026-07-01",
+      "entry_price": 255.97,
+      "current_price": 128.13,
+      "return_pct": -49.94
+    },
+    {
+      "ticker": "688498",
+      "name": "Yuanjie Semiconductor Technology Co. Ltd. A",
+      "exchange": "SHG",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 1761.0,
+      "current_price": 1092.1,
+      "return_pct": -37.98
+    },
+    {
+      "ticker": "601869",
+      "name": "Yangtze Optical Fibre and Cable Joint Stock Ltd Co",
+      "exchange": "SHG",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 508.51,
+      "current_price": 271.5,
+      "return_pct": -46.61
+    },
+    {
+      "ticker": "688313",
+      "name": "Henan Shijia Photons Technology Co Ltd",
+      "exchange": "SHG",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 170.8,
+      "current_price": 90.04,
+      "return_pct": -47.28
+    },
+    {
+      "ticker": "688519",
+      "name": "Nanya New Material Technology Co Ltd",
+      "exchange": "SHG",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 360.0,
+      "current_price": 218.0,
+      "return_pct": -39.44
+    },
+    {
+      "ticker": "600105",
+      "name": "Jiangsu Etern Co Ltd",
+      "exchange": "SHG",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 62.46,
+      "current_price": 32.04,
+      "return_pct": -48.7
+    },
+    {
+      "ticker": "300903",
+      "name": "Guangdong Kingshine Electronic Tech",
+      "exchange": "SHE",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 97.2,
+      "current_price": 46.78,
+      "return_pct": -51.87
+    },
+    {
+      "ticker": "688048",
+      "name": "Suzhou Everbright Photonics Co. Ltd. A",
+      "exchange": "SHG",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 474.35,
+      "current_price": 227.38,
+      "return_pct": -52.06
+    },
+    {
+      "ticker": "001309",
+      "name": "Shenzhen Techwinsemi Technology Co. Ltd.",
+      "exchange": "SHE",
+      "sector": "Technology",
+      "entry_date": "2026-07-01",
+      "entry_price": 893.22,
+      "current_price": 385.9,
+      "return_pct": -56.8
+    }
+  ]
 }
