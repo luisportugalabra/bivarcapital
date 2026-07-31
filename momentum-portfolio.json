@@ -1,7 +1,7 @@
 {
-  "last_rebalance": "2026-06-30",
-  "updated": "2026-07-27",
-  "ytd_2026": 187.04,
+  "last_rebalance": "2026-07-31",
+  "updated": "2026-07-31",
+  "ytd_2026": 180.82,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -100,10 +100,10 @@
       "return_pct": 10.6
     },
     {
-      "month": "Jul 2026 (MTD)",
-      "is_current": true,
+      "month": "Jul 2026",
+      "is_current": false,
       "start": "2026-06-30",
-      "end": "2026-07-27",
+      "end": "2026-07-31",
       "tickers": [
         "SNDK",
         "MU",
@@ -113,72 +113,8 @@
         "STX",
         "DOCN"
       ],
-      "return_pct": -22.67
+      "return_pct": -24.35
     }
   ],
-  "holdings": [
-    {
-      "ticker": "SNDK",
-      "name": "Sandisk Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-01-02",
-      "entry_price": 275.24,
-      "current_price": 1436.56,
-      "return_pct": 421.93
-    },
-    {
-      "ticker": "MU",
-      "name": "Micron Technology, Inc.",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-05-01",
-      "entry_price": 542.13,
-      "current_price": 920.95,
-      "return_pct": 69.88
-    },
-    {
-      "ticker": "LITE",
-      "name": "Lumentum Holdings Inc.",
-      "sector": "Producer Manufacturing",
-      "entry_date": "2026-01-02",
-      "entry_price": 386.11,
-      "current_price": 762.99,
-      "return_pct": 97.61
-    },
-    {
-      "ticker": "BE",
-      "name": "Bloom Energy Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-03-02",
-      "entry_price": 166.0,
-      "current_price": 184.89,
-      "return_pct": 11.38
-    },
-    {
-      "ticker": "WDC",
-      "name": "Western Digital Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-01-02",
-      "entry_price": 187.56,
-      "current_price": 519.8,
-      "return_pct": 177.14
-    },
-    {
-      "ticker": "STX",
-      "name": "Seagate Technology Holdings PLC",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-04-01",
-      "entry_price": 422.82,
-      "current_price": 851.69,
-      "return_pct": 101.43
-    },
-    {
-      "ticker": "DOCN",
-      "name": "DigitalOcean Holdings, Inc.",
-      "sector": "Technology Services",
-      "entry_date": "2026-07-01",
-      "entry_price": 144.58,
-      "current_price": 123.54,
-      "return_pct": -14.55
-    }
-  ]
+  "holdings": []
 }
