@@ -62,7 +62,7 @@ jobs:
         run: |
           git config user.name  'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add wizard-data.json portfolio-data.json momentum-data.json momentum-portfolio.json coiled-spring-data.json coiled-spring-portfolio.json ytd-data.json ytd-picks-history.json uk-momentum-data.json china-momentum-portfolio.json
+          git add wizard-data.json portfolio-data.json momentum-data.json momentum-portfolio.json coiled-spring-data.json coiled-spring-portfolio.json ytd-data.json ytd-picks-history.json uk-momentum-data.json china-momentum-portfolio.json ytd-picks-history-china.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
