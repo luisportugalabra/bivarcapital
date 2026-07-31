@@ -1,0 +1,29 @@
+{
+  "last_rebalance": "2026-07-31",
+  "updated": "2026-07-31",
+  "ytd_2026": null,
+  "currency": "CNY",
+  "currency_note": "Prices in CNY (Chinese Yuan Renminbi).",
+  "monthly_breakdown": [
+    {
+      "month": "Jul 2026",
+      "start": "2026-06-30",
+      "end": "2026-07-31",
+      "tickers": [
+        "301377",
+        "603256",
+        "688498",
+        "601869",
+        "688313",
+        "688519",
+        "600105",
+        "300903",
+        "688048",
+        "001309"
+      ],
+      "return_pct": null,
+      "is_current": true
+    }
+  ],
+  "holdings": []
+}
