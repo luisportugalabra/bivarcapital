@@ -133,7 +133,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
           <div class="stat-val" id="mtd-return">—</div>
-          <div class="stat-lbl">Jul 2026 MTD</div>
+          <div class="stat-lbl" id="mtd-label">MTD</div>
         </div>
       </div>
 
@@ -171,6 +171,36 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       </div>
 
       <p id="portfolio-updated" style="font-family:var(--font-mono);font-size:0.52rem;color:var(--text-muted);margin-top:10px"></p>
+    </div>
+
+    <!-- Rebalance Calculator -->
+    <div id="calc-section" style="display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+      <div class="port-section-title" style="margin-bottom:14px">Rebalance Calculator</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+        <label style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted)">Portfolio value</label>
+        <div style="position:relative">
+          <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted)">$</span>
+          <input id="calc-input" type="number" min="0" step="100" placeholder="100000"
+            style="padding:8px 10px 8px 22px;background:var(--bg);border:1px solid var(--border-light);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.78rem;width:160px;outline:none">
+        </div>
+        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">÷ 7 equal weight</span>
+      </div>
+      <div class="table-wrap">
+      <table id="calc-table" style="display:none">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Current $</th>
+            <th class="r">Allocation</th>
+            <th class="r">Shares</th>
+            <th class="r">Cost</th>
+            <th class="r">Cash left</th>
+          </tr>
+        </thead>
+        <tbody id="calc-body"></tbody>
+        <tfoot id="calc-foot"></tfoot>
+      </table>
+      </div>
     </div>
 
     <hr class="section-divider">
@@ -259,6 +289,7 @@ async function loadPortfolio() {
       const mtdEl = document.getElementById('mtd-return');
       mtdEl.textContent = (cur.return_pct >= 0 ? '+' : '') + cur.return_pct.toFixed(2) + '%';
       mtdEl.className = 'stat-val ' + (cur.return_pct >= 0 ? 'pos' : 'neg');
+      document.getElementById('mtd-label').textContent = cur.month;
     }
 
     // Current holdings table
@@ -291,6 +322,13 @@ async function loadPortfolio() {
     if (data.updated)
       document.getElementById('portfolio-updated').textContent =
         'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
+
+    // Calculator
+    if (holdings.length) {
+      _calcHoldings = holdings.filter(h => h.current_price);
+      document.getElementById('calc-section').style.display = 'block';
+      calcRebalance();
+    }
 
   } catch(e) {
     document.getElementById('portfolio-body').innerHTML =
@@ -329,6 +367,47 @@ async function loadData() {
     return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td><td>${s.ebit_m.toLocaleString()}</td></tr>`;
   }).join('');
 }
+let _calcHoldings = [];
+function calcRebalance() {
+  const total = parseFloat(document.getElementById('calc-input').value);
+  if (!total || total <= 0 || !_calcHoldings.length) {
+    document.getElementById('calc-table').style.display = 'none';
+    return;
+  }
+  const n = _calcHoldings.length;
+  const alloc = total / n;
+  let totalCost = 0;
+  const rows = _calcHoldings.map(h => {
+    const price = h.current_price;
+    if (!price) return null;
+    const shares = Math.floor(alloc / price);
+    const cost = shares * price;
+    totalCost += cost;
+    const left = alloc - cost;
+    return `<tr class="selected">
+      <td><strong>${h.ticker}</strong></td>
+      <td>$${price.toFixed(2)}</td>
+      <td class="r">$${alloc.toFixed(0)}</td>
+      <td class="r"><strong>${shares}</strong></td>
+      <td class="r">$${cost.toFixed(2)}</td>
+      <td class="r" style="color:var(--text-muted)">$${left.toFixed(2)}</td>
+    </tr>`;
+  }).filter(Boolean).join('');
+  const totalLeft = total - totalCost;
+  document.getElementById('calc-body').innerHTML = rows;
+  document.getElementById('calc-foot').innerHTML = `
+    <tr style="border-top:1px solid var(--border-light)">
+      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:8px">Total</td>
+      <td></td>
+      <td class="r" style="padding-top:8px"><strong>$${totalCost.toFixed(2)}</strong></td>
+      <td class="r" style="padding-top:8px;color:${totalLeft >= 0 ? 'var(--green)' : 'var(--red)'}">$${totalLeft.toFixed(2)}</td>
+    </tr>`;
+  document.getElementById('calc-table').style.display = 'table';
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('calc-input').addEventListener('input', calcRebalance);
+});
+
 window.onUnlock = function() {
   document.getElementById('auth-wall').style.display = 'none';
   document.getElementById('content-area').style.display = 'block';
