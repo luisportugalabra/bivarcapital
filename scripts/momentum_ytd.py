@@ -92,7 +92,7 @@ for period in history:
         period_ret = 0.0
 
     # Label = month the return was EARNED (end month, or "MTD" if current)
-    month_label = end_dt.strftime('%b %Y') if not is_current else 'Jul 2026 (MTD)'
+    month_label = end_dt.strftime('%b %Y') if not is_current else today.strftime('%b %Y') + ' (MTD)'
     label = month_label
 
     monthly_breakdown.append({

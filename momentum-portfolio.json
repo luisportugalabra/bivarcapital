@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-07-31",
-  "ytd_2026": 180.82,
+  "updated": "2026-08-03",
+  "ytd_2026": 168.52,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -113,8 +113,88 @@
         "STX",
         "DOCN"
       ],
-      "return_pct": -24.35
+      "return_pct": -25.03
+    },
+    {
+      "month": "Aug 2026 (MTD)",
+      "is_current": true,
+      "start": "2026-07-31",
+      "end": "2026-08-03",
+      "tickers": [
+        "SNDK",
+        "MU",
+        "WDC",
+        "LITE",
+        "BE",
+        "STX",
+        "VSAT"
+      ],
+      "return_pct": -3.51
     }
   ],
-  "holdings": []
+  "holdings": [
+    {
+      "ticker": "SNDK",
+      "name": "Sandisk Corporation",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-01-02",
+      "entry_price": 275.24,
+      "current_price": 1184.14,
+      "return_pct": 330.22
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-05-01",
+      "entry_price": 542.13,
+      "current_price": 782.15,
+      "return_pct": 44.27
+    },
+    {
+      "ticker": "WDC",
+      "name": "Western Digital Corporation",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-01-02",
+      "entry_price": 187.56,
+      "current_price": 509.84,
+      "return_pct": 171.83
+    },
+    {
+      "ticker": "LITE",
+      "name": "Lumentum Holdings Inc.",
+      "sector": "Producer Manufacturing",
+      "entry_date": "2026-01-02",
+      "entry_price": 386.11,
+      "current_price": 695.67,
+      "return_pct": 80.17
+    },
+    {
+      "ticker": "BE",
+      "name": "Bloom Energy Corporation",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-03-02",
+      "entry_price": 166.0,
+      "current_price": 202.59,
+      "return_pct": 22.04
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-04-01",
+      "entry_price": 422.82,
+      "current_price": 796.05,
+      "return_pct": 88.27
+    },
+    {
+      "ticker": "VSAT",
+      "name": "ViaSat, Inc.",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 77.21,
+      "current_price": 77.32,
+      "return_pct": 0.14
+    }
+  ]
 }
