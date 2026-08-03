@@ -376,20 +376,33 @@ function calcRebalance() {
   const n = _calcHoldings.length;
   const alloc = total / n;
   let totalCost = 0;
-  const rows = _calcHoldings.map(h => {
+  // Base allocation with floor shares
+  let positions = _calcHoldings.map(h => {
     const price = h.current_price;
     if (!price) return null;
     const shares = Math.floor(alloc / price);
-    const cost = shares * price;
+    return { ticker: h.ticker, price, shares, remainder: alloc - shares * price };
+  }).filter(Boolean);
+
+  // Distribute remaining cash: give +1 share to positions with largest remainder
+  let cash = total - positions.reduce((s, p) => s + p.shares * p.price, 0);
+  positions.sort((a, b) => b.remainder - a.remainder);
+  for (const p of positions) {
+    if (cash >= p.price) { p.shares += 1; cash -= p.price; }
+  }
+  positions.sort((a, b) => _calcHoldings.findIndex(h => h.ticker === a.ticker) - _calcHoldings.findIndex(h => h.ticker === b.ticker));
+
+  const rows = positions.map(p => {
+    const cost = p.shares * p.price;
     totalCost += cost;
     return `<tr class="selected">
-      <td><strong>${h.ticker}</strong></td>
-      <td>$${price.toFixed(2)}</td>
+      <td><strong>${p.ticker}</strong></td>
+      <td>$${p.price.toFixed(2)}</td>
       <td class="r">$${alloc.toFixed(0)}</td>
-      <td class="r"><strong>${shares}</strong></td>
+      <td class="r"><strong>${p.shares}</strong></td>
       <td class="r">$${cost.toFixed(2)}</td>
     </tr>`;
-  }).filter(Boolean).join('');
+  }).join('');
   const totalLeft = total - totalCost;
   document.getElementById('calc-body').innerHTML = rows;
   document.getElementById('calc-foot').innerHTML = `
