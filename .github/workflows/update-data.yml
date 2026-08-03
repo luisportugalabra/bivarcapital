@@ -46,9 +46,6 @@ jobs:
       - name: Compute momentum YTD return
         run: python scripts/momentum_ytd.py
 
-      - name: Update Coiled Spring signal
-        run: python scripts/coiled-spring-signal.py
-
       - name: Update YTD performance data
         run: python scripts/update_ytd.py
 
