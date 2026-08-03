@@ -28,7 +28,8 @@ warnings.filterwarnings("ignore")
 
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 SITE_DIR    = os.path.dirname(SCRIPT_DIR)
-JSON_PATH   = os.path.join(SITE_DIR, "china-momentum-data.json")
+JSON_PATH    = os.path.join(SITE_DIR, "china-momentum-data.json")
+HISTORY_PATH = os.path.join(SITE_DIR, "ytd-picks-history-china.json")
 
 EODHD_DIR   = "/Users/luisabrantes/eodhd_data"
 CSI300_PATH = "/Users/luisabrantes/china_momentum/csi300_daily.parquet"
@@ -360,7 +361,56 @@ def main():
     print(f"\n  >>> = Selected for portfolio (top {TOP_N})")
     print(f"  Strategy: 21M momentum (skip 1M) | >=¥20B mcap | CSI 300 < MA{MA_WINDOW} → Cash")
 
+    # ── Update picks history ───────────────────────────────────────────────────
+    _update_picks_history(top_keys, regime, output['date'])
+
     return output
+
+
+def _update_picks_history(top_keys, regime, today_str):
+    """Append new period to ytd-picks-history-china.json when a new month starts."""
+    from datetime import datetime, date
+    import calendar
+
+    if not os.path.exists(HISTORY_PATH):
+        print("  China picks history: file not found, skipping")
+        return
+
+    with open(HISTORY_PATH) as f:
+        history = json.load(f)
+
+    today = datetime.strptime(today_str, '%Y-%m-%d').date()
+    today_ym = (today.year, today.month)
+
+    if not history:
+        print("  China picks history: empty, skipping")
+        return
+
+    last_end = datetime.strptime(history[-1]['end'], '%Y-%m-%d').date()
+    last_end_ym = (last_end.year, last_end.month)
+
+    if today_ym <= last_end_ym:
+        print(f"  China picks history: already up to date ({history[-1]['end']})")
+        return
+
+    last_day = calendar.monthrange(today.year, today.month)[1]
+    new_end  = date(today.year, today.month, last_day).isoformat()
+
+    # Extract plain tickers (strip exchange prefix if present)
+    tickers = [k.split(':')[-1] if ':' in k else k for k in top_keys]
+
+    new_period = {
+        'signal_date': today_str,
+        'start':       history[-1]['end'],
+        'end':         new_end,
+        'regime':      regime,
+        'tickers':     tickers if regime == 'momentum' else [],
+    }
+    history.append(new_period)
+
+    with open(HISTORY_PATH, 'w') as f:
+        json.dump(history, f, indent=2, ensure_ascii=False)
+    print(f"  China picks history: added {new_period['start']} → {new_period['end']}  regime={regime}  tickers={tickers}")
 
 
 if __name__ == "__main__":

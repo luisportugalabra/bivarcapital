@@ -1,7 +1,7 @@
 {
-  "last_rebalance": "2026-08-03",
+  "last_rebalance": "2026-07-31",
   "updated": "2026-08-03",
-  "ytd_2026": -27.57,
+  "ytd_2026": -28.73,
   "currency": "CNY",
   "currency_note": "Prices in CNY (Chinese Yuan Renminbi).",
   "monthly_breakdown": [
@@ -133,7 +133,118 @@
         "300476"
       ],
       "return_pct": -48.05
+    },
+    {
+      "month": "Aug 2026 (MTD)",
+      "is_current": true,
+      "start": "2026-07-31",
+      "end": "2026-08-03",
+      "regime": "momentum",
+      "tickers": [
+        "301377",
+        "688498",
+        "603256",
+        "688313",
+        "601869",
+        "600105",
+        "688048",
+        "688519",
+        "300903",
+        "300476"
+      ],
+      "return_pct": -1.61
     }
   ],
-  "holdings": []
+  "holdings": [
+    {
+      "ticker": "301377",
+      "name": "Guangdong Dtech Technology Co. Ltd. A",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 335.0,
+      "current_price": 335.0,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "688498",
+      "name": "Yuanjie Semiconductor Technology Co. Ltd. A",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 1147.01,
+      "current_price": 1147.01,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "603256",
+      "name": "Grace Fabric Technology Co Ltd",
+      "sector": "Basic Materials",
+      "entry_date": "2026-08-03",
+      "entry_price": 115.32,
+      "current_price": 115.32,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "688313",
+      "name": "Henan Shijia Photons Technology Co Ltd",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 96.77,
+      "current_price": 96.77,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "601869",
+      "name": "Yangtze Optical Fibre and Cable Joint Stock Ltd Co",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 262.3,
+      "current_price": 262.3,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "600105",
+      "name": "Jiangsu Etern Co Ltd",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 31.17,
+      "current_price": 31.17,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "688048",
+      "name": "Suzhou Everbright Photonics Co. Ltd. A",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 236.29,
+      "current_price": 236.29,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "688519",
+      "name": "Nanya New Material Technology Co Ltd",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 206.0,
+      "current_price": 206.0,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "300903",
+      "name": "Guangdong Kingshine Electronic Tech",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 43.96,
+      "current_price": 43.96,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "300476",
+      "name": "Victory Giant Technology Huizhou Co Ltd",
+      "sector": "Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 189.3,
+      "current_price": 189.3,
+      "return_pct": 0.0
+    }
+  ]
 }

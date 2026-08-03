@@ -50,6 +50,23 @@ except Exception:
 today = pd.Timestamp.today().normalize()
 today_str = today.strftime('%Y-%m-%d')
 
+# Auto-extend: if last period ended in the past and we're in a new month,
+# add a placeholder using last known tickers until signal is run locally.
+if history:
+    import calendar as _cal
+    last_end_ts = pd.Timestamp(history[-1]['end'])
+    if last_end_ts < today:
+        new_last_day = _cal.monthrange(today.year, today.month)[1]
+        new_end = pd.Timestamp(today.year, today.month, new_last_day)
+        history.append({
+            'signal_date': today_str,
+            'start':       history[-1]['end'],
+            'end':         new_end.strftime('%Y-%m-%d'),
+            'regime':      history[-1].get('regime', 'momentum'),
+            'tickers':     history[-1]['tickers'],
+        })
+        print(f"  Auto-extended history to {new_end.strftime('%Y-%m-%d')} (run china_momentum_signal.py locally to update picks)")
+
 # ── Collect all tickers ────────────────────────────────────────────────────────
 all_tickers = sorted(set(t for p in history for t in p['tickers']))
 yf_symbols  = {tk: yf_sym(tk) for tk in all_tickers}
