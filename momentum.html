@@ -194,7 +194,6 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
             <th class="r">Allocation</th>
             <th class="r">Shares</th>
             <th class="r">Cost</th>
-            <th class="r">Cash left</th>
           </tr>
         </thead>
         <tbody id="calc-body"></tbody>
@@ -383,24 +382,26 @@ function calcRebalance() {
     const shares = Math.floor(alloc / price);
     const cost = shares * price;
     totalCost += cost;
-    const left = alloc - cost;
     return `<tr class="selected">
       <td><strong>${h.ticker}</strong></td>
       <td>$${price.toFixed(2)}</td>
       <td class="r">$${alloc.toFixed(0)}</td>
       <td class="r"><strong>${shares}</strong></td>
       <td class="r">$${cost.toFixed(2)}</td>
-      <td class="r" style="color:var(--text-muted)">$${left.toFixed(2)}</td>
     </tr>`;
   }).filter(Boolean).join('');
   const totalLeft = total - totalCost;
   document.getElementById('calc-body').innerHTML = rows;
   document.getElementById('calc-foot').innerHTML = `
     <tr style="border-top:1px solid var(--border-light)">
-      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:8px">Total</td>
+      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:8px">Total invested</td>
       <td></td>
       <td class="r" style="padding-top:8px"><strong>$${totalCost.toFixed(2)}</strong></td>
-      <td class="r" style="padding-top:8px;color:${totalLeft >= 0 ? 'var(--green)' : 'var(--red)'}">$${totalLeft.toFixed(2)}</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:4px">Cash remaining</td>
+      <td></td>
+      <td class="r" style="padding-top:4px;font-family:var(--font-mono);font-weight:600;color:var(--text-muted)">$${totalLeft.toFixed(2)}</td>
     </tr>`;
   document.getElementById('calc-table').style.display = 'table';
 }
