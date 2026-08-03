@@ -372,14 +372,24 @@ let _pricesFetched = false;
 
 async function fetchLivePrices(tickers) {
   const label = document.getElementById('calc-price-label');
-  if (label) label.textContent = 'a buscar preços…';
+  if (label) label.textContent = 'fetching prices…';
   try {
     const symbols = tickers.join(',');
-    const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=regularMarketPrice`;
-    const proxy = `https://corsproxy.io/?url=${encodeURIComponent(url)}`;
-    const res = await fetch(proxy);
-    if (!res.ok) throw new Error('proxy failed');
-    const json = await res.json();
+    // Try direct Yahoo Finance first (works in some browsers/regions)
+    const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`;
+    let json;
+    try {
+      const res = await fetch(url, {headers: {'Accept': 'application/json'}});
+      if (!res.ok) throw new Error('direct failed');
+      json = await res.json();
+    } catch {
+      // Fallback: allorigins proxy
+      const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+      const res2 = await fetch(proxy);
+      if (!res2.ok) throw new Error('proxy failed');
+      const wrapper = await res2.json();
+      json = JSON.parse(wrapper.contents);
+    }
     const quotes = json?.quoteResponse?.result || [];
     if (!quotes.length) throw new Error('no quotes');
     quotes.forEach(q => {
@@ -387,11 +397,11 @@ async function fetchLivePrices(tickers) {
       if (h && q.regularMarketPrice) h.current_price = q.regularMarketPrice;
     });
     const now = new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-    if (label) label.textContent = `preços às ${now}`;
+    if (label) label.textContent = `prices at ${now}`;
     _pricesFetched = true;
     calcRebalance();
   } catch(e) {
-    if (label) label.textContent = 'preços do dia anterior';
+    if (label) label.textContent = 'using last close prices';
   }
 }
 function calcRebalance() {
