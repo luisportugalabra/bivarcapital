@@ -184,6 +184,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
             style="padding:8px 10px 8px 22px;background:var(--bg);border:1px solid var(--border-light);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.78rem;width:160px;outline:none">
         </div>
         <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">÷ 7 equal weight</span>
+        <span id="calc-price-label" style="font-family:var(--font-mono);font-size:.55rem;color:var(--text-muted);margin-left:8px"></span>
       </div>
       <div class="table-wrap">
       <table id="calc-table" style="display:none">
@@ -322,7 +323,7 @@ async function loadPortfolio() {
       document.getElementById('portfolio-updated').textContent =
         'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
 
-    // Calculator
+    // Calculator — seed with stored prices; live prices fetched on first focus
     if (holdings.length) {
       _calcHoldings = holdings.filter(h => h.current_price);
       document.getElementById('calc-section').style.display = 'block';
@@ -367,6 +368,32 @@ async function loadData() {
   }).join('');
 }
 let _calcHoldings = [];
+let _pricesFetched = false;
+
+async function fetchLivePrices(tickers) {
+  const label = document.getElementById('calc-price-label');
+  if (label) label.textContent = 'a buscar preços…';
+  try {
+    const symbols = tickers.join(',');
+    const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=regularMarketPrice`;
+    const proxy = `https://corsproxy.io/?url=${encodeURIComponent(url)}`;
+    const res = await fetch(proxy);
+    if (!res.ok) throw new Error('proxy failed');
+    const json = await res.json();
+    const quotes = json?.quoteResponse?.result || [];
+    if (!quotes.length) throw new Error('no quotes');
+    quotes.forEach(q => {
+      const h = _calcHoldings.find(x => x.ticker === q.symbol);
+      if (h && q.regularMarketPrice) h.current_price = q.regularMarketPrice;
+    });
+    const now = new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    if (label) label.textContent = `preços às ${now}`;
+    _pricesFetched = true;
+    calcRebalance();
+  } catch(e) {
+    if (label) label.textContent = 'preços do dia anterior';
+  }
+}
 function calcRebalance() {
   const total = parseFloat(document.getElementById('calc-input').value);
   if (!total || total <= 0 || !_calcHoldings.length) {
@@ -419,7 +446,12 @@ function calcRebalance() {
   document.getElementById('calc-table').style.display = 'table';
 }
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('calc-input').addEventListener('input', calcRebalance);
+  const input = document.getElementById('calc-input');
+  input.addEventListener('focus', () => {
+    if (!_pricesFetched && _calcHoldings.length)
+      fetchLivePrices(_calcHoldings.map(h => h.ticker));
+  });
+  input.addEventListener('input', calcRebalance);
 });
 
 window.onUnlock = function() {
