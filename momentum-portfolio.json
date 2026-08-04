@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-03",
-  "ytd_2026": 172.63,
+  "updated": "2026-08-04",
+  "ytd_2026": 186.88,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -119,7 +119,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-03",
+      "end": "2026-08-04",
       "tickers": [
         "SNDK",
         "MU",
@@ -129,7 +129,7 @@
         "STX",
         "VSAT"
       ],
-      "return_pct": -2.03
+      "return_pct": 3.09
     }
   ],
   "holdings": [
@@ -139,8 +139,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1205.0,
-      "return_pct": 337.8
+      "current_price": 1288.03,
+      "return_pct": 367.97
     },
     {
       "ticker": "MU",
@@ -148,8 +148,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 788.33,
-      "return_pct": 45.41
+      "current_price": 829.5,
+      "return_pct": 53.01
     },
     {
       "ticker": "WDC",
@@ -157,8 +157,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 187.56,
-      "current_price": 508.07,
-      "return_pct": 170.88
+      "current_price": 527.22,
+      "return_pct": 181.09
     },
     {
       "ticker": "LITE",
@@ -166,8 +166,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 713.72,
-      "return_pct": 84.85
+      "current_price": 779.89,
+      "return_pct": 101.99
     },
     {
       "ticker": "BE",
@@ -175,8 +175,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-03-02",
       "entry_price": 166.0,
-      "current_price": 211.37,
-      "return_pct": 27.33
+      "current_price": 218.32,
+      "return_pct": 31.52
     },
     {
       "ticker": "STX",
@@ -184,8 +184,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-04-01",
       "entry_price": 422.82,
-      "current_price": 792.4,
-      "return_pct": 87.41
+      "current_price": 831.06,
+      "return_pct": 96.55
     },
     {
       "ticker": "VSAT",
@@ -193,8 +193,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-08-03",
       "entry_price": 77.21,
-      "current_price": 78.73,
-      "return_pct": 1.97
+      "current_price": 81.29,
+      "return_pct": 5.28
     }
   ]
 }
