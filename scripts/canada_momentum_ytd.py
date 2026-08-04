@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
 """
-Canada Momentum — Live Portfolio Tracker (daily update)
+Canada Momentum — Daily Portfolio Tracker
 
-Updates:
-  - Current holdings: current_price, return_pct (via yfinance .TO)
-  - 2026 monthly returns: re-compute from yfinance prices
-  - YTD 2026: chained return across 2026 months
-  - TSX regime: tsx / tsx_ma75 in data JSON
-
-Pre-2026 monthly returns are kept as-is (already computed from EODHD data).
+Uses TradingView screener for current prices of holdings.
+Completed monthly returns are kept from the EODHD backtest (generated locally).
+Only updates: current prices, current month MTD, YTD 2026, TSX regime.
 
 Usage: python3 scripts/canada_momentum_ytd.py
 """
 import os, json, warnings
-from datetime import date as _date, datetime
+from datetime import date as _date
 import pandas as pd
 import numpy as np
 
 warnings.filterwarnings('ignore')
+
+try:
+    from tradingview_screener import Query, col
+except ImportError:
+    os.system("pip install tradingview-screener -q")
+    from tradingview_screener import Query, col
 
 try:
     import yfinance as yf
@@ -30,76 +32,62 @@ SITE_DIR       = os.path.dirname(SCRIPT_DIR)
 PORTFOLIO_PATH = os.path.join(SITE_DIR, 'canada-momentum-portfolio.json')
 DATA_PATH      = os.path.join(SITE_DIR, 'canada-momentum-data.json')
 
-TSX_SYM = '^GSPTSE'
 MA_W    = 75
+TSX_SYM = '^GSPTSE'
+TODAY   = _date.today().isoformat()
 
-def yf_sym(ticker):
-    return ticker + '.TO'
-
-# ── Load existing portfolio ────────────────────────────────────────────────────
+# ── Load existing data ─────────────────────────────────────────────────────────
 with open(PORTFOLIO_PATH) as f:
     portfolio = json.load(f)
 
 monthly_breakdown = portfolio.get('monthly_breakdown', [])
-tsx_annual = portfolio.get('tsx_annual', {})
-today     = pd.Timestamp.today().normalize()
-today_str = today.strftime('%Y-%m-%d')
+tsx_annual        = portfolio.get('tsx_annual', {})
 
-# ── Collect tickers for 2026+ and current holdings only ───────────────────────
-recent_tickers = set()
-for p in monthly_breakdown:
+# ── Fetch current prices from TradingView ─────────────────────────────────────
+print("Fetching current prices from TradingView (TSX)...")
+cur_period = next((p for p in monthly_breakdown if p.get('is_current')), None)
+current_tickers = cur_period.get('tickers', []) if cur_period else []
+
+tv_prices = {}
+if current_tickers:
     try:
-        yr = int(p['month'].split(' ')[1])
-    except Exception:
-        continue
-    if yr >= 2026 or p.get('is_current'):
-        recent_tickers.update(p.get('tickers', []))
+        _, df_tv = (Query()
+                    .select('name', 'close', 'change_abs', 'Perf.1M')
+                    .where(
+                        col('is_primary') == True,
+                        col('type') == 'stock',
+                    )
+                    .set_markets('canada')
+                    .limit(5_000)
+                    .get_scanner_data())
+        # TV names for TSX look like "TSX:AII"
+        if df_tv is not None and not df_tv.empty:
+            for _, row in df_tv.iterrows():
+                sym = row.get('name', '')
+                tk  = sym.split(':')[-1] if ':' in sym else sym
+                if tk in current_tickers and pd.notna(row.get('close')):
+                    tv_prices[tk] = float(row['close'])
+        print(f"  Found prices for {len(tv_prices)}/{len(current_tickers)} tickers from TV")
+    except Exception as e:
+        print(f"  TV fetch failed: {e}")
 
-# Also include current holdings
-current_holdings = portfolio.get('holdings', [])
-for h in current_holdings:
-    recent_tickers.add(h['ticker'])
+# Fallback to yfinance for any missing current tickers
+missing = [tk for tk in current_tickers if tk not in tv_prices]
+if missing:
+    print(f"  Fetching {len(missing)} missing tickers from yfinance...")
+    for tk in missing:
+        try:
+            p = yf.Ticker(tk + '.TO').fast_info.last_price
+            if p and not np.isnan(float(p)):
+                tv_prices[tk] = float(p)
+        except Exception:
+            pass
 
-recent_tickers = sorted(recent_tickers)
-print(f"Fetching prices for {len(recent_tickers)} recent TSX equities (2026+)...")
-
-yf_symbols = {tk: yf_sym(tk) for tk in recent_tickers}
-all_yf = list(yf_symbols.values())
-
-prices = pd.DataFrame()
-if all_yf:
-    raw = yf.download(all_yf, start='2025-12-01', progress=False, auto_adjust=True)
-    if not raw.empty:
-        if isinstance(raw.columns, pd.MultiIndex):
-            prices = raw['Close']
-        else:
-            prices = raw[['Close']].rename(columns={'Close': all_yf[0]})
-
-def get_price(ticker, target_date):
-    sym = yf_sym(ticker)
-    if prices.empty or sym not in prices.columns:
-        return None
-    col = prices[sym].dropna()
-    valid = col[col.index <= pd.Timestamp(target_date)]
-    return float(valid.iloc[-1]) if not valid.empty else None
-
-# ── Intraday prices for current holdings ──────────────────────────────────────
-print("Fetching intraday prices for current holdings...")
-intraday = {}
-for tk in recent_tickers:
-    sym = yf_sym(tk)
-    try:
-        p = yf.Ticker(sym).fast_info.last_price
-        if p and not np.isnan(p):
-            intraday[tk] = float(p)
-    except Exception:
-        pass
-
-# ── TSX regime (MA75) ─────────────────────────────────────────────────────────
+# ── TSX regime via yfinance ────────────────────────────────────────────────────
 print("Fetching TSX Composite for MA75 regime...")
 tsx_current = None
 tsx_ma75_val = None
-regime_str = 'unknown'
+regime_str   = 'unknown'
 try:
     tsx_raw = yf.download(TSX_SYM, start='2024-01-01', progress=False, auto_adjust=True)
     if isinstance(tsx_raw.columns, pd.MultiIndex):
@@ -111,7 +99,7 @@ try:
     regime_str   = 'momentum' if tsx_current > tsx_ma75_val else 'defensive'
     print(f"  TSX: {tsx_current:.0f}  |  MA75: {tsx_ma75_val:.0f}  |  Regime: {regime_str}")
 
-    # Refresh TSX annual returns
+    # Refresh tsx_annual
     tsx_annual_new = {}
     for yr in range(2001, _date.today().year + 1):
         yr_data = tsx_close[tsx_close.index.year == yr]
@@ -123,51 +111,55 @@ try:
 except Exception as e:
     print(f"  Warning: could not fetch TSX ({e})")
 
-# ── Update monthly breakdown (only 2026 and current months) ───────────────────
-print("Updating 2026 monthly returns...")
-updated_breakdown = []
-
-for period in monthly_breakdown:
+# ── Update current month MTD return ───────────────────────────────────────────
+# Fetch start-of-month prices via yfinance for the 10 current holdings (one date fetch)
+cur_tickers = cur_period.get('tickers', []) if cur_period else []
+period_start = pd.Timestamp(cur_period['start']) if cur_period else None
+month_entry_prices = {}
+if cur_tickers and period_start:
+    print(f"Fetching start-of-month prices for MTD (from {period_start.date()})...")
+    syms_to = [tk + '.TO' for tk in cur_tickers]
     try:
-        yr = int(period['month'].split(' ')[1])
-    except Exception:
-        updated_breakdown.append(period)
-        continue
+        raw_m = yf.download(syms_to, start=period_start - pd.Timedelta(days=5),
+                            end=period_start + pd.Timedelta(days=10),
+                            progress=False, auto_adjust=True)
+        if isinstance(raw_m.columns, pd.MultiIndex):
+            prices_m = raw_m['Close']
+        else:
+            prices_m = raw_m[['Close']].rename(columns={'Close': syms_to[0]})
+        for tk in cur_tickers:
+            sym = tk + '.TO'
+            if sym in prices_m.columns:
+                col_s = prices_m[sym].dropna()
+                valid = col_s[col_s.index <= period_start]
+                if not valid.empty:
+                    month_entry_prices[tk] = float(valid.iloc[-1])
+    except Exception as e:
+        print(f"  Warning: MTD entry price fetch failed ({e})")
 
-    is_current = period.get('is_current', False)
-
-    # Only recompute 2026 months
-    if yr < 2026 and not is_current:
+updated_breakdown = []
+for period in monthly_breakdown:
+    if not period.get('is_current'):
         updated_breakdown.append(period)
         continue
 
     tickers = period.get('tickers', [])
-    start_dt = pd.Timestamp(period['start'])
-    end_raw  = period.get('end')
-
-    if not tickers:
-        updated_breakdown.append(period)
-        continue
-
-    # Compute return
     returns = []
-    for tk in tickers:
-        p0 = get_price(tk, start_dt)
-        if is_current or not end_raw:
-            p1 = intraday.get(tk) or get_price(tk, today)
-        else:
-            p1 = get_price(tk, pd.Timestamp(end_raw))
-        if p0 and p1 and p0 > 0:
-            returns.append(p1 / p0 - 1)
 
-    period_ret = float(np.mean(returns)) if returns else period.get('return_pct', 0.0) / 100
+    for tk in tickers:
+        ep = month_entry_prices.get(tk)   # price at start of current month
+        cp = tv_prices.get(tk)
+        if ep and cp and ep > 0:
+            returns.append(cp / ep - 1)
+
+    mtd_ret = float(np.mean(returns)) if returns else 0.0
     updated_breakdown.append({
         **period,
-        'return_pct': round(period_ret * 100, 4),
+        'return_pct': round(mtd_ret * 100, 4),
     })
-    print(f"  {period['month']}{'(MTD)' if is_current else ''}: {period_ret*100:+.2f}%")
+    print(f"  {period['month']} (MTD): {mtd_ret*100:+.2f}%  [{len(returns)}/{len(tickers)} prices]")
 
-# ── YTD 2026 ───────────────────────────────────────────────────────────────────
+# ── Recompute YTD 2026 ─────────────────────────────────────────────────────────
 ytd_factor = 1.0
 for p in updated_breakdown:
     if p.get('is_current'):
@@ -181,33 +173,23 @@ for p in updated_breakdown:
 ytd_return = round((ytd_factor - 1) * 100, 2)
 print(f"\nYTD 2026: {ytd_return:+.2f}%")
 
-# ── Update current holdings ────────────────────────────────────────────────────
-existing_map = {h['ticker']: h for h in current_holdings}
-cur_period   = next((p for p in updated_breakdown if p.get('is_current')), None)
-
+# ── Update current holdings with TV prices ────────────────────────────────────
+existing_map = {h['ticker']: h for h in portfolio.get('holdings', [])}
 holdings = []
-if cur_period and cur_period.get('tickers'):
-    start_dt = pd.Timestamp(cur_period['start'])
-    for tk in cur_period['tickers']:
-        h = dict(existing_map.get(tk, {
-            'ticker':      tk,
-            'name':        '',
-            'sector':      '',
-            'entry_date':  start_dt.strftime('%Y-%m-%d'),
-            'entry_price': get_price(tk, start_dt),
-            'current_price': None,
-            'return_pct':  0.0,
-        }))
-        cp = intraday.get(tk) or get_price(tk, today)
-        h['current_price'] = round(cp, 4) if cp else h.get('current_price')
-        ep, cp_val = h.get('entry_price'), h.get('current_price')
-        h['return_pct'] = round((cp_val / ep - 1) * 100, 2) if ep and cp_val else 0.0
-        holdings.append(h)
+for tk in current_tickers:
+    h = dict(existing_map.get(tk, {'ticker': tk, 'name': '', 'sector': '',
+                                   'entry_date': (cur_period or {}).get('start', TODAY),
+                                   'entry_price': None, 'current_price': None, 'return_pct': 0.0}))
+    cp = tv_prices.get(tk)
+    h['current_price'] = round(cp, 4) if cp else h.get('current_price')
+    ep, cp_val = h.get('entry_price'), h.get('current_price')
+    h['return_pct'] = round((cp_val / ep - 1) * 100, 2) if ep and cp_val else 0.0
+    holdings.append(h)
 
 # ── Save portfolio JSON ────────────────────────────────────────────────────────
-out_portfolio = {
+out = {
     'last_rebalance':    cur_period['start'] if cur_period else portfolio.get('last_rebalance'),
-    'updated':           today_str,
+    'updated':           TODAY,
     'ytd_2026':          ytd_return,
     'holdings':          holdings,
     'monthly_breakdown': updated_breakdown,
@@ -215,14 +197,14 @@ out_portfolio = {
 }
 
 with open(PORTFOLIO_PATH, 'w') as f:
-    json.dump(out_portfolio, f, indent=2)
+    json.dump(out, f, indent=2)
 print(f"Saved: {PORTFOLIO_PATH}")
 
 # ── Update canada-momentum-data.json ──────────────────────────────────────────
 try:
     with open(DATA_PATH) as f:
         data_json = json.load(f)
-    data_json['updated'] = today_str
+    data_json['updated'] = TODAY
     data_json['regime']  = regime_str
     if tsx_current:    data_json['tsx']      = round(tsx_current, 2)
     if tsx_ma75_val:   data_json['tsx_ma75'] = round(tsx_ma75_val, 2)
