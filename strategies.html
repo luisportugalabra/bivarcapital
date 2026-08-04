@@ -206,6 +206,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
+    <!-- CHINA MOMENTUM CARD — hidden, re-enable when ready
     <div class="strategy-card" id="china-momentum-card">
       <div class="card-header">
         <div class="card-title">China A-shares Momentum</div>
@@ -226,6 +227,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
     </div>
+    END CHINA CARD -->
 
     <div class="strategy-card">
       <div class="card-header">
@@ -397,7 +399,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
   </div>
 </div>
 
-<!-- MODAL: China A-shares Momentum -->
+<!-- CHINA MODAL — hidden, re-enable when ready
 <div class="modal-overlay" id="modal-china-mom" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal-china-mom').classList.remove('open')">&times;</button>
@@ -421,6 +423,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     </div>
   </div>
 </div>
+END CHINA MODAL -->
 
 <!-- MODAL: Canada TSX Momentum -->
 <div class="modal-overlay" id="modal-canada-mom" onclick="if(event.target===this)this.classList.remove('open')">
@@ -501,11 +504,12 @@ window.onUnlock = function(email) {
   document.getElementById('canada-momentum-stats').style.filter = 'none';
   document.getElementById('canada-momentum-stats').style.userSelect = 'auto';
   document.getElementById('canada-momentum-actions').innerHTML = '<a href="/canada-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
-  document.getElementById('china-momentum-blur').style.filter = 'none';
-  document.getElementById('china-momentum-blur').style.userSelect = 'auto';
-  document.getElementById('china-momentum-stats').style.filter = 'none';
-  document.getElementById('china-momentum-stats').style.userSelect = 'auto';
-  document.getElementById('china-momentum-actions').innerHTML = '<a href="/china-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/china_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
+  // CHINA — re-enable when adding card back
+  // document.getElementById('china-momentum-blur').style.filter = 'none';
+  // document.getElementById('china-momentum-blur').style.userSelect = 'auto';
+  // document.getElementById('china-momentum-stats').style.filter = 'none';
+  // document.getElementById('china-momentum-stats').style.userSelect = 'auto';
+  // document.getElementById('china-momentum-actions').innerHTML = '<a href="/china-momentum.html" ...>View live signal &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('gdx-blur').style.filter = 'none';
   document.getElementById('gdx-blur').style.userSelect = 'auto';
