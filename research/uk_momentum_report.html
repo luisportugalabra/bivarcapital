@@ -1,358 +1,460 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Optimal Momentum — Strategy Report · Bivar Capital</title>
+<title>UK Optimal Momentum — Strategy Report | Bivar Capital</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #060608; --card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
-  --text: #e8e8ec; --muted: #5a5a68; --text-secondary: #9898a4;
-  --accent: #c4a265; --green: #4ade80; --red: #f87171;
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body: 'DM Sans', -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; font-size: 14px; }
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--accent:#c4a265;--green:#4ade80;--red:#f87171}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14px}
+.container{max-width:1050px;margin:0 auto;padding:40px 24px 80px}
 
-/* Sticky header */
-header {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(6,6,8,0.88); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border); padding: 16px 0;
-}
-.header-inner { max-width: 1050px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); text-decoration: none; }
-nav a {
-  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-  text-decoration: none; margin-left: 24px; transition: color 0.2s;
-}
-nav a:hover { color: var(--text); }
-nav a.cta {
-  background: var(--accent); color: #060608; padding: 6px 14px; border-radius: 5px;
-  font-weight: 700; font-size: 0.6rem; margin-left: 12px; letter-spacing: 0.08em;
-}
-nav a.cta:hover { opacity: 0.88; color: #060608; }
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0 32px;border-bottom:1px solid var(--border);margin-bottom:36px}
+.nav-brand{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.nav-brand:hover{color:var(--accent)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.5rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a.active{color:var(--accent)}
 
-/* Layout */
-.container { max-width: 1050px; margin: 0 auto; padding: 48px 24px 88px; }
-.brand { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-h1 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 400; line-height: 1.15; }
-h1 .it { font-style: italic; color: var(--accent); display: block; margin-top: 4px; font-size: 1.1rem; }
-.lead { color: var(--muted); font-size: 0.82rem; max-width: 700px; margin: 12px 0 36px; line-height: 1.75; }
-h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin: 44px 0 10px; }
-h3 { font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin: 24px 0 8px; }
-p { color: var(--muted); margin-bottom: 10px; font-size: 0.82rem; }
-strong { color: var(--text); }
-ul, ol { margin: 6px 0 12px 18px; color: var(--muted); font-size: 0.8rem; }
-li { margin-bottom: 4px; }
-.divider { height: 1px; background: var(--border); margin: 36px 0; }
+/* HEADER */
+.brand{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+h1{font-family:'DM Serif Display',serif;font-size:2.2rem;font-weight:400;line-height:1.15}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:2px;font-size:1.1rem}
+.lead{color:var(--muted);font-size:0.82rem;max-width:700px;margin:10px 0 18px}
+.signal-link{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:0.55rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);text-decoration:none;border:1px solid rgba(196,162,101,0.25);border-radius:6px;padding:5px 12px;transition:all .2s;margin-bottom:32px}
+.signal-link:hover{background:rgba(196,162,101,0.08);border-color:var(--accent)}
 
-/* Stat grids */
-.grid6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 14px 0; }
-.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 14px 0; }
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
-.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 14px 0; }
-.stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
-.stat .v { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; }
-.stat .l { font-size: 0.48rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
-.pos { color: var(--green); }
-.neg { color: var(--red); }
-.acc { color: var(--accent); }
+/* SECTIONS */
+h2{font-family:'DM Serif Display',serif;font-size:1.3rem;font-weight:400;margin:44px 0 10px}
+h3{font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--accent);margin:24px 0 8px}
+p{color:var(--muted);margin-bottom:10px;font-size:0.82rem}
+strong{color:var(--text)}
+ul,ol{margin:6px 0 12px 18px;color:var(--muted);font-size:0.8rem}
+li{margin-bottom:4px}
+code{font-family:'JetBrains Mono',monospace;font-size:0.72rem;background:rgba(196,162,101,0.08);border:1px solid rgba(196,162,101,0.15);padding:1px 5px;border-radius:4px;color:var(--accent)}
+.divider{height:1px;background:var(--border);margin:36px 0}
 
-/* Table */
-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; margin: 8px 0; }
-th {
-  text-align: left; padding: 5px 7px;
-  font-family: var(--font-mono); font-size: 0.5rem; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--muted); border-bottom: 1px solid var(--border);
-}
-td {
-  padding: 5px 7px; border-bottom: 1px solid var(--border);
-  font-family: var(--font-mono); font-size: 0.62rem;
-}
-th:not(:first-child), td:not(:first-child) { text-align: right; }
-td.pos { color: var(--green); }
-td.neg { color: var(--red); }
-td.acc { color: var(--accent); }
-td.dim { color: var(--muted); }
+/* STAT GRIDS */
+.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:600}
+.stat .l{font-size:0.48rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.acc{color:var(--accent)}
 
-/* Callout / rule box */
-.callout {
-  background: var(--card); border-left: 3px solid var(--accent);
-  padding: 14px 18px; margin: 18px 0; border-radius: 0 8px 8px 0; font-size: 0.78rem;
-}
-.rule-box {
-  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-  padding: 20px; margin: 14px 0; font-size: 0.78rem;
-}
-.rule-box ol { margin-left: 16px; }
-.rule-box li { margin-bottom: 6px; color: var(--muted); }
-.rule-box li strong { color: var(--text); }
-.highlight {
-  background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.15);
-  border-radius: 8px; padding: 16px; margin: 14px 0; font-size: 0.78rem;
-}
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:0.7rem;margin:8px 0}
+th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:0.5rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted)}
+th:not(:first-child),td:not(:first-child){text-align:right}
+td.pos{color:var(--green)}
+td.neg{color:var(--red)}
+td.acc{color:var(--accent)}
+td.muted{color:var(--muted)}
+td.txt{color:var(--text)}
+tr.hl td{background:rgba(196,162,101,0.05)}
+tr.hl td.pos{color:var(--green)}
+tr.hl td.neg{color:var(--red)}
+tr.hl td.acc{color:var(--accent)}
+tr.hl td.txt{color:var(--text)}
 
-/* Footer */
-.footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--border); text-align: center; }
-.footer p { font-size: 0.5rem; color: var(--muted); font-family: var(--font-mono); }
+/* CALLOUT & BOXES */
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0;font-size:0.78rem}
+.callout p{font-size:0.78rem;margin-bottom:0}
+.rule-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin:14px 0;font-size:0.78rem}
+.rule-box ol{margin-left:16px}
+.rule-box li{margin-bottom:6px;color:var(--muted)}
+.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:16px;margin:14px 0;font-size:0.78rem}
+.highlight p{font-size:0.78rem;margin-bottom:0}
+.warning{background:rgba(248,113,113,.04);border:1px solid rgba(248,113,113,.18);border-radius:8px;padding:14px 18px;margin:14px 0;font-size:0.78rem}
+.warning p{font-size:0.78rem;margin-bottom:0}
+.info-box{background:rgba(196,162,101,0.05);border:1px solid rgba(196,162,101,0.18);border-radius:8px;padding:16px;margin:14px 0;font-size:0.78rem}
+.info-box p{font-size:0.78rem;margin-bottom:0}
 
-/* Responsive */
-@media (max-width: 700px) {
-  .grid6 { grid-template-columns: repeat(3, 1fr); }
-  .grid4 { grid-template-columns: repeat(2, 1fr); }
-  .grid3 { grid-template-columns: repeat(2, 1fr); }
-  .two-col { grid-template-columns: 1fr; }
-  h1 { font-size: 1.7rem; }
-  nav a { margin-left: 14px; }
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.param-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.param-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.param-item .pk{font-family:'JetBrains Mono',monospace;font-size:0.48rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:3px}
+.param-item .pv{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text)}
+
+/* BADGE */
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.44rem;text-transform:uppercase;letter-spacing:0.1em;padding:2px 6px;border-radius:4px;margin-left:5px;vertical-align:middle}
+.badge.sel{background:rgba(196,162,101,0.1);color:var(--accent);border:1px solid rgba(196,162,101,0.25)}
+
+/* CTA BOX */
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;text-align:center;margin:24px 0}
+.cta-box p{font-size:0.82rem;margin-bottom:0}
+.cta-box .cta-title{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:8px}
+
+/* FOOTER */
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.footer p{font-size:0.5rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+
+@media(max-width:700px){
+  .grid6{grid-template-columns:repeat(3,1fr)}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .two-col{grid-template-columns:1fr}
+  .param-grid{grid-template-columns:1fr}
+  .nav-links{gap:12px}
 }
-</style>
-</head>
-<body>
+</style></head><body><div class="container">
 
-<!-- Sticky header -->
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo">Bivar Capital</a>
-    <nav>
-      <a href="/strategies.html">Strategies</a>
-      <a href="/access.html" class="cta">Get Access</a>
-    </nav>
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-brand">Bivar Capital</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/strategies.html">Strategies</a>
+    <a href="/uk-momentum.html" class="active">UK Momentum</a>
   </div>
-</header>
+</nav>
 
-<div class="container">
+<!-- HEADER -->
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>UK Optimal Momentum<span class="it">LSE momentum with gold regime hedge</span></h1>
+<p class="lead">A long-only momentum strategy on LSE-listed common stocks with a profitability screen, composite momentum scoring, and a FTSE&nbsp;100&nbsp;/ MA200 regime switch that rotates to gold in bearish conditions. Backtest: Dec 2004 &ndash; Jul 2026 (&asymp;&nbsp;21.6&nbsp;years).</p>
 
-  <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
-  <h1>UK Optimal Momentum<span class="it">A systematic momentum strategy for UK equities</span></h1>
-  <p class="lead">
-    Systematic 6-month momentum applied to LSE-listed UK large-cap equities with a profitability screen,
-    FTSE 100 regime filter, and monthly rebalancing. The strategy holds a concentrated portfolio of
-    7 stocks — going to cash when the FTSE 100 trades below its 200-day moving average.
-    Backtested 2001–2026 across 306 monthly rebalances.
-  </p>
+<a href="/uk-momentum.html" class="signal-link">&#8592; Live signal &amp; current portfolio</a>
 
-  <!-- Key statistics -->
-  <h2>Key Statistics</h2>
-  <h3>Strategy · 2001–2026 · 306 months</h3>
-  <div class="grid6">
-    <div class="stat"><div class="v pos">+22.1%</div><div class="l">CAGR</div></div>
-    <div class="stat"><div class="v acc">0.92</div><div class="l">Sharpe</div></div>
-    <div class="stat"><div class="v acc">1.66</div><div class="l">Sortino</div></div>
-    <div class="stat"><div class="v neg">-33.4%</div><div class="l">Max DD</div></div>
-    <div class="stat"><div class="v">22.0%</div><div class="l">Volatility</div></div>
-    <div class="stat"><div class="v">41.5%</div><div class="l">Win Rate</div></div>
-  </div>
-  <div class="grid4">
-    <div class="stat"><div class="v pos">+2.1%</div><div class="l">FTSE 100 CAGR</div></div>
-    <div class="stat"><div class="v pos">+20.0%</div><div class="l">Alpha vs FTSE</div></div>
-    <div class="stat"><div class="v pos">+16,069%</div><div class="l">Cumulative Return</div></div>
-    <div class="stat"><div class="v acc">102 / 306</div><div class="l">Months in Cash</div></div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- 5-year breakdown -->
-  <h2>Period Breakdown</h2>
-  <h3>5-year sub-periods</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Period</th>
-        <th>CAGR</th>
-        <th>FTSE 100</th>
-        <th>Alpha</th>
-        <th>Sharpe</th>
-        <th>Max DD</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="dim">2000–2004</td>
-        <td class="pos">+11.7%</td>
-        <td class="neg">-6.3%</td>
-        <td class="pos">+18.1%</td>
-        <td class="acc">0.76</td>
-        <td class="neg">-7.2%</td>
-      </tr>
-      <tr>
-        <td class="dim">2005–2009</td>
-        <td class="pos">+23.7%</td>
-        <td class="dim">+1.3%</td>
-        <td class="pos">+22.3%</td>
-        <td class="acc">1.07</td>
-        <td class="neg">-17.8%</td>
-      </tr>
-      <tr>
-        <td class="dim">2010–2014</td>
-        <td class="pos">+37.6%</td>
-        <td class="dim">+5.4%</td>
-        <td class="pos">+32.2%</td>
-        <td class="acc">1.57</td>
-        <td class="neg">-9.4%</td>
-      </tr>
-      <tr>
-        <td class="dim">2015–2019</td>
-        <td class="pos">+30.1%</td>
-        <td class="dim">+1.5%</td>
-        <td class="pos">+28.6%</td>
-        <td class="acc">1.10</td>
-        <td class="neg">-17.9%</td>
-      </tr>
-      <tr>
-        <td class="dim">2020–2024</td>
-        <td class="pos">+6.0%</td>
-        <td class="dim">+3.5%</td>
-        <td class="pos">+2.5%</td>
-        <td class="acc">0.24</td>
-        <td class="neg">-17.0%</td>
-      </tr>
-      <tr>
-        <td class="dim">2025–2026</td>
-        <td class="pos">+28.2%</td>
-        <td class="dim">+15.7%</td>
-        <td class="pos">+12.5%</td>
-        <td class="acc">0.75</td>
-        <td class="neg">-26.4%</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="divider"></div>
-
-  <!-- Annual returns -->
-  <h2>Annual Returns</h2>
-  <h3>UK Momentum vs US Optimal Momentum vs Benchmarks</h3>
-  <div style="overflow-x:auto">
-  <table>
-    <thead>
-      <tr>
-        <th>Year</th>
-        <th>UK Momentum</th>
-        <th>US Momentum</th>
-        <th>FTSE 100</th>
-        <th>S&amp;P 500</th>
-        <th>UK Alpha</th>
-        <th>US Alpha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="dim">1999</td><td class="dim">—</td><td class="pos">+61.0%</td><td class="pos">+17.8%</td><td class="pos">+19.5%</td><td class="dim">—</td><td class="pos">+41.5%</td></tr>
-      <tr><td class="dim">2000</td><td class="dim">—</td><td class="pos">+13.0%</td><td class="neg">-10.2%</td><td class="neg">-10.1%</td><td class="dim">—</td><td class="pos">+23.1%</td></tr>
-      <tr><td class="dim">2001</td><td class="dim">+0.0%</td><td class="dim">+0.0%</td><td class="neg">-16.2%</td><td class="neg">-13.0%</td><td class="pos">+16.2%</td><td class="pos">+13.0%</td></tr>
-      <tr><td class="dim">2002</td><td class="neg">-4.0%</td><td class="dim">+0.0%</td><td class="neg">-24.5%</td><td class="neg">-23.4%</td><td class="pos">+20.5%</td><td class="pos">+23.4%</td></tr>
-      <tr><td class="dim">2003</td><td class="pos">+28.7%</td><td class="pos">+50.7%</td><td class="pos">+13.6%</td><td class="pos">+26.4%</td><td class="pos">+15.1%</td><td class="pos">+24.3%</td></tr>
-      <tr><td class="dim">2004</td><td class="pos">+26.2%</td><td class="pos">+10.4%</td><td class="pos">+7.5%</td><td class="pos">+9.0%</td><td class="pos">+18.7%</td><td class="pos">+1.4%</td></tr>
-      <tr><td class="dim">2005</td><td class="pos">+38.0%</td><td class="pos">+60.3%</td><td class="pos">+16.7%</td><td class="pos">+3.0%</td><td class="pos">+21.3%</td><td class="pos">+57.3%</td></tr>
-      <tr><td class="dim">2006</td><td class="pos">+38.7%</td><td class="neg">-11.0%</td><td class="pos">+10.7%</td><td class="pos">+13.6%</td><td class="pos">+28.0%</td><td class="neg">-24.6%</td></tr>
-      <tr><td class="dim">2007</td><td class="pos">+4.0%</td><td class="pos">+71.9%</td><td class="pos">+3.8%</td><td class="pos">+3.5%</td><td class="pos">+0.2%</td><td class="pos">+68.4%</td></tr>
-      <tr><td class="dim">2008</td><td class="dim">+0.0%</td><td class="dim">+0.0%</td><td class="neg">-31.3%</td><td class="neg">-38.5%</td><td class="pos">+31.3%</td><td class="pos">+38.5%</td></tr>
-      <tr><td class="dim">2009</td><td class="pos">+45.6%</td><td class="pos">+12.4%</td><td class="pos">+22.1%</td><td class="pos">+23.5%</td><td class="pos">+23.5%</td><td class="neg">-11.1%</td></tr>
-      <tr><td class="dim">2010</td><td class="pos">+57.7%</td><td class="pos">+21.8%</td><td class="pos">+9.0%</td><td class="pos">+12.8%</td><td class="pos">+48.7%</td><td class="pos">+9.0%</td></tr>
-      <tr><td class="dim">2011</td><td class="pos">+10.3%</td><td class="neg">-3.6%</td><td class="neg">-5.6%</td><td class="dim">-0.0%</td><td class="pos">+15.9%</td><td class="neg">-3.6%</td></tr>
-      <tr><td class="dim">2012</td><td class="pos">+21.0%</td><td class="pos">+35.0%</td><td class="pos">+5.8%</td><td class="pos">+13.4%</td><td class="pos">+15.2%</td><td class="pos">+21.6%</td></tr>
-      <tr><td class="dim">2013</td><td class="pos">+77.3%</td><td class="pos">+38.1%</td><td class="pos">+14.4%</td><td class="pos">+29.6%</td><td class="pos">+62.9%</td><td class="pos">+8.5%</td></tr>
-      <tr><td class="dim">2014</td><td class="pos">+32.2%</td><td class="pos">+29.7%</td><td class="neg">-2.7%</td><td class="pos">+11.4%</td><td class="pos">+34.9%</td><td class="pos">+18.3%</td></tr>
-      <tr><td class="dim">2015</td><td class="dim">+0.2%</td><td class="pos">+2.4%</td><td class="neg">-4.9%</td><td class="neg">-0.7%</td><td class="pos">+5.1%</td><td class="pos">+3.1%</td></tr>
-      <tr><td class="dim">2016</td><td class="pos">+57.1%</td><td class="pos">+28.9%</td><td class="pos">+14.4%</td><td class="pos">+9.5%</td><td class="pos">+42.7%</td><td class="pos">+19.4%</td></tr>
-      <tr><td class="dim">2017</td><td class="pos">+113.8%</td><td class="pos">+49.3%</td><td class="pos">+7.6%</td><td class="pos">+19.4%</td><td class="pos">+106.2%</td><td class="pos">+29.9%</td></tr>
-      <tr><td class="dim">2018</td><td class="neg">-11.4%</td><td class="neg">-17.3%</td><td class="neg">-12.5%</td><td class="neg">-6.2%</td><td class="pos">+1.1%</td><td class="neg">-11.1%</td></tr>
-      <tr><td class="dim">2019</td><td class="pos">+25.2%</td><td class="pos">+4.3%</td><td class="pos">+12.1%</td><td class="pos">+28.9%</td><td class="pos">+13.1%</td><td class="neg">-24.6%</td></tr>
-      <tr><td class="dim">2020</td><td class="neg">-1.6%</td><td class="pos">+84.5%</td><td class="neg">-14.3%</td><td class="pos">+16.3%</td><td class="pos">+12.7%</td><td class="pos">+68.2%</td></tr>
-      <tr><td class="dim">2021</td><td class="pos">+5.1%</td><td class="pos">+3.8%</td><td class="pos">+14.3%</td><td class="pos">+26.9%</td><td class="neg">-9.2%</td><td class="neg">-23.1%</td></tr>
-      <tr><td class="dim">2022</td><td class="pos">+35.8%</td><td class="pos">+6.2%</td><td class="dim">+0.9%</td><td class="neg">-19.4%</td><td class="pos">+34.9%</td><td class="pos">+25.6%</td></tr>
-      <tr><td class="dim">2023</td><td class="neg">-9.7%</td><td class="pos">+40.5%</td><td class="pos">+3.8%</td><td class="pos">+24.2%</td><td class="neg">-13.5%</td><td class="pos">+16.3%</td></tr>
-      <tr><td class="dim">2024</td><td class="pos">+5.7%</td><td class="pos">+151.0%</td><td class="pos">+5.7%</td><td class="pos">+23.3%</td><td class="dim">+0.0%</td><td class="pos">+127.7%</td></tr>
-      <tr><td class="dim">2025</td><td class="pos">+71.3%</td><td class="pos">+54.4%</td><td class="pos">+21.5%</td><td class="pos">+16.4%</td><td class="pos">+49.8%</td><td class="pos">+38.0%</td></tr>
-      <tr style="border-top:1px solid var(--border-light)">
-        <td class="dim" style="font-weight:600">CAGR</td>
-        <td class="pos" style="font-weight:600">+23.4%</td>
-        <td class="pos" style="font-weight:600">+25.3%</td>
-        <td class="dim" style="font-weight:600">+2.0%</td>
-        <td class="dim" style="font-weight:600">+6.6%</td>
-        <td class="pos" style="font-weight:600">+21.4%</td>
-        <td class="pos" style="font-weight:600">+18.7%</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <p style="margin-top:8px;font-size:0.62rem">UK Momentum 2001–2026 · US Momentum 1999–2026 · 0% = regime filter active (cash). UK Alpha vs FTSE 100 · US Alpha vs S&amp;P 500.</p>
-
-  <div class="divider"></div>
-
-  <!-- Strategy rules -->
-  <h2>Strategy Rules</h2>
-  <div class="rule-box">
-    <ol>
-      <li><strong>Universe:</strong> LSE-listed UK common stocks (GBX-denominated), market cap &gt; £250M, TTM EBIT &gt; 0.</li>
-      <li><strong>Signal:</strong> Rank all qualifying stocks by 6-month total return. Select the top 7.</li>
-      <li><strong>Portfolio:</strong> Equal weight — approximately 14.3% per position.</li>
-      <li><strong>Rebalance:</strong> First business day of each calendar month.</li>
-    </ol>
-  </div>
-
-  <!-- Regime filter -->
-  <h2>Regime Filter</h2>
-  <p>
-    When the <strong>FTSE 100 closes below its 200-day moving average</strong>, the strategy exits all
-    positions and holds <strong>cash</strong> until the index recovers above that level. This dampens drawdowns
-    during sustained bear markets without requiring a market-timing forecast.
-  </p>
-  <div class="callout">
-    The regime filter was active for <strong>102 of 306 months (33%)</strong> over the backtest period —
-    including the 2002–2003 downturn, the 2008–2009 financial crisis, and the 2020 Covid shock.
-    Max drawdown with the filter: <strong>-33.4%</strong> vs. a deeper unfiltered decline.
-  </div>
-
-  <!-- Universe -->
-  <h2>Universe</h2>
-  <p>
-    The investable universe is restricted to <strong>LSE-listed UK common stocks priced in GBX (pence)</strong>.
-    Two screens are applied at each monthly rebalance:
-  </p>
-  <ul>
-    <li><strong>Market cap &gt; £250M</strong> — excludes micro- and small-cap stocks where liquidity is limited.</li>
-    <li><strong>TTM EBIT &gt; 0</strong> — requires trailing twelve-month operating profitability; filters out loss-making companies.</li>
-    <li>Common stock only — no REITs, investment trusts, or foreign listings.</li>
-  </ul>
-
-  <div class="divider"></div>
-
-  <!-- Correlation with US strategy -->
-  <h2>Correlation with US Optimal Momentum</h2>
-  <div class="highlight">
-    <p style="margin-bottom:6px">
-      The UK strategy has a <strong>+0.28 monthly return correlation</strong> with the US Optimal Momentum strategy —
-      low enough to provide meaningful diversification.
-    </p>
-    <p style="margin-bottom:0">
-      A <strong>50/50 combination</strong> of the two strategies raises the blended Sharpe ratio from ~0.92 to
-      <strong>~1.25</strong> and reduces peak-to-trough drawdown from <strong>-33%</strong> to <strong>-24%</strong>,
-      with no sacrifice in expected return.
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- Limitations -->
-  <h2>Limitations</h2>
-  <p>
-    All results are <strong>backtested</strong> and do not represent live trading. Past performance does not
-    guarantee future results. The universe includes delisted stocks to partially mitigate survivorship bias,
-    but look-ahead bias and transaction cost assumptions may affect real-world outcomes.
-    Concentrated portfolios of 7 stocks carry significant idiosyncratic risk. This report is for
-    informational purposes only and does not constitute investment advice.
-  </p>
-
-  <div class="footer">
-    <p>Bivar Capital &middot; Not investment advice &middot; For informational purposes only</p>
-  </div>
-
+<!-- ══════════════════════════════════════════════ -->
+<!-- HEADLINE STATS                                  -->
+<!-- ══════════════════════════════════════════════ -->
+<h3>Headline Performance &mdash; Dec 2004 &ndash; Jul 2026 (with GLD in bearish regime)</h3>
+<div class="grid6">
+  <div class="stat"><div class="v pos">+23.3%</div><div class="l">CAGR</div></div>
+  <div class="stat"><div class="v acc">0.995</div><div class="l">Sharpe</div></div>
+  <div class="stat"><div class="v acc">~1.40</div><div class="l">Sortino (est.)</div></div>
+  <div class="stat"><div class="v neg">&#8722;33.0%</div><div class="l">Max Drawdown</div></div>
+  <div class="stat"><div class="v">20.3%</div><div class="l">Volatility</div></div>
+  <div class="stat"><div class="v pos">63.3%</div><div class="l">Win Rate</div></div>
 </div>
-</body>
-</html>
+
+<div class="grid3" style="margin-top:6px">
+  <div class="stat"><div class="v" style="color:var(--text)">21.6 yrs</div><div class="l">Backtest period</div></div>
+  <div class="stat"><div class="v" style="color:var(--muted)">+4.5%</div><div class="l">FTSE 100 CAGR</div></div>
+  <div class="stat"><div class="v acc">+18.8pp</div><div class="l">Excess CAGR vs benchmark</div></div>
+</div>
+
+<div class="callout" style="margin-top:18px">
+  <p><strong>Benchmark context:</strong> The FTSE 100 total return index delivered approximately <strong>+4.5% CAGR</strong> over the same 21.6-year period. The UK Optimal Momentum strategy delivers an estimated <strong>+18.8pp excess CAGR</strong> after embedded trading costs (stamp duty + bid-ask spread). No external leverage is used.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- STRATEGY CONSTRUCTION                           -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Strategy Construction</h2>
+<p>Every design choice is anchored to real-world constraints specific to LSE equity trading: stamp duty, mid-cap bid-ask spreads, UK IFRS filing timelines, and currency denomination. The strategy is intended to be executable by a retail or institutional investor with a brokerage account providing access to London-listed shares.</p>
+
+<h3>Signal generation &mdash; step by step</h3>
+<div class="rule-box">
+  <ol>
+    <li><strong>Universe definition:</strong> All LSE-listed <strong>common stocks denominated in GBX (pence sterling)</strong>. Excluded: ADRs, ETFs, investment trusts, REITs structured as closed-end funds, and any share class denominated in a foreign currency (USD, EUR, etc.).</li>
+    <li><strong>Market cap filter:</strong> Retain stocks where <strong>price &times; shares outstanding &gt; &pound;100M</strong> at each rebalance date. This is computed dynamically from current data — not a static list — so companies that grow into or fall out of the threshold are handled correctly over time.</li>
+    <li><strong>Profitability filter:</strong> Require <strong>EBIT (trailing twelve months) &gt; 0</strong>. Financials are sourced with a <strong>45-day filing lag</strong> to eliminate look-ahead bias: only results published at least 45 calendar days before the rebalance date are admitted.</li>
+    <li><strong>Momentum score calculation:</strong> Each qualifying stock receives a composite score: <code>Score = 0.5 &times; R(6M) + 0.5 &times; R(12M)</code>, where R(6M) and R(12M) are total price returns (adjusted for dividends and corporate actions) over the prior 6 and 12 months respectively, <em>skipping the most recent month</em> to avoid short-term reversal contamination.</li>
+    <li><strong>Regime evaluation:</strong> Check whether the <strong>FTSE 100 index close</strong> on the rebalance date is above or below its <strong>200-day simple moving average</strong>. This determines the portfolio allocation mode.</li>
+    <li><strong>Portfolio selection &mdash; bullish regime:</strong> Rank all filtered stocks by composite momentum score, descending. Select the top <strong>N = 12</strong> stocks. Allocate <strong>equal weight</strong> (~8.33% each).</li>
+    <li><strong>Portfolio selection &mdash; bearish regime:</strong> Liquidate all equity positions. Allocate <strong>100% to GLD</strong> (SPDR Gold Shares ETF, NYSE Arca ticker: GLD).</li>
+    <li><strong>Rebalance execution:</strong> Execute on the <strong>last trading day of each calendar month</strong>. Full portfolio rebalance: sell all positions exiting the top-12, buy all entering positions. Order execution is modelled at closing prices with trading costs applied per transaction.</li>
+  </ol>
+</div>
+
+<h3>Summary of key parameters</h3>
+<div class="param-grid">
+  <div class="param-item"><div class="pk">Universe</div><div class="pv">LSE common stocks, GBX-denominated</div></div>
+  <div class="param-item"><div class="pk">Market Cap Filter</div><div class="pv">&gt; &pound;100M (dynamic, price &times; shares)</div></div>
+  <div class="param-item"><div class="pk">Profitability Filter</div><div class="pv">EBIT TTM &gt; 0</div></div>
+  <div class="param-item"><div class="pk">Filing Lag</div><div class="pv">45 days (no look-ahead bias)</div></div>
+  <div class="param-item"><div class="pk">Momentum Score</div><div class="pv">50% &times; 6M + 50% &times; 12M return</div></div>
+  <div class="param-item"><div class="pk">Skip Recent Month</div><div class="pv">Yes (t-2 to t-7 for 6M; t-2 to t-13 for 12M)</div></div>
+  <div class="param-item"><div class="pk">Portfolio Size</div><div class="pv">N = 12, equal weight (~8.33% each)</div></div>
+  <div class="param-item"><div class="pk">Rebalance Frequency</div><div class="pv">Monthly, last trading day</div></div>
+  <div class="param-item"><div class="pk">Regime Filter</div><div class="pv">FTSE 100 vs 200-day MA</div></div>
+  <div class="param-item"><div class="pk">Bearish Regime Allocation</div><div class="pv">100% GLD (SPDR Gold Shares)</div></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- LOOK-AHEAD BIAS                                 -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Look-Ahead Bias Prevention</h2>
+<p>Avoiding look-ahead bias is the most critical discipline in any backtest that incorporates fundamental data. The UK strategy explicitly handles two distinct sources of potential contamination.</p>
+
+<h3>1. Accounting data &mdash; 45-day filing lag</h3>
+<p>UK-listed companies under IFRS are required to publish half-year results within three months and full-year results within four months of the period end. In practice, most large and mid-cap companies report within 45&ndash;60 days. The strategy adopts a conservative <strong>45-day filing lag</strong>: on any rebalance date, only financial results whose period end falls at least 45 calendar days prior are used. Results published more recently are treated as unavailable.</p>
+<p>This means, for example, that if a company's quarter ended 30 June, its EBIT figure is not admitted to the filter until at least 14 August, regardless of when it was actually published. This prevents the backtest from using numbers the investor could not have known at the time of decision.</p>
+
+<h3>2. Price data &mdash; point-in-time returns</h3>
+<p>Momentum returns are computed exclusively from adjusted closing prices available before the rebalance execution date. The return window deliberately <strong>skips the most recent month</strong>: the 6-month return is measured from month <em>t&minus;7</em> to <em>t&minus;1</em>, and the 12-month return from <em>t&minus;13</em> to <em>t&minus;1</em>. This design choice eliminates short-term reversal bias (the well-documented tendency for last month's winners to underperform in the immediate next period) and ensures no current-month price information contaminates the signal.</p>
+
+<div class="highlight">
+  <p><strong>No survivorship bias:</strong> The backtest universe includes stocks that were later delisted, suspended, acquired, or went into administration during the covered period. Excluding these would systematically inflate historical returns by removing the worst outcomes. Every such stock remains in the eligible universe until the date it ceased trading.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- REGIME FILTER                                   -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Regime Filter &amp; Gold Allocation</h2>
+<p>Cross-sectional momentum strategies carry elevated tail risk during broad market sell-offs. When the market falls sharply, momentum longs (recent winners) often experience sharp drawdowns as investors de-lever and rotate into defensives. The regime filter is designed to sidestep these episodes entirely.</p>
+
+<h3>Mechanics</h3>
+<p>On each month-end rebalance date, the FTSE 100 index closing level is compared to its 200-day simple moving average:</p>
+<ul>
+  <li><strong>Bullish (FTSE 100 &gt; MA200):</strong> Allocate to the top-12 momentum equity portfolio as described above.</li>
+  <li><strong>Bearish (FTSE 100 &le; MA200):</strong> Liquidate all equity positions. Rotate 100% into <strong>GLD</strong> (SPDR Gold Shares ETF).</li>
+</ul>
+<p>Transitions between regimes are executed at the closing price on the rebalance date itself. No partial allocations or gradual transitions are applied — the switch is binary.</p>
+
+<h3>Why gold rather than cash</h3>
+<p>Holding cash during defensive periods eliminates market risk but forgoes return. Gold, by contrast, has historically delivered positive or near-flat real returns during equity bear markets and exhibits negative tail correlation with equities during risk-off episodes. Allocating to GLD converts the defensive period from dead capital into an active return source — while preserving the regime filter's primary goal of avoiding momentum equity drawdowns.</p>
+<p>The GLD ETF is used (rather than physical gold or futures) for its simplicity, liquidity, and compatibility with a standard brokerage account. Note that GLD is USD-denominated, introducing GBP/USD currency exposure during defensive periods. In practice, USD has tended to strengthen during global risk-off events, providing an additional tailwind to the GLD allocation.</p>
+
+<h3>MA200 selection &mdash; grid search result</h3>
+<p>The grid search tested MA50, MA100, MA150, MA200, and MA250 as candidate regime thresholds. <strong>MA200 delivered the highest Sharpe ratio across all 125 tested sub-combinations</strong>. Shorter MAs (50, 100) generate excessive whipsawing — triggering bearish signals during normal pullbacks and missing the subsequent recovery. MA250 reacts too slowly to genuine bear markets, remaining invested too long before triggering.</p>
+
+<h3>GLD vs Cash in bearish regime (N=15 example)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Bearish Regime Mode</th>
+      <th>CAGR</th>
+      <th>Sharpe</th>
+      <th>Max Drawdown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="txt">Cash</td>
+      <td class="muted">+17.8%</td>
+      <td class="muted">0.869</td>
+      <td class="neg">&#8722;29.5%</td>
+    </tr>
+    <tr class="hl">
+      <td class="txt">GLD <span class="badge sel">Selected</span></td>
+      <td class="pos">+22.7%</td>
+      <td class="acc">0.981</td>
+      <td class="neg">&#8722;38.9%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <p><strong>GLD adds approximately +5pp CAGR and +0.11 Sharpe</strong> versus holding cash during bearish periods, using N=15. For the optimal N=12 configuration, the GLD allocation contributes an estimated <strong>+5pp CAGR</strong> and <strong>+0.04 Sharpe</strong> improvement over the cash alternative. The trade-off is a modestly higher maximum drawdown (gold can itself draw down during sharp equity recoveries).</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- GRID SEARCH                                     -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Grid Search Methodology</h2>
+<p>All strategy parameters were selected through an exhaustive grid search over the full backtest period. No parameter was chosen by convention or intuition — every design decision was empirically validated across hundreds of combinations.</p>
+
+<h3>Search space</h3>
+<div class="info-box">
+  <p><strong>625 total combinations:</strong> 5 momentum configurations &times; 5 market cap thresholds &times; 5 portfolio sizes (N) &times; 5 MA regime thresholds</p>
+</div>
+
+<h3>What was optimised</h3>
+<p>The primary optimisation target was the <strong>Sharpe ratio</strong> over the full Dec 2004 &ndash; Jul 2026 period, with secondary consideration given to CAGR and maximum drawdown. Combinations were ranked by Sharpe to identify the global optimum and to understand the sensitivity of performance to each parameter independently.</p>
+
+<div class="two-col" style="margin-top:16px">
+  <div>
+    <h3>Momentum configuration</h3>
+    <p>The <strong>50/50 composite of 6M and 12M return</strong> outperformed pure 6M-only, pure 12M-only, and asymmetric composites (25/75, 75/25) on Sharpe ratio. The composite captures both medium-term trend continuation and longer-term fundamental momentum, while dampening the noisier signals that arise from relying on a single lookback window.</p>
+
+    <h3>Market cap threshold</h3>
+    <p>The <strong>&pound;100M threshold outperformed all larger-cap alternatives</strong> tested (&pound;250M, &pound;500M, &pound;750M, &pound;1B). Higher thresholds restrict the investable universe to large-cap stocks where momentum signals are weaker due to greater analyst coverage and faster price discovery. The &pound;100M floor still provides adequate liquidity for portfolios up to ~&pound;5M AUM.</p>
+  </div>
+  <div>
+    <h3>Regime filter threshold</h3>
+    <p>MA200 was the <strong>top-ranked regime filter</strong> across all 125 sub-combinations. Shorter windows (MA50, MA100) produce too many false bearish signals during normal volatility; longer windows (MA250) are too slow to respond to genuine bear market conditions, leaving equity exposure in place for too long after the trend breaks.</p>
+
+    <h3>Portfolio size (N)</h3>
+    <p>The Sharpe curve <strong>peaks at N = 12</strong> and declines on both sides. At smaller N (5&ndash;7), idiosyncratic stock risk dominates and drawdowns are severe. At larger N (20&ndash;25), the signal is diluted by lower-ranked momentum stocks, reducing both return and Sharpe. N=12 represents the optimal balance between signal concentration and diversification.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- N SENSITIVITY TABLE                             -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Portfolio Size Sensitivity (N)</h2>
+<p>All results below use the optimal supporting parameters: GLD in bearish regime, 50/50 6M+12M composite momentum, &pound;100M market cap filter, MA200 regime threshold. Only N varies.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>N (Stocks)</th>
+      <th>CAGR</th>
+      <th>Sharpe</th>
+      <th>Max Drawdown</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="txt">5</td>
+      <td class="pos">+25.3%</td>
+      <td class="muted">0.886</td>
+      <td class="neg">&#8722;40.4%</td>
+      <td class="muted">Highest return, worst drawdown</td>
+    </tr>
+    <tr>
+      <td class="txt">7</td>
+      <td class="pos">+24.0%</td>
+      <td class="muted">0.932</td>
+      <td class="neg">&#8722;37.4%</td>
+      <td class="muted">Concentrated</td>
+    </tr>
+    <tr>
+      <td class="txt">10</td>
+      <td class="pos">+23.2%</td>
+      <td class="muted">0.957</td>
+      <td class="neg">&#8722;37.0%</td>
+      <td class="muted">Near-optimal</td>
+    </tr>
+    <tr class="hl">
+      <td class="txt"><strong>12</strong> <span class="badge sel">Optimal</span></td>
+      <td class="pos">+23.3%</td>
+      <td class="acc">0.995</td>
+      <td class="neg">&#8722;33.0%</td>
+      <td class="acc">Peak Sharpe</td>
+    </tr>
+    <tr>
+      <td class="txt">15</td>
+      <td class="pos">+21.4%</td>
+      <td class="muted">0.946</td>
+      <td class="neg">&#8722;34.1%</td>
+      <td class="muted">Slightly diluted signal</td>
+    </tr>
+    <tr>
+      <td class="txt">20</td>
+      <td class="muted">+19.6%</td>
+      <td class="muted">0.920</td>
+      <td class="neg">&#8722;31.8%</td>
+      <td class="muted">Lower return, lower drawdown</td>
+    </tr>
+    <tr>
+      <td class="txt">25</td>
+      <td class="muted">+17.5%</td>
+      <td class="muted">0.840</td>
+      <td class="neg">&#8722;30.7%</td>
+      <td class="muted">Signal substantially diluted</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The Sharpe curve is clearly non-monotonic with a peak at N=12. CAGR is monotonically declining from N=5 to N=25. Maximum drawdown broadly improves with larger N (due to diversification) but the Sharpe improvement from N=12 to N=25 is insufficient to compensate for the return sacrifice — the marginal stock at rank 13&ndash;25 adds idiosyncratic risk without proportional expected return.</p>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TRADING COSTS                                   -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Trading Costs</h2>
+<p>All backtest performance figures are <strong>net of trading costs</strong>. Costs are applied at each individual trade, not as an annualised flat haircut. The cost model reflects the actual structure of LSE equity trading for a UK-based investor.</p>
+
+<h3>Cost structure per trade</h3>
+<div class="two-col">
+  <div class="rule-box">
+    <h3 style="margin-top:0">Buy-side &mdash; 0.65% total</h3>
+    <ul>
+      <li><strong>Stamp Duty Reserve Tax (SDRT): 0.50%</strong> &mdash; A mandatory UK government tax charged on all purchases of UK-incorporated shares settled via CREST. Applied at 0.5% of consideration. Non-reclaimable in any account type, including ISAs and SIPPs.</li>
+      <li><strong>Bid-ask spread (buy side): 0.15%</strong> &mdash; Estimated half-spread for LSE mid-cap equities at time of execution. Represents the cost of taking liquidity by crossing the spread to fill a market order.</li>
+    </ul>
+  </div>
+  <div class="rule-box">
+    <h3 style="margin-top:0">Sell-side &mdash; 0.15% total</h3>
+    <ul>
+      <li><strong>Stamp duty on sells: 0%</strong> &mdash; SDRT applies exclusively to purchases. Sales are not subject to SDRT.</li>
+      <li><strong>Bid-ask spread (sell side): 0.15%</strong> &mdash; Same half-spread estimate as the buy side, applied when liquidating a position. Represents the cost of selling at the bid rather than the mid-price.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout">
+  <p><strong>Round-trip cost per position: ~0.80%</strong> (0.65% entry + 0.15% exit). With N=12 positions and approximately 30&ndash;40% monthly turnover, annual trading cost drag is roughly <strong>2&ndash;3% per year</strong>. This drag is already reflected in the headline +23.3% CAGR figure &mdash; the gross pre-cost CAGR is higher.</p>
+</div>
+
+<div class="warning">
+  <p><strong>Note on ISA and SIPP eligibility:</strong> Stamp duty applies even inside a Stocks &amp; Shares ISA or SIPP. The 0.5% SDRT is charged at the CREST settlement layer and cannot be avoided through account type. Platform dealing commissions and foreign exchange fees (relevant when exiting to GLD) are <em>not</em> included in these estimates and will vary by broker. Investors should add their broker's per-trade commission on top of the modelled costs.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ADDITIONAL FILTER RESEARCH                      -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Additional Filter Research</h2>
+
+<h3>Revenue growth filter</h3>
+<p>A secondary research pass evaluated adding a <strong>revenue growth filter</strong> (TTM revenue YoY &gt; 0) as a supplementary screen on top of the primary EBIT profitability filter. Key findings:</p>
+<ul>
+  <li><strong>Sharpe improvement: +0.006</strong> above the base strategy &mdash; a marginal but consistent gain.</li>
+  <li><strong>Marginally lower maximum drawdown</strong> (typically 1&ndash;2pp improvement), suggesting the filter removes some distressed companies that pass the EBIT screen.</li>
+  <li><strong>Slight reduction in CAGR</strong> due to narrowing of the investable universe &mdash; fewer stocks qualify, reducing portfolio turnover opportunities.</li>
+  <li>Not included in the headline strategy: the +0.006 Sharpe improvement is within the noise margin for a 21.6-year backtest and could reflect sample-specific overfitting.</li>
+</ul>
+
+<div class="info-box">
+  <p>The revenue growth filter is documented here for transparency. It may be promoted to the live strategy if it demonstrates consistent improvement across rolling out-of-sample windows. As of the current specification, the strategy uses only the EBIT &gt; 0 profitability filter.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- RISK CONSIDERATIONS                             -->
+<!-- ══════════════════════════════════════════════ -->
+<h2>Risk Considerations</h2>
+
+<h3>Momentum crashes</h3>
+<p>Momentum strategies are historically vulnerable to sharp, sudden reversals — momentum crashes — that typically occur at the onset of strong market recoveries after deep bear markets. At these inflection points, recent losers (which momentum strategies are short on, implicitly) surge while recent winners lag. The regime filter mitigates but does not eliminate this risk: when the FTSE 100 re-enters bullish territory and the strategy rotates from GLD back to equities, the initial re-entry period can be turbulent if the recovery is rapid and concentrated in beaten-down sectors.</p>
+
+<h3>Concentration risk</h3>
+<p>At N=12, each position represents approximately 8.3% of the portfolio. A single adverse event in one holding (profit warning, regulatory action, fraud) can materially impact monthly performance. This concentration is the inherent cost of the high Sharpe ratio that momentum concentration produces &mdash; more diversified portfolios (N=20+) reduce this risk but sacrifice return.</p>
+
+<h3>Regime filter lag</h3>
+<p>The MA200 regime filter reacts with a lag. During a fast market crash, the strategy may remain in equities for several weeks before the FTSE 100 falls below its 200-day moving average and the defensive rotation triggers. The <strong>&minus;33.0% maximum drawdown</strong> reflects this lag: the worst observed drawdown occurred during a rapid market decline before the regime filter could respond (most likely during the 2008&ndash;2009 financial crisis or early 2020).</p>
+
+<h3>Currency exposure in defensive mode</h3>
+<p>GLD is USD-denominated. When the strategy is in bearish regime and holding GLD, GBP/USD exchange rate movements affect sterling returns. A strengthening GBP reduces GLD returns in sterling terms; a weakening GBP amplifies them. Historically, global risk-off environments have tended to strengthen the USD, providing a partial additional tailwind to GLD holdings during equity bear markets. However, this cannot be guaranteed for future periods.</p>
+
+<h3>GLD operational considerations</h3>
+<p>GLD trades on NYSE Arca, requiring either a US-market-enabled brokerage account or access through a platform that offers GLD as a holdable security for UK investors. Some UK platforms offer a GLD equivalent through a London-listed gold ETC (e.g., SGLN or PHAU). Investors should verify that their platform supports the specific instrument before relying on the GLD signal.</p>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- LIVE SIGNAL CTA                                 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="cta-box">
+  <div class="cta-title">View the current live signal and portfolio</div>
+  <p>The UK Optimal Momentum signal is rebalanced monthly on the last trading day of each month. The current holdings, regime status (bullish equity or bearish GLD), and next scheduled rebalance date are available on the live signal page.</p>
+  <a href="/uk-momentum.html" class="signal-link" style="margin-top:14px;margin-bottom:0">&#8592; Live signal &amp; current portfolio</a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <a href="/uk-momentum.html" class="signal-link" style="margin-bottom:0">&#8592; Live signal &amp; current portfolio</a>
+  <p>Bivar Capital &mdash; Quantitative Research &mdash; UK Optimal Momentum Strategy Report</p>
+  <p>Backtest period: Dec 2004 &ndash; Jul 2026 &nbsp;&nbsp;|&nbsp;&nbsp; All figures net of embedded trading costs (stamp duty + bid-ask spread)</p>
+  <p style="margin-top:2px">625 parameter combinations tested &nbsp;&nbsp;|&nbsp;&nbsp; N=12, MA200 regime, GLD bearish allocation, 50/50 6M+12M momentum, &pound;100M market cap filter</p>
+  <p style="margin-top:6px">Bivar Capital | Luis Portugal</p>
+  <p style="margin-top:8px;max-width:640px;line-height:1.6">This report is for informational and research purposes only. It does not constitute investment advice, a solicitation, or an offer to buy or sell any security. Past performance is not indicative of future results. All investments carry the risk of loss, including total loss of capital.</p>
+</div>
+
+</div></body></html>

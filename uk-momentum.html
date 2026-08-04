@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UK Optimal Momentum Signal — Bivar Capital</title>
-<meta name="description" content="BivarUKMomentum live signal. Top UK momentum stocks ranked by 6-month return.">
+<meta name="description" content="BivarUKMomentum live signal. Top 40 UK momentum stocks ranked by composite momentum.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -19,6 +19,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
 .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,6,8,0.85); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border); padding: 16px 0;
+}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+nav a { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; margin-left: 24px; transition: color 0.2s; }
+nav a:hover { color: var(--text); }
 .content { padding: 48px 0 80px; }
 h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; margin-bottom: 4px; }
 .subtitle { color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 32px; }
@@ -30,7 +39,7 @@ h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; marg
 .regime-value { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; }
 .regime-detail { font-size: 0.75rem; color: var(--text); margin-top: 4px; }
 .regime-momentum { color: var(--green); }
-.regime-cash { color: var(--text-muted); }
+.regime-gld { color: var(--accent); }
 .stats-row { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
 .stat-box {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
@@ -45,37 +54,41 @@ th {
   letter-spacing: 0.08em; color: var(--text-muted);
   border-bottom: 1px solid var(--border);
 }
+th:not(:first-child):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) { text-align: right; }
 td {
   padding: 7px 10px; border-bottom: 1px solid var(--border);
   font-family: var(--font-mono); font-size: 0.68rem;
 }
-th.r, td.r { text-align: right; }
+td:not(:first-child):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) { text-align: right; }
 tr.selected { background: rgba(74, 222, 128, 0.06); }
 tr.selected td:first-child { border-left: 3px solid var(--green); }
+tr.skipped { opacity: 0.45; }
 .tag-selected {
   font-family: var(--font-mono); font-size: 0.48rem; font-weight: 700;
   background: rgba(74, 222, 128, 0.15); color: var(--green);
   padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em;
 }
+.port-section { margin-bottom: 32px; }
+.port-section-title { font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 6px; }
+.port-section-sub { color: var(--text-secondary); font-size: 0.52rem; font-weight: 400; margin-left: 8px; }
 .section-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
 .pos { color: var(--green); }
 .neg { color: var(--red); }
 .date-note { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); margin-bottom: 16px; }
-.port-section { margin-bottom: 32px; }
-.port-section-title { font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 6px; }
-.port-section-sub { color: var(--text-secondary); font-size: 0.52rem; font-weight: 400; margin-left: 8px; }
 footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; }
 footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted); }
 #auth-wall { text-align: center; padding: 60px 0; }
 #auth-wall p { color: var(--text-muted); margin-bottom: 16px; }
 #content-area { display: none; }
-.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -16px; padding: 0 16px; }
 @media(max-width:700px) {
   .container { padding: 0 16px; }
   .stats-row { flex-direction: column; }
-  .table-wrap table { min-width: 680px; font-size: 0.6rem; }
+  .table-wrap { margin: 0 -16px; padding: 0; }
+  .table-wrap table { min-width: 700px; font-size: 0.6rem; }
   td, th { padding: 5px 6px; white-space: nowrap; }
   h1 { font-size: 1.4rem; }
+  .subtitle { font-size: 0.75rem; }
 }
 </style>
 </head>
@@ -100,7 +113,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>UK Optimal Momentum</h1>
-  <p class="subtitle">Monthly signal. Top UK equities ranked by 6-month momentum, portfolio of 7 selected.</p>
+  <p class="subtitle">Monthly signal. Top 40 ranked by composite momentum, portfolio of 12 selected.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the live UK momentum signal.</p>
@@ -111,7 +124,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     <div id="regime-container" class="regime-box"></div>
     <div id="stats-container" class="stats-row"></div>
 
-    <!-- YTD + Current Portfolio -->
+    <!-- YTD stat + Current Portfolio -->
     <div class="port-section">
       <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap">
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
@@ -120,11 +133,11 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
           <div class="stat-val" id="mtd-return">—</div>
-          <div class="stat-lbl">Jul 2026 MTD</div>
+          <div class="stat-lbl" id="mtd-label">MTD</div>
         </div>
       </div>
 
-      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 7 equal-weight · Monthly rebalance</span></div>
+      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 12 equal-weight · No stop loss · Pure monthly rebalance</span></div>
       <div class="table-wrap">
       <table id="portfolio-table">
         <thead>
@@ -156,7 +169,38 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
         </table>
         </div>
       </div>
+
       <p id="portfolio-updated" style="font-family:var(--font-mono);font-size:0.52rem;color:var(--text-muted);margin-top:10px"></p>
+    </div>
+
+    <!-- Rebalance Calculator -->
+    <div id="calc-section" style="display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+      <div class="port-section-title" style="margin-bottom:14px">Rebalance Calculator</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+        <label style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted)">Portfolio value</label>
+        <div style="position:relative">
+          <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted)">£</span>
+          <input id="calc-input" type="number" min="0" step="100" placeholder="100000"
+            style="padding:8px 10px 8px 22px;background:var(--bg);border:1px solid var(--border-light);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.78rem;width:160px;outline:none">
+        </div>
+        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">÷ 12 equal weight</span>
+        <span style="font-family:var(--font-mono);font-size:.55rem;color:var(--text-muted);margin-left:8px">last close</span>
+      </div>
+      <div class="table-wrap">
+      <table id="calc-table" style="display:none">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Current (p)</th>
+            <th class="r">Allocation</th>
+            <th class="r">Shares</th>
+            <th class="r">Cost</th>
+          </tr>
+        </thead>
+        <tbody id="calc-body"></tbody>
+        <tfoot id="calc-foot"></tfoot>
+      </table>
+      </div>
     </div>
 
     <hr class="section-divider">
@@ -171,27 +215,28 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <th>Ticker</th>
           <th>Name</th>
           <th>Sector</th>
-          <th class="r">Ret 6M</th>
-          <th class="r">Ret 12M</th>
-          <th class="r">MCap (£B)</th>
-          <th class="r">EBIT (£M)</th>
+          <th>Ret 6M</th>
+          <th>Ret 12M</th>
+          <th>Composite</th>
+          <th>MCap (£B)</th>
+          <th>EBIT (£M)</th>
         </tr>
       </thead>
       <tbody id="table-body"></tbody>
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 100% &times; 6-month return &nbsp;|&nbsp; &gt;£250M mcap, EBIT&gt;0, GBX-denominated &nbsp;|&nbsp; Top 7 &nbsp;|&nbsp; FTSE 100 &lt; MA200 &rarr; Cash
+      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;£100M mcap, EBIT&gt;0, revenue growing, GBX-denominated &nbsp;|&nbsp; Top 12 &nbsp;|&nbsp; FTSE 100 &lt; MA200 &rarr; GLD
       &nbsp;|&nbsp; <a href="/research/uk_momentum_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a>
     </p>
 
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
       <div style="font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Get notified on rebalance day</div>
-      <a href="https://t.me/Bivarbtcbot" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;font-family:var(--font-body);font-size:.85rem;font-weight:600;padding:12px 28px;border-radius:10px;text-decoration:none" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      <a href="https://t.me/Bivarbtcbot" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;font-family:var(--font-body);font-size:.85rem;font-weight:600;padding:12px 28px;border-radius:10px;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Telegram Alerts
       </a>
-      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Monthly alert on the 1st business day with the 7 stocks to buy.</p>
+      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Monthly alert on the 2nd business day with the 12 stocks to buy.</p>
     </div>
   </div>
 
@@ -223,25 +268,26 @@ async function loadPortfolio() {
     const res = await fetch('/uk-momentum-portfolio.json?v=' + Date.now());
     if (!res.ok) throw new Error('no data');
     const data = await res.json();
-    const fmtP   = v => v != null ? v.toFixed(1) + 'p' : '—';
+    const fmtP   = v => v != null ? `${v.toFixed(1)}p` : '—';
     const fmtRet = v => v != null ? `<span class="${v >= 0 ? 'pos' : 'neg'}">${v >= 0 ? '+' : ''}${v.toFixed(2)}%</span>` : '—';
 
     // YTD
     const ytdVal = data.ytd_2026;
     if (ytdVal != null) {
-      const el = document.getElementById('ytd-return');
-      el.textContent = (ytdVal >= 0 ? '+' : '') + ytdVal.toFixed(1) + '%';
-      el.className = 'stat-val ' + (ytdVal >= 0 ? 'pos' : 'neg');
+      const ytdEl = document.getElementById('ytd-return');
+      ytdEl.textContent = (ytdVal >= 0 ? '+' : '') + ytdVal.toFixed(1) + '%';
+      ytdEl.className = 'stat-val ' + (ytdVal >= 0 ? 'pos' : 'neg');
     }
-    // MTD from current month
+    // MTD — current month from breakdown
     const cur = (data.monthly_breakdown || []).find(m => m.is_current);
-    if (cur && cur.return_pct != null) {
-      const el = document.getElementById('mtd-return');
-      el.textContent = (cur.return_pct >= 0 ? '+' : '') + cur.return_pct.toFixed(2) + '%';
-      el.className = 'stat-val ' + (cur.return_pct >= 0 ? 'pos' : 'neg');
+    if (cur) {
+      const mtdEl = document.getElementById('mtd-return');
+      mtdEl.textContent = (cur.return_pct >= 0 ? '+' : '') + cur.return_pct.toFixed(2) + '%';
+      mtdEl.className = 'stat-val ' + (cur.return_pct >= 0 ? 'pos' : 'neg');
+      document.getElementById('mtd-label').textContent = cur.month;
     }
 
-    // Holdings table
+    // Current holdings table
     const holdings = data.holdings || [];
     document.getElementById('portfolio-body').innerHTML = holdings.length
       ? holdings.map(h => `<tr class="selected">
@@ -254,12 +300,12 @@ async function loadPortfolio() {
         </tr>`).join('')
       : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">No holdings.</td></tr>';
 
-    // Monthly breakdown
+    // Monthly breakdown table
     const breakdown = (data.monthly_breakdown || []).slice().reverse();
     document.getElementById('monthly-body').innerHTML = breakdown.length
       ? breakdown.map(m => {
+          const retHtml = fmtRet(m.return_pct);
           const isCur = m.is_current ? ' style="opacity:.75"' : '';
-          const retHtml = m.return_pct != null ? fmtRet(m.return_pct) : '<span style="color:var(--text-muted)">in progress</span>';
           return `<tr${isCur}>
             <td style="white-space:nowrap">${m.month}</td>
             <td class="r">${retHtml}</td>
@@ -272,6 +318,13 @@ async function loadPortfolio() {
       document.getElementById('portfolio-updated').textContent =
         'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
 
+    // Calculator — seed with stored prices
+    if (holdings.length) {
+      _calcHoldings = holdings.filter(h => h.current_price);
+      document.getElementById('calc-section').style.display = 'block';
+      calcRebalance();
+    }
+
   } catch(e) {
     document.getElementById('portfolio-body').innerHTML =
       '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">Could not load portfolio data.</td></tr>';
@@ -281,8 +334,6 @@ async function loadPortfolio() {
 async function loadData() {
   const res = await fetch('/uk-momentum-data.json?v=' + Date.now());
   const data = await res.json();
-
-  // Regime box
   const rc = document.getElementById('regime-container');
   const isMom = data.regime === 'momentum';
   const ftse = data.ftse100?.toLocaleString('en-GB', {maximumFractionDigits: 0});
@@ -290,49 +341,90 @@ async function loadData() {
   const pct  = data.ftse100 && data.ftse100_ma200
     ? ((data.ftse100 / data.ftse100_ma200 - 1) * 100).toFixed(1) : '—';
   rc.innerHTML = `
-    <div class="regime-label">Market Regime — FTSE 100</div>
-    <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-cash'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — CASH'}</div>
+    <div class="regime-label">Market Regime</div>
+    <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — BUY GLD'}</div>
     <div class="regime-detail">FTSE 100: ${ftse} &nbsp;|&nbsp; MA200: ${ma} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA200 (${pct}%)</div>
-    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--text-muted)'}">
-      ${isMom ? 'Signal: Buy top 7 UK momentum stocks (equal weight, ~14.3% each)' : 'Signal: Sell all stocks, hold cash until FTSE 100 crosses back above MA200'}
+    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">
+      ${isMom ? 'Signal: Buy top 12 UK momentum stocks (equal weight, ~8.3% each)' : 'Signal: Sell all stocks, buy GLD (100%)'}
     </div>
   `;
-
-  // Portfolio stat boxes
   const sc = document.getElementById('stats-container');
   const portfolio = data.portfolio || [];
-  sc.innerHTML = portfolio.map(s => `
+  sc.innerHTML = portfolio.map((s, i) => `
     <div class="stat-box">
       <div class="stat-val">${s.ticker}</div>
-      <div class="stat-lbl">#${s.rank} &middot; ${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</div>
+      <div class="stat-lbl">#${s.rank} &middot; ${s.composite > 0 ? '+' : ''}${s.composite}%</div>
     </div>
   `).join('');
-
   document.getElementById('signal-date').textContent = data.date;
   document.getElementById('eligible-count').textContent = data.total_eligible;
-
-  // Table
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = data.top20.map(s => {
-    const cls    = s.selected ? 'selected' : '';
-    const status = s.selected ? '<span class="tag-selected">SELECTED</span>' : '';
-    const r6cls  = s.ret_6m  >= 0 ? 'pos' : 'neg';
-    const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
-    const mcap   = s.mcap_b != null ? s.mcap_b.toFixed(2) : '—';
-    const ebit   = s.ebit_m != null ? s.ebit_m.toLocaleString() : '—';
-    return `<tr class="${cls}">
-      <td>${s.rank}</td>
-      <td>${status}</td>
-      <td><strong>${s.ticker}</strong></td>
-      <td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td>
-      <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td>
-      <td class="r ${r6cls}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td>
-      <td class="r ${r12cls}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td>
-      <td class="r">${mcap}</td>
-      <td class="r">${ebit}</td>
-    </tr>`;
+    let cls = '', status = '';
+    if (s.selected) { cls = 'selected'; status = '<span class="tag-selected">SELECTED</span>'; }
+    const retCls6 = s.ret_6m >= 0 ? 'pos' : 'neg';
+    const retCls12 = s.ret_12m >= 0 ? 'pos' : 'neg';
+    const compCls = s.composite >= 0 ? 'pos' : 'neg';
+    return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td><td>${s.ebit_m.toLocaleString()}</td></tr>`;
   }).join('');
 }
+
+let _calcHoldings = [];
+function calcRebalance() {
+  const total = parseFloat(document.getElementById('calc-input').value);
+  if (!total || total <= 0 || !_calcHoldings.length) {
+    document.getElementById('calc-table').style.display = 'none';
+    return;
+  }
+  const n = _calcHoldings.length;
+  const alloc = total / n;
+  let totalCost = 0;
+  // Base allocation with floor shares
+  let positions = _calcHoldings.map(h => {
+    const price = h.current_price;
+    if (!price) return null;
+    const shares = Math.floor(alloc / price);
+    return { ticker: h.ticker, price, shares, remainder: alloc - shares * price };
+  }).filter(Boolean);
+
+  // Distribute remaining cash: give +1 share to positions with largest remainder
+  let cash = total - positions.reduce((s, p) => s + p.shares * p.price, 0);
+  positions.sort((a, b) => b.remainder - a.remainder);
+  for (const p of positions) {
+    if (cash >= p.price) { p.shares += 1; cash -= p.price; }
+  }
+  positions.sort((a, b) => _calcHoldings.findIndex(h => h.ticker === a.ticker) - _calcHoldings.findIndex(h => h.ticker === b.ticker));
+
+  const rows = positions.map(p => {
+    const cost = p.shares * p.price;
+    totalCost += cost;
+    return `<tr class="selected">
+      <td><strong>${p.ticker}</strong></td>
+      <td>${p.price.toFixed(1)}p</td>
+      <td class="r">£${alloc.toFixed(0)}</td>
+      <td class="r"><strong>${p.shares}</strong></td>
+      <td class="r">£${cost.toFixed(2)}</td>
+    </tr>`;
+  }).join('');
+  const totalLeft = total - totalCost;
+  document.getElementById('calc-body').innerHTML = rows;
+  document.getElementById('calc-foot').innerHTML = `
+    <tr style="border-top:1px solid var(--border-light)">
+      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:8px">Total invested</td>
+      <td></td>
+      <td class="r" style="padding-top:8px"><strong>£${totalCost.toFixed(2)}</strong></td>
+    </tr>
+    <tr>
+      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:4px">Cash remaining</td>
+      <td></td>
+      <td class="r" style="padding-top:4px;font-family:var(--font-mono);font-weight:600;color:var(--text-muted)">£${totalLeft.toFixed(2)}</td>
+    </tr>`;
+  document.getElementById('calc-table').style.display = 'table';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('calc-input').addEventListener('input', calcRebalance);
+});
 
 window.onUnlock = function() {
   document.getElementById('auth-wall').style.display = 'none';

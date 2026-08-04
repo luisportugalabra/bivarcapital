@@ -1,14 +1,19 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-04 00:12 UTC",
-  "ytd_2026": 10.72,
+  "updated": "2026-08-04",
+  "ytd_2026": 5.22,
+  "ftse100": 10893.03,
+  "ftse100_ma200": 10222.19,
+  "regime": "risk-on",
   "currency": "GBX",
-  "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
+  "currency_note": "Prices in pence (GBX). £1 = 100p.",
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
+      "is_current": false,
       "start": "2025-12-31",
       "end": "2026-01-31",
+      "regime": "momentum",
       "tickers": [
         "GDWN",
         "PAF",
@@ -18,13 +23,14 @@
         "RSG",
         "ACG"
       ],
-      "return_pct": 18.72,
-      "is_current": false
+      "return_pct": 18.72
     },
     {
       "month": "Feb 2026",
+      "is_current": false,
       "start": "2026-01-31",
       "end": "2026-02-28",
+      "regime": "momentum",
       "tickers": [
         "GDWN",
         "PAF",
@@ -34,13 +40,14 @@
         "THX",
         "FERG"
       ],
-      "return_pct": 5.04,
-      "is_current": false
+      "return_pct": 5.33
     },
     {
       "month": "Mar 2026",
+      "is_current": false,
       "start": "2026-02-28",
       "end": "2026-03-31",
+      "regime": "momentum",
       "tickers": [
         "HOC",
         "PAF",
@@ -50,13 +57,14 @@
         "VALT",
         "RSG"
       ],
-      "return_pct": -26.36,
-      "is_current": false
+      "return_pct": -26.79
     },
     {
       "month": "Apr 2026",
+      "is_current": false,
       "start": "2026-03-31",
       "end": "2026-04-30",
+      "regime": "momentum",
       "tickers": [
         "FERG",
         "TGA",
@@ -66,13 +74,14 @@
         "HOC",
         "GGP"
       ],
-      "return_pct": 6.75,
-      "is_current": false
+      "return_pct": 5.23
     },
     {
       "month": "May 2026",
+      "is_current": false,
       "start": "2026-04-30",
       "end": "2026-05-31",
+      "regime": "momentum",
       "tickers": [
         "FTC",
         "FERG",
@@ -82,13 +91,14 @@
         "HOC",
         "XPP"
       ],
-      "return_pct": 8.44,
-      "is_current": false
+      "return_pct": 6.49
     },
     {
       "month": "Jun 2026",
+      "is_current": false,
       "start": "2026-05-31",
       "end": "2026-06-30",
+      "regime": "momentum",
       "tickers": [
         "FTC",
         "RPI",
@@ -98,13 +108,14 @@
         "XPP",
         "LUCE"
       ],
-      "return_pct": -5.49,
-      "is_current": false
+      "return_pct": -7.5
     },
     {
       "month": "Jul 2026",
+      "is_current": false,
       "start": "2026-06-30",
       "end": "2026-07-31",
+      "regime": "momentum",
       "tickers": [
         "RPI",
         "CMCX",
@@ -114,13 +125,14 @@
         "GHH",
         "SEPL"
       ],
-      "return_pct": 10.2,
-      "is_current": false
+      "return_pct": 9.65
     },
     {
-      "month": "Aug 2026",
+      "month": "Aug 2026 (MTD)",
+      "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-31",
+      "end": "2026-08-04",
+      "regime": "momentum",
       "tickers": [
         "RPI",
         "CMCX",
@@ -130,8 +142,7 @@
         "ATG",
         "HFD"
       ],
-      "return_pct": 2.42,
-      "is_current": true
+      "return_pct": 1.12
     }
   ],
   "holdings": [
@@ -139,64 +150,64 @@
       "ticker": "RPI",
       "name": "Raspberry PI Holdings plc",
       "sector": "Electronic Technology",
-      "entry_date": "2026-07-01",
-      "entry_price": 870.0,
-      "current_price": 658.5,
-      "return_pct": -24.31
+      "entry_date": "2026-08-04",
+      "entry_price": 671.5,
+      "current_price": 671.5,
+      "return_pct": 0.0
     },
     {
       "ticker": "CMCX",
       "name": "CMC Markets Plc",
       "sector": "Finance",
-      "entry_date": "2026-07-01",
-      "entry_price": 649.9,
-      "current_price": 677.0,
-      "return_pct": 4.17
+      "entry_date": "2026-08-04",
+      "entry_price": 683.0,
+      "current_price": 684.0,
+      "return_pct": 0.15
     },
     {
       "ticker": "ENQ",
       "name": "EnQuest PLC",
       "sector": "Energy Minerals",
-      "entry_date": "2026-07-01",
-      "entry_price": 21.6,
-      "current_price": 23.8,
-      "return_pct": 10.19
+      "entry_date": "2026-08-04",
+      "entry_price": 24.35,
+      "current_price": 24.281,
+      "return_pct": -0.28
     },
     {
       "ticker": "SEPL",
       "name": "Seplat Energy PLC",
       "sector": "Energy Minerals",
-      "entry_date": "2026-07-01",
-      "entry_price": 517.0,
-      "current_price": 586.0,
-      "return_pct": 13.35
+      "entry_date": "2026-08-04",
+      "entry_price": 580.0,
+      "current_price": 580.0,
+      "return_pct": 0.0
     },
     {
       "ticker": "KLR",
       "name": "Keller Group plc",
       "sector": "Industrial Services",
-      "entry_date": "2026-07-01",
-      "entry_price": 2712.0,
-      "current_price": 3050.0,
-      "return_pct": 12.46
+      "entry_date": "2026-08-04",
+      "entry_price": 3008.0,
+      "current_price": 3008.0,
+      "return_pct": 0.0
     },
     {
       "ticker": "ATG",
-      "name": "Auction Technology Group PLC",
-      "sector": "Technology Services",
+      "name": "ATG",
+      "sector": "",
       "entry_date": "2026-08-03",
-      "entry_price": 453.6,
-      "current_price": 455.6,
-      "return_pct": 0.44
+      "entry_price": 455.0,
+      "current_price": 462.0,
+      "return_pct": 1.54
     },
     {
       "ticker": "HFD",
-      "name": "Halfords Group Plc",
-      "sector": "Retail Trade",
+      "name": "HFD",
+      "sector": "",
       "entry_date": "2026-08-03",
-      "entry_price": 241.5,
-      "current_price": 243.0,
-      "return_pct": 0.62
+      "entry_price": 243.0,
+      "current_price": 242.5,
+      "return_pct": -0.21
     }
   ]
 }

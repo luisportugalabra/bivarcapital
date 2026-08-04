@@ -6,10 +6,10 @@ Downloads live data from TradingView LSE, calculates the UK momentum strategy,
 and outputs uk-momentum-data.json for the website.
 
 Strategy:
-  - Momentum = 100% × Perf.6M
-  - Universe: LSE, market cap > £250M (~$300M), EBIT > 0, common stock, GBX
-  - Select top 7 by 6M performance
-  - Regime: FTSE 100 < MA200 → cash
+  - Momentum = 50% × Perf.6M + 50% × Perf.12M (composite)
+  - Universe: LSE, market cap > £100M (~$125M), EBIT > 0, common stock, GBX
+  - Select top 12 by composite momentum
+  - Regime: FTSE 100 < MA200 → GLD
 
 Usage: python3 uk_momentum_signal.py
 """
@@ -27,8 +27,8 @@ SITE_DIR      = os.path.dirname(SCRIPT_DIR)
 JSON_PATH     = os.path.join(SITE_DIR, 'uk-momentum-data.json')
 PORTFOLIO_PATH = os.path.join(SITE_DIR, 'uk-momentum-portfolio.json')
 
-MIN_MCAP_USD = 300_000_000   # ≈ £250M
-TOP_N        = 7
+MIN_MCAP_USD = 125_000_000   # ≈ £100M
+TOP_N        = 12
 
 
 def fetch_stocks():
@@ -63,7 +63,7 @@ def fetch_stocks():
     })
 
     df = df.dropna(subset=['ret_6m'])
-    df['composite'] = df['ret_6m'] / 100   # 6M only
+    df['composite'] = (df['ret_6m'].fillna(0) / 100) * 0.5 + (df['ret_12m'].fillna(0) / 100) * 0.5
 
     return df.sort_values('composite', ascending=False).reset_index(drop=True)
 
@@ -96,13 +96,13 @@ def main():
     print(f"  Eligible: {len(df)} stocks")
 
     ftse_last, ftse_ma200, regime_ok = check_regime()
-    regime = "momentum" if regime_ok else "cash"
+    regime = "momentum" if regime_ok else "gld"
     print(f"  FTSE 100: {ftse_last:,.1f}  MA200: {ftse_ma200:,.1f}  Regime: {regime.upper()}")
 
-    sel7 = select_top(df)
+    sel7 = select_top(df, TOP_N)
 
     top20 = []
-    for i, (_, row) in enumerate(df.head(30).iterrows(), 1):
+    for i, (_, row) in enumerate(df.head(40).iterrows(), 1):
         t = str(row['ticker'])
         entry = {
             "rank":      i,
@@ -183,7 +183,7 @@ def _rollover_portfolio(new_tickers, df, today_str, regime):
         last_month = (0, 0)
 
     if current_month <= last_month:
-        print(f"  UK portfolio: already up to date ({last_entry['month'] if last_entry else '—'})")
+        print(f"  UK portfolio: already up to date ({last_entry['month'] if last_entry else '-'})")
         return
 
     print(f"  UK portfolio: new month ({today.strftime('%b %Y')}), rolling over...")
