@@ -504,7 +504,6 @@ async function loadSignal() {
   }
 }
 
-let _calcHoldings = [];
 function calcRebalance() {
   const total = parseFloat(document.getElementById('calc-input').value);
   if (!total || total <= 0 || !_calcHoldings.length) {
