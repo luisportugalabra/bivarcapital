@@ -104,6 +104,13 @@ h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin
 footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
 footer p { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); }
 footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
+.section-label {
+  font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+  display: flex; align-items: center; gap: 12px; margin: 36px 0 16px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-label:first-child { margin-top: 0; }
 .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:4px}
 @media(max-width:600px){
   header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:14px}
@@ -142,6 +149,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
   <section class="content">
     <h1>Strategies</h1>
     <p class="subtitle">Systematic, rules-based. No discretion, no narrative.</p>
+
+    <div class="section-label">Momentum</div>
 
     <div class="strategy-card" id="momentum-card">
       <div class="card-header">
@@ -229,6 +238,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     </div>
     END CHINA CARD -->
 
+    <div class="section-label">Bitcoin</div>
+
     <div class="strategy-card">
       <div class="card-header">
         <div class="card-title">Bitcoin Trend Signal</div>
@@ -249,6 +260,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
     </div>
+
+    <div class="section-label">Others</div>
 
     <div class="strategy-card" id="coiled-card">
       <div class="card-header">
