@@ -118,7 +118,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <p class="lead">Two rules-based strategies I run with real capital, alongside a discretionary equity portfolio. Fully backtested, published in full. The signal you see is the one I trade. I also provide a Bitcoin trend strategy — for those who want crypto exposure without the catastrophic drawdowns.</p>
 
     <!-- Momentum -->
-    <h2 class="strategy-title">Optimal Momentum</h2>
+    <h2 class="strategy-title">USA Momentum</h2>
     <div class="steps">
       <div class="step">
         <div class="step-body">
@@ -232,7 +232,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <div class="include-item">
         <span class="check">&#10003;</span>
         <div class="include-body">
-          <strong>Optimal Momentum signal</strong>
+          <strong>USA Momentum signal</strong>
           <span>Monthly positions in US equities — updated on the 1st. 28-year backtest, +28.6% CAGR, Sharpe 0.88.</span>
         </div>
       </div>
@@ -343,7 +343,7 @@ const mkChart = (id, labels, datasets) => new Chart(document.getElementById(id),
 });
 
 mkChart('chartMom', momDates, [
-  { label: 'Optimal Momentum', data: momEq,  borderColor: '#c4a265', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.2 },
+  { label: 'USA Momentum', data: momEq,  borderColor: '#c4a265', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.2 },
   { label: 'S&P 500',          data: spEq,   borderColor: '#6b7280', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, tension: 0.2 }
 ]);
 mkChart('chartBtc', btcDates, [
