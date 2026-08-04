@@ -1,0 +1,4826 @@
+{
+  "last_rebalance": "2026-07-02",
+  "updated": "2026-08-04",
+  "ytd_2026": 79.18,
+  "holdings": [
+    {
+      "ticker": "HMMC",
+      "name": "Hemlo Mining Corp.",
+      "sector": "Basic Materials",
+      "entry_date": "2026-01-05",
+      "entry_price": 5.03,
+      "current_price": 5.08,
+      "return_pct": 0.99
+    },
+    {
+      "ticker": "FDY",
+      "name": "Faraday Copper Corp.",
+      "sector": "Basic Materials",
+      "entry_date": "2026-04-02",
+      "entry_price": 4.28,
+      "current_price": 5.49,
+      "return_pct": 28.27
+    },
+    {
+      "ticker": "HUT",
+      "name": "Hut 8 Mining Corp",
+      "sector": "Financial Services",
+      "entry_date": "2026-07-02",
+      "entry_price": 137.44,
+      "current_price": 151.0,
+      "return_pct": 9.87
+    },
+    {
+      "ticker": "AII",
+      "name": "Almonty Industries Inc",
+      "sector": "Basic Materials",
+      "entry_date": "2025-04-02",
+      "entry_price": 3.225,
+      "current_price": 15.51,
+      "return_pct": 380.93
+    },
+    {
+      "ticker": "BITF",
+      "name": "Bitfarms Ltd",
+      "sector": "Financial Services",
+      "entry_date": "2026-07-02",
+      "entry_price": 8.24,
+      "current_price": null,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "OM",
+      "name": "Osisko Metals Incorporated",
+      "sector": "Basic Materials",
+      "entry_date": "2026-07-02",
+      "entry_price": 1.81,
+      "current_price": 1.59,
+      "return_pct": -12.15
+    },
+    {
+      "ticker": "ASCU",
+      "name": "Arizona Sonoran Copper Company Inc",
+      "sector": "Basic Materials",
+      "entry_date": "2026-07-02",
+      "entry_price": 8.06,
+      "current_price": 8.06,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "LAR",
+      "name": "Lithium Argentina AG\r",
+      "sector": "Basic Materials",
+      "entry_date": "2026-06-02",
+      "entry_price": 15.01,
+      "current_price": 8.35,
+      "return_pct": -44.37
+    },
+    {
+      "ticker": "VNP",
+      "name": "5N Plus Inc.",
+      "sector": "Basic Materials",
+      "entry_date": "2026-07-02",
+      "entry_price": 40.32,
+      "current_price": 32.58,
+      "return_pct": -19.2
+    },
+    {
+      "ticker": "LGD",
+      "name": "Liberty Gold Corp",
+      "sector": "Basic Materials",
+      "entry_date": "2026-07-02",
+      "entry_price": 1.52,
+      "current_price": 1.35,
+      "return_pct": -11.18
+    }
+  ],
+  "monthly_breakdown": [
+    {
+      "month": "Jan 2001",
+      "is_current": false,
+      "start": "2001-01-02",
+      "end": "2001-02-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2001",
+      "is_current": false,
+      "start": "2001-02-02",
+      "end": "2001-03-02",
+      "tickers": [
+        "MFC",
+        "TH",
+        "MX",
+        "CAE",
+        "AGF-B",
+        "CIX",
+        "TPX-A",
+        "TRP",
+        "BHC",
+        "TA"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2001",
+      "is_current": false,
+      "start": "2001-03-02",
+      "end": "2001-04-03",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2001",
+      "is_current": false,
+      "start": "2001-04-03",
+      "end": "2001-05-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2001",
+      "is_current": false,
+      "start": "2001-05-02",
+      "end": "2001-06-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2001",
+      "is_current": false,
+      "start": "2001-06-04",
+      "end": "2001-07-03",
+      "tickers": [
+        "MX",
+        "PRMW",
+        "TA",
+        "CCO",
+        "TRP",
+        "CAE",
+        "TECK-B",
+        "TPX-A",
+        "ATRL",
+        "SNC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2001",
+      "is_current": false,
+      "start": "2001-07-03",
+      "end": "2001-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2001",
+      "is_current": false,
+      "start": "2001-08-02",
+      "end": "2001-09-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2001",
+      "is_current": false,
+      "start": "2001-09-04",
+      "end": "2001-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2001",
+      "is_current": false,
+      "start": "2001-10-02",
+      "end": "2001-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2001",
+      "is_current": false,
+      "start": "2001-11-02",
+      "end": "2001-12-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2001",
+      "is_current": false,
+      "start": "2001-12-04",
+      "end": "2002-01-02",
+      "tickers": [
+        "PRMW",
+        "TRQ",
+        "K",
+        "AEM",
+        "ATD-B",
+        "MRU",
+        "SNC",
+        "ATRL",
+        "OVV",
+        "SU"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2002",
+      "is_current": false,
+      "start": "2002-01-02",
+      "end": "2002-02-04",
+      "tickers": [
+        "TRQ",
+        "PRMW",
+        "ATD-B",
+        "ATRL",
+        "SNC",
+        "MRU",
+        "BHC",
+        "SAP",
+        "GIB-A",
+        "OTEX"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2002",
+      "is_current": false,
+      "start": "2002-02-04",
+      "end": "2002-03-04",
+      "tickers": [
+        "PRMW",
+        "BNAU",
+        "SNC",
+        "ATRL",
+        "ATD-B",
+        "TRQ",
+        "GIB-A",
+        "SAP",
+        "CNR",
+        "BHC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2002",
+      "is_current": false,
+      "start": "2002-03-04",
+      "end": "2002-04-02",
+      "tickers": [
+        "GSC",
+        "BNAU",
+        "TRQ",
+        "AMM",
+        "K",
+        "AEM",
+        "CAS",
+        "PRMW",
+        "MRU",
+        "ATRL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2002",
+      "is_current": false,
+      "start": "2002-04-02",
+      "end": "2002-05-02",
+      "tickers": [
+        "AMM",
+        "ATD-B",
+        "TRQ",
+        "K",
+        "PRMW",
+        "SNC",
+        "ATRL",
+        "SAP",
+        "MRU",
+        "AEM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2002",
+      "is_current": false,
+      "start": "2002-05-02",
+      "end": "2002-06-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2002",
+      "is_current": false,
+      "start": "2002-06-04",
+      "end": "2002-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2002",
+      "is_current": false,
+      "start": "2002-07-02",
+      "end": "2002-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2002",
+      "is_current": false,
+      "start": "2002-08-02",
+      "end": "2002-09-03",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2002",
+      "is_current": false,
+      "start": "2002-09-03",
+      "end": "2002-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2002",
+      "is_current": false,
+      "start": "2002-10-02",
+      "end": "2002-11-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2002",
+      "is_current": false,
+      "start": "2002-11-04",
+      "end": "2002-12-03",
+      "tickers": [
+        "ELD",
+        "AMM",
+        "JE",
+        "K",
+        "CAS",
+        "GIL",
+        "TCL-A",
+        "TRQ",
+        "MX",
+        "CCL-B"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2002",
+      "is_current": false,
+      "start": "2002-12-03",
+      "end": "2003-01-02",
+      "tickers": [
+        "ELD",
+        "JE",
+        "GIL",
+        "K",
+        "CAS",
+        "MX",
+        "AMM",
+        "PL",
+        "ATRL",
+        "SNC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2003",
+      "is_current": false,
+      "start": "2003-01-02",
+      "end": "2003-02-04",
+      "tickers": [
+        "ELD",
+        "K",
+        "AMM",
+        "GIL",
+        "GSC",
+        "CAS",
+        "JE",
+        "MX",
+        "PD",
+        "PL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2003",
+      "is_current": false,
+      "start": "2003-02-04",
+      "end": "2003-03-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2003",
+      "is_current": false,
+      "start": "2003-03-04",
+      "end": "2003-04-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2003",
+      "is_current": false,
+      "start": "2003-04-02",
+      "end": "2003-05-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2003",
+      "is_current": false,
+      "start": "2003-05-02",
+      "end": "2003-06-03",
+      "tickers": [
+        "APS",
+        "ELD",
+        "RCI-B",
+        "T",
+        "OTEX",
+        "JE",
+        "GIL",
+        "K",
+        "RY",
+        "CCO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2003",
+      "is_current": false,
+      "start": "2003-06-03",
+      "end": "2003-07-02",
+      "tickers": [
+        "TEV",
+        "BLU",
+        "APS",
+        "ELD",
+        "AMM",
+        "T",
+        "GSC",
+        "CCA",
+        "JE",
+        "REI-UN"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2003",
+      "is_current": false,
+      "start": "2003-07-02",
+      "end": "2003-08-04",
+      "tickers": [
+        "CSCI",
+        "BLU",
+        "APS",
+        "JE",
+        "DEE",
+        "T",
+        "ERF",
+        "ELD",
+        "BHC",
+        "CCA"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2003",
+      "is_current": false,
+      "start": "2003-08-04",
+      "end": "2003-09-02",
+      "tickers": [
+        "CSCI",
+        "BLU",
+        "TEV",
+        "T",
+        "JE",
+        "APS",
+        "CORV",
+        "ELD",
+        "BB",
+        "RCI-B"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2003",
+      "is_current": false,
+      "start": "2003-09-02",
+      "end": "2003-10-02",
+      "tickers": [
+        "CSCI",
+        "BLU",
+        "TEV",
+        "T",
+        "BB",
+        "FFH",
+        "APS",
+        "ELD",
+        "GSC",
+        "JE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2003",
+      "is_current": false,
+      "start": "2003-10-02",
+      "end": "2003-11-04",
+      "tickers": [
+        "CSCI",
+        "TEV",
+        "SW",
+        "GSC",
+        "FFH",
+        "BB",
+        "BLU",
+        "T",
+        "ELD",
+        "TRQ"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2003",
+      "is_current": false,
+      "start": "2003-11-04",
+      "end": "2003-12-02",
+      "tickers": [
+        "SW",
+        "CSCI",
+        "BB",
+        "TEV",
+        "BLU",
+        "GSC",
+        "TRQ",
+        "FFH",
+        "FM",
+        "APS"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2003",
+      "is_current": false,
+      "start": "2003-12-02",
+      "end": "2004-01-02",
+      "tickers": [
+        "TRQ",
+        "SW",
+        "BLU",
+        "GSC",
+        "CSCI",
+        "AMM",
+        "BB",
+        "TEV",
+        "FM",
+        "ELD"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2004",
+      "is_current": false,
+      "start": "2004-01-02",
+      "end": "2004-02-03",
+      "tickers": [
+        "GSC",
+        "TRQ",
+        "FM",
+        "SW",
+        "CSCI",
+        "TEV",
+        "ELD",
+        "AMM",
+        "BB",
+        "BLU"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2004",
+      "is_current": false,
+      "start": "2004-02-03",
+      "end": "2004-03-02",
+      "tickers": [
+        "NDM",
+        "BB",
+        "FM",
+        "BLU",
+        "TRQ",
+        "AMM",
+        "TEV",
+        "GSC",
+        "SW",
+        "IPCI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2004",
+      "is_current": false,
+      "start": "2004-03-02",
+      "end": "2004-04-02",
+      "tickers": [
+        "SW",
+        "BB",
+        "FM",
+        "TRZ",
+        "TEV",
+        "AMM",
+        "BLU",
+        "X",
+        "TRQ",
+        "GSC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2004",
+      "is_current": false,
+      "start": "2004-04-02",
+      "end": "2004-05-04",
+      "tickers": [
+        "BB",
+        "SW",
+        "FM",
+        "TRZ",
+        "TEV",
+        "HCG",
+        "BLU",
+        "CFW",
+        "X",
+        "GC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2004",
+      "is_current": false,
+      "start": "2004-05-04",
+      "end": "2004-06-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2004",
+      "is_current": false,
+      "start": "2004-06-02",
+      "end": "2004-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2004",
+      "is_current": false,
+      "start": "2004-07-02",
+      "end": "2004-08-03",
+      "tickers": [
+        "BB",
+        "SW",
+        "TRZ",
+        "GC",
+        "FM",
+        "AMM",
+        "BLU",
+        "X",
+        "TRQ",
+        "CFP"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2004",
+      "is_current": false,
+      "start": "2004-08-03",
+      "end": "2004-09-02",
+      "tickers": [
+        "BB",
+        "SW",
+        "TRZ",
+        "OTEX",
+        "AMM",
+        "PSI",
+        "FM",
+        "TECK-B",
+        "BN",
+        "BAM-A"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2004",
+      "is_current": false,
+      "start": "2004-09-02",
+      "end": "2004-10-04",
+      "tickers": [
+        "DML",
+        "TRZ",
+        "BB",
+        "SW",
+        "TCW",
+        "PSI",
+        "CCO",
+        "FM",
+        "TECK-B",
+        "CFP"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2004",
+      "is_current": false,
+      "start": "2004-10-04",
+      "end": "2004-11-02",
+      "tickers": [
+        "UEX",
+        "DML",
+        "BB",
+        "TRZ",
+        "TCW",
+        "CCO",
+        "PMT",
+        "TECK-B",
+        "CNQ",
+        "NG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2004",
+      "is_current": false,
+      "start": "2004-11-02",
+      "end": "2004-12-02",
+      "tickers": [
+        "BB",
+        "TRZ",
+        "CCO",
+        "GC",
+        "PMT",
+        "CNQ",
+        "FM",
+        "ATD-B",
+        "VET",
+        "BNP"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2004",
+      "is_current": false,
+      "start": "2004-12-02",
+      "end": "2005-01-04",
+      "tickers": [
+        "UEX",
+        "BB",
+        "TRZ",
+        "GC",
+        "TCW",
+        "CCO",
+        "TECK-B",
+        "CNQ",
+        "PMT",
+        "BN"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2005",
+      "is_current": false,
+      "start": "2005-01-04",
+      "end": "2005-02-02",
+      "tickers": [
+        "BB",
+        "POU",
+        "VOYG",
+        "TRZ",
+        "TFII",
+        "TCW",
+        "GC",
+        "CCO",
+        "TECK-B",
+        "DEE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2005",
+      "is_current": false,
+      "start": "2005-02-02",
+      "end": "2005-03-02",
+      "tickers": [
+        "UEX",
+        "POU",
+        "TOG",
+        "TFII",
+        "TCW",
+        "DML",
+        "DEE",
+        "CR",
+        "GC",
+        "VOYG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2005",
+      "is_current": false,
+      "start": "2005-03-02",
+      "end": "2005-04-04",
+      "tickers": [
+        "UEX",
+        "TGL",
+        "DML",
+        "TOG",
+        "LGD",
+        "TCW",
+        "POU",
+        "TFII",
+        "CCO",
+        "CR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2005",
+      "is_current": false,
+      "start": "2005-04-04",
+      "end": "2005-05-03",
+      "tickers": [
+        "UEX",
+        "TGL",
+        "DIAM",
+        "TOG",
+        "ETX",
+        "CR",
+        "CCO",
+        "TCW",
+        "DEE",
+        "POU"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2005",
+      "is_current": false,
+      "start": "2005-05-03",
+      "end": "2005-06-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2005",
+      "is_current": false,
+      "start": "2005-06-02",
+      "end": "2005-07-04",
+      "tickers": [
+        "CFW",
+        "TOG",
+        "CCO",
+        "DML",
+        "DIAM",
+        "WPM",
+        "TCW",
+        "CR",
+        "GC",
+        "TECK-B"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2005",
+      "is_current": false,
+      "start": "2005-07-04",
+      "end": "2005-08-02",
+      "tickers": [
+        "WPM",
+        "CR",
+        "TOG",
+        "CFW",
+        "RET-A",
+        "DML",
+        "TCW",
+        "CNQ",
+        "CCO",
+        "GIL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2005",
+      "is_current": false,
+      "start": "2005-08-02",
+      "end": "2005-09-02",
+      "tickers": [
+        "CR",
+        "POU",
+        "CNQ",
+        "TCW",
+        "TOG",
+        "CCO",
+        "HSE",
+        "CFW",
+        "GIL",
+        "OVV"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2005",
+      "is_current": false,
+      "start": "2005-09-02",
+      "end": "2005-10-04",
+      "tickers": [
+        "POU",
+        "CR",
+        "CNQ",
+        "UEX",
+        "TCW",
+        "CFW",
+        "DML",
+        "HSE",
+        "GIL",
+        "TOG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2005",
+      "is_current": false,
+      "start": "2005-10-04",
+      "end": "2005-11-02",
+      "tickers": [
+        "CET",
+        "TXP",
+        "POU",
+        "CR",
+        "TCW",
+        "CNQ",
+        "TOG",
+        "HSE",
+        "GIL",
+        "OVV"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2005",
+      "is_current": false,
+      "start": "2005-11-02",
+      "end": "2005-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2005",
+      "is_current": false,
+      "start": "2005-12-02",
+      "end": "2006-01-03",
+      "tickers": [
+        "POU",
+        "UEX",
+        "TCW",
+        "DIAM",
+        "CR",
+        "TOT",
+        "GIL",
+        "CNQ",
+        "DEE",
+        "LGD"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2006",
+      "is_current": false,
+      "start": "2006-01-03",
+      "end": "2006-02-02",
+      "tickers": [
+        "TRX",
+        "CET",
+        "TCW",
+        "UEX",
+        "DIAM",
+        "GIL",
+        "DEE",
+        "CNQ",
+        "CR",
+        "GPR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2006",
+      "is_current": false,
+      "start": "2006-02-02",
+      "end": "2006-03-02",
+      "tickers": [
+        "BIR",
+        "TRX",
+        "SRHI",
+        "TXP",
+        "HBM",
+        "POM",
+        "UEX",
+        "TCW",
+        "TOT",
+        "GPR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2006",
+      "is_current": false,
+      "start": "2006-03-02",
+      "end": "2006-04-04",
+      "tickers": [
+        "TRX",
+        "TXP",
+        "POM",
+        "KAT",
+        "HBM",
+        "SVM",
+        "WPM",
+        "GPR",
+        "YRI",
+        "AGI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2006",
+      "is_current": false,
+      "start": "2006-04-04",
+      "end": "2006-05-02",
+      "tickers": [
+        "TRX",
+        "SVM",
+        "PNP",
+        "TXP",
+        "KAT",
+        "GPR",
+        "LAM",
+        "POM",
+        "WPM",
+        "YRI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2006",
+      "is_current": false,
+      "start": "2006-05-02",
+      "end": "2006-06-02",
+      "tickers": [
+        "SVM",
+        "PNP",
+        "TRX",
+        "GPR",
+        "VOYG",
+        "KAT",
+        "POM",
+        "HBM",
+        "WPM",
+        "LAM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2006",
+      "is_current": false,
+      "start": "2006-06-02",
+      "end": "2006-07-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2006",
+      "is_current": false,
+      "start": "2006-07-04",
+      "end": "2006-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2006",
+      "is_current": false,
+      "start": "2006-08-02",
+      "end": "2006-09-04",
+      "tickers": [
+        "PNP",
+        "HBM",
+        "VOYG",
+        "POM",
+        "GUY",
+        "TXP",
+        "GPR",
+        "WPM",
+        "AEM",
+        "YRI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2006",
+      "is_current": false,
+      "start": "2006-09-04",
+      "end": "2006-10-03",
+      "tickers": [
+        "HBM",
+        "SVM",
+        "KAT",
+        "VOYG",
+        "GUY",
+        "GPR",
+        "LUN",
+        "POM",
+        "WPM",
+        "AEM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2006",
+      "is_current": false,
+      "start": "2006-10-03",
+      "end": "2006-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2006",
+      "is_current": false,
+      "start": "2006-11-02",
+      "end": "2006-12-04",
+      "tickers": [
+        "PNP",
+        "GUY",
+        "HBM",
+        "VOYG",
+        "TH",
+        "SVM",
+        "GPR",
+        "BEI-UN",
+        "LUN",
+        "KAT"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2006",
+      "is_current": false,
+      "start": "2006-12-04",
+      "end": "2007-01-02",
+      "tickers": [
+        "PNP",
+        "HBM",
+        "SVM",
+        "GUY",
+        "LUN",
+        "VOYG",
+        "TH",
+        "GPR",
+        "LGD",
+        "AEM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2007",
+      "is_current": false,
+      "start": "2007-01-02",
+      "end": "2007-02-02",
+      "tickers": [
+        "PNP",
+        "HBM",
+        "URE",
+        "FSY",
+        "SVM",
+        "VOYG",
+        "GPR",
+        "LGD",
+        "LUN",
+        "AEM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2007",
+      "is_current": false,
+      "start": "2007-02-02",
+      "end": "2007-03-02",
+      "tickers": [
+        "TH",
+        "FSY",
+        "CSCI",
+        "QTRH",
+        "PNP",
+        "MAG",
+        "URE",
+        "LGD",
+        "HBM",
+        "VOYG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2007",
+      "is_current": false,
+      "start": "2007-03-02",
+      "end": "2007-04-03",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2007",
+      "is_current": false,
+      "start": "2007-04-03",
+      "end": "2007-05-02",
+      "tickers": [
+        "QTRH",
+        "FSY",
+        "CSCI",
+        "TH",
+        "RVX",
+        "ABST",
+        "NEPT",
+        "MAG",
+        "PNP",
+        "AZZ"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2007",
+      "is_current": false,
+      "start": "2007-05-02",
+      "end": "2007-06-04",
+      "tickers": [
+        "QTRH",
+        "FSY",
+        "CSCI",
+        "ABT",
+        "TH",
+        "AZZ",
+        "NEPT",
+        "LAM",
+        "PNP",
+        "MAG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2007",
+      "is_current": false,
+      "start": "2007-06-04",
+      "end": "2007-07-03",
+      "tickers": [
+        "TH",
+        "CSCI",
+        "ABT",
+        "FSY",
+        "MAG",
+        "NEPT",
+        "RVX",
+        "PNP",
+        "KAT",
+        "LGD"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2007",
+      "is_current": false,
+      "start": "2007-07-03",
+      "end": "2007-08-02",
+      "tickers": [
+        "TH",
+        "ABT",
+        "CSCI",
+        "MAG",
+        "KAT",
+        "FSY",
+        "RVX",
+        "QTRH",
+        "SCR_old",
+        "DML"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2007",
+      "is_current": false,
+      "start": "2007-08-02",
+      "end": "2007-09-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2007",
+      "is_current": false,
+      "start": "2007-09-04",
+      "end": "2007-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2007",
+      "is_current": false,
+      "start": "2007-10-02",
+      "end": "2007-11-02",
+      "tickers": [
+        "ABT",
+        "ABST",
+        "CSCI",
+        "MAG",
+        "TH",
+        "KAT",
+        "BB",
+        "ALS",
+        "LNR",
+        "MDI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2007",
+      "is_current": false,
+      "start": "2007-11-02",
+      "end": "2007-12-04",
+      "tickers": [
+        "ABST",
+        "ABT",
+        "SOX",
+        "MAG",
+        "CSCI",
+        "ORA",
+        "TH",
+        "ALS",
+        "TXP",
+        "MDI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2007",
+      "is_current": false,
+      "start": "2007-12-04",
+      "end": "2008-01-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2008",
+      "is_current": false,
+      "start": "2008-01-02",
+      "end": "2008-02-04",
+      "tickers": [
+        "ORA",
+        "SOX",
+        "PTS",
+        "ABT",
+        "CSCI",
+        "TH",
+        "ALS",
+        "TXP",
+        "MDI",
+        "LMNL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2008",
+      "is_current": false,
+      "start": "2008-02-04",
+      "end": "2008-03-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2008",
+      "is_current": false,
+      "start": "2008-03-02",
+      "end": "2008-04-02",
+      "tickers": [
+        "TXP",
+        "PTS",
+        "BIR",
+        "ALO",
+        "JAG",
+        "ABT",
+        "ABST",
+        "MDI",
+        "CG",
+        "ELR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2008",
+      "is_current": false,
+      "start": "2008-04-02",
+      "end": "2008-05-02",
+      "tickers": [
+        "ALO",
+        "PTS",
+        "BIR",
+        "TXP",
+        "JAG",
+        "NML",
+        "ELR",
+        "K",
+        "MDI",
+        "CPG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2008",
+      "is_current": false,
+      "start": "2008-05-02",
+      "end": "2008-06-02",
+      "tickers": [
+        "NML",
+        "BIR",
+        "PTS",
+        "ALO",
+        "BB",
+        "TXP",
+        "CPG",
+        "VRN",
+        "K",
+        "AEM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2008",
+      "is_current": false,
+      "start": "2008-06-02",
+      "end": "2008-07-02",
+      "tickers": [
+        "QEC",
+        "BIR",
+        "BB",
+        "CPG",
+        "VRN",
+        "TXP",
+        "ALO",
+        "CR",
+        "DEE",
+        "AEM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2008",
+      "is_current": false,
+      "start": "2008-07-02",
+      "end": "2008-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2008",
+      "is_current": false,
+      "start": "2008-08-02",
+      "end": "2008-09-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2008",
+      "is_current": false,
+      "start": "2008-09-02",
+      "end": "2008-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2008",
+      "is_current": false,
+      "start": "2008-10-02",
+      "end": "2008-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2008",
+      "is_current": false,
+      "start": "2008-11-02",
+      "end": "2008-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2008",
+      "is_current": false,
+      "start": "2008-12-02",
+      "end": "2009-01-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2009",
+      "is_current": false,
+      "start": "2009-01-02",
+      "end": "2009-02-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2009",
+      "is_current": false,
+      "start": "2009-02-02",
+      "end": "2009-03-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2009",
+      "is_current": false,
+      "start": "2009-03-02",
+      "end": "2009-04-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2009",
+      "is_current": false,
+      "start": "2009-04-02",
+      "end": "2009-05-02",
+      "tickers": [
+        "FSY",
+        "MRU",
+        "IMG",
+        "ELD",
+        "WN",
+        "FNV",
+        "AGI",
+        "FFH",
+        "SMF",
+        "CEF"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2009",
+      "is_current": false,
+      "start": "2009-05-02",
+      "end": "2009-06-02",
+      "tickers": [
+        "SMF",
+        "IMG",
+        "ELD",
+        "AGI",
+        "NDM",
+        "LORL_old",
+        "BNAU",
+        "FNV",
+        "BHC",
+        "MRU"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2009",
+      "is_current": false,
+      "start": "2009-06-02",
+      "end": "2009-07-02",
+      "tickers": [
+        "PRMW",
+        "IMG",
+        "ASR",
+        "CSCI",
+        "SMF",
+        "LORL_old",
+        "ELD",
+        "TRQ",
+        "FNV",
+        "RMX"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2009",
+      "is_current": false,
+      "start": "2009-07-02",
+      "end": "2009-08-02",
+      "tickers": [
+        "NG",
+        "PRMW",
+        "PNP",
+        "LORL_old",
+        "BNAU",
+        "RMX",
+        "CSCI",
+        "CQE",
+        "IMG",
+        "GSC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2009",
+      "is_current": false,
+      "start": "2009-08-02",
+      "end": "2009-09-02",
+      "tickers": [
+        "CQE",
+        "PRMW",
+        "BNAU",
+        "RMX",
+        "MRV_old",
+        "CSCI",
+        "FM",
+        "CEE",
+        "IMG",
+        "SMF"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2009",
+      "is_current": false,
+      "start": "2009-09-02",
+      "end": "2009-10-02",
+      "tickers": [
+        "PRMW",
+        "TECK-B",
+        "LUN",
+        "FM",
+        "BNAU",
+        "RMX",
+        "CEE",
+        "LNR",
+        "CS",
+        "CQE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2009",
+      "is_current": false,
+      "start": "2009-10-02",
+      "end": "2009-11-02",
+      "tickers": [
+        "PRMW",
+        "TECK-B",
+        "LUN",
+        "TNP",
+        "LNR",
+        "S",
+        "ORA",
+        "BNAU",
+        "RMX",
+        "GSC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2009",
+      "is_current": false,
+      "start": "2009-11-02",
+      "end": "2009-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2009",
+      "is_current": false,
+      "start": "2009-12-02",
+      "end": "2010-01-02",
+      "tickers": [
+        "PRMW",
+        "CG",
+        "GAU",
+        "AKG",
+        "GUY",
+        "CGG",
+        "RMX",
+        "BNAU",
+        "CEE",
+        "SMF"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2010",
+      "is_current": false,
+      "start": "2010-01-02",
+      "end": "2010-02-02",
+      "tickers": [
+        "NG",
+        "PRMW",
+        "TECK-B",
+        "CGG",
+        "GUY",
+        "ITH",
+        "GSC",
+        "CG",
+        "CFX",
+        "TKO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2010",
+      "is_current": false,
+      "start": "2010-02-02",
+      "end": "2010-03-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2010",
+      "is_current": false,
+      "start": "2010-03-02",
+      "end": "2010-04-02",
+      "tickers": [
+        "KL",
+        "PRMW",
+        "TECK-B",
+        "TRIL",
+        "TKO",
+        "CGG",
+        "LUN",
+        "CR",
+        "OGC",
+        "TRQ"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2010",
+      "is_current": false,
+      "start": "2010-04-02",
+      "end": "2010-05-02",
+      "tickers": [
+        "KL",
+        "KEI",
+        "TECK-B",
+        "CGG",
+        "CFX",
+        "III",
+        "PRMW",
+        "CR",
+        "QEC",
+        "TXG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2010",
+      "is_current": false,
+      "start": "2010-05-02",
+      "end": "2010-06-02",
+      "tickers": [
+        "EFL",
+        "ELVA",
+        "CGG",
+        "CFX",
+        "LNR",
+        "TECK-B",
+        "CR",
+        "ELR",
+        "UFS",
+        "TKO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2010",
+      "is_current": false,
+      "start": "2010-06-02",
+      "end": "2010-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2010",
+      "is_current": false,
+      "start": "2010-07-02",
+      "end": "2010-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2010",
+      "is_current": false,
+      "start": "2010-08-02",
+      "end": "2010-09-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2010",
+      "is_current": false,
+      "start": "2010-09-02",
+      "end": "2010-10-02",
+      "tickers": [
+        "CNE",
+        "CFX",
+        "SBB",
+        "SMF",
+        "CR",
+        "OGC",
+        "TGL",
+        "LORL_old",
+        "UFS",
+        "DEE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2010",
+      "is_current": false,
+      "start": "2010-10-02",
+      "end": "2010-11-02",
+      "tickers": [
+        "CNE",
+        "SBB",
+        "OGC",
+        "SMF",
+        "ASR",
+        "III",
+        "CFX",
+        "CGG",
+        "LORL_old",
+        "ALO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2010",
+      "is_current": false,
+      "start": "2010-11-02",
+      "end": "2010-12-02",
+      "tickers": [
+        "SBB",
+        "TAO",
+        "CNE",
+        "OGC",
+        "ORV",
+        "SMF",
+        "AG",
+        "FR",
+        "ALO",
+        "CFX"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2010",
+      "is_current": false,
+      "start": "2010-12-02",
+      "end": "2011-01-02",
+      "tickers": [
+        "ORE",
+        "SBB",
+        "CNE",
+        "SXGC",
+        "TAO",
+        "SMF",
+        "ASR",
+        "AC",
+        "FR",
+        "AG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2011",
+      "is_current": false,
+      "start": "2011-01-02",
+      "end": "2011-02-02",
+      "tickers": [
+        "SBB",
+        "TGL",
+        "CNE",
+        "FR",
+        "AG",
+        "GPR",
+        "AC",
+        "DPM",
+        "URE",
+        "CMMC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2011",
+      "is_current": false,
+      "start": "2011-02-02",
+      "end": "2011-03-02",
+      "tickers": [
+        "ATCU",
+        "URE",
+        "FR",
+        "AG",
+        "GPR",
+        "SBB",
+        "TGL",
+        "IRON",
+        "CMMC",
+        "NML"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2011",
+      "is_current": false,
+      "start": "2011-03-02",
+      "end": "2011-04-02",
+      "tickers": [
+        "ATCU",
+        "NML",
+        "URE",
+        "SRHI",
+        "AG",
+        "FR",
+        "WRN",
+        "GPR",
+        "SBB",
+        "CMMC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2011",
+      "is_current": false,
+      "start": "2011-04-02",
+      "end": "2011-05-02",
+      "tickers": [
+        "GCM",
+        "ATCU",
+        "ORE",
+        "GPR",
+        "NML",
+        "FR",
+        "AG",
+        "SBB",
+        "TGL",
+        "CMMC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2011",
+      "is_current": false,
+      "start": "2011-05-02",
+      "end": "2011-06-02",
+      "tickers": [
+        "GCM",
+        "ORE",
+        "FR",
+        "AG",
+        "GPR",
+        "NPK",
+        "JOSE",
+        "ATCU",
+        "AVL",
+        "SBB"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2011",
+      "is_current": false,
+      "start": "2011-06-02",
+      "end": "2011-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2011",
+      "is_current": false,
+      "start": "2011-07-02",
+      "end": "2011-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2011",
+      "is_current": false,
+      "start": "2011-08-02",
+      "end": "2011-09-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2011",
+      "is_current": false,
+      "start": "2011-09-02",
+      "end": "2011-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2011",
+      "is_current": false,
+      "start": "2011-10-02",
+      "end": "2011-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2011",
+      "is_current": false,
+      "start": "2011-11-02",
+      "end": "2011-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2011",
+      "is_current": false,
+      "start": "2011-12-02",
+      "end": "2012-01-02",
+      "tickers": [
+        "CQE",
+        "EDR",
+        "GRT-UN",
+        "FR",
+        "AG",
+        "POU",
+        "FVI",
+        "AR",
+        "NGD",
+        "BTO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2012",
+      "is_current": false,
+      "start": "2012-01-02",
+      "end": "2012-02-02",
+      "tickers": [
+        "USA",
+        "AR",
+        "FVI",
+        "EDR",
+        "ALA",
+        "ASR",
+        "POU",
+        "WPRT",
+        "CQE",
+        "YRI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2012",
+      "is_current": false,
+      "start": "2012-02-02",
+      "end": "2012-03-02",
+      "tickers": [
+        "PVG",
+        "WPRT",
+        "DOL",
+        "POU",
+        "AR",
+        "ALA",
+        "BIP-UN",
+        "PPL",
+        "KEY",
+        "ASR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2012",
+      "is_current": false,
+      "start": "2012-03-02",
+      "end": "2012-04-02",
+      "tickers": [
+        "WPRT",
+        "PVG",
+        "AR",
+        "CSU",
+        "EDR",
+        "YRI",
+        "DOL",
+        "BTO",
+        "III",
+        "SSL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2012",
+      "is_current": false,
+      "start": "2012-04-02",
+      "end": "2012-05-02",
+      "tickers": [
+        "WPRT",
+        "AR",
+        "BDI",
+        "SSL",
+        "PVG",
+        "CSU",
+        "TFII",
+        "III",
+        "WCP",
+        "SES"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2012",
+      "is_current": false,
+      "start": "2012-05-02",
+      "end": "2012-06-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2012",
+      "is_current": false,
+      "start": "2012-06-02",
+      "end": "2012-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2012",
+      "is_current": false,
+      "start": "2012-07-02",
+      "end": "2012-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2012",
+      "is_current": false,
+      "start": "2012-08-02",
+      "end": "2012-09-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2012",
+      "is_current": false,
+      "start": "2012-09-02",
+      "end": "2012-10-02",
+      "tickers": [
+        "AOI",
+        "MER",
+        "ITP",
+        "APS",
+        "DOL",
+        "ATD-B",
+        "BIP-UN",
+        "WJX",
+        "IPL",
+        "CSH-UN"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2012",
+      "is_current": false,
+      "start": "2012-10-02",
+      "end": "2012-11-02",
+      "tickers": [
+        "MER",
+        "AOI",
+        "SCR_old",
+        "APS",
+        "ATD-B",
+        "DOL",
+        "OSB",
+        "DXT",
+        "PKI",
+        "CSH-UN"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2012",
+      "is_current": false,
+      "start": "2012-11-02",
+      "end": "2012-12-02",
+      "tickers": [
+        "MER",
+        "AOI",
+        "SCR_old",
+        "OSB",
+        "SSL",
+        "DXT",
+        "PKI",
+        "AR",
+        "DOL",
+        "MATR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2012",
+      "is_current": false,
+      "start": "2012-12-02",
+      "end": "2013-01-02",
+      "tickers": [
+        "AOI",
+        "MER",
+        "OSB",
+        "SSL",
+        "ITP",
+        "SCL",
+        "MATR",
+        "AC",
+        "DXT",
+        "SJ"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2013",
+      "is_current": false,
+      "start": "2013-01-02",
+      "end": "2013-02-02",
+      "tickers": [
+        "AOI",
+        "MER",
+        "OSB",
+        "ITP",
+        "AC",
+        "GIL",
+        "IFP",
+        "MND",
+        "SJ",
+        "SSL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2013",
+      "is_current": false,
+      "start": "2013-02-02",
+      "end": "2013-03-02",
+      "tickers": [
+        "OSB",
+        "MER",
+        "LMNL",
+        "MND",
+        "AC",
+        "IFP",
+        "SSL",
+        "ITP",
+        "SJ",
+        "WFT"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2013",
+      "is_current": false,
+      "start": "2013-03-02",
+      "end": "2013-04-02",
+      "tickers": [
+        "ITE",
+        "MER",
+        "OSB",
+        "LMNL",
+        "OPT",
+        "AC",
+        "ITP",
+        "IFP",
+        "MND",
+        "SJ"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2013",
+      "is_current": false,
+      "start": "2013-04-02",
+      "end": "2013-05-02",
+      "tickers": [
+        "ITE",
+        "OSB",
+        "AC",
+        "MER",
+        "ITP",
+        "ACQ",
+        "IFP",
+        "CCL-B",
+        "SJ",
+        "WFT"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2013",
+      "is_current": false,
+      "start": "2013-05-02",
+      "end": "2013-06-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2013",
+      "is_current": false,
+      "start": "2013-06-02",
+      "end": "2013-07-02",
+      "tickers": [
+        "ITE",
+        "AC",
+        "OSB",
+        "IFP",
+        "ITP",
+        "ACQ",
+        "CCL-B",
+        "WFG",
+        "WFT",
+        "TSGI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2013",
+      "is_current": false,
+      "start": "2013-07-02",
+      "end": "2013-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2013",
+      "is_current": false,
+      "start": "2013-08-02",
+      "end": "2013-09-02",
+      "tickers": [
+        "ITE",
+        "EFN",
+        "AC",
+        "BDGI",
+        "BAD",
+        "BHC",
+        "MG",
+        "CCL-B",
+        "OSB",
+        "ITP"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2013",
+      "is_current": false,
+      "start": "2013-09-02",
+      "end": "2013-10-02",
+      "tickers": [
+        "ITE",
+        "OPT",
+        "ACQ",
+        "EFN",
+        "MG",
+        "BHC",
+        "IFP",
+        "BDGI",
+        "BAD",
+        "OSB"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2013",
+      "is_current": false,
+      "start": "2013-10-02",
+      "end": "2013-11-02",
+      "tickers": [
+        "ITE",
+        "OPT",
+        "ACQ",
+        "LMNL",
+        "BDGI",
+        "BAD",
+        "TRZ",
+        "AC",
+        "ITP",
+        "EFN"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2013",
+      "is_current": false,
+      "start": "2013-11-02",
+      "end": "2013-12-02",
+      "tickers": [
+        "ITE",
+        "LMNL",
+        "OPT",
+        "DC-A",
+        "ACQ",
+        "TRZ",
+        "AC",
+        "BDGI",
+        "BAD",
+        "SW"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2013",
+      "is_current": false,
+      "start": "2013-12-02",
+      "end": "2014-01-02",
+      "tickers": [
+        "Y",
+        "LMNL",
+        "APS",
+        "OPT",
+        "AC",
+        "TRZ",
+        "ACQ",
+        "BDGI",
+        "BAD",
+        "SW"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2014",
+      "is_current": false,
+      "start": "2014-01-02",
+      "end": "2014-02-02",
+      "tickers": [
+        "Y",
+        "AC",
+        "OPT",
+        "LMNL",
+        "TRZ",
+        "BDGI",
+        "BAD",
+        "WILD",
+        "ACQ",
+        "SW"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2014",
+      "is_current": false,
+      "start": "2014-02-02",
+      "end": "2014-03-02",
+      "tickers": [
+        "AC",
+        "SW",
+        "LMNL",
+        "OPT",
+        "Y",
+        "APS",
+        "WILD",
+        "CNE",
+        "ACQ",
+        "BDGI"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2014",
+      "is_current": false,
+      "start": "2014-03-02",
+      "end": "2014-04-02",
+      "tickers": [
+        "CORV",
+        "AC",
+        "LMNL",
+        "Y",
+        "APS",
+        "BLDP",
+        "BDGI",
+        "BAD",
+        "OPT",
+        "AIF"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2014",
+      "is_current": false,
+      "start": "2014-04-02",
+      "end": "2014-05-02",
+      "tickers": [
+        "BLDP",
+        "APS",
+        "LMNL",
+        "BDGI",
+        "BAD",
+        "AC",
+        "DEE",
+        "CEU",
+        "TVE",
+        "AIF"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2014",
+      "is_current": false,
+      "start": "2014-05-02",
+      "end": "2014-06-02",
+      "tickers": [
+        "BLDP",
+        "BDGI",
+        "BAD",
+        "TVE",
+        "ACQ",
+        "SCR_old",
+        "DEE",
+        "CEU",
+        "APS",
+        "CNE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2014",
+      "is_current": false,
+      "start": "2014-06-02",
+      "end": "2014-07-02",
+      "tickers": [
+        "BLDP",
+        "ACQ",
+        "CNE",
+        "DEE",
+        "CEU",
+        "FCU",
+        "TVE",
+        "PXT",
+        "BDGI",
+        "BAD"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2014",
+      "is_current": false,
+      "start": "2014-07-02",
+      "end": "2014-08-02",
+      "tickers": [
+        "AC",
+        "BLDP",
+        "DEE",
+        "ACQ",
+        "PXT",
+        "CKE",
+        "AIF",
+        "TVE",
+        "CNE",
+        "LMNL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2014",
+      "is_current": false,
+      "start": "2014-08-02",
+      "end": "2014-09-02",
+      "tickers": [
+        "TSGI",
+        "DEE",
+        "AC",
+        "PXT",
+        "SMF",
+        "BLDP",
+        "TVE",
+        "ACQ",
+        "LMNL",
+        "OGC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2014",
+      "is_current": false,
+      "start": "2014-09-02",
+      "end": "2014-10-02",
+      "tickers": [
+        "TSGI",
+        "AC",
+        "PXT",
+        "ACQ",
+        "DEE",
+        "TVE",
+        "SMF",
+        "AIF",
+        "WILD",
+        "OGC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2014",
+      "is_current": false,
+      "start": "2014-10-02",
+      "end": "2014-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2014",
+      "is_current": false,
+      "start": "2014-11-02",
+      "end": "2014-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2014",
+      "is_current": false,
+      "start": "2014-12-02",
+      "end": "2015-01-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2015",
+      "is_current": false,
+      "start": "2015-01-02",
+      "end": "2015-02-02",
+      "tickers": [
+        "TSGI",
+        "SW",
+        "CPH",
+        "LMNL",
+        "WILD",
+        "SCR_old",
+        "BB",
+        "CG",
+        "CSU",
+        "ATD-B"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2015",
+      "is_current": false,
+      "start": "2015-02-02",
+      "end": "2015-03-02",
+      "tickers": [
+        "TSGI",
+        "SW",
+        "SCR_old",
+        "CPH",
+        "LMNL",
+        "ATD-B",
+        "WILD",
+        "IFP",
+        "ITP",
+        "WPK"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2015",
+      "is_current": false,
+      "start": "2015-03-02",
+      "end": "2015-04-02",
+      "tickers": [
+        "CRH",
+        "TSGI",
+        "SW",
+        "CPH",
+        "SCR_old",
+        "ATD-B",
+        "BOS",
+        "CG",
+        "MRU",
+        "WILD"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2015",
+      "is_current": false,
+      "start": "2015-04-02",
+      "end": "2015-05-02",
+      "tickers": [
+        "QIPT",
+        "TSGI",
+        "SCR_old",
+        "SW",
+        "BHC",
+        "AC",
+        "CSU",
+        "MRU",
+        "CPH",
+        "TH"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2015",
+      "is_current": false,
+      "start": "2015-05-02",
+      "end": "2015-06-02",
+      "tickers": [
+        "QIPT",
+        "TSGI",
+        "TH",
+        "SCR_old",
+        "DRT",
+        "AC",
+        "BOS",
+        "BHC",
+        "CSU",
+        "LMNL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2015",
+      "is_current": false,
+      "start": "2015-06-02",
+      "end": "2015-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2015",
+      "is_current": false,
+      "start": "2015-07-02",
+      "end": "2015-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2015",
+      "is_current": false,
+      "start": "2015-08-02",
+      "end": "2015-09-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2015",
+      "is_current": false,
+      "start": "2015-09-02",
+      "end": "2015-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2015",
+      "is_current": false,
+      "start": "2015-10-02",
+      "end": "2015-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2015",
+      "is_current": false,
+      "start": "2015-11-02",
+      "end": "2015-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2015",
+      "is_current": false,
+      "start": "2015-12-02",
+      "end": "2016-01-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2016",
+      "is_current": false,
+      "start": "2016-01-02",
+      "end": "2016-02-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2016",
+      "is_current": false,
+      "start": "2016-02-02",
+      "end": "2016-03-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2016",
+      "is_current": false,
+      "start": "2016-03-02",
+      "end": "2016-04-02",
+      "tickers": [
+        "KL",
+        "KXS",
+        "NFI",
+        "PBH",
+        "EDV",
+        "UNS",
+        "JE",
+        "TPX-B",
+        "CAS",
+        "ENGH"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2016",
+      "is_current": false,
+      "start": "2016-04-02",
+      "end": "2016-05-02",
+      "tickers": [
+        "KL",
+        "EDV",
+        "NXE",
+        "PBH",
+        "NFI",
+        "WEED",
+        "ABX",
+        "OGC",
+        "SEA",
+        "CCL-B"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2016",
+      "is_current": false,
+      "start": "2016-05-02",
+      "end": "2016-06-02",
+      "tickers": [
+        "KL",
+        "NXE",
+        "NMX",
+        "BSX",
+        "SBB",
+        "NFI",
+        "SEA",
+        "EDV",
+        "GPR",
+        "PBH"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2016",
+      "is_current": false,
+      "start": "2016-06-02",
+      "end": "2016-07-02",
+      "tickers": [
+        "KL",
+        "NMX",
+        "SBB",
+        "NXE",
+        "GPR",
+        "EDV",
+        "K",
+        "FR",
+        "AG",
+        "SVM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2016",
+      "is_current": false,
+      "start": "2016-07-02",
+      "end": "2016-08-02",
+      "tickers": [
+        "NMX",
+        "KL",
+        "NXE",
+        "EDV",
+        "GPR",
+        "FR",
+        "AG",
+        "TH",
+        "EFL",
+        "ELVA"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2016",
+      "is_current": false,
+      "start": "2016-08-02",
+      "end": "2016-09-02",
+      "tickers": [
+        "KL",
+        "NMX",
+        "EFL",
+        "ELVA",
+        "NXE",
+        "GPR",
+        "AG",
+        "FR",
+        "SVM",
+        "EDV"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2016",
+      "is_current": false,
+      "start": "2016-09-02",
+      "end": "2016-10-02",
+      "tickers": [
+        "FR",
+        "AG",
+        "SVM",
+        "EDR",
+        "EDV",
+        "KL",
+        "GSC",
+        "GPR",
+        "BTO",
+        "IMG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2016",
+      "is_current": false,
+      "start": "2016-10-02",
+      "end": "2016-11-02",
+      "tickers": [
+        "SVM",
+        "ELVA",
+        "EFL",
+        "AG",
+        "FR",
+        "NMX",
+        "NXE",
+        "FVI",
+        "EDV",
+        "KL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2016",
+      "is_current": false,
+      "start": "2016-11-02",
+      "end": "2016-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2016",
+      "is_current": false,
+      "start": "2016-12-02",
+      "end": "2017-01-02",
+      "tickers": [
+        "FIRE",
+        "ACB",
+        "WEED",
+        "PIPE",
+        "TCW",
+        "APHA",
+        "TECK-B",
+        "OGI",
+        "GSC",
+        "EDV"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2017",
+      "is_current": false,
+      "start": "2017-01-02",
+      "end": "2017-02-02",
+      "tickers": [
+        "WEED",
+        "TCW",
+        "NDM",
+        "TECK-B",
+        "ACB",
+        "APHA",
+        "OGI",
+        "SVM",
+        "TV",
+        "GSC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2017",
+      "is_current": false,
+      "start": "2017-02-02",
+      "end": "2017-03-02",
+      "tickers": [
+        "NDM",
+        "TCW",
+        "ACB",
+        "WEED",
+        "APHA",
+        "FIRE",
+        "IVN",
+        "TECK-B",
+        "OGI",
+        "SVM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2017",
+      "is_current": false,
+      "start": "2017-03-02",
+      "end": "2017-04-02",
+      "tickers": [
+        "EQX",
+        "NDM",
+        "CIA",
+        "CRON",
+        "ACB",
+        "IVN",
+        "WEED",
+        "TECK-B",
+        "FIRE",
+        "FM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2017",
+      "is_current": false,
+      "start": "2017-04-02",
+      "end": "2017-05-02",
+      "tickers": [
+        "CRON",
+        "APHA",
+        "IVN",
+        "WEED",
+        "ACB",
+        "NDM",
+        "TV",
+        "SVM",
+        "CS",
+        "NXE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2017",
+      "is_current": false,
+      "start": "2017-05-02",
+      "end": "2017-06-02",
+      "tickers": [
+        "CRON",
+        "EQX",
+        "IVN",
+        "APHA",
+        "WEED",
+        "ACB",
+        "OSK",
+        "NDM",
+        "TH",
+        "AUP"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2017",
+      "is_current": false,
+      "start": "2017-06-02",
+      "end": "2017-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2017",
+      "is_current": false,
+      "start": "2017-07-02",
+      "end": "2017-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2017",
+      "is_current": false,
+      "start": "2017-08-02",
+      "end": "2017-09-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2017",
+      "is_current": false,
+      "start": "2017-09-02",
+      "end": "2017-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2017",
+      "is_current": false,
+      "start": "2017-10-02",
+      "end": "2017-11-02",
+      "tickers": [
+        "NVO",
+        "TH",
+        "AC",
+        "SHOP",
+        "YGR",
+        "IVN",
+        "ACB",
+        "KL",
+        "HSM",
+        "NDM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2017",
+      "is_current": false,
+      "start": "2017-11-02",
+      "end": "2017-12-02",
+      "tickers": [
+        "HEXO",
+        "NVO",
+        "KAT",
+        "TKO",
+        "WPRT",
+        "HSM",
+        "AC",
+        "SHOP",
+        "BLDP",
+        "CRON"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2017",
+      "is_current": false,
+      "start": "2017-12-02",
+      "end": "2018-01-02",
+      "tickers": [
+        "HEXO",
+        "NVO",
+        "KAT",
+        "TKO",
+        "LAR",
+        "LAAC",
+        "BLDP",
+        "HSM",
+        "WEED",
+        "KL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2018",
+      "is_current": false,
+      "start": "2018-01-02",
+      "end": "2018-02-02",
+      "tickers": [
+        "HEXO",
+        "KAT",
+        "VFF",
+        "VIVO",
+        "VLE",
+        "ACB",
+        "LAAC",
+        "LAR",
+        "CRON",
+        "KL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2018",
+      "is_current": false,
+      "start": "2018-02-02",
+      "end": "2018-03-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2018",
+      "is_current": false,
+      "start": "2018-03-02",
+      "end": "2018-04-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2018",
+      "is_current": false,
+      "start": "2018-04-02",
+      "end": "2018-05-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2018",
+      "is_current": false,
+      "start": "2018-05-02",
+      "end": "2018-06-02",
+      "tickers": [
+        "VLE",
+        "VIVO",
+        "KAT",
+        "ACB",
+        "CRON",
+        "WEED",
+        "APS",
+        "HNL",
+        "HEXO",
+        "GOOS"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2018",
+      "is_current": false,
+      "start": "2018-06-02",
+      "end": "2018-07-02",
+      "tickers": [
+        "VLE",
+        "ACB",
+        "APS",
+        "CRON",
+        "WEED",
+        "HEXO",
+        "HNL",
+        "YGR",
+        "GOOS",
+        "KL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2018",
+      "is_current": false,
+      "start": "2018-07-02",
+      "end": "2018-08-02",
+      "tickers": [
+        "VLE",
+        "WEED",
+        "CRON",
+        "HEXO",
+        "APS",
+        "KOR",
+        "ACB",
+        "HNL",
+        "NEPT",
+        "VFF"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2018",
+      "is_current": false,
+      "start": "2018-08-02",
+      "end": "2018-09-04",
+      "tickers": [
+        "WEED",
+        "CRON",
+        "LGO",
+        "HEXO",
+        "ACB",
+        "APS",
+        "GOOS",
+        "MEG",
+        "HNL",
+        "BBD-B"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2018",
+      "is_current": false,
+      "start": "2018-09-04",
+      "end": "2018-10-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2018",
+      "is_current": false,
+      "start": "2018-10-02",
+      "end": "2018-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2018",
+      "is_current": false,
+      "start": "2018-11-02",
+      "end": "2018-12-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2018",
+      "is_current": false,
+      "start": "2018-12-04",
+      "end": "2019-01-03",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2019",
+      "is_current": false,
+      "start": "2019-01-03",
+      "end": "2019-02-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2019",
+      "is_current": false,
+      "start": "2019-02-04",
+      "end": "2019-03-04",
+      "tickers": [
+        "KRR",
+        "HLS",
+        "AH",
+        "ALEF",
+        "LGO",
+        "WDO",
+        "CRON",
+        "KL",
+        "PAT",
+        "OGC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2019",
+      "is_current": false,
+      "start": "2019-03-04",
+      "end": "2019-04-02",
+      "tickers": [
+        "KML",
+        "KRR",
+        "CRON",
+        "AH",
+        "ALEF",
+        "WEED",
+        "WDO",
+        "HEXO",
+        "VLNS",
+        "LGO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2019",
+      "is_current": false,
+      "start": "2019-04-02",
+      "end": "2019-05-02",
+      "tickers": [
+        "KML",
+        "RIV",
+        "LABS",
+        "AH",
+        "ALEF",
+        "NOA",
+        "CRON",
+        "ERO",
+        "KL",
+        "VFF"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2019",
+      "is_current": false,
+      "start": "2019-05-02",
+      "end": "2019-06-04",
+      "tickers": [
+        "KML",
+        "RIV",
+        "LABS",
+        "VFF",
+        "CRON",
+        "OGI",
+        "NOA",
+        "KL",
+        "CIA",
+        "TXG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2019",
+      "is_current": false,
+      "start": "2019-06-04",
+      "end": "2019-07-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2019",
+      "is_current": false,
+      "start": "2019-07-02",
+      "end": "2019-08-02",
+      "tickers": [
+        "KML",
+        "RIV",
+        "LABS",
+        "VFF",
+        "VLNS",
+        "CIA",
+        "OGI",
+        "KL",
+        "SHOP",
+        "ERO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2019",
+      "is_current": false,
+      "start": "2019-08-02",
+      "end": "2019-09-03",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2019",
+      "is_current": false,
+      "start": "2019-09-03",
+      "end": "2019-10-02",
+      "tickers": [
+        "KML",
+        "VLNS",
+        "LABS",
+        "KNT",
+        "VFF",
+        "ERO",
+        "MUX",
+        "SHOP",
+        "VMD",
+        "ASR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2019",
+      "is_current": false,
+      "start": "2019-10-02",
+      "end": "2019-11-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2019",
+      "is_current": false,
+      "start": "2019-11-04",
+      "end": "2019-12-03",
+      "tickers": [
+        "KML",
+        "VLNS",
+        "LABS",
+        "TRZ",
+        "HBC",
+        "REAL",
+        "ASR",
+        "SIL",
+        "CG",
+        "KL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2019",
+      "is_current": false,
+      "start": "2019-12-03",
+      "end": "2020-01-03",
+      "tickers": [
+        "KML",
+        "VLNS",
+        "HBC",
+        "ASR",
+        "REAL",
+        "ELD",
+        "KNT",
+        "TRZ",
+        "WDO",
+        "LABS"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2020",
+      "is_current": false,
+      "start": "2020-01-03",
+      "end": "2020-02-04",
+      "tickers": [
+        "KML",
+        "ASR",
+        "REAL",
+        "SVM",
+        "SCR_old",
+        "KNT",
+        "ELD",
+        "WDO",
+        "SIL",
+        "FR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2020",
+      "is_current": false,
+      "start": "2020-02-04",
+      "end": "2020-03-03",
+      "tickers": [
+        "KML",
+        "VLNS",
+        "BU",
+        "AUP",
+        "DYA",
+        "XBC",
+        "REAL",
+        "KNT",
+        "SCR_old",
+        "SVM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2020",
+      "is_current": false,
+      "start": "2020-03-03",
+      "end": "2020-04-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2020",
+      "is_current": false,
+      "start": "2020-04-02",
+      "end": "2020-05-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2020",
+      "is_current": false,
+      "start": "2020-05-04",
+      "end": "2020-06-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2020",
+      "is_current": false,
+      "start": "2020-06-02",
+      "end": "2020-07-02",
+      "tickers": [
+        "TRIL",
+        "APS",
+        "AUP",
+        "JAG",
+        "OLA",
+        "TGZ",
+        "SHOP",
+        "BLU",
+        "NG",
+        "BLDP"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2020",
+      "is_current": false,
+      "start": "2020-07-02",
+      "end": "2020-08-04",
+      "tickers": [
+        "ARIS",
+        "TRIL",
+        "FVL",
+        "JAG",
+        "APS",
+        "PYR",
+        "REAL",
+        "SHOP",
+        "OLA",
+        "LGD"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2020",
+      "is_current": false,
+      "start": "2020-08-04",
+      "end": "2020-09-02",
+      "tickers": [
+        "ARIS",
+        "FVL",
+        "TRIL",
+        "PYR",
+        "SKE",
+        "DSV",
+        "BLDP",
+        "REAL",
+        "SHOP",
+        "NDM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2020",
+      "is_current": false,
+      "start": "2020-09-02",
+      "end": "2020-10-02",
+      "tickers": [
+        "ARIS",
+        "FVL",
+        "PYR",
+        "TRIL",
+        "DSV",
+        "JAG",
+        "OLA",
+        "NDM",
+        "REAL",
+        "BOS"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2020",
+      "is_current": false,
+      "start": "2020-10-02",
+      "end": "2020-11-03",
+      "tickers": [
+        "BOY",
+        "FVL",
+        "ARIS",
+        "TRIL",
+        "PYR",
+        "SKE",
+        "DSV",
+        "JAG",
+        "WM",
+        "KNT"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2020",
+      "is_current": false,
+      "start": "2020-11-03",
+      "end": "2020-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2020",
+      "is_current": false,
+      "start": "2020-12-02",
+      "end": "2021-01-05",
+      "tickers": [
+        "BOY",
+        "GURU",
+        "TRIL",
+        "ARIS",
+        "AHC",
+        "PYR",
+        "JAG",
+        "BABY",
+        "AT",
+        "ILLM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2021",
+      "is_current": false,
+      "start": "2021-01-05",
+      "end": "2021-02-02",
+      "tickers": [
+        "BOY",
+        "TRIL",
+        "ARIS",
+        "FVL",
+        "AHC",
+        "AT",
+        "ILLM",
+        "HIVE",
+        "PYR",
+        "VOYG"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2021",
+      "is_current": false,
+      "start": "2021-02-02",
+      "end": "2021-03-02",
+      "tickers": [
+        "BOY",
+        "ARIS",
+        "HIVE",
+        "VOYG",
+        "AT",
+        "ILLM",
+        "GLXY",
+        "NOU",
+        "EFL",
+        "ELVA"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2021",
+      "is_current": false,
+      "start": "2021-03-02",
+      "end": "2021-04-02",
+      "tickers": [
+        "BOY",
+        "FTRP",
+        "VOYG",
+        "ARIS",
+        "ILLM",
+        "AT",
+        "HIVE",
+        "BITF",
+        "NOU",
+        "PYR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2021",
+      "is_current": false,
+      "start": "2021-04-02",
+      "end": "2021-05-04",
+      "tickers": [
+        "BOY",
+        "VOYG",
+        "HIVE",
+        "BITF",
+        "ILLM",
+        "AT",
+        "PYR",
+        "GLXY",
+        "NOU",
+        "HUT"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2021",
+      "is_current": false,
+      "start": "2021-05-04",
+      "end": "2021-06-02",
+      "tickers": [
+        "BOY",
+        "VOYG",
+        "HIVE",
+        "BITF",
+        "GLXY",
+        "AT",
+        "ILLM",
+        "PYR",
+        "HUT",
+        "NOU"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2021",
+      "is_current": false,
+      "start": "2021-06-02",
+      "end": "2021-07-02",
+      "tickers": [
+        "BOY",
+        "VOYG",
+        "CURA",
+        "GLXY",
+        "BITF",
+        "HIVE",
+        "FOM",
+        "MOGO",
+        "ORIO",
+        "ILLM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2021",
+      "is_current": false,
+      "start": "2021-07-02",
+      "end": "2021-08-03",
+      "tickers": [
+        "BOY",
+        "GURU",
+        "VOYG",
+        "CURA",
+        "BITF",
+        "GLXY",
+        "ILLM",
+        "AT",
+        "AMC",
+        "POU"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2021",
+      "is_current": false,
+      "start": "2021-08-03",
+      "end": "2021-09-02",
+      "tickers": [
+        "BOY",
+        "VOYG",
+        "CURA",
+        "GLXY",
+        "BBL-A",
+        "BITF",
+        "POU",
+        "HIVE",
+        "OBE",
+        "ILLM"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2021",
+      "is_current": false,
+      "start": "2021-09-02",
+      "end": "2021-10-04",
+      "tickers": [
+        "BOY",
+        "VOYG",
+        "CURA",
+        "BITF",
+        "SLS",
+        "POU",
+        "FIL",
+        "CR",
+        "CJ",
+        "CTS"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2021",
+      "is_current": false,
+      "start": "2021-10-04",
+      "end": "2021-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2021",
+      "is_current": false,
+      "start": "2021-11-02",
+      "end": "2021-12-02",
+      "tickers": [
+        "BITF",
+        "CURA",
+        "VOYG",
+        "FOM",
+        "HUT",
+        "CR",
+        "OBE",
+        "CJ",
+        "POU",
+        "HIVE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2021",
+      "is_current": false,
+      "start": "2021-12-02",
+      "end": "2022-01-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2022",
+      "is_current": false,
+      "start": "2022-01-04",
+      "end": "2022-02-02",
+      "tickers": [
+        "BITF",
+        "VOYG",
+        "HUT",
+        "OBE",
+        "ATH",
+        "NVA",
+        "CURA",
+        "CR",
+        "FIL",
+        "AMC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2022",
+      "is_current": false,
+      "start": "2022-02-02",
+      "end": "2022-03-02",
+      "tickers": [
+        "IPO",
+        "NVA",
+        "PIPE",
+        "SCR",
+        "ATH",
+        "FIL",
+        "OBE",
+        "AMC",
+        "CR",
+        "CURA"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2022",
+      "is_current": false,
+      "start": "2022-03-02",
+      "end": "2022-04-04",
+      "tickers": [
+        "IPO",
+        "OBE",
+        "NVA",
+        "FIL",
+        "NPK",
+        "BTE",
+        "GXE",
+        "SCR",
+        "PIPE",
+        "AMC"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2022",
+      "is_current": false,
+      "start": "2022-04-04",
+      "end": "2022-05-03",
+      "tickers": [
+        "JOY",
+        "NPK",
+        "IPO",
+        "OBE",
+        "FIL",
+        "ATH",
+        "NVA",
+        "BTE",
+        "CJ",
+        "GXE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2022",
+      "is_current": false,
+      "start": "2022-05-03",
+      "end": "2022-06-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2022",
+      "is_current": false,
+      "start": "2022-06-02",
+      "end": "2022-07-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2022",
+      "is_current": false,
+      "start": "2022-07-04",
+      "end": "2022-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2022",
+      "is_current": false,
+      "start": "2022-08-02",
+      "end": "2022-09-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2022",
+      "is_current": false,
+      "start": "2022-09-02",
+      "end": "2022-10-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2022",
+      "is_current": false,
+      "start": "2022-10-04",
+      "end": "2022-11-02",
+      "tickers": [
+        "PMET",
+        "STEP",
+        "NPK",
+        "JOY",
+        "VET",
+        "BLU",
+        "CR",
+        "OBE",
+        "ATH",
+        "SDE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2022",
+      "is_current": false,
+      "start": "2022-11-02",
+      "end": "2022-12-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2022",
+      "is_current": false,
+      "start": "2022-12-02",
+      "end": "2023-01-04",
+      "tickers": [
+        "PMET",
+        "STEP",
+        "JOY",
+        "ACX",
+        "TRQ",
+        "MATR",
+        "SCL",
+        "SW",
+        "SOY",
+        "ATH"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2023",
+      "is_current": false,
+      "start": "2023-01-04",
+      "end": "2023-02-02",
+      "tickers": [
+        "PMET",
+        "SCL",
+        "MATR",
+        "JOY",
+        "SDE",
+        "MAGT",
+        "PD",
+        "IPCO",
+        "SGY",
+        "UNS"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2023",
+      "is_current": false,
+      "start": "2023-02-02",
+      "end": "2023-03-02",
+      "tickers": [
+        "PMET",
+        "SCL",
+        "MATR",
+        "CET",
+        "BBD-B",
+        "STEP",
+        "MAXR",
+        "MAGT",
+        "FIL",
+        "SDE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2023",
+      "is_current": false,
+      "start": "2023-03-02",
+      "end": "2023-04-04",
+      "tickers": [
+        "PMET",
+        "SCL",
+        "MATR",
+        "BBD-B",
+        "EXRO",
+        "MAXR",
+        "MAGT",
+        "LUG",
+        "CS",
+        "WELL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2023",
+      "is_current": false,
+      "start": "2023-04-04",
+      "end": "2023-05-02",
+      "tickers": [
+        "PMET",
+        "VLE",
+        "SCL",
+        "MATR",
+        "BBD-B",
+        "WELL",
+        "HPS-A",
+        "MAXR",
+        "MAGT",
+        "CS"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2023",
+      "is_current": false,
+      "start": "2023-05-02",
+      "end": "2023-06-02",
+      "tickers": [
+        "PMET",
+        "NGEX",
+        "BBD-B",
+        "WELL",
+        "MAXR",
+        "SCL",
+        "MATR",
+        "TXG",
+        "MAGT",
+        "MRE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2023",
+      "is_current": false,
+      "start": "2023-06-02",
+      "end": "2023-07-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2023",
+      "is_current": false,
+      "start": "2023-07-04",
+      "end": "2023-08-02",
+      "tickers": [
+        "PMET",
+        "WELL",
+        "HPS-A",
+        "NGEX",
+        "NVDA",
+        "MAXR",
+        "MAGT",
+        "MATR",
+        "SCL",
+        "META"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2023",
+      "is_current": false,
+      "start": "2023-08-02",
+      "end": "2023-09-05",
+      "tickers": [
+        "PMET",
+        "HUT",
+        "NGEX",
+        "NVDA",
+        "HPS-A",
+        "WELL",
+        "MATR",
+        "SCL",
+        "BITF",
+        "BBD-B"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2023",
+      "is_current": false,
+      "start": "2023-09-05",
+      "end": "2023-10-03",
+      "tickers": [
+        "HPS-A",
+        "MATR",
+        "SCL",
+        "PMET",
+        "SGD",
+        "NVDA",
+        "BBD-B",
+        "WELL",
+        "NOA",
+        "ERO"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2023",
+      "is_current": false,
+      "start": "2023-10-03",
+      "end": "2023-11-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2023",
+      "is_current": false,
+      "start": "2023-11-02",
+      "end": "2023-12-04",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2023",
+      "is_current": false,
+      "start": "2023-12-04",
+      "end": "2024-01-03",
+      "tickers": [
+        "VLE",
+        "HPS-A",
+        "NVDA",
+        "CLS",
+        "META",
+        "MDA",
+        "CVO",
+        "SCL",
+        "CCO",
+        "MAXR"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2024",
+      "is_current": false,
+      "start": "2024-01-03",
+      "end": "2024-02-02",
+      "tickers": [
+        "VLE",
+        "HPS-A",
+        "BITF",
+        "CLS",
+        "GLXY",
+        "QBTC",
+        "NVDA",
+        "META",
+        "CCO",
+        "WELL"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Feb 2024",
+      "is_current": false,
+      "start": "2024-02-02",
+      "end": "2024-03-04",
+      "tickers": [
+        "BITF",
+        "HPS-A",
+        "CLS",
+        "NVDA",
+        "QBTC",
+        "META",
+        "ARE",
+        "GLXY",
+        "WELL",
+        "ATH"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Mar 2024",
+      "is_current": false,
+      "start": "2024-03-04",
+      "end": "2024-04-02",
+      "tickers": [
+        "DRX",
+        "HPS-A",
+        "NVDA",
+        "CLS",
+        "ARE",
+        "META",
+        "U-U",
+        "FCU",
+        "BDT",
+        "NXE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2024",
+      "is_current": false,
+      "start": "2024-04-02",
+      "end": "2024-05-02",
+      "tickers": [
+        "HPS-A",
+        "GLXY",
+        "CLS",
+        "QBTC",
+        "NVDA",
+        "BITF",
+        "META",
+        "VHI",
+        "PRL",
+        "TVK"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "May 2024",
+      "is_current": false,
+      "start": "2024-05-02",
+      "end": "2024-06-04",
+      "tickers": [
+        "HPS-A",
+        "DRX",
+        "CLS",
+        "GLXY",
+        "NVDA",
+        "QBTC",
+        "PRL",
+        "BITF",
+        "VHI",
+        "TVK"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jun 2024",
+      "is_current": false,
+      "start": "2024-06-04",
+      "end": "2024-07-02",
+      "tickers": [
+        "DRX",
+        "PRL",
+        "CLS",
+        "NVDA",
+        "TVK",
+        "GLXY",
+        "ARE",
+        "HPS-A",
+        "BDT",
+        "CURA"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jul 2024",
+      "is_current": false,
+      "start": "2024-07-02",
+      "end": "2024-08-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Aug 2024",
+      "is_current": false,
+      "start": "2024-08-02",
+      "end": "2024-09-04",
+      "tickers": [
+        "GMIN",
+        "DRX",
+        "CLS",
+        "PRL",
+        "NVDA",
+        "CEU",
+        "BDT",
+        "GLXY",
+        "TVK",
+        "VLE"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Sep 2024",
+      "is_current": false,
+      "start": "2024-09-04",
+      "end": "2024-10-02",
+      "tickers": [
+        "GMIN",
+        "CPH",
+        "PRL",
+        "CEU",
+        "DRX",
+        "BDT",
+        "HRX",
+        "NVDA",
+        "TVK",
+        "NGD"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Oct 2024",
+      "is_current": false,
+      "start": "2024-10-02",
+      "end": "2024-11-04",
+      "tickers": [
+        "ISO",
+        "GMIN",
+        "CPH",
+        "PRL",
+        "TVK",
+        "DRX",
+        "CPLF",
+        "NGD",
+        "ARE",
+        "GLXY"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Nov 2024",
+      "is_current": false,
+      "start": "2024-11-04",
+      "end": "2024-12-03",
+      "tickers": [
+        "GMIN",
+        "PRL",
+        "MAU",
+        "GLXY",
+        "NGD",
+        "TVK",
+        "ARE",
+        "CWB",
+        "BBD-B",
+        "BBD-A"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Dec 2024",
+      "is_current": false,
+      "start": "2024-12-03",
+      "end": "2025-01-03",
+      "tickers": [
+        "GMIN",
+        "PRL",
+        "ARE",
+        "VHI",
+        "TNZ",
+        "SKE",
+        "PPTA",
+        "NVDA",
+        "CLS",
+        "BDT"
+      ],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Jan 2025",
+      "is_current": false,
+      "start": "2025-01-03",
+      "end": "2025-02-04",
+      "tickers": [
+        "GMIN",
+        "ARE",
+        "WELL",
+        "CIX",
+        "CLS",
+        "HUT",
+        "PRL",
+        "PPTA",
+        "MDA",
+        "TVK"
+      ],
+      "return_pct": 4.3914
+    },
+    {
+      "month": "Feb 2025",
+      "is_current": false,
+      "start": "2025-02-04",
+      "end": "2025-03-04",
+      "tickers": [
+        "ISO",
+        "GMIN",
+        "PPTA",
+        "WELL",
+        "CLS",
+        "CIX",
+        "ARE",
+        "MDA",
+        "GLXY",
+        "EFX"
+      ],
+      "return_pct": -16.5927
+    },
+    {
+      "month": "Mar 2025",
+      "is_current": false,
+      "start": "2025-03-04",
+      "end": "2025-04-02",
+      "tickers": [],
+      "return_pct": 0.0
+    },
+    {
+      "month": "Apr 2025",
+      "is_current": false,
+      "start": "2025-04-02",
+      "end": "2025-05-02",
+      "tickers": [
+        "GMIN",
+        "ISO",
+        "AII",
+        "DSV",
+        "SSRM",
+        "NDM",
+        "CIX",
+        "CNL",
+        "ORA",
+        "CLS"
+      ],
+      "return_pct": 7.1248
+    },
+    {
+      "month": "May 2025",
+      "is_current": false,
+      "start": "2025-05-02",
+      "end": "2025-06-03",
+      "tickers": [
+        "GMIN",
+        "AII",
+        "NDM",
+        "CNL",
+        "DSV",
+        "OLA",
+        "TNZ",
+        "ORA",
+        "MAU",
+        "SSRM"
+      ],
+      "return_pct": 23.2059
+    },
+    {
+      "month": "Jun 2025",
+      "is_current": false,
+      "start": "2025-06-03",
+      "end": "2025-07-02",
+      "tickers": [
+        "AII",
+        "CNL",
+        "DSV",
+        "ASM",
+        "OLA",
+        "LUG",
+        "ORA",
+        "PPTA",
+        "MAU",
+        "GMIN"
+      ],
+      "return_pct": -4.555
+    },
+    {
+      "month": "Jul 2025",
+      "is_current": false,
+      "start": "2025-07-02",
+      "end": "2025-08-04",
+      "tickers": [
+        "AII",
+        "DSV",
+        "CNL",
+        "NDM",
+        "ASM",
+        "TNZ",
+        "LUG",
+        "MAU",
+        "ORA",
+        "OLA"
+      ],
+      "return_pct": -11.1971
+    },
+    {
+      "month": "Aug 2025",
+      "is_current": false,
+      "start": "2025-08-04",
+      "end": "2025-09-02",
+      "tickers": [
+        "AII",
+        "CNL",
+        "ASM",
+        "DSV",
+        "TNZ",
+        "NDM",
+        "LUG",
+        "USA",
+        "MAU",
+        "ORA"
+      ],
+      "return_pct": 29.9713
+    },
+    {
+      "month": "Sep 2025",
+      "is_current": false,
+      "start": "2025-09-02",
+      "end": "2025-10-02",
+      "tickers": [
+        "AII",
+        "TLO",
+        "DSV",
+        "ASM",
+        "MDA",
+        "USA",
+        "CLS",
+        "CNL",
+        "LUG",
+        "MAU"
+      ],
+      "return_pct": 13.7301
+    },
+    {
+      "month": "Oct 2025",
+      "is_current": false,
+      "start": "2025-10-02",
+      "end": "2025-11-04",
+      "tickers": [
+        "DSV",
+        "ASM",
+        "CGG",
+        "AII",
+        "USA",
+        "CLS",
+        "CNL",
+        "SSRM",
+        "LUG",
+        "MAU"
+      ],
+      "return_pct": -2.3903
+    },
+    {
+      "month": "Nov 2025",
+      "is_current": false,
+      "start": "2025-11-04",
+      "end": "2025-12-02",
+      "tickers": [
+        "ARA",
+        "AII",
+        "DSV",
+        "CLS",
+        "USA",
+        "ASM",
+        "TLO",
+        "EFR",
+        "TLG",
+        "CGG"
+      ],
+      "return_pct": 14.2031
+    },
+    {
+      "month": "Dec 2025",
+      "is_current": false,
+      "start": "2025-12-02",
+      "end": "2026-01-05",
+      "tickers": [
+        "TMQ",
+        "AII",
+        "CLS",
+        "DSV",
+        "TLG",
+        "EFR",
+        "HUT",
+        "NDM",
+        "USA",
+        "BITF"
+      ],
+      "return_pct": 17.0155
+    },
+    {
+      "month": "Jan 2026",
+      "is_current": false,
+      "start": "2026-01-05",
+      "end": "2026-02-03",
+      "tickers": [
+        "HMMC",
+        "DSV",
+        "AII",
+        "GRGD",
+        "TMQ",
+        "TLO",
+        "CGG",
+        "TLG",
+        "USA",
+        "ASM"
+      ],
+      "return_pct": 123.011
+    },
+    {
+      "month": "Feb 2026",
+      "is_current": false,
+      "start": "2026-02-03",
+      "end": "2026-03-03",
+      "tickers": [
+        "HMMC",
+        "TI",
+        "DSV",
+        "APM",
+        "AII",
+        "TLO",
+        "ASM",
+        "TLG",
+        "RIO",
+        "TSK"
+      ],
+      "return_pct": 6.6932
+    },
+    {
+      "month": "Mar 2026",
+      "is_current": false,
+      "start": "2026-03-03",
+      "end": "2026-04-02",
+      "tickers": [
+        "HMMC",
+        "AII",
+        "ASM",
+        "III",
+        "TLO",
+        "TRX",
+        "FF",
+        "DSV",
+        "MAU",
+        "USA"
+      ],
+      "return_pct": -15.6556
+    },
+    {
+      "month": "Apr 2026",
+      "is_current": false,
+      "start": "2026-04-02",
+      "end": "2026-05-04",
+      "tickers": [
+        "HMMC",
+        "AII",
+        "TLO",
+        "BSX",
+        "FDY",
+        "USA",
+        "MAU",
+        "TLG",
+        "DSV",
+        "GRGD"
+      ],
+      "return_pct": -0.8774
+    },
+    {
+      "month": "May 2026",
+      "is_current": false,
+      "start": "2026-05-04",
+      "end": "2026-06-02",
+      "tickers": [
+        "HMMC",
+        "BSX",
+        "AII",
+        "VNP",
+        "FDY",
+        "TLO",
+        "TNZ",
+        "MAU",
+        "GRGD",
+        "DSV"
+      ],
+      "return_pct": 9.5996
+    },
+    {
+      "month": "Jun 2026",
+      "is_current": false,
+      "start": "2026-06-02",
+      "end": "2026-07-02",
+      "tickers": [
+        "HMMC",
+        "AII",
+        "TLO",
+        "ABRA",
+        "GRGD",
+        "FDY",
+        "NUAG",
+        "LAR",
+        "SDE",
+        "SOIL"
+      ],
+      "return_pct": -17.8147
+    },
+    {
+      "month": "Jul 2026",
+      "is_current": true,
+      "start": "2026-07-02",
+      "end": null,
+      "tickers": [
+        "HMMC",
+        "FDY",
+        "HUT",
+        "AII",
+        "BITF",
+        "OM",
+        "ASCU",
+        "LAR",
+        "VNP",
+        "LGD"
+      ],
+      "return_pct": -12.6412
+    }
+  ],
+  "tsx_annual": {
+    "2024": 18.47,
+    "2025": 27.37,
+    "2026": 10.48
+  }
+}
