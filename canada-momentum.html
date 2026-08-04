@@ -144,7 +144,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 
   <div id="auth-wall">
     <p>Sign in to view the live Canada momentum signal.</p>
-    <button onclick="document.getElementById('login-modal').style.display='flex'" style="padding:11px 28px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+    <button data-auth="signin" style="padding:11px 28px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
   </div>
 
   <div id="content-area">
@@ -307,19 +307,6 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </div>
 
   </div><!-- /content-area -->
-
-  <!-- Login Modal -->
-  <div id="login-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center">
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:380px;width:90%">
-      <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px">Sign In</div>
-      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:20px">Access Canada momentum signal.</p>
-      <input id="login-email" type="email" placeholder="Email" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:10px;outline:none">
-      <input id="login-password" type="password" placeholder="Password" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;margin-bottom:14px;outline:none">
-      <div id="login-error" style="color:var(--red);font-size:.7rem;font-family:var(--font-mono);margin-bottom:10px;display:none"></div>
-      <button id="login-submit" style="width:100%;padding:11px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px">Sign In</button>
-      <button onclick="document.getElementById('login-modal').style.display='none'" style="width:100%;padding:8px;background:none;color:var(--text-muted);font-family:var(--font-mono);font-size:.7rem;border:none;cursor:pointer">Cancel</button>
-    </div>
-  </div>
 
 </div>
 </main>
