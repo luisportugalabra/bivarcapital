@@ -1,9 +1,9 @@
 {
-  "last_rebalance": "2026-07-31",
-  "updated": "2026-08-04",
-  "ytd_2026": 5.22,
-  "ftse100": 10893.03,
-  "ftse100_ma200": 10222.19,
+  "last_rebalance": "2026-08-04",
+  "updated": "2026-08-05",
+  "ytd_2026": 5.15,
+  "ftse100": 10857.7,
+  "ftse100_ma200": 10222.01,
   "regime": "risk-on",
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). £1 = 100p.",
@@ -128,8 +128,8 @@
       "return_pct": 9.65
     },
     {
-      "month": "Aug 2026 (MTD)",
-      "is_current": true,
+      "month": "Aug 2026",
+      "is_current": false,
       "start": "2026-07-31",
       "end": "2026-08-04",
       "regime": "momentum",
@@ -142,7 +142,24 @@
         "ATG",
         "HFD"
       ],
-      "return_pct": 1.12
+      "return_pct": 0.58
+    },
+    {
+      "month": "Aug 2026 (MTD)",
+      "is_current": true,
+      "start": "2026-08-04",
+      "end": "2026-08-05",
+      "regime": "momentum",
+      "tickers": [
+        "RPI",
+        "CMCX",
+        "ENQ",
+        "SEPL",
+        "KLR",
+        "ATG",
+        "HFD"
+      ],
+      "return_pct": 0.47
     }
   ],
   "holdings": [
@@ -152,8 +169,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-08-04",
       "entry_price": 671.5,
-      "current_price": 671.5,
-      "return_pct": 0.0
+      "current_price": 686.5,
+      "return_pct": 2.23
     },
     {
       "ticker": "CMCX",
@@ -161,8 +178,8 @@
       "sector": "Finance",
       "entry_date": "2026-08-04",
       "entry_price": 683.0,
-      "current_price": 684.0,
-      "return_pct": 0.15
+      "current_price": 681.0,
+      "return_pct": -0.29
     },
     {
       "ticker": "ENQ",
@@ -170,8 +187,8 @@
       "sector": "Energy Minerals",
       "entry_date": "2026-08-04",
       "entry_price": 24.35,
-      "current_price": 24.281,
-      "return_pct": -0.28
+      "current_price": 22.85,
+      "return_pct": -6.16
     },
     {
       "ticker": "SEPL",
@@ -179,8 +196,8 @@
       "sector": "Energy Minerals",
       "entry_date": "2026-08-04",
       "entry_price": 580.0,
-      "current_price": 580.0,
-      "return_pct": 0.0
+      "current_price": 579.0,
+      "return_pct": -0.17
     },
     {
       "ticker": "KLR",
@@ -188,8 +205,8 @@
       "sector": "Industrial Services",
       "entry_date": "2026-08-04",
       "entry_price": 3008.0,
-      "current_price": 3008.0,
-      "return_pct": 0.0
+      "current_price": 3050.0,
+      "return_pct": 1.4
     },
     {
       "ticker": "ATG",
@@ -197,8 +214,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 455.0,
-      "current_price": 462.0,
-      "return_pct": 1.54
+      "current_price": 470.4,
+      "return_pct": 3.38
     },
     {
       "ticker": "HFD",
@@ -206,8 +223,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 243.0,
-      "current_price": 242.5,
-      "return_pct": -0.21
+      "current_price": 244.0,
+      "return_pct": 0.41
     }
   ]
 }

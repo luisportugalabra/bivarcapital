@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-07-02",
-  "updated": "2026-08-04",
+  "updated": "2026-08-05",
   "ytd_2026": -12.4,
   "holdings": [
     {
@@ -9,8 +9,8 @@
       "sector": "Basic Materials",
       "entry_date": "2026-04-02",
       "entry_price": 5.3159,
-      "current_price": 1.35,
-      "return_pct": -74.6
+      "current_price": 1.47,
+      "return_pct": -72.35
     },
     {
       "ticker": "HUT",
@@ -18,8 +18,8 @@
       "sector": "Financial Services",
       "entry_date": "2026-06-02",
       "entry_price": 20.9375,
-      "current_price": 151.0,
-      "return_pct": 621.19
+      "current_price": 142.36,
+      "return_pct": 579.93
     },
     {
       "ticker": "VNP",
@@ -27,8 +27,8 @@
       "sector": "Basic Materials",
       "entry_date": "2026-03-03",
       "entry_price": 13.2781,
-      "current_price": 32.58,
-      "return_pct": 145.37
+      "current_price": 29.79,
+      "return_pct": 124.35
     },
     {
       "ticker": "LAR",
@@ -36,8 +36,8 @@
       "sector": "Basic Materials",
       "entry_date": "2026-05-04",
       "entry_price": 3.0603,
-      "current_price": 8.35,
-      "return_pct": 172.85
+      "current_price": 9.05,
+      "return_pct": 195.72
     },
     {
       "ticker": "MAU",
@@ -45,8 +45,8 @@
       "sector": "Basic Materials",
       "entry_date": "2026-07-02",
       "entry_price": 17.06,
-      "current_price": 16.76,
-      "return_pct": -1.76
+      "current_price": 17.11,
+      "return_pct": 0.29
     },
     {
       "ticker": "AMD",
@@ -54,8 +54,8 @@
       "sector": "Technology",
       "entry_date": "2026-07-02",
       "entry_price": 88.8297,
-      "current_price": 87.91,
-      "return_pct": -1.04
+      "current_price": 93.35,
+      "return_pct": 5.09
     },
     {
       "ticker": "EFX",
@@ -63,8 +63,8 @@
       "sector": "Energy",
       "entry_date": "2026-06-02",
       "entry_price": 26.9863,
-      "current_price": 30.89,
-      "return_pct": 14.47
+      "current_price": 31.34,
+      "return_pct": 16.13
     },
     {
       "ticker": "SDE",
@@ -72,8 +72,8 @@
       "sector": "Energy",
       "entry_date": "2026-05-04",
       "entry_price": 39.2832,
-      "current_price": 11.55,
-      "return_pct": -70.6
+      "current_price": 11.25,
+      "return_pct": -71.36
     },
     {
       "ticker": "CLS",
@@ -81,8 +81,8 @@
       "sector": "Technology",
       "entry_date": "2026-06-02",
       "entry_price": 159.6304,
-      "current_price": 493.32,
-      "return_pct": 209.04
+      "current_price": 523.74,
+      "return_pct": 228.1
     },
     {
       "ticker": "USA",
@@ -90,8 +90,8 @@
       "sector": "Basic Materials",
       "entry_date": "2026-07-02",
       "entry_price": 5.1532,
-      "current_price": 5.49,
-      "return_pct": 6.54
+      "current_price": 6.17,
+      "return_pct": 19.73
     }
   ],
   "monthly_breakdown": [
@@ -4796,35 +4796,12 @@
         "CLS",
         "USA"
       ],
-      "return_pct": 0.0
+      "return_pct": -5.5284
     }
   ],
   "tsx_annual": {
-    "2001": -10.72,
-    "2002": -13.5,
-    "2003": 21.97,
-    "2004": 11.49,
-    "2005": 23.29,
-    "2006": 12.82,
-    "2007": 7.04,
-    "2008": -35.46,
-    "2009": 27.2,
-    "2010": 13.28,
-    "2011": -10.8,
-    "2012": 1.84,
-    "2013": 8.62,
-    "2014": 7.64,
-    "2015": -11.82,
-    "2016": 18.26,
-    "2017": 5.23,
-    "2018": -12.18,
-    "2019": 18.93,
-    "2020": 1.95,
-    "2021": 21.08,
-    "2022": -8.72,
-    "2023": 7.79,
     "2024": 18.47,
     "2025": 27.37,
-    "2026": 10.48
+    "2026": 12.29
   }
 }
