@@ -7,7 +7,7 @@ and outputs uk-momentum-data.json for the website.
 
 Strategy:
   - Momentum = 50% × Perf.6M + 50% × Perf.12M (composite)
-  - Universe: LSE, market cap > £100M (~$125M), EBIT > 0, common stock, GBX
+  - Universe: LSE, market cap > £250M (~$312M), EBIT > 0, common stock, GBX
   - Select top 12 by composite momentum
   - Regime: FTSE 100 < MA200 → GLD
 
@@ -27,7 +27,7 @@ SITE_DIR      = os.path.dirname(SCRIPT_DIR)
 JSON_PATH     = os.path.join(SITE_DIR, 'uk-momentum-data.json')
 PORTFOLIO_PATH = os.path.join(SITE_DIR, 'uk-momentum-portfolio.json')
 
-MIN_MCAP_USD = 125_000_000   # ≈ £100M
+MIN_MCAP_USD = 312_500_000   # ≈ £250M
 TOP_N        = 12
 
 

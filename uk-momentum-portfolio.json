@@ -1,9 +1,9 @@
 {
-  "last_rebalance": "2026-08-04",
-  "updated": "2026-08-05",
-  "ytd_2026": 5.15,
-  "ftse100": 10857.7,
-  "ftse100_ma200": 10222.01,
+  "last_rebalance": "2026-07-31",
+  "updated": "2026-08-06",
+  "ytd_2026": 10.1,
+  "ftse100": 10920.84,
+  "ftse100_ma200": 10244.53,
   "regime": "risk-on",
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). £1 = 100p.",
@@ -128,103 +128,136 @@
       "return_pct": 9.65
     },
     {
-      "month": "Aug 2026",
-      "is_current": false,
-      "start": "2026-07-31",
-      "end": "2026-08-04",
-      "regime": "momentum",
-      "tickers": [
-        "RPI",
-        "CMCX",
-        "ENQ",
-        "SEPL",
-        "KLR",
-        "ATG",
-        "HFD"
-      ],
-      "return_pct": 0.58
-    },
-    {
       "month": "Aug 2026 (MTD)",
       "is_current": true,
-      "start": "2026-08-04",
-      "end": "2026-08-05",
+      "start": "2026-07-31",
+      "end": "2026-08-06",
       "regime": "momentum",
       "tickers": [
-        "RPI",
+        "SAGA",
         "CMCX",
-        "ENQ",
-        "SEPL",
+        "SFOR",
+        "RPI",
+        "ACG",
+        "APN",
+        "AAZ",
         "KLR",
-        "ATG",
-        "HFD"
+        "SEPL",
+        "GHH",
+        "CCC",
+        "WOSG"
       ],
-      "return_pct": 0.47
+      "return_pct": 5.8
     }
   ],
   "holdings": [
     {
-      "ticker": "RPI",
-      "name": "Raspberry PI Holdings plc",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-08-04",
-      "entry_price": 671.5,
-      "current_price": 686.5,
-      "return_pct": 2.23
+      "ticker": "SAGA",
+      "name": "SAGA",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 679.0,
+      "current_price": 710.2935,
+      "return_pct": 4.61
     },
     {
       "ticker": "CMCX",
-      "name": "CMC Markets Plc",
-      "sector": "Finance",
-      "entry_date": "2026-08-04",
-      "entry_price": 683.0,
-      "current_price": 681.0,
-      "return_pct": -0.29
+      "name": "CMCX",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 677.0,
+      "current_price": 696.0,
+      "return_pct": 2.81
     },
     {
-      "ticker": "ENQ",
-      "name": "EnQuest PLC",
-      "sector": "Energy Minerals",
-      "entry_date": "2026-08-04",
-      "entry_price": 24.35,
-      "current_price": 22.85,
-      "return_pct": -6.16
+      "ticker": "SFOR",
+      "name": "SFOR",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 38.35,
+      "current_price": 50.8,
+      "return_pct": 32.46
     },
     {
-      "ticker": "SEPL",
-      "name": "Seplat Energy PLC",
-      "sector": "Energy Minerals",
-      "entry_date": "2026-08-04",
-      "entry_price": 580.0,
-      "current_price": 579.0,
-      "return_pct": -0.17
+      "ticker": "RPI",
+      "name": "RPI",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 658.5,
+      "current_price": 676.9664,
+      "return_pct": 2.8
+    },
+    {
+      "ticker": "ACG",
+      "name": "ACG",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 2000.0,
+      "current_price": 1950.7,
+      "return_pct": -2.46
+    },
+    {
+      "ticker": "APN",
+      "name": "APN",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 324.5,
+      "current_price": 342.5,
+      "return_pct": 5.55
+    },
+    {
+      "ticker": "AAZ",
+      "name": "AAZ",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 384.9721,
+      "current_price": 408.8,
+      "return_pct": 6.19
     },
     {
       "ticker": "KLR",
-      "name": "Keller Group plc",
-      "sector": "Industrial Services",
-      "entry_date": "2026-08-04",
-      "entry_price": 3008.0,
+      "name": "KLR",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 3050.0,
       "current_price": 3050.0,
-      "return_pct": 1.4
+      "return_pct": 0.0
     },
     {
-      "ticker": "ATG",
-      "name": "ATG",
+      "ticker": "SEPL",
+      "name": "SEPL",
       "sector": "",
       "entry_date": "2026-08-03",
-      "entry_price": 455.0,
-      "current_price": 470.4,
-      "return_pct": 3.38
+      "entry_price": 586.0,
+      "current_price": 590.0,
+      "return_pct": 0.68
     },
     {
-      "ticker": "HFD",
-      "name": "HFD",
+      "ticker": "GHH",
+      "name": "GHH",
       "sector": "",
       "entry_date": "2026-08-03",
-      "entry_price": 243.0,
-      "current_price": 244.0,
+      "entry_price": 1220.0,
+      "current_price": 1225.0,
       "return_pct": 0.41
+    },
+    {
+      "ticker": "CCC",
+      "name": "CCC",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 4606.0,
+      "current_price": 4758.5278,
+      "return_pct": 3.31
+    },
+    {
+      "ticker": "WOSG",
+      "name": "WOSG",
+      "sector": "",
+      "entry_date": "2026-08-03",
+      "entry_price": 726.0,
+      "current_price": 743.75,
+      "return_pct": 2.44
     }
   ]
 }
