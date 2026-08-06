@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-08-03",
-  "updated": "2026-08-05 00:07 UTC",
+  "updated": "2026-08-06 15:29 UTC",
   "holdings": [
     {
       "ticker": "AUPH",
@@ -9,11 +9,11 @@
       "entry_date": "2026-07-27",
       "entry_price": 15.35,
       "stop_loss": 11.51,
-      "current_price": 14.93,
+      "current_price": 15.85,
       "score": 0.74,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 29.7
+      "pct_from_stop": 37.7
     },
     {
       "ticker": "NVDA",
@@ -22,11 +22,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 202.45,
       "stop_loss": 151.84,
-      "current_price": 211.94,
+      "current_price": 218.12,
       "score": 0.736,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 39.6
+      "pct_from_stop": 43.7
     },
     {
       "ticker": "MA",
@@ -35,11 +35,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 579.46,
       "stop_loss": 434.6,
-      "current_price": 571.1,
+      "current_price": 567.81,
       "score": 0.733,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 31.4
+      "pct_from_stop": 30.7
     },
     {
       "ticker": "V",
@@ -48,11 +48,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 370.47,
       "stop_loss": 277.85,
-      "current_price": 369.59,
+      "current_price": 366.6,
       "score": 0.731,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 33.0
+      "pct_from_stop": 31.9
     },
     {
       "ticker": "MSCI",
@@ -61,11 +61,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 576.94,
       "stop_loss": 432.71,
-      "current_price": 571.47,
+      "current_price": 567.46,
       "score": 0.729,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 32.1
+      "pct_from_stop": 31.1
     },
     {
       "ticker": "IDCC",
@@ -74,11 +74,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 305.69,
       "stop_loss": 229.27,
-      "current_price": 323.17,
+      "current_price": 332.66,
       "score": 0.727,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 41.0
+      "pct_from_stop": 45.1
     },
     {
       "ticker": "MO",
@@ -87,11 +87,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 68.3,
       "stop_loss": 51.23,
-      "current_price": 68.07,
+      "current_price": 68.25,
       "score": 0.727,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 32.9
+      "pct_from_stop": 33.2
     },
     {
       "ticker": "INVA",
@@ -100,11 +100,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 20.8,
       "stop_loss": 15.6,
-      "current_price": 20.86,
+      "current_price": 21.95,
       "score": 0.726,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 33.7
+      "pct_from_stop": 40.7
     },
     {
       "ticker": "HCI",
@@ -113,11 +113,11 @@
       "entry_date": "2026-07-27",
       "entry_price": 178.83,
       "stop_loss": 134.12,
-      "current_price": 178.77,
+      "current_price": 177.6,
       "score": 0.725,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 33.3
+      "pct_from_stop": 32.4
     },
     {
       "ticker": "ADBE",
@@ -126,11 +126,11 @@
       "entry_date": "2026-08-03",
       "entry_price": 258.15,
       "stop_loss": 193.61,
-      "current_price": 257.49,
+      "current_price": 255.64,
       "score": 0.725,
       "score_exit": false,
       "stop_triggered": false,
-      "pct_from_stop": 33.0
+      "pct_from_stop": 32.0
     }
   ]
 }
