@@ -1,91 +1,111 @@
 {
-  "last_rebalance": "2026-07-31",
+  "last_rebalance": "2026-08-07",
   "updated": "2026-08-07",
-  "ytd_2026": 5.1,
-  "regime": "risk-on",
+  "ytd_2026": 12.2,
+  "regime": "momentum",
   "currency": "DKK",
-  "index_value": 380.8,
-  "index_ma100": 350.3,
+  "index_value": 2042.2,
+  "index_ma100": 1953.5,
   "holdings": [
     {
       "ticker": "BOOZT-DKK",
+      "ticker_tv": "OMXCOP:BOOZT_DKK",
+      "ticker_eodhd": "BOOZT-DKK",
       "name": "Boozt",
-      "entry_date": "2026-07-31",
+      "entry_date": "2026-08-07",
       "entry_price": 113.1,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "DANSKE",
-      "name": "Danske Bank",
-      "entry_date": "2026-07-31",
-      "entry_price": 371.3,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "DNORD",
-      "name": "DNORD",
-      "entry_date": "2026-07-31",
-      "entry_price": 333.6,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "FLUG-B",
-      "name": "Fl\u00fcgger",
-      "entry_date": "2026-07-31",
-      "entry_price": 439.0,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "ISS",
-      "name": "ISS A/S",
-      "entry_date": "2026-07-31",
-      "entry_price": 292.4,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "JYSK",
-      "name": "Jyske Bank",
-      "entry_date": "2026-07-31",
-      "entry_price": 1023.0,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "NTG",
-      "name": "NTG",
-      "entry_date": "2026-07-31",
-      "entry_price": 258.0,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "SKJE",
-      "name": "Skjern Bank",
-      "entry_date": "2026-07-31",
-      "entry_price": 366.5,
-      "current_price": null,
-      "return_pct": null
+      "current_price": 108.4,
+      "return_pct": -4.16
     },
     {
       "ticker": "SPG",
+      "ticker_tv": "OMXCOP:SPG",
+      "ticker_eodhd": "SPG",
       "name": "Schouw & Co",
-      "entry_date": "2026-07-31",
+      "entry_date": "2026-08-07",
       "entry_price": 475.0,
-      "current_price": null,
-      "return_pct": null
+      "current_price": 472.0,
+      "return_pct": -0.63
+    },
+    {
+      "ticker": "NKT",
+      "ticker_tv": "OMXCOP:NKT",
+      "ticker_eodhd": "NKT",
+      "name": "NKT A/S",
+      "entry_date": "2026-08-07",
+      "entry_price": 927.5,
+      "current_price": 927.5,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "SKJE",
+      "ticker_tv": "OMXCOP:SKJE",
+      "ticker_eodhd": "SKJE",
+      "name": "Skjern Bank",
+      "entry_date": "2026-08-07",
+      "entry_price": 366.5,
+      "current_price": 372.0,
+      "return_pct": 1.5
     },
     {
       "ticker": "TRMD-A",
+      "ticker_tv": "OMXCOP:TRMD_A",
+      "ticker_eodhd": "TRMD-A",
       "name": "Torm A",
-      "entry_date": "2026-07-31",
+      "entry_date": "2026-08-07",
       "entry_price": 194.4,
-      "current_price": null,
-      "return_pct": null
+      "current_price": 192.5,
+      "return_pct": -0.98
+    },
+    {
+      "ticker": "NTG",
+      "ticker_tv": "OMXCOP:NTG",
+      "ticker_eodhd": "NTG",
+      "name": "NTG Nordic Transport",
+      "entry_date": "2026-08-07",
+      "entry_price": 258.0,
+      "current_price": 264.0,
+      "return_pct": 2.33
+    },
+    {
+      "ticker": "JYSK",
+      "ticker_tv": "OMXCOP:JYSK",
+      "ticker_eodhd": "JYSK",
+      "name": "Jyske Bank",
+      "entry_date": "2026-08-07",
+      "entry_price": 1023.0,
+      "current_price": 1037.0,
+      "return_pct": 1.37
+    },
+    {
+      "ticker": "ISS",
+      "ticker_tv": "OMXCOP:ISS",
+      "ticker_eodhd": "ISS",
+      "name": "ISS A/S",
+      "entry_date": "2026-08-07",
+      "entry_price": 292.4,
+      "current_price": 278.4,
+      "return_pct": -4.79
+    },
+    {
+      "ticker": "DNORD",
+      "ticker_tv": "OMXCOP:DNORD",
+      "ticker_eodhd": "DNORD",
+      "name": "D/S Norden",
+      "entry_date": "2026-08-07",
+      "entry_price": 333.6,
+      "current_price": 323.6,
+      "return_pct": -3.0
+    },
+    {
+      "ticker": "DEMANT",
+      "ticker_tv": "OMXCOP:DEMANT",
+      "ticker_eodhd": "DEMANT",
+      "name": "Demant A/S",
+      "entry_date": "2026-08-07",
+      "entry_price": 282.0,
+      "current_price": 282.0,
+      "return_pct": 0.0
     }
   ],
   "monthly_breakdown": [
@@ -811,7 +831,7 @@
     },
     {
       "month": "Aug 2026",
-      "is_current": true,
+      "is_current": false,
       "start": "2026-07-31",
       "end": null,
       "regime": "momentum",
