@@ -731,11 +731,22 @@
     },
     {
       "month": "Aug 2026",
-      "is_current": false,
+      "is_current": true,
       "start": "2026-08-07",
       "end": null,
       "regime": "momentum",
-      "tickers": [],
+      "tickers": [
+        "HMMC",
+        "LCFS",
+        "TWM",
+        "FDY",
+        "LGD",
+        "OM",
+        "HUT",
+        "CVVY",
+        "QTRH",
+        "NUAG"
+      ],
       "return_pct": null
     }
   ],

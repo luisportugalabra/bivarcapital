@@ -104,14 +104,20 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
     breakdown = existing.get('monthly_breakdown', [])
 
     if is_new_month:
-        for m in breakdown:
-            if m.get('is_current'):
-                m['is_current'] = False
-
         cur_month_label = datetime.now().strftime('%b %Y')
         tickers = [h['ticker'] for h in new_holdings]
 
-        if not any(m['month'] == cur_month_label for m in breakdown):
+        for m in breakdown:
+            if m.get('is_current') and m['month'] != cur_month_label:
+                m['is_current'] = False
+
+        existing_cur = next((m for m in breakdown if m['month'] == cur_month_label), None)
+        if existing_cur:
+            existing_cur['is_current'] = True
+            existing_cur['regime']     = regime_str
+            existing_cur['tickers']    = tickers
+            existing_cur['return_pct'] = None
+        else:
             breakdown.append({
                 'month':      cur_month_label,
                 'is_current': True,
