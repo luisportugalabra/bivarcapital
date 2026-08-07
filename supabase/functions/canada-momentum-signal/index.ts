@@ -4,56 +4,50 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const SUPABASE_URL = "https://efiyeiwdywodjxxnslvu.supabase.co";
 const SUPABASE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 const BOT_TOKEN = "8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI";
+const STATE_ID = 3; // Canada = row 3 in momentum_signal_state
 
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 async function sendTelegram(chatId: number, text: string) {
-  await fetch(
-    `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
-    }
-  );
+  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+  });
 }
 
 serve(async (req) => {
   try {
     const CRON_SECRET = Deno.env.get("CRON_SECRET") || "";
-    const authHeader = req.headers.get("Authorization");
-    if (authHeader !== `Bearer ${CRON_SECRET}`) {
+    if (req.headers.get("Authorization") !== `Bearer ${CRON_SECRET}`) {
       return new Response("Unauthorized", { status: 401 });
     }
 
-    // Fetch momentum-data.json from GitHub (always fresh)
+    // Fetch latest signal from GitHub
     const resp = await fetch(
-      "https://raw.githubusercontent.com/luisportugalabra/bivarcapital/main/momentum-data.json"
+      "https://raw.githubusercontent.com/luisportugalabra/bivarcapital/main/canada-momentum-data.json"
     );
     if (!resp.ok) throw new Error(`GitHub fetch failed: ${resp.status}`);
     const data = await resp.json();
 
     const date = data.date;
     const regime = data.regime;
-    const sp500 = data.sp500;
-    const ma250 = data.sp500_ma250;
+    const tsx = data.tsx;
+    const ma75 = data.tsx_ma75;
     const portfolio = data.portfolio || [];
-    const totalEligible = data.total_eligible;
 
-    // Check if already sent this month
+    // Monthly idempotency
+    const currentPeriod = new Date().toISOString().slice(0, 7);
     const { data: prevRow } = await sb
       .from("momentum_signal_state")
       .select("*")
-      .eq("id", 1)
+      .eq("id", STATE_ID)
       .single();
 
-    const currentPeriod = new Date().toISOString().slice(0, 7); // "2026-08" (monthly)
-    const prevMonth = prevRow?.month || null;
-    const alreadySent = prevMonth === currentPeriod;
+    const alreadySent = (prevRow?.month || null) === currentPeriod;
 
-    // Save state
     await sb.from("momentum_signal_state").upsert({
-      id: 1,
+      id: STATE_ID,
       month: currentPeriod,
       date,
       regime,
@@ -62,48 +56,43 @@ serve(async (req) => {
     });
 
     if (alreadySent) {
-      console.log("Already sent this month — skipping Telegram");
+      console.log("Canada: already sent this month — skipping");
       return new Response(
         JSON.stringify({ regime, skipped: true, month: currentPeriod }),
         { headers: { "Content-Type": "application/json" } }
       );
     }
 
-    // Get subscribers (same table as BTC, approved status)
     const { data: subscribers } = await sb
       .from("telegram_subscribers")
       .select("chat_id")
       .eq("status", "approved");
 
-    const chatIds = subscribers?.map((s) => s.chat_id) || [];
-    console.log(`Sending momentum signal to ${chatIds.length} subscribers`);
+    const chatIds = subscribers?.map((s: any) => s.chat_id) || [];
+    console.log(`Canada: sending to ${chatIds.length} subscribers`);
 
-    // Build message
     let msg: string;
-    if (regime === "gld") {
+    if (regime === "defensive") {
       msg =
-        `🛡 <b>MOMENTUM SIGNAL — DEFENSIVE</b>\n\n` +
-        `S&P 500 ($${sp500?.toLocaleString("en-US")}) is <b>below</b> MA250 ($${ma250?.toLocaleString("en-US")})\n\n` +
-        `<b>Action: Sell all stocks → Buy GLD (100%)</b>\n\n` +
-        `${totalEligible} stocks screened\n` +
+        `🛡 <b>CANADA MOMENTUM — DEFENSIVE</b>\n\n` +
+        `TSX (${tsx?.toLocaleString("en-CA")}) is <b>below</b> MA75 (${ma75?.toLocaleString("en-CA")})\n\n` +
+        `<b>Action: Stay in cash (CAD)</b>\n\n` +
         `Signal date: ${date}\n\n` +
-        `https://bivarcapital.com/momentum.html`;
+        `https://bivarcapital.com/canada-momentum.html`;
     } else {
       const stockList = portfolio
-        .map(
-          (s: any, i: number) =>
-            `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   ${s.sector} · +${s.composite}% · $${s.mcap_b}B`
+        .map((s: any, i: number) =>
+          `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   ${s.composite != null ? (s.composite >= 0 ? "+" : "") + s.composite.toFixed(1) + "% comp" : ""} · C$${s.mcap_b?.toFixed(2)}B`
         )
         .join("\n");
 
       msg =
-        `📈 <b>MOMENTUM SIGNAL — BUY STOCKS</b>\n\n` +
-        `S&P 500 ($${sp500?.toLocaleString("en-US")}) is <b>above</b> MA250 ($${ma250?.toLocaleString("en-US")})\n\n` +
-        `<b>Portfolio (equal weight ~14.3% each):</b>\n\n` +
+        `📈 <b>CANADA MOMENTUM — BUY STOCKS</b>\n\n` +
+        `TSX (${tsx?.toLocaleString("en-CA")}) is <b>above</b> MA75 (${ma75?.toLocaleString("en-CA")})\n\n` +
+        `<b>Portfolio (${portfolio.length} stocks, equal weight):</b>\n\n` +
         `${stockList}\n\n` +
-        `${totalEligible} stocks screened\n` +
         `Signal date: ${date}\n\n` +
-        `https://bivarcapital.com/momentum.html`;
+        `https://bivarcapital.com/canada-momentum.html`;
     }
 
     for (const chatId of chatIds) {
@@ -122,7 +111,7 @@ serve(async (req) => {
   } catch (e) {
     console.error("Fatal error:", e);
     try {
-      await sendTelegram(5151262026, `⚠️ Momentum Signal function FAILED:\n${e}`);
+      await sendTelegram(5151262026, `⚠️ Canada Momentum Signal FAILED:\n${e}`);
     } catch {}
     return new Response(JSON.stringify({ error: String(e) }), { status: 500 });
   }

@@ -311,7 +311,12 @@ async function loadPortfolio() {
     const breakdown = (data.monthly_breakdown || []).slice().reverse();
     document.getElementById('monthly-body').innerHTML = breakdown.length
       ? breakdown.map(m => {
-          const retHtml = fmtRet(m.return_pct);
+          let retVal = m.return_pct;
+          if (retVal == null && m.is_current) {
+            const rets = holdings.map(h => h.return_pct).filter(r => r != null);
+            retVal = rets.length ? rets.reduce((a,b) => a+b,0) / rets.length : null;
+          }
+          const retHtml = fmtRet(retVal);
           const isCur = m.is_current ? ' style="opacity:.75"' : '';
           return `<tr${isCur}>
             <td style="white-space:nowrap">${m.month}</td>

@@ -58,8 +58,17 @@ jobs:
       - name: Update China momentum portfolio
         run: python scripts/china_momentum_ytd.py
 
+      - name: Update Canada momentum signal
+        run: python scripts/canada_momentum_signal.py
+
       - name: Update Canada momentum portfolio
         run: python scripts/canada_momentum_ytd.py
+
+      - name: Update Denmark momentum signal
+        run: python scripts/denmark_momentum_signal.py
+
+      - name: Update Denmark momentum YTD
+        run: python scripts/denmark_momentum_ytd.py
 
       - name: Commit and push
         run: |

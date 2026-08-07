@@ -302,7 +302,12 @@ async function loadPortfolio() {
       .slice().reverse();
     document.getElementById('monthly-body').innerHTML = breakdown2026.length
       ? breakdown2026.map(m => {
-          const retHtml = fmtRet(m.return_pct);
+          let retVal = m.return_pct;
+          if (retVal == null && m.is_current) {
+            const rets = holdings.map(h => h.return_pct).filter(r => r != null);
+            retVal = rets.length ? rets.reduce((a,b) => a+b,0) / rets.length : null;
+          }
+          const retHtml = fmtRet(retVal);
           const isCur = m.is_current ? ' style="opacity:.75"' : '';
           const regimeBadge = m.regime === 'momentum'
             ? '' : ' <span style="font-size:.44rem;color:var(--accent);background:rgba(196,162,101,.1);padding:1px 4px;border-radius:3px">CASH</span>';

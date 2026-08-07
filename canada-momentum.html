@@ -167,15 +167,15 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <div class="stat-lbl" id="mtd-label">MTD</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val" id="all-time-cagr">+34.9%</div>
-          <div class="stat-lbl">CAGR (2000–2026)</div>
+          <div class="stat-val" id="all-time-cagr">+29.9%</div>
+          <div class="stat-lbl">CAGR (2001–2026)</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val" id="all-time-sharpe">1.30</div>
+          <div class="stat-val" id="all-time-sharpe">1.18</div>
           <div class="stat-lbl">Sharpe</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val neg" id="all-time-dd">-26.6%</div>
+          <div class="stat-val neg" id="all-time-dd">-33.1%</div>
           <div class="stat-lbl">Max Drawdown</div>
         </div>
       </div>
@@ -248,25 +248,6 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       </div>
     </div>
 
-    <hr class="section-divider">
-
-    <!-- All-time annual returns -->
-    <div style="margin-bottom:28px">
-      <div class="port-section-title" style="margin-bottom:12px">Annual Returns — All History</div>
-      <div class="table-wrap">
-      <table id="annual-table">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th class="r">Strategy</th>
-            <th class="r">TSX Index</th>
-            <th class="r">Excess</th>
-          </tr>
-        </thead>
-        <tbody id="annual-body"></tbody>
-      </table>
-      </div>
-    </div>
 
     <hr class="section-divider">
 
@@ -375,7 +356,6 @@ async function loadPortfolio() {
     renderMonthlyBreakdown(data.monthly_breakdown || [], new Date().getFullYear());
 
     // Annual returns table
-    renderAnnualTable(data.monthly_breakdown || [], data.tsx_annual || {});
 
     if (data.updated)
       document.getElementById('portfolio-updated').textContent =
@@ -411,33 +391,6 @@ function renderMonthlyBreakdown(breakdown, year) {
     : '<tr><td colspan="3" style="color:var(--text-muted);padding:12px">No data for ' + year + '.</td></tr>';
 }
 
-function renderAnnualTable(breakdown, tsxAnnual) {
-  // Group by year
-  const byYear = {};
-  for (const m of breakdown) {
-    const yr = parseInt(m.month.split(' ')[1]);
-    if (!byYear[yr]) byYear[yr] = [];
-    byYear[yr].push(m.return_pct || 0);
-  }
-  const years = Object.keys(byYear).map(Number).sort((a,b) => b - a);
-  const rows = years.map(y => {
-    const rets = byYear[y];
-    const annual = rets.reduce((acc, r) => acc * (1 + r/100), 1) - 1;
-    const tsx = tsxAnnual[y];
-    const excess = tsx != null ? annual*100 - tsx : null;
-    const exHtml = excess != null
-      ? `<span class="${excess >= 0 ? 'pos' : 'neg'}">${excess >= 0 ? '+' : ''}${excess.toFixed(1)}%</span>`
-      : '—';
-    return `<tr>
-      <td><strong>${y}</strong></td>
-      <td class="r">${fmtRetS(annual*100)}</td>
-      <td class="r">${tsx != null ? fmtRetS(tsx) : '—'}</td>
-      <td class="r">${exHtml}</td>
-    </tr>`;
-  }).join('');
-  document.getElementById('annual-body').innerHTML = rows ||
-    '<tr><td colspan="4" style="color:var(--text-muted);padding:12px">No data.</td></tr>';
-}
 
 async function loadSignal() {
   try {
