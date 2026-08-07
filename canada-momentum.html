@@ -152,7 +152,8 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     <!-- Regime -->
     <div id="regime-container" class="regime-box"></div>
 
-    <!-- Top 10 ticker chips -->
+    <!-- Current Portfolio -->
+    <div class="port-section-title">Current Portfolio</div>
     <div id="stats-container" class="stats-row"></div>
 
     <!-- YTD + MTD + Current Portfolio -->
@@ -341,6 +342,15 @@ async function loadPortfolio() {
 
     // Holdings table
     const holdings = data.holdings || [];
+
+    // Top stat cards — actual held portfolio (not today's recomputed ranking)
+    document.getElementById('stats-container').innerHTML = holdings.map(h => `
+      <div class="stat-box">
+        <div class="stat-val">${h.ticker}</div>
+        <div class="stat-lbl">${fmtRet(h.return_pct)}</div>
+      </div>
+    `).join('');
+
     document.getElementById('portfolio-body').innerHTML = holdings.length
       ? holdings.map(h => `<tr class="selected">
           <td><strong>${h.ticker}</strong></td>
@@ -414,15 +424,6 @@ async function loadSignal() {
       <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--text-muted)'}">
         ${isMom ? 'Signal: Buy top 10 momentum stocks (equal weight)' : 'Signal: Hold cash until TSX recovers above MA75'}
       </div>`;
-
-    // Ticker chips (top 10)
-    const portfolio = data.portfolio || [];
-    document.getElementById('stats-container').innerHTML = portfolio.slice(0, 10).map((s, i) =>
-      `<div class="stat-box">
-        <div class="stat-val">${s.ticker}</div>
-        <div class="stat-lbl">#${i+1} &middot; ${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</div>
-      </div>`
-    ).join('');
 
     // Signal date + eligible count
     document.getElementById('signal-date').textContent = data.date || '—';

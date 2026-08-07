@@ -113,6 +113,7 @@ h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; marg
 
   <div id="content-area">
     <div id="regime-container" class="regime-box"></div>
+    <div class="port-section-title">Current Portfolio</div>
     <div id="stats-container" class="stats-row"></div>
 
     <!-- YTD stat + Current Portfolio -->
@@ -285,6 +286,15 @@ async function loadPortfolio() {
 
     // Current holdings table
     const holdings = data.holdings || [];
+
+    // Top stat cards — actual held portfolio (not today's recomputed ranking)
+    document.getElementById('stats-container').innerHTML = holdings.map(h => `
+      <div class="stat-box">
+        <div class="stat-val">${h.ticker}</div>
+        <div class="stat-lbl">${fmtRet(h.return_pct)}</div>
+      </div>
+    `).join('');
+
     document.getElementById('portfolio-body').innerHTML = holdings.length
       ? holdings.map(h => `<tr class="selected">
           <td><strong>${h.ticker}</strong></td>
@@ -353,15 +363,6 @@ async function loadData() {
     <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">${isMom ? 'Signal: Buy top 10 momentum stocks (equal weight)' : 'Signal: Sell all stocks, hold cash'}</div>
   `;
 
-  // Top holdings stats row
-  const portfolio = data.portfolio || [];
-  const sc = document.getElementById('stats-container');
-  sc.innerHTML = portfolio.map(s => `
-    <div class="stat-box">
-      <div class="stat-val">${s.ticker}</div>
-      <div class="stat-lbl">#${s.rank} &middot; ${s.composite > 0 ? '+' : ''}${s.composite}%</div>
-    </div>
-  `).join('');
 
   document.getElementById('signal-date').textContent = data.date;
   document.getElementById('eligible-count').textContent = data.total_eligible;
