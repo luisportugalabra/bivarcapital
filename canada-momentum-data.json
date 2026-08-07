@@ -1,8 +1,8 @@
 {
   "date": "2026-07-02",
   "regime": "momentum",
-  "tsx": 36101.95,
-  "tsx_ma75": 34735.33,
+  "tsx": 36136.31,
+  "tsx_ma75": 34735.79,
   "total_eligible": 503,
   "portfolio": [
     {
@@ -378,5 +378,5 @@
       "selected": false
     }
   ],
-  "updated": "2026-08-06"
+  "updated": "2026-08-07"
 }
