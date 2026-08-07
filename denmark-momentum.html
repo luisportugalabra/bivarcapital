@@ -205,8 +205,8 @@ h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; marg
           <th>Status</th>
           <th>Ticker</th>
           <th>Name</th>
-          <th class="r">Ret 9M</th>
           <th class="r">Ret 6M</th>
+          <th class="r">Ret 12M</th>
           <th class="r">Composite</th>
           <th class="r">MCap (B DKK)</th>
         </tr>
@@ -215,7 +215,7 @@ h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; marg
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 9-month return (skip 1 month) &nbsp;|&nbsp; &gt;700M DKK mcap &nbsp;|&nbsp; Top 10 &nbsp;|&nbsp; Synthetic index &lt; MA100 &rarr; Cash
+      Strategy: 50% 6M return + 50% 12M return &nbsp;|&nbsp; &gt;700M DKK mcap &nbsp;|&nbsp; Top 10 &nbsp;|&nbsp; Synthetic index &lt; MA100 &rarr; Cash
       &nbsp;|&nbsp; <a href="/research/denmark_momentum_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a>
     </p>
 
@@ -358,8 +358,8 @@ async function loadData() {
   tbody.innerHTML = (data.top20 || []).map(s => {
     const cls    = s.selected ? 'selected' : '';
     const status = s.selected ? '<span class="tag-selected">SELECTED</span>' : '';
-    const c9  = s.ret_9m  != null ? (s.ret_9m  >= 0 ? 'pos' : 'neg') : '';
     const c6  = s.ret_6m  != null ? (s.ret_6m  >= 0 ? 'pos' : 'neg') : '';
+    const c12 = s.ret_12m != null ? (s.ret_12m >= 0 ? 'pos' : 'neg') : '';
     const cco = s.composite != null ? (s.composite >= 0 ? 'pos' : 'neg') : '';
     const fmt = (v, d=1) => v != null ? (v >= 0 ? '+' : '') + v.toFixed(d) + '%' : '—';
     return `<tr class="${cls}">
@@ -367,8 +367,8 @@ async function loadData() {
       <td>${status}</td>
       <td><strong>${s.ticker}</strong></td>
       <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
-      <td class="r ${c9}">${fmt(s.ret_9m)}</td>
       <td class="r ${c6}">${fmt(s.ret_6m)}</td>
+      <td class="r ${c12}">${fmt(s.ret_12m)}</td>
       <td class="r ${cco}"><strong>${fmt(s.composite)}</strong></td>
       <td class="r">${s.mcap_b != null ? s.mcap_b.toFixed(1) : '—'}</td>
     </tr>`;
