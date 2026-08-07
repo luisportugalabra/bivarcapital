@@ -1,6 +1,6 @@
 {
-  "last_rebalance": "2026-06-30",
-  "updated": "2026-08-06",
+  "last_rebalance": "2026-07-31",
+  "updated": "2026-08-07",
   "ytd_2026": 3.8,
   "regime": "risk-on",
   "currency": "DKK",
@@ -10,90 +10,90 @@
     {
       "ticker": "BOOZT-DKK",
       "name": "Boozt",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "entry_date": "2026-07-31",
+      "entry_price": 113.1,
       "current_price": null,
       "return_pct": null
     },
     {
-      "ticker": "DFDS",
-      "name": "DFDS A/S",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "ticker": "DANSKE",
+      "name": "Danske Bank",
+      "entry_date": "2026-07-31",
+      "entry_price": 371.3,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "DJUR",
+      "name": "Djurslands Bank",
+      "entry_date": "2026-07-31",
+      "entry_price": 1070.0,
       "current_price": null,
       "return_pct": null
     },
     {
       "ticker": "FOBANK",
       "name": "Fynske Bank",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "entry_date": "2026-07-31",
+      "entry_price": 284.0,
       "current_price": null,
       "return_pct": null
     },
     {
-      "ticker": "GRLA",
-      "name": "Gr\u00f8nlandsbanken",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "ISS",
-      "name": "ISS A/S",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
-      "current_price": null,
-      "return_pct": null
-    },
-    {
-      "ticker": "LASP",
-      "name": "L\u00e5n & Spar Bank",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "ticker": "JYSK",
+      "name": "Jyske Bank",
+      "entry_date": "2026-07-31",
+      "entry_price": 1023.0,
       "current_price": null,
       "return_pct": null
     },
     {
       "ticker": "NKT",
       "name": "NKT A/S",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "entry_date": "2026-07-31",
+      "entry_price": 892.5,
       "current_price": null,
       "return_pct": null
     },
     {
-      "ticker": "ORSTED",
-      "name": "\u00d8rsted A/S",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "ticker": "SKJE",
+      "name": "Skjern Bank",
+      "entry_date": "2026-07-31",
+      "entry_price": 366.5,
       "current_price": null,
       "return_pct": null
     },
     {
       "ticker": "SPG",
       "name": "Schouw & Co",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "entry_date": "2026-07-31",
+      "entry_price": 475.0,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "TRMD-A",
+      "name": "Torm A",
+      "entry_date": "2026-07-31",
+      "entry_price": 194.4,
       "current_price": null,
       "return_pct": null
     },
     {
       "ticker": "VWS",
       "name": "Vestas Wind Systems",
-      "entry_date": "2026-06-30",
-      "entry_price": null,
+      "entry_date": "2026-07-31",
+      "entry_price": 176.35,
       "current_price": null,
       "return_pct": null
     }
   ],
   "monthly_breakdown": [
     {
-      "month": "Jul 2023",
+      "month": "Aug 2023",
       "is_current": false,
-      "start": "2023-06-30",
-      "end": "2023-07-31",
+      "start": "2023-07-31",
+      "end": "2023-08-31",
       "regime": "momentum",
       "tickers": [
         "AMBU-B",
@@ -110,10 +110,10 @@
       "return_pct": -1.73
     },
     {
-      "month": "Aug 2023",
+      "month": "Sep 2023",
       "is_current": false,
-      "start": "2023-07-31",
-      "end": "2023-08-31",
+      "start": "2023-08-31",
+      "end": "2023-09-30",
       "regime": "momentum",
       "tickers": [
         "ALSYDB",
@@ -130,10 +130,10 @@
       "return_pct": -1.6
     },
     {
-      "month": "Sep 2023",
+      "month": "Oct 2023",
       "is_current": false,
-      "start": "2023-08-30",
-      "end": "2023-09-30",
+      "start": "2023-09-30",
+      "end": "2023-10-30",
       "regime": "momentum",
       "tickers": [
         "DEMANT",
@@ -150,10 +150,10 @@
       "return_pct": 1.15
     },
     {
-      "month": "Oct 2023",
+      "month": "Nov 2023",
       "is_current": false,
-      "start": "2023-09-30",
-      "end": "2023-10-31",
+      "start": "2023-10-31",
+      "end": "2023-11-30",
       "regime": "cash",
       "tickers": [
         "DEMANT",
@@ -170,10 +170,10 @@
       "return_pct": -0.11
     },
     {
-      "month": "Nov 2023",
+      "month": "Dec 2023",
       "is_current": false,
-      "start": "2023-10-30",
-      "end": "2023-11-30",
+      "start": "2023-11-30",
+      "end": "2023-12-30",
       "regime": "momentum",
       "tickers": [
         "DEMANT",
@@ -190,10 +190,10 @@
       "return_pct": 4.46
     },
     {
-      "month": "Dec 2023",
+      "month": "Jan 2024",
       "is_current": false,
-      "start": "2023-11-30",
-      "end": "2023-12-31",
+      "start": "2023-12-31",
+      "end": "2024-01-31",
       "regime": "momentum",
       "tickers": [
         "CBRAIN",
@@ -210,10 +210,10 @@
       "return_pct": 1.5
     },
     {
-      "month": "Jan 2024",
+      "month": "Feb 2024",
       "is_current": false,
-      "start": "2023-12-31",
-      "end": "2024-01-31",
+      "start": "2024-01-31",
+      "end": "2024-02-29",
       "regime": "momentum",
       "tickers": [
         "BIOPOR",
@@ -230,10 +230,10 @@
       "return_pct": 7.84
     },
     {
-      "month": "Feb 2024",
+      "month": "Mar 2024",
       "is_current": false,
-      "start": "2024-01-29",
-      "end": "2024-02-29",
+      "start": "2024-02-29",
+      "end": "2024-03-29",
       "regime": "momentum",
       "tickers": [
         "CBRAIN",
@@ -250,10 +250,10 @@
       "return_pct": 7.31
     },
     {
-      "month": "Mar 2024",
+      "month": "Apr 2024",
       "is_current": false,
-      "start": "2024-02-29",
-      "end": "2024-03-31",
+      "start": "2024-03-31",
+      "end": "2024-04-30",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -270,10 +270,10 @@
       "return_pct": 5.9
     },
     {
-      "month": "Apr 2024",
+      "month": "May 2024",
       "is_current": false,
-      "start": "2024-03-30",
-      "end": "2024-04-30",
+      "start": "2024-04-30",
+      "end": "2024-05-30",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -290,10 +290,10 @@
       "return_pct": -1.86
     },
     {
-      "month": "May 2024",
+      "month": "Jun 2024",
       "is_current": false,
-      "start": "2024-04-30",
-      "end": "2024-05-31",
+      "start": "2024-05-31",
+      "end": "2024-06-30",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -310,10 +310,10 @@
       "return_pct": 4.03
     },
     {
-      "month": "Jun 2024",
+      "month": "Jul 2024",
       "is_current": false,
-      "start": "2024-05-30",
-      "end": "2024-06-30",
+      "start": "2024-06-30",
+      "end": "2024-07-30",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -330,10 +330,10 @@
       "return_pct": 2.74
     },
     {
-      "month": "Jul 2024",
+      "month": "Aug 2024",
       "is_current": false,
-      "start": "2024-06-30",
-      "end": "2024-07-31",
+      "start": "2024-07-31",
+      "end": "2024-08-31",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -350,10 +350,10 @@
       "return_pct": 5.63
     },
     {
-      "month": "Aug 2024",
+      "month": "Sep 2024",
       "is_current": false,
-      "start": "2024-07-31",
-      "end": "2024-08-31",
+      "start": "2024-08-31",
+      "end": "2024-09-30",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -370,10 +370,10 @@
       "return_pct": 1.41
     },
     {
-      "month": "Sep 2024",
+      "month": "Oct 2024",
       "is_current": false,
-      "start": "2024-08-30",
-      "end": "2024-09-30",
+      "start": "2024-09-30",
+      "end": "2024-10-30",
       "regime": "cash",
       "tickers": [
         "ALK-B",
@@ -390,10 +390,10 @@
       "return_pct": -0.05
     },
     {
-      "month": "Oct 2024",
+      "month": "Nov 2024",
       "is_current": false,
-      "start": "2024-09-30",
-      "end": "2024-10-31",
+      "start": "2024-10-31",
+      "end": "2024-11-30",
       "regime": "cash",
       "tickers": [
         "ALK-B",
@@ -410,10 +410,10 @@
       "return_pct": -0.12
     },
     {
-      "month": "Nov 2024",
+      "month": "Dec 2024",
       "is_current": false,
-      "start": "2024-10-30",
-      "end": "2024-11-30",
+      "start": "2024-11-30",
+      "end": "2024-12-30",
       "regime": "cash",
       "tickers": [
         "ALK-B",
@@ -430,10 +430,10 @@
       "return_pct": -0.06
     },
     {
-      "month": "Dec 2024",
+      "month": "Jan 2025",
       "is_current": false,
-      "start": "2024-11-30",
-      "end": "2024-12-31",
+      "start": "2024-12-31",
+      "end": "2025-01-31",
       "regime": "cash",
       "tickers": [
         "COLUM",
@@ -450,10 +450,10 @@
       "return_pct": -0.17
     },
     {
-      "month": "Jan 2025",
+      "month": "Feb 2025",
       "is_current": false,
-      "start": "2024-12-31",
-      "end": "2025-01-31",
+      "start": "2025-01-31",
+      "end": "2025-02-28",
       "regime": "cash",
       "tickers": [
         "DSV",
@@ -470,10 +470,10 @@
       "return_pct": -0.06
     },
     {
-      "month": "Feb 2025",
+      "month": "Mar 2025",
       "is_current": false,
-      "start": "2025-01-28",
-      "end": "2025-02-28",
+      "start": "2025-02-28",
+      "end": "2025-03-28",
       "regime": "cash",
       "tickers": [
         "BO",
@@ -490,10 +490,10 @@
       "return_pct": -0.09
     },
     {
-      "month": "Mar 2025",
+      "month": "Apr 2025",
       "is_current": false,
-      "start": "2025-02-28",
-      "end": "2025-03-31",
+      "start": "2025-03-31",
+      "end": "2025-04-30",
       "regime": "cash",
       "tickers": [
         "BO",
@@ -510,10 +510,10 @@
       "return_pct": -0.11
     },
     {
-      "month": "Apr 2025",
+      "month": "May 2025",
       "is_current": false,
-      "start": "2025-03-30",
-      "end": "2025-04-30",
+      "start": "2025-04-30",
+      "end": "2025-05-30",
       "regime": "cash",
       "tickers": [
         "BO",
@@ -530,10 +530,10 @@
       "return_pct": -0.14
     },
     {
-      "month": "May 2025",
+      "month": "Jun 2025",
       "is_current": false,
-      "start": "2025-04-30",
-      "end": "2025-05-31",
+      "start": "2025-05-31",
+      "end": "2025-06-30",
       "regime": "cash",
       "tickers": [
         "BO",
@@ -550,10 +550,10 @@
       "return_pct": -0.08
     },
     {
-      "month": "Jun 2025",
+      "month": "Jul 2025",
       "is_current": false,
-      "start": "2025-05-30",
-      "end": "2025-06-30",
+      "start": "2025-06-30",
+      "end": "2025-07-30",
       "regime": "cash",
       "tickers": [
         "BO",
@@ -570,10 +570,10 @@
       "return_pct": -0.12
     },
     {
-      "month": "Jul 2025",
+      "month": "Aug 2025",
       "is_current": false,
-      "start": "2025-06-30",
-      "end": "2025-07-31",
+      "start": "2025-07-31",
+      "end": "2025-08-31",
       "regime": "cash",
       "tickers": [
         "ALSYDB",
@@ -590,10 +590,10 @@
       "return_pct": -0.09
     },
     {
-      "month": "Aug 2025",
+      "month": "Sep 2025",
       "is_current": false,
-      "start": "2025-07-31",
-      "end": "2025-08-31",
+      "start": "2025-08-31",
+      "end": "2025-09-30",
       "regime": "cash",
       "tickers": [
         "ALSYDB",
@@ -610,10 +610,10 @@
       "return_pct": -0.08
     },
     {
-      "month": "Sep 2025",
+      "month": "Oct 2025",
       "is_current": false,
-      "start": "2025-08-30",
-      "end": "2025-09-30",
+      "start": "2025-09-30",
+      "end": "2025-10-30",
       "regime": "cash",
       "tickers": [
         "BO",
@@ -630,10 +630,10 @@
       "return_pct": -0.11
     },
     {
-      "month": "Oct 2025",
+      "month": "Nov 2025",
       "is_current": false,
-      "start": "2025-09-30",
-      "end": "2025-10-31",
+      "start": "2025-10-31",
+      "end": "2025-11-30",
       "regime": "cash",
       "tickers": [
         "FOBANK",
@@ -650,10 +650,10 @@
       "return_pct": -0.19
     },
     {
-      "month": "Nov 2025",
+      "month": "Dec 2025",
       "is_current": false,
-      "start": "2025-10-30",
-      "end": "2025-11-30",
+      "start": "2025-11-30",
+      "end": "2025-12-30",
       "regime": "momentum",
       "tickers": [
         "ALSYDB",
@@ -670,10 +670,10 @@
       "return_pct": 0.78
     },
     {
-      "month": "Dec 2025",
+      "month": "Jan 2026",
       "is_current": false,
-      "start": "2025-11-30",
-      "end": "2025-12-31",
+      "start": "2025-12-31",
+      "end": "2026-01-31",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -690,10 +690,10 @@
       "return_pct": 10.14
     },
     {
-      "month": "Jan 2026",
+      "month": "Feb 2026",
       "is_current": false,
-      "start": "2025-12-31",
-      "end": "2026-01-31",
+      "start": "2026-01-31",
+      "end": "2026-02-28",
       "regime": "momentum",
       "tickers": [
         "ALK-B",
@@ -710,10 +710,10 @@
       "return_pct": 1.43
     },
     {
-      "month": "Feb 2026",
+      "month": "Mar 2026",
       "is_current": false,
-      "start": "2026-01-28",
-      "end": "2026-02-28",
+      "start": "2026-02-28",
+      "end": "2026-03-28",
       "regime": "cash",
       "tickers": [
         "DJUR",
@@ -730,10 +730,10 @@
       "return_pct": -0.08
     },
     {
-      "month": "Mar 2026",
+      "month": "Apr 2026",
       "is_current": false,
-      "start": "2026-02-28",
-      "end": "2026-03-31",
+      "start": "2026-03-31",
+      "end": "2026-04-30",
       "regime": "cash",
       "tickers": [
         "DJUR",
@@ -750,10 +750,10 @@
       "return_pct": -0.07
     },
     {
-      "month": "Apr 2026",
+      "month": "May 2026",
       "is_current": false,
-      "start": "2026-03-30",
-      "end": "2026-04-30",
+      "start": "2026-04-30",
+      "end": "2026-05-30",
       "regime": "momentum",
       "tickers": [
         "DJUR",
@@ -770,10 +770,10 @@
       "return_pct": 2.08
     },
     {
-      "month": "May 2026",
+      "month": "Jun 2026",
       "is_current": false,
-      "start": "2026-04-30",
-      "end": "2026-05-31",
+      "start": "2026-05-31",
+      "end": "2026-06-30",
       "regime": "momentum",
       "tickers": [
         "BOOZT-DKK",
@@ -790,10 +790,10 @@
       "return_pct": 0.65
     },
     {
-      "month": "Jun 2026",
-      "is_current": true,
-      "start": "2026-05-30",
-      "end": "2026-06-30",
+      "month": "Jul 2026",
+      "is_current": false,
+      "start": "2026-06-30",
+      "end": "2026-07-30",
       "regime": "momentum",
       "tickers": [
         "BOOZT-DKK",
@@ -808,6 +808,26 @@
         "VWS"
       ],
       "return_pct": -0.24
+    },
+    {
+      "month": "Aug 2026",
+      "is_current": true,
+      "start": "2026-07-31",
+      "end": null,
+      "regime": "momentum",
+      "tickers": [
+        "BOOZT-DKK",
+        "DANSKE",
+        "DJUR",
+        "FOBANK",
+        "JYSK",
+        "NKT",
+        "SKJE",
+        "SPG",
+        "TRMD-A",
+        "VWS"
+      ],
+      "return_pct": null
     }
   ]
 }

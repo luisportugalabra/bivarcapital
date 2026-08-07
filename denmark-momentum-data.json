@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-30",
+  "date": "2026-07-31",
   "regime": "momentum",
   "index_value": 380.8,
   "index_ma100": 350.3,
@@ -47,6 +47,16 @@
       "selected": true
     },
     {
+      "rank": 5,
+      "ticker": "DANSKE",
+      "name": "Danske Bank",
+      "ret_9m": 41.9,
+      "ret_6m": 20.6,
+      "composite": 41.9,
+      "mcap_b": 302.95,
+      "selected": true
+    },
+    {
       "rank": 6,
       "ticker": "FOBANK",
       "name": "Fynske Bank",
@@ -57,43 +67,43 @@
       "selected": true
     },
     {
-      "rank": 11,
-      "ticker": "ISS",
-      "name": "ISS A/S",
-      "ret_9m": 34.8,
-      "ret_6m": 24.8,
-      "composite": 34.8,
-      "mcap_b": 48.4,
+      "rank": 7,
+      "ticker": "SKJE",
+      "name": "Skjern Bank",
+      "ret_9m": 41.2,
+      "ret_6m": 14.2,
+      "composite": 41.2,
+      "mcap_b": 3.47,
       "selected": true
     },
     {
-      "rank": 12,
-      "ticker": "LASP",
-      "name": "L\u00e5n & Spar Bank",
-      "ret_9m": 32.8,
-      "ret_6m": -2.9,
-      "composite": 32.8,
-      "mcap_b": 4.81,
+      "rank": 8,
+      "ticker": "TRMD-A",
+      "name": "Torm A",
+      "ret_9m": 39.0,
+      "ret_6m": 39.3,
+      "composite": 39.0,
+      "mcap_b": 20.08,
       "selected": true
     },
     {
-      "rank": 13,
-      "ticker": "ORSTED",
-      "name": "\u00d8rsted A/S",
-      "ret_9m": 29.3,
-      "ret_6m": 20.0,
-      "composite": 29.3,
-      "mcap_b": 191.03,
+      "rank": 9,
+      "ticker": "JYSK",
+      "name": "Jyske Bank",
+      "ret_9m": 37.3,
+      "ret_6m": 11.4,
+      "composite": 37.3,
+      "mcap_b": 59.43,
       "selected": true
     },
     {
-      "rank": 15,
-      "ticker": "GRLA",
-      "name": "Gr\u00f8nlandsbanken",
-      "ret_9m": 27.7,
-      "ret_6m": 26.2,
-      "composite": 27.7,
-      "mcap_b": 1.94,
+      "rank": 10,
+      "ticker": "DJUR",
+      "name": "Djurslands Bank",
+      "ret_9m": 36.7,
+      "ret_6m": 8.0,
+      "composite": 36.7,
+      "mcap_b": 2.82,
       "selected": true
     }
   ],
@@ -146,7 +156,7 @@
       "ret_6m": 20.6,
       "composite": 41.9,
       "mcap_b": 302.95,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 6,
@@ -166,7 +176,7 @@
       "ret_6m": 14.2,
       "composite": 41.2,
       "mcap_b": 3.47,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 8,
@@ -176,7 +186,7 @@
       "ret_6m": 39.3,
       "composite": 39.0,
       "mcap_b": 20.08,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 9,
@@ -186,7 +196,7 @@
       "ret_6m": 11.4,
       "composite": 37.3,
       "mcap_b": 59.43,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 10,
@@ -196,7 +206,7 @@
       "ret_6m": 8.0,
       "composite": 36.7,
       "mcap_b": 2.82,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 11,
@@ -206,7 +216,7 @@
       "ret_6m": 24.8,
       "composite": 34.8,
       "mcap_b": 48.4,
-      "selected": true
+      "selected": false
     },
     {
       "rank": 12,
@@ -216,7 +226,7 @@
       "ret_6m": -2.9,
       "composite": 32.8,
       "mcap_b": 4.81,
-      "selected": true
+      "selected": false
     },
     {
       "rank": 13,
@@ -226,7 +236,7 @@
       "ret_6m": 20.0,
       "composite": 29.3,
       "mcap_b": 191.03,
-      "selected": true
+      "selected": false
     },
     {
       "rank": 14,
@@ -246,7 +256,7 @@
       "ret_6m": 26.2,
       "composite": 27.7,
       "mcap_b": 1.94,
-      "selected": true
+      "selected": false
     },
     {
       "rank": 16,
