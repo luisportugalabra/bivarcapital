@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-08-03",
   "updated": "2026-08-07",
-  "ytd_2026": 21.1,
+  "ytd_2026": -8.6,
   "regime": "momentum",
   "currency": "DKK",
   "index_value": 1851.0,
@@ -24,8 +24,8 @@
       "name": "Schouw & Co",
       "entry_date": "2026-08-03",
       "entry_price": 473.0,
-      "current_price": 471.0,
-      "return_pct": -0.42
+      "current_price": 470.0,
+      "return_pct": -0.63
     },
     {
       "ticker": "NKT",
@@ -34,8 +34,8 @@
       "name": "NKT A/S",
       "entry_date": "2026-08-03",
       "entry_price": 884.5,
-      "current_price": 937.0,
-      "return_pct": 5.94
+      "current_price": 926.5,
+      "return_pct": 4.75
     },
     {
       "ticker": "SKJE",
@@ -44,8 +44,8 @@
       "name": "Skjern Bank",
       "entry_date": "2026-08-03",
       "entry_price": 370.0,
-      "current_price": 372.0,
-      "return_pct": 0.54
+      "current_price": 370.5,
+      "return_pct": 0.14
     },
     {
       "ticker": "TRMD-A",
@@ -54,8 +54,8 @@
       "name": "Torm A",
       "entry_date": "2026-08-03",
       "entry_price": 193.2,
-      "current_price": 190.8,
-      "return_pct": -1.24
+      "current_price": 189.3,
+      "return_pct": -2.02
     },
     {
       "ticker": "NTG",
@@ -64,8 +64,8 @@
       "name": "NTG Nordic Transport",
       "entry_date": "2026-08-03",
       "entry_price": 252.5,
-      "current_price": 266.0,
-      "return_pct": 5.35
+      "current_price": 265.5,
+      "return_pct": 5.15
     },
     {
       "ticker": "JYSK",
@@ -74,8 +74,8 @@
       "name": "Jyske Bank",
       "entry_date": "2026-08-03",
       "entry_price": 1037.0,
-      "current_price": 1042.0,
-      "return_pct": 0.48
+      "current_price": 1043.0,
+      "return_pct": 0.58
     },
     {
       "ticker": "ISS",
@@ -84,8 +84,8 @@
       "name": "ISS A/S",
       "entry_date": "2026-08-03",
       "entry_price": 285.0,
-      "current_price": 279.0,
-      "return_pct": -2.11
+      "current_price": 278.0,
+      "return_pct": -2.46
     },
     {
       "ticker": "DNORD",
@@ -94,8 +94,8 @@
       "name": "D/S Norden",
       "entry_date": "2026-08-03",
       "entry_price": 331.0,
-      "current_price": 321.8,
-      "return_pct": -2.78
+      "current_price": 321.2,
+      "return_pct": -2.96
     },
     {
       "ticker": "DEMANT",
@@ -104,8 +104,8 @@
       "name": "Demant A/S",
       "entry_date": "2026-08-03",
       "entry_price": 289.0,
-      "current_price": 281.0,
-      "return_pct": -2.77
+      "current_price": 281.2,
+      "return_pct": -2.7
     }
   ],
   "monthly_breakdown": [
@@ -127,7 +127,7 @@
         "TOTA",
         "ZEAL"
       ],
-      "return_pct": 2.2
+      "return_pct": 2.45
     },
     {
       "month": "Oct 2023",
@@ -147,7 +147,7 @@
         "SIM",
         "ZEAL"
       ],
-      "return_pct": 1.32
+      "return_pct": -3.73
     },
     {
       "month": "Nov 2023",
@@ -167,7 +167,7 @@
         "SKJE",
         "ZEAL"
       ],
-      "return_pct": -0.12
+      "return_pct": 6.64
     },
     {
       "month": "Dec 2023",
@@ -187,7 +187,7 @@
         "PNDORA",
         "ZEAL"
       ],
-      "return_pct": 4.63
+      "return_pct": 3.09
     },
     {
       "month": "Jan 2024",
@@ -207,7 +207,7 @@
         "TRMD-A",
         "ZEAL"
       ],
-      "return_pct": 1.83
+      "return_pct": 9.09
     },
     {
       "month": "Feb 2024",
@@ -227,7 +227,7 @@
         "TRMD-A",
         "ZEAL"
       ],
-      "return_pct": 8.71
+      "return_pct": 4.75
     },
     {
       "month": "Mar 2024",
@@ -247,7 +247,7 @@
         "VJBA",
         "ZEAL"
       ],
-      "return_pct": 4.71
+      "return_pct": 3.91
     },
     {
       "month": "Apr 2024",
@@ -267,7 +267,7 @@
         "SKJE",
         "ZEAL"
       ],
-      "return_pct": 2.07
+      "return_pct": -2.63
     },
     {
       "month": "May 2024",
@@ -287,7 +287,7 @@
         "SKJE",
         "ZEAL"
       ],
-      "return_pct": -1.97
+      "return_pct": 3.54
     },
     {
       "month": "Jun 2024",
@@ -307,7 +307,7 @@
         "TRMD-A",
         "ZEAL"
       ],
-      "return_pct": 4.41
+      "return_pct": 5.41
     },
     {
       "month": "Jul 2024",
@@ -327,7 +327,7 @@
         "TRMD-A",
         "ZEAL"
       ],
-      "return_pct": 2.54
+      "return_pct": 4.12
     },
     {
       "month": "Aug 2024",
@@ -347,7 +347,7 @@
         "TRMD-A",
         "ZEAL"
       ],
-      "return_pct": 5.2
+      "return_pct": -3.08
     },
     {
       "month": "Sep 2024",
@@ -367,7 +367,7 @@
         "SPG",
         "ZEAL"
       ],
-      "return_pct": -0.97
+      "return_pct": -1.29
     },
     {
       "month": "Oct 2024",
@@ -387,7 +387,7 @@
         "SPG",
         "ZEAL"
       ],
-      "return_pct": -0.04
+      "return_pct": -6.59
     },
     {
       "month": "Nov 2024",
@@ -407,7 +407,7 @@
         "SPG",
         "ZEAL"
       ],
-      "return_pct": -0.06
+      "return_pct": 2.76
     },
     {
       "month": "Dec 2024",
@@ -427,7 +427,7 @@
         "UIE",
         "ZEAL"
       ],
-      "return_pct": -0.14
+      "return_pct": -1.15
     },
     {
       "month": "Jan 2025",
@@ -447,7 +447,7 @@
         "UIE",
         "ZEAL"
       ],
-      "return_pct": -0.07
+      "return_pct": 2.71
     },
     {
       "month": "Feb 2025",
@@ -467,7 +467,7 @@
         "SPNO",
         "UIE"
       ],
-      "return_pct": -0.09
+      "return_pct": 0.24
     },
     {
       "month": "Mar 2025",
@@ -487,7 +487,7 @@
         "SPKSJF",
         "SPNO"
       ],
-      "return_pct": -0.11
+      "return_pct": -8.89
     },
     {
       "month": "Apr 2025",
@@ -507,7 +507,7 @@
         "SPNO",
         "UIE"
       ],
-      "return_pct": -0.15
+      "return_pct": -2.01
     },
     {
       "month": "May 2025",
@@ -527,7 +527,7 @@
         "SPKSJF",
         "SPNO"
       ],
-      "return_pct": -0.07
+      "return_pct": 6.19
     },
     {
       "month": "Jun 2025",
@@ -547,7 +547,7 @@
         "SPKSJF",
         "SPNO"
       ],
-      "return_pct": -0.07
+      "return_pct": 4.2
     },
     {
       "month": "Jul 2025",
@@ -567,7 +567,7 @@
         "PAAL-B",
         "PARKEN"
       ],
-      "return_pct": -0.1
+      "return_pct": -0.02
     },
     {
       "month": "Aug 2025",
@@ -587,7 +587,7 @@
         "SJF",
         "SPKSJF"
       ],
-      "return_pct": -0.11
+      "return_pct": 0.35
     },
     {
       "month": "Sep 2025",
@@ -607,7 +607,7 @@
         "SJF",
         "SPKSJF"
       ],
-      "return_pct": -0.03
+      "return_pct": 0.46
     },
     {
       "month": "Oct 2025",
@@ -627,7 +627,7 @@
         "SPKSJF",
         "SYDB"
       ],
-      "return_pct": -0.08
+      "return_pct": -1.21
     },
     {
       "month": "Nov 2025",
@@ -647,7 +647,7 @@
         "SYDB",
         "VJBA"
       ],
-      "return_pct": -0.14
+      "return_pct": -2.75
     },
     {
       "month": "Dec 2025",
@@ -667,7 +667,7 @@
         "SYDB",
         "VJBA"
       ],
-      "return_pct": -1.92
+      "return_pct": 6.61
     },
     {
       "month": "Jan 2026",
@@ -687,7 +687,7 @@
         "VJBA",
         "VWS"
       ],
-      "return_pct": 6.74
+      "return_pct": 4.12
     },
     {
       "month": "Feb 2026",
@@ -707,7 +707,7 @@
         "RTX",
         "VWS"
       ],
-      "return_pct": 6.14
+      "return_pct": -10.14
     },
     {
       "month": "Mar 2026",
@@ -727,7 +727,7 @@
         "TRMD-A",
         "VWS"
       ],
-      "return_pct": -0.07
+      "return_pct": -4.6
     },
     {
       "month": "Apr 2026",
@@ -747,7 +747,7 @@
         "TRMD-A",
         "VWS"
       ],
-      "return_pct": -0.05
+      "return_pct": 1.86
     },
     {
       "month": "May 2026",
@@ -767,7 +767,7 @@
         "TRMD-A",
         "VWS"
       ],
-      "return_pct": 1.14
+      "return_pct": 0.68
     },
     {
       "month": "Jun 2026",
@@ -787,7 +787,7 @@
         "TRMD-A",
         "VWS"
       ],
-      "return_pct": 1.34
+      "return_pct": -4.2
     },
     {
       "month": "Jul 2026",
@@ -807,7 +807,7 @@
         "TRMD-A",
         "VWS"
       ],
-      "return_pct": -3.24
+      "return_pct": 7.05
     },
     {
       "month": "Aug 2026",
@@ -827,27 +827,7 @@
         "SPG",
         "TRMD-A"
       ],
-      "return_pct": 7.91
-    },
-    {
-      "month": "Sep 2026",
-      "is_current": false,
-      "start": "2026-08-31",
-      "end": null,
-      "regime": "momentum",
-      "tickers": [
-        "BOOZT-DKK",
-        "DANSKE",
-        "ISS",
-        "JYSK",
-        "LASP",
-        "NKT",
-        "NTG",
-        "PNDORA",
-        "SKJE",
-        "SPG"
-      ],
-      "return_pct": null
+      "return_pct": -2.63
     }
   ]
 }
