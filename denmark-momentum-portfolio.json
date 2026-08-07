@@ -1,0 +1,813 @@
+{
+  "last_rebalance": "2026-06-30",
+  "updated": "2026-08-06",
+  "ytd_2026": 3.8,
+  "regime": "risk-on",
+  "currency": "DKK",
+  "index_value": 380.8,
+  "index_ma100": 350.3,
+  "holdings": [
+    {
+      "ticker": "BOOZT-DKK",
+      "name": "Boozt",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "DFDS",
+      "name": "DFDS A/S",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "FOBANK",
+      "name": "Fynske Bank",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "GRLA",
+      "name": "Gr\u00f8nlandsbanken",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "ISS",
+      "name": "ISS A/S",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "LASP",
+      "name": "L\u00e5n & Spar Bank",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "NKT",
+      "name": "NKT A/S",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "ORSTED",
+      "name": "\u00d8rsted A/S",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "SPG",
+      "name": "Schouw & Co",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "VWS",
+      "name": "Vestas Wind Systems",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    }
+  ],
+  "monthly_breakdown": [
+    {
+      "month": "Jul 2023",
+      "is_current": false,
+      "start": "2023-06-30",
+      "end": "2023-07-31",
+      "regime": "momentum",
+      "tickers": [
+        "AMBU-B",
+        "BOOZT-DKK",
+        "DANSKE",
+        "FLS",
+        "NTG",
+        "PAAL-B",
+        "PARKEN",
+        "PNDORA",
+        "SIM",
+        "TOTA"
+      ],
+      "return_pct": -1.73
+    },
+    {
+      "month": "Aug 2023",
+      "is_current": false,
+      "start": "2023-07-31",
+      "end": "2023-08-31",
+      "regime": "momentum",
+      "tickers": [
+        "ALSYDB",
+        "FLS",
+        "NNIT",
+        "NTG",
+        "PAAL-B",
+        "PARKEN",
+        "PNDORA",
+        "SIM",
+        "SYDB",
+        "TOTA"
+      ],
+      "return_pct": -1.6
+    },
+    {
+      "month": "Sep 2023",
+      "is_current": false,
+      "start": "2023-08-30",
+      "end": "2023-09-30",
+      "regime": "momentum",
+      "tickers": [
+        "DEMANT",
+        "FLS",
+        "FOBANK",
+        "MATAS",
+        "NOVO-B",
+        "NTG",
+        "PAAL-B",
+        "PARKEN",
+        "PNDORA",
+        "SIM"
+      ],
+      "return_pct": 1.15
+    },
+    {
+      "month": "Oct 2023",
+      "is_current": false,
+      "start": "2023-09-30",
+      "end": "2023-10-31",
+      "regime": "cash",
+      "tickers": [
+        "DEMANT",
+        "HLUN-A",
+        "HLUN-B",
+        "MATAS",
+        "NEWCAP",
+        "NTG",
+        "PARKEN",
+        "PNDORA",
+        "SIM",
+        "ZEAL"
+      ],
+      "return_pct": -0.11
+    },
+    {
+      "month": "Nov 2023",
+      "is_current": false,
+      "start": "2023-10-30",
+      "end": "2023-11-30",
+      "regime": "momentum",
+      "tickers": [
+        "DEMANT",
+        "HLUN-A",
+        "HLUN-B",
+        "MATAS",
+        "NEWCAP",
+        "NOVO-B",
+        "PARKEN",
+        "PNDORA",
+        "TRMD-A",
+        "ZEAL"
+      ],
+      "return_pct": 4.46
+    },
+    {
+      "month": "Dec 2023",
+      "is_current": false,
+      "start": "2023-11-30",
+      "end": "2023-12-31",
+      "regime": "momentum",
+      "tickers": [
+        "CBRAIN",
+        "DEMANT",
+        "MATAS",
+        "NEWCAP",
+        "NKT",
+        "NNIT",
+        "NOVO-B",
+        "PARKEN",
+        "PNDORA",
+        "ZEAL"
+      ],
+      "return_pct": 1.5
+    },
+    {
+      "month": "Jan 2024",
+      "is_current": false,
+      "start": "2023-12-31",
+      "end": "2024-01-31",
+      "regime": "momentum",
+      "tickers": [
+        "BIOPOR",
+        "CBRAIN",
+        "DANSKE",
+        "MATAS",
+        "NKT",
+        "NOVO-B",
+        "ORPHA",
+        "PARKEN",
+        "PNDORA",
+        "ZEAL"
+      ],
+      "return_pct": 7.84
+    },
+    {
+      "month": "Feb 2024",
+      "is_current": false,
+      "start": "2024-01-29",
+      "end": "2024-02-29",
+      "regime": "momentum",
+      "tickers": [
+        "CBRAIN",
+        "DANSKE",
+        "MATAS",
+        "NKT",
+        "NOVO-B",
+        "PARKEN",
+        "PNDORA",
+        "SKJE",
+        "TRMD-A",
+        "ZEAL"
+      ],
+      "return_pct": 7.31
+    },
+    {
+      "month": "Mar 2024",
+      "is_current": false,
+      "start": "2024-02-29",
+      "end": "2024-03-31",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "CBRAIN",
+        "DANSKE",
+        "GUBRA",
+        "MATAS",
+        "NOVO-B",
+        "PNDORA",
+        "TRMD-A",
+        "VJBA",
+        "ZEAL"
+      ],
+      "return_pct": 5.9
+    },
+    {
+      "month": "Apr 2024",
+      "is_current": false,
+      "start": "2024-03-30",
+      "end": "2024-04-30",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "CBRAIN",
+        "DJUR",
+        "GUBRA",
+        "MTHH",
+        "NOVO-B",
+        "PNDORA",
+        "SKJE",
+        "TRMD-A",
+        "ZEAL"
+      ],
+      "return_pct": -1.86
+    },
+    {
+      "month": "May 2024",
+      "is_current": false,
+      "start": "2024-04-30",
+      "end": "2024-05-31",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "CBRAIN",
+        "COLUM",
+        "GUBRA",
+        "MTHH",
+        "NOVO-B",
+        "PNDORA",
+        "SKJE",
+        "TRMD-A",
+        "ZEAL"
+      ],
+      "return_pct": 4.03
+    },
+    {
+      "month": "Jun 2024",
+      "is_current": false,
+      "start": "2024-05-30",
+      "end": "2024-06-30",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "CBRAIN",
+        "COLUM",
+        "GUBRA",
+        "HARB-B",
+        "MTHH",
+        "ROCK-A",
+        "ROCK-B",
+        "TRMD-A",
+        "ZEAL"
+      ],
+      "return_pct": 2.74
+    },
+    {
+      "month": "Jul 2024",
+      "is_current": false,
+      "start": "2024-06-30",
+      "end": "2024-07-31",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "AMBU-B",
+        "GUBRA",
+        "HARB-B",
+        "MTHH",
+        "NKT",
+        "ROCK-A",
+        "ROCK-B",
+        "TRMD-A",
+        "ZEAL"
+      ],
+      "return_pct": 5.63
+    },
+    {
+      "month": "Aug 2024",
+      "is_current": false,
+      "start": "2024-07-31",
+      "end": "2024-08-31",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "AMBU-B",
+        "GN",
+        "GUBRA",
+        "HARB-B",
+        "MTHH",
+        "NKT",
+        "ROCK-A",
+        "ROCK-B",
+        "ZEAL"
+      ],
+      "return_pct": 1.41
+    },
+    {
+      "month": "Sep 2024",
+      "is_current": false,
+      "start": "2024-08-30",
+      "end": "2024-09-30",
+      "regime": "cash",
+      "tickers": [
+        "ALK-B",
+        "BAVA",
+        "GUBRA",
+        "HARB-B",
+        "HUSCO",
+        "MTHH",
+        "NKT",
+        "ROCK-A",
+        "ROCK-B",
+        "ZEAL"
+      ],
+      "return_pct": -0.05
+    },
+    {
+      "month": "Oct 2024",
+      "is_current": false,
+      "start": "2024-09-30",
+      "end": "2024-10-31",
+      "regime": "cash",
+      "tickers": [
+        "ALK-B",
+        "COLUM",
+        "GUBRA",
+        "MTHH",
+        "NNIT",
+        "ROCK-A",
+        "ROCK-B",
+        "SPG",
+        "UIE",
+        "ZEAL"
+      ],
+      "return_pct": -0.12
+    },
+    {
+      "month": "Nov 2024",
+      "is_current": false,
+      "start": "2024-10-30",
+      "end": "2024-11-30",
+      "regime": "cash",
+      "tickers": [
+        "ALK-B",
+        "COLUM",
+        "GUBRA",
+        "HARB-B",
+        "HUSCO",
+        "MTHH",
+        "ROCK-A",
+        "ROCK-B",
+        "SPG",
+        "ZEAL"
+      ],
+      "return_pct": -0.06
+    },
+    {
+      "month": "Dec 2024",
+      "is_current": false,
+      "start": "2024-11-30",
+      "end": "2024-12-31",
+      "regime": "cash",
+      "tickers": [
+        "COLUM",
+        "DSV",
+        "GUBRA",
+        "HLUN-B",
+        "MAERSK-A",
+        "MAERSK-B",
+        "MTHH",
+        "PAAL-B",
+        "SPG",
+        "UIE"
+      ],
+      "return_pct": -0.17
+    },
+    {
+      "month": "Jan 2025",
+      "is_current": false,
+      "start": "2024-12-31",
+      "end": "2025-01-31",
+      "regime": "cash",
+      "tickers": [
+        "DSV",
+        "GUBRA",
+        "GYLD-A",
+        "MAERSK-A",
+        "MAERSK-B",
+        "MTHH",
+        "PAAL-B",
+        "SPG",
+        "SPNO",
+        "UIE"
+      ],
+      "return_pct": -0.06
+    },
+    {
+      "month": "Feb 2025",
+      "is_current": false,
+      "start": "2025-01-28",
+      "end": "2025-02-28",
+      "regime": "cash",
+      "tickers": [
+        "BO",
+        "CHEMM",
+        "COLUM",
+        "DSV",
+        "GUBRA",
+        "KBHL",
+        "PAAL-B",
+        "SPG",
+        "SPNO",
+        "UIE"
+      ],
+      "return_pct": -0.09
+    },
+    {
+      "month": "Mar 2025",
+      "is_current": false,
+      "start": "2025-02-28",
+      "end": "2025-03-31",
+      "regime": "cash",
+      "tickers": [
+        "BO",
+        "CHEMM",
+        "DSV",
+        "GUBRA",
+        "KBHL",
+        "MTHH",
+        "SJF",
+        "SPKSJF",
+        "SPNO",
+        "UIE"
+      ],
+      "return_pct": -0.11
+    },
+    {
+      "month": "Apr 2025",
+      "is_current": false,
+      "start": "2025-03-30",
+      "end": "2025-04-30",
+      "regime": "cash",
+      "tickers": [
+        "BO",
+        "CHEMM",
+        "FOBANK",
+        "GRLA",
+        "ISS",
+        "KBHL",
+        "KRE",
+        "MTHH",
+        "SPNO",
+        "UIE"
+      ],
+      "return_pct": -0.14
+    },
+    {
+      "month": "May 2025",
+      "is_current": false,
+      "start": "2025-04-30",
+      "end": "2025-05-31",
+      "regime": "cash",
+      "tickers": [
+        "BO",
+        "COLUM",
+        "FOBANK",
+        "ISS",
+        "KBHL",
+        "KRE",
+        "MTHH",
+        "PAAL-B",
+        "SPNO",
+        "TCM"
+      ],
+      "return_pct": -0.08
+    },
+    {
+      "month": "Jun 2025",
+      "is_current": false,
+      "start": "2025-05-30",
+      "end": "2025-06-30",
+      "regime": "cash",
+      "tickers": [
+        "BO",
+        "CHEMM",
+        "HH",
+        "ISS",
+        "KBHL",
+        "MTHH",
+        "PAAL-B",
+        "SJF",
+        "SPKSJF",
+        "SPNO"
+      ],
+      "return_pct": -0.12
+    },
+    {
+      "month": "Jul 2025",
+      "is_current": false,
+      "start": "2025-06-30",
+      "end": "2025-07-31",
+      "regime": "cash",
+      "tickers": [
+        "ALSYDB",
+        "BO",
+        "FOBANK",
+        "KBHL",
+        "MTHH",
+        "PAAL-B",
+        "SJF",
+        "SPKSJF",
+        "SPNO",
+        "SYDB"
+      ],
+      "return_pct": -0.09
+    },
+    {
+      "month": "Aug 2025",
+      "is_current": false,
+      "start": "2025-07-31",
+      "end": "2025-08-31",
+      "regime": "cash",
+      "tickers": [
+        "ALSYDB",
+        "KBHL",
+        "KRE",
+        "MTHH",
+        "NRDF",
+        "PAAL-B",
+        "PARKEN",
+        "SJF",
+        "SPKSJF",
+        "SYDB"
+      ],
+      "return_pct": -0.08
+    },
+    {
+      "month": "Sep 2025",
+      "is_current": false,
+      "start": "2025-08-30",
+      "end": "2025-09-30",
+      "regime": "cash",
+      "tickers": [
+        "BO",
+        "DJUR",
+        "KBHL",
+        "LOLB",
+        "MTHH",
+        "NRDF",
+        "PARKEN",
+        "SJF",
+        "SKJE",
+        "SPKSJF"
+      ],
+      "return_pct": -0.11
+    },
+    {
+      "month": "Oct 2025",
+      "is_current": false,
+      "start": "2025-09-30",
+      "end": "2025-10-31",
+      "regime": "cash",
+      "tickers": [
+        "FOBANK",
+        "ISS",
+        "JYSK",
+        "LASP",
+        "MNBA",
+        "MTHH",
+        "NDA-DK",
+        "NRDF",
+        "PARKEN",
+        "RTX"
+      ],
+      "return_pct": -0.19
+    },
+    {
+      "month": "Nov 2025",
+      "is_current": false,
+      "start": "2025-10-30",
+      "end": "2025-11-30",
+      "regime": "momentum",
+      "tickers": [
+        "ALSYDB",
+        "FOBANK",
+        "ISS",
+        "LASP",
+        "MTHH",
+        "NRDF",
+        "PAAL-B",
+        "RTX",
+        "SYDB",
+        "VJBA"
+      ],
+      "return_pct": 0.78
+    },
+    {
+      "month": "Dec 2025",
+      "is_current": false,
+      "start": "2025-11-30",
+      "end": "2025-12-31",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "FOBANK",
+        "GREENM",
+        "LASP",
+        "NKT",
+        "NRDF",
+        "PAAL-B",
+        "RTX",
+        "VJBA",
+        "VWS"
+      ],
+      "return_pct": 10.14
+    },
+    {
+      "month": "Jan 2026",
+      "is_current": false,
+      "start": "2025-12-31",
+      "end": "2026-01-31",
+      "regime": "momentum",
+      "tickers": [
+        "ALK-B",
+        "FOBANK",
+        "JYSK",
+        "LASP",
+        "MNBA",
+        "MTHH",
+        "NKT",
+        "NLFSK",
+        "PAAL-B",
+        "VWS"
+      ],
+      "return_pct": 1.43
+    },
+    {
+      "month": "Feb 2026",
+      "is_current": false,
+      "start": "2026-01-28",
+      "end": "2026-02-28",
+      "regime": "cash",
+      "tickers": [
+        "DJUR",
+        "FLS",
+        "FOBANK",
+        "JYSK",
+        "LASP",
+        "MNBA",
+        "MTHH",
+        "PAAL-B",
+        "RTX",
+        "VWS"
+      ],
+      "return_pct": -0.08
+    },
+    {
+      "month": "Mar 2026",
+      "is_current": false,
+      "start": "2026-02-28",
+      "end": "2026-03-31",
+      "regime": "cash",
+      "tickers": [
+        "DJUR",
+        "FLS",
+        "FOBANK",
+        "JYSK",
+        "LASP",
+        "MNBA",
+        "NKT",
+        "NLFSK",
+        "TRMD-A",
+        "VWS"
+      ],
+      "return_pct": -0.07
+    },
+    {
+      "month": "Apr 2026",
+      "is_current": false,
+      "start": "2026-03-30",
+      "end": "2026-04-30",
+      "regime": "momentum",
+      "tickers": [
+        "DJUR",
+        "DNORD",
+        "FOBANK",
+        "JYSK",
+        "MNBA",
+        "NETC",
+        "NKT",
+        "NLFSK",
+        "TRMD-A",
+        "VWS"
+      ],
+      "return_pct": 2.08
+    },
+    {
+      "month": "May 2026",
+      "is_current": false,
+      "start": "2026-04-30",
+      "end": "2026-05-31",
+      "regime": "momentum",
+      "tickers": [
+        "BOOZT-DKK",
+        "JYSK",
+        "LASP",
+        "NETC",
+        "NKT",
+        "NLFSK",
+        "SKJE",
+        "SPG",
+        "TRMD-A",
+        "VWS"
+      ],
+      "return_pct": 0.65
+    },
+    {
+      "month": "Jun 2026",
+      "is_current": true,
+      "start": "2026-05-30",
+      "end": "2026-06-30",
+      "regime": "momentum",
+      "tickers": [
+        "BOOZT-DKK",
+        "DFDS",
+        "FOBANK",
+        "GRLA",
+        "ISS",
+        "LASP",
+        "NKT",
+        "ORSTED",
+        "SPG",
+        "VWS"
+      ],
+      "return_pct": -0.24
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "date": "2026-06-30",
+  "regime": "momentum",
+  "index_value": 380.8,
+  "index_ma100": 350.3,
+  "pct_above_ma": 8.7,
+  "total_eligible": 83,
+  "portfolio": [
+    {
+      "rank": 1,
+      "ticker": "NKT",
+      "name": "NKT A/S",
+      "ret_9m": 58.2,
+      "ret_6m": 22.2,
+      "composite": 58.2,
+      "mcap_b": 47.95,
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "ticker": "VWS",
+      "name": "Vestas Wind Systems",
+      "ret_9m": 54.7,
+      "ret_6m": 6.9,
+      "composite": 54.7,
+      "mcap_b": 180.76,
+      "selected": true
+    },
+    {
+      "rank": 3,
+      "ticker": "BOOZT-DKK",
+      "name": "Boozt",
+      "ret_9m": 53.4,
+      "ret_6m": 27.7,
+      "composite": 53.4,
+      "mcap_b": 7.09,
+      "selected": true
+    },
+    {
+      "rank": 4,
+      "ticker": "SPG",
+      "name": "Schouw & Co",
+      "ret_9m": 51.1,
+      "ret_6m": 17.1,
+      "composite": 51.1,
+      "mcap_b": 5.62,
+      "selected": true
+    },
+    {
+      "rank": 6,
+      "ticker": "FOBANK",
+      "name": "Fynske Bank",
+      "ret_9m": 41.3,
+      "ret_6m": -3.7,
+      "composite": 41.3,
+      "mcap_b": 2.72,
+      "selected": true
+    },
+    {
+      "rank": 11,
+      "ticker": "ISS",
+      "name": "ISS A/S",
+      "ret_9m": 34.8,
+      "ret_6m": 24.8,
+      "composite": 34.8,
+      "mcap_b": 48.4,
+      "selected": true
+    },
+    {
+      "rank": 12,
+      "ticker": "LASP",
+      "name": "L\u00e5n & Spar Bank",
+      "ret_9m": 32.8,
+      "ret_6m": -2.9,
+      "composite": 32.8,
+      "mcap_b": 4.81,
+      "selected": true
+    },
+    {
+      "rank": 13,
+      "ticker": "ORSTED",
+      "name": "\u00d8rsted A/S",
+      "ret_9m": 29.3,
+      "ret_6m": 20.0,
+      "composite": 29.3,
+      "mcap_b": 191.03,
+      "selected": true
+    },
+    {
+      "rank": 15,
+      "ticker": "GRLA",
+      "name": "Gr\u00f8nlandsbanken",
+      "ret_9m": 27.7,
+      "ret_6m": 26.2,
+      "composite": 27.7,
+      "mcap_b": 1.94,
+      "selected": true
+    }
+  ],
+  "top20": [
+    {
+      "rank": 1,
+      "ticker": "NKT",
+      "name": "NKT A/S",
+      "ret_9m": 58.2,
+      "ret_6m": 22.2,
+      "composite": 58.2,
+      "mcap_b": 47.95,
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "ticker": "VWS",
+      "name": "Vestas Wind Systems",
+      "ret_9m": 54.7,
+      "ret_6m": 6.9,
+      "composite": 54.7,
+      "mcap_b": 180.76,
+      "selected": true
+    },
+    {
+      "rank": 3,
+      "ticker": "BOOZT-DKK",
+      "name": "Boozt",
+      "ret_9m": 53.4,
+      "ret_6m": 27.7,
+      "composite": 53.4,
+      "mcap_b": 7.09,
+      "selected": true
+    },
+    {
+      "rank": 4,
+      "ticker": "SPG",
+      "name": "Schouw & Co",
+      "ret_9m": 51.1,
+      "ret_6m": 17.1,
+      "composite": 51.1,
+      "mcap_b": 5.62,
+      "selected": true
+    },
+    {
+      "rank": 5,
+      "ticker": "DANSKE",
+      "name": "Danske Bank",
+      "ret_9m": 41.9,
+      "ret_6m": 20.6,
+      "composite": 41.9,
+      "mcap_b": 302.95,
+      "selected": false
+    },
+    {
+      "rank": 6,
+      "ticker": "FOBANK",
+      "name": "Fynske Bank",
+      "ret_9m": 41.3,
+      "ret_6m": -3.7,
+      "composite": 41.3,
+      "mcap_b": 2.72,
+      "selected": true
+    },
+    {
+      "rank": 7,
+      "ticker": "SKJE",
+      "name": "Skjern Bank",
+      "ret_9m": 41.2,
+      "ret_6m": 14.2,
+      "composite": 41.2,
+      "mcap_b": 3.47,
+      "selected": false
+    },
+    {
+      "rank": 8,
+      "ticker": "TRMD-A",
+      "name": "Torm A",
+      "ret_9m": 39.0,
+      "ret_6m": 39.3,
+      "composite": 39.0,
+      "mcap_b": 20.08,
+      "selected": false
+    },
+    {
+      "rank": 9,
+      "ticker": "JYSK",
+      "name": "Jyske Bank",
+      "ret_9m": 37.3,
+      "ret_6m": 11.4,
+      "composite": 37.3,
+      "mcap_b": 59.43,
+      "selected": false
+    },
+    {
+      "rank": 10,
+      "ticker": "DJUR",
+      "name": "Djurslands Bank",
+      "ret_9m": 36.7,
+      "ret_6m": 8.0,
+      "composite": 36.7,
+      "mcap_b": 2.82,
+      "selected": false
+    },
+    {
+      "rank": 11,
+      "ticker": "ISS",
+      "name": "ISS A/S",
+      "ret_9m": 34.8,
+      "ret_6m": 24.8,
+      "composite": 34.8,
+      "mcap_b": 48.4,
+      "selected": true
+    },
+    {
+      "rank": 12,
+      "ticker": "LASP",
+      "name": "L\u00e5n & Spar Bank",
+      "ret_9m": 32.8,
+      "ret_6m": -2.9,
+      "composite": 32.8,
+      "mcap_b": 4.81,
+      "selected": true
+    },
+    {
+      "rank": 13,
+      "ticker": "ORSTED",
+      "name": "\u00d8rsted A/S",
+      "ret_9m": 29.3,
+      "ret_6m": 20.0,
+      "composite": 29.3,
+      "mcap_b": 191.03,
+      "selected": true
+    },
+    {
+      "rank": 14,
+      "ticker": "MAERSK-B",
+      "name": "A.P. M\u00f8ller-M\u00e6rsk B",
+      "ret_9m": 28.3,
+      "ret_6m": 9.3,
+      "composite": 28.3,
+      "mcap_b": 229.69,
+      "selected": false
+    },
+    {
+      "rank": 15,
+      "ticker": "GRLA",
+      "name": "Gr\u00f8nlandsbanken",
+      "ret_9m": 27.7,
+      "ret_6m": 26.2,
+      "composite": 27.7,
+      "mcap_b": 1.94,
+      "selected": true
+    },
+    {
+      "rank": 16,
+      "ticker": "NDA-DK",
+      "name": "Nordea Bank",
+      "ret_9m": 26.6,
+      "ret_6m": 9.1,
+      "composite": 26.6,
+      "mcap_b": 446.94,
+      "selected": false
+    },
+    {
+      "rank": 17,
+      "ticker": "MAERSK-A",
+      "name": "A.P. M\u00f8ller-M\u00e6rsk A",
+      "ret_9m": 25.1,
+      "ret_6m": 6.2,
+      "composite": 25.1,
+      "mcap_b": 222.6,
+      "selected": false
+    },
+    {
+      "rank": 18,
+      "ticker": "UIE",
+      "name": "UIE",
+      "ret_9m": 24.5,
+      "ret_6m": -7.2,
+      "composite": 24.5,
+      "mcap_b": 11.12,
+      "selected": false
+    },
+    {
+      "rank": 19,
+      "ticker": "NETC",
+      "name": "Netcompany",
+      "ret_9m": 23.3,
+      "ret_6m": -16.8,
+      "composite": 23.3,
+      "mcap_b": 15.19,
+      "selected": false
+    },
+    {
+      "rank": 20,
+      "ticker": "DSV",
+      "name": "DSV A/S",
+      "ret_9m": 23.0,
+      "ret_6m": -3.7,
+      "composite": 23.0,
+      "mcap_b": 340.23,
+      "selected": false
+    }
+  ]
+}
