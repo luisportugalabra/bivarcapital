@@ -90,23 +90,17 @@ def fetch_denmark():
     return df.sort_values('composite', ascending=False).reset_index(drop=True)
 
 
-def check_regime(df):
-    """
-    Synthetic cap-weighted regime: is the cap-weighted index above its SMA100?
-    Uses close and SMA100 from each stock, weighted by market cap.
-    """
-    sub = df.dropna(subset=['close', 'SMA100', 'market_cap_basic']).copy()
-    if len(sub) == 0:
+def check_regime():
+    """OMXC25 vs MA100 via yfinance."""
+    import yfinance as yf, warnings
+    warnings.filterwarnings('ignore')
+    df = yf.download('^OMXC25', period='200d', auto_adjust=True, progress=False)
+    close = df['Close'].dropna()
+    if len(close) < 100:
         return True, None, None
-
-    total_mcap = sub['market_cap_basic'].sum()
-    w = sub['market_cap_basic'] / total_mcap
-
-    idx_now  = (sub['close']  * w).sum()
-    idx_ma100 = (sub['SMA100'] * w).sum()
-    above = idx_now >= idx_ma100
-    pct   = round((idx_now / idx_ma100 - 1) * 100, 2)
-    return bool(above), round(idx_now, 1), round(idx_ma100, 1)
+    last  = float(close.iloc[-1])
+    ma100 = float(close.rolling(100).mean().iloc[-1])
+    return last >= ma100, round(last, 1), round(ma100, 1)
 
 
 def load_existing_portfolio():
@@ -156,7 +150,7 @@ def main():
     df = fetch_denmark()
 
     # Regime
-    regime_ok, idx_val, idx_ma100 = check_regime(df)
+    regime_ok, idx_val, idx_ma100 = check_regime()
     regime_str = 'momentum' if regime_ok else 'defensive'
     pct_above  = round((idx_val / idx_ma100 - 1) * 100, 1) if idx_val and idx_ma100 else 0
     print(f"  Regime: {regime_str.upper()}  Index: {idx_val}  MA100: {idx_ma100}  ({pct_above:+.1f}%)")
