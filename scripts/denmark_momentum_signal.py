@@ -18,6 +18,7 @@ import os, json
 from datetime import datetime, date
 import calendar
 
+import pandas as pd
 from tradingview_screener import Query, col
 
 SCRIPT_DIR    = os.path.dirname(os.path.abspath(__file__))
@@ -200,6 +201,22 @@ def main():
     price_map = {row['code']: float(row['close']) for _, row in df.iterrows()
                  if row['close'] is not None}
 
+    # First trading day of current month from parquets
+    def get_som_price(code):
+        """Get start-of-month price from EODHD parquet (first trading day of current month)."""
+        tk_eodhd = code.replace('_', '-')
+        fpath = os.path.join(SCRIPT_DIR, '..', '..', 'eodhd_data', 'CO', 'prices', f'{tk_eodhd}.parquet')
+        fpath = os.path.normpath(fpath)
+        try:
+            p = pd.read_parquet(fpath)['adjusted_close']
+            month_start = datetime.now().replace(day=1).strftime('%Y-%m-%d')
+            som = p[p.index >= month_start]
+            if len(som) > 0:
+                return float(som.iloc[0]), som.index[0].strftime('%Y-%m-%d')
+        except Exception:
+            pass
+        return None, None
+
     if is_new_month and regime_ok:
         print(f"  Portfolio: NEW MONTH ({current_m}), rebalancing to top {TOP_N}...")
         holdings = []
@@ -207,23 +224,21 @@ def main():
             code = row['code']
             tk   = row['ticker_eodhd']
             cp   = price_map.get(code)
-            # If stock was already held, keep entry price; otherwise entry = today's close
-            if tk in existing_map:
-                ep = existing_map[tk].get('entry_price') or cp
-            else:
-                ep = cp
+            ep, edate = get_som_price(code)
+            if ep is None:
+                ep, edate = cp, TODAY
             ret = round((cp / ep - 1) * 100, 2) if ep and cp else None
             holdings.append({
                 'ticker':        tk,
                 'ticker_tv':     f"OMXCOP:{code}",
                 'ticker_eodhd':  tk,
                 'name':          dname(code),
-                'entry_date':    TODAY,
+                'entry_date':    edate,
                 'entry_price':   round(ep, 2) if ep else None,
                 'current_price': round(cp, 2) if cp else None,
                 'return_pct':    ret,
             })
-        last_rebalance = TODAY
+        last_rebalance = edate or TODAY
 
     elif not regime_ok:
         print(f"  Portfolio: DEFENSIVE — cash")
