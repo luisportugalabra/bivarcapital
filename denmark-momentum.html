@@ -271,8 +271,15 @@ async function loadPortfolio() {
     const cur = (data.monthly_breakdown || []).find(m => m.is_current);
     if (cur) {
       const mtdEl = document.getElementById('mtd-return');
-      mtdEl.textContent = (cur.return_pct >= 0 ? '+' : '') + cur.return_pct.toFixed(2) + '%';
-      mtdEl.className = 'stat-val ' + (cur.return_pct >= 0 ? 'pos' : 'neg');
+      let mtd = cur.return_pct;
+      if (mtd == null) {
+        const rets = (data.holdings || []).map(h => h.return_pct).filter(r => r != null);
+        mtd = rets.length ? rets.reduce((a,b) => a+b, 0) / rets.length : null;
+      }
+      if (mtd != null) {
+        mtdEl.textContent = (mtd >= 0 ? '+' : '') + mtd.toFixed(2) + '%';
+        mtdEl.className = 'stat-val ' + (mtd >= 0 ? 'pos' : 'neg');
+      }
       document.getElementById('mtd-label').textContent = cur.month;
     }
 
