@@ -115,9 +115,10 @@ current_period = next((p for p in history if pd.Timestamp(p['end']) > today), No
 # Load existing portfolio to preserve entry prices if tickers haven't changed
 try:
     with open(PORTFOLIO_PATH) as f:
-        existing = json.load(f)
-    existing_map = {h['ticker']: h for h in existing.get('holdings', [])}
+        existing_portfolio = json.load(f)
+    existing_map = {h['ticker']: h for h in existing_portfolio.get('holdings', [])}
 except (FileNotFoundError, json.JSONDecodeError):
+    existing_portfolio = {}
     existing_map = {}
 
 # Load name/sector from momentum-data.json
@@ -187,7 +188,7 @@ if current_period:
 
 # ── Save to momentum-portfolio.json ──────────────────────────────────────────
 portfolio_out = {
-    'last_rebalance': current_period['start'] if current_period else today.strftime('%Y-%m-%d'),
+    'last_rebalance': existing_portfolio.get('last_rebalance', current_period['start'] if current_period else today.strftime('%Y-%m-%d')),
     'updated':        today.strftime('%Y-%m-%d'),
     'ytd_2026':       ytd_return,
     'monthly_breakdown': monthly_breakdown,

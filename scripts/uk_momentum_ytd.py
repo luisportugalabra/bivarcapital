@@ -202,7 +202,7 @@ if current_period and current_period.get('tickers'):
 
 # ── Save ───────────────────────────────────────────────────────────────────────
 out = {
-    'last_rebalance':    current_period['start'] if current_period else today_str,
+    'last_rebalance':    portfolio.get('last_rebalance', current_period['start'] if current_period else today_str),
     'updated':           today_str,
     'ytd_2026':          ytd_return,
     'ftse100':           round(ftse_current, 2) if ftse_current else None,
