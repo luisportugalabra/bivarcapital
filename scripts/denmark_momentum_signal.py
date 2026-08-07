@@ -123,7 +123,7 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
 
         # Add new current month entry
         cur_month_label = datetime.now().strftime('%b %Y')
-        tickers = [h['ticker_eodhd'] for h in new_holdings]
+        tickers = [h.get('ticker_eodhd', h.get('ticker', '')) for h in new_holdings]
 
         # Avoid duplicate
         if not any(m['month'] == cur_month_label for m in breakdown):
@@ -141,7 +141,7 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
         for m in breakdown:
             if m.get('is_current'):
                 m['regime'] = regime_str
-                m['tickers'] = [h['ticker_eodhd'] for h in new_holdings]
+                m['tickers'] = [h.get('ticker_eodhd', h.get('ticker', '')) for h in new_holdings]
 
     return breakdown[-37:]  # keep last 37 months
 
