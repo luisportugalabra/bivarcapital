@@ -811,7 +811,7 @@
     },
     {
       "month": "Aug 2026",
-      "is_current": false,
+      "is_current": true,
       "start": "2026-07-31",
       "end": "2026-08-31",
       "regime": "momentum",
@@ -827,7 +827,7 @@
         "SPG",
         "TRMD-A"
       ],
-      "return_pct": -2.63
+      "return_pct": null
     }
   ]
 }
