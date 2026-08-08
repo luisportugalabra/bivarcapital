@@ -18,7 +18,7 @@ Usage: python3 momentum_signal.py
 import os
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 import pandas as pd
 import numpy as np
@@ -206,14 +206,19 @@ def main():
     _update_picks_history(sel7, output['date'])
 
     # ── PORTFOLIO TRACKER ─────────────────────────────────────────────────────
+    # Signal is locked in on the last trading day of the month (whatever data
+    # is fresh that day); it is executed — bought at that day's price — on the
+    # next trading day, matching the backtest's end-of-month signal convention.
     try:
         with open(PORTFOLIO_PATH) as f:
             existing_portfolio = json.load(f)
         existing_holdings = {h['ticker']: h for h in existing_portfolio.get('holdings', [])}
         last_rebalance_month = existing_portfolio.get('last_rebalance', '')[:7]
+        pending_signal = existing_portfolio.get('pending_signal')
     except (FileNotFoundError, json.JSONDecodeError):
         existing_holdings = {}
         last_rebalance_month = ''
+        pending_signal = None
 
     current_month = datetime.now().strftime('%Y-%m')
     is_new_month  = current_month != last_rebalance_month
@@ -222,9 +227,24 @@ def main():
     name_map   = {str(row['ticker']): str(row['name'])   for _, row in df.head(30).iterrows()}
     sector_map = {str(row['ticker']): str(row['sector']) for _, row in df.head(30).iterrows()}
 
+    pending_consumed = False
     if is_new_month:
-        print(f"  Portfolio: new month ({current_month}), rebalancing...")
-        new_entries = [t for t in sel7 if t not in existing_holdings]
+        if pending_signal and pending_signal.get('for_month') == current_month:
+            print(f"  Portfolio: new month ({current_month}), executing signal locked in on "
+                  f"{pending_signal.get('computed_date')}...")
+            exec_picks  = pending_signal['picks']  # [{ticker, name, sector}, ...]
+            exec_tickers = [p['ticker'] for p in exec_picks]
+            exec_name_map   = {p['ticker']: p['name']   for p in exec_picks}
+            exec_sector_map = {p['ticker']: p['sector'] for p in exec_picks}
+            pending_consumed = True
+        else:
+            print(f"  Portfolio: new month ({current_month}), no pending end-of-month signal found "
+                  f"— falling back to today's data...")
+            exec_tickers    = sel7
+            exec_name_map   = name_map
+            exec_sector_map = sector_map
+
+        new_entries = [t for t in exec_tickers if t not in existing_holdings]
 
         entry_prices = {}
         if new_entries:
@@ -244,23 +264,23 @@ def main():
                 print(f"  Warning: {e}")
 
         holdings = []
-        for tk in sel7:
+        for tk in exec_tickers:
             if tk in existing_holdings:
                 h = existing_holdings[tk].copy()
             else:
                 ep = entry_prices.get(tk)
                 h = {
                     'ticker':        tk,
-                    'name':          name_map.get(tk, tk),
-                    'sector':        sector_map.get(tk, ''),
+                    'name':          exec_name_map.get(tk, tk),
+                    'sector':        exec_sector_map.get(tk, ''),
                     'entry_date':    output['date'],
                     'entry_price':   round(ep, 2) if ep else None,
                     'current_price': round(ep, 2) if ep else None,
                     'return_pct':    0.0,
                 }
             # Update name/sector in case they changed
-            h['name']   = name_map.get(tk, h.get('name', tk))
-            h['sector'] = sector_map.get(tk, h.get('sector', ''))
+            h['name']   = exec_name_map.get(tk, h.get('name', tk))
+            h['sector'] = exec_sector_map.get(tk, h.get('sector', ''))
             # Recalculate return
             ep = h.get('entry_price'); cp = h.get('current_price')
             h['return_pct'] = round((cp / ep - 1) * 100, 2) if ep and cp else 0.0
@@ -276,10 +296,32 @@ def main():
             holdings.append(h)
         last_rebalance_date = existing_portfolio.get('last_rebalance', output['date'])
 
+    # Lock in tomorrow's signal if today is the last trading day of the month
+    tomorrow = date.today() + timedelta(days=1)
+    is_month_end_today = tomorrow.month != date.today().month or tomorrow.year != date.today().year
+
+    if is_month_end_today:
+        next_month_str = tomorrow.strftime('%Y-%m')
+        new_pending_signal = {
+            'for_month':     next_month_str,
+            'computed_date': output['date'],
+            'picks': [
+                {'ticker': tk, 'name': name_map.get(tk, tk), 'sector': sector_map.get(tk, '')}
+                for tk in sel7
+            ],
+        }
+        print(f"  Today ({output['date']}) is the last trading day of the month — "
+              f"locked in signal for {next_month_str}: {sel7}")
+    elif pending_consumed:
+        new_pending_signal = None
+    else:
+        new_pending_signal = pending_signal
+
     portfolio_output = {
-        'last_rebalance': last_rebalance_date,
-        'updated':        output['date'],
-        'holdings':       holdings,
+        'last_rebalance':  last_rebalance_date,
+        'updated':         output['date'],
+        'holdings':        holdings,
+        'pending_signal':  new_pending_signal,
     }
     with open(PORTFOLIO_PATH, 'w') as f:
         json.dump(portfolio_output, f, indent=2)
