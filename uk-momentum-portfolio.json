@@ -1,9 +1,9 @@
 {
   "last_rebalance": "2026-08-06",
-  "updated": "2026-08-08 15:51 UTC",
-  "ytd_2026": 11.98,
-  "ftse100": 10867.9,
-  "ftse100_ma200": 10244.26,
+  "updated": "2026-08-08 16:23 UTC",
+  "ytd_2026": 12.28,
+  "ftse100": 10901.1,
+  "ftse100_ma200": 10251.2,
   "regime": "risk-on",
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
@@ -128,32 +128,10 @@
       "return_pct": 9.65
     },
     {
-      "month": "Aug 2026",
-      "is_current": false,
-      "start": "2026-07-31",
-      "end": "2026-08-06",
-      "regime": "momentum",
-      "tickers": [
-        "SAGA",
-        "CMCX",
-        "SFOR",
-        "RPI",
-        "ACG",
-        "APN",
-        "AAZ",
-        "KLR",
-        "SEPL",
-        "GHH",
-        "CCC",
-        "WOSG"
-      ],
-      "return_pct": 6.26
-    },
-    {
       "month": "Aug 2026 (MTD)",
       "is_current": true,
-      "start": "2026-08-06",
-      "end": "2026-08-07",
+      "start": "2026-07-31",
+      "end": "2026-08-08",
       "regime": "momentum",
       "tickers": [
         "SAGA",

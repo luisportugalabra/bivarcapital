@@ -45,13 +45,17 @@ monthly_breakdown = portfolio.get('monthly_breakdown', [])
 today     = pd.Timestamp.today().normalize()
 today_str = today.strftime('%Y-%m-%d')
 
-# Auto-extend: if last period ended in the past and we're in a new month,
-# add a placeholder using last known tickers until signal is run locally.
+# Auto-extend: only if the last period is already closed (not current) and
+# stale — a genuinely missing month, e.g. uk_momentum_signal.py hasn't run
+# yet this month. The current period's 'end' is expected to lag by up to a
+# day between runs (it's bumped forward below); that alone is not a reason
+# to append a duplicate — the main loop already extends it to today_str.
 if monthly_breakdown:
     import calendar as _cal
-    last_end_ts = pd.Timestamp(monthly_breakdown[-1]['end'])
-    if last_end_ts < today:
-        last_period = monthly_breakdown[-1]
+    last_period_check = monthly_breakdown[-1]
+    last_end_ts = pd.Timestamp(last_period_check['end'])
+    if last_end_ts < today and not last_period_check.get('is_current', False):
+        last_period = last_period_check
         new_last_day = _cal.monthrange(today.year, today.month)[1]
         new_end = pd.Timestamp(today.year, today.month, new_last_day)
         monthly_breakdown.append({
@@ -128,13 +132,18 @@ ytd_factor = 1.0
 
 for period in monthly_breakdown:
     start_dt   = pd.Timestamp(period['start'])
-    end_dt     = pd.Timestamp(period['end'])
     tickers    = period.get('tickers', [])
     regime     = period.get('regime', 'momentum')
-    is_current = end_dt >= today
+    # Trust is_current as maintained by uk_momentum_signal.py's rollover
+    # logic rather than re-deriving it from a stored 'end' date — the
+    # latter only advances below when already current, so it freezes as
+    # "closed" after a single day if re-derived this way.
+    is_current = period.get('is_current', False)
+    end_str    = today_str if is_current else period['end']
+    end_dt     = pd.Timestamp(end_str)
 
     # Month label
-    m, y = period['end'][5:7], period['end'][:4]
+    m, y = end_str[5:7], end_str[:4]
     label = f"{month_names[m]} {y}" + (' (MTD)' if is_current else '')
 
     if regime in ('cash', 'gld') or not tickers:
@@ -154,7 +163,7 @@ for period in monthly_breakdown:
         'month':      label,
         'is_current': is_current,
         'start':      period['start'],
-        'end':        period['end'] if not is_current else today_str,
+        'end':        end_str,
         'regime':     regime,
         'tickers':    tickers,
         'return_pct': round(period_ret * 100, 2),
@@ -165,55 +174,19 @@ for period in monthly_breakdown:
 ytd_return = round((ytd_factor - 1) * 100, 2)
 print(f"\nYTD 2026: {ytd_return:+.2f}%")
 
-# ── Current holdings ───────────────────────────────────────────────────────────
-current_period = next(
-    (p for p in monthly_breakdown if pd.Timestamp(p['end']) >= today), None
-)
-
-# Load existing holdings to preserve entry prices / metadata
-existing_map = {h['ticker']: h for h in portfolio.get('holdings', [])}
-
-holdings = []
-if current_period and current_period.get('tickers'):
-    start_dt = pd.Timestamp(current_period['start'])
-
-    for tk in current_period['tickers']:
-        existing_h = existing_map.get(tk, {})
-
-        if existing_h.get('entry_price'):
-            h = existing_h.copy()
-        else:
-            ep = get_price(tk, start_dt + pd.offsets.BDay(1)) or get_price(tk, start_dt)
-            h = {
-                'ticker':        tk,
-                'name':          tk,
-                'sector':        '',
-                'entry_date':    (start_dt + pd.offsets.BDay(1)).strftime('%Y-%m-%d'),
-                'entry_price':   round(ep, 4) if ep else None,
-                'current_price': None,
-                'return_pct':    0.0,
-            }
-
-        cp = intraday.get(tk) or get_price(tk, today)
-        h['current_price'] = round(cp, 4) if cp else h.get('current_price')
-        ep, cp_val = h.get('entry_price'), h.get('current_price')
-        h['return_pct'] = round((cp_val / ep - 1) * 100, 2) if ep and cp_val else 0.0
-        holdings.append(h)
-
 # ── Save ───────────────────────────────────────────────────────────────────────
-out = {
-    'last_rebalance':    portfolio.get('last_rebalance', current_period['start'] if current_period else today_str),
-    'updated':           today_str,
-    'ytd_2026':          ytd_return,
-    'ftse100':           round(ftse_current, 2) if ftse_current else None,
-    'ftse100_ma200':     round(ma200, 2) if ma200 else None,
-    'regime':            regime_str,
-    'currency':          portfolio.get('currency', 'GBX'),
-    'currency_note':     portfolio.get('currency_note', 'Prices in pence (GBX). £1 = 100p.'),
-    'monthly_breakdown': updated_breakdown,
-    'holdings':          holdings,
-}
+# holdings, pending_signal and last_rebalance are owned by uk_momentum_signal.py
+# (which runs right before this script and already has the correct, end-of-
+# month-aware entry prices/dates). This script only adds monthly_breakdown,
+# ytd_2026 and the FTSE regime snapshot on top — it must not rebuild or
+# discard the rest.
+portfolio['updated']           = today_str
+portfolio['ytd_2026']          = ytd_return
+portfolio['ftse100']           = round(ftse_current, 2) if ftse_current else None
+portfolio['ftse100_ma200']     = round(ma200, 2) if ma200 else None
+portfolio['regime']            = regime_str
+portfolio['monthly_breakdown'] = updated_breakdown
 
 with open(PORTFOLIO_PATH, 'w') as f:
-    json.dump(out, f, indent=2, ensure_ascii=False)
+    json.dump(portfolio, f, indent=2, ensure_ascii=False)
 print(f"Saved: {PORTFOLIO_PATH}")

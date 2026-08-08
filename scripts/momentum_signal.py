@@ -224,7 +224,6 @@ def main():
     name_map   = {str(row['ticker']): str(row['name'])   for _, row in df.head(30).iterrows()}
     sector_map = {str(row['ticker']): str(row['sector']) for _, row in df.head(30).iterrows()}
 
-    pending_consumed = False
     if is_new_month:
         if pending_signal and pending_signal.get('for_month') == current_month:
             print(f"  Portfolio: new month ({current_month}), executing signal locked in on "
@@ -233,7 +232,6 @@ def main():
             exec_tickers = [p['ticker'] for p in exec_picks]
             exec_name_map   = {p['ticker']: p['name']   for p in exec_picks}
             exec_sector_map = {p['ticker']: p['sector'] for p in exec_picks}
-            pending_consumed = True
         else:
             print(f"  Portfolio: new month ({current_month}), no pending end-of-month signal found "
                   f"— falling back to today's data...")
@@ -298,8 +296,9 @@ def main():
         last_rebalance_date = existing_portfolio.get('last_rebalance', output['date'])
 
     # Lock in tomorrow's signal if today is the last trading day of the month
-    tomorrow = date.today() + timedelta(days=1)
-    is_month_end_today = tomorrow.month != date.today().month or tomorrow.year != date.today().year
+    today_date = datetime.strptime(output['date'], '%Y-%m-%d').date()
+    tomorrow = today_date + timedelta(days=1)
+    is_month_end_today = tomorrow.month != today_date.month or tomorrow.year != today_date.year
 
     if is_month_end_today:
         next_month_str = tomorrow.strftime('%Y-%m')
@@ -313,7 +312,9 @@ def main():
         }
         print(f"  Today ({output['date']}) is the last trading day of the month — "
               f"locked in signal for {next_month_str}: {sel7}")
-    elif pending_consumed:
+    elif is_new_month:
+        # Rollover happened this run (matched or fallback) — any pending
+        # signal is now consumed or stale either way, clear it
         new_pending_signal = None
     else:
         new_pending_signal = pending_signal
