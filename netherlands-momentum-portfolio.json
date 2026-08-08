@@ -1,0 +1,231 @@
+{
+  "last_rebalance": "2026-07-31",
+  "updated": "2026-08-06",
+  "ytd_2026": 12.9,
+  "regime": "risk-on",
+  "currency": "EUR",
+  "monthly_breakdown": [
+    {
+      "month": "Jan 2026",
+      "is_current": false,
+      "start": "2025-12-31",
+      "end": "2026-01-31",
+      "regime": "momentum",
+      "tickers": [
+        "ABN",
+        "ACOMO",
+        "ASRNL",
+        "INGA",
+        "JDEP",
+        "NN",
+        "PRX",
+        "SBMO",
+        "TFG",
+        "WHA"
+      ],
+      "return_pct": 2.81
+    },
+    {
+      "month": "Feb 2026",
+      "is_current": false,
+      "start": "2026-01-31",
+      "end": "2026-02-28",
+      "regime": "momentum",
+      "tickers": [
+        "ABN",
+        "ACOMO",
+        "APAM",
+        "ASRNL",
+        "INGA",
+        "JDEP",
+        "NN",
+        "PRX",
+        "SBMO",
+        "WHA"
+      ],
+      "return_pct": 3.59
+    },
+    {
+      "month": "Mar 2026",
+      "is_current": false,
+      "start": "2026-02-28",
+      "end": "2026-03-31",
+      "regime": "momentum",
+      "tickers": [
+        "ABN",
+        "ACOMO",
+        "ASRNL",
+        "FER",
+        "INGA",
+        "JDEP",
+        "MT",
+        "NN",
+        "SBMO",
+        "WHA"
+      ],
+      "return_pct": -0.03
+    },
+    {
+      "month": "Apr 2026",
+      "is_current": false,
+      "start": "2026-03-31",
+      "end": "2026-04-30",
+      "regime": "momentum",
+      "tickers": [
+        "ABN",
+        "ACOMO",
+        "ALLFG",
+        "FER",
+        "HAL",
+        "INGA",
+        "JDEP",
+        "NN",
+        "SBMO",
+        "WHA"
+      ],
+      "return_pct": 5.44
+    },
+    {
+      "month": "May 2026",
+      "is_current": false,
+      "start": "2026-04-30",
+      "end": "2026-05-31",
+      "regime": "momentum",
+      "tickers": [
+        "ABN",
+        "ACOMO",
+        "ALLFG",
+        "FER",
+        "HAL",
+        "INGA",
+        "JDEP",
+        "NN",
+        "SBMO",
+        "WHA"
+      ],
+      "return_pct": 0.7
+    },
+    {
+      "month": "Jun 2026",
+      "is_current": false,
+      "start": "2026-05-31",
+      "end": "2026-06-30",
+      "regime": "momentum",
+      "tickers": [
+        "ABN",
+        "ALLFG",
+        "FER",
+        "HAL",
+        "INGA",
+        "NN",
+        "SBMO",
+        "SHELL",
+        "VLK",
+        "WHA"
+      ],
+      "return_pct": -0.15
+    },
+    {
+      "month": "Jul 2026",
+      "is_current": true,
+      "start": "2026-06-30",
+      "end": "2026-07-31",
+      "regime": "momentum",
+      "tickers": [
+        "ABN",
+        "ALLFG",
+        "FER",
+        "HAL",
+        "INGA",
+        "NN",
+        "SBMO",
+        "SHELL",
+        "VLK",
+        "WHA"
+      ],
+      "return_pct": null
+    }
+  ],
+  "holdings": [
+    {
+      "ticker": "ABN",
+      "name": "ABN AMRO Bank",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "ALLFG",
+      "name": "Allfunds Group",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "FER",
+      "name": "Ferrovial",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "HAL",
+      "name": "HAL Trust",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "INGA",
+      "name": "ING Groep",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "NN",
+      "name": "NN Group",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "SBMO",
+      "name": "SBM Offshore",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "SHELL",
+      "name": "Shell plc",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "VLK",
+      "name": "Volkswagen",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    },
+    {
+      "ticker": "WHA",
+      "name": "Wolters Kluwer",
+      "entry_date": "2026-06-30",
+      "entry_price": null,
+      "current_price": null,
+      "return_pct": null
+    }
+  ]
+}
