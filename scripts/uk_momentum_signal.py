@@ -222,14 +222,15 @@ def _rollover_portfolio(new_tickers, df, today_str, regime):
             prev_end = datetime.strptime(prev_end_str, '%Y-%m-%d').date()
             prev_start = datetime.strptime(last_entry['start'], '%Y-%m-%d').date()
 
-            # Fetch price range covering start → end
+            # Fetch price range covering start → end (+5 days padding to
+            # clear weekends/holidays around month-end; timedelta handles
+            # month/year rollover correctly regardless of month length)
             yf_tickers = [t + '.L' for t in prev_tickers]
             try:
                 raw = yf.download(
                     yf_tickers,
                     start=prev_start.isoformat(),
-                    end=(date(prev_end.year, prev_end.month, min(prev_end.day + 3, 31)) if prev_end.month < 12
-                         else date(prev_end.year + 1, 1, 3)).isoformat(),
+                    end=(prev_end + timedelta(days=5)).isoformat(),
                     progress=False, auto_adjust=True,
                 )
                 prices_hist = raw['Close'] if isinstance(raw.columns, pd.MultiIndex) else raw
