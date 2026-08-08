@@ -1,6 +1,72 @@
 {
   "last_rebalance": "2026-08-03",
   "updated": "2026-08-08",
+  "holdings": [
+    {
+      "ticker": "SNDK",
+      "name": "Sandisk Corporation",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-01-02",
+      "entry_price": 275.24,
+      "current_price": 1212.21,
+      "return_pct": 340.42
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-05-01",
+      "entry_price": 542.13,
+      "current_price": 877.57,
+      "return_pct": 61.87
+    },
+    {
+      "ticker": "WDC",
+      "name": "Western Digital Corporation",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-01-02",
+      "entry_price": 187.56,
+      "current_price": 434.3,
+      "return_pct": 131.55
+    },
+    {
+      "ticker": "LITE",
+      "name": "Lumentum Holdings Inc.",
+      "sector": "Producer Manufacturing",
+      "entry_date": "2026-01-02",
+      "entry_price": 386.11,
+      "current_price": 890.17,
+      "return_pct": 130.55
+    },
+    {
+      "ticker": "BE",
+      "name": "Bloom Energy Corporation",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-03-02",
+      "entry_price": 166.0,
+      "current_price": 219.34,
+      "return_pct": 32.13
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-04-01",
+      "entry_price": 422.82,
+      "current_price": 812.76,
+      "return_pct": 92.22
+    },
+    {
+      "ticker": "VSAT",
+      "name": "ViaSat, Inc.",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-08-03",
+      "entry_price": 81.29,
+      "current_price": 80.38,
+      "return_pct": -1.12
+    }
+  ],
+  "pending_signal": null,
   "ytd_2026": 184.96,
   "monthly_breakdown": [
     {
@@ -130,71 +196,6 @@
         "VSAT"
       ],
       "return_pct": 2.4
-    }
-  ],
-  "holdings": [
-    {
-      "ticker": "SNDK",
-      "name": "Sandisk Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-01-02",
-      "entry_price": 275.24,
-      "current_price": 1212.21,
-      "return_pct": 340.42
-    },
-    {
-      "ticker": "MU",
-      "name": "Micron Technology, Inc.",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-05-01",
-      "entry_price": 542.13,
-      "current_price": 877.57,
-      "return_pct": 61.87
-    },
-    {
-      "ticker": "WDC",
-      "name": "Western Digital Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-01-02",
-      "entry_price": 187.56,
-      "current_price": 434.3,
-      "return_pct": 131.55
-    },
-    {
-      "ticker": "LITE",
-      "name": "Lumentum Holdings Inc.",
-      "sector": "Producer Manufacturing",
-      "entry_date": "2026-01-02",
-      "entry_price": 386.11,
-      "current_price": 890.17,
-      "return_pct": 130.55
-    },
-    {
-      "ticker": "BE",
-      "name": "Bloom Energy Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-03-02",
-      "entry_price": 166.0,
-      "current_price": 219.34,
-      "return_pct": 32.13
-    },
-    {
-      "ticker": "STX",
-      "name": "Seagate Technology Holdings PLC",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-04-01",
-      "entry_price": 422.82,
-      "current_price": 812.76,
-      "return_pct": 92.22
-    },
-    {
-      "ticker": "VSAT",
-      "name": "ViaSat, Inc.",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-08-03",
-      "entry_price": 81.29,
-      "current_price": 80.38,
-      "return_pct": -1.12
     }
   ]
 }
