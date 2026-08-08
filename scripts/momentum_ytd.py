@@ -109,91 +109,21 @@ for period in history:
 ytd_return = round((ytd_factor - 1) * 100, 2)
 print(f"\nYTD 2026: {ytd_return:+.2f}% (intraday)")
 
-# ── Build current-month holdings with entry prices ────────────────────────────
-current_period = next((p for p in history if pd.Timestamp(p['end']) > today), None)
-
-# Load existing portfolio to preserve entry prices if tickers haven't changed
+# ── Merge into momentum-portfolio.json ─────────────────────────────────────────
+# holdings, pending_signal and last_rebalance are owned by momentum_signal.py
+# (which runs right before this script and already has the correct, end-of-
+# month-aware entry prices/dates). This script only adds the historical
+# monthly_breakdown + ytd_2026 on top — it must not rebuild or discard them.
 try:
     with open(PORTFOLIO_PATH) as f:
         existing_portfolio = json.load(f)
-    existing_map = {h['ticker']: h for h in existing_portfolio.get('holdings', [])}
 except (FileNotFoundError, json.JSONDecodeError):
     existing_portfolio = {}
-    existing_map = {}
 
-# Load name/sector from momentum-data.json
-try:
-    with open(MOM_DATA_PATH) as f:
-        mom_data = json.load(f)
-    name_map   = {s['ticker']: s['name']   for s in mom_data.get('top20', [])}
-    sector_map = {s['ticker']: s['sector'] for s in mom_data.get('top20', [])}
-except Exception:
-    name_map = {}; sector_map = {}
+existing_portfolio['updated']           = today.strftime('%Y-%m-%d')
+existing_portfolio['ytd_2026']          = ytd_return
+existing_portfolio['monthly_breakdown'] = monthly_breakdown
 
-# ── Find first consecutive entry date for each current ticker ─────────────────
-def first_consecutive_period_start(ticker, current_idx):
-    """Walk back through history to find the start of the first consecutive period."""
-    first_start = history[current_idx]['start']
-    for i in range(current_idx - 1, -1, -1):
-        if ticker in history[i]['tickers']:
-            first_start = history[i]['start']
-        else:
-            break
-    return first_start
-
-def first_trading_day_after(period_start_str):
-    """Return the first trading day (close) after period_start — i.e. entry day."""
-    start_ts = pd.Timestamp(period_start_str)
-    # Find first date in price history strictly after period_start with valid data
-    col = prices.iloc[:, 0]  # any ticker column to get trading dates
-    valid_dates = prices.index[prices.index > start_ts]
-    # Filter to dates that have at least some non-NaN data
-    for d in valid_dates:
-        if prices.loc[d].notna().any():
-            return d
-    return start_ts  # fallback
-
-current_idx = len(history) - 1  # index of July period
-
-holdings = []
-if current_period:
-    for tk in current_period['tickers']:
-        period_start = first_consecutive_period_start(tk, current_idx)
-        entry_ts = first_trading_day_after(period_start)
-        entry_date_str = entry_ts.strftime('%Y-%m-%d')
-        existing = existing_map.get(tk, {})
-
-        # Keep existing entry if unchanged
-        if existing.get('entry_date') == entry_date_str and existing.get('entry_price'):
-            h = existing.copy()
-        else:
-            ep = get_price(tk, entry_ts)
-            h = {
-                'ticker':        tk,
-                'name':          name_map.get(tk, tk),
-                'sector':        sector_map.get(tk, ''),
-                'entry_date':    entry_date_str,
-                'entry_price':   round(ep, 2) if ep else None,
-                'current_price': None,
-            }
-        # Update name/sector
-        if tk in name_map:   h['name']   = name_map[tk]
-        if tk in sector_map: h['sector'] = sector_map[tk]
-        # Update current price (intraday preferred over last close)
-        cp = intraday_prices.get(tk) or get_price(tk, today)
-        h['current_price'] = round(cp, 2) if cp else h.get('current_price')
-        ep = h.get('entry_price'); cph = h.get('current_price')
-        h['return_pct'] = round((cph / ep - 1) * 100, 2) if ep and cph else 0.0
-        holdings.append(h)
-
-# ── Save to momentum-portfolio.json ──────────────────────────────────────────
-portfolio_out = {
-    'last_rebalance': existing_portfolio.get('last_rebalance', current_period['start'] if current_period else today.strftime('%Y-%m-%d')),
-    'updated':        today.strftime('%Y-%m-%d'),
-    'ytd_2026':       ytd_return,
-    'monthly_breakdown': monthly_breakdown,
-    'holdings':       holdings,
-}
 with open(PORTFOLIO_PATH, 'w') as f:
-    json.dump(portfolio_out, f, indent=2)
+    json.dump(existing_portfolio, f, indent=2)
 print(f"\nSaved: {PORTFOLIO_PATH}")

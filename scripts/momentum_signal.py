@@ -202,9 +202,6 @@ def main():
         json.dump(output, f, indent=2)
     print(f"  Saved: {JSON_PATH}")
 
-    # Update YTD picks history on the 1st trading day of each month
-    _update_picks_history(sel7, output['date'])
-
     # ── PORTFOLIO TRACKER ─────────────────────────────────────────────────────
     # Signal is locked in on the last trading day of the month (whatever data
     # is fresh that day); it is executed — bought at that day's price — on the
@@ -243,6 +240,10 @@ def main():
             exec_tickers    = sel7
             exec_name_map   = name_map
             exec_sector_map = sector_map
+
+        # Log the executed picks (not today's raw signal) so YTD history
+        # reflects what was actually bought
+        _update_picks_history(exec_tickers, output['date'])
 
         new_entries = [t for t in exec_tickers if t not in existing_holdings]
 
