@@ -314,7 +314,7 @@ async function loadData() {
   rc.innerHTML = `
     <div class="regime-label">Market Regime</div>
     <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — GO TO CASH'}</div>
-    <div class="regime-detail">Synthetic AEX Index: ${idxVal} &nbsp;|&nbsp; MA100: ${maVal} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA100 (${pct}%)</div>
+    <div class="regime-detail">AEX Index: ${idxVal} &nbsp;|&nbsp; MA100: ${maVal} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA100 (${pct}%)</div>
     <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">
       ${isMom ? 'Signal: Buy top 10 Netherlands momentum stocks (InvVol weighted)' : 'Signal: Sell all stocks, hold cash (100%)'}
     </div>
