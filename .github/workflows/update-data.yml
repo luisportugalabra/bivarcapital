@@ -37,9 +37,6 @@ jobs:
       - name: Copy wizard-data.json to repo root
         run: cp scripts/wizard-data.json wizard-data.json
 
-      - name: Update portfolio prices
-        run: python scripts/daily-update.py
-
       - name: Update momentum signal
         run: python scripts/momentum_signal.py
 
@@ -72,6 +69,9 @@ jobs:
 
       - name: Update Netherlands momentum signal
         run: python scripts/netherlands_momentum_signal.py
+
+      - name: Update portfolio prices
+        run: python scripts/daily-update.py
 
       - name: Commit and push
         run: |

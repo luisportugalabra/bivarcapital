@@ -16,7 +16,7 @@ Usage: python3 uk_momentum_signal.py
 import os
 import json
 import calendar
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 import pandas as pd
 import numpy as np
@@ -154,10 +154,19 @@ def main():
 
 def _rollover_portfolio(new_tickers, df, today_str, regime):
     """
+    Signal is locked in on the last trading day of the month (whatever data is
+    fresh that day) and executed — bought at that day's price — on the next
+    trading day, matching the backtest's end-of-month signal convention.
+
     If a new month has started since the last rebalance:
       1. Finalize the previous month's return (prices on its end date via yfinance)
-      2. Add a new month entry with the current picks
+      2. Add a new month entry with the picks locked in at prior month-end
+         (falls back to today's data if no pending signal was saved)
       3. Rebuild holdings with entry prices for new tickers
+
+    Either way, writes the file daily now (previously only on rollover days)
+    so the pending signal saved on the last trading day of the month survives
+    until the next run executes it.
     """
     import yfinance as yf
 
@@ -169,9 +178,10 @@ def _rollover_portfolio(new_tickers, df, today_str, regime):
         with open(PORTFOLIO_PATH) as f:
             portfolio = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
-        portfolio = {'last_rebalance': '', 'monthly_breakdown': [], 'holdings': []}
+        portfolio = {'last_rebalance': '', 'monthly_breakdown': [], 'holdings': [], 'pending_signal': None}
 
-    breakdown = portfolio.get('monthly_breakdown', [])
+    breakdown = portfolio.setdefault('monthly_breakdown', [])
+    pending_signal = portfolio.get('pending_signal')
 
     # Find current open month
     last_entry = breakdown[-1] if breakdown else None
@@ -182,134 +192,169 @@ def _rollover_portfolio(new_tickers, df, today_str, regime):
         last_end = None
         last_month = (0, 0)
 
-    if current_month <= last_month:
-        print(f"  UK portfolio: already up to date ({last_entry['month'] if last_entry else '-'})")
-        return
-
-    print(f"  UK portfolio: new month ({today.strftime('%b %Y')}), rolling over...")
-
-    # 1. Finalize previous open month using end-date prices
-    if last_entry and last_entry.get('is_current'):
-        prev_tickers = last_entry['tickers']
-        prev_end_str = last_entry['end']
-        prev_end = datetime.strptime(prev_end_str, '%Y-%m-%d').date()
-        prev_start = datetime.strptime(last_entry['start'], '%Y-%m-%d').date()
-
-        # Fetch price range covering start → end
-        yf_tickers = [t + '.L' for t in prev_tickers]
-        try:
-            raw = yf.download(
-                yf_tickers,
-                start=prev_start.isoformat(),
-                end=(date(prev_end.year, prev_end.month, min(prev_end.day + 3, 31)) if prev_end.month < 12
-                     else date(prev_end.year + 1, 1, 3)).isoformat(),
-                progress=False, auto_adjust=True,
-            )
-            prices_hist = raw['Close'] if isinstance(raw.columns, pd.MultiIndex) else raw
-
-            def get_price_on(ticker, target):
-                yt = ticker + '.L'
-                col_data = prices_hist[yt] if yt in prices_hist.columns else None
-                if col_data is None:
-                    return None
-                valid = col_data.dropna()
-                valid = valid[valid.index.date <= target]
-                return float(valid.iloc[-1]) if not valid.empty else None
-
-            rets = []
-            for tk in prev_tickers:
-                p0 = get_price_on(tk, prev_start)
-                p1 = get_price_on(tk, prev_end)
-                if p0 and p1 and p0 > 0:
-                    rets.append(p1 / p0 - 1)
-            if rets:
-                last_entry['return_pct'] = round(sum(rets) / len(rets) * 100, 2)
-        except Exception as e:
-            print(f"  Warning: could not fetch final prices for {last_entry['month']}: {e}")
-
-        last_entry['is_current'] = False
-
-    # 2. Add new month entry
     name_map   = {str(r['ticker']): str(r['name'])   for _, r in df.head(30).iterrows()}
     sector_map = {str(r['ticker']): str(r['sector']) for _, r in df.head(30).iterrows()}
 
-    last_day = calendar.monthrange(today.year, today.month)[1]
-    new_end  = date(today.year, today.month, last_day).isoformat()
-    new_start = last_end.isoformat() if last_end else today_str
-    month_names = {1:'Jan',2:'Feb',3:'Mar',4:'Apr',5:'May',6:'Jun',
-                   7:'Jul',8:'Aug',9:'Sep',10:'Oct',11:'Nov',12:'Dec'}
-    new_label = f"{month_names[today.month]} {today.year}"
+    rolled_over = current_month > last_month
 
-    new_entry = {
-        'month':      new_label,
-        'start':      new_start,
-        'end':        new_end,
-        'tickers':    new_tickers if regime == 'momentum' else [],
-        'return_pct': 0.0,
-        'is_current': True,
-    }
-    breakdown.append(new_entry)
+    if not rolled_over:
+        print(f"  UK portfolio: already up to date ({last_entry['month'] if last_entry else '-'})")
+    else:
+        print(f"  UK portfolio: new month ({today.strftime('%b %Y')}), rolling over...")
 
-    # 3. Build new holdings with entry prices
-    existing_map = {h['ticker']: h for h in portfolio.get('holdings', [])}
-    new_entries = [t for t in new_tickers if t not in existing_map]
-    entry_prices = {}
-    if new_entries:
-        try:
-            yf_new = [t + '.L' for t in new_entries]
-            ep_dl = yf.download(yf_new, period='1d', progress=False, auto_adjust=True)
-            for tk in new_entries:
-                yt = tk + '.L'
-                try:
-                    if len(new_entries) == 1:
-                        entry_prices[tk] = float(ep_dl['Close'].dropna().iloc[-1])
-                    else:
-                        entry_prices[tk] = float(ep_dl['Close'][yt].dropna().iloc[-1])
-                except Exception:
-                    entry_prices[tk] = None
-        except Exception as e:
-            print(f"  Warning: entry price fetch failed: {e}")
-
-    holdings = []
-    for tk in (new_tickers if regime == 'momentum' else []):
-        if tk in existing_map:
-            h = existing_map[tk].copy()
+        current_month_str = f"{today.year:04d}-{today.month:02d}"
+        if pending_signal and pending_signal.get('for_month') == current_month_str:
+            print(f"  UK portfolio: executing signal locked in on {pending_signal.get('computed_date')}")
+            exec_picks       = pending_signal.get('picks', [])
+            exec_tickers     = [p['ticker'] for p in exec_picks]
+            exec_name_map    = {p['ticker']: p['name']   for p in exec_picks}
+            exec_sector_map  = {p['ticker']: p['sector'] for p in exec_picks}
         else:
-            ep = entry_prices.get(tk)
-            h = {
-                'ticker':        tk,
-                'name':          name_map.get(tk, tk),
-                'sector':        sector_map.get(tk, ''),
-                'entry_date':    today_str,
-                'entry_price':   round(ep, 2) if ep else None,
-                'current_price': round(ep, 2) if ep else None,
-                'return_pct':    0.0,
-            }
-        h['name']   = name_map.get(tk, h.get('name', tk))
-        h['sector'] = sector_map.get(tk, h.get('sector', ''))
-        ep = h.get('entry_price'); cp = h.get('current_price')
-        h['return_pct'] = round((cp / ep - 1) * 100, 2) if ep and cp else 0.0
-        holdings.append(h)
+            print("  UK portfolio: no pending end-of-month signal found — falling back to today's data")
+            exec_tickers    = new_tickers if regime == 'momentum' else []
+            exec_name_map   = name_map
+            exec_sector_map = sector_map
 
-    # Compute YTD
-    ytd_factor = 1.0
-    for m in breakdown:
-        if not m.get('is_current'):
-            ytd_factor *= (1 + m['return_pct'] / 100)
-    ytd_return = round((ytd_factor - 1) * 100, 2)
+        # 1. Finalize previous open month using end-date prices
+        if last_entry and last_entry.get('is_current'):
+            prev_tickers = last_entry['tickers']
+            prev_end_str = last_entry['end']
+            prev_end = datetime.strptime(prev_end_str, '%Y-%m-%d').date()
+            prev_start = datetime.strptime(last_entry['start'], '%Y-%m-%d').date()
 
-    out = {
-        'last_rebalance': new_start,
-        'updated':        today_str,
-        'ytd_2026':       ytd_return,
-        'currency':       'GBX',
-        'currency_note':  'Prices in pence (GBX). £1 = 100p.',
-        'monthly_breakdown': breakdown,
-        'holdings':       holdings,
-    }
+            # Fetch price range covering start → end
+            yf_tickers = [t + '.L' for t in prev_tickers]
+            try:
+                raw = yf.download(
+                    yf_tickers,
+                    start=prev_start.isoformat(),
+                    end=(date(prev_end.year, prev_end.month, min(prev_end.day + 3, 31)) if prev_end.month < 12
+                         else date(prev_end.year + 1, 1, 3)).isoformat(),
+                    progress=False, auto_adjust=True,
+                )
+                prices_hist = raw['Close'] if isinstance(raw.columns, pd.MultiIndex) else raw
+
+                def get_price_on(ticker, target):
+                    yt = ticker + '.L'
+                    col_data = prices_hist[yt] if yt in prices_hist.columns else None
+                    if col_data is None:
+                        return None
+                    valid = col_data.dropna()
+                    valid = valid[valid.index.date <= target]
+                    return float(valid.iloc[-1]) if not valid.empty else None
+
+                rets = []
+                for tk in prev_tickers:
+                    p0 = get_price_on(tk, prev_start)
+                    p1 = get_price_on(tk, prev_end)
+                    if p0 and p1 and p0 > 0:
+                        rets.append(p1 / p0 - 1)
+                if rets:
+                    last_entry['return_pct'] = round(sum(rets) / len(rets) * 100, 2)
+            except Exception as e:
+                print(f"  Warning: could not fetch final prices for {last_entry['month']}: {e}")
+
+            last_entry['is_current'] = False
+
+        # 2. Add new month entry
+        last_day = calendar.monthrange(today.year, today.month)[1]
+        new_end  = date(today.year, today.month, last_day).isoformat()
+        new_start = last_end.isoformat() if last_end else today_str
+        month_names = {1:'Jan',2:'Feb',3:'Mar',4:'Apr',5:'May',6:'Jun',
+                       7:'Jul',8:'Aug',9:'Sep',10:'Oct',11:'Nov',12:'Dec'}
+        new_label = f"{month_names[today.month]} {today.year}"
+
+        new_entry = {
+            'month':      new_label,
+            'start':      new_start,
+            'end':        new_end,
+            'tickers':    exec_tickers,
+            'return_pct': 0.0,
+            'is_current': True,
+        }
+        breakdown.append(new_entry)
+
+        # 3. Build new holdings with entry prices
+        existing_map = {h['ticker']: h for h in portfolio.get('holdings', [])}
+        new_entries = [t for t in exec_tickers if t not in existing_map]
+        entry_prices = {}
+        if new_entries:
+            try:
+                yf_new = [t + '.L' for t in new_entries]
+                ep_dl = yf.download(yf_new, period='1d', progress=False, auto_adjust=True)
+                for tk in new_entries:
+                    yt = tk + '.L'
+                    try:
+                        if len(new_entries) == 1:
+                            entry_prices[tk] = float(ep_dl['Close'].dropna().iloc[-1])
+                        else:
+                            entry_prices[tk] = float(ep_dl['Close'][yt].dropna().iloc[-1])
+                    except Exception:
+                        entry_prices[tk] = None
+            except Exception as e:
+                print(f"  Warning: entry price fetch failed: {e}")
+
+        holdings = []
+        for tk in exec_tickers:
+            if tk in existing_map:
+                h = existing_map[tk].copy()
+            else:
+                ep = entry_prices.get(tk)
+                h = {
+                    'ticker':        tk,
+                    'name':          exec_name_map.get(tk, tk),
+                    'sector':        exec_sector_map.get(tk, ''),
+                    'entry_date':    today_str,
+                    'entry_price':   round(ep, 2) if ep else None,
+                    'current_price': round(ep, 2) if ep else None,
+                    'return_pct':    0.0,
+                }
+            h['name']   = exec_name_map.get(tk, h.get('name', tk))
+            h['sector'] = exec_sector_map.get(tk, h.get('sector', ''))
+            ep = h.get('entry_price'); cp = h.get('current_price')
+            h['return_pct'] = round((cp / ep - 1) * 100, 2) if ep and cp else 0.0
+            holdings.append(h)
+
+        # Compute YTD
+        ytd_factor = 1.0
+        for m in breakdown:
+            if not m.get('is_current'):
+                ytd_factor *= (1 + m['return_pct'] / 100)
+        ytd_return = round((ytd_factor - 1) * 100, 2)
+
+        portfolio['last_rebalance']     = new_start
+        portfolio['ytd_2026']           = ytd_return
+        portfolio['holdings']           = holdings
+        portfolio['monthly_breakdown']  = breakdown
+
+    # Lock in tomorrow's signal if today is the last trading day of the month
+    tomorrow = today + timedelta(days=1)
+    is_month_end_today = tomorrow.month != today.month or tomorrow.year != today.year
+
+    if is_month_end_today:
+        next_month_str = f"{tomorrow.year:04d}-{tomorrow.month:02d}"
+        picks_for_pending = new_tickers if regime == 'momentum' else []
+        portfolio['pending_signal'] = {
+            'for_month':     next_month_str,
+            'computed_date': today_str,
+            'picks': [
+                {'ticker': tk, 'name': name_map.get(tk, tk), 'sector': sector_map.get(tk, '')}
+                for tk in picks_for_pending
+            ],
+        }
+        print(f"  UK portfolio: today ({today_str}) is the last trading day of the month — "
+              f"locked in signal for {next_month_str}: {picks_for_pending}")
+    elif rolled_over:
+        portfolio['pending_signal'] = None
+    # else: leave whatever pending_signal was already loaded untouched
+
+    portfolio['currency']      = portfolio.get('currency', 'GBX')
+    portfolio['currency_note'] = portfolio.get('currency_note', 'Prices in pence (GBX). £1 = 100p.')
+    portfolio['updated']       = today_str
+
     with open(PORTFOLIO_PATH, 'w') as f:
-        json.dump(out, f, indent=2)
-    print(f"  UK portfolio: saved {PORTFOLIO_PATH}  (YTD {ytd_return:+.2f}%)")
+        json.dump(portfolio, f, indent=2)
+    print(f"  UK portfolio: saved {PORTFOLIO_PATH}  (YTD {portfolio.get('ytd_2026', 0):+.2f}%)")
 
 
 if __name__ == "__main__":
