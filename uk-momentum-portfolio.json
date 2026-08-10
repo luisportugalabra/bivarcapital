@@ -182,10 +182,10 @@
       "ticker": "RPI",
       "name": "RPI",
       "sector": "",
-      "entry_date": "2026-07-01",
-      "entry_price": 870.0,
+      "entry_date": "2026-06-01",
+      "entry_price": 813.0,
       "current_price": 697.0,
-      "return_pct": -19.89
+      "return_pct": -14.27
     },
     {
       "ticker": "ACG",
@@ -227,10 +227,10 @@
       "ticker": "SEPL",
       "name": "SEPL",
       "sector": "",
-      "entry_date": "2026-07-01",
-      "entry_price": 517.0,
+      "entry_date": "2026-04-01",
+      "entry_price": 479.86,
       "current_price": 597.0,
-      "return_pct": 15.47
+      "return_pct": 24.41
     },
     {
       "ticker": "GHH",
