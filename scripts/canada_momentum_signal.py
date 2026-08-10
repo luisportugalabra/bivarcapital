@@ -3,7 +3,8 @@
 Canada Momentum Signal Generator
 - TradingView Screener for stock selection and current prices
 - Yahoo Finance for TSX regime (^GSPTSE vs MA75)
-- EODHD API for start-of-month entry prices
+- Entry prices: same approach as the USA script — today's TradingView close
+  on whichever day the rebalance is detected, no historical lookup
 
 Strategy: MA75, top10, 250M CAD mcap, 50% 6M + 50% 12M composite
 
@@ -13,7 +14,6 @@ import os, json, warnings
 from datetime import datetime, date
 import pandas as pd
 import numpy as np
-import requests
 
 warnings.filterwarnings('ignore')
 
@@ -29,7 +29,6 @@ MCAP_MIN_CAD = 250_000_000
 TOP_N        = 10
 MA_W         = 75
 TODAY        = date.today().isoformat()
-EODHD_KEY    = '67405949053cf1.71181783'
 
 
 def fetch_canada():
@@ -72,24 +71,6 @@ def check_regime():
     last = float(close.iloc[-1])
     ma75 = float(close.rolling(MA_W).mean().iloc[-1])
     return last >= ma75, round(last, 1), round(ma75, 1)
-
-
-def get_som_prices_eodhd(tickers):
-    """Get start-of-month prices for TSX tickers via EODHD API."""
-    month_start = datetime.now().replace(day=1).strftime('%Y-%m-%d')
-    result = {}
-    for tk in tickers:
-        url = (f'https://eodhd.com/api/eod/{tk}.TO'
-               f'?api_token={EODHD_KEY}&fmt=json&from={month_start}&to={TODAY}')
-        try:
-            r = requests.get(url, timeout=10)
-            rows = r.json()
-            if rows:
-                first = rows[0]
-                result[tk] = (float(first['adjusted_close']), first['date'])
-        except Exception as e:
-            print(f"  EODHD fail {tk}: {e}")
-    return result
 
 
 def load_existing_portfolio():
@@ -187,19 +168,13 @@ def main():
 
     if is_new_month and regime_ok:
         print(f"  Portfolio: NEW MONTH ({current_m}), rebalancing to top {TOP_N}...")
-        top_tickers = [row['code'] for _, row in top_df.iterrows()]
-        print(f"  Fetching start-of-month prices from EODHD...")
-        som = get_som_prices_eodhd(top_tickers)
 
         holdings = []
         for _, row in top_df.iterrows():
             code = row['code']
             cp   = price_map.get(code)
-            if code in som:
-                ep, edate = som[code]
-            else:
-                ep, edate = cp, TODAY
-            ret = round((cp / ep - 1) * 100, 2) if ep and cp else None
+            ep, edate = cp, TODAY
+            ret = 0.0
             holdings.append({
                 'ticker':        code,
                 'name':          str(row.get('name', code)),
@@ -208,7 +183,7 @@ def main():
                 'current_price': round(cp, 4) if cp else None,
                 'return_pct':    ret,
             })
-        last_rebalance = min(v[1] for v in som.values()) if som else TODAY
+        last_rebalance = TODAY
 
     elif not regime_ok:
         print(f"  Portfolio: DEFENSIVE — cash")
