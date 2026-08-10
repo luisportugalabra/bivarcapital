@@ -164,10 +164,10 @@
       "ticker": "CMCX",
       "name": "CMCX",
       "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 677.0,
+      "entry_date": "2026-07-01",
+      "entry_price": 649.9,
       "current_price": 690.0,
-      "return_pct": 1.92
+      "return_pct": 6.17
     },
     {
       "ticker": "SFOR",
@@ -182,10 +182,10 @@
       "ticker": "RPI",
       "name": "RPI",
       "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 658.5,
+      "entry_date": "2026-07-01",
+      "entry_price": 870.0,
       "current_price": 697.0,
-      "return_pct": 5.85
+      "return_pct": -19.89
     },
     {
       "ticker": "ACG",
@@ -218,19 +218,19 @@
       "ticker": "KLR",
       "name": "KLR",
       "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 3050.0,
+      "entry_date": "2026-07-01",
+      "entry_price": 2712.0,
       "current_price": 3076.0,
-      "return_pct": 0.85
+      "return_pct": 13.42
     },
     {
       "ticker": "SEPL",
       "name": "SEPL",
       "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 586.0,
+      "entry_date": "2026-07-01",
+      "entry_price": 517.0,
       "current_price": 597.0,
-      "return_pct": 1.88
+      "return_pct": 15.47
     },
     {
       "ticker": "GHH",
