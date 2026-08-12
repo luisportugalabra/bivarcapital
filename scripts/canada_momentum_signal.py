@@ -25,7 +25,7 @@ Strategy (see research/canada_momentum_report.html, verified 2026-08-11):
 Saves: canada-momentum-data.json, canada-momentum-portfolio.json
 """
 import os, json, re, time, warnings
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 import pandas as pd
 import numpy as np
@@ -76,27 +76,55 @@ def fetch_bars(code, n_bars=VOL_LOOKBACK + 40, retries=1):
             if attempt < retries:
                 time.sleep(1.0)
                 continue
-            print(f"    {code}: tvDatafeed fetch failed ({e})")
+            print(f"    {code}: tvDatafeed fetch failed after {retries+1} attempts ({e})")
             return None
     return None
 
 
+def fetch_bars_yfinance(code, n_bars=VOL_LOOKBACK + 40):
+    """Fallback for tickers tvDatafeed couldn't fetch -- no ticker should be
+    silently dropped from the universe just because one data source hiccuped."""
+    try:
+        import yfinance as yf
+        hist = yf.Ticker(code + '.TO').history(period=f'{n_bars + 10}d', auto_adjust=True)
+        if hist is None or len(hist) < 60:
+            return None
+        return hist['Close'].tail(n_bars)
+    except Exception as e:
+        print(f"    {code}: yfinance fallback also failed ({e})")
+        return None
+
+
 def compute_vols(codes):
-    """252-day annualized realized vol per ticker, sequential tvDatafeed fetch."""
+    """252-day annualized realized vol per ticker, sequential tvDatafeed fetch
+    with a yfinance fallback for any ticker tvDatafeed can't reach -- every
+    ticker gets a real answer, none are silently excluded from the universe."""
     print(f"  Fetching {len(codes)} tickers' price history via tvDatafeed (sequential)...")
     vols = {}
+    fallback_used = []
+    still_missing = []
     t0 = time.time()
     for i, code in enumerate(codes):
         closes = fetch_bars(code)
+        if closes is None:
+            closes = fetch_bars_yfinance(code)
+            if closes is not None:
+                fallback_used.append(code)
         if closes is not None:
             rets = closes.pct_change().dropna().tail(VOL_LOOKBACK)
             if len(rets) >= 60:
                 vols[code] = float(rets.std()) * np.sqrt(252)
+            else:
+                still_missing.append(code)
+        else:
+            still_missing.append(code)
         if (i + 1) % 100 == 0:
             elapsed = time.time() - t0
             print(f"    {i+1}/{len(codes)} ({elapsed:.0f}s elapsed, {len(vols)} ok)")
     elapsed = time.time() - t0
-    print(f"  Done: {len(vols)}/{len(codes)} tickers with valid vol data ({elapsed:.0f}s)")
+    print(f"  Done: {len(vols)}/{len(codes)} tickers with valid vol data ({elapsed:.0f}s)"
+          f" -- {len(fallback_used)} via yfinance fallback"
+          + (f", {len(still_missing)} still missing: {still_missing}" if still_missing else ""))
     return vols
 
 
@@ -157,7 +185,7 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
     breakdown = existing.get('monthly_breakdown', [])
 
     if is_new_month:
-        cur_month_label = datetime.now().strftime('%b %Y')
+        cur_month_label = date.fromisoformat(TODAY).strftime('%b %Y')
         tickers = [h['ticker'] for h in new_holdings]
         weights = {h['ticker']: h['weight'] for h in new_holdings}
 
@@ -272,35 +300,50 @@ def main():
     print(f"  Saved: {DATA_PATH}")
 
     # ── Portfolio tracker ──────────────────────────────────────────────────────
-    existing     = load_existing_portfolio()
-    last_rebal_m = existing.get('last_rebalance', '')[:7]
-    current_m    = datetime.now().strftime('%Y-%m')
+    # Signal is locked in on the last trading day of the month (that day's
+    # data); it is executed -- bought at the next trading day's price -- on
+    # the first run that detects a new month, matching the backtest's
+    # end-of-month signal convention and the USA/UK pending_signal mechanism.
+    existing        = load_existing_portfolio()
+    last_rebal_m    = existing.get('last_rebalance', '')[:7]
+    current_m       = TODAY[:7]
+    pending_signal  = existing.get('pending_signal')
     legacy_strategy = bool(existing.get('holdings')) and any('weight' not in h for h in existing['holdings'])
-    is_new_month = current_m != last_rebal_m or legacy_strategy
+    is_new_month    = current_m != last_rebal_m or legacy_strategy
     if legacy_strategy:
         print("  Existing holdings are from the pre-2026-08-11 strategy (N=10, equal-weight) "
               "-- forcing an immediate rebalance to the new N=15 InvVol strategy.")
 
     price_map = {row['code']: float(row['close']) for _, row in df.iterrows()}
     # fall back to the full (pre-vol-filter) universe for price lookups on
-    # existing holdings that may have since failed the vol filter
+    # existing/locked holdings that may have since failed the vol filter
     price_map_full = {row['code']: float(row['close']) for _, row in universe.iterrows()}
 
+    today_sel = [{'ticker': row['code'], 'name': str(row.get('name', row['code'])),
+                  'weight': float(weight_map.get(row['code'], 0))} for _, row in top_df.iterrows()]
+
     if is_new_month and regime_ok:
-        print(f"  Portfolio: NEW MONTH ({current_m}), rebalancing to top {TOP_N}...")
+        if pending_signal and pending_signal.get('for_month') == current_m and not legacy_strategy:
+            print(f"  Portfolio: NEW MONTH ({current_m}), executing signal locked in on "
+                  f"{pending_signal.get('computed_date')}...")
+            exec_picks = pending_signal['picks']  # [{ticker, name, weight}, ...]
+        else:
+            print(f"  Portfolio: NEW MONTH ({current_m}), no matching locked signal "
+                  f"-- falling back to today's data...")
+            exec_picks = today_sel
 
         holdings = []
-        for _, row in top_df.iterrows():
-            code = row['code']
-            cp   = price_map.get(code)
+        for p in exec_picks:
+            code = p['ticker']
+            cp   = price_map.get(code) or price_map_full.get(code)
             ep, edate = cp, TODAY
             holdings.append({
                 'ticker':        code,
-                'name':          str(row.get('name', code)),
+                'name':          p.get('name', code),
                 'entry_date':    edate,
                 'entry_price':   round(ep, 4) if ep else None,
                 'current_price': round(cp, 4) if cp else None,
-                'weight':        float(weight_map.get(code, 0)),
+                'weight':        float(p.get('weight', 0)),
                 'return_pct':    0.0,
             })
         last_rebalance = TODAY
@@ -336,6 +379,25 @@ def main():
     else:
         ytd_2026 = existing.get('ytd_2026', 0)
 
+    # Lock in tomorrow's signal if today is the last trading day of the month
+    today_date = date.fromisoformat(TODAY)
+    tomorrow = today_date + timedelta(days=1)
+    is_month_end_today = tomorrow.month != today_date.month or tomorrow.year != today_date.year
+
+    if is_month_end_today and regime_ok:
+        next_month_str = tomorrow.strftime('%Y-%m')
+        new_pending_signal = {
+            'for_month':     next_month_str,
+            'computed_date': TODAY,
+            'picks':         today_sel,
+        }
+        print(f"  Today ({TODAY}) is the last trading day of the month -- "
+              f"locked in signal for {next_month_str}: {[p['ticker'] for p in today_sel]}")
+    elif is_new_month:
+        new_pending_signal = None  # consumed (or stale) this run either way
+    else:
+        new_pending_signal = pending_signal
+
     portfolio = {
         'last_rebalance':    last_rebalance,
         'updated':           TODAY,
@@ -347,6 +409,7 @@ def main():
         'holdings':          holdings,
         'monthly_breakdown': breakdown,
         'tsx_annual':        existing.get('tsx_annual', {}),
+        'pending_signal':    new_pending_signal,
     }
     with open(PORTFOLIO_PATH, 'w') as f:
         json.dump(portfolio, f, indent=2)

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canada Momentum — Parameter Sensitivity &amp; Robustness Analysis — Bivar Capital</title>
+<meta property="og:title" content="Canada Momentum — Parameter Sensitivity &amp; Robustness Analysis — Bivar Capital">
+<meta property="og:description" content="Sensitivity sweeps behind the TSX momentum strategy: lookback, market cap filter, portfolio size, regime window, volatility filter and weighting scheme.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/canada_momentum_sensitivity.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/research/canada_momentum_sensitivity.html">
+<meta name="theme-color" content="#060608">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:40px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.pos{color:var(--green)}.neg{color:var(--red)}.hl-row td{background:rgba(196,162,101,.08);color:var(--text);font-weight:600}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.callout-green{background:var(--card);border-left:3px solid var(--green);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-green p{margin:0;color:var(--text);font-size:.78rem}.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-red p{margin:0;color:var(--text);font-size:.78rem}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.highlight-amber{background:rgba(196,162,101,.06);border:1px solid rgba(196,162,101,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight-amber p{margin:0}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}.footer a{color:var(--accent)}
+ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps li{margin-bottom:6px}
+@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}</style>
+</head>
+<body><style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a href="#" id="nav-signin" class="accent">Sign In</a><a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a><span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span></nav></div></header><div class="container">
+
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>Canada Momentum<span class="it">Parameter sensitivity &amp; how we got to the final config</span></h1>
+<p class="lead">How each parameter in the <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada TSX momentum strategy</a> was chosen: one-at-a-time sensitivity sweeps across lookback window, market cap filter, portfolio size, regime window, volatility filter and weighting scheme. TSX (.TO), EODHD daily data, 2000&ndash;2026.</p>
+
+<div class="divider"></div>
+<h2>I. Universe &amp; Method</h2>
+<div class="two-col">
+<div class="meta-box">
+<dt>Universe</dt><dd>Toronto Stock Exchange (.TO), EODHD daily adjusted prices, 1,766 tickers since 2000</dd>
+<dt>Signal</dt><dd>N-month total return (lookback swept below)</dd>
+<dt>Selection</dt><dd>Top K by signal, descending, after all eligibility filters</dd>
+<dt>Rebalance</dt><dd>Monthly, end-of-month signal</dd>
+</div>
+<div class="meta-box">
+<dt>Regime filter</dt><dd>TSX Composite (^GSPTSE) close vs its own N-day moving average</dd>
+<dt>Regime rule</dt><dd>Above MA &rarr; fully invested / Below &rarr; 100% cash</dd>
+<dt>Costs</dt><dd>20bps round-trip on monthly turnover</dd>
+<dt>Period</dt><dd>2000&ndash;01 to 2026&ndash;07 (319 months)</dd>
+</div>
+</div>
+<p>The engine is audited for lookahead bias: every signal uses only data available as of its decision date, and each month's return is generated by the position decided using the <em>prior</em> month's information, never its own.</p>
+<div class="callout"><p><strong>One baseline for every table below:</strong> N=15, 12-month momentum (no skip), mcap &ge; 30th percentile, excludes top 25% most volatile, MA75 regime, inverse-volatility weighted, CDRs and preferred shares excluded, since 2000 (319 months). Every table changes <strong>exactly one</strong> of those settings and holds the rest fixed at this same baseline &mdash; so the baseline row reads <strong>CAGR +31.0%, Sharpe 1.304, MaxDD &minus;39.0%</strong> in every single table below. That repeated row is intentional: it's how you can trust that a table's other rows differ only because of the one thing being tested, not because of a silently different setup.</p></div>
+
+<div class="divider"></div>
+<h2>II. Portfolio Size (N)</h2>
+<table>
+<thead><tr><th>N</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>1.261</td><td class="pos">+34.8%</td><td class="neg">&minus;49.7%</td></tr>
+<tr class="hl-row"><td>15 (final)</td><td>1.304</td><td class="pos">+31.0%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>20</td><td>1.399</td><td class="pos">+29.7%</td><td class="neg">&minus;26.4%</td></tr>
+<tr><td>25</td><td>1.492</td><td class="pos">+29.4%</td><td class="neg">&minus;19.5%</td></tr>
+<tr><td>30</td><td>1.481</td><td class="pos">+26.9%</td><td class="neg">&minus;19.0%</td></tr>
+</tbody>
+</table>
+<p>Textbook diversification: Sharpe rises and drawdown shrinks smoothly as N grows, while CAGR fades as the portfolio dilutes toward the market. There's no "right" N, just a return/drawdown trade you pick a point on. <strong>N=15</strong> was chosen deliberately over N=25 (materially better Sharpe and MaxDD in this table): it keeps more of the concentrated small-cap return, at the cost of a rougher ride &mdash; more return, less smooth.</p>
+
+<div class="divider"></div>
+<h2>III. Regime Filter Window</h2>
+<table>
+<thead><tr><th>MA window</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>None (always invested)</td><td>1.169</td><td class="pos">+33.5%</td><td class="neg">&minus;48.0%</td></tr>
+<tr><td>MA50</td><td>1.245</td><td class="pos">+29.8%</td><td class="neg">&minus;30.6%</td></tr>
+<tr class="hl-row"><td>MA75 (final)</td><td>1.304</td><td class="pos">+31.0%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>MA100</td><td>1.204</td><td class="pos">+28.7%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>MA150</td><td>1.192</td><td class="pos">+28.0%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>MA200</td><td>1.103</td><td class="pos">+25.9%</td><td class="neg">&minus;39.0%</td></tr>
+</tbody>
+</table>
+<p>A regime overlay is doing real work: turning it off costs almost 9 points of drawdown (&minus;48% vs &minus;39%) for a modest CAGR gain that doesn't show up in Sharpe. MA75 gives the best Sharpe of any window tested here; MA50 gives a shallower drawdown but lower Sharpe, and windows above 100 days converge on the same MaxDD as MA75 while losing CAGR and Sharpe &mdash; the filter isn't gaining much by looking further back, just reacting slower.</p>
+
+<div class="divider"></div>
+<h2>IV. Momentum Lookback Window</h2>
+<table>
+<thead><tr><th>Lookback</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>3 months</td><td>0.881</td><td class="pos">+20.9%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>6 months</td><td>1.080</td><td class="pos">+27.4%</td><td class="neg">&minus;44.3%</td></tr>
+<tr><td>9 months</td><td>1.188</td><td class="pos">+28.7%</td><td class="neg">&minus;44.9%</td></tr>
+<tr class="hl-row"><td>12 months (final)</td><td>1.304</td><td class="pos">+31.0%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>15 months</td><td>1.204</td><td class="pos">+26.3%</td><td class="neg">&minus;41.3%</td></tr>
+<tr><td>18 months</td><td>1.157</td><td class="pos">+24.9%</td><td class="neg">&minus;35.8%</td></tr>
+<tr><td>24 months</td><td>1.120</td><td class="pos">+23.0%</td><td class="neg">&minus;28.6%</td></tr>
+</tbody>
+</table>
+<p>A clean peak at 12 months on both Sharpe and CAGR, degrading on both sides &mdash; not a knife-edge value sitting next to a cliff, which is the pattern that would be more consistent with curve-fitting. We also tested <strong>12&ndash;1</strong> (skip the most recent month, the standard academic convention to avoid short-term reversal) against pure <strong>12&ndash;0</strong>: skipping gives a slightly better Sharpe (1.313 vs 1.304) but noticeably lower CAGR (+28.5% vs +31.0%) and a shallower drawdown (&minus;29.5% vs &minus;39.0%). We kept the no-skip version for the extra return, but this is closer than it first looked &mdash; the "12-1 is a myth here" claim from earlier drafts of this research was too strong; it's a real trade-off, not a one-sided win, and worth re-checking at other portfolio sizes before treating either choice as settled.</p>
+
+<div class="divider"></div>
+<h2>V. Market Cap Filter</h2>
+<table>
+<thead><tr><th>Mcap filter</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>None</td><td>0.232</td><td class="pos">+54.9%</td><td class="neg">&minus;40.0%</td></tr>
+<tr><td>Top 90% (P10)</td><td>1.310</td><td class="pos">+31.8%</td><td class="neg">&minus;35.3%</td></tr>
+<tr><td>Top 80% (P20)</td><td>1.287</td><td class="pos">+30.9%</td><td class="neg">&minus;39.4%</td></tr>
+<tr class="hl-row"><td>Top 70% (P30, final)</td><td>1.304</td><td class="pos">+31.0%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>Top 60% (P40)</td><td>1.373</td><td class="pos">+32.1%</td><td class="neg">&minus;31.0%</td></tr>
+<tr><td>Top 50% (P50)</td><td>1.358</td><td class="pos">+29.6%</td><td class="neg">&minus;25.9%</td></tr>
+</tbody>
+</table>
+<p>With no market cap filter at all, CAGR looks spectacular (+54.9%) and the Sharpe collapses to 0.23 &mdash; the strategy is picking up illiquid micro-caps with huge, erratic swings, not a repeatable edge. Any filter in the P10&ndash;P50 range fixes that immediately and the choice inside that range is genuinely low-stakes: Sharpe stays in a tight 1.29&ndash;1.37 band throughout. We use a <strong>percentile</strong> filter rather than a fixed dollar floor specifically because a fixed floor gets stricter every year as the market grows and would need to be manually re-calibrated; a percentile filter doesn't.</p>
+
+<div class="divider"></div>
+<h2>VI. Volatility-Exclusion Filter</h2>
+<p>Before ranking by momentum each month, we exclude the most volatile slice of the eligible universe (252-day realized volatility, annualized). This is the most granular sweep in this study &mdash; ten values from off to 50%:</p>
+<table>
+<thead><tr><th>Excluded (most volatile)</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>Off</td><td>0.980</td><td class="pos">+27.8%</td><td class="neg">&minus;42.9%</td></tr>
+<tr><td>5%</td><td>1.089</td><td class="pos">+32.1%</td><td class="neg">&minus;50.0%</td></tr>
+<tr><td>10%</td><td>1.148</td><td class="pos">+32.5%</td><td class="neg">&minus;49.5%</td></tr>
+<tr><td>15%</td><td>1.263</td><td class="pos">+35.3%</td><td class="neg">&minus;49.7%</td></tr>
+<tr><td>20%</td><td>1.277</td><td class="pos">+32.8%</td><td class="neg">&minus;43.5%</td></tr>
+<tr class="hl-row"><td>25% (final)</td><td>1.304</td><td class="pos">+31.0%</td><td class="neg">&minus;39.0%</td></tr>
+<tr><td>30%</td><td>1.313</td><td class="pos">+28.1%</td><td class="neg">&minus;25.5%</td></tr>
+<tr><td>35%</td><td>1.359</td><td class="pos">+28.3%</td><td class="neg">&minus;16.9%</td></tr>
+<tr><td>40%</td><td>1.474</td><td class="pos">+24.7%</td><td class="neg">&minus;15.2%</td></tr>
+<tr><td>50%</td><td>1.646</td><td class="pos">+22.2%</td><td class="neg">&minus;13.6%</td></tr>
+</tbody>
+</table>
+<div class="callout"><p><strong>Sharpe rises monotonically from off (0.98) all the way to 50% (1.65)</strong> &mdash; no peak, no reversal. That's the opposite signature of overfitting: a curve-fit parameter typically shows a sharp, isolated spike at one value with performance falling away on both sides. This is a smooth, one-directional risk/return trade instead: excluding more of the most volatile names monotonically raises Sharpe and shrinks drawdown, while CAGR peaks around 15% exclusion (35.3%) and then declines as the filter starts cutting into genuine high-momentum winners, not just noise.</p></div>
+<p>25% was chosen as a mid-point &mdash; past the CAGR-maximizing level, short of the Sharpe/MaxDD extreme &mdash; explicitly trading some raw return for a shallower drawdown. It is <strong>not</strong> the single "best" value on any one metric; it's a deliberate point on a well-behaved curve, which is a very different thing from a number that was searched for and happened to fit. The 252-day volatility used here is a trailing window ending at the decision date, applied to the <em>following</em> month's return &mdash; same audited timing convention as everywhere else in this study, no lookahead.</p>
+
+<div class="divider"></div>
+<h2>VII. Weighting Scheme</h2>
+<table>
+<thead><tr><th>Weighting</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>Equal-weight</td><td>1.309</td><td class="pos">+32.9%</td><td class="neg">&minus;36.4%</td></tr>
+<tr class="hl-row"><td>Inverse-volatility (final)</td><td>1.304</td><td class="pos">+31.0%</td><td class="neg">&minus;39.0%</td></tr>
+</tbody>
+</table>
+<p>At N=15, equal-weight is marginally <strong>better</strong> on every metric here, not inverse-vol &mdash; the opposite of what an earlier, less concentrated (N=25) test found. This is a real, honest result, not a typo: at N=15 the portfolio is concentrated enough that inverse-vol weighting mostly just underweights the highest-conviction, highest-momentum names (which tend to be the most volatile), giving up some of the return those names are in the portfolio for in the first place. We're keeping inverse-vol in the live config regardless, on the logic that its benefit shows up more reliably at larger N and we'd rather not re-litigate the weighting scheme every time N changes &mdash; but this table is reported as-is, including the part that argues against our own choice.</p>
+
+<div class="divider"></div>
+<h2>VIII. Two Filters We Tested and Dropped</h2>
+<div class="two-col">
+<div class="meta-box">
+<dt>Liquidity / ADV floor</dt>
+<dd>A minimum average-daily-dollar-volume filter is <strong>not</strong> redundant with the market cap filter on the TSX &mdash; about half of stocks above a $100M mcap floor fail a $1M/day ADV test in any given year (concentrated, family-owned resource names are common here). But adding it on top of the percentile mcap filter and volatility-exclusion filter changed the backtest by a negligible amount, so it was dropped for simplicity rather than kept as an unnecessary extra knob.</dd>
+</div>
+<div class="meta-box">
+<dt>Monthly return cap</dt>
+<dd>An earlier version of the code capped any single month's return at &plusmn;50%, on the assumption it was clipping data errors. It wasn't &mdash; the largest real held-position return in the backtest was +350% in one month, a genuine small-cap momentum spike, not a bad print. The cap was removed once we confirmed this; a filter shouldn't silently override a real, rare data point.</dd>
+</div>
+</div>
+
+<div class="divider"></div>
+<h2>IX. Data Quality: Two Contamination Checks</h2>
+<div class="two-col">
+<div class="meta-box">
+<dt>CDR contamination</dt>
+<dd>Canadian Depositary Receipts &mdash; foreign mega-caps (AAPL, AMZN, GOOGL, MSFT, NVDA, TSLA, META and others) cross-listed on the TSX with huge <em>global</em> market cap but a tiny local float &mdash; got selected into the top-15 in 24 of 319 months when left in. Removing them changed CAGR by about 0.1 percentage point. Real, but not distorting; excluded on principle.</dd>
+</div>
+<div class="meta-box">
+<dt>Mistagged preferred shares</dt>
+<dd>50 TSX preferred-share series (e.g. bank preferreds like RY-PH) carry EODHD fundamentals data that appears copied from their common-stock parent &mdash; RY-PH showed a market cap north of $18B off 1.4 billion "shares," when its real preferred float is a small fraction of that. Zero of these were ever actually selected into the top-15 across the full backtest; excluded by ticker pattern anyway, since there's no argument for letting mistagged instruments into the eligible universe.</dd>
+</div>
+</div>
+
+<div class="divider"></div>
+<h2>X. Final Configuration</h2>
+<div class="grid6">
+<div class="stat"><div class="v pos">+31.0%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v pos">1.30</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v neg">&minus;39.0%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">0.79</div><div class="l">MAR</div></div>
+<div class="stat"><div class="v">319</div><div class="l">Months</div></div>
+<div class="stat"><div class="v">2000&ndash;2026</div><div class="l">Period</div></div>
+</div>
+<p style="font-size:.68rem;color:var(--muted);margin-top:6px">The live <a href="/research/canada_momentum_report.html" style="color:var(--accent)">strategy report</a> states Sharpe 1.38 for the same config &mdash; that page uses a geometric-mean Sharpe convention, this article uses arithmetic-mean throughout for consistency across every table above. Same underlying returns, different formula.</p>
+<div class="meta-box" style="margin-top:8px">
+<dt>Momentum</dt><dd>12-month return, no skip-month</dd>
+<dt>Universe</dt><dd>TSX, mcap &ge; 30th percentile (top 70% by size), excludes CDRs and preferred shares</dd>
+<dt>Volatility filter</dt><dd>Excludes top 25% most volatile (252-day realized vol)</dd>
+<dt>Portfolio</dt><dd>Top 15, inverse-volatility weighted</dd>
+<dt>Regime</dt><dd>TSX Composite vs its own 75-day moving average</dd>
+<dt>Costs</dt><dd>20bps round-trip on monthly turnover</dd>
+</div>
+<p style="margin-top:14px">Full backtest, equity curve and current live holdings are on the <a href="/research/canada_momentum_report.html" style="color:var(--accent)">strategy report</a>. Live signal: <a href="/canada-momentum.html" style="color:var(--accent)">canada-momentum.html</a>.</p>
+
+<div class="divider"></div>
+<h2>XI. Limitations</h2>
+<ol class="steps">
+<li><strong>Skip-month (12-1) vs. no-skip (12-0):</strong> at N=15, no-skip wins on CAGR and MaxDD, skip wins narrowly on Sharpe (see Section&nbsp;IV) &mdash; genuinely close, only tested at one portfolio size, and not yet checked out-of-sample. Treat the no-skip choice as a return-over-smoothness preference, not a settled finding.</li>
+<li><strong>Inverse-volatility weighting underperforms equal-weight at N=15</strong> (Section&nbsp;VII) in this specific backtest. It's kept in the live config on the belief that it holds up better at less concentrated N, not because this table supports it directly &mdash; worth re-testing if N ever changes.</li>
+<li><strong>Single-market backtest.</strong> Every number here is TSX-only. The lookahead-bug class this whole study started from was found on Canada specifically; it has not been individually re-checked against every other market in our broader momentum research.</li>
+<li><strong>Sector concentration.</strong> The TSX is heavily weighted toward energy and materials; the top-15 momentum book will often be concentrated in commodity-cycle names, visible in the position history on the strategy report.</li>
+<li><strong>Drawdown magnitude.</strong> &minus;39% is a real, live-tradeable number in this backtest, not a tail-risk footnote &mdash; this is a high-volatility, high-conviction strategy, not a low-vol product.</li>
+</ol>
+
+<div class="footer">
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results. Costs shown are estimates; live results will differ. <a href="/research/canada_momentum_report.html">Strategy report</a> &middot; <a href="/canada-momentum.html">Live signal</a></p>
+</div>
+
+</div>
+</body>
+</html>
