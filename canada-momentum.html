@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Canada Momentum Signal — Bivar Capital</title>
-<meta name="description" content="Canada TSX Momentum live signal. Top 15 TSX stocks ranked by 12-month momentum, inverse-volatility weighted, rebalanced monthly.">
+<meta name="description" content="Canada TSX Momentum live signal. Top 15 TSX stocks ranked by 12-month momentum, equal weighted, rebalanced monthly.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -140,7 +140,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>Canada Momentum</h1>
-  <p class="subtitle">Monthly signal. Top 15 TSX stocks ranked by 12-month momentum, inverse-volatility weighted.</p>
+  <p class="subtitle">Monthly signal. Top 15 TSX stocks ranked by 12-month momentum, equal weighted.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the live Canada momentum signal.</p>
@@ -189,7 +189,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       </div>
 
       <!-- Current Portfolio -->
-      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 15 inverse-vol weighted · Pure monthly rebalance · No stop loss</span></div>
+      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 15 equal weight · Pure monthly rebalance · No stop loss</span></div>
       <div class="table-wrap">
       <table id="portfolio-table">
         <thead>
@@ -237,7 +237,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <input id="calc-input" type="number" min="0" step="1000" placeholder="100000"
             style="padding:8px 10px 8px 22px;background:var(--bg);border:1px solid var(--border-light);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.78rem;width:160px;outline:none">
         </div>
-        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">inverse-vol weighted</span>
+        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">equal weight</span>
         <span style="font-family:var(--font-mono);font-size:.55rem;color:var(--text-muted);margin-left:8px">last close</span>
       </div>
       <div class="table-wrap">
@@ -280,7 +280,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; TSX top 70% by mcap (P30), excludes top-25% most volatile &nbsp;|&nbsp; Top 15, inverse-vol weighted &nbsp;|&nbsp; TSX &lt; MA75 → cash
+      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; TSX top 70% by mcap (P30), excludes top-25% most volatile &nbsp;|&nbsp; Top 15, equal weight &nbsp;|&nbsp; TSX &lt; MA75 → cash
       &nbsp;|&nbsp; Rebalance: monthly
     </p>
 
@@ -468,7 +468,7 @@ async function loadSignal() {
         ${pctDev != null ? `&nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA75 (${pctDev}%)` : ''}
       </div>
       <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--text-muted)'}">
-        ${isMom ? 'Signal: Buy top 15 momentum stocks (inverse-vol weighted)' : 'Signal: Hold cash until TSX recovers above MA75'}
+        ${isMom ? 'Signal: Buy top 15 momentum stocks (equal weight)' : 'Signal: Hold cash until TSX recovers above MA75'}
       </div>`;
 
     // Signal date + eligible count

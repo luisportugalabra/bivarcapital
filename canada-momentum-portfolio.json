@@ -1,101 +1,101 @@
 {
   "last_rebalance": "2026-08-04",
   "updated": "2026-08-12",
-  "ytd_2026": 16.86,
+  "ytd_2026": 16.3,
   "regime": "momentum",
   "currency": "CAD",
-  "tsx": 36602.6,
-  "tsx_ma75": 34873.6,
+  "tsx": 36610.1,
+  "tsx_ma75": 34873.7,
   "holdings": [
     {
       "ticker": "ALS",
       "name": "Altius Minerals Corporation",
       "entry_date": "2026-08-04",
       "entry_price": 60.28,
-      "current_price": 62.38,
-      "weight": 0.0492,
-      "return_pct": 3.48
+      "current_price": 62.7,
+      "weight": 0.0667,
+      "return_pct": 4.01
     },
     {
       "ticker": "BK",
       "name": "Canadian Banc Corp",
       "entry_date": "2026-08-04",
       "entry_price": 17.05,
-      "current_price": 16.93,
-      "weight": 0.0998,
-      "return_pct": -0.7
+      "current_price": 16.97,
+      "weight": 0.0667,
+      "return_pct": -0.47
     },
     {
       "ticker": "CEU",
       "name": "CES Energy Solutions Corp",
       "entry_date": "2026-08-04",
       "entry_price": 16.63,
-      "current_price": 19.14,
-      "weight": 0.0539,
-      "return_pct": 15.09
+      "current_price": 19.29,
+      "weight": 0.0667,
+      "return_pct": 16.0
     },
     {
       "ticker": "CVE",
       "name": "Cenovus Energy Inc",
       "entry_date": "2026-08-04",
       "entry_price": 40.38,
-      "current_price": 41.99,
-      "weight": 0.0539,
-      "return_pct": 3.99
+      "current_price": 42.05,
+      "weight": 0.0667,
+      "return_pct": 4.14
     },
     {
       "ticker": "EIF",
       "name": "Exchange Income Corporation",
       "entry_date": "2026-08-04",
       "entry_price": 129.06,
-      "current_price": 133.2,
-      "weight": 0.073,
-      "return_pct": 3.21
+      "current_price": 133.68,
+      "weight": 0.0667,
+      "return_pct": 3.58
     },
     {
       "ticker": "EXE",
       "name": "Extendicare Inc",
       "entry_date": "2026-08-04",
       "entry_price": 34.51,
-      "current_price": 32.02,
-      "weight": 0.0563,
-      "return_pct": -7.22
+      "current_price": 32.08,
+      "weight": 0.0667,
+      "return_pct": -7.04
     },
     {
       "ticker": "FTN",
       "name": "Financial 15 Split Corp",
       "entry_date": "2026-08-04",
       "entry_price": 12.77,
-      "current_price": 12.36,
-      "weight": 0.0847,
-      "return_pct": -3.21
+      "current_price": 12.4,
+      "weight": 0.0667,
+      "return_pct": -2.9
     },
     {
       "ticker": "IGM",
       "name": "IGM Financial Inc.",
       "entry_date": "2026-08-04",
       "entry_price": 90.93,
-      "current_price": 89.11,
-      "weight": 0.079,
-      "return_pct": -2.0
+      "current_price": 88.97,
+      "weight": 0.0667,
+      "return_pct": -2.16
     },
     {
       "ticker": "LBS",
       "name": "Life & Banc Split Corp",
       "entry_date": "2026-08-04",
       "entry_price": 13.41,
-      "current_price": 13.35,
-      "weight": 0.086,
-      "return_pct": -0.45
+      "current_price": 13.32,
+      "weight": 0.0667,
+      "return_pct": -0.67
     },
     {
       "ticker": "MTL",
       "name": "Mullen Group Ltd.",
       "entry_date": "2026-08-04",
       "entry_price": 27.28,
-      "current_price": 26.86,
-      "weight": 0.0756,
-      "return_pct": -1.54
+      "current_price": 27.05,
+      "weight": 0.0667,
+      "return_pct": -0.84
     },
     {
       "ticker": "QRC",
@@ -103,7 +103,7 @@
       "entry_date": "2026-08-04",
       "entry_price": 14.45,
       "current_price": 14.62,
-      "weight": 0.0508,
+      "weight": 0.0667,
       "return_pct": 1.18
     },
     {
@@ -111,36 +111,36 @@
       "name": "Rubellite Energy Inc",
       "entry_date": "2026-08-04",
       "entry_price": 4.35,
-      "current_price": 4.53,
-      "weight": 0.0489,
-      "return_pct": 4.14
+      "current_price": 4.48,
+      "weight": 0.0667,
+      "return_pct": 2.99
     },
     {
       "ticker": "SBC",
       "name": "Brompton Split Banc Corp",
       "entry_date": "2026-08-04",
       "entry_price": 13.67,
-      "current_price": 13.81,
-      "weight": 0.0796,
-      "return_pct": 1.02
+      "current_price": 13.8,
+      "weight": 0.0667,
+      "return_pct": 0.95
     },
     {
       "ticker": "TOT",
       "name": "Total Energy Services Inc.",
       "entry_date": "2026-08-04",
       "entry_price": 23.3,
-      "current_price": 25.23,
-      "weight": 0.0567,
-      "return_pct": 8.28
+      "current_price": 25.265,
+      "weight": 0.0667,
+      "return_pct": 8.43
     },
     {
       "ticker": "TVE",
       "name": "Tamarack Valley Energy Ltd",
       "entry_date": "2026-08-04",
       "entry_price": 13.17,
-      "current_price": 13.21,
-      "weight": 0.0527,
-      "return_pct": 0.3
+      "current_price": 13.23,
+      "weight": 0.0667,
+      "return_pct": 0.46
     }
   ],
   "monthly_breakdown": [
@@ -675,23 +675,23 @@
         "WPM"
       ],
       "weights": {
-        "ABX": 0.0615,
+        "ABX": 0.0667,
         "AEM": 0.0667,
-        "AGI": 0.0579,
-        "ARG": 0.0588,
-        "BDGI": 0.0774,
-        "DPM": 0.0663,
-        "EDV": 0.0614,
-        "EXE": 0.075,
-        "FTT": 0.0617,
-        "PRU": 0.0605,
-        "PSLV": 0.0774,
-        "PSLV-U": 0.0689,
-        "SII": 0.0731,
-        "TFPM": 0.0647,
-        "WPM": 0.0688
+        "AGI": 0.0667,
+        "ARG": 0.0667,
+        "BDGI": 0.0667,
+        "DPM": 0.0667,
+        "EDV": 0.0667,
+        "EXE": 0.0667,
+        "FTT": 0.0667,
+        "PRU": 0.0667,
+        "PSLV": 0.0667,
+        "PSLV-U": 0.0667,
+        "SII": 0.0667,
+        "TFPM": 0.0667,
+        "WPM": 0.0667
       },
-      "return_pct": 9.1
+      "return_pct": 8.97
     },
     {
       "month": "Feb 2026",
@@ -717,23 +717,23 @@
         "WPM"
       ],
       "weights": {
-        "ABX": 0.0601,
-        "AEM": 0.0645,
-        "ARG": 0.0572,
-        "BDGI": 0.0828,
-        "DPM": 0.0633,
-        "EXE": 0.0798,
-        "FTT": 0.0675,
-        "MAL": 0.0603,
-        "OR": 0.0645,
-        "QRC": 0.0678,
-        "SII": 0.0699,
-        "SPPP-U": 0.0715,
-        "TFPM": 0.0627,
-        "TVE": 0.0629,
-        "WPM": 0.0653
+        "ABX": 0.0667,
+        "AEM": 0.0667,
+        "ARG": 0.0667,
+        "BDGI": 0.0667,
+        "DPM": 0.0667,
+        "EXE": 0.0667,
+        "FTT": 0.0667,
+        "MAL": 0.0667,
+        "OR": 0.0667,
+        "QRC": 0.0667,
+        "SII": 0.0667,
+        "SPPP-U": 0.0667,
+        "TFPM": 0.0667,
+        "TVE": 0.0667,
+        "WPM": 0.0667
       },
-      "return_pct": 13.94
+      "return_pct": 14.36
     },
     {
       "month": "Mar 2026",
@@ -759,23 +759,23 @@
         "WPM"
       ],
       "weights": {
-        "ABX": 0.0587,
-        "AEM": 0.0612,
-        "CEF-U": 0.0705,
-        "CEU": 0.0595,
-        "EIF": 0.1035,
-        "EXE": 0.0769,
-        "FTT": 0.0676,
-        "HWX": 0.0652,
-        "MAL": 0.0573,
-        "OR": 0.0609,
-        "QRC": 0.0676,
-        "SII": 0.0645,
-        "TFPM": 0.0617,
-        "TVE": 0.0629,
-        "WPM": 0.0621
+        "ABX": 0.0667,
+        "AEM": 0.0667,
+        "CEF-U": 0.0667,
+        "CEU": 0.0667,
+        "EIF": 0.0667,
+        "EXE": 0.0667,
+        "FTT": 0.0667,
+        "HWX": 0.0667,
+        "MAL": 0.0667,
+        "OR": 0.0667,
+        "QRC": 0.0667,
+        "SII": 0.0667,
+        "TFPM": 0.0667,
+        "TVE": 0.0667,
+        "WPM": 0.0667
       },
-      "return_pct": -7.63
+      "return_pct": -8.11
     },
     {
       "month": "Apr 2026",
@@ -801,23 +801,23 @@
         "TVE"
       ],
       "weights": {
-        "AGF-B": 0.0811,
-        "ARE": 0.0566,
-        "ATH": 0.0577,
-        "CEU": 0.0615,
-        "EIF": 0.096,
-        "EXE": 0.0724,
-        "FTT": 0.0629,
-        "HWX": 0.068,
-        "IPO": 0.0608,
-        "PD": 0.061,
-        "PXT": 0.0596,
-        "QRC": 0.0652,
-        "SII": 0.0596,
-        "TOT": 0.0728,
-        "TVE": 0.0648
+        "AGF-B": 0.0667,
+        "ARE": 0.0667,
+        "ATH": 0.0667,
+        "CEU": 0.0667,
+        "EIF": 0.0667,
+        "EXE": 0.0667,
+        "FTT": 0.0667,
+        "HWX": 0.0667,
+        "IPO": 0.0667,
+        "PD": 0.0667,
+        "PXT": 0.0667,
+        "QRC": 0.0667,
+        "SII": 0.0667,
+        "TOT": 0.0667,
+        "TVE": 0.0667
       },
-      "return_pct": 5.32
+      "return_pct": 6.11
     },
     {
       "month": "May 2026",
@@ -843,23 +843,23 @@
         "TVE"
       ],
       "weights": {
-        "ARE": 0.064,
-        "ATH": 0.0631,
-        "ATZ": 0.0642,
-        "BDT": 0.0641,
-        "CEU": 0.0696,
-        "CVE": 0.0684,
-        "FTT": 0.0656,
-        "HWX": 0.0762,
-        "IPO": 0.0631,
-        "PXT": 0.0633,
-        "QRC": 0.0695,
-        "SDE": 0.0601,
-        "SII": 0.0609,
-        "TOT": 0.0767,
-        "TVE": 0.0712
+        "ARE": 0.0667,
+        "ATH": 0.0667,
+        "ATZ": 0.0667,
+        "BDT": 0.0667,
+        "CEU": 0.0667,
+        "CVE": 0.0667,
+        "FTT": 0.0667,
+        "HWX": 0.0667,
+        "IPO": 0.0667,
+        "PXT": 0.0667,
+        "QRC": 0.0667,
+        "SDE": 0.0667,
+        "SII": 0.0667,
+        "TOT": 0.0667,
+        "TVE": 0.0667
       },
-      "return_pct": -4.06
+      "return_pct": -4.11
     },
     {
       "month": "Jun 2026",
@@ -885,23 +885,23 @@
         "TVE"
       ],
       "weights": {
-        "ALS": 0.0677,
-        "ARE": 0.0576,
-        "ATH": 0.0583,
-        "ATZ": 0.0593,
-        "BDT": 0.0547,
-        "CEU": 0.0635,
-        "CVE": 0.0648,
-        "EIF": 0.0879,
-        "EXE": 0.0663,
-        "HWX": 0.0686,
-        "QRC": 0.0633,
-        "SBC": 0.0998,
-        "SCR": 0.0581,
-        "TOT": 0.0672,
-        "TVE": 0.063
+        "ALS": 0.0667,
+        "ARE": 0.0667,
+        "ATH": 0.0667,
+        "ATZ": 0.0667,
+        "BDT": 0.0667,
+        "CEU": 0.0667,
+        "CVE": 0.0667,
+        "EIF": 0.0667,
+        "EXE": 0.0667,
+        "HWX": 0.0667,
+        "QRC": 0.0667,
+        "SBC": 0.0667,
+        "SCR": 0.0667,
+        "TOT": 0.0667,
+        "TVE": 0.0667
       },
-      "return_pct": 0.62
+      "return_pct": -0.27
     },
     {
       "month": "Jul 2026",
@@ -927,23 +927,23 @@
         "VBNK"
       ],
       "weights": {
-        "ALS": 0.059,
-        "ARE": 0.0525,
-        "ATZ": 0.0544,
-        "BDGI": 0.0551,
-        "BK": 0.1092,
-        "CEU": 0.0578,
-        "CVE": 0.0587,
-        "EIF": 0.0792,
-        "EXE": 0.0598,
-        "LBS": 0.0953,
-        "QRC": 0.0573,
-        "SBC": 0.0916,
-        "TOT": 0.0609,
-        "TVE": 0.0565,
-        "VBNK": 0.0529
+        "ALS": 0.0667,
+        "ARE": 0.0667,
+        "ATZ": 0.0667,
+        "BDGI": 0.0667,
+        "BK": 0.0667,
+        "CEU": 0.0667,
+        "CVE": 0.0667,
+        "EIF": 0.0667,
+        "EXE": 0.0667,
+        "LBS": 0.0667,
+        "QRC": 0.0667,
+        "SBC": 0.0667,
+        "TOT": 0.0667,
+        "TVE": 0.0667,
+        "VBNK": 0.0667
       },
-      "return_pct": 0.12
+      "return_pct": 0.09
     },
     {
       "month": "Aug 2026",
@@ -969,23 +969,23 @@
         "TVE"
       ],
       "weights": {
-        "ALS": 0.0492,
-        "BK": 0.0998,
-        "CEU": 0.0539,
-        "CVE": 0.0539,
-        "EIF": 0.073,
-        "EXE": 0.0563,
-        "FTN": 0.0847,
-        "IGM": 0.079,
-        "LBS": 0.086,
-        "MTL": 0.0756,
-        "QRC": 0.0508,
-        "RBY": 0.0489,
-        "SBC": 0.0796,
-        "TOT": 0.0567,
-        "TVE": 0.0527
+        "ALS": 0.0667,
+        "BK": 0.0667,
+        "CEU": 0.0667,
+        "CVE": 0.0667,
+        "EIF": 0.0667,
+        "EXE": 0.0667,
+        "FTN": 0.0667,
+        "IGM": 0.0667,
+        "LBS": 0.0667,
+        "MTL": 0.0667,
+        "QRC": 0.0667,
+        "RBY": 0.0667,
+        "SBC": 0.0667,
+        "TOT": 0.0667,
+        "TVE": 0.0667
       },
-      "return_pct": 1.2
+      "return_pct": 2.0
     }
   ],
   "tsx_annual": {

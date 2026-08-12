@@ -2,9 +2,9 @@
 """
 Canada Momentum Signal Generator (v2 — validated strategy, 2026-08-11)
 - TradingView Screener for universe, market cap, 12M momentum, current prices
-- tvDatafeed for 252-day daily bars per stock (vol-exclusion filter + inverse-vol
-  weights) -- no EODHD, no local-only data, runs unmodified on GitHub Actions
-  (same pattern as netherlands_momentum_signal.py)
+- tvDatafeed for 252-day daily bars per stock (vol-exclusion filter) -- no
+  EODHD, no local-only data, runs unmodified on GitHub Actions (same pattern
+  as netherlands_momentum_signal.py)
 - Yahoo Finance for TSX regime (^GSPTSE vs MA75)
 
 Strategy (see research/canada_momentum_report.html, verified 2026-08-11):
@@ -17,8 +17,10 @@ Strategy (see research/canada_momentum_report.html, verified 2026-08-11):
     vol, annualized)
   - Signal: pure 12-month return (TradingView Perf.Y), no skip-month
   - Portfolio: top 15 by momentum
-  - Weighting: inverse-volatility (252-day realized vol, same series as the
-    vol-exclusion filter)
+  - Weighting: equal weight (1/15 per position). Inverse-volatility was
+    tested and did not materially improve results at N=15 (see
+    research/canada_momentum_sensitivity.html, Section VII) -- equal weight
+    kept for simplicity.
   - Regime: TSX Composite (^GSPTSE) vs its own 75-day MA -> 100% cash when below
   - Monthly rebalance
 
@@ -262,9 +264,9 @@ def main():
                         f"(expected {MIN_UNIVERSE_ROWS}+) -- likely an API issue")
         return
 
-    # ── Vol-exclusion filter + InvVol weighting both need 252d realized vol
-    # for the WHOLE eligible universe (the vol-exclusion percentile threshold
-    # must be computed over the full population, not just top-momentum names).
+    # ── Vol-exclusion filter needs 252d realized vol for the WHOLE eligible
+    # universe (the percentile threshold must be computed over the full
+    # population, not just top-momentum names).
     vols, vol_fail_pct = compute_vols(universe['code'].tolist())
     if vol_fail_pct > MAX_VOL_FAIL_PCT:
         write_not_live(f"{vol_fail_pct:.1%} of tickers failed both tvDatafeed and the yfinance "
@@ -291,11 +293,11 @@ def main():
 
     top_df = df.head(TOP_N) if regime_ok else df.iloc[0:0]
 
-    # Inverse-volatility weights for the selected top N
+    # Equal weight for the selected top N (tested vs inverse-vol, no
+    # material improvement at N=15 -- see canada_momentum_sensitivity.html)
     if len(top_df):
-        inv_v = 1.0 / top_df['vol'].clip(lower=0.01)
-        w = inv_v / inv_v.sum()
-        weight_map = dict(zip(top_df['code'], w.round(4)))
+        w = 1.0 / len(top_df)
+        weight_map = {code: round(w, 4) for code in top_df['code']}
     else:
         weight_map = {}
     selected = set(top_df['code'].tolist())
@@ -357,7 +359,7 @@ def main():
     is_new_month    = current_m != last_rebal_m or legacy_strategy
     if legacy_strategy:
         print("  Existing holdings are from the pre-2026-08-11 strategy (N=10, equal-weight) "
-              "-- forcing an immediate rebalance to the new N=15 InvVol strategy.")
+              "-- forcing an immediate rebalance to the new N=15 strategy.")
 
     price_map = {row['code']: float(row['close']) for _, row in df.iterrows()}
     # fall back to the full (pre-vol-filter) universe for price lookups on
