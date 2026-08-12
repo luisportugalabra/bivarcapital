@@ -1,9 +1,9 @@
 {
   "last_rebalance": "2026-08-06",
-  "updated": "2026-08-12 15:07 UTC",
-  "ytd_2026": 11.23,
-  "ftse100": 10822.14,
-  "ftse100_ma200": 10252.98,
+  "updated": "2026-08-12 23:51 UTC",
+  "ytd_2026": 10.93,
+  "ftse100": 10844.2,
+  "ftse100_ma200": 10263.61,
   "regime": "risk-on",
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
@@ -147,7 +147,7 @@
         "CCC",
         "WOSG"
       ],
-      "return_pct": 7.62
+      "return_pct": 7.41
     }
   ],
   "holdings": [
@@ -157,8 +157,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 679.0,
-      "current_price": 677.0,
-      "return_pct": -0.29
+      "current_price": 674.0,
+      "return_pct": -0.74
     },
     {
       "ticker": "CMCX",
@@ -166,8 +166,8 @@
       "sector": "",
       "entry_date": "2026-07-01",
       "entry_price": 649.9,
-      "current_price": 692.5,
-      "return_pct": 6.55
+      "current_price": 694.0,
+      "return_pct": 6.79
     },
     {
       "ticker": "SFOR",
@@ -175,8 +175,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 38.35,
-      "current_price": 52.3,
-      "return_pct": 36.37
+      "current_price": 52.2,
+      "return_pct": 36.11
     },
     {
       "ticker": "RPI",
@@ -184,8 +184,8 @@
       "sector": "",
       "entry_date": "2026-06-01",
       "entry_price": 813.0,
-      "current_price": 669.6,
-      "return_pct": -17.64
+      "current_price": 675.0,
+      "return_pct": -16.97
     },
     {
       "ticker": "ACG",
@@ -193,8 +193,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 2000.0,
-      "current_price": 2079.8,
-      "return_pct": 3.99
+      "current_price": 2080.0,
+      "return_pct": 4.0
     },
     {
       "ticker": "APN",
@@ -202,8 +202,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 324.5,
-      "current_price": 343.0,
-      "return_pct": 5.7
+      "current_price": 335.5,
+      "return_pct": 3.39
     },
     {
       "ticker": "AAZ",
@@ -211,8 +211,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 384.9721,
-      "current_price": 413.5,
-      "return_pct": 7.41
+      "current_price": 412.5,
+      "return_pct": 7.15
     },
     {
       "ticker": "KLR",
@@ -220,8 +220,8 @@
       "sector": "",
       "entry_date": "2026-07-01",
       "entry_price": 2712.0,
-      "current_price": 3146.0,
-      "return_pct": 16.0
+      "current_price": 3122.0,
+      "return_pct": 15.12
     },
     {
       "ticker": "SEPL",
@@ -229,8 +229,8 @@
       "sector": "",
       "entry_date": "2026-04-01",
       "entry_price": 479.86,
-      "current_price": 604.0,
-      "return_pct": 25.87
+      "current_price": 613.0,
+      "return_pct": 27.75
     },
     {
       "ticker": "GHH",
@@ -238,8 +238,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 1220.0,
-      "current_price": 1215.0,
-      "return_pct": -0.41
+      "current_price": 1220.0,
+      "return_pct": 0.0
     },
     {
       "ticker": "CCC",
@@ -247,8 +247,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 4606.0,
-      "current_price": 4866.0,
-      "return_pct": 5.64
+      "current_price": 4828.0,
+      "return_pct": 4.82
     },
     {
       "ticker": "WOSG",
@@ -256,8 +256,8 @@
       "sector": "",
       "entry_date": "2026-08-03",
       "entry_price": 726.0,
-      "current_price": 742.0,
-      "return_pct": 2.2
+      "current_price": 737.0,
+      "return_pct": 1.52
     }
   ]
 }
