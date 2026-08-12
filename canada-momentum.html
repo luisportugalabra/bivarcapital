@@ -149,6 +149,13 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 
   <div id="content-area">
 
+    <!-- Not-live warning -->
+    <div id="not-live-banner" style="display:none;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.3);border-radius:10px;padding:16px 20px;margin-bottom:20px">
+      <div style="font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red)">&#9888; Signal not live</div>
+      <div id="not-live-reason" style="font-size:.78rem;color:var(--text);margin-top:6px"></div>
+      <div style="font-size:.68rem;color:var(--text-muted);margin-top:6px">Holdings below are frozen from the last successful run and are not being updated. Do not rebalance based on this page until this clears.</div>
+    </div>
+
     <!-- Regime -->
     <div id="regime-container" class="regime-box"></div>
 
@@ -340,6 +347,11 @@ async function loadPortfolio() {
     if (!res.ok) throw new Error('no data');
     const data = _portData = await res.json();
 
+    if (data.is_live === false) {
+      document.getElementById('not-live-banner').style.display = 'block';
+      document.getElementById('not-live-reason').textContent = data.not_live_reason || 'Data quality check failed.';
+    }
+
     // YTD
     const ytdVal = data.ytd_2026;
     if (ytdVal != null) {
@@ -436,6 +448,11 @@ async function loadSignal() {
     const res = await fetch('/canada-momentum-data.json?v=' + Date.now());
     if (!res.ok) throw new Error('no signal');
     const data = _sigData = await res.json();
+
+    if (data.is_live === false) {
+      document.getElementById('not-live-banner').style.display = 'block';
+      document.getElementById('not-live-reason').textContent = data.not_live_reason || 'Data quality check failed.';
+    }
 
     // Regime box
     const isMom = data.regime === 'momentum';

@@ -45,6 +45,14 @@ MCAP_PCT     = 0.30    # keep top 70% by market cap (percentile, not absolute fl
 VOL_EXCL_PCT = 0.25    # exclude the 25% most volatile stocks before ranking
 TOP_N        = 15
 MA_W         = 75
+
+# Data-quality kill switch: if the TradingView universe fetch looks broken, or
+# more than this fraction of tickers fail BOTH tvDatafeed and the yfinance
+# fallback for volatility data, treat today's run as untrustworthy -- don't
+# rebalance, don't touch existing holdings, mark the signal not-live so the
+# site shows a warning instead of silently trading on bad data.
+MIN_UNIVERSE_ROWS = 500   # normal is ~950-990 post CAD/perf/mcap filter
+MAX_VOL_FAIL_PCT  = 0.02  # 2%
 VOL_LOOKBACK = 252
 TODAY        = date.today().isoformat()
 
@@ -122,10 +130,11 @@ def compute_vols(codes):
             elapsed = time.time() - t0
             print(f"    {i+1}/{len(codes)} ({elapsed:.0f}s elapsed, {len(vols)} ok)")
     elapsed = time.time() - t0
+    fail_pct = len(still_missing) / len(codes) if codes else 0.0
     print(f"  Done: {len(vols)}/{len(codes)} tickers with valid vol data ({elapsed:.0f}s)"
-          f" -- {len(fallback_used)} via yfinance fallback"
-          + (f", {len(still_missing)} still missing: {still_missing}" if still_missing else ""))
-    return vols
+          f" -- {len(fallback_used)} via yfinance fallback, {fail_pct:.1%} failure rate"
+          + (f", still missing: {still_missing}" if still_missing else ""))
+    return vols, fail_pct
 
 
 def fetch_canada():
@@ -144,6 +153,7 @@ def fetch_canada():
     df['code'] = df['ticker'].str.replace('TSX:', '', regex=False)
     df = df.dropna(subset=['Perf.Y', 'close', 'market_cap_basic']).copy()
     print(f"  With perf+mcap+close: {len(df)}")
+    universe_health = len(df)
 
     # Exclude CDRs (foreign mega-caps cross-listed on TSX) and funds/ETFs
     df = df[~df['type'].isin(['dr', 'fund'])].copy()
@@ -158,7 +168,7 @@ def fetch_canada():
     df = df[df['market_cap_basic'] >= mc_threshold].copy()
     print(f"  Above mcap P{int(MCAP_PCT*100)}: {len(df)}")
 
-    return df.reset_index(drop=True)
+    return df.reset_index(drop=True), universe_health
 
 
 def check_regime():
@@ -221,13 +231,46 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
     return breakdown[-37:]
 
 
+def write_not_live(reason):
+    """Data quality kill switch tripped: don't touch existing holdings or
+    pending_signal, just flag both JSON files as not-live with a reason so
+    the site shows a warning instead of silently trading on bad data."""
+    print(f"  *** NOT LIVE: {reason} -- leaving holdings/pending_signal untouched ***")
+    try:
+        with open(DATA_PATH) as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {}
+    data['is_live'] = False
+    data['not_live_reason'] = reason
+    data['not_live_since'] = TODAY
+    with open(DATA_PATH, 'w') as f:
+        json.dump(data, f, indent=2)
+
+    portfolio = load_existing_portfolio()
+    portfolio['is_live'] = False
+    portfolio['not_live_reason'] = reason
+    portfolio['not_live_since'] = TODAY
+    with open(PORTFOLIO_PATH, 'w') as f:
+        json.dump(portfolio, f, indent=2)
+
+
 def main():
-    universe = fetch_canada()
+    universe, universe_health = fetch_canada()
+    if universe_health < MIN_UNIVERSE_ROWS:
+        write_not_live(f"TradingView universe fetch returned only {universe_health} tickers "
+                        f"(expected {MIN_UNIVERSE_ROWS}+) -- likely an API issue")
+        return
 
     # ── Vol-exclusion filter + InvVol weighting both need 252d realized vol
     # for the WHOLE eligible universe (the vol-exclusion percentile threshold
     # must be computed over the full population, not just top-momentum names).
-    vols = compute_vols(universe['code'].tolist())
+    vols, vol_fail_pct = compute_vols(universe['code'].tolist())
+    if vol_fail_pct > MAX_VOL_FAIL_PCT:
+        write_not_live(f"{vol_fail_pct:.1%} of tickers failed both tvDatafeed and the yfinance "
+                        f"fallback for volatility data (threshold {MAX_VOL_FAIL_PCT:.0%})")
+        return
+
     universe['vol'] = universe['code'].map(vols)
     with_vol = universe.dropna(subset=['vol']).copy()
     print(f"  With valid vol data: {len(with_vol)}")
@@ -294,6 +337,8 @@ def main():
         'top20':              top20,
         'excluded_high_vol':  excluded_top,
         'updated':            TODAY,
+        'is_live':            True,
+        'not_live_reason':    None,
     }
     with open(DATA_PATH, 'w') as f:
         json.dump(signal, f, indent=2)
@@ -410,6 +455,8 @@ def main():
         'monthly_breakdown': breakdown,
         'tsx_annual':        existing.get('tsx_annual', {}),
         'pending_signal':    new_pending_signal,
+        'is_live':           True,
+        'not_live_reason':   None,
     }
     with open(PORTFOLIO_PATH, 'w') as f:
         json.dump(portfolio, f, indent=2)
