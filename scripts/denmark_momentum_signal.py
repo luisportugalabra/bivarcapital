@@ -96,7 +96,10 @@ def check_regime():
     import yfinance as yf, warnings
     warnings.filterwarnings('ignore')
     df = yf.download('^OMXC25', period='200d', auto_adjust=True, progress=False)
-    close = df['Close'].dropna()
+    close = df['Close']
+    if isinstance(close, pd.DataFrame):
+        close = close.iloc[:, 0]
+    close = close.dropna()
     if len(close) < 100:
         return True, None, None
     last  = float(close.iloc[-1])

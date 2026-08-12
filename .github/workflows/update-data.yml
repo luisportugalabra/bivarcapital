@@ -61,15 +61,6 @@ jobs:
       - name: Update Canada momentum portfolio
         run: python scripts/canada_momentum_ytd.py
 
-      - name: Update Denmark momentum signal
-        run: python scripts/denmark_momentum_signal.py
-
-      - name: Update Denmark momentum YTD
-        run: python scripts/denmark_momentum_ytd.py
-
-      - name: Update Netherlands momentum signal
-        run: python scripts/netherlands_momentum_signal.py
-
       - name: Update portfolio prices
         run: python scripts/daily-update.py
 
