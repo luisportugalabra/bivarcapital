@@ -95,7 +95,19 @@ function closeModal() {
 var navSignin = document.getElementById('nav-signin');
 var navSignup = document.getElementById('nav-signup');
 if (navSignin) navSignin.addEventListener('click', function(e) { e.preventDefault(); openModal('signin'); });
-if (navSignup) navSignup.addEventListener('click', function(e) { e.preventDefault(); openModal('signupEmail'); });
+if (navSignup) navSignup.addEventListener('click', function(e) {
+  e.preventDefault();
+  if (navSignup.dataset.busy) return;
+  navSignup.dataset.busy = '1';
+  var original = navSignup.textContent;
+  navSignup.textContent = 'Coming Soon';
+  navSignup.style.opacity = '.6';
+  setTimeout(function() {
+    navSignup.textContent = original;
+    navSignup.style.opacity = '1';
+    delete navSignup.dataset.busy;
+  }, 1600);
+});
 
 // Wire all buttons with data-auth attribute (for strategy cards etc.)
 document.querySelectorAll('[data-auth]').forEach(function(btn) {
