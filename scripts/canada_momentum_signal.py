@@ -206,9 +206,12 @@ def main():
 
     vol_threshold = with_vol['vol'].quantile(1 - VOL_EXCL_PCT)
     df = with_vol[with_vol['vol'] <= vol_threshold].copy()
-    print(f"  After excluding top {int(VOL_EXCL_PCT*100)}% most volatile: {len(df)}")
+    excluded_vol = with_vol[with_vol['vol'] > vol_threshold].copy()
+    print(f"  After excluding top {int(VOL_EXCL_PCT*100)}% most volatile: {len(df)} "
+          f"({len(excluded_vol)} excluded)")
 
     df = df.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
+    excluded_vol = excluded_vol.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
 
     regime_ok, tsx_val, tsx_ma75 = check_regime()
     regime_str = 'momentum' if regime_ok else 'defensive'
@@ -240,16 +243,29 @@ def main():
             'selected':  code in selected,
         })
 
+    excluded_top = []
+    for i, row in excluded_vol.head(20).iterrows():
+        excluded_top.append({
+            'rank':    int(i) + 1,
+            'ticker':  row['code'],
+            'name':    str(row.get('name', row['code'])),
+            'ret_12m': round(float(row['Perf.Y']), 2),
+            'vol_ann': round(float(row['vol']) * 100, 1),
+            'mcap_b':  round(float(row['market_cap_basic']) / 1e9, 3),
+        })
+
     signal = {
-        'date':           TODAY,
-        'regime':         regime_str,
-        'tsx':            tsx_val,
-        'tsx_ma75':       tsx_ma75,
-        'pct_above_ma':   pct_above,
-        'total_eligible': int(len(df)),
-        'portfolio':      [s for s in top20 if s['selected']],
-        'top20':          top20,
-        'updated':        TODAY,
+        'date':               TODAY,
+        'regime':             regime_str,
+        'tsx':                tsx_val,
+        'tsx_ma75':           tsx_ma75,
+        'pct_above_ma':       pct_above,
+        'total_eligible':     int(len(df)),
+        'vol_threshold_pct':  round(float(vol_threshold) * 100, 1),
+        'portfolio':          [s for s in top20 if s['selected']],
+        'top20':              top20,
+        'excluded_high_vol':  excluded_top,
+        'updated':            TODAY,
     }
     with open(DATA_PATH, 'w') as f:
         json.dump(signal, f, indent=2)

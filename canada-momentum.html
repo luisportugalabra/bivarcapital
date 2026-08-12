@@ -277,6 +277,29 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       &nbsp;|&nbsp; Rebalance: monthly
     </p>
 
+    <!-- Excluded (high volatility) -->
+    <div style="margin-top:28px">
+      <div class="port-section-title">Excluded — Volatility Filter <span class="port-section-sub" id="vol-threshold-note"></span></div>
+      <p style="font-size:.6rem;color:var(--text-muted);margin-bottom:8px;font-family:var(--font-mono)">
+        These stocks had strong 12M momentum but were removed before ranking — realized volatility (252-day) put them in the most volatile 25% of the eligible universe.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th class="r">12M Momentum</th>
+            <th class="r">Volatility (ann.)</th>
+            <th class="r">MCap (CAD B)</th>
+          </tr>
+        </thead>
+        <tbody id="excluded-vol-body"></tbody>
+      </table>
+      </div>
+    </div>
+
     <!-- Telegram -->
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
       <div style="font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Get notified on rebalance day</div>
@@ -450,6 +473,24 @@ async function loadSignal() {
         <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
       </tr>`;
     }).join('');
+
+    // Excluded — volatility filter
+    document.getElementById('vol-threshold-note').textContent =
+      data.vol_threshold_pct != null ? `· cutoff: ${data.vol_threshold_pct}% ann. vol` : '';
+    const excludedVol = data.excluded_high_vol || [];
+    document.getElementById('excluded-vol-body').innerHTML = excludedVol.length
+      ? excludedVol.map(s => {
+          const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
+          return `<tr>
+            <td>${s.rank}</td>
+            <td><strong>${s.ticker}</strong></td>
+            <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
+            <td class="r ${r12cls}">${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</td>
+            <td class="r neg">${s.vol_ann}%</td>
+            <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
+          </tr>`;
+        }).join('')
+      : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:14px">No data.</td></tr>';
 
   } catch(e) {
     console.error('Signal load error:', e);
