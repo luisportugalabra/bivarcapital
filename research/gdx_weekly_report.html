@@ -83,7 +83,7 @@ nav .cta{background:var(--accent);color:#060608;padding:6px 14px;border-radius:5
       <a href="/">Home</a>
       <a href="/strategies.html">Strategies</a>
       <a href="/about.html">About</a>
-      <a href="/access.html" class="cta">Get Access</a>
+      <a href="#" onclick="event.preventDefault();var t=this;if(t.dataset.busy)return;t.dataset.busy='1';var o=t.textContent;t.textContent='Coming Soon';t.style.opacity='.6';setTimeout(function(){t.textContent=o;t.style.opacity='1';delete t.dataset.busy;},1600);" class="cta">Get Access</a>
     </nav>
   </div>
 </header>
