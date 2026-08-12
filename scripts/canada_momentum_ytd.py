@@ -73,14 +73,20 @@ for m in breakdown:
     end_dt = today if (is_current or not end_str) else pd.Timestamp(end_str)
 
     tickers = m['tickers']
+    weights = m.get('weights') or {}
     rets = []
     for tk in tickers:
         p0 = get_price(tk, start_dt)
         p1 = intraday.get(tk) or get_price(tk, end_dt) if is_current else get_price(tk, end_dt)
         if p0 and p1 and p0 > 0:
-            rets.append(p1 / p0 - 1)
+            w = weights.get(tk, 1.0 / len(tickers))
+            rets.append((p1 / p0 - 1, w))
 
-    ret     = sum(rets) / len(rets) if rets else 0.0
+    if rets:
+        wsum = sum(w for _, w in rets)
+        ret = sum(r * w for r, w in rets) / wsum if wsum > 0 else 0.0
+    else:
+        ret = 0.0
     ret_pct = round(ret * 100, 2)
 
     updated = dict(m)

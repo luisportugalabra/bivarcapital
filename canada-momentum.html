@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Canada Momentum Signal — Bivar Capital</title>
-<meta name="description" content="Canada TSX Momentum live signal. Top 10 TSX stocks ranked by 12-month momentum, rebalanced on the 2nd business day of each month.">
+<meta name="description" content="Canada TSX Momentum live signal. Top 15 TSX stocks ranked by 12-month momentum, inverse-volatility weighted, rebalanced monthly.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -140,7 +140,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>Canada Momentum</h1>
-  <p class="subtitle">Monthly signal. Top 10 TSX stocks ranked by 12-month momentum. Rebalance on 2nd business day.</p>
+  <p class="subtitle">Monthly signal. Top 15 TSX stocks ranked by 12-month momentum, inverse-volatility weighted.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the live Canada momentum signal.</p>
@@ -182,20 +182,21 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       </div>
 
       <!-- Current Portfolio -->
-      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 10 equal-weight · Pure monthly rebalance · No stop loss</span></div>
+      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 15 inverse-vol weighted · Pure monthly rebalance · No stop loss</span></div>
       <div class="table-wrap">
       <table id="portfolio-table">
         <thead>
           <tr>
             <th>Ticker</th>
             <th>Name</th>
+            <th class="r">Weight</th>
             <th class="r">Entry Date</th>
             <th class="r">Entry (CAD)</th>
             <th class="r">Current (CAD)</th>
             <th class="r">Return (MTD)</th>
           </tr>
         </thead>
-        <tbody id="portfolio-body"><tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">Loading…</td></tr></tbody>
+        <tbody id="portfolio-body"><tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">Loading…</td></tr></tbody>
       </table>
       </div>
 
@@ -229,7 +230,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <input id="calc-input" type="number" min="0" step="1000" placeholder="100000"
             style="padding:8px 10px 8px 22px;background:var(--bg);border:1px solid var(--border-light);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.78rem;width:160px;outline:none">
         </div>
-        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">÷ 10 equal weight</span>
+        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">inverse-vol weighted</span>
         <span style="font-family:var(--font-mono);font-size:.55rem;color:var(--text-muted);margin-left:8px">last close</span>
       </div>
       <div class="table-wrap">
@@ -263,8 +264,8 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <th>Ticker</th>
           <th>Name</th>
           <th class="r">12M Momentum</th>
-          <th class="r">6M Momentum</th>
-          <th class="r">Composite</th>
+          <th class="r">Volatility (ann.)</th>
+          <th class="r">Weight</th>
           <th class="r">MCap (CAD B)</th>
         </tr>
       </thead>
@@ -272,8 +273,8 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 12-month return (skip 1M) &nbsp;|&nbsp; TSX ≥250M CAD mcap, ADV≥1M CAD &nbsp;|&nbsp; Top 10 &nbsp;|&nbsp; TSX &lt; MA75 → cash
-      &nbsp;|&nbsp; Rebalance: 2nd business day of month
+      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; TSX top 70% by mcap (P30), excludes top-25% most volatile &nbsp;|&nbsp; Top 15, inverse-vol weighted &nbsp;|&nbsp; TSX &lt; MA75 → cash
+      &nbsp;|&nbsp; Rebalance: monthly
     </p>
 
     <!-- Telegram -->
@@ -285,7 +286,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Telegram Alerts
       </a>
-      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Alert on the 2nd business day of each month with the 10 stocks to buy.</p>
+      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Alert on rebalance day with the 15 stocks to buy.</p>
     </div>
 
   </div><!-- /content-area -->
@@ -330,8 +331,11 @@ async function loadPortfolio() {
       // Compute MTD from holdings if return_pct is null
       let mtd = cur.return_pct;
       if (mtd == null) {
-        const rets = (data.holdings || []).map(h => h.return_pct).filter(r => r != null);
-        mtd = rets.length ? rets.reduce((a,b) => a+b, 0) / rets.length : null;
+        const withRet = (data.holdings || []).filter(h => h.return_pct != null);
+        const wsum = withRet.reduce((a,h) => a + (h.weight ?? 1/withRet.length), 0);
+        mtd = wsum > 0
+          ? withRet.reduce((a,h) => a + h.return_pct * (h.weight ?? 1/withRet.length), 0) / wsum
+          : null;
       }
       if (mtd != null) {
         mtdEl.textContent = (mtd >= 0 ? '+' : '') + mtd.toFixed(2) + '%';
@@ -355,12 +359,13 @@ async function loadPortfolio() {
       ? holdings.map(h => `<tr class="selected">
           <td><strong>${h.ticker}</strong></td>
           <td style="font-family:var(--font-body);font-size:.7rem">${h.name || ''}</td>
+          <td class="r">${h.weight != null ? (h.weight*100).toFixed(1) + '%' : '—'}</td>
           <td class="r">${h.entry_date || '—'}</td>
           <td class="r">${fmtP(h.entry_price)}</td>
           <td class="r">${fmtP(h.current_price)}</td>
           <td class="r">${fmtRet(h.return_pct)}</td>
         </tr>`).join('')
-      : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — TSX below MA75).</td></tr>';
+      : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — TSX below MA75).</td></tr>';
 
     // Monthly breakdown — show current year by default
     renderMonthlyBreakdown(data.monthly_breakdown || [], new Date().getFullYear());
@@ -379,7 +384,7 @@ async function loadPortfolio() {
     }
   } catch(e) {
     document.getElementById('portfolio-body').innerHTML =
-      '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">Could not load portfolio data.</td></tr>';
+      '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">Could not load portfolio data.</td></tr>';
     console.error(e);
   }
 }
@@ -422,7 +427,7 @@ async function loadSignal() {
         ${pctDev != null ? `&nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA75 (${pctDev}%)` : ''}
       </div>
       <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--text-muted)'}">
-        ${isMom ? 'Signal: Buy top 10 momentum stocks (equal weight)' : 'Signal: Hold cash until TSX recovers above MA75'}
+        ${isMom ? 'Signal: Buy top 15 momentum stocks (inverse-vol weighted)' : 'Signal: Hold cash until TSX recovers above MA75'}
       </div>`;
 
     // Signal date + eligible count
@@ -434,16 +439,14 @@ async function loadSignal() {
     document.getElementById('table-body').innerHTML = top20.map(s => {
       const sel = s.selected;
       const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
-      const r6cls  = s.ret_6m  >= 0 ? 'pos' : 'neg';
-      const cmpCls = s.composite >= 0 ? 'pos' : 'neg';
       return `<tr class="${sel ? 'selected' : ''}">
         <td>${s.rank}</td>
         <td>${sel ? '<span class="tag-selected">SELECTED</span>' : ''}</td>
         <td><strong>${s.ticker}</strong></td>
         <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
-        <td class="r ${r12cls}">${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</td>
-        <td class="r ${r6cls}">${s.ret_6m >= 0 ? '+' : ''}${s.ret_6m}%</td>
-        <td class="r ${cmpCls}"><strong>${s.composite >= 0 ? '+' : ''}${s.composite}%</strong></td>
+        <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
+        <td class="r">${s.vol_ann != null ? s.vol_ann + '%' : '—'}</td>
+        <td class="r">${s.weight != null ? (s.weight*100).toFixed(1) + '%' : '—'}</td>
         <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
       </tr>`;
     }).join('');
@@ -460,12 +463,12 @@ function calcRebalance() {
     return;
   }
   const n = _calcHoldings.length;
-  const alloc = total / n;
   let positions = _calcHoldings.map(h => {
     const price = h.current_price;
     if (!price) return null;
+    const alloc = total * (h.weight ?? 1/n);
     const shares = Math.floor(alloc / price);
-    return { ticker: h.ticker, price, shares, remainder: alloc - shares * price };
+    return { ticker: h.ticker, price, shares, alloc, remainder: alloc - shares * price };
   }).filter(Boolean);
 
   let cash = total - positions.reduce((s, p) => s + p.shares * p.price, 0);
@@ -485,7 +488,7 @@ function calcRebalance() {
     return `<tr class="selected">
       <td><strong>${p.ticker}</strong></td>
       <td>C$${p.price.toFixed(2)}</td>
-      <td class="r">C$${alloc.toFixed(0)}</td>
+      <td class="r">C$${p.alloc.toFixed(0)}</td>
       <td class="r"><strong>${p.shares}</strong></td>
       <td class="r">C$${cost.toFixed(2)}</td>
     </tr>`;
