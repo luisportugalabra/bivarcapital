@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-12",
-  "ytd_2026": -0.15,
+  "updated": "2026-08-13",
+  "ytd_2026": -1.58,
   "currency": "CNY",
   "currency_note": "Prices in CNY (Chinese Yuan Renminbi).",
   "monthly_breakdown": [
@@ -138,7 +138,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-12",
+      "end": "2026-08-13",
       "regime": "momentum",
       "tickers": [
         "301377",
@@ -152,7 +152,7 @@
         "300903",
         "300476"
       ],
-      "return_pct": 37.85
+      "return_pct": 35.87
     }
   ],
   "holdings": [
@@ -162,8 +162,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 335.0,
-      "current_price": 449.57,
-      "return_pct": 34.2
+      "current_price": 445.0,
+      "return_pct": 32.84
     },
     {
       "ticker": "688498",
@@ -171,8 +171,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 1147.01,
-      "current_price": 1429.0,
-      "return_pct": 24.58
+      "current_price": 1500.6801,
+      "return_pct": 30.83
     },
     {
       "ticker": "603256",
@@ -180,8 +180,8 @@
       "sector": "Basic Materials",
       "entry_date": "2026-08-03",
       "entry_price": 115.32,
-      "current_price": 154.49,
-      "return_pct": 33.97
+      "current_price": 151.68,
+      "return_pct": 31.53
     },
     {
       "ticker": "688313",
@@ -189,8 +189,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 96.77,
-      "current_price": 139.89,
-      "return_pct": 44.56
+      "current_price": 138.61,
+      "return_pct": 43.24
     },
     {
       "ticker": "601869",
@@ -198,8 +198,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 262.3,
-      "current_price": 345.79,
-      "return_pct": 31.83
+      "current_price": 337.51,
+      "return_pct": 28.67
     },
     {
       "ticker": "600105",
@@ -207,8 +207,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 31.17,
-      "current_price": 41.21,
-      "return_pct": 32.21
+      "current_price": 40.76,
+      "return_pct": 30.77
     },
     {
       "ticker": "688048",
@@ -216,8 +216,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 236.29,
-      "current_price": 301.47,
-      "return_pct": 27.58
+      "current_price": 300.91,
+      "return_pct": 27.35
     },
     {
       "ticker": "688519",
@@ -225,8 +225,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 206.0,
-      "current_price": 297.27,
-      "return_pct": 44.31
+      "current_price": 283.59,
+      "return_pct": 37.67
     },
     {
       "ticker": "300903",
@@ -234,8 +234,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 43.96,
-      "current_price": 80.29,
-      "return_pct": 82.64
+      "current_price": 77.4,
+      "return_pct": 76.07
     },
     {
       "ticker": "300476",
@@ -243,8 +243,8 @@
       "sector": "Technology",
       "entry_date": "2026-08-03",
       "entry_price": 189.3,
-      "current_price": 279.39,
-      "return_pct": 47.59
+      "current_price": 271.3,
+      "return_pct": 43.32
     }
   ]
 }
