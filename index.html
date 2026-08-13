@@ -107,6 +107,18 @@ nav a:hover { color: var(--text); }
   font-family: var(--font-mono); font-size: 0.55rem; font-weight: 600;
   letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px;
 }
+.filter-bar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.filter-bar button {
+  background: none; border: none; padding: 0; cursor: pointer;
+  font: inherit; letter-spacing: inherit; color: var(--text-muted); transition: color 0.2s;
+}
+.filter-bar button:hover { color: var(--text-secondary); }
+.filter-bar button.active { color: var(--accent); }
+.filter-bar .sep { color: var(--border-light); }
 .entry { padding: 24px 0; border-bottom: 1px solid var(--border); }
 .entry:last-child { border-bottom: none; }
 .entry-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -224,7 +236,15 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
   <section class="log">
 
-    <article class="entry">
+    <div class="filter-bar">
+      <button data-filter="all" class="active">All</button>
+      <span class="sep">&middot;</span>
+      <button data-filter="investment">Investment</button>
+      <span class="sep">&middot;</span>
+      <button data-filter="research">Research</button>
+    </div>
+
+    <article class="entry" data-category="research">
       <div class="entry-meta">
         <span class="entry-date">Aug 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -234,7 +254,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/canada_momentum_sensitivity.html" class="entry-link">Read &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="investment">
       <div class="entry-meta">
         <span class="entry-date">Jul 2026</span>
         <span class="entry-tag tag-position">Equity</span>
@@ -244,7 +264,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/grab_investment_case.html" class="entry-link">Read &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="investment">
       <div class="entry-meta">
         <span class="entry-date">Jul 2026</span>
         <span class="entry-tag tag-position">Equity</span>
@@ -254,7 +274,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/chtr_investment_case.html" class="entry-link">Read &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="investment">
       <div class="entry-meta">
         <span class="entry-date">Jul 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -264,7 +284,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/brazil_carry_bltn.html" class="entry-link">Read full report &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="investment">
       <div class="entry-meta">
         <span class="entry-date">Jun 2026</span>
         <span class="entry-tag tag-position">Equity</span>
@@ -274,7 +294,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/jd_investment_case.html" class="entry-link">Read &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="investment">
       <div class="entry-meta">
         <span class="entry-date">Jun 2026</span>
         <span class="entry-tag tag-position">Equity</span>
@@ -284,7 +304,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/sea_investment_case.html" class="entry-link">Read &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="research">
       <div class="entry-meta">
         <span class="entry-date">Apr 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -300,7 +320,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/trending_value_report.html" class="entry-link">Read full report &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="research">
       <div class="entry-meta">
         <span class="entry-date">Apr 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -316,7 +336,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/value_report.html" class="entry-link">Read full report &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="research">
       <div class="entry-meta">
         <span class="entry-date">Apr 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -333,7 +353,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/valuation_deciles_report.html" class="entry-link">Read full report &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="research">
       <div class="entry-meta">
         <span class="entry-date">Apr 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -349,7 +369,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/momentum_comparative_report.html" class="entry-link">Read full report &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="research">
       <div class="entry-meta">
         <span class="entry-date">Apr 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -365,7 +385,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <a href="/research/momentum_sensitivity_report.html" class="entry-link">Read full report &rarr;</a>
     </article>
 
-    <article class="entry">
+    <article class="entry" data-category="research">
       <div class="entry-meta">
         <span class="entry-date">Apr 2026</span>
         <span class="entry-tag tag-research">Research</span>
@@ -384,6 +404,19 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
 
 </main>
+
+<script>
+document.querySelectorAll('.filter-bar button').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-bar button').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = btn.dataset.filter;
+    document.querySelectorAll('.log .entry').forEach(function(entry) {
+      entry.style.display = (f === 'all' || entry.dataset.category === f) ? '' : 'none';
+    });
+  });
+});
+</script>
 
 <footer>
   <div class="container">
