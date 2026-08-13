@@ -174,7 +174,10 @@ def fetch_canada():
 
 
 def check_regime():
-    """TSX Composite vs MA75 via yfinance."""
+    """TSX Composite vs MA75 via yfinance. Also returns the actual date of
+    the last available trading bar -- the real market date, not whatever
+    the wall clock says when the cron happens to run (which can be a
+    Saturday re-run of Friday's close, or a holiday)."""
     tsx = yf.download('^GSPTSE', period='200d', auto_adjust=True, progress=False)
     close = tsx['Close']
     if isinstance(close, pd.DataFrame):
@@ -182,7 +185,20 @@ def check_regime():
     close = close.dropna()
     last = float(close.iloc[-1])
     ma75 = float(close.rolling(MA_W).mean().iloc[-1])
-    return last >= ma75, round(last, 1), round(ma75, 1)
+    market_date = close.index[-1].date()
+    return last >= ma75, round(last, 1), round(ma75, 1), market_date
+
+
+def next_weekday(d):
+    """Next calendar day that isn't a Saturday or Sunday -- used to find the
+    real next trading day for month-end detection, instead of naive
+    tomorrow=today+1 arithmetic, which misses month boundaries that fall on
+    a weekend (e.g. last trading day is Fri the 29th, tomorrow=Sat the 30th
+    is still the same calendar month, so a same-month check never fires)."""
+    nd = d + timedelta(days=1)
+    while nd.weekday() >= 5:  # 5=Saturday, 6=Sunday
+        nd += timedelta(days=1)
+    return nd
 
 
 def load_existing_portfolio():
@@ -258,6 +274,18 @@ def write_not_live(reason):
 
 
 def main():
+    global TODAY
+    # Establish the operational "today" from the latest available market
+    # bar (TSX Composite close via yfinance) instead of the wall clock --
+    # this is what makes month-end detection below trading-day-aware
+    # (e.g. a Saturday cron re-run still keys off Friday's actual close).
+    regime_ok, tsx_val, tsx_ma75, market_date = check_regime()
+    TODAY = market_date.isoformat()
+    regime_str = 'momentum' if regime_ok else 'defensive'
+    pct_above  = round((tsx_val / tsx_ma75 - 1) * 100, 1)
+    print(f"  Regime: {regime_str.upper()}  TSX: {tsx_val}  MA75: {tsx_ma75}  ({pct_above:+.1f}%)  "
+          f"[market date: {TODAY}]")
+
     universe, universe_health = fetch_canada()
     if universe_health < MIN_UNIVERSE_ROWS:
         write_not_live(f"TradingView universe fetch returned only {universe_health} tickers "
@@ -285,11 +313,6 @@ def main():
 
     df = df.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
     excluded_vol = excluded_vol.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
-
-    regime_ok, tsx_val, tsx_ma75 = check_regime()
-    regime_str = 'momentum' if regime_ok else 'defensive'
-    pct_above  = round((tsx_val / tsx_ma75 - 1) * 100, 1)
-    print(f"  Regime: {regime_str.upper()}  TSX: {tsx_val}  MA75: {tsx_ma75}  ({pct_above:+.1f}%)")
 
     top_df = df.head(TOP_N) if regime_ok else df.iloc[0:0]
 
@@ -426,13 +449,23 @@ def main():
     else:
         ytd_2026 = existing.get('ytd_2026', 0)
 
-    # Lock in tomorrow's signal if today is the last trading day of the month
+    # Lock in next month's signal if today's market bar is the last trading
+    # day of the month. "Last trading day of month" is approximated as: the
+    # next weekday after today's real market date falls in a different
+    # calendar month. This is trading-calendar-aware for the ordinary case
+    # (Fri 29/30/31 followed by a weekend into the next month) without
+    # needing a market-holiday calendar; the actual holiday case (last
+    # trading day is followed by a weekday holiday, then the real next
+    # trading day) is still handled correctly by the "no matching locked
+    # signal -- falling back to today's data" branch on execution, since a
+    # missed lock-in day just means next month's cron run recomputes fresh.
     today_date = date.fromisoformat(TODAY)
-    tomorrow = today_date + timedelta(days=1)
-    is_month_end_today = tomorrow.month != today_date.month or tomorrow.year != today_date.year
+    next_trading_candidate = next_weekday(today_date)
+    is_month_end_today = (next_trading_candidate.month != today_date.month
+                           or next_trading_candidate.year != today_date.year)
 
     if is_month_end_today and regime_ok:
-        next_month_str = tomorrow.strftime('%Y-%m')
+        next_month_str = next_trading_candidate.strftime('%Y-%m')
         new_pending_signal = {
             'for_month':     next_month_str,
             'computed_date': TODAY,
