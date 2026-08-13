@@ -75,6 +75,10 @@ nav a {
 nav a:hover { color: var(--text); }
 
 .hero { padding: 48px 0 40px; border-bottom: 1px solid var(--border); }
+.hero .brand-label {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+}
 .hero h1 {
   font-family: var(--font-display); font-size: 2.4rem; font-weight: 400;
   line-height: 1.15; margin-bottom: 16px;
@@ -213,7 +217,9 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
   </div>
 
   <section class="hero">
+    <div class="brand-label">Bivar Capital</div>
     <h1>A public record of capital allocation decisions.</h1>
+    <p class="sub">Systematic strategies. Fundamental research. Real capital.</p>
   </section>
 
   <section class="log">
