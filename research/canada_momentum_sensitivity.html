@@ -58,7 +58,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <dt>Baseline for parameter sweeps (Sections&nbsp;II&ndash;VI)</dt><dd>Inverse-volatility weighting</dd>
 <dt>Final / live configuration</dt><dd>Equal weighting</dd>
 </div>
-<div class="callout"><p><strong>Read this before the tables below.</strong> Sections&nbsp;II&ndash;VI share one baseline: N=15, 12-month momentum (no skip), mcap &ge; 30th percentile, excludes top 25% most volatile, MA75 regime, <strong>inverse-volatility weighted</strong>, CDRs and preferred shares excluded, since 2000 (319 months) &mdash; that baseline row reads CAGR +31.0%, Sharpe 1.304, MaxDD &minus;39.0% in each of those tables, unchanged since they were first run. <strong>This is not the live configuration.</strong> Section&nbsp;VII tests weighting itself and shows equal-weight matching or slightly beating inverse-vol at N=15 &mdash; <strong>equal weight is what's actually live</strong> (Section&nbsp;X, Final Configuration: CAGR +32.9%, Sharpe 1.31, MaxDD &minus;36.4%). Sections&nbsp;II&ndash;VI were not re-run under equal weight; given how close the two weighting schemes are (Section&nbsp;VII), their conclusions are expected to hold either way, but that hasn't been individually verified for each parameter.</p></div>
+<div class="callout"><p><strong>Read this before the tables below.</strong> Sections&nbsp;II&ndash;VI share one baseline: N=15, 12-month momentum (no skip), mcap &ge; 30th percentile, excludes top 25% most volatile, MA75 regime, <strong>inverse-volatility weighted</strong>, CDRs and preferred shares excluded, since 2000 (319 months) &mdash; that baseline row reads CAGR +31.0%, Sharpe 1.304, MaxDD &minus;39.0% in each of those tables, unchanged since they were first run. <strong>This is not the live configuration.</strong> Section&nbsp;VII tests weighting itself and shows equal-weight matching or slightly beating inverse-vol at N=15 &mdash; <strong>equal weight is what's actually live</strong> (Section&nbsp;X, Final Configuration: CAGR +33.0%, Sharpe 1.31, MaxDD &minus;26.1%). Sections&nbsp;II&ndash;VI were not re-run under equal weight; given how close the two weighting schemes are (Section&nbsp;VII), their conclusions are expected to hold either way, but that hasn't been individually verified for each parameter.</p></div>
 
 <div class="divider"></div>
 <h2>II. Portfolio Size (N)</h2>
@@ -147,7 +147,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>Weighting</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th></tr></thead>
 <tbody>
-<tr class="hl-row"><td>Equal-weight (final)</td><td>1.309</td><td class="pos">+32.9%</td><td class="neg">&minus;36.4%</td></tr>
+<tr class="hl-row"><td>Equal-weight (final)</td><td>1.311</td><td class="pos">+33.0%</td><td class="neg">&minus;26.1%</td></tr>
 <tr><td>Inverse-volatility</td><td>1.304</td><td class="pos">+31.0%</td><td class="neg">&minus;39.0%</td></tr>
 </tbody>
 </table>
@@ -182,14 +182,14 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <div class="divider"></div>
 <h2>X. Final Configuration</h2>
 <div class="grid6">
-<div class="stat"><div class="v pos">+32.9%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v pos">+33.0%</div><div class="l">CAGR</div></div>
 <div class="stat"><div class="v pos">1.31</div><div class="l">Sharpe</div></div>
-<div class="stat"><div class="v neg">&minus;36.4%</div><div class="l">Max Drawdown</div></div>
-<div class="stat"><div class="v">0.90</div><div class="l">MAR</div></div>
+<div class="stat"><div class="v neg">&minus;26.1%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">1.26</div><div class="l">MAR</div></div>
 <div class="stat"><div class="v">319</div><div class="l">Months</div></div>
 <div class="stat"><div class="v">2000&ndash;2026</div><div class="l">Period</div></div>
 </div>
-<p style="font-size:.68rem;color:var(--muted);margin-top:6px">The live <a href="/research/canada_momentum_report.html" style="color:var(--accent)">strategy report</a> states Sharpe 1.37 for the same config &mdash; that page uses a geometric-mean Sharpe convention, this article uses arithmetic-mean throughout for consistency across every table above. Same underlying returns, different formula.</p>
+<p style="font-size:.68rem;color:var(--muted);margin-top:6px">The live <a href="/research/canada_momentum_report.html" style="color:var(--accent)">strategy report</a> states Sharpe 1.36 for the same config &mdash; that page uses a geometric-mean Sharpe convention, this article uses arithmetic-mean throughout for consistency across every table above. Same underlying returns, different formula. (2026-08-13: corrected MaxDD from a previously-published -36.4%, which could not be reproduced by two independent re-implementations of this backtest -- CAGR and Sharpe were unaffected.)</p>
 <div class="meta-box" style="margin-top:8px">
 <dt>Momentum</dt><dd>12-month return, no skip-month</dd>
 <dt>Universe</dt><dd>TSX, mcap &ge; 30th percentile (top 70% by size), excludes CDRs and preferred shares</dd>
@@ -207,7 +207,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <li><strong>Equal weight vs. inverse-volatility</strong> (Section&nbsp;VII): the gap between the two is small at N=15 (Sharpe 1.31 vs 1.30). Equal weight is the live config for its simplicity, not because inverse-vol was shown to be meaningfully worse &mdash; worth re-testing if N ever changes, since an earlier N=25 test found the opposite ranking.</li>
 <li><strong>Single-market backtest.</strong> Every number here is TSX-only and doesn't necessarily generalize to other markets (see Section&nbsp;VI on the volatility filter: it works in Canada partly because of TSX's small-cap/resource-heavy universe, and doesn't transfer as-is to markets with a higher market-cap floor already).</li>
 <li><strong>Sector concentration.</strong> The TSX is heavily weighted toward energy and materials; the top-15 momentum book will often be concentrated in commodity-cycle names, visible in the position history on the strategy report.</li>
-<li><strong>Drawdown magnitude.</strong> &minus;36.4% is a real, live-tradeable number in this backtest, not a tail-risk footnote &mdash; this is a high-volatility, high-conviction strategy, not a low-vol product.</li>
+<li><strong>Drawdown magnitude.</strong> &minus;26.1% is a real, live-tradeable number in this backtest, not a tail-risk footnote &mdash; this is a high-volatility, high-conviction strategy, not a low-vol product.</li>
 </ol>
 
 <div class="footer">
