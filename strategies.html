@@ -351,11 +351,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <div class="modal-step-num">Step 3 — Execute</div>
       <p>In momentum mode: sell previous holdings and buy the <strong>7 stocks listed</strong> in equal weight (~14.3% each). In gold mode: hold GLD until the regime flips back.</p>
     </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Universe: US large-cap equities, market cap &gt;$10B, positive operating income. Composite momentum = 50% 6-month + 50% 12-month return. No intra-month changes — set and forget until next 1st.</p>
-    </div>
   </div>
 </div>
 
@@ -423,16 +418,11 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     </div>
     <div class="modal-step">
       <div class="modal-step-num">Step 2 — Check the regime</div>
-      <p>If the <strong>FTSE 100 is above its 200-day moving average</strong>: hold the 7 UK stocks. If it is below: sell everything and stay in <strong>cash</strong> until the regime flips back. The strategy is in cash ~33% of the time.</p>
+      <p>If the <strong>FTSE 100 is above its 200-day moving average</strong>: hold the 12 UK stocks. If it is below: sell everything and buy <strong>GLD</strong> (SPDR Gold Shares ETF, ticker: GLD) until the regime flips back.</p>
     </div>
     <div class="modal-step">
       <div class="modal-step-num">Step 3 — Execute</div>
-      <p>Buy the <strong>7 stocks listed</strong> in equal weight (~14.3% each) on your UK broker (e.g. Interactive Brokers, Hargreaves Lansdown). Sell the previous month&apos;s holdings no longer in the top 7.</p>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Universe: UK-listed equities (LSE, GBX-denominated), market cap &gt;£250M, positive operating income. Signal = pure 6-month return ranking. No intra-month changes — set and forget until next 1st. Backtest 2004–2026 (net of 0.65% buy / 0.15% sell costs): CAGR +23.7%, Sharpe 0.99, MaxDD -38.1%.</p>
+      <p>In momentum mode: buy the <strong>12 stocks listed</strong> in equal weight (~8.3% each) on your UK broker (e.g. Interactive Brokers, Hargreaves Lansdown). Sell the previous month&apos;s holdings no longer in the top 12. In gold mode: hold GLD until the regime flips back.</p>
     </div>
   </div>
 </div>
@@ -463,7 +453,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 </div>
 END CHINA MODAL -->
 
-<!-- MODAL: Denmark Momentum -->
+<!-- MODAL: Denmark Momentum — hidden, re-enable when ready (card is already hidden above; modal was left active by mistake)
 <div class="modal-overlay" id="modal-denmark-mom" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal-denmark-mom').classList.remove('open')">&times;</button>
@@ -480,13 +470,9 @@ END CHINA MODAL -->
       <div class="modal-step-num">Step 3 — Execute</div>
       <p>Buy the <strong>10 stocks listed</strong> inverse-volatility weighted. Sell previous month&apos;s holdings no longer in the top 10. All prices in DKK.</p>
     </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Universe: Nasdaq Copenhagen (.CO), market cap &gt;700M DKK (~100M USD). Signal = 50% 6M + 50% 12M return (no skip). Weighting: inverse-volatility (252-day). Backtest 2001–2026: CAGR +20.3%, Sharpe 1.45, MaxDD -22.0%.</p>
-    </div>
   </div>
 </div>
+END DENMARK MODAL -->
 
 <!-- MODAL: Canada TSX Momentum -->
 <div class="modal-overlay" id="modal-canada-mom" onclick="if(event.target===this)this.classList.remove('open')">
@@ -504,11 +490,6 @@ END CHINA MODAL -->
     <div class="modal-step">
       <div class="modal-step-num">Step 3 — Execute</div>
       <p>Buy the <strong>15 TSX stocks listed</strong> in equal weight (6.67% each). Sell previous month&apos;s holdings no longer in the top 15. All prices in CAD.</p>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Universe: TSX-listed equities, market cap in the top 70% by size (30th percentile floor, not an absolute dollar amount), excludes the most volatile 25% and CDRs/preferred shares. Signal = pure 12-month return, no skip-month. Rebalance locked at month-end, executed next trading day. Backtest 2000–2026: CAGR +33.0%, Sharpe 1.31, MaxDD -26.1%.</p>
     </div>
   </div>
 </div>
