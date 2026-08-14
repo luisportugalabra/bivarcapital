@@ -52,7 +52,7 @@ serve(async (req) => {
     const alreadySent = prevMonth === currentPeriod;
 
     // Save state
-    await sb.from("momentum_signal_state").upsert({
+    const { error: upsertErr } = await sb.from("momentum_signal_state").upsert({
       id: 1,
       month: currentPeriod,
       date,
@@ -60,6 +60,7 @@ serve(async (req) => {
       portfolio: JSON.stringify(portfolio.map((s: any) => s.ticker)),
       updated: new Date().toISOString(),
     });
+    if (upsertErr) throw new Error(`state upsert failed: ${upsertErr.message}`);
 
     if (alreadySent) {
       console.log("Already sent this month — skipping Telegram");

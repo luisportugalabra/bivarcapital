@@ -46,7 +46,7 @@ serve(async (req) => {
 
     const alreadySent = (prevRow?.month || null) === currentPeriod;
 
-    await sb.from("momentum_signal_state").upsert({
+    const { error: upsertErr } = await sb.from("momentum_signal_state").upsert({
       id: STATE_ID,
       month: currentPeriod,
       date,
@@ -54,6 +54,7 @@ serve(async (req) => {
       portfolio: JSON.stringify(portfolio.map((s: any) => s.ticker)),
       updated: new Date().toISOString(),
     });
+    if (upsertErr) throw new Error(`state upsert failed: ${upsertErr.message}`);
 
     if (alreadySent) {
       console.log("UK: already sent this month — skipping");

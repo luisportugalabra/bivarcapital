@@ -162,7 +162,7 @@ serve(async (req) => {
     const alreadyRanToday = prevDate === date;
 
     // Save state to Supabase
-    await sb.from("btc_signal_state").upsert({
+    const { error: upsertErr } = await sb.from("btc_signal_state").upsert({
       id: 1,
       date,
       price: Math.round(livePrice * 100) / 100,
@@ -172,6 +172,7 @@ serve(async (req) => {
       signal,
       updated: new Date().toISOString(),
     });
+    if (upsertErr) throw new Error(`state upsert failed: ${upsertErr.message}`);
 
     // Update btc-signal.json in GitHub repo
     const signalData = {
