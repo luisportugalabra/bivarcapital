@@ -1,9 +1,9 @@
 {
   "last_rebalance": "2026-08-06",
-  "updated": "2026-08-14 23:30 UTC",
+  "updated": "2026-08-15 23:28 UTC",
   "ytd_2026": 11.32,
-  "ftse100": 10772.7,
-  "ftse100_ma200": 10274.89,
+  "ftse100": 10750.1,
+  "ftse100_ma200": 10264.53,
   "regime": "risk-on",
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
@@ -131,7 +131,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-14",
+      "end": "2026-08-15",
       "regime": "momentum",
       "tickers": [
         "SAGA",

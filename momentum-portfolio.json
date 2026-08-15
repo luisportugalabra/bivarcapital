@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-08-03",
-  "updated": "2026-08-14 23:30 UTC",
+  "updated": "2026-08-15 23:28 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -185,7 +185,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-14",
+      "end": "2026-08-15",
       "tickers": [
         "SNDK",
         "MU",

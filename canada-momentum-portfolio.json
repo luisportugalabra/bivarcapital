@@ -1,11 +1,11 @@
 {
   "last_rebalance": "2026-08-04",
-  "updated": "2026-08-14",
-  "ytd_2026": 16.25,
+  "updated": "2026-08-15",
+  "ytd_2026": 15.81,
   "regime": "momentum",
   "currency": "CAD",
   "tsx": 36730.3,
-  "tsx_ma75": 34955.6,
+  "tsx_ma75": 34891.9,
   "holdings": [
     {
       "ticker": "ALS",
@@ -394,7 +394,7 @@
         "NVEI",
         "BDT"
       ],
-      "return_pct": 16.27
+      "return_pct": 16.82
     },
     {
       "month": "Nov 2024",
@@ -413,7 +413,7 @@
         "GLXY",
         "ATZ"
       ],
-      "return_pct": 3.27
+      "return_pct": 1.65
     },
     {
       "month": "Dec 2024",
@@ -943,7 +943,7 @@
         "TVE": 0.0667,
         "VBNK": 0.0667
       },
-      "return_pct": 0.04
+      "return_pct": -0.34
     },
     {
       "month": "Aug 2026",
