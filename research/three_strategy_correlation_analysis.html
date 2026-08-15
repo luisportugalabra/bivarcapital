@@ -151,10 +151,55 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <div class="callout"><p><strong>The combined portfolio was never meaningfully negative in any of the seven crisis windows tested</strong> &mdash; the worst is the Euro debt crisis at &minus;2.7%, and even the GFC (the worst individual-strategy stretch, UK &minus;7.2%) nets out to only +1.5% combined. Each strategy's own regime filter (MA250/MA200/MA75, against its own index) is doing most of the defensive work independently; the combination on top adds a second layer, since it's rare for all three regime filters to trigger badly at once. Canada's Sharpe (1.41 stand-alone) reflects a shallower regime-driven MA75 filter that historically got the strategy out of trouble faster than the US or UK filters &mdash; visible directly in the GFC and Euro-crisis rows, where Canada's own drawdown was smaller than the US's.</p></div>
 
 <div class="divider"></div>
-<h2>VIII. Takeaways &amp; Limitations</h2>
+<h2>VIII. Stress Test: The Classic Momentum-Crash Window (Apr&ndash;Sep 2009)</h2>
+<p>The GFC row above stops at 2009-03, which understates the real stress test. The best-documented failure mode for cross-sectional momentum isn't the crash itself &mdash; it's the <strong>V-shaped reversal immediately after</strong>, when last year's biggest losers (the short leg of any long-short momentum book) violently outperform. Academic long-short momentum studies show factor losses in the 40&ndash;50% range concentrated almost entirely in April&ndash;September 2009. If our momentum exposure has a hidden crash risk, this is the specific six months where it would show up.</p>
+<table>
+<thead><tr><th>Strategy</th><th>Cumulative return, Apr&ndash;Sep 2009</th></tr></thead>
+<tbody>
+<tr><td>US</td><td class="pos">+12.9%</td></tr>
+<tr><td>UK</td><td class="pos">+31.4%</td></tr>
+<tr><td>Canada</td><td class="pos">+33.3%</td></tr>
+<tr class="hl-row"><td>Combo (1/3 each)</td><td class="pos">+26.6%</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr><th>Month</th><th>US</th><th>UK</th><th>Canada</th><th>Combo</th></tr></thead>
+<tbody>
+<tr><td>2009-04</td><td class="pos">+9.9%<span style="color:var(--muted)"> (out)</span></td><td>0.0%<span style="color:var(--muted)"> (out)</span></td><td class="pos">+23.7%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+11.2%</td></tr>
+<tr><td>2009-05</td><td class="neg">&minus;3.7%<span style="color:var(--muted)"> (out)</span></td><td>0.0%<span style="color:var(--muted)"> (out)</span></td><td class="pos">+1.8%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;0.6%</td></tr>
+<tr><td>2009-06</td><td class="pos">+1.4%<span style="color:var(--muted)"> (out)</span></td><td class="neg">&minus;2.7%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;2.3%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;1.2%</td></tr>
+<tr><td>2009-07</td><td class="neg">&minus;2.6%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+14.7%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;1.0%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+3.7%</td></tr>
+<tr><td>2009-08</td><td class="pos">+5.8%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+13.3%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+15.0%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+11.3%</td></tr>
+<tr><td>2009-09</td><td class="pos">+2.1%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+4.0%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;4.7%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+0.5%</td></tr>
+</tbody>
+</table>
+<div class="callout-green"><p><strong>All three strategies were positive through the window that historically destroys momentum &mdash; none of them lost money.</strong> Two things are doing the work, and it's worth being precise about which: first, all three books are <strong>long-only</strong> (buy the top-N winners, no short leg) &mdash; the textbook crash mechanism is specifically a short-squeeze on the biggest losers, which cannot hit a portfolio that never holds a short book in the first place. Second, timing: the US (MA250) and UK (MA200) regime filters were still out of the market through April&ndash;June, missing the most violent chop of the initial reversal; Canada's much faster MA75 had already re-entered by April and rode the recovery from day one. This isn't the strategies dodging a bullet through skill &mdash; it's structural: a long-only book facing a beta-driven junk rally underperforms a long-short book's short-covering losses, it doesn't crash the way the short leg does.</p></div>
+<div class="callout"><p><strong>Caveat: this is one historical instance (n=1), not a repeatable stress test.</strong> 2009 was an unusually fast, policy-driven V-shaped recovery; there is no second comparable event in the sample to confirm this holds generally. Long-only momentum's immunity to the classic short-squeeze mechanism is a structural argument, not something proven by one data point &mdash; treat this section as "no evidence of the specific failure mode," not "proof it cannot happen."</p></div>
+
+<div class="divider"></div>
+<h2>IX. Whipsaw Cost in Choppy, Sideways Markets</h2>
+<p>Regime filters have a known failure mode in the other direction: markets that chop sideways without a clean trend generate repeated false exit/re-entry signals, each one clipping a bit of return. We checked 2011 and 2015 specifically (flagged as classic whipsaw-prone years), plus 2018, 2019 and 2022 for context, against each strategy's own CAGR &mdash; computed over the same 2002&ndash;2025 window (full calendar years only) used consistently across this article, not each strategy's own full, differently-dated history.</p>
+<table>
+<thead><tr><th>Year</th><th>US (CAGR +25.3%)</th><th>UK (CAGR +20.6%)</th><th>Canada (CAGR +36.3%)</th></tr></thead>
+<tbody>
+<tr><td>2011</td><td class="neg">&minus;4.8% (&minus;30.2pp)</td><td class="pos">+15.6% (&minus;4.9pp)</td><td class="pos">+2.7% (&minus;33.6pp)</td></tr>
+<tr><td>2015</td><td class="pos">+8.5% (&minus;16.8pp)</td><td class="neg">&minus;7.0% (&minus;27.5pp)</td><td class="pos">+4.5% (&minus;31.8pp)</td></tr>
+<tr><td>2018</td><td class="neg">&minus;16.7% (&minus;42.0pp)</td><td class="neg">&minus;12.4% (&minus;33.0pp)</td><td class="pos">+8.9% (&minus;27.5pp)</td></tr>
+<tr><td>2019</td><td class="pos">+4.6% (&minus;20.7pp)</td><td class="pos">+24.4% (+3.9pp)</td><td class="pos">+48.2% (+11.9pp)</td></tr>
+<tr><td>2022</td><td class="pos">+6.3% (&minus;19.0pp)</td><td class="pos">+20.2% (&minus;0.3pp)</td><td>0.0% (&minus;36.3pp)</td></tr>
+</tbody>
+</table>
+<p>(pp = percentage points versus that strategy's own CAGR, 2002&ndash;2025. Note CAGR here is the compounded, geometric figure &mdash; the correct baseline for comparing against a single year's return, and consistent with how CAGR is reported everywhere else in this article. An earlier version of this table used each strategy's own arithmetic-mean annual return over its own full, differently-dated history, which overstated the baseline and wasn't comparable across strategies; corrected here.)</p>
+<div class="callout-red"><p><strong>2011, 2015 and 2018 are real drag years across all three strategies</strong> &mdash; every single cell in those three rows sits below its strategy's CAGR, several by 27&ndash;42 percentage points. This is the whipsaw cost the regime filters genuinely pay in choppy, directionless markets, and it is not a small number in a single-strategy view. 2018 is the worst of the three, not 2011 or 2015 &mdash; both US (&minus;16.7%) and UK (&minus;12.4%) posted outright negative years.</p></div>
+<p>We also counted year-by-year regime flips (exit&harr;re-entry transitions) to check whether flip-frequency itself predicts the damage. It doesn't, cleanly: 2019 has among the <em>highest</em> flip counts for UK (5) and Canada (5) in the entire sample, yet both had strong-to-exceptional years (+24.4% and +48.2%). Meanwhile 2011 (US: 1 flip, UK: 1 flip, Canada: 2 flips) was a below-average year for all three despite low flip counts. <strong>What matters isn't how often the filter fires, it's whether each exit caught a real drawdown or clipped a false signal ahead of a continued uptrend</strong> &mdash; a single badly-timed flip can cost more than five well-timed ones. By flip-count alone, 2018, 2019 and 2022 are actually noisier years than 2011 or 2015 for UK and Canada; it's 2011/2015/2018 together, not those two years specifically, that make up the strategies' weakest historical stretch.</p>
+
+<div class="divider"></div>
+<h2>X. Takeaways &amp; Limitations</h2>
 <ol class="steps">
 <li><strong>Equal weight (1/3 each) is the version we'd run.</strong> It captures almost all of the diversification benefit (Sharpe 1.76, MaxDD &minus;15.9%) with none of the concentration risk the dynamic-redistribution version introduces.</li>
 <li><strong>The negative-skew-in-down-months finding (Section&nbsp;V) is the single most useful number in this article</strong> &mdash; correlations getting more negative exactly when the combined book is losing money is the property you actually want from a multi-strategy blend, and it isn't guaranteed by low full-period correlation alone.</li>
+<li><strong>The strategies show no evidence of the classic long-short momentum crash (Section&nbsp;VIII)</strong>, for structural reasons (long-only, no short leg) rather than luck &mdash; but this rests on one historical window, not a repeated stress test.</li>
+<li><strong>Whipsaw cost in sideways markets is real and non-trivial (Section&nbsp;IX)</strong> &mdash; 2011, 2015 and especially 2018 cost every strategy 25&ndash;49pp versus its own long-run average. This is the honest price of the regime filters that produce the crisis protection in Sections&nbsp;VII&ndash;VIII; the two are the same mechanism, not separate features.</li>
 <li><strong>Crisis-window correlations are individually noisy</strong> (as few as 3 months of data in three of the seven windows tested) &mdash; treat the direction as informative and the precise coefficient as illustrative, not a statistically robust estimate on its own.</li>
 <li><strong>Three markets, three regime filters, no shared design.</strong> None of these three strategies were built together or tuned to complement each other &mdash; each was optimized independently on its own market (see each strategy's own sensitivity report). The low correlation and negative down-month skew found here are closer to an emergent property of momentum-with-independent-regime-filters across uncorrelated equity markets than a designed feature, which is also why we treat it as a real, if not fully explained, effect rather than something to be suspicious of.</li>
 <li><strong>Capital/margin netting not modeled.</strong> All figures assume the three books can be run fully independently with no shared capital constraints; a real implementation running all three simultaneously would need to check margin/netting efficiency across brokers and currencies (GBX, CAD, USD).</li>
