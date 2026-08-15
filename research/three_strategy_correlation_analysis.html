@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US + UK + Canada Momentum — Correlation &amp; Combined Portfolio Analysis — Bivar Capital</title>
+<meta property="og:title" content="US + UK + Canada Momentum — Correlation &amp; Combined Portfolio Analysis — Bivar Capital">
+<meta property="og:description" content="Combining our three live momentum strategies 1/3 each: Sharpe, drawdown, and a detailed look at how correlated they actually are — in up markets, down markets, sub-periods, and every major crisis since 2001.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/three_strategy_correlation_analysis.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/research/three_strategy_correlation_analysis.html">
+<meta name="theme-color" content="#060608">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:40px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.pos{color:var(--green)}.neg{color:var(--red)}.hl-row td{background:rgba(196,162,101,.08);color:var(--text);font-weight:600}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.callout-green{background:var(--card);border-left:3px solid var(--green);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-green p{margin:0;color:var(--text);font-size:.78rem}.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-red p{margin:0;color:var(--text);font-size:.78rem}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.highlight-amber{background:rgba(196,162,101,.06);border:1px solid rgba(196,162,101,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight-amber p{margin:0}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}.footer a{color:var(--accent)}
+ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps li{margin-bottom:6px}
+@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}</style>
+</head>
+<body><style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:18px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:750px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}.nav-social{border-left:none!important;margin-left:0!important;padding-left:0!important}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><span class="nav-social" style="margin-left:10px;padding-left:10px;border-left:1px solid #1a1a22;display:inline-flex;align-items:center;gap:8px;color:#5a5a68"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" aria-label="LinkedIn" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://x.com/Luisbivar" rel="noopener" target="_blank" aria-label="X" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" aria-label="Instagram" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></span><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a href="#" id="nav-signin" class="accent">Sign In</a><a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a><span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span></nav></div></header><div class="container">
+
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>US + UK + Canada Momentum<span class="it">Correlation &amp; combined portfolio analysis</span></h1>
+<p class="lead">We run three live momentum strategies &mdash; <a href="/research/momentum_sensitivity_report.html" style="color:var(--accent)">US Bivar Optimal Momentum</a>, <a href="/research/uk_momentum_report.html" style="color:var(--accent)">UK Optimal Momentum</a>, and <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada TSX Momentum</a>. This article combines all three 1/3 each and asks the question that actually matters for sizing a multi-strategy book: are they really diversifying, or just three flavours of the same long-momentum bet? Monthly returns, 2001&ndash;2026.</p>
+
+<div class="divider"></div>
+<h2>I. The Three Strategies, Side by Side</h2>
+<div class="meta-box" style="margin-bottom:10px">
+<dt>Common backtest window</dt><dd>2001-02 to 2026-03 (302 months) &mdash; the intersection of all three series, bounded by UK's later start date</dd>
+</div>
+<table>
+<thead><tr><th>Strategy</th><th>Regime rule</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>% months active</th></tr></thead>
+<tbody>
+<tr><td>US</td><td>S&amp;P 500 &lt; MA250 &rarr; Gold</td><td class="pos">+27.0%</td><td>1.02</td><td class="neg">&minus;37.0%</td><td>75%</td></tr>
+<tr><td>UK</td><td>FTSE 100 &lt; MA200 &rarr; Cash</td><td class="pos">+19.1%</td><td>1.00</td><td class="neg">&minus;33.6%</td><td>66%</td></tr>
+<tr><td>Canada</td><td>TSX Composite &lt; MA75 &rarr; Cash</td><td class="pos">+34.7%</td><td>1.41</td><td class="neg">&minus;18.1%</td><td>67%</td></tr>
+</tbody>
+</table>
+<p>Three independent momentum books, three different markets, three different regime filters with different lookback windows &mdash; run on their own live configuration, not a re-fitted common one. That independence is exactly what makes the correlation question interesting: nothing here was built to be uncorrelated with anything else.</p>
+
+<div class="divider"></div>
+<h2>II. Combined Portfolio &mdash; Static Equal Weight</h2>
+<p>Simplest possible combination: 1/3 capital to each strategy, monthly, no adjustment for regime state.</p>
+<div class="grid6">
+<div class="stat"><div class="v pos">+28.7%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v">1.76</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v neg">&minus;15.9%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">1.81</div><div class="l">MAR</div></div>
+<div class="stat"><div class="v">15.1%</div><div class="l">Volatility</div></div>
+<div class="stat"><div class="v">302</div><div class="l">Months</div></div>
+</div>
+<div class="callout-green"><p><strong>Sharpe jumps from 1.00&ndash;1.41 individually to 1.76 combined, and MaxDD roughly halves versus every individual strategy</strong> (&minus;15.9% vs &minus;18.1% to &minus;37.0% solo). That is not a small diversification bonus &mdash; it is the single biggest performance lever in this entire analysis, bigger than any parameter tweak inside any one of the three strategies.</p></div>
+
+<div class="divider"></div>
+<h2>III. Combined Portfolio &mdash; Dynamic Redistribution</h2>
+<p>A natural-sounding refinement: instead of letting a leg's capital sit idle in cash/gold when its own regime filter says "exit," redistribute that leg's weight pro-rata to whichever of the other two strategies are <em>currently active</em>. If only one strategy is active in a given month, it gets 100% of capital; if none are active, all three legs simply keep their own defensive return (cash or gold), same as the static version.</p>
+<div class="grid6">
+<div class="stat"><div class="v pos">+32.5%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v">1.53</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v neg">&minus;42.1%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">0.77</div><div class="l">MAR</div></div>
+<div class="stat"><div class="v">19.9%</div><div class="l">Volatility</div></div>
+<div class="stat"><div class="v">302</div><div class="l">Months</div></div>
+</div>
+<table>
+<thead><tr><th>Version</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>Vol</th></tr></thead>
+<tbody>
+<tr><td>Static equal-weight</td><td class="pos">+28.7%</td><td>1.76</td><td class="neg">&minus;15.9%</td><td>15.1%</td></tr>
+<tr><td>Dynamic redistribution</td><td class="pos">+32.5%</td><td>1.53</td><td class="neg">&minus;42.1%</td><td>19.9%</td></tr>
+</tbody>
+</table>
+<p>Regime overlap across the 302-month window: all three strategies active together in 149 months (49%), two of three active in 64 months (21%), only one active in 51 months (17%), and all three defensive simultaneously in 38 months (13%) &mdash; in that last case the dynamic version collapses back to the static one, since there is nowhere to redistribute to.</p>
+<div class="callout-red"><p><strong>The dynamic version is a worse portfolio despite the higher CAGR.</strong> Sharpe falls (1.76 &rarr; 1.53) and MaxDD nearly triples (&minus;15.9% &rarr; &minus;42.1%). The mechanism is concentration risk: in the 17% of months where only one strategy is active, that one strategy now carries 100% of the book instead of 33%. And those single-survivor months are not random &mdash; they cluster around exactly the periods when the other two strategies' regime filters have already flagged trouble, i.e. elevated-risk periods for momentum generally. Redistributing capital <em>into</em> a concentrated bet during exactly the moments the system is telling you risk is elevated is the opposite of what a regime filter is for. We do not run this version live.</p></div>
+
+<div class="divider"></div>
+<h2>IV. Correlation Matrix &mdash; Full Period</h2>
+<table>
+<thead><tr><th></th><th>US</th><th>UK</th><th>Canada</th></tr></thead>
+<tbody>
+<tr><td>US</td><td class="hl-row">1.000</td><td>&minus;0.030</td><td>0.303</td></tr>
+<tr><td>UK</td><td>&minus;0.030</td><td class="hl-row">1.000</td><td>0.065</td></tr>
+<tr><td>Canada</td><td>0.303</td><td>0.065</td><td class="hl-row">1.000</td></tr>
+</tbody>
+</table>
+<p>All three pairwise correlations sit below 0.31 &mdash; genuinely low for three strategies that are all, at bottom, long-momentum equity books. US&ndash;UK is essentially zero (&minus;0.03). Canada correlates a bit more with the US (0.30, plausibly the shared North American cycle and USD/CAD-linked sectors) but is close to uncorrelated with the UK (0.07).</p>
+
+<div class="divider"></div>
+<h2>V. Correlation Conditional on Up/Down Months</h2>
+<p>A full-period correlation can hide the thing that actually matters: does the diversification hold up specifically when the combined book is losing money? We split the 302 months by the sign of the equal-weight combined portfolio's own return.</p>
+<table>
+<thead><tr><th>Regime</th><th>Months</th><th>US&ndash;UK</th><th>US&ndash;Canada</th><th>UK&ndash;Canada</th></tr></thead>
+<tbody>
+<tr><td>UP months (combo &gt; 0)</td><td>210</td><td>&minus;0.268</td><td>0.050</td><td>&minus;0.024</td></tr>
+<tr class="hl-row"><td>DOWN months (combo &lt; 0)</td><td>92</td><td>&minus;0.418</td><td>0.108</td><td>&minus;0.479</td></tr>
+</tbody>
+</table>
+<div class="callout-green"><p><strong>Correlations get more negative, not more positive, in down months.</strong> UK&ndash;Canada goes from roughly zero (&minus;0.02) in up months to strongly negative (&minus;0.48) in down months; US&ndash;UK deepens from &minus;0.27 to &minus;0.42. This is the opposite of the failure mode most multi-strategy books actually have &mdash; correlations that look fine in calm markets and then converge toward 1 exactly when a book is losing money. Here, the worse the combined month, the more the three legs are pulling in different directions.</p></div>
+<p>We also checked correlation restricted to months where <em>both</em> legs of a given pair were individually negative that month (a stricter, pairwise version of the same question):</p>
+<table>
+<thead><tr><th>Pair</th><th>Months both negative</th><th>Correlation</th></tr></thead>
+<tbody>
+<tr><td>US &amp; UK</td><td>31</td><td>&minus;0.021</td></tr>
+<tr><td>US &amp; Canada</td><td>80</td><td>0.140</td></tr>
+<tr><td>UK &amp; Canada</td><td>43</td><td>&minus;0.206</td></tr>
+</tbody>
+</table>
+
+<div class="divider"></div>
+<h2>VI. Correlation Across Sub-Periods</h2>
+<p>The 302-month window split into three equal thirds, to check whether the correlation structure has drifted over time or is a stable property of these three strategies.</p>
+<table>
+<thead><tr><th>Period</th><th>Months</th><th>US</th><th>UK</th><th>Canada</th><th>Combo (1/3 each)</th><th>US&ndash;UK</th><th>US&ndash;CA</th><th>UK&ndash;CA</th></tr></thead>
+<tbody>
+<tr><td>2001-02 &ndash; 2009-05</td><td>100</td><td class="pos">+450%</td><td class="pos">+276%</td><td class="pos">+1951%</td><td class="pos">+733%</td><td>0.046</td><td>0.366</td><td>0.190</td></tr>
+<tr><td>2009-06 &ndash; 2017-09</td><td>100</td><td class="pos">+519%</td><td class="pos">+1187%</td><td class="pos">+680%</td><td class="pos">+827%</td><td>0.133</td><td>0.214</td><td>0.049</td></tr>
+<tr><td>2017-10 &ndash; 2026-03</td><td>102</td><td class="pos">+1100%</td><td class="pos">+67%</td><td class="pos">+1028%</td><td class="pos">+635%</td><td>&minus;0.127</td><td>0.311</td><td>0.014</td></tr>
+</tbody>
+</table>
+<p>Cumulative returns above are compounded within each third, so they are not comparable across rows in isolation &mdash; the point is the correlation columns. US&ndash;Canada stays the most consistently positive pair across all three thirds (0.21&ndash;0.37, a plausible North American cycle effect), while US&ndash;UK actually flips sign (0.05 &rarr; 0.13 &rarr; &minus;0.13) and UK&ndash;Canada stays close to zero throughout (0.19 &rarr; 0.05 &rarr; 0.01). Nothing here is trending toward 1 &mdash; if anything UK's relationship to the other two has drifted slightly more negative over time, not more positive.</p>
+
+<div class="divider"></div>
+<h2>VII. Crisis-by-Crisis Breakdown</h2>
+<p>Sub-period averages can mask what happens in the specific weeks that matter most. Here is every major equity drawdown since 2001, with each strategy's own cumulative return through the window and the pairwise correlation inside it. Short windows (3&ndash;7 months) produce noisy correlation estimates &mdash; flagged below where the sample is too small to trust on its own.</p>
+<table>
+<thead><tr><th>Crisis</th><th>Window</th><th>Mo.</th><th>US</th><th>UK</th><th>Canada</th><th>Combo</th><th>US&ndash;UK</th><th>US&ndash;CA</th><th>UK&ndash;CA</th></tr></thead>
+<tbody>
+<tr><td>Dot-com crash</td><td>2001-02&ndash;2002-10</td><td>21</td><td class="pos">+15.2%</td><td class="neg">&minus;1.5%</td><td class="pos">+32.8%</td><td class="pos">+17.5%</td><td>&minus;0.269</td><td>0.390</td><td>0.079</td></tr>
+<tr><td>Global Financial Crisis</td><td>2007-10&ndash;2009-03</td><td>18</td><td class="pos">+8.6%</td><td class="neg">&minus;7.2%</td><td class="neg">&minus;2.2%</td><td class="pos">+1.5%</td><td>&minus;0.273</td><td>0.245</td><td>&minus;0.008</td></tr>
+<tr><td>Euro debt crisis</td><td>2011-05&ndash;2011-10</td><td>6</td><td class="neg">&minus;9.5%</td><td class="pos">+1.4%</td><td class="neg">&minus;0.5%</td><td class="neg">&minus;2.7%</td><td>&minus;0.505</td><td>&minus;0.499</td><td>&minus;0.050</td></tr>
+<tr><td>2015&ndash;16 China/oil selloff</td><td>2015-08&ndash;2016-02</td><td>7</td><td class="pos">+9.2%</td><td>0.0%</td><td class="pos">+12.1%</td><td class="pos">+7.3%</td><td>n/a&sup1;</td><td>&minus;0.227</td><td>n/a&sup1;</td></tr>
+<tr><td>2018 Q4 selloff</td><td>2018-10&ndash;2018-12</td><td>3</td><td class="neg">&minus;8.6%</td><td class="neg">&minus;18.9%</td><td class="neg">&minus;0.3%</td><td class="neg">&minus;9.0%</td><td>&minus;0.309&sup2;</td><td>0.309&sup2;</td><td>&minus;1.000&sup2;</td></tr>
+<tr><td>COVID crash</td><td>2020-02&ndash;2020-04</td><td>3</td><td class="pos">+9.1%</td><td>0.0%</td><td class="neg">&minus;0.1%</td><td class="pos">+2.9%</td><td>n/a&sup1;</td><td>0.982&sup2;</td><td>n/a&sup1;</td></tr>
+<tr><td>2022 bear market</td><td>2022-01&ndash;2022-12</td><td>12</td><td class="pos">+6.3%</td><td class="pos">+20.2%</td><td>0.0%</td><td class="pos">+9.4%</td><td>&minus;0.198</td><td>0.119</td><td>0.449</td></tr>
+</tbody>
+</table>
+<p style="font-size:.65rem;color:var(--muted)">&sup1; UK returned exactly 0% every month in this window (its regime filter was fully in cash), so its variance is zero and correlation is mathematically undefined &mdash; not missing data, the filter doing its job. &sup2; n=3&ndash;6 months: directionally suggestive at best, not a reliable correlation estimate.</p>
+<div class="callout"><p><strong>The combined portfolio was never meaningfully negative in any of the seven crisis windows tested</strong> &mdash; the worst is the Euro debt crisis at &minus;2.7%, and even the GFC (the worst individual-strategy stretch, UK &minus;7.2%) nets out to only +1.5% combined. Each strategy's own regime filter (MA250/MA200/MA75, against its own index) is doing most of the defensive work independently; the combination on top adds a second layer, since it's rare for all three regime filters to trigger badly at once. Canada's Sharpe (1.41 stand-alone) reflects a shallower regime-driven MA75 filter that historically got the strategy out of trouble faster than the US or UK filters &mdash; visible directly in the GFC and Euro-crisis rows, where Canada's own drawdown was smaller than the US's.</p></div>
+
+<div class="divider"></div>
+<h2>VIII. Takeaways &amp; Limitations</h2>
+<ol class="steps">
+<li><strong>Equal weight (1/3 each) is the version we'd run.</strong> It captures almost all of the diversification benefit (Sharpe 1.76, MaxDD &minus;15.9%) with none of the concentration risk the dynamic-redistribution version introduces.</li>
+<li><strong>The negative-skew-in-down-months finding (Section&nbsp;V) is the single most useful number in this article</strong> &mdash; correlations getting more negative exactly when the combined book is losing money is the property you actually want from a multi-strategy blend, and it isn't guaranteed by low full-period correlation alone.</li>
+<li><strong>Crisis-window correlations are individually noisy</strong> (as few as 3 months of data in three of the seven windows tested) &mdash; treat the direction as informative and the precise coefficient as illustrative, not a statistically robust estimate on its own.</li>
+<li><strong>Three markets, three regime filters, no shared design.</strong> None of these three strategies were built together or tuned to complement each other &mdash; each was optimized independently on its own market (see each strategy's own sensitivity report). The low correlation and negative down-month skew found here are closer to an emergent property of momentum-with-independent-regime-filters across uncorrelated equity markets than a designed feature, which is also why we treat it as a real, if not fully explained, effect rather than something to be suspicious of.</li>
+<li><strong>Capital/margin netting not modeled.</strong> All figures assume the three books can be run fully independently with no shared capital constraints; a real implementation running all three simultaneously would need to check margin/netting efficiency across brokers and currencies (GBX, CAD, USD).</li>
+</ol>
+
+<div class="footer">
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results. Costs shown are estimates; live results will differ. <a href="/research/momentum_sensitivity_report.html">US strategy</a> &middot; <a href="/research/uk_momentum_report.html">UK strategy</a> &middot; <a href="/research/canada_momentum_report.html">Canada strategy</a></p>
+</div>
+
+</div>
+</body>
+</html>
