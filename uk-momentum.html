@@ -227,7 +227,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;£100M mcap, EBIT&gt;0, revenue growing, GBX-denominated &nbsp;|&nbsp; Top 12 &nbsp;|&nbsp; FTSE 100 &lt; MA200 &rarr; GLD
+      Strategy: 50% &times; 6-month return + 50% &times; 9-month return &nbsp;|&nbsp; &gt;£100M mcap, EBIT&gt;0, GBX-denominated &nbsp;|&nbsp; Top 7 &nbsp;|&nbsp; FTSE 100 &lt; MA200 &rarr; Cash
       &nbsp;|&nbsp; <a href="/research/uk_momentum_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a>
     </p>
 
@@ -237,7 +237,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Telegram Alerts
       </a>
-      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Monthly alert on the 2nd business day with the 12 stocks to buy.</p>
+      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Monthly alert on the 2nd business day with the 7 stocks to buy.</p>
     </div>
   </div>
 
@@ -365,10 +365,10 @@ async function loadData() {
     ? ((data.ftse100 / data.ftse100_ma200 - 1) * 100).toFixed(1) : '—';
   rc.innerHTML = `
     <div class="regime-label">Market Regime</div>
-    <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — BUY GLD'}</div>
+    <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — CASH'}</div>
     <div class="regime-detail">FTSE 100: ${ftse} &nbsp;|&nbsp; MA200: ${ma} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA200 (${pct}%)</div>
     <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">
-      ${isMom ? 'Signal: Buy top 12 UK momentum stocks (equal weight, ~8.3% each)' : 'Signal: Sell all stocks, buy GLD (100%)'}
+      ${isMom ? 'Signal: Buy top 7 UK momentum stocks (equal weight, ~14.3% each)' : 'Signal: Sell all stocks, move to cash (100%)'}
     </div>
   `;
   document.getElementById('signal-date').textContent = data.date;

@@ -178,12 +178,12 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">UK Momentum</div>
         <span class="card-badge badge-live">Live</span>
       </div>
-      <p id="uk-momentum-blur" class="card-desc">Systematic 6-month momentum strategy on UK large-cap equities. Profitability filter, FTSE 100 regime overlay. Monthly rebalance, 7 stocks equal weight.</p>
+      <p id="uk-momentum-blur" class="card-desc">Systematic 6+9-month momentum strategy on UK equities. Profitability filter, FTSE 100 regime overlay, cash overlay in bear markets, net of UK stamp duty. Monthly rebalance, 7 stocks equal weight.</p>
       <div class="card-stats" id="uk-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.99</span></span>
-        <span class="card-stat">CAGR: <span class="num">+23.7%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-38.1%</span></span>
-        <span class="card-stat"><span class="num">2004&ndash;2026</span></span>
+        <span class="card-stat">Sharpe: <span class="num">1.01</span></span>
+        <span class="card-stat">CAGR: <span class="num">+21.9%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-34.2%</span></span>
+        <span class="card-stat"><span class="num">2001&ndash;2026</span></span>
       </div>
       <div style="margin-top:14px">
         <button class="hiw-btn" onclick="document.getElementById('modal-uk-mom').classList.add('open')">How it works &darr;</button>
@@ -418,11 +418,11 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     </div>
     <div class="modal-step">
       <div class="modal-step-num">Step 2 — Check the regime</div>
-      <p>If the <strong>FTSE 100 is above its 200-day moving average</strong>: hold the 12 UK stocks. If it is below: sell everything and buy <strong>GLD</strong> (SPDR Gold Shares ETF, ticker: GLD) until the regime flips back.</p>
+      <p>If the <strong>FTSE 100 is above its 200-day moving average</strong>: hold the 7 UK stocks. If it is below: sell everything and move to <strong>cash</strong> until the regime flips back.</p>
     </div>
     <div class="modal-step">
       <div class="modal-step-num">Step 3 — Execute</div>
-      <p>In momentum mode: buy the <strong>12 stocks listed</strong> in equal weight (~8.3% each) on your UK broker (e.g. Interactive Brokers, Hargreaves Lansdown). Sell the previous month&apos;s holdings no longer in the top 12. In gold mode: hold GLD until the regime flips back.</p>
+      <p>In momentum mode: buy the <strong>7 stocks listed</strong> in equal weight (~14.3% each) on your UK broker (e.g. Interactive Brokers, Hargreaves Lansdown). Sell the previous month&apos;s holdings no longer in the top 7. In cash mode: hold cash until the regime flips back. Backtested net of UK stamp duty (0.5%) and estimated slippage.</p>
     </div>
   </div>
 </div>

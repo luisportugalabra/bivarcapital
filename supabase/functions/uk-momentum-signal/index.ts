@@ -73,7 +73,7 @@ serve(async (req) => {
     console.log(`UK: sending to ${chatIds.length} subscribers`);
 
     let msg: string;
-    if (regime === "gld" || regime === "defensive") {
+    if (regime === "cash" || regime === "defensive") {
       msg =
         `🛡 <b>UK MOMENTUM — DEFENSIVE</b>\n\n` +
         `FTSE 100 (${ftse?.toLocaleString("en-GB")}) is <b>below</b> MA200 (${ma200?.toLocaleString("en-GB")})\n\n` +
@@ -83,7 +83,7 @@ serve(async (req) => {
     } else {
       const stockList = portfolio
         .map((s: any, i: number) =>
-          `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   ${s.sector} · ${s.ret_6m != null ? (s.ret_6m >= 0 ? "+" : "") + s.ret_6m.toFixed(1) + "% 6M" : ""} · £${s.mcap_b?.toFixed(2)}B`
+          `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   ${s.sector} · £${s.mcap_b?.toFixed(2)}B`
         )
         .join("\n");
 

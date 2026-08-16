@@ -6,10 +6,16 @@ Downloads live data from TradingView LSE, calculates the UK momentum strategy,
 and outputs uk-momentum-data.json for the website.
 
 Strategy:
-  - Momentum = 50% × Perf.6M + 50% × Perf.12M (composite)
-  - Universe: LSE, market cap > £250M (~$312M), EBIT > 0, common stock, GBX
-  - Select top 12 by composite momentum
-  - Regime: FTSE 100 < MA200 → GLD
+  - Momentum = 50% × Perf.6M + 50% × Perf.9M (composite)
+  - TradingView has no native Perf.9M field (only 6M and 12M/Perf.Y). 9M performance
+    is approximated by geometric interpolation between the prices implied by Perf.6M
+    and Perf.Y: P_9m_ago ≈ sqrt(P_6m_ago × P_12m_ago). This is NOT identical to the
+    exact 9-month EODHD month-end price used in the backtest -- it assumes a locally
+    smooth log-price trend over that 6-month window. Reasonable for monthly rebalance,
+    but a known, deliberate approximation (see /research/uk_momentum_report.html).
+  - Universe: LSE, market cap > £100M (~$125M), EBIT > 0, common stock, GBX
+  - Select top 7 by composite momentum
+  - Regime: FTSE 100 < MA200 → cash
 
 Usage: python3 uk_momentum_signal.py
 """
@@ -27,8 +33,8 @@ SITE_DIR      = os.path.dirname(SCRIPT_DIR)
 JSON_PATH     = os.path.join(SITE_DIR, 'uk-momentum-data.json')
 PORTFOLIO_PATH = os.path.join(SITE_DIR, 'uk-momentum-portfolio.json')
 
-MIN_MCAP_USD = 312_500_000   # ≈ £250M
-TOP_N        = 12
+MIN_MCAP_USD = 125_000_000   # ≈ £100M
+TOP_N        = 7
 
 
 def fetch_stocks():
@@ -62,8 +68,17 @@ def fetch_stocks():
         'Perf.Y':           'ret_12m',
     })
 
-    df = df.dropna(subset=['ret_6m'])
-    df['composite'] = (df['ret_6m'].fillna(0) / 100) * 0.5 + (df['ret_12m'].fillna(0) / 100) * 0.5
+    df = df.dropna(subset=['ret_6m', 'ret_12m'])
+
+    # Approximate 9M performance: geometric interpolation between the prices
+    # implied by the 6M and 12M performance fields (TradingView has no Perf.9M).
+    p_now = df['close']
+    p_6m_ago = p_now / (1 + df['ret_6m'] / 100)
+    p_12m_ago = p_now / (1 + df['ret_12m'] / 100)
+    p_9m_ago = np.sqrt(p_6m_ago * p_12m_ago)
+    df['ret_9m'] = (p_now / p_9m_ago - 1) * 100
+
+    df['composite'] = (df['ret_6m'].fillna(0) / 100) * 0.5 + (df['ret_9m'].fillna(0) / 100) * 0.5
 
     return df.sort_values('composite', ascending=False).reset_index(drop=True)
 
@@ -96,7 +111,7 @@ def main():
     print(f"  Eligible: {len(df)} stocks")
 
     ftse_last, ftse_ma200, regime_ok = check_regime()
-    regime = "momentum" if regime_ok else "gld"
+    regime = "momentum" if regime_ok else "cash"
     print(f"  FTSE 100: {ftse_last:,.1f}  MA200: {ftse_ma200:,.1f}  Regime: {regime.upper()}")
 
     sel7 = select_top(df, TOP_N)
@@ -111,7 +126,7 @@ def main():
             "sector":    str(row['sector']),
             "price":     round(float(row.get('close', 0)), 2),
             "ret_6m":    round(float(row['ret_6m']), 1),
-            "ret_12m":   round(float(row.get('ret_12m', 0) or 0), 1),
+            "ret_9m":    round(float(row.get('ret_9m', 0) or 0), 1),
             "composite": round(float(row['composite'] * 100), 1),
             "mcap_b":    round(float(row['mcap'] / 1e9), 2),
             "ebit_m":    round(float(row['ebit'] / 1e6), 0),
@@ -137,11 +152,11 @@ def main():
     print(f"  BivarUKMomentum — {output['date']}")
     print(f"  FTSE 100: {ftse_last:,.1f} | MA200: {ftse_ma200:,.1f} | Regime: {regime.upper()}")
     print(f"{'='*110}")
-    print(f"  {'#':>3} {'':>3} {'Ticker':<8} {'Name':<30} {'Sector':<22} {'Ret6m':>7} {'Ret12m':>7} {'MCap£B':>8} {'EBIT£M':>7}")
+    print(f"  {'#':>3} {'':>3} {'Ticker':<8} {'Name':<30} {'Sector':<22} {'Ret6m':>7} {'Ret9m':>7} {'MCap£B':>8} {'EBIT£M':>7}")
     print(f"  {'-'*110}")
     for t in top20:
         sel = ">>>" if t['selected'] else ""
-        print(f"  {t['rank']:3d} {sel:>3} {t['ticker']:<8} {t['name'][:29]:<30} {t['sector'][:21]:<22} {t['ret_6m']:>+6.1f}% {t['ret_12m']:>+6.1f}% {t['mcap_b']:>7.2f} {t['ebit_m']:>6.0f}")
+        print(f"  {t['rank']:3d} {sel:>3} {t['ticker']:<8} {t['name'][:29]:<30} {t['sector'][:21]:<22} {t['ret_6m']:>+6.1f}% {t['ret_9m']:>+6.1f}% {t['mcap_b']:>7.2f} {t['ebit_m']:>6.0f}")
 
     print(f"\n  >>> = Selected for portfolio (top {TOP_N})")
     print(f"  Total eligible: {len(df)}")
