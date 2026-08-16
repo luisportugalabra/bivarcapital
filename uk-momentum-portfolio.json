@@ -1,7 +1,7 @@
 {
-  "last_rebalance": "2026-08-06",
+  "last_rebalance": "2026-08-16",
   "updated": "2026-08-16",
-  "ytd_2026": 11.32,
+  "ytd_2026": 12.16,
   "ftse100": 10750.1,
   "ftse100_ma200": 10264.53,
   "regime": "risk-on",
@@ -129,7 +129,7 @@
     },
     {
       "month": "Aug 2026 (MTD)",
-      "is_current": true,
+      "is_current": false,
       "start": "2026-07-31",
       "end": "2026-08-15",
       "regime": "momentum",
@@ -147,117 +147,89 @@
         "CCC",
         "WOSG"
       ],
-      "return_pct": 7.79
+      "return_pct": 7.79,
+      "note": "Closed early: strategy config changed from top-12/6M-pure/>\u00a3250M to top-7/6M+9M/>\u00a3100M"
+    },
+    {
+      "month": "Aug 2026 (MTD, new config)",
+      "start": "2026-08-16",
+      "end": "2026-08-16",
+      "tickers": [
+        "SML",
+        "CMCX",
+        "SFOR",
+        "RPI",
+        "DIA",
+        "TRST",
+        "CCC"
+      ],
+      "return_pct": 0.0,
+      "is_current": true
     }
   ],
   "holdings": [
     {
-      "ticker": "SAGA",
-      "name": "SAGA",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 679.0,
-      "current_price": 691.0,
-      "return_pct": 1.77
+      "ticker": "SML",
+      "name": "Strategic Minerals PLC",
+      "sector": "Non-Energy Minerals",
+      "entry_date": "2026-08-16",
+      "entry_price": 4.96,
+      "current_price": 4.96,
+      "return_pct": 0.0
     },
     {
       "ticker": "CMCX",
-      "name": "CMCX",
-      "sector": "",
-      "entry_date": "2026-07-01",
-      "entry_price": 649.9,
+      "name": "CMC Markets Plc",
+      "sector": "Finance",
+      "entry_date": "2026-08-16",
+      "entry_price": 702.0,
       "current_price": 702.0,
-      "return_pct": 8.02
+      "return_pct": 0.0
     },
     {
       "ticker": "SFOR",
-      "name": "SFOR",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 38.35,
+      "name": "S4 Capital plc",
+      "sector": "Commercial Services",
+      "entry_date": "2026-08-16",
+      "entry_price": 53.6,
       "current_price": 53.6,
-      "return_pct": 39.77
+      "return_pct": 0.0
     },
     {
       "ticker": "RPI",
-      "name": "RPI",
-      "sector": "",
-      "entry_date": "2026-06-01",
-      "entry_price": 813.0,
+      "name": "Raspberry PI Holdings plc",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-08-16",
+      "entry_price": 666.5,
       "current_price": 666.5,
-      "return_pct": -18.02
+      "return_pct": 0.0
     },
     {
-      "ticker": "ACG",
-      "name": "ACG",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 2000.0,
-      "current_price": 2040.0,
-      "return_pct": 2.0
+      "ticker": "DIA",
+      "name": "Dialight plc",
+      "sector": "Producer Manufacturing",
+      "entry_date": "2026-08-16",
+      "entry_price": 520.0,
+      "current_price": 520.0,
+      "return_pct": 0.0
     },
     {
-      "ticker": "APN",
-      "name": "APN",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 324.5,
-      "current_price": 333.0,
-      "return_pct": 2.62
-    },
-    {
-      "ticker": "AAZ",
-      "name": "AAZ",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 384.9721,
-      "current_price": 407.5,
-      "return_pct": 5.85
-    },
-    {
-      "ticker": "KLR",
-      "name": "KLR",
-      "sector": "",
-      "entry_date": "2026-07-01",
-      "entry_price": 2712.0,
-      "current_price": 3108.0,
-      "return_pct": 14.6
-    },
-    {
-      "ticker": "SEPL",
-      "name": "SEPL",
-      "sector": "",
-      "entry_date": "2026-04-01",
-      "entry_price": 479.86,
-      "current_price": 612.0,
-      "return_pct": 27.54
-    },
-    {
-      "ticker": "GHH",
-      "name": "GHH",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 1220.0,
-      "current_price": 1210.0,
-      "return_pct": -0.82
+      "ticker": "TRST",
+      "name": "Trustpilot Group Plc",
+      "sector": "Technology Services",
+      "entry_date": "2026-08-16",
+      "entry_price": 280.4,
+      "current_price": 280.4,
+      "return_pct": 0.0
     },
     {
       "ticker": "CCC",
-      "name": "CCC",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 4606.0,
+      "name": "Computacenter Plc",
+      "sector": "Technology Services",
+      "entry_date": "2026-08-16",
+      "entry_price": 5010.0,
       "current_price": 5010.0,
-      "return_pct": 8.77
-    },
-    {
-      "ticker": "WOSG",
-      "name": "WOSG",
-      "sector": "",
-      "entry_date": "2026-08-03",
-      "entry_price": 726.0,
-      "current_price": 736.0,
-      "return_pct": 1.38
+      "return_pct": 0.0
     }
   ]
 }
