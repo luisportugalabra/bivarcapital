@@ -11,7 +11,7 @@ Strategy (from FINAL_STRATEGY.md):
   - Momentum = 50% × Perf.6M + 50% × Perf.1Y
   - Universe: US exchanges, market cap > $10B, EBIT > 0, common stock, primary
   - Select top 7 by composite (no sector cap)
-  - Regime: S&P 500 < MA250 → buy GLD instead of stocks
+  - Regime: S&P 500 < MA250 → move to cash instead of stocks
 
 Usage: python3 momentum_signal.py
 """
@@ -158,7 +158,7 @@ def main():
 
     # Regime
     sp_last, sp_ma250, regime_ok = check_regime()
-    regime = "momentum" if regime_ok else "gld"
+    regime = "momentum" if regime_ok else "cash"
     print(f"  S&P 500: {sp_last:,.2f}  MA250: {sp_ma250:,.2f}  Regime: {regime.upper()}")
 
     # Select top 7

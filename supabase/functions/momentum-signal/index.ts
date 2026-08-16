@@ -81,11 +81,11 @@ serve(async (req) => {
 
     // Build message
     let msg: string;
-    if (regime === "gld") {
+    if (regime === "cash") {
       msg =
         `🛡 <b>MOMENTUM SIGNAL — DEFENSIVE</b>\n\n` +
         `S&P 500 ($${sp500?.toLocaleString("en-US")}) is <b>below</b> MA250 ($${ma250?.toLocaleString("en-US")})\n\n` +
-        `<b>Action: Sell all stocks → Buy GLD (100%)</b>\n\n` +
+        `<b>Action: Sell all stocks → Move to cash (100%)</b>\n\n` +
         `${totalEligible} stocks screened\n` +
         `Signal date: ${date}\n\n` +
         `https://bivarcapital.com/momentum.html`;
@@ -93,7 +93,7 @@ serve(async (req) => {
       const stockList = portfolio
         .map(
           (s: any, i: number) =>
-            `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   ${s.sector} · +${s.composite}% · $${s.mcap_b}B`
+            `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   ${s.sector} · $${s.mcap_b}B`
         )
         .join("\n");
 

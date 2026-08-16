@@ -227,7 +227,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7 &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; GLD
+      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7 &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; Cash
       &nbsp;|&nbsp; <a href="/research/momentum_strategy_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a>
       &nbsp;|&nbsp; <a href="/research/signal_day_sensitivity.html" style="color:var(--accent);text-decoration:none">Signal day sensitivity &rarr;</a>
     </p>
@@ -361,9 +361,9 @@ async function loadData() {
   const isMom = data.regime === 'momentum';
   rc.innerHTML = `
     <div class="regime-label">Market Regime</div>
-    <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — BUY GLD'}</div>
+    <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — CASH'}</div>
     <div class="regime-detail">S&P 500: ${data.sp500?.toLocaleString()} &nbsp;|&nbsp; MA250: ${data.sp500_ma250?.toLocaleString()} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA250 (${((data.sp500/data.sp500_ma250-1)*100).toFixed(1)}%)</div>
-    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">${isMom ? 'Signal: Buy top 7 momentum stocks (equal weight)' : 'Signal: Sell all stocks, buy GLD (100%)'}</div>
+    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">${isMom ? 'Signal: Buy top 7 momentum stocks (equal weight)' : 'Signal: Sell all stocks, move to cash (100%)'}</div>
   `;
   document.getElementById('signal-date').textContent = data.date;
   document.getElementById('eligible-count').textContent = data.total_eligible;
