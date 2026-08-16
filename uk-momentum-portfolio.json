@@ -1,63 +1,140 @@
 {
-  "last_rebalance": "2026-08-16",
+  "last_rebalance": "2026-07-31",
   "updated": "2026-08-16",
-  "ytd_2026": 12.16,
-  "ftse100": 10750.1,
-  "ftse100_ma200": 10264.53,
-  "regime": "risk-on",
-  "currency": "GBX",
-  "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
+  "ytd_2026": -20.2,
+  "holdings": [
+    {
+      "ticker": "CMCX",
+      "name": "CMC Markets Plc",
+      "sector": "",
+      "entry_date": "2026-07-31",
+      "entry_price": 667.0,
+      "current_price": 702.0,
+      "return_pct": 5.25
+    },
+    {
+      "ticker": "AOTI",
+      "name": "AO World Plc",
+      "sector": "",
+      "entry_date": "2026-07-31",
+      "entry_price": 100.0,
+      "current_price": 100.0,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "IOF",
+      "name": "Iofina PLC",
+      "sector": "",
+      "entry_date": "2026-07-31",
+      "entry_price": 56.5,
+      "current_price": 52.2,
+      "return_pct": -7.61
+    },
+    {
+      "ticker": "FERG",
+      "name": "Ferguson Enterprises",
+      "sector": "",
+      "entry_date": "2026-07-31",
+      "entry_price": 234.33,
+      "current_price": null,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "RPI",
+      "name": "Regional REIT",
+      "sector": "",
+      "entry_date": "2026-07-31",
+      "entry_price": 657.0,
+      "current_price": 666.5,
+      "return_pct": 1.45
+    },
+    {
+      "ticker": "ENQ",
+      "name": "EnQuest PLC",
+      "sector": "",
+      "entry_date": "2026-07-31",
+      "entry_price": 23.9,
+      "current_price": 24.6,
+      "return_pct": 2.93
+    },
+    {
+      "ticker": "GHH",
+      "name": "Gooch & Housego PLC",
+      "sector": "",
+      "entry_date": "2026-07-31",
+      "entry_price": 1220.0,
+      "current_price": 1210.0,
+      "return_pct": -0.82
+    }
+  ],
   "monthly_breakdown": [
+    {
+      "month": "Dec 2025",
+      "is_current": false,
+      "start": "2025-11-28",
+      "end": "2025-12-31",
+      "regime": "momentum",
+      "tickers": [
+        "FERG",
+        "FRES",
+        "GDWN",
+        "ALTN",
+        "DIA",
+        "THX",
+        "FDEV"
+      ],
+      "return_pct": 11.74
+    },
     {
       "month": "Jan 2026",
       "is_current": false,
       "start": "2025-12-31",
-      "end": "2026-01-31",
+      "end": "2026-01-30",
       "regime": "momentum",
       "tickers": [
         "GDWN",
-        "PAF",
         "ALTN",
         "FRES",
-        "ZEG",
-        "RSG",
-        "ACG"
+        "FERG",
+        "PAF",
+        "DIA",
+        "RSG"
       ],
-      "return_pct": 18.72
+      "return_pct": 11.23
     },
     {
       "month": "Feb 2026",
       "is_current": false,
-      "start": "2026-01-31",
-      "end": "2026-02-28",
+      "start": "2026-01-30",
+      "end": "2026-02-27",
       "regime": "momentum",
       "tickers": [
         "GDWN",
-        "PAF",
+        "ALTN",
+        "FRES",
         "ACG",
+        "FERG",
         "TKO",
-        "ATYM",
-        "THX",
-        "FERG"
+        "PAF"
       ],
-      "return_pct": 5.33
+      "return_pct": 7.73
     },
     {
       "month": "Mar 2026",
       "is_current": false,
-      "start": "2026-02-28",
+      "start": "2026-02-27",
       "end": "2026-03-31",
       "regime": "momentum",
       "tickers": [
-        "HOC",
         "PAF",
-        "GGP",
         "TKO",
-        "GDWN",
         "VALT",
-        "RSG"
+        "GDWN",
+        "ALTN",
+        "FERG",
+        "FRES"
       ],
-      "return_pct": -26.79
+      "return_pct": -23.03
     },
     {
       "month": "Apr 2026",
@@ -67,48 +144,48 @@
       "regime": "momentum",
       "tickers": [
         "FERG",
+        "PAF",
         "TGA",
-        "ENQ",
-        "SEPL",
-        "S32",
+        "ZEG",
         "HOC",
-        "GGP"
+        "RSG",
+        "SEPL"
       ],
-      "return_pct": 5.23
+      "return_pct": 2.44
     },
     {
       "month": "May 2026",
       "is_current": false,
       "start": "2026-04-30",
-      "end": "2026-05-31",
+      "end": "2026-05-29",
       "regime": "momentum",
       "tickers": [
-        "FTC",
+        "SML",
         "FERG",
-        "SEPL",
         "GGP",
-        "TGA",
-        "HOC",
-        "XPP"
+        "PAF",
+        "SEPL",
+        "GTE",
+        "HOC"
       ],
-      "return_pct": 6.49
+      "return_pct": -1.45
     },
     {
       "month": "Jun 2026",
       "is_current": false,
-      "start": "2026-05-31",
+      "start": "2026-05-29",
       "end": "2026-06-30",
       "regime": "momentum",
       "tickers": [
-        "FTC",
-        "RPI",
+        "SML",
         "FERG",
+        "FTC",
+        "GGP",
         "SEPL",
-        "GHH",
-        "XPP",
-        "LUCE"
+        "TLW",
+        "RPI"
       ],
-      "return_pct": -7.5
+      "return_pct": -12.25
     },
     {
       "month": "Jul 2026",
@@ -117,119 +194,32 @@
       "end": "2026-07-31",
       "regime": "momentum",
       "tickers": [
+        "SML",
+        "FERG",
         "RPI",
-        "CMCX",
-        "ENQ",
         "LUCE",
-        "KLR",
-        "GHH",
-        "SEPL"
+        "XPP",
+        "ENQ",
+        "FTC"
       ],
-      "return_pct": 9.65
+      "return_pct": -12.59
     },
     {
       "month": "Aug 2026 (MTD)",
-      "is_current": false,
+      "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-15",
+      "end": "2026-08-16",
       "regime": "momentum",
       "tickers": [
-        "SAGA",
         "CMCX",
-        "SFOR",
+        "AOTI",
+        "IOF",
+        "FERG",
         "RPI",
-        "ACG",
-        "APN",
-        "AAZ",
-        "KLR",
-        "SEPL",
-        "GHH",
-        "CCC",
-        "WOSG"
+        "ENQ",
+        "GHH"
       ],
-      "return_pct": 7.79,
-      "note": "Closed early: strategy config changed from top-12/6M-pure/>\u00a3250M to top-7/6M+9M/>\u00a3100M"
-    },
-    {
-      "month": "Aug 2026 (MTD, new config)",
-      "start": "2026-08-16",
-      "end": "2026-08-16",
-      "tickers": [
-        "SML",
-        "CMCX",
-        "SFOR",
-        "RPI",
-        "DIA",
-        "TRST",
-        "CCC"
-      ],
-      "return_pct": 0.0,
-      "is_current": true
-    }
-  ],
-  "holdings": [
-    {
-      "ticker": "SML",
-      "name": "Strategic Minerals PLC",
-      "sector": "Non-Energy Minerals",
-      "entry_date": "2026-08-16",
-      "entry_price": 4.96,
-      "current_price": 4.96,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "CMCX",
-      "name": "CMC Markets Plc",
-      "sector": "Finance",
-      "entry_date": "2026-08-16",
-      "entry_price": 702.0,
-      "current_price": 702.0,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "SFOR",
-      "name": "S4 Capital plc",
-      "sector": "Commercial Services",
-      "entry_date": "2026-08-16",
-      "entry_price": 53.6,
-      "current_price": 53.6,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "RPI",
-      "name": "Raspberry PI Holdings plc",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-08-16",
-      "entry_price": 666.5,
-      "current_price": 666.5,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "DIA",
-      "name": "Dialight plc",
-      "sector": "Producer Manufacturing",
-      "entry_date": "2026-08-16",
-      "entry_price": 520.0,
-      "current_price": 520.0,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "TRST",
-      "name": "Trustpilot Group Plc",
-      "sector": "Technology Services",
-      "entry_date": "2026-08-16",
-      "entry_price": 280.4,
-      "current_price": 280.4,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "CCC",
-      "name": "Computacenter Plc",
-      "sector": "Technology Services",
-      "entry_date": "2026-08-16",
-      "entry_price": 5010.0,
-      "current_price": 5010.0,
-      "return_pct": 0.0
+      "return_pct": 0.2
     }
   ]
 }
