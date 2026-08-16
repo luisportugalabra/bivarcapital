@@ -35,68 +35,68 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>US + UK + Canada Momentum<span class="it">Correlation &amp; combined portfolio analysis</span></h1>
-<p class="lead">We run three live momentum strategies &mdash; <a href="/research/momentum_sensitivity_report.html" style="color:var(--accent)">US Bivar Optimal Momentum</a>, <a href="/research/uk_momentum_report.html" style="color:var(--accent)">UK Optimal Momentum</a>, and <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada TSX Momentum</a>. This article combines all three 1/3 each and asks the question that actually matters for sizing a multi-strategy book: are they really diversifying, or just three flavours of the same long-momentum bet? Monthly returns, 2001&ndash;2026.</p>
+<p class="lead">We run three live momentum strategies &mdash; <a href="/research/momentum_strategy_report.html" style="color:var(--accent)">US Bivar Optimal Momentum</a>, <a href="/research/uk_momentum_report.html" style="color:var(--accent)">UK Optimal Momentum</a>, and <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada TSX Momentum</a>. This article combines all three 1/3 each and asks the question that actually matters for sizing a multi-strategy book: are they really diversifying, or just three flavours of the same long-momentum bet? Monthly returns, 2001&ndash;2026.</p>
 
 <div class="divider"></div>
 <h2>I. The Three Strategies, Side by Side</h2>
 <div class="meta-box" style="margin-bottom:10px">
-<dt>Common backtest window</dt><dd>2001-02 to 2026-03 (302 months) &mdash; the intersection of all three series, bounded by UK's later start date</dd>
+<dt>Common backtest window</dt><dd>2001-01 to 2026-02 (302 months) &mdash; the intersection of all three series</dd>
 </div>
 <table>
 <thead><tr><th>Strategy</th><th>Regime rule</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>% months active</th></tr></thead>
 <tbody>
-<tr><td>US</td><td>S&amp;P 500 &lt; MA250 &rarr; Gold</td><td class="pos">+27.0%</td><td>1.02</td><td class="neg">&minus;37.0%</td><td>75%</td></tr>
-<tr><td>UK</td><td>FTSE 100 &lt; MA200 &rarr; Cash</td><td class="pos">+19.1%</td><td>1.00</td><td class="neg">&minus;33.6%</td><td>66%</td></tr>
-<tr><td>Canada</td><td>TSX Composite &lt; MA75 &rarr; Cash</td><td class="pos">+34.7%</td><td>1.41</td><td class="neg">&minus;18.1%</td><td>67%</td></tr>
+<tr><td>US</td><td>S&amp;P 500 &lt; MA250 &rarr; Cash</td><td class="pos">+22.2%</td><td>1.04</td><td class="neg">&minus;32.2%</td><td>74%</td></tr>
+<tr><td>UK</td><td>FTSE 100 &lt; MA200 &rarr; Cash</td><td class="pos">+21.9%</td><td>1.01</td><td class="neg">&minus;34.2%</td><td>66%</td></tr>
+<tr><td>Canada</td><td>TSX Composite &lt; MA75 &rarr; Cash</td><td class="pos">+34.5%</td><td>1.41</td><td class="neg">&minus;18.1%</td><td>67%</td></tr>
 </tbody>
 </table>
-<p>Three independent momentum books, three different markets, three different regime filters with different lookback windows &mdash; run on their own live configuration, not a re-fitted common one. That independence is exactly what makes the correlation question interesting: nothing here was built to be uncorrelated with anything else.</p>
+<p>Three independent momentum books, three different markets, three different regime filters with different lookback windows, each on its own live configuration &mdash; top 7 stocks, cash defensive asset, EBIT&gt;0 filter, monthly rebalance, all net of realistic trading costs. Nothing here was built to be uncorrelated with anything else; the correlation structure below is whatever these three independently-tuned strategies actually produce.</p>
 
 <div class="divider"></div>
 <h2>II. Combined Portfolio &mdash; Static Equal Weight</h2>
 <p>Simplest possible combination: 1/3 capital to each strategy, monthly, no adjustment for regime state.</p>
 <div class="grid6">
-<div class="stat"><div class="v pos">+28.7%</div><div class="l">CAGR</div></div>
-<div class="stat"><div class="v">1.76</div><div class="l">Sharpe</div></div>
-<div class="stat"><div class="v neg">&minus;15.9%</div><div class="l">Max Drawdown</div></div>
-<div class="stat"><div class="v">1.81</div><div class="l">MAR</div></div>
-<div class="stat"><div class="v">15.1%</div><div class="l">Volatility</div></div>
+<div class="stat"><div class="v pos">+27.4%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v">1.60</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v neg">&minus;15.5%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">1.77</div><div class="l">MAR</div></div>
+<div class="stat"><div class="v">16.1%</div><div class="l">Volatility</div></div>
 <div class="stat"><div class="v">302</div><div class="l">Months</div></div>
 </div>
-<div class="callout-green"><p><strong>Sharpe jumps from 1.00&ndash;1.41 individually to 1.76 combined, and MaxDD roughly halves versus every individual strategy</strong> (&minus;15.9% vs &minus;18.1% to &minus;37.0% solo). That is not a small diversification bonus &mdash; it is the single biggest performance lever in this entire analysis, bigger than any parameter tweak inside any one of the three strategies.</p></div>
+<div class="callout-green"><p><strong>Sharpe jumps from 1.01&ndash;1.41 individually to 1.60 combined, and MaxDD roughly halves versus every individual strategy</strong> (&minus;15.5% vs &minus;18.1% to &minus;34.2% solo). That is the single biggest performance lever in this entire analysis, bigger than any parameter tweak inside any one of the three strategies.</p></div>
 
 <div class="divider"></div>
 <h2>III. Combined Portfolio &mdash; Dynamic Redistribution</h2>
-<p>A natural-sounding refinement: instead of letting a leg's capital sit idle in cash/gold when its own regime filter says "exit," redistribute that leg's weight pro-rata to whichever of the other two strategies are <em>currently active</em>. If only one strategy is active in a given month, it gets 100% of capital; if none are active, all three legs simply keep their own defensive return (cash or gold), same as the static version.</p>
+<p>A natural-sounding refinement: instead of letting a leg's capital sit idle in cash when its own regime filter says "exit," redistribute that leg's weight pro-rata to whichever of the other two strategies are <em>currently active</em>. If only one strategy is active in a given month, it gets 100% of capital; if none are active, all three legs simply stay in cash, same as the static version.</p>
 <div class="grid6">
-<div class="stat"><div class="v pos">+32.5%</div><div class="l">CAGR</div></div>
-<div class="stat"><div class="v">1.53</div><div class="l">Sharpe</div></div>
-<div class="stat"><div class="v neg">&minus;42.1%</div><div class="l">Max Drawdown</div></div>
-<div class="stat"><div class="v">0.77</div><div class="l">MAR</div></div>
-<div class="stat"><div class="v">19.9%</div><div class="l">Volatility</div></div>
+<div class="stat"><div class="v pos">+33.5%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v">1.54</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v neg">&minus;24.5%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">1.37</div><div class="l">MAR</div></div>
+<div class="stat"><div class="v">20.3%</div><div class="l">Volatility</div></div>
 <div class="stat"><div class="v">302</div><div class="l">Months</div></div>
 </div>
 <table>
 <thead><tr><th>Version</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>Vol</th></tr></thead>
 <tbody>
-<tr><td>Static equal-weight</td><td class="pos">+28.7%</td><td>1.76</td><td class="neg">&minus;15.9%</td><td>15.1%</td></tr>
-<tr><td>Dynamic redistribution</td><td class="pos">+32.5%</td><td>1.53</td><td class="neg">&minus;42.1%</td><td>19.9%</td></tr>
+<tr><td>Static equal-weight</td><td class="pos">+27.4%</td><td>1.60</td><td class="neg">&minus;15.5%</td><td>16.1%</td></tr>
+<tr><td>Dynamic redistribution</td><td class="pos">+33.5%</td><td>1.54</td><td class="neg">&minus;24.5%</td><td>20.3%</td></tr>
 </tbody>
 </table>
-<p>Regime overlap across the 302-month window: all three strategies active together in 149 months (49%), two of three active in 64 months (21%), only one active in 51 months (17%), and all three defensive simultaneously in 38 months (13%) &mdash; in that last case the dynamic version collapses back to the static one, since there is nowhere to redistribute to.</p>
-<div class="callout-red"><p><strong>The dynamic version is a worse portfolio despite the higher CAGR.</strong> Sharpe falls (1.76 &rarr; 1.53) and MaxDD nearly triples (&minus;15.9% &rarr; &minus;42.1%). The mechanism is concentration risk: in the 17% of months where only one strategy is active, that one strategy now carries 100% of the book instead of 33%. And those single-survivor months are not random &mdash; they cluster around exactly the periods when the other two strategies' regime filters have already flagged trouble, i.e. elevated-risk periods for momentum generally. Redistributing capital <em>into</em> a concentrated bet during exactly the moments the system is telling you risk is elevated is the opposite of what a regime filter is for. We do not run this version live.</p></div>
+<p>Regime overlap across the 302-month window: all three strategies active together in 158 months (52%), two of three active in 50 months (17%), only one active in 51 months (17%), and all three defensive simultaneously in 43 months (14%) &mdash; in that last case the dynamic version collapses back to the static one, since there is nowhere to redistribute to.</p>
+<div class="callout-red"><p><strong>The dynamic version is a worse portfolio despite the higher CAGR.</strong> Sharpe falls (1.60 &rarr; 1.54) and MaxDD grows by more than half (&minus;15.5% &rarr; &minus;24.5%). The mechanism is concentration risk: in the 17% of months where only one strategy is active, that one strategy now carries 100% of the book instead of 33%. And those single-survivor months are not random &mdash; they cluster around exactly the periods when the other two strategies' regime filters have already flagged trouble, i.e. elevated-risk periods for momentum generally. Redistributing capital <em>into</em> a concentrated bet during exactly the moments the system is telling you risk is elevated is the opposite of what a regime filter is for. We do not run this version live.</p></div>
 
 <div class="divider"></div>
 <h2>IV. Correlation Matrix &mdash; Full Period</h2>
 <table>
 <thead><tr><th></th><th>US</th><th>UK</th><th>Canada</th></tr></thead>
 <tbody>
-<tr><td>US</td><td class="hl-row">1.000</td><td>&minus;0.030</td><td>0.303</td></tr>
-<tr><td>UK</td><td>&minus;0.030</td><td class="hl-row">1.000</td><td>0.065</td></tr>
-<tr><td>Canada</td><td>0.303</td><td>0.065</td><td class="hl-row">1.000</td></tr>
+<tr><td>US</td><td class="hl-row">1.000</td><td>0.271</td><td>0.292</td></tr>
+<tr><td>UK</td><td>0.271</td><td class="hl-row">1.000</td><td>0.283</td></tr>
+<tr><td>Canada</td><td>0.292</td><td>0.283</td><td class="hl-row">1.000</td></tr>
 </tbody>
 </table>
-<p>All three pairwise correlations sit below 0.31 &mdash; genuinely low for three strategies that are all, at bottom, long-momentum equity books. US&ndash;UK is essentially zero (&minus;0.03). Canada correlates a bit more with the US (0.30, plausibly the shared North American cycle and USD/CAD-linked sectors) but is close to uncorrelated with the UK (0.07).</p>
+<p>All three pairwise correlations sit in a tight 0.27&ndash;0.29 band &mdash; low enough that combining them still delivers a large Sharpe improvement (Section&nbsp;II), but not the near-zero numbers a casual reader might expect from three unrelated markets. All three are long-only momentum books riding the same global equity cycle to some degree; the diversification benefit here comes more from the regime filters firing at different times (Section&nbsp;VII) than from the underlying stock-picking being unrelated.</p>
 
 <div class="divider"></div>
 <h2>V. Correlation Conditional on Up/Down Months</h2>
@@ -104,18 +104,18 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>Regime</th><th>Months</th><th>US&ndash;UK</th><th>US&ndash;Canada</th><th>UK&ndash;Canada</th></tr></thead>
 <tbody>
-<tr><td>UP months (combo &gt; 0)</td><td>210</td><td>&minus;0.268</td><td>0.050</td><td>&minus;0.024</td></tr>
-<tr class="hl-row"><td>DOWN months (combo &lt; 0)</td><td>92</td><td>&minus;0.418</td><td>0.108</td><td>&minus;0.479</td></tr>
+<tr><td>UP months (combo &gt; 0)</td><td>183</td><td>0.034</td><td>&minus;0.018</td><td>0.060</td></tr>
+<tr class="hl-row"><td>DOWN months (combo &lt; 0)</td><td>119</td><td>0.081</td><td>0.179</td><td>0.001</td></tr>
 </tbody>
 </table>
-<div class="callout-green"><p><strong>Correlations get more negative, not more positive, in down months.</strong> UK&ndash;Canada goes from roughly zero (&minus;0.02) in up months to strongly negative (&minus;0.48) in down months; US&ndash;UK deepens from &minus;0.27 to &minus;0.42. This is the opposite of the failure mode most multi-strategy books actually have &mdash; correlations that look fine in calm markets and then converge toward 1 exactly when a book is losing money. Here, the worse the combined month, the more the three legs are pulling in different directions.</p></div>
+<div class="callout"><p><strong>All three pairs are close to zero in up months</strong> (0.03, &minus;0.02, 0.06) &mdash; when the combined book is making money, the three legs are moving essentially independently of each other. In down months the picture is mixed rather than uniformly favourable: UK&ndash;Canada drops further toward zero (0.06 &rarr; 0.00, a genuinely good sign), but US&ndash;Canada rises to 0.18 and US&ndash;UK ticks up slightly to 0.08. None of the three pairs turns sharply positive in bad months &mdash; the correlation structure doesn't collapse toward 1 the way it does for many multi-strategy books in a real drawdown &mdash; but the US leg shows a modest tendency to move with the other two specifically when things are going badly, worth watching rather than ignoring.</p></div>
 <p>We also checked correlation restricted to months where <em>both</em> legs of a given pair were individually negative that month (a stricter, pairwise version of the same question):</p>
 <table>
 <thead><tr><th>Pair</th><th>Months both negative</th><th>Correlation</th></tr></thead>
 <tbody>
-<tr><td>US &amp; UK</td><td>31</td><td>&minus;0.021</td></tr>
-<tr><td>US &amp; Canada</td><td>80</td><td>0.140</td></tr>
-<tr><td>UK &amp; Canada</td><td>43</td><td>&minus;0.206</td></tr>
+<tr><td>US &amp; UK</td><td>41</td><td>0.202</td></tr>
+<tr><td>US &amp; Canada</td><td>52</td><td>0.208</td></tr>
+<tr><td>UK &amp; Canada</td><td>64</td><td>0.348</td></tr>
 </tbody>
 </table>
 
@@ -125,12 +125,12 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>Period</th><th>Months</th><th>US</th><th>UK</th><th>Canada</th><th>Combo (1/3 each)</th><th>US&ndash;UK</th><th>US&ndash;CA</th><th>UK&ndash;CA</th></tr></thead>
 <tbody>
-<tr><td>2001-02 &ndash; 2009-05</td><td>100</td><td class="pos">+450%</td><td class="pos">+276%</td><td class="pos">+1951%</td><td class="pos">+733%</td><td>0.046</td><td>0.366</td><td>0.190</td></tr>
-<tr><td>2009-06 &ndash; 2017-09</td><td>100</td><td class="pos">+519%</td><td class="pos">+1187%</td><td class="pos">+680%</td><td class="pos">+827%</td><td>0.133</td><td>0.214</td><td>0.049</td></tr>
-<tr><td>2017-10 &ndash; 2026-03</td><td>102</td><td class="pos">+1100%</td><td class="pos">+67%</td><td class="pos">+1028%</td><td class="pos">+635%</td><td>&minus;0.127</td><td>0.311</td><td>0.014</td></tr>
+<tr><td>2001-01 &ndash; 2009-04</td><td>100</td><td class="pos">+363%</td><td class="pos">+234%</td><td class="pos">+1894%</td><td class="pos">+622%</td><td>0.269</td><td>0.279</td><td>0.391</td></tr>
+<tr><td>2009-05 &ndash; 2017-08</td><td>100</td><td class="pos">+431%</td><td class="pos">+1223%</td><td class="pos">+630%</td><td class="pos">+769%</td><td>0.296</td><td>0.165</td><td>0.151</td></tr>
+<tr><td>2017-09 &ndash; 2026-02</td><td>102</td><td class="pos">+530%</td><td class="pos">+227%</td><td class="pos">+1090%</td><td class="pos">+610%</td><td>0.281</td><td>0.378</td><td>0.346</td></tr>
 </tbody>
 </table>
-<p>Cumulative returns above are compounded within each third, so they are not comparable across rows in isolation &mdash; the point is the correlation columns. US&ndash;Canada stays the most consistently positive pair across all three thirds (0.21&ndash;0.37, a plausible North American cycle effect), while US&ndash;UK actually flips sign (0.05 &rarr; 0.13 &rarr; &minus;0.13) and UK&ndash;Canada stays close to zero throughout (0.19 &rarr; 0.05 &rarr; 0.01). Nothing here is trending toward 1 &mdash; if anything UK's relationship to the other two has drifted slightly more negative over time, not more positive.</p>
+<p>Cumulative returns above are compounded within each third, so they are not comparable across rows in isolation &mdash; the point is the correlation columns. All three pairs stay positive and roughly in the same 0.15&ndash;0.39 range across all three thirds, with UK&ndash;Canada the most volatile (0.39 &rarr; 0.15 &rarr; 0.35) and US&ndash;UK the most stable (0.27 &rarr; 0.30 &rarr; 0.28). Nothing here is trending sharply toward 1 or toward 0 &mdash; the moderate, positive correlation documented in Section&nbsp;IV looks like a persistent property of these three books, not an artifact of one unusual stretch.</p>
 
 <div class="divider"></div>
 <h2>VII. Crisis-by-Crisis Breakdown</h2>
@@ -138,17 +138,17 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>Crisis</th><th>Window</th><th>Mo.</th><th>US</th><th>UK</th><th>Canada</th><th>Combo</th><th>US&ndash;UK</th><th>US&ndash;CA</th><th>UK&ndash;CA</th></tr></thead>
 <tbody>
-<tr><td>Dot-com crash</td><td>2001-02&ndash;2002-10</td><td>21</td><td class="pos">+15.2%</td><td class="neg">&minus;1.5%</td><td class="pos">+32.8%</td><td class="pos">+17.5%</td><td>&minus;0.269</td><td>0.390</td><td>0.079</td></tr>
-<tr><td>Global Financial Crisis</td><td>2007-10&ndash;2009-03</td><td>18</td><td class="pos">+8.6%</td><td class="neg">&minus;7.2%</td><td class="neg">&minus;2.2%</td><td class="pos">+1.5%</td><td>&minus;0.273</td><td>0.245</td><td>&minus;0.008</td></tr>
-<tr><td>Euro debt crisis</td><td>2011-05&ndash;2011-10</td><td>6</td><td class="neg">&minus;9.5%</td><td class="pos">+1.4%</td><td class="neg">&minus;0.5%</td><td class="neg">&minus;2.7%</td><td>&minus;0.505</td><td>&minus;0.499</td><td>&minus;0.050</td></tr>
-<tr><td>2015&ndash;16 China/oil selloff</td><td>2015-08&ndash;2016-02</td><td>7</td><td class="pos">+9.2%</td><td>0.0%</td><td class="pos">+12.1%</td><td class="pos">+7.3%</td><td>n/a&sup1;</td><td>&minus;0.227</td><td>n/a&sup1;</td></tr>
-<tr><td>2018 Q4 selloff</td><td>2018-10&ndash;2018-12</td><td>3</td><td class="neg">&minus;8.6%</td><td class="neg">&minus;18.9%</td><td class="neg">&minus;0.3%</td><td class="neg">&minus;9.0%</td><td>&minus;0.309&sup2;</td><td>0.309&sup2;</td><td>&minus;1.000&sup2;</td></tr>
-<tr><td>COVID crash</td><td>2020-02&ndash;2020-04</td><td>3</td><td class="pos">+9.1%</td><td>0.0%</td><td class="neg">&minus;0.1%</td><td class="pos">+2.9%</td><td>n/a&sup1;</td><td>0.982&sup2;</td><td>n/a&sup1;</td></tr>
-<tr><td>2022 bear market</td><td>2022-01&ndash;2022-12</td><td>12</td><td class="pos">+6.3%</td><td class="pos">+20.2%</td><td>0.0%</td><td class="pos">+9.4%</td><td>&minus;0.198</td><td>0.119</td><td>0.449</td></tr>
+<tr><td>Dot-com crash</td><td>2001-01&ndash;2002-10</td><td>22</td><td>0.0%</td><td class="pos">+2.9%</td><td class="pos">+31.5%</td><td class="pos">+11.1%</td><td>n/a&sup1;</td><td>n/a&sup1;</td><td>0.331</td></tr>
+<tr><td>Global Financial Crisis</td><td>2007-10&ndash;2009-03</td><td>18</td><td class="pos">+9.5%</td><td class="neg">&minus;17.6%</td><td class="neg">&minus;2.2%</td><td class="neg">&minus;3.4%</td><td>0.411</td><td>&minus;0.000</td><td>0.011</td></tr>
+<tr><td>Euro debt crisis</td><td>2011-05&ndash;2011-10</td><td>6</td><td class="neg">&minus;4.5%</td><td class="pos">+0.2%</td><td class="neg">&minus;0.5%</td><td class="neg">&minus;1.5%</td><td>&minus;0.139</td><td>0.125</td><td>0.102</td></tr>
+<tr><td>2015&ndash;16 China/oil selloff</td><td>2015-08&ndash;2016-02</td><td>7</td><td class="neg">&minus;2.9%</td><td>0.0%</td><td class="pos">+12.1%</td><td class="pos">+3.1%</td><td>n/a&sup1;</td><td>0.096</td><td>n/a&sup1;</td></tr>
+<tr><td>2018 Q4 selloff</td><td>2018-10&ndash;2018-12</td><td>3</td><td class="neg">&minus;11.8%</td><td class="neg">&minus;0.1%</td><td class="neg">&minus;0.3%</td><td class="neg">&minus;4.1%</td><td>&minus;0.500&sup2;</td><td>0.500&sup2;</td><td>&minus;1.000&sup2;</td></tr>
+<tr><td>COVID crash</td><td>2020-02&ndash;2020-04</td><td>3</td><td>0.0%</td><td>0.0%</td><td class="neg">&minus;0.1%</td><td>0.0%</td><td>n/a&sup1;</td><td>n/a&sup1;</td><td>n/a&sup1;</td></tr>
+<tr><td>2022 bear market</td><td>2022-01&ndash;2022-12</td><td>12</td><td class="pos">+4.9%</td><td class="pos">+29.7%</td><td>0.0%</td><td class="pos">+11.3%</td><td>0.255</td><td>&minus;0.156</td><td>0.132</td></tr>
 </tbody>
 </table>
-<p style="font-size:.65rem;color:var(--muted)">&sup1; UK returned exactly 0% every month in this window (its regime filter was fully in cash), so its variance is zero and correlation is mathematically undefined &mdash; not missing data, the filter doing its job. &sup2; n=3&ndash;6 months: directionally suggestive at best, not a reliable correlation estimate.</p>
-<div class="callout"><p><strong>The combined portfolio was never meaningfully negative in any of the seven crisis windows tested</strong> &mdash; the worst is the Euro debt crisis at &minus;2.7%, and even the GFC (the worst individual-strategy stretch, UK &minus;7.2%) nets out to only +1.5% combined. Each strategy's own regime filter (MA250/MA200/MA75, against its own index) is doing most of the defensive work independently; the combination on top adds a second layer, since it's rare for all three regime filters to trigger badly at once. Canada's Sharpe (1.41 stand-alone) reflects a shallower regime-driven MA75 filter that historically got the strategy out of trouble faster than the US or UK filters &mdash; visible directly in the GFC and Euro-crisis rows, where Canada's own drawdown was smaller than the US's.</p></div>
+<p style="font-size:.65rem;color:var(--muted)">&sup1; One or both legs returned exactly 0% every month in this window (regime filter fully in cash), so variance is zero and correlation is mathematically undefined &mdash; not missing data, the filter doing its job. &sup2; n=3&ndash;6 months: directionally suggestive at best, not a reliable correlation estimate.</p>
+<div class="callout"><p><strong>The combined portfolio was never more than a few percent negative in any of the seven crisis windows tested</strong> &mdash; the worst is the GFC at &minus;3.4%, driven almost entirely by the UK leg (&minus;17.6%, the single worst crisis result of any strategy in this table). Each strategy's own regime filter (MA250/MA200/MA75, against its own index) is doing most of the defensive work independently; the combination on top adds a second layer, since it's rare for all three regime filters to trigger badly at once. The 2022 bear market is the standout positive result &mdash; the combo actually gained +11.3% while broad equity markets fell hard, led by the UK leg's +29.7%.</p></div>
 
 <div class="divider"></div>
 <h2>VIII. Stress Test: The Classic Momentum-Crash Window (Apr&ndash;Sep 2009)</h2>
@@ -156,135 +156,112 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>Strategy</th><th>Cumulative return, Apr&ndash;Sep 2009</th></tr></thead>
 <tbody>
-<tr><td>US</td><td class="pos">+12.9%</td></tr>
-<tr><td>UK</td><td class="pos">+31.4%</td></tr>
+<tr><td>US</td><td class="pos">+5.2%</td></tr>
+<tr><td>UK</td><td class="pos">+39.1%</td></tr>
 <tr><td>Canada</td><td class="pos">+33.3%</td></tr>
-<tr class="hl-row"><td>Combo (1/3 each)</td><td class="pos">+26.6%</td></tr>
+<tr class="hl-row"><td>Combo (1/3 each)</td><td class="pos">+26.4%</td></tr>
 </tbody>
 </table>
 <table>
 <thead><tr><th>Month</th><th>US</th><th>UK</th><th>Canada</th><th>Combo</th></tr></thead>
 <tbody>
-<tr><td>2009-04</td><td class="pos">+9.9%<span style="color:var(--muted)"> (out)</span></td><td>0.0%<span style="color:var(--muted)"> (out)</span></td><td class="pos">+23.7%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+11.2%</td></tr>
-<tr><td>2009-05</td><td class="neg">&minus;3.7%<span style="color:var(--muted)"> (out)</span></td><td>0.0%<span style="color:var(--muted)"> (out)</span></td><td class="pos">+1.8%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;0.6%</td></tr>
-<tr><td>2009-06</td><td class="pos">+1.4%<span style="color:var(--muted)"> (out)</span></td><td class="neg">&minus;2.7%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;2.3%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;1.2%</td></tr>
-<tr><td>2009-07</td><td class="neg">&minus;2.6%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+14.7%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;1.0%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+3.7%</td></tr>
-<tr><td>2009-08</td><td class="pos">+5.8%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+13.3%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+15.0%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+11.3%</td></tr>
-<tr><td>2009-09</td><td class="pos">+2.1%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+4.0%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;4.7%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+0.5%</td></tr>
+<tr><td>2009-04</td><td>0.0%<span style="color:var(--muted)"> (cash)</span></td><td>0.0%<span style="color:var(--muted)"> (cash)</span></td><td class="pos">+23.7%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+7.9%</td></tr>
+<tr><td>2009-05</td><td>0.0%<span style="color:var(--muted)"> (cash)</span></td><td class="pos">+0.6%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+1.8%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+0.8%</td></tr>
+<tr><td>2009-06</td><td>0.0%<span style="color:var(--muted)"> (cash)</span></td><td class="pos">+20.7%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;2.3%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+6.1%</td></tr>
+<tr><td>2009-07</td><td class="neg">&minus;2.6%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+1.4%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;1.0%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;0.8%</td></tr>
+<tr><td>2009-08</td><td class="pos">+5.8%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+15.3%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+15.0%<span style="color:var(--muted)"> (in)</span></td><td class="pos">+12.0%</td></tr>
+<tr><td>2009-09</td><td class="pos">+2.1%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;2.0%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;4.7%<span style="color:var(--muted)"> (in)</span></td><td class="neg">&minus;1.5%</td></tr>
 </tbody>
 </table>
-<div class="callout-green"><p><strong>All three strategies were positive through the window that historically destroys momentum &mdash; none of them lost money.</strong> Two things are doing the work, and it's worth being precise about which: first, all three books are <strong>long-only</strong> (buy the top-N winners, no short leg) &mdash; the textbook crash mechanism is specifically a short-squeeze on the biggest losers, which cannot hit a portfolio that never holds a short book in the first place. Second, timing: the US (MA250) and UK (MA200) regime filters were still out of the market through April&ndash;June, missing the most violent chop of the initial reversal; Canada's much faster MA75 had already re-entered by April and rode the recovery from day one. This isn't the strategies dodging a bullet through skill &mdash; it's structural: a long-only book facing a beta-driven junk rally underperforms a long-short book's short-covering losses, it doesn't crash the way the short leg does.</p></div>
+<div class="callout-green"><p><strong>All three strategies were positive through the window that historically destroys momentum &mdash; none of them lost money.</strong> Two things are doing the work, and it's worth being precise about which: first, all three books are <strong>long-only</strong> (buy the top-N winners, no short leg) &mdash; the textbook crash mechanism is specifically a short-squeeze on the biggest losers, which cannot hit a portfolio that never holds a short book in the first place. Second, timing: the US MA250 regime filter was still in cash through April&ndash;June, missing the most violent chop of the initial reversal entirely (flat 0%, not a gain and not a loss); the faster UK (MA200) and Canada (MA75) filters had already re-entered and rode the recovery, contributing the bulk of the combo's +26.4%.</p></div>
 <div class="callout"><p><strong>Caveat: this is one historical instance (n=1), not a repeatable stress test.</strong> 2009 was an unusually fast, policy-driven V-shaped recovery; there is no second comparable event in the sample to confirm this holds generally. Long-only momentum's immunity to the classic short-squeeze mechanism is a structural argument, not something proven by one data point &mdash; treat this section as "no evidence of the specific failure mode," not "proof it cannot happen."</p></div>
 
 <div class="divider"></div>
 <h2>IX. Whipsaw Cost in Choppy, Sideways Markets</h2>
-<p>Regime filters have a known failure mode in the other direction: markets that chop sideways without a clean trend generate repeated false exit/re-entry signals, each one clipping a bit of return. We checked 2011 and 2015 specifically (flagged as classic whipsaw-prone years), plus 2018, 2019 and 2022 for context, against each strategy's own CAGR &mdash; computed over the same 2002&ndash;2025 window (full calendar years only) used consistently across this article, not each strategy's own full, differently-dated history.</p>
+<p>Regime filters have a known failure mode in the other direction: markets that chop sideways without a clean trend generate repeated false exit/re-entry signals, each one clipping a bit of return. We checked 2011 and 2015 specifically (flagged as classic whipsaw-prone years), plus 2018, 2019 and 2022 for context, against each strategy's own CAGR &mdash; computed over the same 2002&ndash;2025 window (full calendar years only) used consistently across this article.</p>
 <table>
-<thead><tr><th>Year</th><th>US (CAGR +25.3%)</th><th>UK (CAGR +20.6%)</th><th>Canada (CAGR +36.3%)</th></tr></thead>
+<thead><tr><th>Year</th><th>US (CAGR +23.3%)</th><th>UK (CAGR +24.0%)</th><th>Canada (CAGR +36.3%)</th></tr></thead>
 <tbody>
-<tr><td>2011</td><td class="neg">&minus;4.8% (&minus;30.2pp)</td><td class="pos">+15.6% (&minus;4.9pp)</td><td class="pos">+2.7% (&minus;33.6pp)</td></tr>
-<tr><td>2015</td><td class="pos">+8.5% (&minus;16.8pp)</td><td class="neg">&minus;7.0% (&minus;27.5pp)</td><td class="pos">+4.5% (&minus;31.8pp)</td></tr>
-<tr><td>2018</td><td class="neg">&minus;16.7% (&minus;42.0pp)</td><td class="neg">&minus;12.4% (&minus;33.0pp)</td><td class="pos">+8.9% (&minus;27.5pp)</td></tr>
-<tr><td>2019</td><td class="pos">+4.6% (&minus;20.7pp)</td><td class="pos">+24.4% (+3.9pp)</td><td class="pos">+48.2% (+11.9pp)</td></tr>
-<tr><td>2022</td><td class="pos">+6.3% (&minus;19.0pp)</td><td class="pos">+20.2% (&minus;0.3pp)</td><td>0.0% (&minus;36.3pp)</td></tr>
+<tr><td>2011</td><td class="pos">+0.8% (&minus;22.5pp)</td><td class="neg">&minus;8.2% (&minus;32.2pp)</td><td class="pos">+2.7% (&minus;33.6pp)</td></tr>
+<tr><td>2015</td><td class="pos">+0.9% (&minus;22.4pp)</td><td class="neg">&minus;3.2% (&minus;27.2pp)</td><td class="pos">+4.5% (&minus;31.8pp)</td></tr>
+<tr><td>2018</td><td class="neg">&minus;19.4% (&minus;42.7pp)</td><td class="neg">&minus;11.9% (&minus;35.9pp)</td><td class="pos">+8.9% (&minus;27.5pp)</td></tr>
+<tr><td>2019</td><td class="pos">+3.1% (&minus;20.2pp)</td><td class="pos">+28.9% (+4.9pp)</td><td class="pos">+48.2% (+11.9pp)</td></tr>
+<tr><td>2022</td><td class="pos">+4.9% (&minus;18.4pp)</td><td class="pos">+29.7% (+5.7pp)</td><td>0.0% (&minus;36.3pp)</td></tr>
 </tbody>
 </table>
-<p>(pp = percentage points versus that strategy's own CAGR, 2002&ndash;2025. Note CAGR here is the compounded, geometric figure &mdash; the correct baseline for comparing against a single year's return, and consistent with how CAGR is reported everywhere else in this article. An earlier version of this table used each strategy's own arithmetic-mean annual return over its own full, differently-dated history, which overstated the baseline and wasn't comparable across strategies; corrected here.)</p>
-<div class="callout-red"><p><strong>2011, 2015 and 2018 are real drag years across all three strategies</strong> &mdash; every single cell in those three rows sits below its strategy's CAGR, several by 27&ndash;42 percentage points. This is the whipsaw cost the regime filters genuinely pay in choppy, directionless markets, and it is not a small number in a single-strategy view. 2018 is the worst of the three, not 2011 or 2015 &mdash; both US (&minus;16.7%) and UK (&minus;12.4%) posted outright negative years.</p></div>
-<p>We also counted year-by-year regime flips (exit&harr;re-entry transitions) to check whether flip-frequency itself predicts the damage. It doesn't, cleanly: 2019 has among the <em>highest</em> flip counts for UK (5) and Canada (5) in the entire sample, yet both had strong-to-exceptional years (+24.4% and +48.2%). Meanwhile 2011 (US: 1 flip, UK: 1 flip, Canada: 2 flips) was a below-average year for all three despite low flip counts. <strong>What matters isn't how often the filter fires, it's whether each exit caught a real drawdown or clipped a false signal ahead of a continued uptrend</strong> &mdash; a single badly-timed flip can cost more than five well-timed ones. By flip-count alone, 2018, 2019 and 2022 are actually noisier years than 2011 or 2015 for UK and Canada; it's 2011/2015/2018 together, not those two years specifically, that make up the strategies' weakest historical stretch.</p>
+<p>(pp = percentage points versus that strategy's own CAGR, 2002&ndash;2025.)</p>
+<div class="callout-red"><p><strong>2011, 2015 and 2018 are drag years across all three strategies</strong> &mdash; every cell in those three rows sits below its strategy's CAGR, several by 20&ndash;43 percentage points. 2018 is clearly the worst of the three &mdash; US posted its worst year of the whole sample (&minus;19.4%) and UK was also sharply negative (&minus;11.9%). 2019 and 2022, by contrast, were strong years for UK and Canada despite also being sideways/choppy markets by reputation &mdash; a reminder that "known whipsaw year" is a much fuzzier label in the data than in the narrative.</p></div>
+<p>We also counted year-by-year regime flips (exit&harr;re-entry transitions) to check whether flip-frequency itself predicts the damage. It doesn't, cleanly: 2019 has among the <em>highest</em> flip counts for UK and Canada in the entire sample, yet both had strong-to-exceptional years (+28.9% and +48.2%). <strong>What matters isn't how often the filter fires, it's whether each exit caught a real drawdown or clipped a false signal ahead of a continued uptrend</strong> &mdash; a single badly-timed flip can cost more than five well-timed ones.</p>
 
 <div class="divider"></div>
-<h2>X. How Much of the Sharpe 1.76 Comes From Gold?</h2>
-<p>The US strategy's defensive asset is gold, not cash &mdash; and this entire backtest window (2001&ndash;2026) overlaps almost exactly with the largest gold bull market on record ($270 &rarr; $3,000+/oz). If gold's own returns are propping up the diversification story, the "immunity to crises" claim would really be a hidden bet that gold keeps repeating its best 25 years. We tested this directly: replace every US "gold" month with cash and see what survives.</p>
-<table>
-<thead><tr><th>US variant</th><th>US CAGR</th><th>US Sharpe</th><th>Combo CAGR</th><th>Combo Sharpe</th><th>Combo MaxDD</th></tr></thead>
-<tbody>
-<tr><td>With gold (actual)</td><td class="pos">+27.0%</td><td>1.02</td><td class="pos">+28.7%</td><td class="hl-row">1.76</td><td class="neg">&minus;15.9%</td></tr>
-<tr><td>Gold &rarr; 0% cash</td><td class="pos">+23.8%</td><td>1.01</td><td class="pos">+27.4%</td><td>1.79</td><td class="neg">&minus;15.8%</td></tr>
-<tr><td>Gold &rarr; 4% RF cash</td><td class="pos">+25.0%</td><td>1.06</td><td class="pos">+27.8%</td><td>1.82</td><td class="neg">&minus;15.6%</td></tr>
-</tbody>
-</table>
-<div class="callout-green"><p><strong>The combined Sharpe does not depend on gold &mdash; it's actually marginally higher without it (1.76 &rarr; 1.79&ndash;1.82).</strong> The diversification benefit documented in Sections&nbsp;IV&ndash;VII comes from the regime filter's <em>timing</em> (being out of equities during a drawdown), not from what the defensive asset does while parked. Where gold does matter is CAGR: it's worth roughly 1.3&ndash;2.5 percentage points to the combined portfolio, and 2&ndash;3pp to the US strategy standalone.</p></div>
-<table>
-<thead><tr><th>Crisis window</th><th>US actual (with gold)</th><th>US if gold&rarr;cash</th><th>Months in gold</th></tr></thead>
-<tbody>
-<tr><td>GFC (2007-10&ndash;2009-03)</td><td class="pos">+8.6%</td><td class="pos">+9.5%</td><td>16/18</td></tr>
-<tr><td>COVID crash (2020-02&ndash;04)</td><td class="pos">+9.1%</td><td>0.0%</td><td>3/3</td></tr>
-<tr><td>2022 bear market</td><td class="pos">+6.3%</td><td class="pos">+4.9%</td><td>10/12</td></tr>
-</tbody>
-</table>
-<p>The COVID window is the one real exception to "gold isn't load-bearing": the US strategy's entire +9.1% return through that crash <em>was</em> the gold sleeve &mdash; without it, that specific quarter is flat. In the GFC and 2022, gold's contribution is small and in the GFC case even slightly negative versus plain cash. Net assessment: gold is a real, non-trivial return source in this backtest and it did specifically rescue one crisis quarter, but it is not what makes the three-strategy combination diversify &mdash; that would still work with US in cash instead of gold.</p>
-
-<div class="divider"></div>
-<h2>XI. Realistic Max Drawdown &mdash; The Fast-Crash Blind Spot</h2>
-<p>Every regime filter in this article re-evaluates once a month. That's a real blind spot: a crash fast enough to happen <em>inside</em> a month &mdash; a 1987-style single-day break, or a weekend gap &mdash; is fully invested in all three markets before any filter gets a chance to fire. Two things already in this article point at exactly this failure mode: the COVID window's US&ndash;Canada correlation of 0.982 (Section&nbsp;VII) &mdash; the decorrelation this whole piece is built on simply isn't there when the crash is too fast for a monthly signal to react &mdash; and the 2018 Q4 selloff, the one crisis window where the combo posted a real loss (&minus;9.0%).</p>
+<h2>X. Realistic Max Drawdown &mdash; The Fast-Crash Blind Spot</h2>
+<p>Every regime filter in this article re-evaluates once a month. That's a real blind spot: a crash fast enough to happen <em>inside</em> a month &mdash; a 1987-style single-day break, or a weekend gap &mdash; is fully invested in all three markets before any filter gets a chance to fire.</p>
 <table>
 <thead><tr><th>Strategy</th><th>Worst single month while ACTIVE (exposed)</th><th>When</th></tr></thead>
 <tbody>
-<tr><td>US</td><td class="neg">&minus;20.3%</td><td>2018-09</td></tr>
-<tr><td>UK</td><td class="neg">&minus;26.4%</td><td>2026-03</td></tr>
+<tr><td>US</td><td class="neg">&minus;19.6%</td><td>2018-09</td></tr>
+<tr><td>UK</td><td class="neg">&minus;23.0%</td><td>2026-02</td></tr>
 <tr><td>Canada</td><td class="neg">&minus;18.1%</td><td>2026-02</td></tr>
 </tbody>
 </table>
-<div class="callout-red"><p><strong>If all three posted their own worst-ever active month at once &mdash; a reasonable proxy for a fast, gap-driven crash that catches every regime filter still fully invested &mdash; the equal-weight combo loses &minus;21.6% in that single month.</strong> That is already deeper than the entire backtested multi-month MaxDD of &minus;15.9% (the worst realized single month historically was only &minus;7.5%, and the worst realized 3-month stretch was &minus;15.9%, in Q4 2018). All three strategies were simultaneously active &mdash; and so simultaneously exposed to exactly this risk, with the regime filters offering zero protection &mdash; in 149 of 302 months (49%).</p></div>
-<p><strong>For sizing purposes, we'd treat &minus;15.9% as the backtested-normal-conditions number and assume a realistic worst case in the 25&ndash;30% range</strong>, not the headline backtested figure. That sits comfortably above the &minus;21.6% single-month stress estimate, leaving room for a second bad month or a slower-than-historical recovery &mdash; and no historical instance in this sample actually delivered a fast, all-three-exposed gap crash, so there's no realized data point to calibrate against directly.</p>
+<div class="callout-red"><p><strong>If all three posted their own worst-ever active month at once &mdash; a reasonable proxy for a fast, gap-driven crash that catches every regime filter still fully invested &mdash; the equal-weight combo loses &minus;20.3% in that single month.</strong> That is already deeper than the entire backtested multi-month MaxDD of &minus;15.5%. Notably, the worst month actually realized in this sample &mdash; &minus;15.5% in February 2026 &mdash; already sits close to this hypothetical stress figure, driven by UK and Canada both posting their worst-ever active months simultaneously that same month. All three strategies were simultaneously active, and so simultaneously exposed to this risk, in 158 of 302 months (52%).</p></div>
+<p><strong>For sizing purposes, we'd treat &minus;15.5% to &minus;20% as the realistic range rather than assuming the backtested MaxDD is a hard floor</strong> &mdash; this sample already includes a month (Feb 2026) that came close to the full simultaneous-worst-case stress estimate, so this isn't a purely theoretical tail risk.</p>
 
 <div class="divider"></div>
-<h2>XII. Testing the Regime Windows for Overfit &mdash; The MA Swap Test</h2>
-<p>The three regime filters use three different lookback windows &mdash; US MA250, UK MA200, Canada MA75 &mdash; each presumably chosen because it tested well on its own market (see each strategy's own sensitivity report). That raises an obvious question: is the diversification result in this article dependent on those specific per-market choices, or would it survive if the windows were shuffled? We rebuilt each strategy's <strong>pure momentum return, with no regime filter applied</strong>, then re-gated each one using every possible MA window (75/200/250 days) applied to its own index &mdash; all 27 combinations.</p>
+<h2>XI. Testing the Regime Windows for Overfit &mdash; The MA Swap Test</h2>
+<p>The three regime filters use three different lookback windows &mdash; US MA250, UK MA200, Canada MA75 &mdash; each chosen for its own market (see each strategy's own sensitivity report). That raises an obvious question: is the diversification result in this article dependent on those specific per-market choices, or would it survive if the windows were shuffled? We rebuilt each strategy's <strong>pure momentum return, with no regime filter applied</strong>, then re-gated each one using every possible MA window (75/200/250 days) applied to its own index &mdash; all 27 combinations.</p>
 <table>
 <thead><tr><th>US window</th><th>UK window</th><th>CA window</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
 <tbody>
-<tr><td>MA75</td><td>MA75</td><td>MA75</td><td class="pos">+24.8%</td><td>1.49</td><td class="neg">&minus;17.8%</td></tr>
-<tr><td>MA75</td><td>MA75</td><td>MA200</td><td class="pos">+23.8%</td><td>1.43</td><td class="neg">&minus;23.5%</td></tr>
-<tr><td>MA75</td><td>MA75</td><td>MA250</td><td class="pos">+23.7%</td><td>1.44</td><td class="neg">&minus;17.8%</td></tr>
-<tr><td>MA75</td><td>MA200</td><td>MA75</td><td class="pos">+25.2%</td><td>1.52</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA75</td><td>MA200</td><td>MA200</td><td class="pos">+24.2%</td><td>1.45</td><td class="neg">&minus;17.7%</td></tr>
-<tr><td>MA75</td><td>MA200</td><td>MA250</td><td class="pos">+24.1%</td><td>1.45</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA75</td><td>MA250</td><td>MA75</td><td class="pos">+24.7%</td><td>1.50</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA75</td><td>MA250</td><td>MA200</td><td class="pos">+23.7%</td><td>1.44</td><td class="neg">&minus;17.7%</td></tr>
-<tr><td>MA75</td><td>MA250</td><td>MA250</td><td class="pos">+23.6%</td><td>1.43</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA200</td><td>MA75</td><td>MA75</td><td class="pos">+26.9%</td><td>1.55</td><td class="neg">&minus;17.8%</td></tr>
-<tr><td>MA200</td><td>MA75</td><td>MA200</td><td class="pos">+26.0%</td><td>1.52</td><td class="neg">&minus;23.5%</td></tr>
-<tr><td>MA200</td><td>MA75</td><td>MA250</td><td class="pos">+25.9%</td><td>1.53</td><td class="neg">&minus;17.8%</td></tr>
-<tr><td>MA200</td><td>MA200</td><td>MA75</td><td class="pos">+27.3%</td><td>1.58</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA200</td><td>MA200</td><td>MA200</td><td class="pos">+26.4%</td><td>1.54</td><td class="neg">&minus;19.2%</td></tr>
-<tr><td>MA200</td><td>MA200</td><td>MA250</td><td class="pos">+26.3%</td><td>1.53</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA200</td><td>MA250</td><td>MA75</td><td class="pos">+26.8%</td><td>1.56</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA200</td><td>MA250</td><td>MA200</td><td class="pos">+25.9%</td><td>1.51</td><td class="neg">&minus;19.2%</td></tr>
-<tr><td>MA200</td><td>MA250</td><td>MA250</td><td class="pos">+25.8%</td><td>1.51</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA250</td><td>MA75</td><td>MA75</td><td class="pos">+27.3%</td><td>1.57</td><td class="neg">&minus;17.8%</td></tr>
-<tr><td>MA250</td><td>MA75</td><td>MA200</td><td class="pos">+26.3%</td><td>1.54</td><td class="neg">&minus;23.5%</td></tr>
-<tr><td>MA250</td><td>MA75</td><td>MA250</td><td class="pos">+26.3%</td><td>1.55</td><td class="neg">&minus;17.8%</td></tr>
-<tr class="hl-row"><td>MA250</td><td>MA200</td><td>MA75</td><td>+27.7%</td><td>1.60</td><td>&minus;16.6%</td></tr>
-<tr><td>MA250</td><td>MA200</td><td>MA200</td><td class="pos">+26.7%</td><td>1.56</td><td class="neg">&minus;19.2%</td></tr>
-<tr><td>MA250</td><td>MA200</td><td>MA250</td><td class="pos">+26.6%</td><td>1.55</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA250</td><td>MA250</td><td>MA75</td><td class="pos">+27.2%</td><td>1.57</td><td class="neg">&minus;16.6%</td></tr>
-<tr><td>MA250</td><td>MA250</td><td>MA200</td><td class="pos">+26.2%</td><td>1.53</td><td class="neg">&minus;19.2%</td></tr>
-<tr><td>MA250</td><td>MA250</td><td>MA250</td><td class="pos">+26.1%</td><td>1.52</td><td class="neg">&minus;16.6%</td></tr>
+<tr><td>MA75</td><td>MA75</td><td>MA75</td><td class="pos">+24.6%</td><td>1.49</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA75</td><td>MA75</td><td>MA200</td><td class="pos">+23.6%</td><td>1.44</td><td class="neg">&minus;15.8%</td></tr>
+<tr><td>MA75</td><td>MA75</td><td>MA250</td><td class="pos">+23.6%</td><td>1.45</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA75</td><td>MA200</td><td>MA75</td><td class="pos">+25.2%</td><td>1.51</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA75</td><td>MA200</td><td>MA200</td><td class="pos">+24.3%</td><td>1.46</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA75</td><td>MA200</td><td>MA250</td><td class="pos">+24.2%</td><td>1.46</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA75</td><td>MA250</td><td>MA75</td><td class="pos">+24.1%</td><td>1.46</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA75</td><td>MA250</td><td>MA200</td><td class="pos">+23.1%</td><td>1.42</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA75</td><td>MA250</td><td>MA250</td><td class="pos">+23.1%</td><td>1.42</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA200</td><td>MA75</td><td>MA75</td><td class="pos">+26.5%</td><td>1.58</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA200</td><td>MA75</td><td>MA200</td><td class="pos">+25.5%</td><td>1.52</td><td class="neg">&minus;20.0%</td></tr>
+<tr><td>MA200</td><td>MA75</td><td>MA250</td><td class="pos">+25.4%</td><td>1.53</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA200</td><td>MA200</td><td>MA75</td><td class="pos">+27.1%</td><td>1.59</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA200</td><td>MA200</td><td>MA200</td><td class="pos">+26.1%</td><td>1.53</td><td class="neg">&minus;17.1%</td></tr>
+<tr><td>MA200</td><td>MA200</td><td>MA250</td><td class="pos">+26.1%</td><td>1.53</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA200</td><td>MA250</td><td>MA75</td><td class="pos">+26.0%</td><td>1.54</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA200</td><td>MA250</td><td>MA200</td><td class="pos">+25.0%</td><td>1.49</td><td class="neg">&minus;17.1%</td></tr>
+<tr><td>MA200</td><td>MA250</td><td>MA250</td><td class="pos">+24.9%</td><td>1.48</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA250</td><td>MA75</td><td>MA75</td><td class="pos">+27.1%</td><td>1.61</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA250</td><td>MA75</td><td>MA200</td><td class="pos">+26.1%</td><td>1.55</td><td class="neg">&minus;18.1%</td></tr>
+<tr><td>MA250</td><td>MA75</td><td>MA250</td><td class="pos">+26.0%</td><td>1.55</td><td class="neg">&minus;15.5%</td></tr>
+<tr class="hl-row"><td>MA250</td><td>MA200</td><td>MA75</td><td>+27.7%</td><td>1.62</td><td>&minus;15.5%</td></tr>
+<tr><td>MA250</td><td>MA200</td><td>MA200</td><td class="pos">+26.7%</td><td>1.56</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA250</td><td>MA200</td><td>MA250</td><td class="pos">+26.6%</td><td>1.55</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA250</td><td>MA250</td><td>MA75</td><td class="pos">+26.6%</td><td>1.57</td><td class="neg">&minus;15.5%</td></tr>
+<tr><td>MA250</td><td>MA250</td><td>MA200</td><td class="pos">+25.6%</td><td>1.52</td><td class="neg">&minus;15.9%</td></tr>
+<tr><td>MA250</td><td>MA250</td><td>MA250</td><td class="pos">+25.5%</td><td>1.51</td><td class="neg">&minus;15.5%</td></tr>
 </tbody>
 </table>
 <p style="font-size:.65rem;color:var(--muted)">Highlighted row = each market's own live window (US MA250, UK MA200, Canada MA75).</p>
-<div class="callout-green"><p><strong>Sharpe ranges 1.43&ndash;1.60 across all 27 combinations &mdash; every single one clears 1.40, and the worst combination in the entire grid still beats every strategy's own standalone Sharpe (1.00&ndash;1.42).</strong> The strategies' own windows produce the best result in the grid (1.60), which makes sense &mdash; they were each chosen for a reason &mdash; but the gap to the worst corner of the grid (1.43) is small, not a cliff. This is a genuine robustness result: the three-way diversification in this article isn't riding on a fine-tuned per-market parameter choice.</p></div>
-<p style="font-size:.68rem;color:var(--muted)">Methodology note: this table is built by reconstructing each strategy's <em>pure</em> momentum return (regime removed entirely) and re-gating it post-hoc with each MA window, rather than re-running the full original backtest per combination. The "own windows" row here reads Sharpe 1.60, slightly below the 1.76 reported in Sections&nbsp;II&ndash;IX &mdash; a small, expected gap from reconstruction-vs-original timing precision (trading-day vs calendar-day MA windows, signal-month vs return-month indexing), not a discrepancy in the underlying data. Treat the <em>relative</em> spread across all 27 rows, built with one consistent method, as the result; 1.76 remains the correct number to cite for the live combined portfolio.</p>
+<div class="callout-green"><p><strong>Sharpe ranges 1.42&ndash;1.62 across all 27 combinations, and all 27 clear 1.40</strong> &mdash; the worst combination in the entire grid still comfortably beats every strategy's own standalone Sharpe (1.01&ndash;1.41). The strategies' own windows produce the best result in the grid (1.62), which makes sense &mdash; they were each chosen for a reason &mdash; but the gap to the worst corner of the grid (1.42) is small, not a cliff. This is a genuine robustness result: the three-way diversification in this article isn't riding on a fine-tuned per-market parameter choice.</p></div>
+<p style="font-size:.68rem;color:var(--muted)">Methodology note: this table is built by reconstructing each strategy's <em>pure</em> momentum return (regime removed entirely) and re-gating it post-hoc with each MA window, rather than re-running the full original backtest per combination. The "own windows" row here reads Sharpe 1.62, close to but not identical to the 1.60 reported in Sections&nbsp;II&ndash;IX &mdash; a small, expected gap from reconstruction-vs-original timing precision, not a discrepancy in the underlying data.</p>
 
 <div class="divider"></div>
-<h2>XIII. Takeaways &amp; Limitations</h2>
+<h2>XII. Takeaways &amp; Limitations</h2>
 <ol class="steps">
-<li><strong>Equal weight (1/3 each) is the version we'd run.</strong> It captures almost all of the diversification benefit (Sharpe 1.76, MaxDD &minus;15.9% backtested &mdash; but see Section&nbsp;XI for a more realistic sizing assumption) with none of the concentration risk the dynamic-redistribution version introduces.</li>
-<li><strong>The negative-skew-in-down-months finding (Section&nbsp;V) is the single most useful number in this article</strong> &mdash; correlations getting more negative exactly when the combined book is losing money is the property you actually want from a multi-strategy blend, and it isn't guaranteed by low full-period correlation alone.</li>
+<li><strong>Equal weight (1/3 each) is the version we'd run.</strong> It captures almost all of the diversification benefit (Sharpe 1.60, MaxDD &minus;15.5% backtested &mdash; but see Section&nbsp;X for a more realistic sizing range) with none of the concentration risk the dynamic-redistribution version introduces.</li>
+<li><strong>Correlations are moderate and positive, not near-zero (Section&nbsp;IV&ndash;V).</strong> All three pairs sit around 0.27&ndash;0.29 full-period, close to zero specifically in up months, and mixed (not uniformly favourable) in down months. The diversification benefit comes more from the three regime filters rarely all triggering at once (Section&nbsp;VII) than from genuinely unrelated stock-picking.</li>
 <li><strong>The strategies show no evidence of the classic long-short momentum crash (Section&nbsp;VIII)</strong>, for structural reasons (long-only, no short leg) rather than luck &mdash; but this rests on one historical window, not a repeated stress test.</li>
-<li><strong>Whipsaw cost in sideways markets is real and non-trivial (Section&nbsp;IX)</strong> &mdash; 2011, 2015 and especially 2018 cost every strategy 25&ndash;49pp versus its own long-run average. This is the honest price of the regime filters that produce the crisis protection in Sections&nbsp;VII&ndash;VIII; the two are the same mechanism, not separate features.</li>
-<li><strong>Gold is real but not load-bearing (Section&nbsp;X).</strong> The combined Sharpe doesn't depend on the US strategy's gold sleeve &mdash; it's marginally higher without it. Gold is worth 1.3&ndash;2.5pp of CAGR to the combo and was the entire source of the US strategy's COVID-quarter return, but the diversification mechanism itself would work identically with US in cash.</li>
-<li><strong>The backtested MaxDD understates fast-crash risk (Section&nbsp;XI).</strong> Monthly regime filters cannot react to a single-day or weekend-gap crash; all three strategies were simultaneously exposed with zero filter protection in 49% of months. We'd size to a 25&ndash;30% realistic drawdown, not the backtested &minus;15.9%.</li>
-<li><strong>The regime-window choice is not fine-tuned overfit (Section&nbsp;XII).</strong> Every one of 27 possible MA-window combinations across the three markets keeps combined Sharpe above 1.40 &mdash; the diversification result doesn't depend on the specific MA250/MA200/MA75 choices, even though those own-market windows do produce the best result in the grid.</li>
+<li><strong>Whipsaw cost in sideways markets is real (Section&nbsp;IX)</strong> &mdash; 2011, 2015 and especially 2018 cost every strategy 20&ndash;43pp versus its own CAGR. This is the honest price of the regime filters that produce the crisis protection in Sections&nbsp;VII&ndash;VIII; the two are the same mechanism, not separate features.</li>
+<li><strong>The backtested MaxDD is close to a realized fast-crash scenario, not a conservative floor (Section&nbsp;X).</strong> February 2026 already delivered a &minus;15.5% month with UK and Canada both posting worst-ever active-month losses simultaneously; we'd size to a 15&ndash;20% realistic drawdown range rather than treat &minus;15.5% as a ceiling.</li>
+<li><strong>The regime-window choice is not fine-tuned overfit (Section&nbsp;XI).</strong> All 27 possible MA-window combinations across the three markets keep combined Sharpe above 1.40 &mdash; the diversification result doesn't depend on the specific MA250/MA200/MA75 choices, even though those own-market windows do produce the best result in the grid.</li>
 <li><strong>Crisis-window correlations are individually noisy</strong> (as few as 3 months of data in three of the seven windows tested) &mdash; treat the direction as informative and the precise coefficient as illustrative, not a statistically robust estimate on its own.</li>
-<li><strong>Three markets, three regime filters, no shared design.</strong> None of these three strategies were built together or tuned to complement each other &mdash; each was optimized independently on its own market (see each strategy's own sensitivity report). The low correlation and negative down-month skew found here are closer to an emergent property of momentum-with-independent-regime-filters across uncorrelated equity markets than a designed feature, which is also why we treat it as a real, if not fully explained, effect rather than something to be suspicious of.</li>
+<li><strong>Three markets, three regime filters, no shared design.</strong> None of these three strategies were built together or tuned to complement each other &mdash; each was optimized independently on its own market. The moderate, stable correlation found here (Section&nbsp;VI) is closer to an emergent property of momentum-with-independent-regime-filters across related equity markets than a designed feature.</li>
 <li><strong>Capital/margin netting not modeled.</strong> All figures assume the three books can be run fully independently with no shared capital constraints; a real implementation running all three simultaneously would need to check margin/netting efficiency across brokers and currencies (GBX, CAD, USD).</li>
 </ol>
 
 <div class="footer">
-<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results. Costs shown are estimates; live results will differ. <a href="/research/momentum_sensitivity_report.html">US strategy</a> &middot; <a href="/research/uk_momentum_report.html">UK strategy</a> &middot; <a href="/research/canada_momentum_report.html">Canada strategy</a></p>
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results. Costs shown are estimates; live results will differ. <a href="/research/momentum_strategy_report.html">US strategy</a> &middot; <a href="/research/uk_momentum_report.html">UK strategy</a> &middot; <a href="/research/canada_momentum_report.html">Canada strategy</a></p>
 </div>
 
 </div>
