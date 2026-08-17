@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-16",
-  "ytd_2026": -20.2,
+  "updated": "2026-08-17 23:31 UTC",
+  "ytd_2026": -33.49,
   "holdings": [
     {
       "ticker": "CMCX",
@@ -9,8 +9,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 667.0,
-      "current_price": 702.0,
-      "return_pct": 5.25
+      "current_price": 733.0,
+      "return_pct": 9.9
     },
     {
       "ticker": "AOTI",
@@ -18,8 +18,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 100.0,
-      "current_price": 100.0,
-      "return_pct": 0.0
+      "current_price": 114.0,
+      "return_pct": 14.0
     },
     {
       "ticker": "IOF",
@@ -27,8 +27,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 56.5,
-      "current_price": 52.2,
-      "return_pct": -7.61
+      "current_price": 52.5,
+      "return_pct": -7.08
     },
     {
       "ticker": "FERG",
@@ -45,8 +45,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 657.0,
-      "current_price": 666.5,
-      "return_pct": 1.45
+      "current_price": 680.0,
+      "return_pct": 3.5
     },
     {
       "ticker": "ENQ",
@@ -54,8 +54,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 23.9,
-      "current_price": 24.6,
-      "return_pct": 2.93
+      "current_price": 24.5,
+      "return_pct": 2.51
     },
     {
       "ticker": "GHH",
@@ -83,7 +83,7 @@
         "THX",
         "FDEV"
       ],
-      "return_pct": 11.74
+      "return_pct": 9.88
     },
     {
       "month": "Jan 2026",
@@ -100,7 +100,7 @@
         "DIA",
         "RSG"
       ],
-      "return_pct": 11.23
+      "return_pct": 11.14
     },
     {
       "month": "Feb 2026",
@@ -117,7 +117,7 @@
         "TKO",
         "PAF"
       ],
-      "return_pct": 7.73
+      "return_pct": 8.73
     },
     {
       "month": "Mar 2026",
@@ -134,7 +134,7 @@
         "FERG",
         "FRES"
       ],
-      "return_pct": -23.03
+      "return_pct": -30.93
     },
     {
       "month": "Apr 2026",
@@ -151,7 +151,7 @@
         "RSG",
         "SEPL"
       ],
-      "return_pct": 2.44
+      "return_pct": 0.86
     },
     {
       "month": "May 2026",
@@ -168,7 +168,7 @@
         "GTE",
         "HOC"
       ],
-      "return_pct": -1.45
+      "return_pct": -4.65
     },
     {
       "month": "Jun 2026",
@@ -185,7 +185,7 @@
         "TLW",
         "RPI"
       ],
-      "return_pct": -12.25
+      "return_pct": -14.91
     },
     {
       "month": "Jul 2026",
@@ -202,13 +202,13 @@
         "ENQ",
         "FTC"
       ],
-      "return_pct": -12.59
+      "return_pct": -14.08
     },
     {
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-16",
+      "end": "2026-08-17",
       "regime": "momentum",
       "tickers": [
         "CMCX",
@@ -219,7 +219,12 @@
         "ENQ",
         "GHH"
       ],
-      "return_pct": 0.2
+      "return_pct": 3.14
     }
-  ]
+  ],
+  "currency": "GBX",
+  "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
+  "ftse100": 10750.1,
+  "ftse100_ma200": 10279.86,
+  "regime": "risk-on"
 }
