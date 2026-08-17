@@ -217,7 +217,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <th>Name</th>
           <th>Sector</th>
           <th>Ret 6M</th>
-          <th>Ret 12M</th>
+          <th>Ret 9M</th>
           <th>Composite</th>
           <th>MCap (£B)</th>
           <th>EBIT (£M)</th>
@@ -378,9 +378,9 @@ async function loadData() {
     let cls = '', status = '';
     if (s.selected) { cls = 'selected'; status = '<span class="tag-selected">SELECTED</span>'; }
     const retCls6 = s.ret_6m >= 0 ? 'pos' : 'neg';
-    const retCls12 = s.ret_12m >= 0 ? 'pos' : 'neg';
+    const retCls9 = s.ret_9m >= 0 ? 'pos' : 'neg';
     const compCls = s.composite >= 0 ? 'pos' : 'neg';
-    return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td><td>${s.ebit_m.toLocaleString()}</td></tr>`;
+    return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls9}">${s.ret_9m > 0 ? '+' : ''}${s.ret_9m}%</td><td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td><td>${s.ebit_m.toLocaleString()}</td></tr>`;
   }).join('');
 }
 
