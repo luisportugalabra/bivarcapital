@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-08-03",
-  "updated": "2026-08-17 23:31 UTC",
+  "updated": "2026-08-18 23:30 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1786.85,
-      "return_pct": 549.2
+      "current_price": 1625.78,
+      "return_pct": 490.68
     },
     {
       "ticker": "MU",
@@ -17,8 +17,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 1011.75,
-      "return_pct": 86.62
+      "current_price": 940.76,
+      "return_pct": 73.53
     },
     {
       "ticker": "WDC",
@@ -26,8 +26,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 187.56,
-      "current_price": 536.01,
-      "return_pct": 185.78
+      "current_price": 496.16,
+      "return_pct": 164.53
     },
     {
       "ticker": "LITE",
@@ -35,8 +35,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 968.9,
-      "return_pct": 150.94
+      "current_price": 873.31,
+      "return_pct": 126.18
     },
     {
       "ticker": "BE",
@@ -44,8 +44,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-03-02",
       "entry_price": 166.0,
-      "current_price": 232.16,
-      "return_pct": 39.86
+      "current_price": 209.01,
+      "return_pct": 25.91
     },
     {
       "ticker": "STX",
@@ -53,8 +53,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-04-01",
       "entry_price": 422.82,
-      "current_price": 994.79,
-      "return_pct": 135.28
+      "current_price": 903.68,
+      "return_pct": 113.73
     },
     {
       "ticker": "VSAT",
@@ -62,12 +62,12 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-08-03",
       "entry_price": 81.29,
-      "current_price": 81.41,
-      "return_pct": 0.15
+      "current_price": 76.07,
+      "return_pct": -6.42
     }
   ],
   "pending_signal": null,
-  "ytd_2026": 233.51,
+  "ytd_2026": 205.12,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -185,7 +185,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-17",
+      "end": "2026-08-18",
       "tickers": [
         "SNDK",
         "MU",
@@ -195,7 +195,7 @@
         "STX",
         "VSAT"
       ],
-      "return_pct": 19.85
+      "return_pct": 9.64
     }
   ]
 }
