@@ -1,101 +1,101 @@
 {
   "last_rebalance": "2026-08-04",
-  "updated": "2026-08-18",
-  "ytd_2026": 16.08,
+  "updated": "2026-08-19",
+  "ytd_2026": 15.81,
   "regime": "momentum",
   "currency": "CAD",
-  "tsx": 36367.9,
-  "tsx_ma75": 34962.8,
+  "tsx": 36401.8,
+  "tsx_ma75": 35000.3,
   "holdings": [
     {
       "ticker": "ALS",
       "name": "Altius Minerals Corporation",
       "entry_date": "2026-08-04",
       "entry_price": 60.28,
-      "current_price": 61.5,
+      "current_price": 62.32,
       "weight": 0.0667,
-      "return_pct": 2.02
+      "return_pct": 3.38
     },
     {
       "ticker": "BK",
       "name": "Canadian Banc Corp",
       "entry_date": "2026-08-04",
       "entry_price": 17.05,
-      "current_price": 16.98,
+      "current_price": 16.83,
       "weight": 0.0667,
-      "return_pct": -0.41
+      "return_pct": -1.29
     },
     {
       "ticker": "CEU",
       "name": "CES Energy Solutions Corp",
       "entry_date": "2026-08-04",
       "entry_price": 16.63,
-      "current_price": 19.1,
+      "current_price": 18.54,
       "weight": 0.0667,
-      "return_pct": 14.85
+      "return_pct": 11.49
     },
     {
       "ticker": "CVE",
       "name": "Cenovus Energy Inc",
       "entry_date": "2026-08-04",
       "entry_price": 40.38,
-      "current_price": 45.22,
+      "current_price": 44.83,
       "weight": 0.0667,
-      "return_pct": 11.99
+      "return_pct": 11.02
     },
     {
       "ticker": "EIF",
       "name": "Exchange Income Corporation",
       "entry_date": "2026-08-04",
       "entry_price": 129.06,
-      "current_price": 131.55,
+      "current_price": 129.21,
       "weight": 0.0667,
-      "return_pct": 1.93
+      "return_pct": 0.12
     },
     {
       "ticker": "EXE",
       "name": "Extendicare Inc",
       "entry_date": "2026-08-04",
       "entry_price": 34.51,
-      "current_price": 32.06,
+      "current_price": 31.39,
       "weight": 0.0667,
-      "return_pct": -7.1
+      "return_pct": -9.04
     },
     {
       "ticker": "FTN",
       "name": "Financial 15 Split Corp",
       "entry_date": "2026-08-04",
       "entry_price": 12.77,
-      "current_price": 11.88,
+      "current_price": 11.66,
       "weight": 0.0667,
-      "return_pct": -6.97
+      "return_pct": -8.69
     },
     {
       "ticker": "IGM",
       "name": "IGM Financial Inc.",
       "entry_date": "2026-08-04",
       "entry_price": 90.93,
-      "current_price": 88.25,
+      "current_price": 87.38,
       "weight": 0.0667,
-      "return_pct": -2.95
+      "return_pct": -3.9
     },
     {
       "ticker": "LBS",
       "name": "Life & Banc Split Corp",
       "entry_date": "2026-08-04",
       "entry_price": 13.41,
-      "current_price": 13.06,
+      "current_price": 12.56,
       "weight": 0.0667,
-      "return_pct": -2.61
+      "return_pct": -6.34
     },
     {
       "ticker": "MTL",
       "name": "Mullen Group Ltd.",
       "entry_date": "2026-08-04",
       "entry_price": 27.28,
-      "current_price": 26.23,
+      "current_price": 25.97,
       "weight": 0.0667,
-      "return_pct": -3.85
+      "return_pct": -4.8
     },
     {
       "ticker": "QRC",
@@ -111,36 +111,36 @@
       "name": "Rubellite Energy Inc",
       "entry_date": "2026-08-04",
       "entry_price": 4.35,
-      "current_price": 4.4,
+      "current_price": 4.6,
       "weight": 0.0667,
-      "return_pct": 1.15
+      "return_pct": 5.75
     },
     {
       "ticker": "SBC",
       "name": "Brompton Split Banc Corp",
       "entry_date": "2026-08-04",
       "entry_price": 13.67,
-      "current_price": 13.59,
+      "current_price": 13.06,
       "weight": 0.0667,
-      "return_pct": -0.59
+      "return_pct": -4.46
     },
     {
       "ticker": "TOT",
       "name": "Total Energy Services Inc.",
       "entry_date": "2026-08-04",
       "entry_price": 23.3,
-      "current_price": 30.73,
+      "current_price": 30.08,
       "weight": 0.0667,
-      "return_pct": 31.89
+      "return_pct": 29.1
     },
     {
       "ticker": "TVE",
       "name": "Tamarack Valley Energy Ltd",
       "entry_date": "2026-08-04",
       "entry_price": 13.17,
-      "current_price": 13.79,
+      "current_price": 13.57,
       "weight": 0.0667,
-      "return_pct": 4.71
+      "return_pct": 3.04
     }
   ],
   "monthly_breakdown": [
@@ -394,7 +394,7 @@
         "NVEI",
         "BDT"
       ],
-      "return_pct": 16.27
+      "return_pct": 16.82
     },
     {
       "month": "Nov 2024",
@@ -413,7 +413,7 @@
         "GLXY",
         "ATZ"
       ],
-      "return_pct": 3.27
+      "return_pct": 1.65
     },
     {
       "month": "Dec 2024",
@@ -943,7 +943,7 @@
         "TVE": 0.0667,
         "VBNK": 0.0667
       },
-      "return_pct": -0.11
+      "return_pct": -0.34
     },
     {
       "month": "Aug 2026",
@@ -985,7 +985,7 @@
         "TOT": 0.0667,
         "TVE": 0.0667
       },
-      "return_pct": 2.73
+      "return_pct": 1.48
     }
   ],
   "tsx_annual": {
