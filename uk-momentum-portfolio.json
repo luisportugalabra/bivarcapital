@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-19 23:31 UTC",
-  "ytd_2026": -32.75,
+  "updated": "2026-08-20 23:34 UTC",
+  "ytd_2026": -32.1,
   "holdings": [
     {
       "ticker": "CMCX",
@@ -18,8 +18,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 100.0,
-      "current_price": 130.0,
-      "return_pct": 30.0
+      "current_price": 134.0,
+      "return_pct": 34.0
     },
     {
       "ticker": "IOF",
@@ -45,8 +45,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 657.0,
-      "current_price": 607.0,
-      "return_pct": -7.61
+      "current_price": 593.0,
+      "return_pct": -9.74
     },
     {
       "ticker": "ENQ",
@@ -54,8 +54,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 23.9,
-      "current_price": 26.1,
-      "return_pct": 9.21
+      "current_price": 27.5,
+      "return_pct": 14.85
     },
     {
       "ticker": "GHH",
@@ -63,8 +63,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 1220.0,
-      "current_price": 1210.0,
-      "return_pct": -0.82
+      "current_price": 1205.0,
+      "return_pct": -1.23
     }
   ],
   "monthly_breakdown": [
@@ -208,7 +208,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-19",
+      "end": "2026-08-20",
       "regime": "momentum",
       "tickers": [
         "CMCX",
@@ -219,12 +219,12 @@
         "ENQ",
         "GHH"
       ],
-      "return_pct": 4.29
+      "return_pct": 5.3
     }
   ],
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
-  "ftse100": 10728.0,
-  "ftse100_ma200": 10275.02,
+  "ftse100": 10743.4,
+  "ftse100_ma200": 10294.92,
   "regime": "risk-on"
 }
