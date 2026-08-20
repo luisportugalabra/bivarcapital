@@ -57,6 +57,7 @@ h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin
 }
 .badge-live { color: var(--green); background: rgba(74,222,128,0.1); }
 .badge-soon { color: var(--accent); background: rgba(196,162,101,0.1); }
+.badge-beta { color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); }
 .card-desc { color: var(--text-secondary); font-size: 0.84rem; margin-bottom: 14px; }
 .card-stats { display: flex; gap: 20px; flex-wrap: wrap; }
 .card-stat { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
@@ -215,17 +216,16 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <!-- DENMARK MOMENTUM CARD — hidden, re-enable when ready
     <div class="strategy-card" id="denmark-momentum-card">
       <div class="card-header">
-        <div class="card-title">Denmark Momentum</div>
-        <span class="card-badge badge-live">Live</span>
+        <div class="card-title">Beta &mdash; Denmark Momentum</div>
+        <span class="card-badge badge-beta">Beta</span>
       </div>
-      <p id="denmark-momentum-blur" class="card-desc">6M+12M momentum strategy on Nasdaq Copenhagen equities. Market cap &gt;700M DKK, OMXC25 MA100 regime overlay. Monthly rebalance, 10 stocks inverse-vol weighted.</p>
+      <p id="denmark-momentum-blur" class="card-desc">6M+12M momentum strategy on Nasdaq Copenhagen equities. Market cap &gt;700M DKK, EBIT&gt;0, synthetic index MA100 regime overlay. Monthly rebalance, 10 stocks inverse-vol weighted. Beta: launched but not yet reviewed to the same depth as the site's Live strategies &mdash; transaction costs not yet modeled.</p>
       <div class="card-stats" id="denmark-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">1.45</span></span>
-        <span class="card-stat">CAGR: <span class="num">+20.3%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-22.0%</span></span>
+        <span class="card-stat">Sharpe: <span class="num">1.11</span></span>
+        <span class="card-stat">CAGR: <span class="num">+17.5%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-34.6%</span></span>
         <span class="card-stat"><span class="num">2001&ndash;2026</span></span>
       </div>
       <div style="margin-top:14px">
@@ -236,7 +236,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
     </div>
-    END DENMARK CARD -->
 
     <!-- CHINA MOMENTUM CARD — hidden, re-enable when ready
     <div class="strategy-card" id="china-momentum-card">
@@ -453,7 +452,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 </div>
 END CHINA MODAL -->
 
-<!-- MODAL: Denmark Momentum — hidden, re-enable when ready (card is already hidden above; modal was left active by mistake)
+<!-- MODAL: Denmark Momentum -->
 <div class="modal-overlay" id="modal-denmark-mom" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal-denmark-mom').classList.remove('open')">&times;</button>
@@ -472,7 +471,6 @@ END CHINA MODAL -->
     </div>
   </div>
 </div>
-END DENMARK MODAL -->
 
 <!-- MODAL: Canada TSX Momentum -->
 <div class="modal-overlay" id="modal-canada-mom" onclick="if(event.target===this)this.classList.remove('open')">
@@ -549,12 +547,11 @@ window.onUnlock = function(email) {
   document.getElementById('canada-momentum-stats').style.filter = 'none';
   document.getElementById('canada-momentum-stats').style.userSelect = 'auto';
   document.getElementById('canada-momentum-actions').innerHTML = '<a href="/canada-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
-  // DENMARK — re-enable when adding card back
-  // document.getElementById('denmark-momentum-blur').style.filter = 'none';
-  // document.getElementById('denmark-momentum-blur').style.userSelect = 'auto';
-  // document.getElementById('denmark-momentum-stats').style.filter = 'none';
-  // document.getElementById('denmark-momentum-stats').style.userSelect = 'auto';
-  // document.getElementById('denmark-momentum-actions').innerHTML = '<a href="/denmark-momentum.html" ...>View live signal &rarr;</a>';
+  document.getElementById('denmark-momentum-blur').style.filter = 'none';
+  document.getElementById('denmark-momentum-blur').style.userSelect = 'auto';
+  document.getElementById('denmark-momentum-stats').style.filter = 'none';
+  document.getElementById('denmark-momentum-stats').style.userSelect = 'auto';
+  document.getElementById('denmark-momentum-actions').innerHTML = '<a href="/denmark-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/denmark_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   // CHINA — re-enable when adding card back
   // document.getElementById('china-momentum-blur').style.filter = 'none';
   // document.getElementById('china-momentum-blur').style.userSelect = 'auto';

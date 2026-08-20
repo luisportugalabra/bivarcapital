@@ -4,11 +4,16 @@ Denmark Momentum Signal Generator
 Uses TradingView Screener exclusively — no EODHD, no yfinance.
 
 Strategy:
-  - Universe: Nasdaq Copenhagen (denmark market on TV), mcap > 700M DKK
+  - Universe: Nasdaq Copenhagen (denmark market on TV), mcap > 700M DKK, EBIT > 0
   - Signal: 50% Perf.6M + 50% Perf.Y (matches TV data exactly)
   - Select top 10 by composite
   - Regime: synthetic cap-weighted index vs SMA100 (built from TV data)
   - Monthly rebalance, InvVol weighting approximated by equal weight (TV has no vol history)
+
+BETA (2026-08-20): EBIT>0 filter added. From-scratch backtest audit found the
+originally published report's headline (CAGR 20.3%/Sharpe 1.45/MaxDD -22.0%)
+could not be reproduced — real number is closer to CAGR 17-18%/Sharpe 1.1-1.2.
+See ~/.claude memory project_denmark_momentum.md for the full writeup.
 
 Saves:
   - denmark-momentum-data.json
@@ -64,7 +69,7 @@ def fetch_denmark():
     print("Fetching TradingView data (Denmark)...")
     _, df = (Query()
         .select('name', 'market_cap_basic', 'Perf.6M', 'Perf.Y',
-                'close', 'SMA100', 'volume')
+                'close', 'SMA100', 'volume', 'oper_income_ttm')
         .set_markets('denmark')
         .order_by('market_cap_basic', ascending=False)
         .limit(500)
@@ -80,6 +85,10 @@ def fetch_denmark():
     # Market cap filter
     df = df[df['market_cap_basic'] >= MCAP_MIN_DKK].copy()
     print(f"  After mcap filter (>700M DKK): {len(df)}")
+
+    # Profitability filter (EBIT > 0) — added 2026-08-20, matches UK/USA config
+    df = df[df['oper_income_ttm'] > 0].copy()
+    print(f"  After EBIT filter (>0): {len(df)}")
 
     # Drop missing momentum
     df = df.dropna(subset=['Perf.6M', 'Perf.Y']).copy()
