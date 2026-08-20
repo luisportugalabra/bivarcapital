@@ -72,6 +72,17 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 </tbody>
 </table>
 <p>Textbook diversification: Sharpe rises and CAGR fades as the portfolio dilutes toward the market, from N=10 through N=25. Drawdown improves sharply between N=10 and N=15 (&minus;37% &rarr; &minus;26%) and keeps improving more gradually after that. There's no "right" N, just a return/drawdown trade you pick a point on. <strong>N=15</strong> was chosen deliberately over N=25: it preserves more of the concentrated small-cap return, at the cost of lower Sharpe and a somewhat rougher ride.</p>
+<p style="font-size:.68rem;color:var(--muted);margin-top:6px">The table above uses this article's 20bps cost baseline (see caveat at the top of this page). Re-run 2026-08-20 under the <strong>current live 40bps real-IBKR-spread cost model</strong> (matching today's <a href="/research/canada_momentum_report.html" style="color:var(--accent)">strategy report</a> exactly), extended down to N=5/7, same MA75/12M-no-skip/P30-mcap/vol-excl-25%/equal-weight config:</p>
+<table>
+<thead><tr><th>N</th><th>Sharpe</th><th>CAGR</th><th>MaxDD</th><th>Sortino</th><th>Turnover/mo</th></tr></thead>
+<tbody>
+<tr><td>5</td><td>1.141</td><td class="pos">+35.4%</td><td class="neg">&minus;42.2%</td><td>2.22</td><td>42.4%</td></tr>
+<tr><td>7</td><td>1.239</td><td class="pos">+36.9%</td><td class="neg">&minus;39.8%</td><td>2.43</td><td>39.2%</td></tr>
+<tr><td>10</td><td>1.283</td><td class="pos">+34.5%</td><td class="neg">&minus;37.2%</td><td>2.54</td><td>35.7%</td></tr>
+<tr class="hl-row"><td>15 (live)</td><td>1.317</td><td class="pos">+31.9%</td><td class="neg">&minus;26.3%</td><td>2.72</td><td>33.0%</td></tr>
+</tbody>
+</table>
+<p style="font-size:.68rem;color:var(--muted)">N=15's Sharpe/Sortino/MaxDD edge over N=5&ndash;10 is even more pronounced under real costs than under the old 20bps assumption &mdash; the smaller portfolios' higher turnover (39&ndash;42%/mo vs 33%/mo) eats more of their extra CAGR once trading costs reflect actual IBKR spreads.</p>
 
 <div class="divider"></div>
 <h2>III. Regime Filter Window</h2>
