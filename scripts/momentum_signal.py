@@ -226,18 +226,35 @@ def main():
 
     if is_new_month:
         if pending_signal and pending_signal.get('for_month') == current_month:
-            print(f"  Portfolio: new month ({current_month}), executing signal locked in on "
-                  f"{pending_signal.get('computed_date')}...")
-            exec_picks  = pending_signal['picks']  # [{ticker, name, sector}, ...]
-            exec_tickers = [p['ticker'] for p in exec_picks]
-            exec_name_map   = {p['ticker']: p['name']   for p in exec_picks}
-            exec_sector_map = {p['ticker']: p['sector'] for p in exec_picks}
+            # Regime is decided at signal lock-in time (T), same convention
+            # as the backtest (regime known at T gates the T->T+1 period) —
+            # not today's regime, which describes a different day.
+            pending_regime_ok = pending_signal.get('regime_ok', True)
+            if pending_regime_ok:
+                print(f"  Portfolio: new month ({current_month}), executing signal locked in on "
+                      f"{pending_signal.get('computed_date')}...")
+                exec_picks  = pending_signal['picks']  # [{ticker, name, sector}, ...]
+                exec_tickers = [p['ticker'] for p in exec_picks]
+                exec_name_map   = {p['ticker']: p['name']   for p in exec_picks}
+                exec_sector_map = {p['ticker']: p['sector'] for p in exec_picks}
+            else:
+                print(f"  Portfolio: new month ({current_month}), regime was CASH when signal was "
+                      f"locked in on {pending_signal.get('computed_date')} — moving to cash...")
+                exec_tickers    = []
+                exec_name_map   = {}
+                exec_sector_map = {}
         else:
             print(f"  Portfolio: new month ({current_month}), no pending end-of-month signal found "
                   f"— falling back to today's data...")
-            exec_tickers    = sel7
-            exec_name_map   = name_map
-            exec_sector_map = sector_map
+            if regime_ok:
+                exec_tickers    = sel7
+                exec_name_map   = name_map
+                exec_sector_map = sector_map
+            else:
+                print(f"  Regime is CASH — moving to cash instead of today's data...")
+                exec_tickers    = []
+                exec_name_map   = {}
+                exec_sector_map = {}
 
         # Log the executed picks (not today's raw signal) so YTD history
         # reflects what was actually bought
@@ -305,13 +322,14 @@ def main():
         new_pending_signal = {
             'for_month':     next_month_str,
             'computed_date': output['date'],
+            'regime_ok':     regime_ok,
             'picks': [
                 {'ticker': tk, 'name': name_map.get(tk, tk), 'sector': sector_map.get(tk, '')}
                 for tk in sel7
             ],
         }
         print(f"  Today ({output['date']}) is the last trading day of the month — "
-              f"locked in signal for {next_month_str}: {sel7}")
+              f"locked in signal for {next_month_str} (regime={'MOMENTUM' if regime_ok else 'CASH'}): {sel7}")
     elif is_new_month:
         # Rollover happened this run (matched or fallback) — any pending
         # signal is now consumed or stale either way, clear it
