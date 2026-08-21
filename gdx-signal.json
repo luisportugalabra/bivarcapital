@@ -1,11 +1,11 @@
 {
-  "week": "2026-08-14",
-  "gdx_close": 89.97,
-  "gdx_prev_close": 88.27,
-  "gdx_weekly_ret": 1.93,
+  "week": "2026-08-21",
+  "gdx_close": 102.83,
+  "gdx_prev_close": 99.85,
+  "gdx_weekly_ret": 2.98,
   "threshold": 2.0,
-  "signal": "CASH",
-  "gold_price": 4432.0,
-  "silver_price": 64.825,
-  "updated": "2026-08-14T22:27:37.517398+00:00"
+  "signal": "BUY",
+  "gold_price": 4661.6,
+  "silver_price": 69.01,
+  "updated": "2026-08-21T22:29:02.460680+00:00"
 }
