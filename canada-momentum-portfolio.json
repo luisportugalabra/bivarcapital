@@ -4,26 +4,26 @@
   "ytd_2026": -6.53,
   "regime": "momentum",
   "currency": "CAD",
-  "tsx": 36365.4,
-  "tsx_ma75": 35102.1,
+  "tsx": 36620.2,
+  "tsx_ma75": 35142.8,
   "holdings": [
     {
       "ticker": "LCFS",
       "name": "LCFS",
       "entry_date": "2026-08-20",
       "entry_price": 20.0,
-      "current_price": 19.95,
+      "current_price": 19.61,
       "weight": 0.1,
-      "return_pct": -0.25
+      "return_pct": -1.95
     },
     {
       "ticker": "LGD",
       "name": "LGD",
       "entry_date": "2026-08-20",
       "entry_price": 1.93,
-      "current_price": 1.945,
+      "current_price": 1.93,
       "weight": 0.1,
-      "return_pct": 0.78
+      "return_pct": 0.0
     },
     {
       "ticker": "ORV",
@@ -39,63 +39,63 @@
       "name": "ARG",
       "entry_date": "2026-08-20",
       "entry_price": 7.56,
-      "current_price": 7.92,
+      "current_price": 8.06,
       "weight": 0.1,
-      "return_pct": 4.76
+      "return_pct": 6.61
     },
     {
       "ticker": "CG",
       "name": "CG",
       "entry_date": "2026-08-20",
       "entry_price": 32.44,
-      "current_price": 32.7,
+      "current_price": 32.69,
       "weight": 0.1,
-      "return_pct": 0.8
+      "return_pct": 0.77
     },
     {
       "ticker": "CVVY",
       "name": "CVVY",
       "entry_date": "2026-08-20",
       "entry_price": 1.83,
-      "current_price": 1.83,
+      "current_price": 1.87,
       "weight": 0.1,
-      "return_pct": 0.0
+      "return_pct": 2.19
     },
     {
       "ticker": "AYA",
       "name": "AYA",
       "entry_date": "2026-08-20",
       "entry_price": 37.09,
-      "current_price": 37.13,
+      "current_price": 36.66,
       "weight": 0.1,
-      "return_pct": 0.11
+      "return_pct": -1.16
     },
     {
       "ticker": "DSV",
       "name": "DSV",
       "entry_date": "2026-08-20",
       "entry_price": 12.05,
-      "current_price": 12.12,
+      "current_price": 11.87,
       "weight": 0.1,
-      "return_pct": 0.58
+      "return_pct": -1.49
     },
     {
       "ticker": "CGG",
       "name": "CGG",
       "entry_date": "2026-08-20",
       "entry_price": 44.11,
-      "current_price": 45.75,
+      "current_price": 46.27,
       "weight": 0.1,
-      "return_pct": 3.72
+      "return_pct": 4.9
     },
     {
       "ticker": "BDT",
       "name": "BDT",
       "entry_date": "2026-08-20",
       "entry_price": 69.83,
-      "current_price": 70.86,
+      "current_price": 69.0,
       "weight": 0.1,
-      "return_pct": 1.48
+      "return_pct": -1.19
     }
   ],
   "monthly_breakdown": [
@@ -284,7 +284,7 @@
         "ARE",
         "QBTC"
       ],
-      "return_pct": 5.48
+      "return_pct": 5.52
     },
     {
       "month": "Jul 2024",
@@ -330,7 +330,7 @@
         "HPS-A",
         "HRX"
       ],
-      "return_pct": 9.54
+      "return_pct": 9.6
     },
     {
       "month": "Oct 2024",
@@ -387,7 +387,7 @@
         "VHI",
         "CEU"
       ],
-      "return_pct": -1.09
+      "return_pct": -1.06
     },
     {
       "month": "Jan 2025",
@@ -867,7 +867,7 @@
         "CGG": 0.1,
         "BDT": 0.1
       },
-      "return_pct": 1.32,
+      "return_pct": 0.99,
       "config_version": "v3-netincome-2026-08-21"
     }
   ],
