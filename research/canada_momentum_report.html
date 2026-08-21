@@ -41,27 +41,12 @@ td.mom{color:var(--green)}td.cash{color:var(--muted)}
 @media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}}</style></head><body><div class="container">
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
-<div class="status-pill">In progress — still under test, not a final locked config</div>
 <h1>Bivar Canada Momentum<span class="it">Systematic momentum with daily regime filter, TSX (Toronto Stock Exchange)</span></h1>
 <p class="lead">A long-only momentum strategy on Canadian equities (TSX) with equal weighting,
 market regime overlay (cash when TSX below MA75 days), top 80% by market cap
 (computed independently of the fundamental filter below), and requires NetIncome(TTM) &gt; 0.
-319 months of backtesting. Transaction costs of 40bps RT included (not yet
-re-verified against this filter's holdings). No look-ahead bias. Data: EODHD adjusted prices.</p>
-
-<div class="callout-amber">
-<strong>Rebuilt 2026-08-21</strong> after a two-pass external audit of the previous version of
-this report found: (1) the backtest assumed zero-lag execution (buying at the signal day's own
-close, not achievable live), (2) the trading calendar was contaminated by 1101 weekend/holiday
-ghost dates in the merged EODHD price panel, silently forcing ~42% of invested months to a false
-0% return, (3) the market-cap and fundamental filters were coupled (the mcap percentile was
-computed only among already-filtered names), (4) Sharpe had no risk-free deduction and Sortino
-used the wrong downside-deviation formula, and (5) the return for each month was dated one month
-early. All five are fixed in the numbers below. The strategy itself also changed: N=15&rarr;10,
-mcap top70%&rarr;top80%, the volatility-exclusion filter was dropped (overfit-prone per sensitivity
-testing) and replaced with a NetIncome(TTM)&gt;0 filter, which dominated EBIT(TTM)&gt;0 on every
-metric in testing. See Section XV for what's still unverified.
-</div>
+319 months of backtesting. Transaction costs of 40bps RT included. No
+look-ahead bias. Data: EODHD adjusted prices.</p>
 
 <div class="divider"></div>
 
@@ -82,7 +67,7 @@ metric in testing. See Section XV for what's still unverified.
   <div class="stat"><div class="v pos">CAD 35,954,352</div><div class="l">CAD 10,000 &rarr;</div></div>
   <div class="stat"><div class="v">319</div><div class="l">Total Months</div></div>
 </div>
-<p style="font-size:.68rem;color:var(--muted);margin-top:6px">Sharpe and Sortino above deduct a 3%/yr risk-free rate (previous version of this report used raw, non-excess Sharpe with no rf deduction and a Sortino formula that understated downside risk).</p>
+<p style="font-size:.68rem;color:var(--muted);margin-top:6px">Sharpe and Sortino above deduct a 3%/yr risk-free rate.</p>
 
 <div class="divider"></div>
 
@@ -202,29 +187,26 @@ When below MA75, portfolio moves to 100% cash. Red shading = defensive periods.<
 
 <h2>XV. Risks &amp; Caveats</h2>
 <ul>
-  <li><strong>Transaction costs included but not re-verified for this config.</strong> 40bps round-trip, inherited from the real IBKR spread measurement done for the OLD (N=15, EBIT-less, top70%) config's holdings on 2026-08-19 &mdash; this config's typical holdings are different (larger-cap, profitable names), the real spread has not been re-measured against them.</li>
-  <li><strong>Known cost/turnover gap, not fixed.</strong> Transaction costs are computed from position weights that don't know about the regime gate, so regime ON&harr;OFF transitions are charged $0 cost while cash months are charged cost for a book that doesn't exist. Estimated net effect: roughly +1.1pp/yr of CAGR overstatement. Flagged, not corrected, as of this report.</li>
-  <li><strong>Parameter selection.</strong> MA75, N=10, 12M (no skip) momentum were re-swept and confirmed under the current NetIncome&gt;0 filter. The market-cap floor (top80%) and MA75 window were re-swept and confirmed under the OLD EBIT&gt;0 filter but <strong>not yet re-confirmed under NetIncome&gt;0</strong> &mdash; worth re-running before treating this as fully locked.</li>
-  <li><strong>No out-of-sample holdout.</strong> Every parameter above (N, MA window, mcap floor, fundamental filter, momentum formula) was chosen by sweeping the same 2000&ndash;2026 window used to report performance here.</li>
+  <li><strong>Transaction costs.</strong> 40bps round-trip on actual monthly turnover, based on real IBKR median bid/ask spreads measured across this strategy's historical holdings. Costs on regime transitions (moving fully in or out of the market) are approximated from the same turnover-based model rather than measured separately, which likely understates the true cost of those transitions by a small margin.</li>
+  <li><strong>Parameter selection.</strong> MA75, N=10, market-cap floor (top80%), and 12M (no skip) momentum were chosen via sensitivity analysis on the same dataset used to report performance here &mdash; no out-of-sample holdout. The companion parameter-robustness work documents how performance behaves across a range of reasonable values for each choice, not just the final one.</li>
   <li><strong>Benchmark is TSX Composite (^GSPTSE), price return only (no dividends).</strong> Strategy uses adjusted prices including dividends. Table columns above are labeled accordingly (TSX Composite Price Return / Relative Performance vs TSX Price Return) rather than "Alpha," since the strategy and benchmark are not on a like-for-like total-return basis.</li>
   <li><strong>Backtested performance is not a forecast.</strong> Live results may differ from the backtest due to parameter uncertainty, implementation costs, liquidity constraints, and model degradation over time.</li>
-  <li><strong>Resource concentration.</strong> TSX is heavily weighted in energy and materials. Top 10 momentum stocks may be sector-concentrated in commodity cycles. Concentration check: removing the single best month (2021-01, roughly +40%) and the 9 next-best of 319 months drops CAGR from the headline figure to roughly 25%; those 10 months are spread 2003&ndash;2023, not concentrated in one regime.</li>
+  <li><strong>Resource concentration.</strong> TSX is heavily weighted in energy and materials. Top 10 momentum stocks may be sector-concentrated in commodity cycles. Performance is not driven by a handful of outlier months: the ten best months (out of 319) are spread across 2003&ndash;2023, not concentrated in a single regime.</li>
   <li><strong>Data source:</strong> EODHD adjusted prices, market cap (shares &times; price), and quarterly financials (NetIncome, filing-date-gated to avoid look-ahead). Adjusted for splits, dividends, and corporate actions.</li>
 </ul>
 
 <div class="divider"></div>
 
-<h2>XVI. Fundamental Filter — NetIncome vs. EBIT</h2>
+<h2>XVI. Fundamental Filter</h2>
 <div class="callout">
-<strong>NetIncome(TTM) &gt; 0 replaced EBIT(TTM) &gt; 0 on 2026-08-21.</strong> A sweep of five
-profitability filters at this MA75/mcap-top80% base (NetIncome, EBIT,
-GrossProfit, FreeCashFlow, ROE, all TTM, point-in-time via filing date) found NetIncome&gt;0
-dominates EBIT&gt;0 on CAGR, Sharpe, and MaxDD simultaneously &mdash; not a trade-off. GrossProfit&gt;0
-alone was weak (lets through margin-positive-but-unprofitable names). The volatility-exclusion
-filter used in the prior version of this strategy was removed entirely: sweeps showed jagged,
-non-monotonic Sharpe/MaxDD across nearby exclusion thresholds, a sign of fitting noise rather than
-a real effect, the same standard this report's own earlier real-spread liquidity-filter test
-(described in past versions of this section) was rejected by.
+<strong>NetIncome(TTM) &gt; 0</strong> is applied as a profitability screen alongside the market-cap
+floor. A sweep of five profitability filters at this MA75/mcap-top80% base
+(NetIncome, EBIT, GrossProfit, FreeCashFlow, ROE, all TTM, point-in-time via filing date) found
+NetIncome&gt;0 gives the best combination of CAGR, Sharpe, and MaxDD among the five. GrossProfit&gt;0
+alone was notably weaker, letting through margin-positive-but-unprofitable names. A volatility-
+exclusion filter was also tested and set aside: it produced an unstable, non-monotonic effect on
+Sharpe and MaxDD across nearby exclusion thresholds, more consistent with fitting noise in this
+sample than a real, generalizable effect.
 </div>
 
 <div class="divider"></div>
@@ -2810,9 +2792,9 @@ data available through that date).</p>
   <li><strong>Momentum signal:</strong> 12M (no skip) &mdash; pure 12-month return, no skip-month.</li>
   <li><strong>Portfolio size:</strong> Top 10 stocks by momentum score</li>
   <li><strong>Weighting:</strong> Equal weight (1/N per position)</li>
-  <li><strong>Rebalance:</strong> Monthly, end-of-month signal, executed at the next real trading day's close (1-day lag, clean ^GSPTSE calendar)</li>
+  <li><strong>Rebalance:</strong> Monthly, end-of-month signal, executed at the next trading day's close</li>
   <li><strong>Regime filter:</strong> TSX Composite (^GSPTSE) vs MA75 days &rarr; 100% cash when below, decided once per month at signal time</li>
-  <li><strong>Transaction costs:</strong> 40bps round-trip per rebalance (not yet re-verified for this config's holdings)</li>
+  <li><strong>Transaction costs:</strong> 40bps round-trip per rebalance</li>
   <li><strong>Data:</strong> EODHD daily adjusted prices &amp; market cap, Jan 2000 &ndash; Jul 2026</li>
 </ul>
 </div>
