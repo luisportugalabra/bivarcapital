@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Canada Momentum Signal — Bivar Capital</title>
-<meta name="description" content="Canada TSX Momentum live signal. Top 15 TSX stocks ranked by 12-month momentum, equal weighted, rebalanced monthly.">
+<meta name="description" content="Canada TSX Momentum live signal. Top 10 TSX stocks ranked by 12-month momentum, equal weighted, rebalanced monthly.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -140,7 +140,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>Canada Momentum</h1>
-  <p class="subtitle">Monthly signal. Top 15 TSX stocks ranked by 12-month momentum, equal weighted.</p>
+  <p class="subtitle">Monthly signal. Top 10 TSX stocks ranked by 12-month momentum, equal weighted.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the live Canada momentum signal.</p>
@@ -271,7 +271,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <th>Ticker</th>
           <th>Name</th>
           <th class="r">12M Momentum</th>
-          <th class="r">Volatility (ann.)</th>
+          <th class="r">Net Income TTM ($M)</th>
           <th class="r">Weight</th>
           <th class="r">MCap (CAD B)</th>
         </tr>
@@ -280,32 +280,9 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; TSX top 70% by mcap (P30), excludes top-25% most volatile &nbsp;|&nbsp; Top 15, equal weight &nbsp;|&nbsp; TSX &lt; MA75 → cash
+      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; TSX top 80% by mcap (P20), NetIncome(TTM) &gt; 0 &nbsp;|&nbsp; Top 10, equal weight &nbsp;|&nbsp; TSX &lt; MA75 → cash
       &nbsp;|&nbsp; Rebalance: monthly
     </p>
-
-    <!-- Excluded (high volatility) -->
-    <div style="margin-top:28px">
-      <div class="port-section-title">Excluded — Volatility Filter <span class="port-section-sub" id="vol-threshold-note"></span></div>
-      <p style="font-size:.6rem;color:var(--text-muted);margin-bottom:8px;font-family:var(--font-mono)">
-        These stocks had strong 12M momentum but were removed before ranking — realized volatility (252-day) put them in the most volatile 25% of the eligible universe.
-      </p>
-      <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Ticker</th>
-            <th>Name</th>
-            <th class="r">12M Momentum</th>
-            <th class="r">Volatility (ann.)</th>
-            <th class="r">MCap (CAD B)</th>
-          </tr>
-        </thead>
-        <tbody id="excluded-vol-body"></tbody>
-      </table>
-      </div>
-    </div>
 
     <!-- Telegram -->
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
@@ -316,7 +293,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Telegram Alerts
       </a>
-      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Alert on rebalance day with the 15 stocks to buy.</p>
+      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Alert on rebalance day with the 10 stocks to buy.</p>
     </div>
 
   </div><!-- /content-area -->
@@ -468,7 +445,7 @@ async function loadSignal() {
         ${pctDev != null ? `&nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA75 (${pctDev}%)` : ''}
       </div>
       <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--text-muted)'}">
-        ${isMom ? 'Signal: Buy top 15 momentum stocks (equal weight)' : 'Signal: Hold cash until TSX recovers above MA75'}
+        ${isMom ? 'Signal: Buy top 10 momentum stocks (equal weight)' : 'Signal: Hold cash until TSX recovers above MA75'}
       </div>`;
 
     // Signal date + eligible count
@@ -486,29 +463,11 @@ async function loadSignal() {
         <td><strong>${s.ticker}</strong></td>
         <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
         <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
-        <td class="r">${s.vol_ann != null ? s.vol_ann + '%' : '—'}</td>
+        <td class="r">${s.net_income_ttm_m != null ? s.net_income_ttm_m : '—'}</td>
         <td class="r">${s.weight != null ? (s.weight*100).toFixed(1) + '%' : '—'}</td>
         <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
       </tr>`;
     }).join('');
-
-    // Excluded — volatility filter
-    document.getElementById('vol-threshold-note').textContent =
-      data.vol_threshold_pct != null ? `· cutoff: ${data.vol_threshold_pct}% ann. vol` : '';
-    const excludedVol = data.excluded_high_vol || [];
-    document.getElementById('excluded-vol-body').innerHTML = excludedVol.length
-      ? excludedVol.map(s => {
-          const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
-          return `<tr>
-            <td>${s.rank}</td>
-            <td><strong>${s.ticker}</strong></td>
-            <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
-            <td class="r ${r12cls}">${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</td>
-            <td class="r neg">${s.vol_ann}%</td>
-            <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
-          </tr>`;
-        }).join('')
-      : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:14px">No data.</td></tr>';
 
   } catch(e) {
     console.error('Signal load error:', e);

@@ -1,32 +1,44 @@
 #!/usr/bin/env python3
 """
-Canada Momentum Signal Generator (v2 — validated strategy, 2026-08-11)
-- TradingView Screener for universe, market cap, 12M momentum, current prices
-- tvDatafeed for 252-day daily bars per stock (vol-exclusion filter) -- no
-  EODHD, no local-only data, runs unmodified on GitHub Actions (same pattern
-  as netherlands_momentum_signal.py)
+Canada Momentum Signal Generator (v3 — re-audited strategy, 2026-08-21)
+- TradingView Screener for universe, market cap, 12M momentum, net income,
+  current prices -- no EODHD, no local-only data, runs unmodified on GitHub
+  Actions (same pattern as netherlands_momentum_signal.py)
 - Yahoo Finance for TSX regime (^GSPTSE vs MA75)
 
-Strategy (see research/canada_momentum_report.html, verified 2026-08-11):
+Strategy (see ~/eodhd_data/canada_momentum_final.py for the backtest this
+config comes from -- STILL UNDER TEST as of 2026-08-21, not yet independently
+re-verified against this exact TradingView-fed universe. Superseded the
+2026-08-11 config after a two-pass external audit found the original
+backtest assumed impossible zero-lag execution and ran on a contaminated
+trading calendar that was forcing ~42% of months to a false 0% return --
+see the module docstring history in canada_momentum_final.py for the full
+bug list):
   - Universe: TSX (.TO), all CAD-denominated stocks
   - Excludes CDRs (TradingView type=='dr') and funds/ETFs (type=='fund')
   - Excludes preferred shares (ticker matches BASE.PR.x / BASE.PF.x)
-  - Eligibility: market cap >= 30th percentile (top 70% by size, not an
+  - Eligibility: market cap >= 20th percentile (top 80% by size, not an
     absolute floor). No ADV/liquidity filter (tested, dropped -- negligible).
-  - Excludes the most volatile 25% of the eligible universe (252-day realized
-    vol, annualized)
+  - Fundamental filter: NetIncome(TTM) > 0 (TradingView `net_income_ttm`).
+    Switched from no fundamental filter on 2026-08-21 -- backtest sweep
+    found NetIncome>0 dominates every other filter tested (EBIT>0,
+    GrossProfit>0, FCF>0, ROE>0) on CAGR, Sharpe, and MaxDD simultaneously.
+  - Volatility-exclusion filter REMOVED on 2026-08-21 -- backtest sweeps
+    showed jagged, non-monotonic Sharpe/MaxDD across nearby vol-exclusion
+    thresholds, a sign of fitting noise rather than a real effect. This also
+    removes the tvDatafeed dependency entirely (was only used for the
+    252-day vol calc) -- one less data source, one less way for the script
+    to fail.
   - Signal: pure 12-month return (TradingView Perf.Y), no skip-month
-  - Portfolio: top 15 by momentum
-  - Weighting: equal weight (1/15 per position). Inverse-volatility was
-    tested and did not materially improve results at N=15 (see
-    research/canada_momentum_sensitivity.html, Section VII) -- equal weight
-    kept for simplicity.
+  - Portfolio: top 10 by momentum (was top 15)
+  - Weighting: equal weight (1/10 per position).
   - Regime: TSX Composite (^GSPTSE) vs its own 75-day MA -> 100% cash when below
-  - Monthly rebalance
+  - Monthly rebalance, 1-trading-day execution lag (pending_signal mechanism,
+    unchanged -- this was already correct)
 
 Saves: canada-momentum-data.json, canada-momentum-portfolio.json
 """
-import os, json, re, time, warnings
+import os, json, re, warnings
 from datetime import datetime, date, timedelta
 
 import pandas as pd
@@ -35,7 +47,6 @@ import numpy as np
 warnings.filterwarnings('ignore')
 
 from tradingview_screener import Query, col
-from tvDatafeed import TvDatafeed, Interval
 import yfinance as yf
 
 SCRIPT_DIR     = os.path.dirname(os.path.abspath(__file__))
@@ -43,106 +54,27 @@ SITE_DIR       = os.path.dirname(SCRIPT_DIR)
 DATA_PATH      = os.path.join(SITE_DIR, "canada-momentum-data.json")
 PORTFOLIO_PATH = os.path.join(SITE_DIR, "canada-momentum-portfolio.json")
 
-MCAP_PCT     = 0.30    # keep top 70% by market cap (percentile, not absolute floor)
-VOL_EXCL_PCT = 0.25    # exclude the 25% most volatile stocks before ranking
-TOP_N        = 15
+MCAP_PCT     = 0.20    # keep top 80% by market cap (percentile, not absolute floor)
+TOP_N        = 10
 MA_W         = 75
+CONFIG_VERSION = "v3-netincome-2026-08-21"  # bump this + legacy_strategy fires an immediate migration rebalance
 
-# Data-quality kill switch: if the TradingView universe fetch looks broken, or
-# more than this fraction of tickers fail BOTH tvDatafeed and the yfinance
-# fallback for volatility data, treat today's run as untrustworthy -- don't
-# rebalance, don't touch existing holdings, mark the signal not-live so the
-# site shows a warning instead of silently trading on bad data.
-MIN_UNIVERSE_ROWS = 500   # normal is ~950-990 post CAD/perf/mcap filter
-MAX_VOL_FAIL_PCT  = 0.02  # 2%
-VOL_LOOKBACK = 252
+# Data-quality kill switch: if the TradingView universe fetch looks broken,
+# treat today's run as untrustworthy -- don't rebalance, don't touch
+# existing holdings, mark the signal not-live so the site shows a warning
+# instead of silently trading on bad data.
+MIN_UNIVERSE_ROWS = 500   # normal is ~950-990 post CAD/perf/mcap/netincome filter
 TODAY        = date.today().isoformat()
 
 # TSX preferred-share ticker convention: BASE.PR.<letter> or BASE.PF.<letter>
 PREF_PATTERN = re.compile(r'^[A-Z0-9]+\.P[RF]\.')
 
 
-# ── tvDatafeed: sequential, single client. Parallel connections get 429'd by
-# TradingView's unauthenticated websocket endpoint (tested 2026-08-11: 8
-# concurrent workers -> immediate rate limit; sequential @ ~0.5s/ticker is
-# reliable and fast enough -- ~600-700 tickers takes ~6 minutes). ────────────
-_tv_client = None
-def tv_client():
-    global _tv_client
-    if _tv_client is None:
-        _tv_client = TvDatafeed()
-    return _tv_client
-
-
-def fetch_bars(code, n_bars=VOL_LOOKBACK + 40, retries=1):
-    for attempt in range(retries + 1):
-        try:
-            bars = tv_client().get_hist(symbol=code, exchange='TSX',
-                                         interval=Interval.in_daily, n_bars=n_bars)
-            if bars is not None and len(bars) >= 60:
-                return bars['close']
-            return None
-        except Exception as e:
-            if attempt < retries:
-                time.sleep(1.0)
-                continue
-            print(f"    {code}: tvDatafeed fetch failed after {retries+1} attempts ({e})")
-            return None
-    return None
-
-
-def fetch_bars_yfinance(code, n_bars=VOL_LOOKBACK + 40):
-    """Fallback for tickers tvDatafeed couldn't fetch -- no ticker should be
-    silently dropped from the universe just because one data source hiccuped."""
-    try:
-        import yfinance as yf
-        hist = yf.Ticker(code + '.TO').history(period=f'{n_bars + 10}d', auto_adjust=True)
-        if hist is None or len(hist) < 60:
-            return None
-        return hist['Close'].tail(n_bars)
-    except Exception as e:
-        print(f"    {code}: yfinance fallback also failed ({e})")
-        return None
-
-
-def compute_vols(codes):
-    """252-day annualized realized vol per ticker, sequential tvDatafeed fetch
-    with a yfinance fallback for any ticker tvDatafeed can't reach -- every
-    ticker gets a real answer, none are silently excluded from the universe."""
-    print(f"  Fetching {len(codes)} tickers' price history via tvDatafeed (sequential)...")
-    vols = {}
-    fallback_used = []
-    still_missing = []
-    t0 = time.time()
-    for i, code in enumerate(codes):
-        closes = fetch_bars(code)
-        if closes is None:
-            closes = fetch_bars_yfinance(code)
-            if closes is not None:
-                fallback_used.append(code)
-        if closes is not None:
-            rets = closes.pct_change().dropna().tail(VOL_LOOKBACK)
-            if len(rets) >= 60:
-                vols[code] = float(rets.std()) * np.sqrt(252)
-            else:
-                still_missing.append(code)
-        else:
-            still_missing.append(code)
-        if (i + 1) % 100 == 0:
-            elapsed = time.time() - t0
-            print(f"    {i+1}/{len(codes)} ({elapsed:.0f}s elapsed, {len(vols)} ok)")
-    elapsed = time.time() - t0
-    fail_pct = len(still_missing) / len(codes) if codes else 0.0
-    print(f"  Done: {len(vols)}/{len(codes)} tickers with valid vol data ({elapsed:.0f}s)"
-          f" -- {len(fallback_used)} via yfinance fallback, {fail_pct:.1%} failure rate"
-          + (f", still missing: {still_missing}" if still_missing else ""))
-    return vols, fail_pct
-
-
 def fetch_canada():
     print("Fetching TradingView data (Canada TSX)...")
     _, df = (Query()
-        .select('name', 'description', 'market_cap_basic', 'Perf.Y', 'close', 'currency', 'type')
+        .select('name', 'description', 'market_cap_basic', 'Perf.Y', 'net_income_ttm',
+                'close', 'currency', 'type')
         .where(col('currency') == 'CAD')
         .set_markets('canada')
         .order_by('market_cap_basic', ascending=False)
@@ -153,8 +85,8 @@ def fetch_canada():
 
     df = df[df['ticker'].str.startswith('TSX:')].copy()
     df['code'] = df['ticker'].str.replace('TSX:', '', regex=False)
-    df = df.dropna(subset=['Perf.Y', 'close', 'market_cap_basic']).copy()
-    print(f"  With perf+mcap+close: {len(df)}")
+    df = df.dropna(subset=['Perf.Y', 'close', 'market_cap_basic', 'net_income_ttm']).copy()
+    print(f"  With perf+mcap+close+netincome: {len(df)}")
     universe_health = len(df)
 
     # Exclude CDRs (foreign mega-caps cross-listed on TSX) and funds/ETFs
@@ -165,10 +97,19 @@ def fetch_canada():
     df = df[~df['code'].str.match(PREF_PATTERN)].copy()
     print(f"  After preferred-share exclusion: {len(df)}")
 
-    # Market cap filter: percentile, not absolute floor -- keep top 70% by size
+    # Market cap filter: percentile, not absolute floor -- keep top 80% by
+    # size. Threshold computed on the FULL universe BEFORE the NetIncome
+    # filter below, so the two criteria stay independent (a coupling bug --
+    # computing the percentile only among already-profitable names -- was
+    # found and fixed in the backtest on 2026-08-20; same principle applied
+    # here from the start).
     mc_threshold = df['market_cap_basic'].quantile(MCAP_PCT)
     df = df[df['market_cap_basic'] >= mc_threshold].copy()
     print(f"  Above mcap P{int(MCAP_PCT*100)}: {len(df)}")
+
+    # Fundamental filter: NetIncome(TTM) > 0
+    df = df[df['net_income_ttm'] > 0].copy()
+    print(f"  After NetIncome(TTM)>0 filter: {len(df)}")
 
     return df.reset_index(drop=True), universe_health
 
@@ -286,38 +227,21 @@ def main():
     print(f"  Regime: {regime_str.upper()}  TSX: {tsx_val}  MA75: {tsx_ma75}  ({pct_above:+.1f}%)  "
           f"[market date: {TODAY}]")
 
-    universe, universe_health = fetch_canada()
+    df, universe_health = fetch_canada()
     if universe_health < MIN_UNIVERSE_ROWS:
         write_not_live(f"TradingView universe fetch returned only {universe_health} tickers "
                         f"(expected {MIN_UNIVERSE_ROWS}+) -- likely an API issue")
         return
-
-    # ── Vol-exclusion filter needs 252d realized vol for the WHOLE eligible
-    # universe (the percentile threshold must be computed over the full
-    # population, not just top-momentum names).
-    vols, vol_fail_pct = compute_vols(universe['code'].tolist())
-    if vol_fail_pct > MAX_VOL_FAIL_PCT:
-        write_not_live(f"{vol_fail_pct:.1%} of tickers failed both tvDatafeed and the yfinance "
-                        f"fallback for volatility data (threshold {MAX_VOL_FAIL_PCT:.0%})")
-        return
-
-    universe['vol'] = universe['code'].map(vols)
-    with_vol = universe.dropna(subset=['vol']).copy()
-    print(f"  With valid vol data: {len(with_vol)}")
-
-    vol_threshold = with_vol['vol'].quantile(1 - VOL_EXCL_PCT)
-    df = with_vol[with_vol['vol'] <= vol_threshold].copy()
-    excluded_vol = with_vol[with_vol['vol'] > vol_threshold].copy()
-    print(f"  After excluding top {int(VOL_EXCL_PCT*100)}% most volatile: {len(df)} "
-          f"({len(excluded_vol)} excluded)")
+    # kept for the "same month, updating prices" fallback path below, which
+    # looks up prices for existing holdings that may since have fallen out
+    # of the current mcap/netincome-filtered universe
+    universe = df
 
     df = df.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
-    excluded_vol = excluded_vol.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
 
     top_df = df.head(TOP_N) if regime_ok else df.iloc[0:0]
 
-    # Equal weight for the selected top N (tested vs inverse-vol, no
-    # material improvement at N=15 -- see canada_momentum_sensitivity.html)
+    # Equal weight for the selected top N
     if len(top_df):
         w = 1.0 / len(top_df)
         weight_map = {code: round(w, 4) for code in top_df['code']}
@@ -333,21 +257,10 @@ def main():
             'ticker':    code,
             'name':      str(row.get('name', code)),
             'ret_12m':   round(float(row['Perf.Y']), 2),
-            'vol_ann':   round(float(row['vol']) * 100, 1),
+            'net_income_ttm_m': round(float(row['net_income_ttm']) / 1e6, 1),
             'mcap_b':    round(float(row['market_cap_basic']) / 1e9, 3),
             'weight':    weight_map.get(code),
             'selected':  code in selected,
-        })
-
-    excluded_top = []
-    for i, row in excluded_vol.head(20).iterrows():
-        excluded_top.append({
-            'rank':    int(i) + 1,
-            'ticker':  row['code'],
-            'name':    str(row.get('name', row['code'])),
-            'ret_12m': round(float(row['Perf.Y']), 2),
-            'vol_ann': round(float(row['vol']) * 100, 1),
-            'mcap_b':  round(float(row['market_cap_basic']) / 1e9, 3),
         })
 
     signal = {
@@ -357,10 +270,8 @@ def main():
         'tsx_ma75':           tsx_ma75,
         'pct_above_ma':       pct_above,
         'total_eligible':     int(len(df)),
-        'vol_threshold_pct':  round(float(vol_threshold) * 100, 1),
         'portfolio':          [s for s in top20 if s['selected']],
         'top20':              top20,
-        'excluded_high_vol':  excluded_top,
         'updated':            TODAY,
         'is_live':            True,
         'not_live_reason':    None,
@@ -378,11 +289,15 @@ def main():
     last_rebal_m    = existing.get('last_rebalance', '')[:7]
     current_m       = TODAY[:7]
     pending_signal  = existing.get('pending_signal')
-    legacy_strategy = bool(existing.get('holdings')) and any('weight' not in h for h in existing['holdings'])
+    legacy_strategy = (
+        (bool(existing.get('holdings')) and any('weight' not in h for h in existing['holdings']))
+        or existing.get('config_version') != CONFIG_VERSION
+    )
     is_new_month    = current_m != last_rebal_m or legacy_strategy
     if legacy_strategy:
-        print("  Existing holdings are from the pre-2026-08-11 strategy (N=10, equal-weight) "
-              "-- forcing an immediate rebalance to the new N=15 strategy.")
+        print(f"  Existing holdings predate config_version={CONFIG_VERSION!r} "
+              f"(N=15/EBIT-less/mcap-P30 -> N=10/NetIncome>0/mcap-P20, 2026-08-21) "
+              f"-- forcing an immediate rebalance to the current strategy.")
 
     price_map = {row['code']: float(row['close']) for _, row in df.iterrows()}
     # fall back to the full (pre-vol-filter) universe for price lookups on
@@ -392,15 +307,28 @@ def main():
     today_sel = [{'ticker': row['code'], 'name': str(row.get('name', row['code'])),
                   'weight': float(weight_map.get(row['code'], 0))} for _, row in top_df.iterrows()]
 
-    if is_new_month and regime_ok:
-        if pending_signal and pending_signal.get('for_month') == current_m and not legacy_strategy:
-            print(f"  Portfolio: NEW MONTH ({current_m}), executing signal locked in on "
-                  f"{pending_signal.get('computed_date')}...")
-            exec_picks = pending_signal['picks']  # [{ticker, name, weight}, ...]
+    # BUG FIXED 2026-08-21 (found by external Claude-app review): regime was
+    # being re-applied on EVERY run (`elif not regime_ok: holdings = []`
+    # fired any day, not just at month boundaries), so a mid-month regime
+    # flip could dump the book to cash intra-month. The backtest reads
+    # regime ONCE at signal time and holds that decision for the whole
+    # month regardless of what the index does afterward -- this is the
+    # matching live behavior: regime is only actioned when a new month
+    # actually rebalances; a same-month re-run just marks prices, it never
+    # re-decides exposure.
+    if is_new_month:
+        if regime_ok:
+            if pending_signal and pending_signal.get('for_month') == current_m and not legacy_strategy:
+                print(f"  Portfolio: NEW MONTH ({current_m}), executing signal locked in on "
+                      f"{pending_signal.get('computed_date')}...")
+                exec_picks = pending_signal['picks']  # [{ticker, name, weight}, ...]
+            else:
+                print(f"  Portfolio: NEW MONTH ({current_m}), no matching locked signal "
+                      f"-- falling back to today's data...")
+                exec_picks = today_sel
         else:
-            print(f"  Portfolio: NEW MONTH ({current_m}), no matching locked signal "
-                  f"-- falling back to today's data...")
-            exec_picks = today_sel
+            print(f"  Portfolio: NEW MONTH ({current_m}), regime DEFENSIVE — moving to cash...")
+            exec_picks = []
 
         holdings = []
         for p in exec_picks:
@@ -417,11 +345,6 @@ def main():
                 'return_pct':    0.0,
             })
         last_rebalance = TODAY
-
-    elif not regime_ok:
-        print(f"  Portfolio: DEFENSIVE — cash")
-        holdings = []
-        last_rebalance = existing.get('last_rebalance', TODAY)
 
     else:
         print(f"  Portfolio: same month ({current_m}), updating prices...")
@@ -490,6 +413,7 @@ def main():
         'monthly_breakdown': breakdown,
         'tsx_annual':        existing.get('tsx_annual', {}),
         'pending_signal':    new_pending_signal,
+        'config_version':    CONFIG_VERSION,
         'is_live':           True,
         'not_live_reason':   None,
     }
@@ -500,14 +424,14 @@ def main():
     print(f"\n{'='*80}")
     print(f"Canada Momentum — {TODAY} — {regime_str.upper()}")
     print(f"{'='*80}")
-    print(f"{'#':>3} {'':>3} {'Ticker':<10} {'Name':<28} {'12M':>8} {'Vol':>7} {'Wt':>6} {'MCap B CAD':>12}")
+    print(f"{'#':>3} {'':>3} {'Ticker':<10} {'Name':<28} {'12M':>8} {'NI TTM $M':>10} {'Wt':>6} {'MCap B CAD':>12}")
     print(f"{'-'*80}")
     for s in top20:
         mk = ">>>" if s['selected'] else ""
         wt = f"{s['weight']*100:.1f}%" if s['weight'] else ""
         print(f"{s['rank']:3d} {mk:>3} {s['ticker']:<10} {s['name'][:27]:<28} "
-              f"{s['ret_12m']:>+7.1f}% {s['vol_ann']:>6.1f}% {wt:>6} {s['mcap_b']:>10.3f}")
-    print(f"\nTop {TOP_N} selected | {len(df)} eligible (post vol-filter) | Regime: {regime_str.upper()}")
+              f"{s['ret_12m']:>+7.1f}% {s['net_income_ttm_m']:>9.1f} {wt:>6} {s['mcap_b']:>10.3f}")
+    print(f"\nTop {TOP_N} selected | {len(df)} eligible (mcap+netincome filtered) | Regime: {regime_str.upper()}")
 
 
 if __name__ == '__main__':
