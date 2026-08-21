@@ -63,7 +63,10 @@ CONFIG_VERSION = "v3-netincome-2026-08-21"  # bump this + legacy_strategy fires 
 # treat today's run as untrustworthy -- don't rebalance, don't touch
 # existing holdings, mark the signal not-live so the site shows a warning
 # instead of silently trading on bad data.
-MIN_UNIVERSE_ROWS = 500   # normal is ~950-990 post CAD/perf/mcap/netincome filter
+MIN_UNIVERSE_ROWS = 500   # normal is ~950-990; measured right after the required-field
+                          # dropna (perf/mcap/close/netincome present), BEFORE CDR/fund/
+                          # preferred exclusion and the mcap-percentile/NetIncome filters
+                          # (those bring the final ranking universe down to ~300-350)
 TODAY        = date.today().isoformat()
 
 # TSX preferred-share ticker convention: BASE.PR.<letter> or BASE.PF.<letter>
@@ -85,8 +88,26 @@ def fetch_canada():
 
     df = df[df['ticker'].str.startswith('TSX:')].copy()
     df['code'] = df['ticker'].str.replace('TSX:', '', regex=False)
+
+    # BUG FIXED 2026-08-21: a genuine price fallback for existing holdings
+    # that have since fallen out of the ranking universe (delisted, name
+    # change, or -- with NetIncome>0 as a live filter -- simply turned
+    # unprofitable while still held, the normal path for a momentum name)
+    # needs a MINIMAL-requirement universe, not the fully-filtered one.
+    # A prior version of this function set `universe = df` (the same,
+    # already mcap+NetIncome-filtered object) as its own "fallback" -- that
+    # wasn't a fallback at all, price_map_full was identical to price_map,
+    # so a dropped holding's current_price silently froze with no warning.
+    # broad_prices only requires a valid close, nothing else.
+    broad_prices = df.dropna(subset=['close']).set_index('code')['close'].astype(float).to_dict()
+
     df = df.dropna(subset=['Perf.Y', 'close', 'market_cap_basic', 'net_income_ttm']).copy()
     print(f"  With perf+mcap+close+netincome: {len(df)}")
+    # universe_health is measured HERE -- right after the required-field
+    # dropna, BEFORE CDR/fund/preferred exclusion and BEFORE the mcap
+    # percentile and NetIncome filters below. A stale comment on
+    # MIN_UNIVERSE_ROWS previously implied this was the POST-filter count
+    # (~950-990) -- it isn't; the post-filter count is ~300-350. Fixed.
     universe_health = len(df)
 
     # Exclude CDRs (foreign mega-caps cross-listed on TSX) and funds/ETFs
@@ -111,23 +132,45 @@ def fetch_canada():
     df = df[df['net_income_ttm'] > 0].copy()
     print(f"  After NetIncome(TTM)>0 filter: {len(df)}")
 
-    return df.reset_index(drop=True), universe_health
+    return df.reset_index(drop=True), universe_health, broad_prices
 
 
 def check_regime():
     """TSX Composite vs MA75 via yfinance. Also returns the actual date of
     the last available trading bar -- the real market date, not whatever
     the wall clock says when the cron happens to run (which can be a
-    Saturday re-run of Friday's close, or a holiday)."""
-    tsx = yf.download('^GSPTSE', period='200d', auto_adjust=True, progress=False)
-    close = tsx['Close']
-    if isinstance(close, pd.DataFrame):
-        close = close.iloc[:, 0]
-    close = close.dropna()
-    last = float(close.iloc[-1])
-    ma75 = float(close.rolling(MA_W).mean().iloc[-1])
-    market_date = close.index[-1].date()
-    return last >= ma75, round(last, 1), round(ma75, 1), market_date
+    Saturday re-run of Friday's close, or a holiday).
+
+    BUG FIXED 2026-08-21: had no try/except and no min_periods on the
+    rolling mean. period='200d' gives ~138 daily bars, which happens to
+    clear MA_W=75 today, but silently produces NaN the moment yfinance
+    returns a shorter history (holiday-heavy stretch, API hiccup) or MA_W
+    is ever raised past ~135. `last >= nan` evaluates False in Python, so
+    the old code would go DEFENSIVE (cash) in total silence -- the wrong
+    default. A market-data outage should refuse to publish, not assume a
+    market state it doesn't actually know. Returns (None, None, None,
+    None) on any failure or insufficient history; callers must treat that
+    as "cannot determine regime," not as "regime is off."
+    """
+    try:
+        tsx = yf.download('^GSPTSE', period='200d', auto_adjust=True, progress=False)
+        close = tsx['Close']
+        if isinstance(close, pd.DataFrame):
+            close = close.iloc[:, 0]
+        close = close.dropna()
+        if len(close) < MA_W:
+            print(f"  check_regime(): only {len(close)} bars available, need >= {MA_W}")
+            return None, None, None, None
+        last = float(close.iloc[-1])
+        ma75 = float(close.rolling(MA_W, min_periods=MA_W).mean().iloc[-1])
+        if not (last == last) or not (ma75 == ma75):  # NaN check without importing math
+            print("  check_regime(): NaN in last close or MA -- refusing to determine regime")
+            return None, None, None, None
+        market_date = close.index[-1].date()
+        return last >= ma75, round(last, 1), round(ma75, 1), market_date
+    except Exception as e:
+        print(f"  check_regime() failed: {e}")
+        return None, None, None, None
 
 
 def next_weekday(d):
@@ -164,28 +207,43 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
 
         existing_cur = next((m for m in breakdown if m['month'] == cur_month_label), None)
         if existing_cur:
-            existing_cur['is_current'] = True
-            existing_cur['regime']     = regime_str
-            existing_cur['tickers']    = tickers
-            existing_cur['weights']    = weights
-            existing_cur['return_pct'] = None
+            # BUG FIXED 2026-08-21: this branch fires whenever the current
+            # calendar month already has a breakdown entry AND we're
+            # rebalancing again within it -- in ordinary operation that
+            # never happens (is_new_month only flips once per real month
+            # boundary), but a forced config_version migration can trigger
+            # exactly this mid-month. The old code updated tickers/weights
+            # but left `start` at the PRIOR book's entry date -- e.g. start
+            # stayed 2026-08-04 (the old N=15 book) after a 2026-08-20
+            # migration to N=10, so anyone pricing the month from `start`
+            # would price 16 days of a book that no longer existed. `start`
+            # must always reflect when the CURRENTLY-held book began.
+            existing_cur['is_current']     = True
+            existing_cur['regime']         = regime_str
+            existing_cur['tickers']        = tickers
+            existing_cur['weights']        = weights
+            existing_cur['return_pct']     = None
+            existing_cur['start']          = TODAY
+            existing_cur['config_version'] = CONFIG_VERSION
         else:
             breakdown.append({
-                'month':      cur_month_label,
-                'is_current': True,
-                'start':      TODAY,
-                'end':        None,
-                'regime':     regime_str,
-                'tickers':    tickers,
-                'weights':    weights,
-                'return_pct': None,
+                'month':          cur_month_label,
+                'is_current':     True,
+                'start':          TODAY,
+                'end':            None,
+                'regime':         regime_str,
+                'tickers':        tickers,
+                'weights':        weights,
+                'return_pct':     None,
+                'config_version': CONFIG_VERSION,
             })
     else:
         for m in breakdown:
             if m.get('is_current'):
-                m['regime']  = regime_str
-                m['tickers'] = [h['ticker'] for h in new_holdings]
-                m['weights'] = {h['ticker']: h['weight'] for h in new_holdings}
+                m['regime']         = regime_str
+                m['tickers']        = [h['ticker'] for h in new_holdings]
+                m['weights']        = {h['ticker']: h['weight'] for h in new_holdings}
+                m.setdefault('config_version', CONFIG_VERSION)
 
     return breakdown[-37:]
 
@@ -221,21 +279,24 @@ def main():
     # this is what makes month-end detection below trading-day-aware
     # (e.g. a Saturday cron re-run still keys off Friday's actual close).
     regime_ok, tsx_val, tsx_ma75, market_date = check_regime()
+    if market_date is None:
+        # Cannot determine regime (data outage/insufficient history) --
+        # refuse to publish rather than silently defaulting to cash. TODAY
+        # falls back to the wall-clock date already set at module load.
+        write_not_live("check_regime() could not determine TSX/MA75 regime "
+                        "(yfinance outage or insufficient history) -- refusing to publish")
+        return
     TODAY = market_date.isoformat()
     regime_str = 'momentum' if regime_ok else 'defensive'
     pct_above  = round((tsx_val / tsx_ma75 - 1) * 100, 1)
     print(f"  Regime: {regime_str.upper()}  TSX: {tsx_val}  MA75: {tsx_ma75}  ({pct_above:+.1f}%)  "
           f"[market date: {TODAY}]")
 
-    df, universe_health = fetch_canada()
+    df, universe_health, broad_prices = fetch_canada()
     if universe_health < MIN_UNIVERSE_ROWS:
         write_not_live(f"TradingView universe fetch returned only {universe_health} tickers "
                         f"(expected {MIN_UNIVERSE_ROWS}+) -- likely an API issue")
         return
-    # kept for the "same month, updating prices" fallback path below, which
-    # looks up prices for existing holdings that may since have fallen out
-    # of the current mcap/netincome-filtered universe
-    universe = df
 
     df = df.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
 
@@ -300,9 +361,12 @@ def main():
               f"-- forcing an immediate rebalance to the current strategy.")
 
     price_map = {row['code']: float(row['close']) for _, row in df.iterrows()}
-    # fall back to the full (pre-vol-filter) universe for price lookups on
-    # existing/locked holdings that may have since failed the vol filter
-    price_map_full = {row['code']: float(row['close']) for _, row in universe.iterrows()}
+    # Real fallback for existing holdings that have since fallen out of the
+    # ranking universe (e.g. NetIncome flipped negative while still held --
+    # the normal path for a momentum name, not an edge case). broad_prices
+    # only requires a valid close, so it covers names df has already
+    # filtered out for any other reason.
+    price_map_full = broad_prices
 
     today_sel = [{'ticker': row['code'], 'name': str(row.get('name', row['code'])),
                   'weight': float(weight_map.get(row['code'], 0))} for _, row in top_df.iterrows()]
@@ -352,6 +416,10 @@ def main():
         for h in existing.get('holdings', []):
             h = h.copy()
             cp = price_map_full.get(h['ticker'])
+            if cp is None:
+                print(f"  WARNING: no price found for held ticker {h['ticker']!r} in "
+                      f"either the ranking universe or the broad fallback -- "
+                      f"current_price/return_pct frozen at last known value.")
             ep = h.get('entry_price')
             if cp:
                 h['current_price'] = round(cp, 4)
@@ -362,7 +430,16 @@ def main():
 
     breakdown = build_monthly_breakdown(existing, holdings, is_new_month, regime_str)
 
-    months_2026 = [m for m in breakdown if '2026' in m.get('month', '') and not m.get('is_current')]
+    # BUG FIXED 2026-08-21: months_2026 used to include every completed 2026
+    # month regardless of which strategy config produced it, so Jan-Jul
+    # 2026 (all run under the old N=15/EBIT-less/mcap-P30 config) got
+    # compounded together with the new N=10/NetIncome/mcap-P20 config as if
+    # it were one continuous track record -- ytd_2026 stayed pinned at the
+    # dead strategy's 15.8% number. Only count months tagged with the
+    # CURRENT config_version; YTD now starts fresh from the migration date.
+    months_2026 = [m for m in breakdown if '2026' in m.get('month', '')
+                   and not m.get('is_current')
+                   and m.get('config_version') == CONFIG_VERSION]
     if months_2026:
         ytd = 1.0
         for m in months_2026:
@@ -370,7 +447,7 @@ def main():
                 ytd *= (1 + m['return_pct'] / 100)
         ytd_2026 = round((ytd - 1) * 100, 2)
     else:
-        ytd_2026 = existing.get('ytd_2026', 0)
+        ytd_2026 = None  # no completed months under the current config yet
 
     # Lock in next month's signal if today's market bar is the last trading
     # day of the month. "Last trading day of month" is approximated as: the

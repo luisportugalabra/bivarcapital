@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-08-20",
   "updated": "2026-08-20",
-  "ytd_2026": 15.8,
+  "ytd_2026": null,
   "regime": "momentum",
   "currency": "CAD",
   "tsx": 36365.4,
@@ -903,7 +903,7 @@
     {
       "month": "Aug 2026",
       "is_current": true,
-      "start": "2026-08-04",
+      "start": "2026-08-20",
       "end": null,
       "regime": "momentum",
       "tickers": [
@@ -930,7 +930,8 @@
         "CGG": 0.1,
         "BDT": 0.1
       },
-      "return_pct": null
+      "return_pct": null,
+      "config_version": "v3-netincome-2026-08-21"
     }
   ],
   "tsx_annual": {
