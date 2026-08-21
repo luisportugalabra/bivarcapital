@@ -27,41 +27,53 @@ jobs:
           pip install yfinance
 
       - name: Download TradingView data
+        continue-on-error: true
         working-directory: scripts
         run: python download_tv.py
 
       - name: Run VC2 processing
+        continue-on-error: true
         working-directory: scripts
         run: python vc2_trending_value.py
 
       - name: Copy wizard-data.json to repo root
+        continue-on-error: true
         run: cp scripts/wizard-data.json wizard-data.json
 
       - name: Update momentum signal
+        continue-on-error: true
         run: python scripts/momentum_signal.py
 
       - name: Compute momentum YTD return
+        continue-on-error: true
         run: python scripts/momentum_ytd.py
 
       - name: Update YTD performance data
+        continue-on-error: true
         run: python scripts/update_ytd.py
 
       - name: Update UK momentum signal
+        continue-on-error: true
         run: python scripts/uk_momentum_signal.py
 
       - name: Update UK momentum YTD
+        continue-on-error: true
         run: python scripts/uk_momentum_ytd.py
 
       - name: Update China momentum portfolio
+        continue-on-error: true
         run: python scripts/china_momentum_ytd.py
 
       - name: Update Canada momentum signal
+        continue-on-error: true
         run: python scripts/canada_momentum_signal.py
 
       - name: Update Canada momentum portfolio
+        continue-on-error: true
         run: python scripts/canada_momentum_ytd.py
 
       - name: Update portfolio prices
+        continue-on-error: true
         run: python scripts/daily-update.py
 
       - name: Commit and push

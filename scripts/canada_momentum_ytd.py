@@ -59,7 +59,6 @@ for tk in all_tickers:
 
 # ── Compute monthly returns ───────────────────────────────────────────────────
 updated_breakdown = []
-ytd_factor = 1.0
 
 for m in breakdown:
     if not m.get('start') or not m.get('tickers'):
@@ -96,11 +95,28 @@ for m in breakdown:
     label = m['month'] + (' (MTD)' if is_current else '')
     print(f"  {label}: {ret_pct:+.2f}%  [{len(rets)}/{len(tickers)}]")
 
-    if '2026' in m.get('month', '') and not is_current:
-        ytd_factor *= (1 + ret)
+# Only compound months tagged with the strategy's CURRENT config_version --
+# Jan-Jul 2026 were produced under the old N=15/EBIT-less/mcap-P30 config
+# and must not be spliced onto the N=10/NetIncome/mcap-P20 track record.
+# The reference version is whatever the live (is_current) entry carries,
+# since that's written by canada_momentum_signal.py and is the single
+# source of truth for which config is currently live -- not hardcoded here,
+# so the two scripts can't drift out of sync with each other.
+current_entry   = next((m for m in updated_breakdown if m.get('is_current')), None)
+live_config_ver = current_entry.get('config_version') if current_entry else None
 
-ytd_2026 = round((ytd_factor - 1) * 100, 2)
-print(f"\nYTD 2026: {ytd_2026:+.2f}%")
+months_2026 = [m for m in updated_breakdown
+               if m.get('start') and m.get('tickers') and not m.get('is_current')
+               and '2026' in m.get('month', '') and m.get('config_version') == live_config_ver]
+if months_2026:
+    ytd_factor = 1.0
+    for m in months_2026:
+        if m.get('return_pct') is not None:
+            ytd_factor *= (1 + m['return_pct'] / 100)
+    ytd_2026 = round((ytd_factor - 1) * 100, 2)
+else:
+    ytd_2026 = None  # no completed months under the current config yet
+print(f"\nYTD 2026: {ytd_2026}")
 
 # ── Update current holdings ───────────────────────────────────────────────────
 holdings = []
@@ -115,25 +131,18 @@ for h in portfolio.get('holdings', []):
         h['return_pct'] = round((h['current_price'] / ep - 1) * 100, 2)
     holdings.append(h)
 
-# ── Update regime in data JSON ────────────────────────────────────────────────
-try:
-    tsx = yf.download('^GSPTSE', period='100d', auto_adjust=True, progress=False)
-    close = tsx['Close'].squeeze().dropna()
-    tsx_val  = round(float(close.iloc[-1]), 1)
-    tsx_ma75 = round(float(close.rolling(75).mean().iloc[-1]), 1)
-    regime   = 'momentum' if tsx_val >= tsx_ma75 else 'defensive'
-    print(f"TSX: {tsx_val}  MA75: {tsx_ma75}  Regime: {regime.upper()}")
-except Exception as e:
-    tsx_val = tsx_ma75 = None
-    regime  = portfolio.get('regime', 'unknown')
+# regime / tsx / tsx_ma75 are NOT recomputed here. canada_momentum_signal.py
+# is the single source of truth for the regime decision -- it decides once
+# at signal time and holds that decision for the month; a second daily
+# recompute here previously overwrote its value with a same-day live read,
+# which is redundant at best and a source of display/decision drift at
+# worst if the two computations ever diverge. {**portfolio, ...} below
+# already carries the signal script's regime/tsx/tsx_ma75 forward unchanged.
 
 # ── Save ──────────────────────────────────────────────────────────────────────
 out = {**portfolio,
        'updated':           today.strftime('%Y-%m-%d'),
        'ytd_2026':          ytd_2026,
-       'regime':            regime,
-       'tsx':               tsx_val,
-       'tsx_ma75':          tsx_ma75,
        'monthly_breakdown': updated_breakdown,
        'holdings':          holdings}
 
