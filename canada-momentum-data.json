@@ -4,7 +4,7 @@
   "tsx": 36620.2,
   "tsx_ma75": 35142.8,
   "pct_above_ma": 4.2,
-  "total_eligible": 350,
+  "total_eligible": 345,
   "portfolio": [
     {
       "rank": 1,
@@ -12,7 +12,7 @@
       "name": "LCFS",
       "ret_12m": 545.07,
       "net_income_ttm_m": 0.3,
-      "mcap_b": 0.731,
+      "mcap_b": 0.716,
       "weight": 0.1,
       "selected": true
     },
@@ -32,7 +32,7 @@
       "name": "ORV",
       "ret_12m": 361.11,
       "net_income_ttm_m": 25.9,
-      "mcap_b": 0.336,
+      "mcap_b": 0.34,
       "weight": 0.1,
       "selected": true
     },
@@ -42,7 +42,7 @@
       "name": "ARG",
       "ret_12m": 269.72,
       "net_income_ttm_m": 79.7,
-      "mcap_b": 1.22,
+      "mcap_b": 1.301,
       "weight": 0.1,
       "selected": true
     },
@@ -52,7 +52,7 @@
       "name": "CG",
       "ret_12m": 226.25,
       "net_income_ttm_m": 880.0,
-      "mcap_b": 6.346,
+      "mcap_b": 6.394,
       "weight": 0.1,
       "selected": true
     },
@@ -62,7 +62,7 @@
       "name": "CVVY",
       "ret_12m": 222.41,
       "net_income_ttm_m": 8.0,
-      "mcap_b": 0.542,
+      "mcap_b": 0.554,
       "weight": 0.1,
       "selected": true
     },
@@ -72,7 +72,7 @@
       "name": "AYA",
       "ret_12m": 210.94,
       "net_income_ttm_m": 155.5,
-      "mcap_b": 5.342,
+      "mcap_b": 5.28,
       "weight": 0.1,
       "selected": true
     },
@@ -82,7 +82,7 @@
       "name": "CGG",
       "ret_12m": 203.61,
       "net_income_ttm_m": 1095.5,
-      "mcap_b": 17.214,
+      "mcap_b": 18.176,
       "weight": 0.1,
       "selected": true
     },
@@ -92,7 +92,7 @@
       "name": "ARIS",
       "ret_12m": 201.68,
       "net_income_ttm_m": 393.1,
-      "mcap_b": 5.752,
+      "mcap_b": 5.934,
       "weight": 0.1,
       "selected": true
     },
@@ -102,7 +102,7 @@
       "name": "TNZ",
       "ret_12m": 200.34,
       "net_income_ttm_m": 110.3,
-      "mcap_b": 1.953,
+      "mcap_b": 1.97,
       "weight": 0.1,
       "selected": true
     }
@@ -114,7 +114,7 @@
       "name": "LCFS",
       "ret_12m": 545.07,
       "net_income_ttm_m": 0.3,
-      "mcap_b": 0.731,
+      "mcap_b": 0.716,
       "weight": 0.1,
       "selected": true
     },
@@ -134,7 +134,7 @@
       "name": "ORV",
       "ret_12m": 361.11,
       "net_income_ttm_m": 25.9,
-      "mcap_b": 0.336,
+      "mcap_b": 0.34,
       "weight": 0.1,
       "selected": true
     },
@@ -144,7 +144,7 @@
       "name": "ARG",
       "ret_12m": 269.72,
       "net_income_ttm_m": 79.7,
-      "mcap_b": 1.22,
+      "mcap_b": 1.301,
       "weight": 0.1,
       "selected": true
     },
@@ -154,7 +154,7 @@
       "name": "CG",
       "ret_12m": 226.25,
       "net_income_ttm_m": 880.0,
-      "mcap_b": 6.346,
+      "mcap_b": 6.394,
       "weight": 0.1,
       "selected": true
     },
@@ -164,7 +164,7 @@
       "name": "CVVY",
       "ret_12m": 222.41,
       "net_income_ttm_m": 8.0,
-      "mcap_b": 0.542,
+      "mcap_b": 0.554,
       "weight": 0.1,
       "selected": true
     },
@@ -174,7 +174,7 @@
       "name": "AYA",
       "ret_12m": 210.94,
       "net_income_ttm_m": 155.5,
-      "mcap_b": 5.342,
+      "mcap_b": 5.28,
       "weight": 0.1,
       "selected": true
     },
@@ -184,7 +184,7 @@
       "name": "CGG",
       "ret_12m": 203.61,
       "net_income_ttm_m": 1095.5,
-      "mcap_b": 17.214,
+      "mcap_b": 18.176,
       "weight": 0.1,
       "selected": true
     },
@@ -194,7 +194,7 @@
       "name": "ARIS",
       "ret_12m": 201.68,
       "net_income_ttm_m": 393.1,
-      "mcap_b": 5.752,
+      "mcap_b": 5.934,
       "weight": 0.1,
       "selected": true
     },
@@ -204,7 +204,7 @@
       "name": "TNZ",
       "ret_12m": 200.34,
       "net_income_ttm_m": 110.3,
-      "mcap_b": 1.953,
+      "mcap_b": 1.97,
       "weight": 0.1,
       "selected": true
     },
@@ -214,7 +214,7 @@
       "name": "DSV",
       "ret_12m": 196.75,
       "net_income_ttm_m": 333.7,
-      "mcap_b": 9.81,
+      "mcap_b": 9.664,
       "weight": null,
       "selected": false
     },
@@ -224,7 +224,7 @@
       "name": "TKO",
       "ret_12m": 196.02,
       "net_income_ttm_m": 15.7,
-      "mcap_b": 4.385,
+      "mcap_b": 4.627,
       "weight": null,
       "selected": false
     },
@@ -234,7 +234,7 @@
       "name": "BDT",
       "ret_12m": 193.74,
       "net_income_ttm_m": 59.4,
-      "mcap_b": 3.869,
+      "mcap_b": 3.823,
       "weight": null,
       "selected": false
     },
@@ -244,7 +244,7 @@
       "name": "DBO",
       "ret_12m": 189.74,
       "net_income_ttm_m": 18.4,
-      "mcap_b": 0.249,
+      "mcap_b": 0.252,
       "weight": null,
       "selected": false
     },
@@ -254,7 +254,7 @@
       "name": "DPM",
       "ret_12m": 186.68,
       "net_income_ttm_m": 897.6,
-      "mcap_b": 14.814,
+      "mcap_b": 15.389,
       "weight": null,
       "selected": false
     },
@@ -264,7 +264,7 @@
       "name": "ERO",
       "ret_12m": 186.67,
       "net_income_ttm_m": 430.0,
-      "mcap_b": 5.174,
+      "mcap_b": 5.651,
       "weight": null,
       "selected": false
     },
@@ -274,7 +274,7 @@
       "name": "SDE",
       "ret_12m": 182.88,
       "net_income_ttm_m": 70.5,
-      "mcap_b": 2.743,
+      "mcap_b": 2.745,
       "weight": null,
       "selected": false
     },
@@ -284,7 +284,7 @@
       "name": "SVM",
       "ret_12m": 182.32,
       "net_income_ttm_m": 43.3,
-      "mcap_b": 3.853,
+      "mcap_b": 3.816,
       "weight": null,
       "selected": false
     },
@@ -294,7 +294,7 @@
       "name": "MSA",
       "ret_12m": 179.79,
       "net_income_ttm_m": 305.6,
-      "mcap_b": 2.338,
+      "mcap_b": 2.381,
       "weight": null,
       "selected": false
     },
@@ -304,7 +304,7 @@
       "name": "GMIN",
       "ret_12m": 178.71,
       "net_income_ttm_m": 507.2,
-      "mcap_b": 14.606,
+      "mcap_b": 15.859,
       "weight": null,
       "selected": false
     }
