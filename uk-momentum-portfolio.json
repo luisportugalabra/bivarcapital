@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-21 23:28 UTC",
+  "updated": "2026-08-22 23:25 UTC",
   "ytd_2026": -31.97,
   "holdings": [
     {
@@ -208,7 +208,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-21",
+      "end": "2026-08-22",
       "regime": "momentum",
       "tickers": [
         "CMCX",
@@ -224,7 +224,7 @@
   ],
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
-  "ftse100": 10748.2,
-  "ftse100_ma200": 10300.09,
+  "ftse100": 10816.6,
+  "ftse100_ma200": 10305.28,
   "regime": "risk-on"
 }
