@@ -316,7 +316,7 @@ def main():
         top20.append({
             'rank':      int(i) + 1,
             'ticker':    code,
-            'name':      str(row.get('name', code)),
+            'name':      str(row.get('description') or row.get('name', code)),
             'ret_12m':   round(float(row['Perf.Y']), 2),
             'net_income_ttm_m': round(float(row['net_income_ttm']) / 1e6, 1),
             'mcap_b':    round(float(row['market_cap_basic']) / 1e9, 3),
@@ -368,7 +368,7 @@ def main():
     # filtered out for any other reason.
     price_map_full = broad_prices
 
-    today_sel = [{'ticker': row['code'], 'name': str(row.get('name', row['code'])),
+    today_sel = [{'ticker': row['code'], 'name': str(row.get('description') or row.get('name', row['code'])),
                   'weight': float(weight_map.get(row['code'], 0))} for _, row in top_df.iterrows()]
 
     # BUG FIXED 2026-08-21 (found by external Claude-app review): regime was

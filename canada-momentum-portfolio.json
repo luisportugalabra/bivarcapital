@@ -1,78 +1,78 @@
 {
   "last_rebalance": "2026-08-04",
-  "updated": "2026-08-21",
+  "updated": "2026-08-24",
   "ytd_2026": -6.53,
   "regime": "momentum",
   "currency": "CAD",
-  "tsx": 36620.2,
-  "tsx_ma75": 35142.8,
+  "tsx": 36533.5,
+  "tsx_ma75": 35176.8,
   "holdings": [
     {
       "ticker": "ARG",
-      "name": "ARG",
+      "name": "Amerigo Resources Ltd",
       "entry_date": "2026-08-04",
       "entry_price": 7.17,
-      "current_price": 8.06,
+      "current_price": 8.07,
       "weight": 0.1,
-      "return_pct": 12.41
+      "return_pct": 12.55
     },
     {
       "ticker": "CGG",
-      "name": "CGG",
+      "name": "China Gold International Resources Corp. Ltd.",
       "entry_date": "2026-08-04",
       "entry_price": 33.29,
-      "current_price": 46.27,
+      "current_price": 45.03,
       "weight": 0.1,
-      "return_pct": 38.99
+      "return_pct": 35.27
     },
     {
       "ticker": "DBO",
-      "name": "DBO",
+      "name": "D-BOX Technologies Inc. Class A",
       "entry_date": "2026-08-04",
       "entry_price": 1.3,
-      "current_price": 1.13,
+      "current_price": 1.11,
       "weight": 0.1,
-      "return_pct": -13.08
+      "return_pct": -14.62
     },
     {
       "ticker": "DSV",
-      "name": "DSV",
+      "name": "Discovery Mining Ltd.",
       "entry_date": "2026-08-04",
       "entry_price": 9.51,
-      "current_price": 11.87,
+      "current_price": 12.03,
       "weight": 0.1,
-      "return_pct": 24.82
+      "return_pct": 26.5
     },
     {
       "ticker": "EFX",
-      "name": "EFX",
+      "name": "Enerflex Ltd.",
       "entry_date": "2026-08-04",
       "entry_price": 31.34,
-      "current_price": 28.0,
+      "current_price": 27.92,
       "weight": 0.1,
-      "return_pct": -10.66
+      "return_pct": -10.91
     },
     {
       "ticker": "EXE",
-      "name": "EXE",
+      "name": "Extendicare Inc.",
       "entry_date": "2026-08-04",
       "entry_price": 34.51,
-      "current_price": 30.36,
+      "current_price": 30.06,
       "weight": 0.1,
-      "return_pct": -12.03
+      "return_pct": -12.89
     },
     {
       "ticker": "IFA",
-      "name": "IFA",
+      "name": "iFabric Corp.",
       "entry_date": "2026-08-04",
       "entry_price": 4.95,
-      "current_price": 4.51,
+      "current_price": 4.5,
       "weight": 0.1,
-      "return_pct": -8.89
+      "return_pct": -9.09
     },
     {
       "ticker": "LCFS",
-      "name": "LCFS",
+      "name": "Tidewater Renewables Ltd.",
       "entry_date": "2026-08-04",
       "entry_price": 16.28,
       "current_price": 19.61,
@@ -81,21 +81,21 @@
     },
     {
       "ticker": "MSA",
-      "name": "MSA",
+      "name": "Mineros SA",
       "entry_date": "2026-08-04",
       "entry_price": 7.1,
-      "current_price": 8.17,
+      "current_price": 8.25,
       "weight": 0.1,
-      "return_pct": 15.07
+      "return_pct": 16.2
     },
     {
       "ticker": "TNZ",
-      "name": "TNZ",
+      "name": "Tenaz Energy Corp",
       "entry_date": "2026-08-04",
       "entry_price": 55.48,
-      "current_price": 61.15,
+      "current_price": 60.7,
       "weight": 0.1,
-      "return_pct": 10.22
+      "return_pct": 9.41
     }
   ],
   "monthly_breakdown": [
