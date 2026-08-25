@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norway Momentum — Strategy Report (Beta) — Bivar Capital</title>
+<meta name="description" content="Full backtest report for the Bivar Norway Momentum strategy (beta): 9-month momentum on Oslo Bors, OSEBX MA100 regime, 2000-2026.">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+.content { padding: 48px 0 80px; }
+h1 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 400; margin-bottom: 6px; }
+h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; margin: 40px 0 12px; color: var(--text); }
+.subtitle { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px; }
+.beta-badge { font-family: var(--font-mono); font-size: .55rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); padding: 3px 8px; border-radius: 4px; vertical-align: middle; margin-left: 6px; }
+p { color: var(--text-secondary); font-size: .85rem; margin-bottom: 12px; }
+strong { color: var(--text); }
+.stats-hero { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 8px; }
+.stat-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 22px; flex: 1; min-width: 120px; text-align: center; }
+.stat-val { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 600; }
+.stat-lbl { font-family: var(--font-mono); font-size: .52rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; }
+.pos { color: var(--green); } .neg { color: var(--red); } .gold { color: var(--accent); }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 6px; }
+th { text-align: left; padding: 7px 10px; font-family: var(--font-mono); font-size: .52rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+th.r, td.r { text-align: right; }
+td { padding: 6px 10px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .68rem; }
+tr.hl { background: rgba(196,162,101,0.07); }
+tr.hl td:first-child { border-left: 3px solid var(--accent); }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin: 16px 0; }
+.chart-wrap img { width: 100%; height: auto; display: block; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin: 16px 0; }
+.callout p { margin-bottom: 6px; font-size: .8rem; }
+.callout p:last-child { margin-bottom: 0; }
+ul { margin: 0 0 12px 20px; color: var(--text-secondary); font-size: .85rem; }
+li { margin-bottom: 5px; }
+.note { font-family: var(--font-mono); font-size: .58rem; color: var(--text-muted); }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; }
+footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-muted); }
+a { color: var(--accent); }
+@media(max-width:700px){ .container{padding:0 16px} .stats-hero{flex-direction:column} h1{font-size:1.5rem} }
+</style>
+</head>
+<body>
+
+<main>
+<div class="container content">
+
+  <p class="note" style="margin-bottom:20px"><a href="/strategies.html" style="text-decoration:none">&larr; Strategies</a></p>
+
+  <h1>Norway Momentum <span class="beta-badge">Beta</span></h1>
+  <p class="subtitle">9-month momentum on Oslo B&oslash;rs &middot; OSEBX MA100 regime &middot; 15 stocks &middot; monthly rebalance &middot; 2000&ndash;2026</p>
+  <p class="note">Report date: 2026-08-25 &middot; Data: EODHD daily (Oslo B&oslash;rs), OSEBX via Yahoo Finance &middot; Net of 66bps round-trip costs</p>
+
+  <div class="stats-hero">
+    <div class="stat-box"><div class="stat-val pos">+15.1%</div><div class="stat-lbl">CAGR (net)</div></div>
+    <div class="stat-box"><div class="stat-val gold">1.04</div><div class="stat-lbl">Sharpe</div></div>
+    <div class="stat-box"><div class="stat-val neg">-32.2%</div><div class="stat-lbl">Max Drawdown</div></div>
+    <div class="stat-box"><div class="stat-val">14.5%</div><div class="stat-lbl">Volatility</div></div>
+    <div class="stat-box"><div class="stat-val">42x</div><div class="stat-lbl">Growth of 1 NOK</div></div>
+  </div>
+  <p class="note">26.5 years (Feb 2000 &ndash; Aug 2026). In cash 37% of months. Buy-and-hold within each month (weights drift, no daily rebalancing assumed).</p>
+
+  <div class="chart-wrap"><img src="/research/norway_equity.svg" alt="Equity curve and drawdown, Norway Momentum 2000-2026"></div>
+
+  <h2>Rules</h2>
+  <ul>
+    <li><strong>Universe:</strong> Oslo B&oslash;rs common shares, Norwegian companies only (ISIN starts with NO &mdash; foreign cross-listings excluded), one share class per company (most liquid kept).</li>
+    <li><strong>Regime filter:</strong> OSEBX below its 100-day moving average &rarr; entire portfolio to cash. Checked at each month-end.</li>
+    <li><strong>Eligibility:</strong> market cap &ge; 565M NOK (~&euro;50M), EBIT (TTM, quarterly, 60-day reporting lag) &gt; 0, price series not stale (see data-quality section).</li>
+    <li><strong>Ranking:</strong> 9-month total return. Top 15, equal weight.</li>
+    <li><strong>Rebalance:</strong> monthly, at month-end close. Signal uses only data available at the close; returns accrue from the next session.</li>
+    <li><strong>Costs:</strong> 66bps round-trip spread applied to actual portfolio turnover (drifted weights vs new targets &mdash; entries, exits, and trims all costed).</li>
+  </ul>
+
+  <h2>Annual returns</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Year</th><th class="r">Return</th><th>Year</th><th class="r">Return</th><th>Year</th><th class="r">Return</th></tr></thead>
+    <tbody id="annual-body"></tbody>
+  </table>
+  </div>
+  <p class="note">2000 is a partial year (strategy starts Feb 2000 after the momentum lookback seeds). 2026 through Aug 7.</p>
+
+  <h2>Why the regime filter matters</h2>
+  <p>Without the OSEBX MA100 overlay the same stock-selection rules earn a similar CAGR (15.2%) but with a <strong>-73% maximum drawdown</strong> through 2008. The regime filter cuts that to -32% and lifts the Sharpe from 0.79 to 1.04, at the price of sitting in cash 37% of the time.</p>
+
+  <h2>Parameter sensitivity</h2>
+  <p>All variations below are net of costs, full 2000&ndash;2026 history. The chosen configuration is highlighted &mdash; note it is a plateau, not an isolated peak.</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Regime MA</th><th class="r">CAGR</th><th class="r">Sharpe</th><th class="r">MaxDD</th></tr></thead>
+    <tbody>
+      <tr><td>MA50</td><td class="r">13.5%</td><td class="r">0.96</td><td class="r">-33.8%</td></tr>
+      <tr><td>MA75</td><td class="r">13.2%</td><td class="r">0.93</td><td class="r">-34.3%</td></tr>
+      <tr class="hl"><td>MA100</td><td class="r">15.1%</td><td class="r">1.04</td><td class="r">-32.2%</td></tr>
+      <tr><td>MA125</td><td class="r">14.6%</td><td class="r">1.02</td><td class="r">-34.3%</td></tr>
+      <tr><td>MA150</td><td class="r">14.3%</td><td class="r">0.98</td><td class="r">-34.3%</td></tr>
+      <tr><td>MA200</td><td class="r">15.6%</td><td class="r">1.04</td><td class="r">-33.8%</td></tr>
+      <tr><td>No regime</td><td class="r">15.2%</td><td class="r">0.79</td><td class="r">-73.4%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Portfolio size</th><th class="r">CAGR</th><th class="r">Sharpe</th><th class="r">MaxDD</th></tr></thead>
+    <tbody>
+      <tr><td>N10</td><td class="r">16.5%</td><td class="r">1.03</td><td class="r">-36.4%</td></tr>
+      <tr class="hl"><td>N15</td><td class="r">15.1%</td><td class="r">1.04</td><td class="r">-32.2%</td></tr>
+      <tr><td>N20</td><td class="r">14.9%</td><td class="r">1.09</td><td class="r">-31.8%</td></tr>
+      <tr><td>N25</td><td class="r">15.2%</td><td class="r">1.13</td><td class="r">-29.2%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Momentum lookback</th><th class="r">CAGR</th><th class="r">Sharpe</th><th class="r">MaxDD</th></tr></thead>
+    <tbody>
+      <tr><td>6 months</td><td class="r">13.6%</td><td class="r">0.95</td><td class="r">-32.4%</td></tr>
+      <tr class="hl"><td>9 months</td><td class="r">15.1%</td><td class="r">1.04</td><td class="r">-32.2%</td></tr>
+      <tr><td>12 months</td><td class="r">15.3%</td><td class="r">1.05</td><td class="r">-32.9%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Market-cap floor</th><th class="r">CAGR</th><th class="r">Sharpe</th><th class="r">MaxDD</th></tr></thead>
+    <tbody>
+      <tr><td>None</td><td class="r">16.6%</td><td class="r">1.03</td><td class="r">-32.3%</td></tr>
+      <tr><td>~&euro;20M</td><td class="r">15.4%</td><td class="r">1.03</td><td class="r">-32.3%</td></tr>
+      <tr class="hl"><td>~&euro;50M (565M NOK)</td><td class="r">15.1%</td><td class="r">1.04</td><td class="r">-32.2%</td></tr>
+      <tr><td>~&euro;100M</td><td class="r">14.6%</td><td class="r">1.01</td><td class="r">-29.0%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>The &euro;50M floor costs ~1.5pp of CAGR vs no floor but removes names that are not practically tradable (live order books on Oslo B&oslash;rs micro-caps below ~&euro;50M frequently show spreads above 150bps or no ask at all &mdash; verified against live Interactive Brokers quotes in Aug 2026).</p>
+
+  <h2>Execution timing</h2>
+  <p>The backtest buys at the close of the signal day (month-end). Delaying execution to the next session's close &mdash; the realistic worst case for a retail implementation &mdash; costs about 1.4pp of CAGR:</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Execution</th><th class="r">CAGR</th><th class="r">Sharpe</th><th class="r">MaxDD</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>Month-end close (T)</td><td class="r">15.1%</td><td class="r">1.04</td><td class="r">-32.2%</td></tr>
+      <tr><td>Next close (T+1)</td><td class="r">~13.7%</td><td class="r">~0.97</td><td class="r">~-32%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Transaction costs</h2>
+  <p>The model charges 66bps round-trip per unit of turnover. Live bid/ask spreads sampled on Oslo B&oslash;rs in August 2026: large caps (Equinor, Aker, DNO, Atea, Elkem, AF Gruppen) trade at 10&ndash;31bps round-trip; mid caps around the typical pick size (Kid ASA, ~&euro;450M) at ~60bps; the smallest names above the &euro;50M floor can reach 80&ndash;150bps. With the floor in place, roughly 12&ndash;13 of 15 positions sit at or under the modeled cost; the assumption is realistic-to-slightly-optimistic for the smallest tail, and early-2000s spreads were likely wider than today's.</p>
+
+  <h2>Data quality &mdash; what was found and fixed</h2>
+  <p>EODHD's Oslo B&oslash;rs data contains several serious defects. Each was found, verified against specific tickers, and corrected before the results above were produced:</p>
+  <ul>
+    <li><strong>Frozen prices:</strong> ~22% of Norwegian tickers have runs of 15+ consecutive identical closes (worst case 6.8 years, DLTX). The vendor carries the last traded price forward instead of marking non-trading days. Fix: a ticker frozen &ge;15 days is ineligible, and the fake one-day "jump" when a frozen series resumes is excluded from returns (verified on Polaris Media's fake -95% day in Oct 2008).</li>
+    <li><strong>Corrupted market caps:</strong> share counts wrong by factors up to ~10&sup6; (Oncoinvent showed a market cap 7x Equinor's). 36 Oslo tickers have mcap spikes &gt;20x their own median. A cap-weighted synthetic regime index built on this data was garbage &mdash; and an earlier draft of this strategy showed Sharpe 1.23 / MaxDD -19% off the back of it. Fix: the regime index basket is selected and weighted by traded dollar volume (real trading data), validated at 0.92 monthly correlation and 89% MA100-regime agreement against the real OSEBX over 2013&ndash;2026; the live signal uses the real OSEBX directly.</li>
+    <li><strong>Duplicate listings:</strong> Oslo dual share classes (WWI/WWIB, ODF/ODFB, SCHA/SCHB), Euronext Growth duplicate listings ("-ME" suffix) and dead ticker variants &mdash; 78 duplicates removed by company-name matching, keeping the most liquid class. An earlier draft held both Wilhelmsen classes simultaneously.</li>
+    <li><strong>Foreign cross-listings:</strong> ~17% of Oslo tickers are foreign companies; excluded via ISIN country prefix.</li>
+    <li><strong>Calendar artifacts:</strong> weekend rows and near-empty holiday dates ("phantom trading days") removed; all signals derive from per-ticker month-end resampling, immune to single-ticker stray rows.</li>
+    <li><strong>Fundamentals timing:</strong> EODHD's filing_date field is unreliable (often equals the period end &mdash; lookahead). EBIT uses a flat 60-day reporting lag instead.</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>Why beta.</strong> This strategy is newer than the site's Live strategies and carries two honest caveats:</p>
+    <p>1. The pre-2013 half of the backtest depends on a synthetic regime index (validated against the real OSEBX only on 2013&ndash;2026, where results with real vs synthetic regime are nearly identical: 13.8%/0.96 vs 13.7%/1.02).</p>
+    <p>2. The underlying EODHD data required heavy cleaning (above). The cleaning is systematic and point-in-time safe, but residual data defects in a 26-year small-market history cannot be fully ruled out.</p>
+  </div>
+
+  <p style="margin-top:28px"><a href="/norway-momentum.html">Live signal &rarr;</a></p>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Bivar Capital &nbsp;|&nbsp; Luis Portugal &nbsp;|&nbsp; Not investment advice.</p>
+  </div>
+</footer>
+
+<script>
+const annual = {"2000":0.3,"2001":-6,"2002":-8,"2003":87,"2004":37,"2005":68,"2006":29,"2007":10,"2008":-22,"2009":46,"2010":13,"2011":-3,"2012":31,"2013":15,"2014":2,"2015":9,"2016":27,"2017":5,"2018":3,"2019":17,"2020":30,"2021":32,"2022":-12,"2023":7,"2024":19,"2025":19,"2026":1};
+const years = Object.keys(annual);
+const cells = years.map(y => {
+  const v = annual[y];
+  const cls = v >= 0 ? 'pos' : 'neg';
+  return `<td>${y}</td><td class="r ${cls}">${v >= 0 ? '+' : ''}${v}%</td>`;
+});
+let rows = '';
+for (let i = 0; i < cells.length; i += 3) {
+  rows += '<tr>' + cells[i] + (cells[i+1] || '<td></td><td></td>') + (cells[i+2] || '<td></td><td></td>') + '</tr>';
+}
+document.getElementById('annual-body').innerHTML = rows;
+</script>
+</body>
+</html>

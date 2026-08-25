@@ -1,0 +1,279 @@
+{
+ "last_rebalance": "2026-07-31",
+ "updated": "2026-08-25",
+ "ytd_2026": 1.25,
+ "regime": "momentum",
+ "currency": "NOK",
+ "holdings": [
+  {
+   "ticker": "NSKOG",
+   "name": "Norske Skog Asa",
+   "entry_date": "2026-07-31",
+   "entry_price": 40.2,
+   "current_price": 43.3,
+   "return_pct": 7.71
+  },
+  {
+   "ticker": "HAUTO",
+   "name": "Hoegh Autoliners ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 168.5,
+   "current_price": 176.0,
+   "return_pct": 4.45
+  },
+  {
+   "ticker": "WAWI",
+   "name": "Wallenius Wilhelmsen Logistics ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 147.7,
+   "current_price": 147.6,
+   "return_pct": -0.07
+  },
+  {
+   "ticker": "OKEA",
+   "name": "Okea ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 33.95,
+   "current_price": 34.6,
+   "return_pct": 1.91
+  },
+  {
+   "ticker": "AKER",
+   "name": "Aker ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 1274.0,
+   "current_price": 1376.0,
+   "return_pct": 8.01
+  },
+  {
+   "ticker": "NORAM",
+   "name": "NorAm Drilling AS",
+   "entry_date": "2026-07-31",
+   "entry_price": 42.9,
+   "current_price": 43.35,
+   "return_pct": 1.05
+  },
+  {
+   "ticker": "BNOR",
+   "name": "BlueNord ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 512.0,
+   "current_price": 505.0,
+   "return_pct": -1.37
+  },
+  {
+   "ticker": "EQNR",
+   "name": "Equinor ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 386.4,
+   "current_price": 372.0,
+   "return_pct": -3.73
+  },
+  {
+   "ticker": "SOFF",
+   "name": "Solstad Offsho",
+   "entry_date": "2026-07-31",
+   "entry_price": 67.8,
+   "current_price": 68.3,
+   "return_pct": 0.74
+  },
+  {
+   "ticker": "AKSO",
+   "name": "Aker Solutions ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 42.04,
+   "current_price": 41.7,
+   "return_pct": -0.81
+  },
+  {
+   "ticker": "ZAP",
+   "name": "Zaptec AS",
+   "entry_date": "2026-07-31",
+   "entry_price": 45.2,
+   "current_price": 46.6,
+   "return_pct": 3.1
+  },
+  {
+   "ticker": "WWI",
+   "name": "Wilh Wilhelmsen Holding ASA A",
+   "entry_date": "2026-07-31",
+   "entry_price": 768.0,
+   "current_price": 768.0,
+   "return_pct": 0.0
+  },
+  {
+   "ticker": "ELIMP",
+   "name": "Elektroimportoren As",
+   "entry_date": "2026-07-31",
+   "entry_price": 21.5,
+   "current_price": 21.7,
+   "return_pct": 0.93
+  },
+  {
+   "ticker": "VAR",
+   "name": "Var Energi ASA",
+   "entry_date": "2026-07-31",
+   "entry_price": 47.2,
+   "current_price": 46.62,
+   "return_pct": -1.23
+  },
+  {
+   "ticker": "MAS",
+   "name": "Masoval AS",
+   "entry_date": "2026-07-31",
+   "entry_price": 37.8,
+   "current_price": 37.9,
+   "return_pct": 0.26
+  }
+ ],
+ "monthly_breakdown": [
+  {
+   "month": "Feb 2026",
+   "return_pct": 4.39,
+   "regime": "momentum",
+   "tickers": [
+    "ARR",
+    "PEXIP",
+    "NRC",
+    "WWI",
+    "AKBM",
+    "ACR",
+    "SMOP",
+    "WAWI",
+    "INSTA",
+    "NHY",
+    "KIT",
+    "MOBA",
+    "KOA",
+    "AKER",
+    "ELK"
+   ],
+   "is_current": false
+  },
+  {
+   "month": "Mar 2026",
+   "return_pct": 4.63,
+   "regime": "momentum",
+   "tickers": [
+    "SMOP",
+    "WWI",
+    "NORAM",
+    "WAWI",
+    "KIT",
+    "INSTA",
+    "OKEA",
+    "HAUTO",
+    "AKBM",
+    "ZAP",
+    "AKER",
+    "NHY",
+    "DOFG",
+    "ELK",
+    "ARR"
+   ],
+   "is_current": false
+  },
+  {
+   "month": "Apr 2026",
+   "return_pct": -1.53,
+   "regime": "momentum",
+   "tickers": [
+    "SMOP",
+    "OKEA",
+    "NORAM",
+    "DNO",
+    "NHY",
+    "WAWI",
+    "HAUTO",
+    "AKBM",
+    "VAR",
+    "NSKOG",
+    "EQNR",
+    "DOFG",
+    "WWI",
+    "AKER",
+    "PEN"
+   ],
+   "is_current": false
+  },
+  {
+   "month": "May 2026",
+   "return_pct": -2.04,
+   "regime": "momentum",
+   "tickers": [
+    "SMOP",
+    "OKEA",
+    "NORAM",
+    "NSKOG",
+    "NHY",
+    "AKVA",
+    "AKER",
+    "KIT",
+    "INSTA",
+    "DOFG",
+    "PEN",
+    "WAWI",
+    "MAS",
+    "AKRBP",
+    "KCC"
+   ],
+   "is_current": false
+  },
+  {
+   "month": "Jun 2026",
+   "return_pct": -8.12,
+   "regime": "momentum",
+   "tickers": [
+    "SMOP",
+    "NSKOG",
+    "KIT",
+    "OKEA",
+    "ZAP",
+    "AKER",
+    "NORAM",
+    "NHY",
+    "AKSO",
+    "MPCC",
+    "MAS",
+    "YAR",
+    "INSTA",
+    "VAR",
+    "WWI"
+   ],
+   "is_current": false
+  },
+  {
+   "month": "Jul 2026",
+   "return_pct": -0.33,
+   "regime": "cash",
+   "tickers": [],
+   "is_current": false
+  },
+  {
+   "month": "Aug 2026",
+   "return_pct": 1.06,
+   "regime": "momentum",
+   "tickers": [
+    "NSKOG",
+    "HAUTO",
+    "WAWI",
+    "OKEA",
+    "AKER",
+    "NORAM",
+    "BNOR",
+    "EQNR",
+    "SOFF",
+    "AKSO",
+    "ZAP",
+    "WWI",
+    "ELIMP",
+    "VAR",
+    "MAS"
+   ],
+   "is_current": true
+  }
+ ],
+ "config_version": "norway-v1-beta",
+ "is_live": false,
+ "not_live_reason": "beta"
+}

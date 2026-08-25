@@ -1,0 +1,174 @@
+{
+ "date": "2026-08-07",
+ "regime": "momentum",
+ "osebx": 2088.8,
+ "osebx_ma100": 2000.8,
+ "osebx_date": "2026-08-24",
+ "pct_above_ma": 0.044,
+ "total_eligible": 98,
+ "top20": [
+  {
+   "rank": 1,
+   "ticker": "NSKOG",
+   "name": "Norske Skog Asa",
+   "ret_9m": 156.2,
+   "mcap_b": 3.67,
+   "selected": true
+  },
+  {
+   "rank": 2,
+   "ticker": "HAUTO",
+   "name": "Hoegh Autoliners ASA",
+   "ret_9m": 111.9,
+   "mcap_b": 33.57,
+   "selected": true
+  },
+  {
+   "rank": 3,
+   "ticker": "ZAP",
+   "name": "Zaptec AS",
+   "ret_9m": 100.7,
+   "mcap_b": 3.56,
+   "selected": true
+  },
+  {
+   "rank": 4,
+   "ticker": "AKER",
+   "name": "Aker ASA",
+   "ret_9m": 79.4,
+   "mcap_b": 102.24,
+   "selected": true
+  },
+  {
+   "rank": 5,
+   "ticker": "WAWI",
+   "name": "Wallenius Wilhelmsen Logistics ASA",
+   "ret_9m": 74.7,
+   "mcap_b": 62.4,
+   "selected": true
+  },
+  {
+   "rank": 6,
+   "ticker": "MAS",
+   "name": "Masoval AS",
+   "ret_9m": 73.9,
+   "mcap_b": 4.59,
+   "selected": true
+  },
+  {
+   "rank": 7,
+   "ticker": "SMOP",
+   "name": "Smartoptics Group AS",
+   "ret_9m": 73.5,
+   "mcap_b": 4.46,
+   "selected": true
+  },
+  {
+   "rank": 8,
+   "ticker": "SOFF",
+   "name": "Solstad Offsho",
+   "ret_9m": 70.6,
+   "mcap_b": 5.62,
+   "selected": true
+  },
+  {
+   "rank": 9,
+   "ticker": "OKEA",
+   "name": "Okea ASA",
+   "ret_9m": 64.0,
+   "mcap_b": 3.6,
+   "selected": true
+  },
+  {
+   "rank": 10,
+   "ticker": "ELIMP",
+   "name": "Elektroimportoren As",
+   "ret_9m": 63.7,
+   "mcap_b": 1.1,
+   "selected": true
+  },
+  {
+   "rank": 11,
+   "ticker": "EQNR",
+   "name": "Equinor ASA",
+   "ret_9m": 63.5,
+   "mcap_b": 1029.32,
+   "selected": true
+  },
+  {
+   "rank": 12,
+   "ticker": "BNOR",
+   "name": "BlueNord ASA",
+   "ret_9m": 62.9,
+   "mcap_b": 13.05,
+   "selected": true
+  },
+  {
+   "rank": 13,
+   "ticker": "VAR",
+   "name": "Var Energi ASA",
+   "ret_9m": 56.4,
+   "mcap_b": 116.38,
+   "selected": true
+  },
+  {
+   "rank": 14,
+   "ticker": "NORAM",
+   "name": "NorAm Drilling AS",
+   "ret_9m": 49.7,
+   "mcap_b": 1.88,
+   "selected": true
+  },
+  {
+   "rank": 15,
+   "ticker": "KIT",
+   "name": "Kitron ASA",
+   "ret_9m": 48.4,
+   "mcap_b": 17.73,
+   "selected": true
+  },
+  {
+   "rank": 16,
+   "ticker": "PEN",
+   "name": "Panoro Energy ASA",
+   "ret_9m": 47.6,
+   "mcap_b": 2.78,
+   "selected": false
+  },
+  {
+   "rank": 17,
+   "ticker": "AKSO",
+   "name": "Aker Solutions ASA",
+   "ret_9m": 47.4,
+   "mcap_b": 20.09,
+   "selected": false
+  },
+  {
+   "rank": 18,
+   "ticker": "PEXIP",
+   "name": "Pexip Holding ASA",
+   "ret_9m": 46.7,
+   "mcap_b": 8.39,
+   "selected": false
+  },
+  {
+   "rank": 19,
+   "ticker": "AKVA",
+   "name": "Akva Group",
+   "ret_9m": 46.3,
+   "mcap_b": 4.8,
+   "selected": false
+  },
+  {
+   "rank": 20,
+   "ticker": "MPCC",
+   "name": "MPC Container Ships ASA",
+   "ret_9m": 44.4,
+   "mcap_b": 10.76,
+   "selected": false
+  }
+ ],
+ "updated": "2026-08-25",
+ "is_live": false,
+ "not_live_reason": "beta"
+}

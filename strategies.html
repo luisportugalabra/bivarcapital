@@ -237,6 +237,27 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
+    <div class="strategy-card" id="norway-momentum-card">
+      <div class="card-header">
+        <div class="card-title">Beta &mdash; Norway Momentum</div>
+        <span class="card-badge badge-beta">Beta</span>
+      </div>
+      <p id="norway-momentum-blur" class="card-desc">9-month momentum strategy on Oslo B&oslash;rs equities. Market cap &gt;565M NOK (~&euro;50M), EBIT&gt;0, OSEBX MA100 regime overlay. Monthly rebalance, 15 stocks equal weighted, net of 66bps costs. Beta: newer strategy, pre-2013 backtest relies on a validated synthetic regime index.</p>
+      <div class="card-stats" id="norway-momentum-stats">
+        <span class="card-stat">Sharpe: <span class="num">1.04</span></span>
+        <span class="card-stat">CAGR: <span class="num">+15.1%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-32.2%</span></span>
+        <span class="card-stat"><span class="num">2000&ndash;2026</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-norway-mom').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="norway-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
+
     <!-- CHINA MOMENTUM CARD — hidden, re-enable when ready
     <div class="strategy-card" id="china-momentum-card">
       <div class="card-header">
@@ -472,6 +493,31 @@ END CHINA MODAL -->
   </div>
 </div>
 
+<!-- MODAL: Norway Momentum -->
+<div class="modal-overlay" id="modal-norway-mom" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-norway-mom').classList.remove('open')">&times;</button>
+    <h3>How to follow Norway Momentum</h3>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 — Once a month</div>
+      <p>At <strong>month-end</strong>, check the signal on this site. Takes ~5 minutes to execute via Interactive Brokers or any broker with access to Oslo B&oslash;rs.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 — Check the regime</div>
+      <p>If the <strong>OSEBX is above its 100-day moving average</strong>: hold the 15 stocks. If it is below: sell everything and stay in <strong>cash (NOK)</strong>. The strategy is in cash ~37% of the time.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 — Execute</div>
+      <p>Buy the <strong>15 stocks listed</strong> in equal weight (~6.7% each). Sell previous month&apos;s holdings no longer in the top 15. All prices in NOK.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-step">
+      <div class="modal-step-num">Key details</div>
+      <p>Universe: Oslo B&oslash;rs, Norwegian companies only, mcap &gt;565M NOK (~&euro;50M), EBIT&gt;0. Signal = 9-month return. Backtest 2000&ndash;2026 net of 66bps costs: CAGR +15.1%, Sharpe 1.04, MaxDD -32.2%. <a href="/research/norway_momentum_report.html">Full report &rarr;</a></p>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: Canada TSX Momentum -->
 <div class="modal-overlay" id="modal-canada-mom" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
@@ -552,6 +598,11 @@ window.onUnlock = function(email) {
   document.getElementById('denmark-momentum-stats').style.filter = 'none';
   document.getElementById('denmark-momentum-stats').style.userSelect = 'auto';
   document.getElementById('denmark-momentum-actions').innerHTML = '<a href="/denmark-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/denmark_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
+  document.getElementById('norway-momentum-blur').style.filter = 'none';
+  document.getElementById('norway-momentum-blur').style.userSelect = 'auto';
+  document.getElementById('norway-momentum-stats').style.filter = 'none';
+  document.getElementById('norway-momentum-stats').style.userSelect = 'auto';
+  document.getElementById('norway-momentum-actions').innerHTML = '<a href="/norway-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/norway_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   // CHINA — re-enable when adding card back
   // document.getElementById('china-momentum-blur').style.filter = 'none';
   // document.getElementById('china-momentum-blur').style.userSelect = 'auto';
