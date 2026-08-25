@@ -285,6 +285,31 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       &nbsp;|&nbsp; Rebalance: monthly
     </p>
 
+    <div id="yf-compare" style="display:none;margin-top:32px">
+      <div class="port-section-title" style="margin-bottom:4px">Data-Source Comparison — Yahoo Finance Ranking</div>
+      <p style="font-size:.68rem;color:var(--text-muted);margin:6px 0 10px;font-family:var(--font-body)">
+        The official ranking above uses TradingView's <code>Perf.Y</code>. The table below is the same universe ranked by
+        12M return computed from Yahoo Finance price history (dividend-adjusted, requires ~1 year of real quotes),
+        published daily for comparison. Overlap of the two top-10s:
+        <strong id="yf-overlap" style="color:var(--accent)">—</strong>/10.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Status</th>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th class="r">12M (Yahoo)</th>
+            <th class="r">MCap (CAD B)</th>
+          </tr>
+        </thead>
+        <tbody id="yf-table-body"></tbody>
+      </table>
+      </div>
+    </div>
+
     <!-- Telegram -->
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
       <div style="font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Get notified on rebalance day</div>
@@ -469,6 +494,26 @@ async function loadSignal() {
         <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
       </tr>`;
     }).join('');
+
+    const top20yf = data.top20_yf || [];
+    if (top20yf.length) {
+      document.getElementById('yf-compare').style.display = 'block';
+      document.getElementById('yf-overlap').textContent = data.yf_tv_overlap ?? '—';
+      const tvSel = new Set(top20.filter(s => s.selected).map(s => s.ticker));
+      document.getElementById('yf-table-body').innerHTML = top20yf.map(s => {
+        const sel = s.selected;
+        const inTv = tvSel.has(s.ticker);
+        const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
+        return `<tr class="${sel ? 'selected' : ''}">
+          <td>${s.rank}</td>
+          <td>${sel ? (inTv ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">YF ONLY</span>') : ''}</td>
+          <td><strong>${s.ticker}</strong></td>
+          <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
+          <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
+          <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
+        </tr>`;
+      }).join('');
+    }
 
   } catch(e) {
     console.error('Signal load error:', e);

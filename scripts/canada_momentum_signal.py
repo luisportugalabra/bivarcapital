@@ -135,6 +135,46 @@ def fetch_canada():
     return df.reset_index(drop=True), universe_health, broad_prices
 
 
+def compute_yf_momentum(codes):
+    """Diagnostic 12M momentum from yfinance (.TO), dividend-adjusted,
+    published alongside the official TradingView Perf.Y ranking for live
+    source comparison (same scheme as Germany, where Perf.Y proved broken
+    on dormant cross-listing lines). Requires >=230 daily closes and a
+    non-stale price at the 365d anchor; names failing that get no value.
+    Does NOT affect the official ranking or the portfolio."""
+    yf_map = {c: c.replace('.', '-') + '.TO' for c in codes}
+    tickers = list(yf_map.values())
+    frames = []
+    for i in range(0, len(tickers), 150):
+        chunk = tickers[i:i + 150]
+        try:
+            raw = yf.download(chunk, period='500d', auto_adjust=True, progress=False)
+        except Exception as e:
+            print(f"  compute_yf_momentum(): batch failed ({e}) -- skipping")
+            continue
+        if raw is None or len(raw) == 0:
+            continue
+        px = raw['Close'] if isinstance(raw.columns, pd.MultiIndex) else raw[['Close']].rename(columns={'Close': chunk[0]})
+        frames.append(px)
+    if not frames:
+        return {}
+    px = pd.concat(frames, axis=1)
+    px = px.loc[:, ~px.columns.duplicated()]
+    anchor_date = px.index.max() - pd.Timedelta(days=365)
+    mom = {}
+    for c, yt in yf_map.items():
+        if yt not in px.columns:
+            continue
+        s = px[yt].dropna()
+        if len(s) < 230:
+            continue
+        past = s[s.index <= anchor_date]
+        if past.empty or (anchor_date - past.index[-1]).days > 10:
+            continue
+        mom[c] = round(float(s.iloc[-1] / past.iloc[-1] - 1) * 100, 2)
+    return mom
+
+
 def check_regime():
     """TSX Composite vs MA75 via yfinance. Also returns the actual date of
     the last available trading bar -- the real market date, not whatever
@@ -329,6 +369,27 @@ def main():
             'selected':  code in selected,
         })
 
+    # Parallel yfinance ranking (diagnostic only -- TradingView stays the
+    # authority for the actual portfolio; see compute_yf_momentum()).
+    yf_mom = compute_yf_momentum(df['code'].tolist())
+    yf_df = df[df['code'].isin(yf_mom)].copy()
+    yf_df['ret_12m_yf'] = yf_df['code'].map(yf_mom)
+    yf_df = yf_df.sort_values('ret_12m_yf', ascending=False).reset_index(drop=True)
+    top20_yf = []
+    for i, row in yf_df.head(20).iterrows():
+        top20_yf.append({
+            'rank':     int(i) + 1,
+            'ticker':   row['code'],
+            'name':     str(row.get('description') or row.get('name', row['code'])),
+            'ret_12m':  round(float(row['ret_12m_yf']), 2),
+            'mcap_b':   round(float(row['market_cap_basic']) / 1e9, 3),
+            'selected': int(i) < TOP_N,
+        })
+    yf_overlap = len({s['ticker'] for s in top20 if s['selected']} &
+                     {s['ticker'] for s in top20_yf if s['selected']})
+    print(f"  yfinance comparison: {len(yf_mom)} names with valid 12M, "
+          f"top-{TOP_N} overlap vs TradingView: {yf_overlap}/{TOP_N}")
+
     signal = {
         'date':               TODAY,
         'regime':             regime_str,
@@ -338,6 +399,8 @@ def main():
         'total_eligible':     int(len(df)),
         'portfolio':          [s for s in top20 if s['selected']],
         'top20':              top20,
+        'top20_yf':           top20_yf,
+        'yf_tv_overlap':      yf_overlap,
         'updated':            TODAY,
         'is_live':            True,
         'not_live_reason':    None,

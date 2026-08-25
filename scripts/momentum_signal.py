@@ -79,6 +79,55 @@ def fetch_stocks():
     return df.sort_values('composite', ascending=False).reset_index(drop=True)
 
 
+def compute_yf_composite(tickers):
+    """Diagnostic composite (50% 6M + 50% 12M) from yfinance, dividend-
+    adjusted, published alongside the official TradingView ranking for live
+    source comparison (same scheme as Germany/Canada). Requires >=230 daily
+    closes and non-stale prices at both anchors. Does NOT affect the
+    official ranking or the portfolio."""
+    import yfinance as yf
+    import warnings
+    warnings.filterwarnings('ignore')
+    yf_map = {t: t.replace('.', '-') for t in tickers}
+    ylist = list(yf_map.values())
+    frames = []
+    for i in range(0, len(ylist), 150):
+        chunk = ylist[i:i + 150]
+        try:
+            raw = yf.download(chunk, period='500d', auto_adjust=True, progress=False)
+        except Exception as e:
+            print(f"  compute_yf_composite(): batch failed ({e}) -- skipping")
+            continue
+        if raw is None or len(raw) == 0:
+            continue
+        px = raw['Close'] if isinstance(raw.columns, pd.MultiIndex) else raw[['Close']].rename(columns={'Close': chunk[0]})
+        frames.append(px)
+    if not frames:
+        return {}
+    px = pd.concat(frames, axis=1)
+    px = px.loc[:, ~px.columns.duplicated()]
+    a12 = px.index.max() - pd.Timedelta(days=365)
+    a6  = px.index.max() - pd.Timedelta(days=182)
+    out = {}
+    for t, yt in yf_map.items():
+        if yt not in px.columns:
+            continue
+        s = px[yt].dropna()
+        if len(s) < 230:
+            continue
+        p12 = s[s.index <= a12]
+        p6  = s[s.index <= a6]
+        if p12.empty or p6.empty:
+            continue
+        if (a12 - p12.index[-1]).days > 10 or (a6 - p6.index[-1]).days > 10:
+            continue
+        r12 = float(s.iloc[-1] / p12.iloc[-1] - 1) * 100
+        r6  = float(s.iloc[-1] / p6.iloc[-1] - 1) * 100
+        out[t] = {'ret_6m': round(r6, 1), 'ret_12m': round(r12, 1),
+                  'composite': round(0.5 * r6 + 0.5 * r12, 1)}
+    return out
+
+
 def check_regime():
     """Check S&P 500 vs MA250 via yfinance."""
     try:
@@ -186,6 +235,31 @@ def main():
         }
         top20.append(entry)
 
+    # Parallel yfinance ranking (diagnostic only -- TradingView stays the
+    # authority for the actual portfolio; see compute_yf_composite()).
+    yf_comp = compute_yf_composite(df['ticker'].astype(str).tolist())
+    yf_rows = [{'ticker': t, **v} for t, v in yf_comp.items()]
+    yf_rows.sort(key=lambda r: r['composite'], reverse=True)
+    name_map = df.set_index('ticker')['name'].to_dict()
+    mcap_map = df.set_index('ticker')['mcap'].to_dict()
+    n_sel = len(sel7) if sel7 else 7
+    top20_yf = []
+    for i, r in enumerate(yf_rows[:20]):
+        top20_yf.append({
+            "rank": i + 1,
+            "ticker": r['ticker'],
+            "name": str(name_map.get(r['ticker'], r['ticker'])),
+            "ret_6m": r['ret_6m'],
+            "ret_12m": r['ret_12m'],
+            "composite": r['composite'],
+            "mcap_b": round(float(mcap_map.get(r['ticker'], 0)) / 1e9, 1),
+            "selected": i < n_sel,
+        })
+    yf_overlap = len({t['ticker'] for t in top20 if t['selected']} &
+                     {t['ticker'] for t in top20_yf if t['selected']})
+    print(f"  yfinance comparison: {len(yf_comp)} names with valid composite, "
+          f"top-{n_sel} overlap vs TradingView: {yf_overlap}/{n_sel}")
+
     # Build JSON
     output = {
         "date": datetime.now().strftime("%Y-%m-%d"),
@@ -195,6 +269,8 @@ def main():
         "total_eligible": len(df),
         "portfolio": [t for t in top20 if t["selected"]],
         "top20": top20,
+        "top20_yf": top20_yf,
+        "yf_tv_overlap": yf_overlap,
     }
 
     # Save JSON

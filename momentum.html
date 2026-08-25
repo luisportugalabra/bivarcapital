@@ -232,6 +232,33 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       &nbsp;|&nbsp; <a href="/research/signal_day_sensitivity.html" style="color:var(--accent);text-decoration:none">Signal day sensitivity &rarr;</a>
     </p>
 
+    <div id="yf-compare" style="display:none;margin-top:32px">
+      <div style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px">Data-Source Comparison — Yahoo Finance Ranking</div>
+      <p style="font-size:.68rem;color:var(--text-muted);margin:6px 0 10px;font-family:var(--font-body)">
+        The official ranking above uses TradingView performance fields. The table below is the same universe ranked by the
+        same composite (50% &times; 6M + 50% &times; 12M) computed from Yahoo Finance price history (dividend-adjusted),
+        published daily for comparison. Overlap of the two top-7s:
+        <strong id="yf-overlap" style="color:var(--accent)">—</strong>/7.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Status</th>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th>Ret 6M</th>
+            <th>Ret 12M</th>
+            <th>Composite</th>
+            <th>MCap ($B)</th>
+          </tr>
+        </thead>
+        <tbody id="yf-table-body"></tbody>
+      </table>
+      </div>
+    </div>
+
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
       <div style="font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Get notified on rebalance day</div>
       <a href="https://t.me/Bivarbtcbot" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;font-family:var(--font-body);font-size:.85rem;font-weight:600;padding:12px 28px;border-radius:10px;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
@@ -376,6 +403,20 @@ async function loadData() {
     const compCls = s.composite >= 0 ? 'pos' : 'neg';
     return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td><td>${s.ebit_m.toLocaleString()}</td></tr>`;
   }).join('');
+
+  const top20yf = data.top20_yf || [];
+  if (top20yf.length) {
+    document.getElementById('yf-compare').style.display = 'block';
+    document.getElementById('yf-overlap').textContent = data.yf_tv_overlap ?? '—';
+    const tvSel = new Set(data.top20.filter(s => s.selected).map(s => s.ticker));
+    document.getElementById('yf-table-body').innerHTML = top20yf.map(s => {
+      const sel = s.selected;
+      const inTv = tvSel.has(s.ticker);
+      const status = sel ? (inTv ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">YF ONLY</span>') : '';
+      const c6 = s.ret_6m >= 0 ? 'pos' : 'neg', c12 = s.ret_12m >= 0 ? 'pos' : 'neg', cc = s.composite >= 0 ? 'pos' : 'neg';
+      return `<tr class="${sel ? 'selected' : ''}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td class="${c6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${c12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${cc}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td></tr>`;
+    }).join('');
+  }
 }
 let _calcHoldings = [];
 function calcRebalance() {
