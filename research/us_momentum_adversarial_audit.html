@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Momentum — Adversarial Audit — Bivar Capital</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+.badge { font-family: var(--font-mono); font-size: .55rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 16px; }
+.back { font-family: var(--font-mono); font-size: .6rem; color: var(--text-muted); text-decoration: none; display: inline-block; margin-bottom: 24px; }
+.back:hover { color: var(--accent); }
+h1 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; margin: 8px 0 6px; }
+h2 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin: 36px 0 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+h2:first-of-type { border-top: none; }
+h3 { font-family: var(--font-mono); font-size: .85rem; color: var(--accent); margin: 22px 0 8px; text-transform: uppercase; letter-spacing: .04em; }
+p { color: var(--text-secondary); font-size: .87rem; margin-bottom: 12px; }
+strong { color: var(--text); }
+em { color: var(--text-secondary); }
+a { color: var(--accent); }
+ul, ol { margin: 0 0 14px 22px; color: var(--text-secondary); font-size: .87rem; }
+li { margin-bottom: 5px; }
+li p { margin-bottom: 4px; }
+hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+code { font-family: var(--font-mono); font-size: .82em; background: var(--bg-card); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; color: var(--accent); }
+pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+.table-wrap { overflow-x: auto; margin: 10px 0 18px; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: .74rem; }
+th { text-align: left; padding: 7px 10px; font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 1px solid var(--border-light); white-space: nowrap; }
+td { padding: 6px 10px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .72rem; color: var(--text-secondary); }
+tr:first-child td { color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; margin-top: 20px; }
+footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-muted); }
+@media(max-width:700px){ h1{font-size:1.35rem} }
+</style>
+</head>
+<body>
+<main>
+<div class="container">
+  <a href="/strategies.html" class="back">&larr; Strategies</a>
+  <span class="badge">Provisional &middot; Internal Audit</span>
+  <h1>Auditoria adversarial independente — BivarOptimalMomentum (USA)</h1>
+<p><strong>Data:</strong> 2026-08-25 · <strong>Dados:</strong> Sharadar até 2026-05-14 · <strong>Motor auditado:</strong> <code>~/sharadar/generate_mom_gld_report.py</code>
+<strong>Método:</strong> reimplementação independente (<code>~/momentum_research/audit_us_momentum.py</code>), sem reutilizar funções do original.</p>
+<h2>A. Veredicto executivo</h2>
+<p><strong>Investiria capital real nesta estratégia na forma actual do MOTOR, com sizing moderado — mas não confiaria no TRACKER LIVE nem nos números de apresentação do site sem as correcções pendentes.</strong>
+O motor de backtest reproduz-se exactamente, sobrevive a delisting-aware execution, execução atrasada, subperíodos, placebo e attribution. As falhas estão na camada de apresentação e no código live — não no motor.
+<strong>Score de confiança no motor/backtest: 82/100.</strong> No pipeline live/publicação: 45/100.</p>
+<h2>B. Tabela de riscos</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Severidade</th>
+<th>Evidência</th>
+<th>Impacto</th>
+<th>Resolvido?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dados param a 14 Maio; report regenerado 22-24 Ago sobre dados velhos; Julho 2026 (-25% live) fora de todos os headline numbers</td>
+<td>ALTA</td>
+<td>mtime parquets vs mtime report</td>
+<td>headline stats descrevem janela que exclui pior mês recente</td>
+<td>NÃO</td>
+</tr>
+<tr>
+<td>Tracker live selecciona de universo diferente (SNDK/LITE), sem guarda de 252d de história, mcap corrente vs filing, price-return vs total-return</td>
+<td>ALTA</td>
+<td>auditoria 20-Ago pts 2/4/10, código momentum_signal.py</td>
+<td>série live não reconciliável com backtest; maior vencedor do YTD (+470% SNDK) é estruturalmente impossível no backtest</td>
+<td>NÃO</td>
+</tr>
+<tr>
+<td>Tracker live ignora o filtro de regime (calcula, mostra, nunca usa)</td>
+<td>ALTA</td>
+<td>momentum_signal.py <code>exec_tickers = sel7</code></td>
+<td>todo o valor defensivo do MA250 ausente do live</td>
+<td>NÃO</td>
+</tr>
+<tr>
+<td>"Alpha +18.3%" = CAGR total-return − S&amp;P price-return, sem beta</td>
+<td>MÉDIA</td>
+<td>linha 211 do gerador; sp500_daily = ^GSPC price</td>
+<td>alpha real CAPM vs SPY TR = +19.4pp/ano (por acaso semelhante, mas por razões erradas: beta 0.52 compensa os dividendos em falta)</td>
+<td>NÃO</td>
+</tr>
+<tr>
+<td>Sortino ×12 em vez de ×√12 + np.std sobre desvios</td>
+<td>BAIXA</td>
+<td>linha 265 do gerador</td>
+<td>Sortino publicado inflacionado ~3.5x</td>
+<td>NÃO</td>
+</tr>
+<tr>
+<td>Delistings a meio do mês excluídos do retorno do mês</td>
+<td>BAIXA (testado)</td>
+<td>secção B da minha reimplementação</td>
+<td>10 meses em 339, tudo M&amp;A (EOP, BLS, SGP...), direcção mista, CAGR inalterado (25.6→25.6)</td>
+<td>Imaterial</td>
+</tr>
+<tr>
+<td><code>diag_holdings_log.csv</code> diverge do motor (6/246 meses iguais)</td>
+<td>INCIDENTE</td>
+<td>script diagnóstico de 15-Ago usa GLD-em-bear, ffill de preços e fundamentais mensais — é um artefacto de uma versão anterior</td>
+<td>risco de confusão futura; apagar ou regenerar</td>
+<td>NÃO</td>
+</tr>
+<tr>
+<td>Parâmetros (top7, $10B, MA250, 50/50 6+12M) escolhidos in-sample; "339 months out-of-sample" é falso</td>
+<td>MÉDIA</td>
+<td>floor $5B→Sharpe 0.72, $20B→0.66 vs $10B→0.87: óptimo local</td>
+<td>overfit moderado; a estrutura sobrevive aos vizinhos mas o $10B é o melhor dos três</td>
+<td>NÃO (wording)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>C. Bugs encontrados (novos, além dos da auditoria de 20-Ago)</h2>
+<ol>
+<li><strong>Exclusão de delistados intra-mês</strong> (<code>common = bp.dropna() ∩ sp_p.dropna()</code>): a posição desaparecida é substituída pela média dos sobreviventes. Testei a correcção (vender no último trade disponível): <strong>CAGR 25.6% → 25.6%, Sharpe 0.87 → 0.87</strong>. Os 10 casos são aquisições, não falências — o viés é ~zero neste universo ($10B + EBIT&gt;0). Confirmado imaterial, mas deve ser corrigido por higiene.</li>
+<li><strong><code>diag_holdings_log.csv</code> é de outra estratégia</strong> (GLD, ffill, fundamentais mensais) — artefacto morto que contradiz o motor em 240/246 meses.</li>
+</ol>
+<h2>D. Resultados auditados (reimplementação independente, custos 14bps)</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>CAGR</th>
+<th>Sharpe</th>
+<th>MaxDD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Publicado (report)</td>
+<td>+25.6%</td>
+<td>0.87</td>
+<td>-33.2%</td>
+</tr>
+<tr>
+<td>Minha reimplementação (código separado)</td>
+<td>+25.6%</td>
+<td>0.87</td>
+<td>-33.2%</td>
+</tr>
+<tr>
+<td>Delisting-aware (honesta)</td>
+<td>+25.6%</td>
+<td>0.87</td>
+<td>-33.2%</td>
+</tr>
+<tr>
+<td>Execução T+2 close</td>
+<td>+25.3%</td>
+<td>0.89</td>
+<td>-34.7%</td>
+</tr>
+<tr>
+<td>Execução no próprio close (optimista)</td>
+<td>+29.7%</td>
+<td>0.95</td>
+<td>-30.8%</td>
+</tr>
+<tr>
+<td><strong>2017–2026 isolado</strong></td>
+<td><strong>+30.3%</strong></td>
+<td><strong>0.85</strong></td>
+<td>-33.2%</td>
+</tr>
+<tr>
+<td>SPY total-return (mesma janela)</td>
+<td>+8.8%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Alpha CAPM (beta 0.52, vs SPY TR)</td>
+<td><strong>+19.4pp/ano</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>Subperíodos (todos batem o S&amp;P): 98-03: 28.0% · 04-08: 26.5% · 09-12: 12.8% (mais fraco, S&amp;P 11.9%) · 13-16: 23.9% · 17-20: 18.3% · 21-26: 40.0%.
+Placebo: ranking invertido 2.9%/Sharpe 0.11 · random-7 do mesmo universo 6.2% · sinal desfasado 1 mês 20.4% (decay lento = sinal genuíno, não artefacto de microestrutura).
+Concentração: sem top 10 meses → 14.3% CAGR; sem top 10% meses → 2.5% — mas o S&amp;P na mesma cirurgia dá <strong>-1.2%</strong>; é o perfil normal de equities, não fragilidade. Nenhum outlier absurdo de dados (top contribuidores: NVDA, APP, MU, QCOM — retornos reais verificáveis).
+Liquidez: ADV mediana das selecções $114M/dia; p10 $24M — investível até dezenas de milhões de capital. (BVSN/TPL com ADV baixo são casos de 1999-2004.)</p>
+<h2>E. O que continua incerto</h2>
+<ul>
+<li><strong>Categorias do tickers.parquet são o estado corrente</strong>, não point-in-time (empresa reclassificada de/para "Domestic Common Stock" muda o universo retroactivamente). Sem snapshot histórico da tabela tickers não é mensurável. Risco baixo mas não provado zero.</li>
+<li><code>marketcap</code> do SF1 é o do filing date (não do dia do sinal) — direcção conservadora, mas empresas em ascensão rápida entram ~2-4 meses tarde; não quantificado.</li>
+<li>2026 live vs backtest permanece irreconciliável até os dados serem actualizados e as guardas de universo impostas no live.</li>
+</ul>
+<h2>F. Próximas 3 auditorias mais valiosas</h2>
+<ol>
+<li><strong>Actualizar Sharadar → regerar → comparar Mai-Ago 2026 backtest vs conta real</strong>, posição a posição. É o único teste que valida o pipeline inteiro de uma vez.</li>
+<li><strong>Impor no live as guardas do backtest</strong> (252d história, mcap do filing, total return, regime) e correr 3 meses em paralelo com a versão actual.</li>
+<li><strong>Snapshot point-in-time da tabela tickers</strong> (Sharadar TICKERS tem versões? senão arquivar mensalmente a partir de agora) para fechar a última porta de survivorship.</li>
+</ol>
+</div>
+</main>
+<footer><div class="container" style="padding:0"><p>Bivar Capital &nbsp;|&nbsp; Internal audit note, not investment advice.</p></div></footer>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canada Momentum — Adversarial Audit — Bivar Capital</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+.badge { font-family: var(--font-mono); font-size: .55rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 16px; }
+.back { font-family: var(--font-mono); font-size: .6rem; color: var(--text-muted); text-decoration: none; display: inline-block; margin-bottom: 24px; }
+.back:hover { color: var(--accent); }
+h1 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; margin: 8px 0 6px; }
+h2 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin: 36px 0 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+h2:first-of-type { border-top: none; }
+h3 { font-family: var(--font-mono); font-size: .85rem; color: var(--accent); margin: 22px 0 8px; text-transform: uppercase; letter-spacing: .04em; }
+p { color: var(--text-secondary); font-size: .87rem; margin-bottom: 12px; }
+strong { color: var(--text); }
+em { color: var(--text-secondary); }
+a { color: var(--accent); }
+ul, ol { margin: 0 0 14px 22px; color: var(--text-secondary); font-size: .87rem; }
+li { margin-bottom: 5px; }
+li p { margin-bottom: 4px; }
+hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+code { font-family: var(--font-mono); font-size: .82em; background: var(--bg-card); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; color: var(--accent); }
+pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+.table-wrap { overflow-x: auto; margin: 10px 0 18px; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: .74rem; }
+th { text-align: left; padding: 7px 10px; font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 1px solid var(--border-light); white-space: nowrap; }
+td { padding: 6px 10px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .72rem; color: var(--text-secondary); }
+tr:first-child td { color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; margin-top: 20px; }
+footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-muted); }
+@media(max-width:700px){ h1{font-size:1.35rem} }
+</style>
+</head>
+<body>
+<main>
+<div class="container">
+  <a href="/strategies.html" class="back">&larr; Strategies</a>
+  <span class="badge">Provisional &middot; Internal Audit</span>
+  <h1>Auditoria adversarial independente — Canada TSX Momentum</h1>
+<p><strong>Data:</strong> 2026-08-25 · <strong>Motor auditado:</strong> <code>~/eodhd_data/generate_canada_report_v3.py</code> + <code>~/momentum_research/backtest.py</code>
+<strong>Método:</strong> reimplementação independente (<code>~/momentum_research/audit_canada_momentum.py</code>), variantes honestas, falsificação.</p>
+<h2>A. Veredicto executivo</h2>
+<p><strong>Investiria capital real, mas com os números honestos — CAGR ~34.5%, Sharpe ~1.22, MaxDD ~-26% — e não com os publicados (36.1/1.35/-24.5), que incluem um lookahead real no filtro de NetIncome.</strong>
+O edge é genuíno, persistente e sobrevive a todas as tentativas de destruição. O único bug material encontrado vale ~1.7pp de CAGR e 0.13 de Sharpe.
+<strong>Score de confiança: 78/100</strong> (85 depois de corrigir o filing_date e republicar).</p>
+<h2>B. Tabela de riscos</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Severidade</th>
+<th>Evidência</th>
+<th>Impacto</th>
+<th>Resolvido?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lookahead no NetIncome: 92.4% dos filing_date EODHD TO são ≤ fim do período</strong> — o filtro sabe o resultado trimestral no dia em que o trimestre fecha, 1-3 meses antes de ser público</td>
+<td><strong>ALTA</strong></td>
+<td>distribuição empírica de 16.264 filing_dates (mediana lag=0 dias); reruns A vs B</td>
+<td>CAGR 36.3→34.6, Sharpe 1.35→1.22, MaxDD -24.5→-26.0</td>
+<td><strong>NÃO</strong> — v3 usa filing_date quando existe; o loader corrigido do resto do projeto (ebit_test.py) já usa +60d fixo</td>
+</tr>
+<tr>
+<td>Gap de custos nas transições de regime (declarado no docstring como +1.1pp)</td>
+<td>BAIXA</td>
+<td>rerun C com custos honestos: 34.6→34.7</td>
+<td>~0 — a sobrecarga nos meses cash compensa as transições grátis</td>
+<td>Imaterial (o disclosure sobrestima o problema)</td>
+</tr>
+<tr>
+<td>Posições que desaparecem a meio do mês contam 0%</td>
+<td>BAIXA</td>
+<td>rerun D: 12 casos em 26 anos, pior NGD -33% (Mar 2026)</td>
+<td>CAGR 34.7→34.4</td>
+<td>Imaterial</td>
+</tr>
+<tr>
+<td>24% dos tickers TO com preços congelados ≥15d; 251 tickers com mcap corrompido (&gt;20x mediana)</td>
+<td>BAIXA no estratégia</td>
+<td>exclusão frozen na elegibilidade: 34.4→33.7/1.20</td>
+<td>os filtros mcap-top80%+NI&gt;0+momentum já evitam os contaminados</td>
+<td>Residual aceitável</td>
+</tr>
+<tr>
+<td>1101 datas fantasma (fins de semana) no painel EODHD cru</td>
+<td>RESOLVIDO</td>
+<td>v3 executa no calendário ^GSPTSE limpo; réplica independente confirma</td>
+<td>—</td>
+<td>SIM (v3)</td>
+</tr>
+<tr>
+<td>MaxDD -39% vs -26% (mistério B4 da auditoria de 20-Ago)</td>
+<td>FECHADO</td>
+<td>linhagem v2 morta (calendário contaminado + zero-lag); v3 reconstruído de raiz; a minha réplica independente dá -24.5% com a config de produção</td>
+<td>—</td>
+<td>SIM</td>
+</tr>
+</tbody>
+</table></div>
+<h2>C. Resultados auditados (reimplementação independente, 40bps, execução T+1 real)</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>CAGR</th>
+<th>Sharpe</th>
+<th>MaxDD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Publicado (site/report v3)</td>
+<td>+36.1%</td>
+<td>1.35</td>
+<td>-24.5%</td>
+</tr>
+<tr>
+<td>Minha réplica (código separado)</td>
+<td>+36.3%</td>
+<td>1.35</td>
+<td>-24.5%</td>
+</tr>
+<tr>
+<td><strong>+ NetIncome com lag honesto de 60d</strong></td>
+<td><strong>+34.6%</strong></td>
+<td><strong>1.22</strong></td>
+<td><strong>-26.0%</strong></td>
+</tr>
+<tr>
+<td>+ custos honestos (transições pagas)</td>
+<td>+34.7%</td>
+<td>1.23</td>
+<td>-26.1%</td>
+</tr>
+<tr>
+<td>+ delist-aware (exit no último trade)</td>
+<td>+34.4%</td>
+<td>1.21</td>
+<td>-26.5%</td>
+</tr>
+<tr>
+<td>+ exclusão de preços congelados</td>
+<td>+33.7%</td>
+<td>1.20</td>
+<td>-26.1%</td>
+</tr>
+<tr>
+<td><strong>2017-2026 isolado (honesta)</strong></td>
+<td><strong>+33.9%</strong></td>
+<td><strong>1.01</strong></td>
+<td>-26.5%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Subperíodos (versão honesta): 2000-03: 51.2%/1.91 · 04-08: 29.7%/1.04 · 09-12: 30.8%/1.44 · 13-16: 29.6%/1.33 · 17-20: 44.4%/1.40 · 21-26: 26.8%/0.76 (o mais fraco; pior ano 2023: -15%).
+Placebo: ranking invertido 4.9%/0.07 · random-10 do mesmo universo 10.5% · sinal desfasado 1 mês 30.6%. O pipeline distingue sinal de ruído.
+Concentração: sem top 10% dos meses → 10.0% (TSX na mesma cirurgia: -2.0%) — perfil normal de equities, sem outliers artificiais.</p>
+<h2>D. Alegações anteriores</h2>
+<ul>
+<li>"36.1/1.35/-24.5" → <strong>CONFIRMADA COM RESSALVAS</strong> (reproduz-se exatamente, mas contém o lookahead do filing_date)</li>
+<li>"Realistic 1-day execution lag" → <strong>CONFIRMADA</strong> (verificada no código e na réplica)</li>
+<li>"mcap/NI filters independent" → <strong>CONFIRMADA</strong></li>
+<li>"Sharpe rf-adjusted, Sortino RMS" → <strong>CONFIRMADA</strong></li>
+<li>"+1.1pp cost gap disclosed" → <strong>EXAGERADA</strong> (na prática ~0; as duas pontas compensam-se)</li>
+<li>"MaxDD trough 2009-04" → <strong>CONFIRMADA</strong></li>
+<li>Docstring "STATUS: not locked, 40bps not re-verified" → honesto e ainda válido</li>
+</ul>
+<h2>E. O que continua incerto</h2>
+<ul>
+<li>40bps de custo herdados da config antiga (top15/EBIT); as holdings atuais (top80% mcap) são maiores — o custo real é provavelmente MENOR, direção favorável mas não medida.</li>
+<li>Universo TO da EODHD: sem tabela de delistings explícita; tickers extintos estão no painel (o <code>_old</code> sufixo existe) mas não há prova exaustiva de cobertura completa de mortos pré-2010 — risco de survivorship residual não mensurável com esta fonte.</li>
+<li>TSX via yfinance: ~0.2pp de deriva entre downloads (a diferença 36.1 vs 36.3 da minha réplica).</li>
+</ul>
+<h2>F. Próximas 3 auditorias mais valiosas</h2>
+<ol>
+<li><strong>Corrigir o loader NI do v3 para period+60d sempre</strong> (uma linha), regenerar e republicar 34.6/1.22/-26.0 — remove o único bug material.</li>
+<li><strong>Medir o custo real das holdings atuais via IBKR</strong> (spreads TSX das top-80%-mcap) e substituir os 40bps herdados.</li>
+<li><strong>Comparação live vs backtest posição-a-posição durante 3 meses</strong> (o mesmo teste recomendado para o US) — valida o pipeline completo de uma vez.</li>
+</ol>
+</div>
+</main>
+<footer><div class="container" style="padding:0"><p>Bivar Capital &nbsp;|&nbsp; Internal audit note, not investment advice.</p></div></footer>
+</body>
+</html>
