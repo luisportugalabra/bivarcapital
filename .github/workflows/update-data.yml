@@ -76,6 +76,10 @@ jobs:
         continue-on-error: true
         run: python scripts/germany_momentum_signal.py
 
+      - name: Update Germany momentum YTD
+        continue-on-error: true
+        run: python scripts/germany_momentum_ytd.py
+
       - name: Update portfolio prices
         continue-on-error: true
         run: python scripts/daily-update.py

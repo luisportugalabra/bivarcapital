@@ -147,6 +147,11 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
         for m in breakdown:
             if m.get('is_current') and m['month'] != cur_month_label:
                 m['is_current'] = False
+                # close the month at the new book's start date -- without this,
+                # the ytd script has no end bound and would keep extending the
+                # closed month's return window to "today" forever
+                if not m.get('end'):
+                    m['end'] = TODAY
 
         existing_cur = next((m for m in breakdown if m['month'] == cur_month_label), None)
         if existing_cur:
@@ -277,15 +282,25 @@ def main():
                   'weight': float(weight_map.get(row['code'], 0))} for _, row in top_df.iterrows()]
 
     if is_new_month:
-        if regime_ok:
-            if pending_signal and pending_signal.get('for_month') == current_m and not legacy_strategy:
+        # Backtest convention: the regime is evaluated at the month-end SIGNAL
+        # close and held for the month -- not re-evaluated on the execution
+        # day. A locked pending_signal therefore carries its own regime
+        # decision and wins over today's regime read; today's regime is only
+        # a fallback when no signal was locked (first run, outage at EOM).
+        if pending_signal and pending_signal.get('for_month') == current_m and not legacy_strategy:
+            locked_regime_ok = pending_signal.get('regime', 'momentum') == 'momentum'
+            if locked_regime_ok:
                 print(f"  Portfolio: NEW MONTH ({current_m}), executing signal locked in on "
                       f"{pending_signal.get('computed_date')}...")
                 exec_picks = pending_signal['picks']
             else:
-                print(f"  Portfolio: NEW MONTH ({current_m}), no matching locked signal "
-                      f"-- falling back to today's data...")
-                exec_picks = today_sel
+                print(f"  Portfolio: NEW MONTH ({current_m}), locked signal was DEFENSIVE "
+                      f"-- moving to cash...")
+                exec_picks = []
+        elif regime_ok:
+            print(f"  Portfolio: NEW MONTH ({current_m}), no matching locked signal "
+                  f"-- falling back to today's data...")
+            exec_picks = today_sel
         else:
             print(f"  Portfolio: NEW MONTH ({current_m}), regime DEFENSIVE — moving to cash...")
             exec_picks = []
@@ -340,15 +355,21 @@ def main():
     is_month_end_today = (next_trading_candidate.month != today_date.month
                            or next_trading_candidate.year != today_date.year)
 
-    if is_month_end_today and regime_ok:
+    if is_month_end_today:
+        # Lock the signal EVEN when defensive: the regime decision belongs to
+        # the signal date (backtest convention), so a defensive close must be
+        # carried into next month as "cash" rather than letting the execution
+        # day's regime re-read decide (which the backtest never does).
         next_month_str = next_trading_candidate.strftime('%Y-%m')
         new_pending_signal = {
             'for_month':     next_month_str,
             'computed_date': TODAY,
-            'picks':         today_sel,
+            'regime':        regime_str,
+            'picks':         today_sel if regime_ok else [],
         }
         print(f"  Today ({TODAY}) is the last trading day of the month -- "
-              f"locked in signal for {next_month_str}: {[p['ticker'] for p in today_sel]}")
+              f"locked in {regime_str.upper()} signal for {next_month_str}: "
+              f"{[p['ticker'] for p in today_sel] if regime_ok else 'CASH'}")
     elif is_new_month:
         new_pending_signal = None
     else:

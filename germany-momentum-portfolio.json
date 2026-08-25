@@ -21,99 +21,99 @@
       "name": "Verbio SE",
       "entry_date": "2026-08-25",
       "entry_price": 31.68,
-      "current_price": 31.68,
+      "current_price": 31.48,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.63
     },
     {
       "ticker": "OHB",
       "name": "OHB SE",
       "entry_date": "2026-08-25",
       "entry_price": 196.0,
-      "current_price": 196.0,
+      "current_price": 195.8,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.1
     },
     {
       "ticker": "AIXA",
       "name": "AIXTRON SE",
       "entry_date": "2026-08-25",
       "entry_price": 37.25,
-      "current_price": 37.25,
+      "current_price": 37.23,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.05
     },
     {
       "ticker": "SMHN",
       "name": "SUSS MicroTec SE",
       "entry_date": "2026-08-25",
       "entry_price": 70.75,
-      "current_price": 70.75,
+      "current_price": 70.0,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -1.06
     },
     {
       "ticker": "S92",
       "name": "SMA Solar Technology AG",
       "entry_date": "2026-08-25",
       "entry_price": 55.75,
-      "current_price": 55.75,
+      "current_price": 55.3,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.81
     },
     {
       "ticker": "SZG",
       "name": "Salzgitter AG",
       "entry_date": "2026-08-25",
       "entry_price": 52.75,
-      "current_price": 52.75,
+      "current_price": 52.5,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.47
     },
     {
       "ticker": "TKA",
       "name": "thyssenkrupp AG",
       "entry_date": "2026-08-25",
       "entry_price": 13.67,
-      "current_price": 13.67,
+      "current_price": 13.625,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.33
     },
     {
       "ticker": "DR0",
       "name": "Deutsche Rohstoff AG",
       "entry_date": "2026-08-25",
       "entry_price": 86.6,
-      "current_price": 86.6,
+      "current_price": 86.2,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.46
     },
     {
       "ticker": "WAF",
       "name": "Siltronic AG",
       "entry_date": "2026-08-25",
       "entry_price": 83.75,
-      "current_price": 83.75,
+      "current_price": 82.5,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -1.49
     },
     {
       "ticker": "JEN",
       "name": "Jenoptik AG",
       "entry_date": "2026-08-25",
       "entry_price": 39.52,
-      "current_price": 39.52,
+      "current_price": 39.24,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.71
     },
     {
       "ticker": "M7U",
       "name": "Nynomic AG",
       "entry_date": "2026-08-25",
       "entry_price": 22.7,
-      "current_price": 22.7,
+      "current_price": 22.9,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": 0.88
     },
     {
       "ticker": "NBG6",
@@ -129,18 +129,18 @@
       "name": "tonies SE Class A",
       "entry_date": "2026-08-25",
       "entry_price": 11.54,
-      "current_price": 11.54,
+      "current_price": 11.62,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": 0.69
     },
     {
       "ticker": "HOT",
       "name": "HOCHTIEF Aktiengesellschaft",
       "entry_date": "2026-08-25",
       "entry_price": 432.2,
-      "current_price": 432.2,
+      "current_price": 429.6,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.6
     },
     {
       "ticker": "BKHT",
@@ -165,18 +165,18 @@
       "name": "Nordex SE",
       "entry_date": "2026-08-25",
       "entry_price": 39.66,
-      "current_price": 39.66,
+      "current_price": 39.26,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -1.01
     },
     {
       "ticker": "NDA",
       "name": "Aurubis AG",
       "entry_date": "2026-08-25",
       "entry_price": 177.2,
-      "current_price": 177.2,
+      "current_price": 176.8,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.23
     },
     {
       "ticker": "MED",
@@ -239,7 +239,7 @@
         "NDA": 0.05,
         "MED": 0.05
       },
-      "return_pct": null,
+      "return_pct": -0.06,
       "config_version": "v1-2026-08-25"
     }
   ],

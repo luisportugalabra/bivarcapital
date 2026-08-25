@@ -204,6 +204,11 @@ def build_monthly_breakdown(existing, new_holdings, is_new_month, regime_str):
         for m in breakdown:
             if m.get('is_current') and m['month'] != cur_month_label:
                 m['is_current'] = False
+                # close the month at the new book's start date -- without this
+                # the ytd script has no end bound for the closed month and
+                # keeps extending its return window to "today" forever
+                if not m.get('end'):
+                    m['end'] = TODAY
 
         existing_cur = next((m for m in breakdown if m['month'] == cur_month_label), None)
         if existing_cur:
