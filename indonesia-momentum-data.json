@@ -1,0 +1,191 @@
+{
+  "date": "2026-08-25",
+  "regime": "defensive",
+  "index_value": 916.6,
+  "index_ma200": 1000.0,
+  "pct_above_ma": -8.3,
+  "total_eligible": 467,
+  "portfolio": [],
+  "top20": [
+    {
+      "rank": 1,
+      "ticker": "RLCO",
+      "name": "PT Abadi Lestari Indonesia Tbk",
+      "ret_12m": 2495.2,
+      "composite": 2495.2,
+      "mcap_b": 13625.0,
+      "selected": false
+    },
+    {
+      "rank": 2,
+      "ticker": "ALKA",
+      "name": "PT Alakasa Industrindo, Tbk Class A",
+      "ret_12m": 1377.4,
+      "composite": 1377.4,
+      "mcap_b": 2325.11,
+      "selected": false
+    },
+    {
+      "rank": 3,
+      "ticker": "MORA",
+      "name": "PT Ekamas Mora Republik Tbk",
+      "ret_12m": 1204.9,
+      "composite": 1204.9,
+      "mcap_b": 255591.92,
+      "selected": false
+    },
+    {
+      "rank": 4,
+      "ticker": "MGLV",
+      "name": "PT NexAI Digital Infrastruktur Tbk.",
+      "ret_12m": 1067.5,
+      "composite": 1067.5,
+      "mcap_b": 21572.8,
+      "selected": false
+    },
+    {
+      "rank": 5,
+      "ticker": "STAR",
+      "name": "PT Calculus Global Ventures Tbk",
+      "ret_12m": 900.0,
+      "composite": 900.0,
+      "mcap_b": 2016.0,
+      "selected": false
+    },
+    {
+      "rank": 6,
+      "ticker": "VKTR",
+      "name": "PT VKTR Teknologi Mobilitas Tbk",
+      "ret_12m": 813.3,
+      "composite": 813.3,
+      "mcap_b": 39156.25,
+      "selected": false
+    },
+    {
+      "rank": 7,
+      "ticker": "BLUE",
+      "name": "PT Berkah Prima Perkasa Tbk",
+      "ret_12m": 739.5,
+      "composite": 739.5,
+      "mcap_b": 1136.96,
+      "selected": false
+    },
+    {
+      "rank": 8,
+      "ticker": "MDIA",
+      "name": "PT Intermedia Capital Tbk",
+      "ret_12m": 712.9,
+      "composite": 712.9,
+      "mcap_b": 9882.32,
+      "selected": false
+    },
+    {
+      "rank": 9,
+      "ticker": "AGAR",
+      "name": "PT Asia Sejahtera Mina Tbk",
+      "ret_12m": 660.5,
+      "composite": 660.5,
+      "mcap_b": 1810.0,
+      "selected": false
+    },
+    {
+      "rank": 10,
+      "ticker": "PGUN",
+      "name": "PT Pradiksi Gunatama Tbk",
+      "ret_12m": 604.2,
+      "composite": 604.2,
+      "mcap_b": 57378.49,
+      "selected": false
+    },
+    {
+      "rank": 11,
+      "ticker": "VISI",
+      "name": "PT Satu Visi Putra Tbk",
+      "ret_12m": 569.2,
+      "composite": 569.2,
+      "mcap_b": 2736.75,
+      "selected": false
+    },
+    {
+      "rank": 12,
+      "ticker": "KOTA",
+      "name": "PT DMS Propertindo Tbk",
+      "ret_12m": 566.7,
+      "composite": 566.7,
+      "mcap_b": 1687.39,
+      "selected": false
+    },
+    {
+      "rank": 13,
+      "ticker": "JGLE",
+      "name": "PT Graha Andrasentra Propertindo Tbk",
+      "ret_12m": 561.5,
+      "composite": 561.5,
+      "mcap_b": 1942.04,
+      "selected": false
+    },
+    {
+      "rank": 14,
+      "ticker": "PKPK",
+      "name": "PT Paragon Karya Perkasa Tbk",
+      "ret_12m": 523.3,
+      "composite": 523.3,
+      "mcap_b": 4488.0,
+      "selected": false
+    },
+    {
+      "rank": 15,
+      "ticker": "EURO",
+      "name": "PT Estee Gold Feet Tbk",
+      "ret_12m": 502.8,
+      "composite": 502.8,
+      "mcap_b": 3810.5,
+      "selected": false
+    },
+    {
+      "rank": 16,
+      "ticker": "CBRE",
+      "name": "PT Cakra Buana Resources Energi Tbk",
+      "ret_12m": 500.0,
+      "composite": 500.0,
+      "mcap_b": 3131.27,
+      "selected": false
+    },
+    {
+      "rank": 17,
+      "ticker": "MMIX",
+      "name": "PT Multi Medika Internasional Tbk",
+      "ret_12m": 453.2,
+      "composite": 453.2,
+      "mcap_b": 3744.33,
+      "selected": false
+    },
+    {
+      "rank": 18,
+      "ticker": "ASLI",
+      "name": "PT Asri Karya Lestari Tbk",
+      "ret_12m": 380.0,
+      "composite": 380.0,
+      "mcap_b": 1500.0,
+      "selected": false
+    },
+    {
+      "rank": 19,
+      "ticker": "NATO",
+      "name": "PT Olympus Strategic Indonesia Tbk",
+      "ret_12m": 368.3,
+      "composite": 368.3,
+      "mcap_b": 5320.74,
+      "selected": false
+    },
+    {
+      "rank": 20,
+      "ticker": "YPAS",
+      "name": "PT Yanaprima Hastapersada Tbk",
+      "ret_12m": 323.7,
+      "composite": 323.7,
+      "mcap_b": 1002.0,
+      "selected": false
+    }
+  ]
+}

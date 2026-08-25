@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indonesia Momentum — Hostile Adversarial Audit — Bivar Capital</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+.badge { font-family: var(--font-mono); font-size: .55rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 16px; }
+.back { font-family: var(--font-mono); font-size: .6rem; color: var(--text-muted); text-decoration: none; display: inline-block; margin-bottom: 24px; }
+.back:hover { color: var(--accent); }
+h1 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; margin: 8px 0 6px; }
+h2 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin: 36px 0 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+h2:first-of-type { border-top: none; }
+h3 { font-family: var(--font-mono); font-size: .85rem; color: var(--accent); margin: 22px 0 8px; text-transform: uppercase; letter-spacing: .04em; }
+p { color: var(--text-secondary); font-size: .87rem; margin-bottom: 12px; }
+strong { color: var(--text); }
+em { color: var(--text-secondary); }
+a { color: var(--accent); }
+ul, ol { margin: 0 0 14px 22px; color: var(--text-secondary); font-size: .87rem; }
+li { margin-bottom: 5px; }
+li p { margin-bottom: 4px; }
+hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+code { font-family: var(--font-mono); font-size: .82em; background: var(--bg-card); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; color: var(--accent); }
+pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+.table-wrap { overflow-x: auto; margin: 10px 0 18px; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: .74rem; }
+th { text-align: left; padding: 7px 10px; font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 1px solid var(--border-light); white-space: nowrap; }
+td { padding: 6px 10px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .72rem; color: var(--text-secondary); }
+tr:first-child td { color: var(--text); }
+.intro-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin: 18px 0 28px; }
+.intro-box p { font-size: .82rem; margin-bottom: 6px; }
+.intro-box p:last-child { margin-bottom: 0; }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; margin-top: 20px; }
+footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-muted); }
+@media(max-width:700px){ h1{font-size:1.35rem} .container{padding:36px 16px 60px} }
+</style>
+</head>
+<body>
+<main>
+<div class="container">
+  <a href="/strategies.html" class="back">&larr; Strategies</a>
+  <span class="badge">Hostile Adversarial Audit &middot; Full Report</span>
+  <h1>Indonesia Momentum &mdash; Auditoria Hostil</h1>
+  <div class="intro-box">
+    <p><strong>Data:</strong> 2026-08-25 &middot; <strong>Auditor:</strong> agente adversarial independente (2&#170; auditoria, sem confian&#231;a em auditorias anteriores)</p>
+    <p><strong>Objecto:</strong> <code>generate_indonesia_backtest.py</code> / <code>generate_indonesia_sweep.py</code>; config alegada 12M skip=0, top 15 equal-weight, mcap &ge; 1T IDR, regime ^JKSE vs MA200, mensal, 2004-01&rarr;2026-07; resultado alegado CAGR +28.0%, Sharpe 0.99, MaxDD -41.8%, Alpha +18.2pp.</p>
+    <p><strong>Artefactos da auditoria:</strong> <code>~/eodhd_data/audit2/</code> (scripts <code>audit2_*.py</code>, CSVs mensais, caches). Originais n&#227;o modificados.</p>
+    <p style="margin-top:10px"><a href="/research/indonesia_momentum_report.html" style="color:var(--accent);text-decoration:none">&larr; Back to the plain-language strategy report</a></p>
+  </div>
+
+<h2>A. Veredicto executivo</h2>
+<p><strong>Não investiria capital real nesta estratégia na sua forma actual</strong>, porque os números-manchete (28.0%/0.99) estão inflacionados por quatro camadas cumulativas — (1) universo sem QUALQUER delisting antes de 2017 e com &lt;50% dos delistings reais depois de 2017 (survivorship estrutural do fornecedor EODHD), (2) configuração escolhida in-sample de uma grelha multi-parâmetro numa pesquisa multi-mercado (winner's curse), (3) zero custos de transacção com turnover de 32%/mês num mercado onde 28-41% das posições excedem 100% do volume diário, e (4) convenções favoráveis (benchmark price-only vs estratégia total-return; rf=0) — e porque a janela mais limpa e verificável (2017-2026), com custos e rf realistas, entrega Sharpe ≈ 0.4-0.7 e CAGR ≈ 15-16%, não 0.99/28%. O sinal cross-sectional de momentum é genuíno (o motor distingue-o claramente de placebos), mas o produto investável implícito é uma estratégia média com drawdowns de -35/-45%, não a máquina de Sharpe ~1 anunciada.</p>
+<p><strong>Confiança no veredicto: 85/100.</strong> (Os 15 restantes: a magnitude exacta do survivorship é inquantificável com estes dados; é concebível — mas improvável — que os delistings em falta fossem neutros.)</p>
+<p>O que <strong>sobrevive</strong> à auditoria: a aritmética do motor (reproduzi 28.0/0.99/-41.8/+18.2 ao mês exacto com uma reimplementação 100% independente), a ausência de lookahead mecânico, a assimetria sinal-vs-inverso, o plateau de parâmetros e a persistência de <em>algum</em> alpha em todas as sub-janelas.</p>
+<hr />
+<h2>B. Tabela de riscos</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problema</th>
+<th>Severidade</th>
+<th>Evidência</th>
+<th>Impacto estimado</th>
+<th>Resolvido?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Survivorship estrutural</strong>: 0/1014 históricos de preços terminam antes de 2017; apenas 26 mortes reais de acções (2017-25) vs ~40-60 delistings reais no período (só 2025: 15 oficiais; 2009-2016 dezenas documentadas, todas ausentes)</td>
+<td><strong>CRÍTICA</strong></td>
+<td>scan completo <code>audit2_data_forensics.py</code>; log do downloader ("53 delisted", 27 dos quais são warrants); fontes IDX/Databoks</td>
+<td>2004-2016 inquantificável (RISCO NÃO RESOLVIDO); proxy: Sharpe cai de 1.36 (2004-16) para 0.66 (2017-26)</td>
+<td>❌ Não resolúvel com estes dados</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Selecção in-sample da config</strong> (12-0/1T/MA200 = melhor célula de grelha 5×7 + 6 MAs; Indonésia = melhor de pesquisa multi-mercado desde Aug-02)</td>
+<td><strong>ALTA</strong></td>
+<td><code>generate_indonesia_sweep.py</code> STEP1/2; <code>backtest_asia_latam.py</code> (grelha JK anterior com outros parâmetros)</td>
+<td>Winner's curse; expectativa live &lt; backtest mesmo sem mais nenhum bug. Mitigante: plateau suave (12-0:0.99, 6-0:1.06, 9-0:0.96)</td>
+<td>⚠️ Mitigado por plateau, não eliminado</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Custos = 0</strong> com turnover médio 32%/mês (~7.7× ano só de compras)</td>
+<td><strong>ALTA</strong></td>
+<td>battery B5-B7</td>
+<td>50bps/lado → 24.8%/0.90; 100bps → 21.7%/0.82; 200bps → 15.6%/0.64</td>
+<td>❌ Não incluídos no original</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Investibilidade</strong>: a $1M de capital, 28% das posições &gt;100% do ADV20; a $5M, 41%; top contributors (MGLV, PGUN, POLU, TFAS) negociavam $10-40k/dia quando "detidos"</td>
+<td><strong>ALTA</strong></td>
+<td>análise posição/ADV com FX anual; forensics dos top contributors</td>
+<td>O backtest tal como especificado é inexecutável à escala; variante com filtro ADV≥10B IDR mantém Sharpe 1.15 (0.87 em 2017+) — o alpha não morre, mas a estratégia auditada não é a executável</td>
+<td>⚠️ Alpha sobrevive ao filtro; números-manchete não</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Benchmark price-only vs estratégia total-return</strong></td>
+<td>MÉDIA</td>
+<td>C2: bench TR (+3% yield) → alpha +14.9pp, não +18.2pp</td>
+<td>-3.3pp de alpha</td>
+<td>❌ no original</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Sharpe com rf=0</strong> em moeda com rf≈6%</td>
+<td>MÉDIA</td>
+<td>C1: excess-Sharpe 0.85 (cash a render rf)</td>
+<td>Sharpe 0.99 → 0.85</td>
+<td>❌ no original</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Limpeza de dados full-sample</strong>: 50 tickers excluídos a história inteira com base em eventos futuros; ~metade das exclusões são marginais (HERO, MAPI, ISAT, AKRA, TOWR, DILD, TMAS: 1 dia suspeito em 22 anos); UNVR excluída por um critério de dominância do índice sintético</td>
+<td>MÉDIA</td>
+<td><code>exclusion_reasons.json</code>; A2-A4</td>
+<td>Limpeza vale +0.4 a +1.0pp CAGR e +0.04-0.07 Sharpe vs limpeza mínima com princípios (27.6/0.95) ou nenhuma (27.0/0.92)</td>
+<td>⚠️ Direcção favorável, magnitude pequena</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Concentração</strong>: top-5 acções = 79% do P&amp;L$; remover top-5 meses → 19.6%/0.89; 2016 +167%, 2025 +132%, 2026 YTD <strong>-28%</strong></td>
+<td>MÉDIA</td>
+<td>análise de atribuição</td>
+<td>Cauda direita domina (típico de momentum, mas agrava o risco de survivorship/pump)</td>
+<td>⚠️ Sobrevive parcialmente (top-5 zeradas: 22.3%/0.91)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ano de 2004 morto (warm-up EMPTY) dentro das estatísticas "n=270"</td>
+<td>BAIXA</td>
+<td>A5/A6: com sinal pré-2004 real: 29.7%/1.03; a começar em 2005: 29.5%/1.02</td>
+<td>Subestima o período investido (~+1.5pp); rotulagem enganosa, direcção anti-conservadora nula</td>
+<td>✔️ quantificado</td>
+</tr>
+<tr>
+<td>10</td>
+<td>mcap_daily com níveis historicamente duvidosos (UNVR 2004 implica 0.7B acções vs 7.63B reais; TLKM idem)</td>
+<td>MÉDIA</td>
+<td>teste de acções implícitas por ano</td>
+<td>O corte de 1T IDR pode classificar mal empresas no passado; stress 0.5T/2T/5T mantém Sharpe 0.93-0.97 → efeito limitado, mas níveis não são fiáveis</td>
+<td>⚠️ RISCO NÃO RESOLVIDO (nível), mitigado (robustez ao corte)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Warrants classificados como "Common Stock" no tickers.parquet (27 de 53 "delisted")</td>
+<td>BAIXA</td>
+<td>forensics</td>
+<td>Excluídos do universo apenas pelo gate lateral de fundamentais (por sorte, não por design); contaminam a alegação "inclui delisted"</td>
+<td>✔️ identificado</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Convenção delisting=0%: <strong>0 posições</strong> em 270 meses atingiram morte terminal</td>
+<td>BAIXA (mas sintoma do #1)</td>
+<td>teste directo</td>
+<td>Impacto 0.0pp — a alegação anterior de "7 tickers afectados" está errada para esta config; a ausência total de mortes em 22 anos × 15 posições é em si evidência de survivorship</td>
+<td>✔️ testado</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>C. Todos os bugs/vícios encontrados (localização exacta)</h2>
+<ol>
+<li><strong>Warm-up cego dentro das estatísticas</strong> — <code>generate_indonesia_sweep.py</code> linhas 253-255 + 323-324: <code>price_matrix</code> só começa em 2004-01, logo <code>mom_matrix.shift(12)</code> é NaN durante 2004 inteiro → 12 meses "EMPTY" com ret=0 enquanto o benchmark corre, dentro dos n=270. Havia dados de 2003 disponíveis e não usados. Correcção (sinal pré-2004 real): 29.7%/1.03. Efeito: <strong>entendimento errado do período</strong> (efectivamente 2005-2026), direcção conservadora.</li>
+<li><strong>Limpeza informada pelo futuro</strong> — <code>generate_indonesia_backtest.py</code> STEP 2 (linhas 92-210): um ticker é excluído da história INTEIRA se em qualquer dia (mesmo 2025) disparar um check. Cheques (d)/(e) capturam também eventos reais. 50 exclusões (incl. UNVR por dominância, linha 250-255). Antes/depois: limpeza original 28.0/0.99; limpeza mínima só-corrupção-dura (24 tickers: sentinela, &gt;2000%/mês, broken-adjust) 27.6/0.95; sem limpeza 27.0/0.92.</li>
+<li><strong>Gate de fundamentais escondido no universo</strong> — STEP 4 (linha 323): o universo exige ≥4 trimestres de EBIT mesmo com <code>use_ebit=False</code> (842 vs 936 tickers). Não enviesa materialmente (A2: 27.4/0.95) mas é um filtro não declarado na especificação da estratégia. (Testei e rejeitei a hipótese de exclusão dos bancos — EODHD preenche <code>ebit</code> para bancos JK.)</li>
+<li><strong>Bug na auditoria anterior</strong> — <code>audit_indonesia_independent.py</code> linhas 56-58: o comentário afirma "null mcap on sentinel-close days" mas o código não o faz; execução é zero-lag (compra ao próprio fecho do sinal); warrants só parcialmente excluídos. Os seus números (32.4/1.03, reproduzi exactamente) validam menos do que o alegado.</li>
+<li><strong>Alegação "verificação de lag 270/270"</strong> — o código só faz <code>assert</code> a 3 meses (backtest linhas 540-562, sweep 559-572). A minha comparação painel-completo confirmou que as datas M_j/E_j e os modos CASH/MOM coincidem 270/270 — a lógica está certa; a alegação de verificação exaustiva era falsa.</li>
+<li><strong>tickers.parquet</strong>: 27 warrants com <code>Type='Common Stock'</code> — bug de classificação do fornecedor/downloader que infla a contagem de "delisted names" citada como defesa contra survivorship.</li>
+<li><strong>Sem custos, benchmark PR, rf=0</strong> — ver riscos #3, #5, #6 (não são "bugs" de código, são convenções que empolam os manchetes).</li>
+</ol>
+<p><strong>Sem bugs encontrados em:</strong> construção do calendário (M_j = último dia de negociação real; E_j = dia seguinte real — 270/270 idênticos na reimplementação); lag sinal→execução; lógica as-of do regime (JKSE e MA200 avaliados a M_j, executados a E_j — implementável); ffill limitado a 5 dias (apenas passado); ordenação/desempate do ranking; aritmética de CAGR/Sharpe/MaxDD. <strong>A reprodução independente convergiu ao mês exacto</strong> (corr. mensal 1.000, mesmos 4 decimais nos agregados) quando alimentada com o mesmo universo — toda a divergência inicial (overlap médio 13.4/15 picks) foi rastreada à lista de exclusões, e a nada mais.</p>
+<hr />
+<h2>D. Resultados auditados</h2>
+<table>
+<thead>
+<tr>
+<th>Variante</th>
+<th>CAGR</th>
+<th>Sharpe</th>
+<th>MaxDD</th>
+<th>Bench</th>
+<th>Alpha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Original (alegado e reproduzido ao decimal)</strong></td>
+<td>+28.0%</td>
+<td>0.99</td>
+<td>-41.8%</td>
+<td>+9.9% (PR)</td>
+<td>+18.2pp</td>
+</tr>
+<tr>
+<td>Reimplementação independente, mesmo universo</td>
+<td>+28.0%</td>
+<td>0.99</td>
+<td>-41.8%</td>
+<td>+9.9%</td>
+<td>+18.2pp</td>
+</tr>
+<tr>
+<td>Reimpl., limpeza mínima com princípios</td>
+<td>+27.6%</td>
+<td>0.95</td>
+<td>-43.4%</td>
+<td>+9.9%</td>
+<td>+17.7pp</td>
+</tr>
+<tr>
+<td>Reimpl., universo sujo (sem exclusões)</td>
+<td>+27.0%</td>
+<td>0.92</td>
+<td>-46.1%</td>
+<td>+9.9%</td>
+<td>+17.1pp</td>
+</tr>
+<tr>
+<td>Benchmark comparável TR (JKSE +3% yield, pressuposto declarado)</td>
+<td>+28.0%</td>
+<td>0.99</td>
+<td>-41.8%</td>
+<td>+13.2%</td>
+<td><strong>+14.9pp</strong></td>
+</tr>
+<tr>
+<td>rf=6% (cash rende rf; excess-Sharpe)</td>
+<td>+30.2%</td>
+<td><strong>0.85</strong></td>
+<td>-39.4%</td>
+<td>+9.9%</td>
+<td>+20.3pp</td>
+</tr>
+<tr>
+<td>Execução: zero-lag / next-open / +2 dias</td>
+<td>+29.3 / +28.6 / +26.5%</td>
+<td>0.98 / 0.97 / 0.93</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Custos 50 / 100 / 200 bps por lado</td>
+<td>+24.8 / +21.7 / +15.6%</td>
+<td>0.90 / 0.82 / 0.64</td>
+<td>-46/-50/-56%</td>
+<td>+9.9%</td>
+<td>+15.0/+11.8/+5.7pp</td>
+</tr>
+<tr>
+<td><strong>2004-2016 (janela suja)</strong></td>
+<td>+34.7%</td>
+<td><strong>1.36</strong></td>
+<td>-24.8%</td>
+<td>+16.3%</td>
+<td>+18.4pp</td>
+</tr>
+<tr>
+<td><strong>2017-2026 standalone (janela mais limpa)</strong></td>
+<td>+19.1%</td>
+<td><strong>0.66</strong></td>
+<td>-41.8%</td>
+<td>+1.7%</td>
+<td>+17.4pp</td>
+</tr>
+<tr>
+<td>2017-2026 + 100bps + rf6%</td>
+<td>+15.1%</td>
+<td>0.56 (0.38 excess)</td>
+<td>-47.5%</td>
+<td>+1.7%</td>
+<td>+13.4pp</td>
+</tr>
+<tr>
+<td>Executável: filtro ADV20≥10B IDR, full / 2017+ / 2017+ c/100bps</td>
+<td>+28.6 / +23.1 / +16.2%</td>
+<td>1.15 / 0.87 / 0.67</td>
+<td>-32/-32/-34%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Placebo: aleatório ×20 (mesma pipeline)</td>
+<td>+12.6% [9.6-15.5]</td>
+<td>0.76 [0.63-0.88]</td>
+<td>-28.5%</td>
+<td>9.9%</td>
+<td>+2.7pp</td>
+</tr>
+<tr>
+<td>Placebo: aleatório sem regime ×10</td>
+<td>+13.4%</td>
+<td>0.62</td>
+<td>—</td>
+<td>≈ JCI (0.60)</td>
+<td>≈0</td>
+</tr>
+<tr>
+<td>Placebo: ranking invertido (bottom-15)</td>
+<td>+1.5%</td>
+<td>0.18</td>
+<td>-80.5%</td>
+<td>+9.9%</td>
+<td>-8.3pp</td>
+</tr>
+<tr>
+<td>Placebo: sinal com +1 mês de atraso</td>
+<td>+21.4%</td>
+<td>0.89</td>
+<td>-38.4%</td>
+<td>+9.9%</td>
+<td>+11.6pp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Leitura dos placebos (secção 9):</strong> a pipeline NÃO fabrica Sharpe do nada — aleatório sem regime ≈ mercado (0.62 vs 0.60). O regime MA200 acrescenta ~+0.14 de Sharpe a qualquer carteira; o momentum acrescenta ~+0.23 acima do aleatório-com-regime e o inverso colapsa (-80% DD). O sinal é real; os manchetes é que não são.</p>
+<p><strong>Subperíodos (cortes fixos):</strong> 2004-08: 30.1%/1.34 · 2009-12: 56.2%/1.64 · 2013-16: 30.1%/1.22 · <strong>2017-20: 12.5%/0.61</strong> · 2021-26: 25.0%/0.72. Primeira metade 1.29, segunda metade 0.85. Anos: 2016 +167%, 2025 +132%, <strong>2026 YTD -28%</strong>. Hit rate global 63%; turnover 32%/mês.</p>
+<p><strong>Concentração:</strong> top-5 acções = 79% do P&amp;L$ (MGLV +70.6, BBHI +42.3, MLPT +31.5, BUVA +30.8, PGUN +28.9 por unidade inicial); zerar top-5 → 22.3%/0.91; remover top 5 meses → 19.6%/0.89; remover top 10% meses → 3.4%/0.28 (assimetria de cauda esperada em momentum, mas concentrada em micro-caps recentes de perfil "saham gorengan").</p>
+<hr />
+<h2>E. O que continua incerto (explicitamente)</h2>
+<ol>
+<li><strong>Magnitude do survivorship 2004-2016 — INQUANTIFICÁVEL com estes dados.</strong> Zero delistings pré-2017 no dataset; os mortos em falta (BORN, DAVO, TRUB, SOBI, BAEK, etc.) eram exactamente do tipo que o momentum compra antes do colapso. O diferencial 1.36→0.66 entre janelas mistura survivorship com mudança de regime — não é separável. RISCO NÃO RESOLVIDO.</li>
+<li><strong>Survivorship residual 2017-2026</strong>: o dataset tem ~26 mortes reais vs ~40-60 delistings oficiais no período (2025 sozinho: 15 oficiais vs 10 no dataset) — até a "janela limpa" está incompleta. Os números 2017+ desta auditoria são tectos, não estimativas centrais.</li>
+<li><strong>Fiabilidade dos níveis de mcap histórico</strong> (acções implícitas de UNVR/TLKM incompatíveis com valores conhecidos nos anos 2000). Robustez ao corte mitiga; não elimina.</li>
+<li><strong>PR da estratégia tecnicamente irrecuperável</strong> com EODHD (adjusted_close mistura splits+dividendos sem factores separáveis); o TR do benchmark usa o pressuposto declarado de 3% de yield.</li>
+<li><strong>Custos reais IDX</strong> (spread, impacto, levy de venda 0.1%): não medidos com dados de mercado; 50-200bps/lado é um intervalo plausível, não uma medição. IBKR não testado para os nomes IDX.</li>
+<li><strong>^JKSE via yfinance</strong>: fonte não auditada; corroborada apenas pela correlação com o índice sintético interno.</li>
+<li><strong>Preços de fecho de nomes com $10-40k/dia de volume</strong>: mesmo "sem custos", o próprio print de fecho pode não ser transaccionável em tamanho algum relevante.</li>
+</ol>
+<hr />
+<h2>Secção 11 — Julgamento das alegações anteriores</h2>
+<table>
+<thead>
+<tr>
+<th>Alegação</th>
+<th>Veredicto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Verificação exaustiva de lag 270/270"</td>
+<td><strong>FALSA-EXAGERADA</strong> (código só assevera 3 meses; a lógica em si está certa — verifiquei eu os 270)</td>
+</tr>
+<tr>
+<td>"Sentinela 999999.9999 encontrada e neutralizada na price_cache"</td>
+<td><strong>CONFIRMADA</strong> (4 tickers com sentinela exacta, BCIC com 5044 dias; canal derivado via close cru tratado; reproduzi a neutralização de forma independente)</td>
+</tr>
+<tr>
+<td>"50 tickers estruturalmente excluídos"</td>
+<td><strong>CONFIRMADA COM RESSALVAS</strong> (50 = 49 checks + UNVR por dominância; ~metade das exclusões assenta em 1-2 dias suspeitos em 22 anos e usa informação futura; vale +0.4-1.0pp)</td>
+</tr>
+<tr>
+<td>"tickers.parquet inclui delisted names"</td>
+<td><strong>CONFIRMADA COM RESSALVAS → materialmente enganosa</strong> (53 flags, mas 27 são warrants; só 26 acções mortas, todas ≥2017)</td>
+</tr>
+<tr>
+<td>"Reimplementação independente anterior concordou em 32.4%/1.03"</td>
+<td><strong>CONFIRMADA</strong> (reexecutei: 32.4/1.03) mas o script tem execução zero-lag e um fix de mcap prometido em comentário e não implementado — valida menos do que anuncia</td>
+</tr>
+<tr>
+<td>"Survivorship: zero delistings pré-2017 nos dados"</td>
+<td><strong>CONFIRMADA</strong> — e agravada: também faltam &gt;50% dos delistings pós-2017</td>
+</tr>
+<tr>
+<td>"Alpha sobrestimado 2-3pp por benchmark price-only"</td>
+<td><strong>CONFIRMADA</strong> (3.3pp com yield 3%)</td>
+</tr>
+<tr>
+<td>"Sharpe com rf≈6% é ~0.90"</td>
+<td><strong>CONFIRMADA COM RESSALVAS</strong> (o meu cálculo estrito: 0.85; 0.85-0.90 conforme convenção de cash)</td>
+</tr>
+<tr>
+<td>"Plateau suave, não pico isolado"</td>
+<td><strong>CONFIRMADA</strong> (grelha própria: 6-0:1.06, 9-0:0.96, 12-0:0.99, 12-1:0.89; cortes 0.5/1/2/5T: 0.93-0.97) — mas não anula o winner's curse multi-mercado</td>
+</tr>
+<tr>
+<td>"2016/2025 são empresas reais identificáveis"</td>
+<td><strong>CONFIRMADA COM RESSALVAS</strong> (BBHI/ARTO/PANI reais e líquidas; MGLV/PGUN/POLU/TFAS negociavam $10-40k/dia — reais mas inexecutáveis)</td>
+</tr>
+<tr>
+<td>"Delisting exit 0% afecta 7 tickers, efeito pequeno"</td>
+<td><strong>NÃO CONFIRMADA</strong> (nesta config: 0 posições atingem morte terminal; efeito 0.0pp — o número "7" não corresponde a nada verificável aqui)</td>
+</tr>
+</tbody>
+</table>
+<h2>Secção 10 — Arqueologia de código</h2>
+<p>Sem repositório git. Todos os scripts Indonésia criados em lote a 2026-08-25 07:13-07:14 (mesmo template dos motores AU/TH/MY, gerados no mesmo minuto); auditoria anterior às 07:53. Não existem versões antigas nem outputs contraditórios para JK — <strong>sem incidente de versões</strong>. Existe porém <code>backtest_asia_latam.py</code> (Aug-02) com uma grelha JK anterior (mcap 4.8T, N∈{5..30}, vários MAs) — prova de que o espaço de pesquisa total sobre este mercado é muito maior do que o declarado no sweep, reforçando o risco #2.</p>
+<hr />
+<h2>F. Próximas 3 auditorias mais valiosas</h2>
+<ol>
+<li><strong>Reconstruir o universo com a lista oficial de delistings do IDX/KSEI (2004-2026)</strong> — obter a lista pública de emitentes delistados (IDX publica; academia cobre 2009-2016), cruzar com o dataset, e para 2017-2026 injectar os mortos em falta com retorno terminal -50/-100% num re-run: transforma o maior risco (survivorship) de "inquantificável" em "medido" pelo menos na janela recente.</li>
+<li><strong>Medição real de executabilidade via IBKR</strong> — para os 15 nomes do sinal actual e uma amostra histórica: spreads, profundidade, disponibilidade dos tickers IDX, custo total estimado por escalão de AUM ($100k/$1M/$5M); substituir a curva 50-200bps por números medidos.</li>
+<li><strong>Paper-trading de 6-12 meses com a regra exacta congelada</strong> (incluindo o filtro de liquidez executável), comparando fills reais vs fechos do backtest — o único teste que nenhum dataset histórico pode falsificar. (O -28% de 2026 YTD já é o primeiro dado quase-live e é negativo.)</li>
+</ol>
+</div>
+</main>
+<footer><div class="container" style="padding:0"><p>Bivar Capital &nbsp;|&nbsp; Internal audit note, not investment advice. Full markdown source: ~/eodhd_data/AUDIT_INDONESIA_HOSTILE.md</p></div></footer>
+</body>
+</html>

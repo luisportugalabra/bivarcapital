@@ -1,0 +1,21 @@
+{
+  "last_rebalance": "2026-08-25",
+  "updated": "2026-08-25",
+  "ytd_2026": 0,
+  "regime": "defensive",
+  "currency": "IDR",
+  "index_value": 916.6,
+  "index_ma200": 1000.0,
+  "holdings": [],
+  "monthly_breakdown": [
+    {
+      "month": "Aug 2026",
+      "is_current": true,
+      "start": "2026-08-25",
+      "end": null,
+      "regime": "defensive",
+      "tickers": [],
+      "return_pct": null
+    }
+  ]
+}

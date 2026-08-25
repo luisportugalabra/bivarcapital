@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indonesia Momentum — Strategy Report (Beta) — Bivar Capital</title>
+<meta name="description" content="Backtest report for Bivar Indonesia Momentum (beta): 12-month momentum on Jakarta Composite equities, JCI MA200 regime, 2004-2026 — presented net of survivorship bias and transaction costs after a hostile adversarial audit.">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+.content { padding: 48px 0 80px; }
+h1 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 400; margin-bottom: 6px; }
+h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; margin: 40px 0 12px; color: var(--text); }
+.subtitle { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px; }
+.beta-badge { font-family: var(--font-mono); font-size: .55rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); padding: 3px 8px; border-radius: 4px; vertical-align: middle; margin-left: 6px; }
+p { color: var(--text-secondary); font-size: .85rem; margin-bottom: 12px; }
+strong { color: var(--text); }
+.stats-hero { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 8px; }
+.stat-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 22px; flex: 1; min-width: 120px; text-align: center; }
+.stat-val { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 600; }
+.stat-lbl { font-family: var(--font-mono); font-size: .52rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; }
+.pos { color: var(--green); } .neg { color: var(--red); } .gold { color: var(--accent); }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 6px; }
+th { text-align: left; padding: 7px 10px; font-family: var(--font-mono); font-size: .52rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+th.r, td.r { text-align: right; }
+td { padding: 6px 10px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .68rem; }
+tr.hl { background: rgba(196,162,101,0.07); }
+tr.hl td:first-child { border-left: 3px solid var(--accent); }
+tr.dim td { color: var(--text-muted); }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin: 16px 0; }
+.callout.warn { border-left-color: var(--red); }
+.callout p { margin-bottom: 6px; font-size: .8rem; }
+.callout p:last-child { margin-bottom: 0; }
+ul { margin: 0 0 12px 20px; color: var(--text-secondary); font-size: .85rem; }
+li { margin-bottom: 5px; }
+.note { font-family: var(--font-mono); font-size: .58rem; color: var(--text-muted); }
+.audit-link { display: inline-block; margin: 4px 0 20px; padding: 10px 18px; font-family: var(--font-mono); font-size: .72rem; font-weight: 600; letter-spacing: .04em; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; text-decoration: none; }
+.audit-link:hover { background: rgba(196,162,101,0.1); }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; }
+footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-muted); }
+a { color: var(--accent); }
+@media(max-width:700px){ .container{padding:0 16px} .stats-hero{flex-direction:column} h1{font-size:1.5rem} }
+</style>
+</head>
+<body>
+
+<main>
+<div class="container content">
+
+  <p class="note" style="margin-bottom:20px"><a href="/strategies.html" style="text-decoration:none">&larr; Strategies</a></p>
+
+  <h1>Indonesia Momentum <span class="beta-badge">Beta</span></h1>
+  <p class="subtitle">12-month momentum on Jakarta Composite (JK) equities &middot; JCI MA200 regime &middot; 15 stocks equal weight &middot; monthly rebalance &middot; 2004&ndash;2026</p>
+  <p class="note">Report date: 2026-08-25 &middot; Data: EODHD daily (~1,014 JK tickers) &middot; Research strategy &mdash; no live signal is running for this market</p>
+
+  <div class="callout warn">
+    <p><strong>This report leads with the honest number, not the biggest one.</strong> This backtest went through three rounds of scrutiny this cycle: a self-audit, an independent reimplementation, and a hostile adversarial audit explicitly designed to break it. The raw full-period backtest reports CAGR +28.0% / Sharpe 0.99 &mdash; that number is real (the engine reproduces it to the decimal) but it is inflated by survivorship bias and favorable conventions. The numbers below are what survives after those corrections.</p>
+  </div>
+
+  <div class="stats-hero">
+    <div class="stat-box"><div class="stat-val pos">+15.1%</div><div class="stat-lbl">CAGR, net</div></div>
+    <div class="stat-box"><div class="stat-val gold">0.56</div><div class="stat-lbl">Sharpe, net</div></div>
+    <div class="stat-box"><div class="stat-val neg">-47.5%</div><div class="stat-lbl">Max Drawdown</div></div>
+    <div class="stat-box"><div class="stat-val">2026 YTD</div><div class="stat-lbl neg" style="color:var(--red)">-28%</div></div>
+  </div>
+  <p class="note">2017&ndash;2026 standalone (survivorship-clean window), net of an estimated 100bps round-trip transaction cost and a 6% IDR risk-free rate. This is the closest thing to "what an investor would actually have realized." Excess-of-cash Sharpe: 0.38.</p>
+
+  <a class="audit-link" href="/research/indonesia_audit_report.html">Read the full adversarial audit &rarr;</a>
+
+  <h2>Methodology</h2>
+  <ul>
+    <li><strong>Universe:</strong> Jakarta Composite (Indonesia Stock Exchange / IDX) common shares, market cap &ge; 1 trillion IDR (~&euro;60M).</li>
+    <li><strong>Regime filter:</strong> JCI (^JKSE) below its 200-day moving average &rarr; entire portfolio to cash. Checked at each month-end.</li>
+    <li><strong>Ranking:</strong> 12-month total return (no skip month). Top 15, equal weight.</li>
+    <li><strong>Rebalance:</strong> monthly, at month-end close. Signal uses only data available at the close.</li>
+    <li><strong>Data source:</strong> EODHD daily prices and fundamentals for ~1,014 JK-listed tickers, 2004&ndash;2026.</li>
+    <li><strong>Backtest window:</strong> 2004-01 through 2026-07 (270 months) for the raw/full-period number; 2017-01 onward (114 months) for the survivorship-clean window discussed below.</li>
+  </ul>
+
+  <h2>Why the headline number is lower than the raw backtest</h2>
+  <p>The raw, full-period configuration (12-month momentum, top15 equal-weight, mcap &ge; 1T IDR, JCI MA200 regime, 2004&ndash;2026) backtests to <strong>CAGR +28.0%, Sharpe 0.99, MaxDD -41.8%</strong>. A hostile adversarial audit independently reimplemented the engine from raw price data and reproduced this figure to the decimal, month by month &mdash; the arithmetic is not in question. What is in question is whether that number describes an investable strategy. Four corrections bring it down, cumulatively:</p>
+
+  <h3 style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 8px">1. Survivorship bias (the largest effect)</h3>
+  <p>The EODHD Indonesia dataset contains <strong>zero delistings before 2017</strong> &mdash; every one of the ~1,014 price histories that ends early only starts doing so from 2017 onward. Real IDX delistings ran at roughly 5&ndash;15 companies per year across 2004&ndash;2016, and a cross-reference against an officially compiled IDX delistings list (112 rows, 2005&ndash;2015 Fact Books plus secondary sources) confirmed <strong>0 of 56 real delisted companies from that period exist as dead stocks in the dataset</strong>. Five are high-confidence, momentum-shaped blow-ups the strategy would plausibly have held before their collapse:</p>
+  <ul>
+    <li><strong>TRUB</strong> &mdash; peaked near 20T IDR, then -96%, 2008</li>
+    <li><strong>DAVO</strong> &mdash; peaked near 8T IDR, defaulted 2009</li>
+    <li><strong>INVS</strong> &mdash; ~25T IDR pump, suspended 2015 (effectively -100%, no exit)</li>
+    <li><strong>SIAP</strong> &mdash; ~7T IDR pump, suspended 2015</li>
+    <li><strong>BORN</strong> &mdash; ~20T IDR peak, -80%, 2012</li>
+  </ul>
+  <p>Quantified impact: <strong>-1.5 to -2.5pp CAGR</strong> (range -1 to -4pp) on the 2004&ndash;2016 leg, and a Sharpe hit that is disproportionate because the missing losses concentrate in the 2008 and 2015 crisis years &mdash; the reported 2004&ndash;2016 Sharpe of 1.36 is plausibly closer to 1.0&ndash;1.2 in reality. Even the "clean" 2017+ window is not fully clean: the dataset has ~26 real delisted stocks against an estimated 40&ndash;60 real IDX delistings over 2017&ndash;2026 (15 official delistings in 2025 alone vs. 10 in the dataset). <strong>The 2017&ndash;2026 numbers on this page should be read as a ceiling, not a central estimate.</strong></p>
+
+  <h3 style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 8px">2. Benchmark and cost conventions</h3>
+  <p>The raw backtest compares a total-return strategy against a price-only JCI benchmark (overstating alpha by ~2&ndash;3pp), assumes zero risk-free rate in a currency where cash yields ~6% (Sharpe 0.99 &rarr; ~0.85 on an excess-return basis), and charges zero transaction costs against a strategy that turns over ~32% of the portfolio per month. At 100bps round-trip cost, CAGR falls to +21.7% and Sharpe to 0.82 on the full period; at 200bps, +15.6% / 0.64.</p>
+
+  <h3 style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 8px">3. In-sample parameter selection</h3>
+  <p>This configuration (12-month lookback, top 15, 1T IDR floor, MA200 regime) was the best cell of a 5&times;7 grid plus 6 moving-average variants, itself selected from a multi-market search. The parameter surface is a smooth plateau rather than an isolated spike (6-month lookback: Sharpe 1.06; 9-month: 0.96; 12-month: 0.99 &mdash; all in the same range), which mitigates but does not eliminate the winner's-curse expectation that live results run below backtest.</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Step-down from raw to honest</th><th class="r">CAGR</th><th class="r">Sharpe</th><th class="r">MaxDD</th></tr></thead>
+    <tbody>
+      <tr class="dim"><td>Raw, full period 2004&ndash;2026 (inflated)</td><td class="r">+28.0%</td><td class="r">0.99</td><td class="r">-41.8%</td></tr>
+      <tr class="dim"><td>2004&ndash;2016 leg alone (survivorship-affected)</td><td class="r">+34.7%</td><td class="r">1.36</td><td class="r">-24.8%</td></tr>
+      <tr><td>2017&ndash;2026 standalone, gross (survivorship-clean window)</td><td class="r">+19.1%</td><td class="r">0.66</td><td class="r">-41.8%</td></tr>
+      <tr class="hl"><td>2017&ndash;2026, net of 100bps costs + 6% rf (headline)</td><td class="r pos">+15.1%</td><td class="r gold">0.56</td><td class="r neg">-47.5%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Source: hostile adversarial audit, Table D (<a href="/research/indonesia_audit_report.html">full report &rarr;</a>). The 2017&ndash;2026 gross figure was independently recomputed from the audit's reproduced monthly return series for this page and matches to one decimal.</p>
+
+  <h2>Annual returns (raw, gross, no cost)</h2>
+  <p class="note" style="margin-bottom:10px">From the audit's reproduced monthly return series &mdash; the same series underlying the raw +28.0%/0.99 headline. Years before 2017 (shaded) sit inside the window with confirmed 0% delisting coverage and should be read as an upper bound, not a clean estimate. This table is gross of the 100bps cost applied to the net headline above.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Year</th><th class="r">Return</th><th>Year</th><th class="r">Return</th><th>Year</th><th class="r">Return</th></tr></thead>
+    <tbody id="annual-body"></tbody>
+  </table>
+  </div>
+  <p class="note">2004 is a dead warm-up year (12-month momentum needs a full year of lookback) included at 0% in the audit's n=270 count &mdash; the strategy is effectively live from 2005. 2026 is partial (through July).</p>
+
+  <h2>3-year rolling CAGR</h2>
+  <p class="note" style="margin-bottom:10px">Trailing 3-year annualized return, computed on the same raw monthly series, at each year-end. Shows the same pattern as the annual table: elevated and volatile through the survivorship-affected years, compressing sharply after 2017.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Year-end</th><th class="r">3Y CAGR</th><th>Year-end</th><th class="r">3Y CAGR</th></tr></thead>
+    <tbody id="rolling-body"></tbody>
+  </table>
+  </div>
+
+  <h2>Caveats and risks</h2>
+  <ul>
+    <li><strong>Not executable as backtested at scale.</strong> At $1M of capital, 28% of positions exceed 100% of 20-day average daily volume; at $5M, 41%. The top contributing tickers in the backtest (MGLV, PGUN, POLU, TFAS) traded $10&ndash;40k/day while "held." Encouragingly, applying an ADV &ge; 10B IDR liquidity filter actually <em>improves</em> paper-Sharpe to 1.15 (full period) / 0.87 (2017+) &mdash; the alpha is not concentrated in illiquid names &mdash; but the exact configuration backtested above is not the configuration that could be traded.</li>
+    <li><strong>Concentration.</strong> The top 5 stocks account for 79% of total dollar P&amp;L across the backtest (MGLV, BBHI, MLPT, BUVA, PGUN). Zeroing the top 5 stocks entirely still leaves +22.3%/0.91; removing the single best month per year drops to +19.6%/0.89. This is a normal feature of momentum's right tail, but it concentrates the survivorship and micro-cap-pump risks discussed above rather than diversifying them away.</li>
+    <li><strong>2026 year-to-date: -28%.</strong> This is the first near-live data point (through the report date) and it is negative. Too short a window to be conclusive on its own, but it is not being hidden.</li>
+    <li><strong>EBIT filter reliability.</strong> The universe implicitly requires EBIT data even when the fundamental filter is nominally off. EBIT coverage in the EODHD dataset is only ~1% before 2010 and ~87% after 2015 &mdash; the fundamentals-based screening is only trustworthy at a much higher market-cap floor (&ge;5T IDR), not across the full 1T IDR universe used for the headline backtest.</li>
+    <li><strong>Historical market-cap levels are unreliable in places</strong> (e.g. implied share counts for UNVR and TLKM in the early 2000s are inconsistent with known figures), though the strategy's results are robust to reasonable stress on the mcap floor (0.5T&ndash;5T IDR keeps Sharpe in the 0.93&ndash;0.97 range on the full period).</li>
+    <li><strong>Real IDX transaction costs are estimated, not measured.</strong> The 50&ndash;200bps range used above is a plausible bracket, not a measurement from a live broker; IBKR reachability and spreads for IDX names have not been tested.</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>What the audit process concluded.</strong> The hostile audit's own verdict, translated: it would not put real capital into this strategy in its current form, with 85/100 confidence in that judgment. What survives independent, adversarial scrutiny is the signal itself &mdash; the engine reproduces exactly, there is no lookahead, and randomized/inverted placebo tests behave as they should (inverted ranking collapses to Sharpe 0.18 with an -80% drawdown; random selection tracks the market). What does not survive is the headline 28%/0.99 as a forward-looking expectation. The honest, investable estimate is <strong>CAGR ~15%, Sharpe ~0.5&ndash;0.7, MaxDD -35% to -45%</strong> &mdash; a decent strategy, not an exceptional one.</p>
+  </div>
+
+  <div class="callout warn">
+    <p><strong>Why beta &mdash; and why research-only.</strong> This strategy has no live signal running. It exists as a backtest that has been through unusually heavy scrutiny (self-audit, independent reimplementation, hostile adversarial audit) and come out reduced but real. Before any live capital, the audit's own next steps would need to happen first: reconstructing the universe with the official IDX/KSEI delistings list to directly measure survivorship impact, measuring real IBKR execution costs for IDX names, and a frozen paper-trading period comparing live fills to backtest closes.</p>
+  </div>
+
+  <p style="margin-top:28px"><a href="/research/indonesia_audit_report.html">Read the full adversarial audit &rarr;</a> &nbsp;&middot;&nbsp; <a href="/indonesia-momentum.html">Strategy overview page &rarr;</a></p>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Bivar Capital &nbsp;|&nbsp; Luis Portugal &nbsp;|&nbsp; Not investment advice. Research strategy &mdash; no live signal.</p>
+  </div>
+</footer>
+
+<script>
+const annual = {"2004":0.0,"2005":-6.8,"2006":76.3,"2007":76.9,"2008":-6.0,"2009":64.5,"2010":98.6,"2011":35.4,"2012":38.2,"2013":8.5,"2014":8.3,"2015":-5.7,"2016":167.1,"2017":31.5,"2018":22.6,"2019":-19.0,"2020":18.0,"2021":67.5,"2022":-5.8,"2023":-15.6,"2024":54.1,"2025":132.2,"2026":-28.5};
+const years = Object.keys(annual);
+const cells = years.map(y => {
+  const v = annual[y];
+  const cls = v >= 0 ? 'pos' : 'neg';
+  const dim = (parseInt(y) < 2017) ? ' style="opacity:.6"' : '';
+  return `<td${dim}>${y}${parseInt(y) < 2017 ? '&dagger;' : ''}</td><td class="r ${cls}"${dim}>${v >= 0 ? '+' : ''}${v}%</td>`;
+});
+let rows = '';
+for (let i = 0; i < cells.length; i += 3) {
+  rows += '<tr>' + cells[i] + (cells[i+1] || '<td></td><td></td>') + (cells[i+2] || '<td></td><td></td>') + '</tr>';
+}
+document.getElementById('annual-body').innerHTML = rows;
+
+const rolling = {"2006-12":18.0,"2007-12":42.7,"2008-12":43.1,"2009-12":39.8,"2010-12":45.3,"2011-12":64.1,"2012-12":54.9,"2013-12":26.6,"2014-12":17.5,"2015-12":3.5,"2016-12":39.7,"2017-12":49.1,"2018-12":62.7,"2019-12":9.3,"2020-12":5.4,"2021-12":17.0,"2022-12":23.0,"2023-12":10.0,"2024-12":7.0,"2025-12":44.6};
+const rkeys = Object.keys(rolling);
+const rcells = rkeys.map(k => {
+  const v = rolling[k];
+  const cls = v >= 0 ? 'pos' : 'neg';
+  return `<td>${k}</td><td class="r ${cls}">+${v}%</td>`;
+});
+let rrows = '';
+for (let i = 0; i < rcells.length; i += 2) {
+  rrows += '<tr>' + rcells[i] + (rcells[i+1] || '<td></td><td></td>') + '</tr>';
+}
+document.getElementById('rolling-body').innerHTML = rrows;
+</script>
+</body>
+</html>
