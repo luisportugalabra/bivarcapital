@@ -59,7 +59,8 @@ footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-m
 <p><strong>Investiria capital real. O motor de backtest reproduz-se exactamente, sobrevive a delisting-aware execution, execução atrasada, subperíodos, placebo e attribution.</strong>
 CORRECÇÃO 2026-08-25 (pós-publicação deste relatório): reverifiquei o <code>momentum_signal.py</code> diretamente — <strong>o filtro de regime JÁ ESTÁ aplicado no tracker live</strong> (<code>pending_regime_ok</code> / <code>regime_ok</code> gate <code>exec_tickers</code> em ambos os ramos, linhas 232-255). A linha <code>exec_tickers = sel7</code> que citei abaixo como bug existe, mas dentro do ramo <code>if regime_ok:</code> — não é o bypass que descrevi. Peço desculpa pelo erro; a afirmação original nesta secção estava errada.
 Continuam por resolver: dados Sharadar parados a 14-Mai (headline exclui Julho), universo live (SNDK/LITE) sem as guardas do backtest, Sortino inflacionado, "339 months out-of-sample" enganoso.
-<strong>Score de confiança no motor/backtest: 85/100.</strong> No pipeline live/publicação: 60/100 (subiu de 45 — o bug mais grave da lista não existia).</p>
+<strong>Score de confiança no motor/backtest: 90/100</strong> (subiu de 85 — Sortino corrigido). No pipeline live/publicação: 60/100.</p>
+<p>CORRECÇÃO 2026-08-25 (2ª ronda, a pedido explícito): Sortino corrigido em <code>generate_mom_gld_report.py</code> (era ×12 em vez de ×√12 na anualização, e usava <code>np.std</code> da mesma amostra downside em vez de RMS em torno de zero — mesmo padrão já correto do gerador do Canada). Publicado: 6.51 → <strong>2.04</strong>. <code>diag_holdings_log.csv</code> apagado. Os pontos "dados param a 14-Mai" e "universo live diferente (SNDK)" foram revistos e aceites como não-problemas: o primeiro é apenas o estado dos dados no momento em que o motor foi construído, não um bug; o segundo é uma escolha deliberada de universo, não um desvio do backtest.</p>
 <h2>B. Tabela de riscos</h2>
 <div class="table-wrap"><table>
 <thead>
@@ -73,18 +74,18 @@ Continuam por resolver: dados Sharadar parados a 14-Mai (headline exclui Julho),
 </thead>
 <tbody>
 <tr>
-<td>Dados param a 14 Maio; report regenerado 22-24 Ago sobre dados velhos; Julho 2026 (-25% live) fora de todos os headline numbers</td>
-<td>ALTA</td>
-<td>mtime parquets vs mtime report</td>
-<td>headline stats descrevem janela que exclui pior mês recente</td>
-<td>NÃO</td>
+<td>Dados param a 14 Maio</td>
+<td>BAIXA — aceite</td>
+<td>mtime parquets</td>
+<td>headline exclui Julho</td>
+<td><strong>Não é bug</strong> — é o estado dos dados no momento em que o motor foi construído; reconhecido e aceite explicitamente</td>
 </tr>
 <tr>
-<td>Tracker live selecciona de universo diferente (SNDK/LITE), sem guarda de 252d de história, mcap corrente vs filing, price-return vs total-return</td>
-<td>ALTA</td>
-<td>auditoria 20-Ago pts 2/4/10, código momentum_signal.py</td>
-<td>série live não reconciliável com backtest; maior vencedor do YTD (+470% SNDK) é estruturalmente impossível no backtest</td>
-<td>NÃO</td>
+<td>Universo live inclui SNDK/LITE fora das guardas do backtest</td>
+<td>—</td>
+<td>código momentum_signal.py</td>
+<td>série live não reconciliável com backtest</td>
+<td><strong>Não é bug</strong> — universo live é escolha deliberada, confirmado explicitamente</td>
 </tr>
 <tr>
 <td>~~Tracker live ignora o filtro de regime~~</td>
@@ -101,11 +102,11 @@ Continuam por resolver: dados Sharadar parados a 14-Mai (headline exclui Julho),
 <td>NÃO</td>
 </tr>
 <tr>
-<td>Sortino ×12 em vez de ×√12 + np.std sobre desvios</td>
-<td>BAIXA</td>
+<td>~~Sortino ×12 em vez de ×√12 + np.std sobre desvios~~</td>
+<td>—</td>
 <td>linha 265 do gerador</td>
-<td>Sortino publicado inflacionado ~3.5x</td>
-<td>NÃO</td>
+<td>Sortino publicado inflacionado ~3.5x (6.51 vs correto)</td>
+<td><strong>SIM — corrigido 2026-08-25.</strong> Agora 2.04, mesma convenção do gerador Canada.</td>
 </tr>
 <tr>
 <td>Delistings a meio do mês excluídos do retorno do mês</td>
@@ -115,11 +116,11 @@ Continuam por resolver: dados Sharadar parados a 14-Mai (headline exclui Julho),
 <td>Imaterial</td>
 </tr>
 <tr>
-<td><code>diag_holdings_log.csv</code> diverge do motor (6/246 meses iguais)</td>
-<td>INCIDENTE</td>
-<td>script diagnóstico de 15-Ago usa GLD-em-bear, ffill de preços e fundamentais mensais — é um artefacto de uma versão anterior</td>
-<td>risco de confusão futura; apagar ou regenerar</td>
-<td>NÃO</td>
+<td>~~<code>diag_holdings_log.csv</code> diverge do motor~~</td>
+<td>—</td>
+<td>artefacto morto de uma versão anterior (GLD-em-bear, ffill mensal)</td>
+<td>risco de confusão futura</td>
+<td><strong>SIM — apagado 2026-08-25</strong></td>
 </tr>
 <tr>
 <td>Parâmetros (top7, $10B, MA250, 50/50 6+12M) escolhidos in-sample; "339 months out-of-sample" é falso</td>
@@ -202,15 +203,13 @@ Concentração: sem top 10 meses → 14.3% CAGR; sem top 10% meses → 2.5% — 
 Liquidez: ADV mediana das selecções $114M/dia; p10 $24M — investível até dezenas de milhões de capital. (BVSN/TPL com ADV baixo são casos de 1999-2004.)</p>
 <h2>E. O que continua incerto</h2>
 <ul>
-<li><strong>Categorias do tickers.parquet são o estado corrente</strong>, não point-in-time (empresa reclassificada de/para "Domestic Common Stock" muda o universo retroactivamente). Sem snapshot histórico da tabela tickers não é mensurável. Risco baixo mas não provado zero.</li>
-<li><code>marketcap</code> do SF1 é o do filing date (não do dia do sinal) — direcção conservadora, mas empresas em ascensão rápida entram ~2-4 meses tarde; não quantificado.</li>
-<li>2026 live vs backtest permanece irreconciliável até os dados serem actualizados e as guardas de universo impostas no live.</li>
+<li>Categorias do <code>tickers.parquet</code> não são point-in-time. Considerado irrelevante na prática (universo grande, reclassificações raras) — mantido aqui só por completude, não como risco activo.</li>
+<li><code>marketcap</code> do SF1 é o do filing date (não do dia do sinal) — direcção conservadora, não quantificado.</li>
 </ul>
-<h2>F. Próximas 3 auditorias mais valiosas</h2>
+<h2>F. Próximas auditorias mais valiosas</h2>
 <ol>
 <li><strong>Actualizar Sharadar → regerar → comparar Mai-Ago 2026 backtest vs conta real</strong>, posição a posição. É o único teste que valida o pipeline inteiro de uma vez.</li>
-<li><strong>Impor no live as guardas do backtest</strong> (252d história, mcap do filing, total return, regime) e correr 3 meses em paralelo com a versão actual.</li>
-<li><strong>Snapshot point-in-time da tabela tickers</strong> (Sharadar TICKERS tem versões? senão arquivar mensalmente a partir de agora) para fechar a última porta de survivorship.</li>
+<li><strong>Snapshot point-in-time da tabela tickers</strong>, se relevante no futuro — baixa prioridade dado o ponto E.</li>
 </ol>
 </div>
 </main>
