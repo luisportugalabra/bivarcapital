@@ -58,6 +58,7 @@ h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin
 .badge-live { color: var(--green); background: rgba(74,222,128,0.1); }
 .badge-soon { color: var(--accent); background: rgba(196,162,101,0.1); }
 .badge-beta { color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); }
+.badge-review { color: var(--text-muted); background: rgba(90,90,104,0.14); border: 1px solid rgba(90,90,104,0.35); }
 .card-desc { color: var(--text-secondary); font-size: 0.84rem; margin-bottom: 14px; }
 .card-stats { display: flex; gap: 20px; flex-wrap: wrap; }
 .card-stat { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
@@ -195,27 +196,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <div class="strategy-card" id="canada-momentum-card">
-      <div class="card-header">
-        <div class="card-title">Canada TSX Momentum</div>
-        <span class="card-badge badge-live">Live</span>
-      </div>
-      <p id="canada-momentum-blur" class="card-desc">12-month momentum strategy on TSX equities. Mcap top 80% (percentile), NetIncome(TTM)&gt;0, TSX MA75 regime overlay. Monthly rebalance, 10 stocks equal weighted.</p>
-      <div class="card-stats" id="canada-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">1.22</span></span>
-        <span class="card-stat">CAGR: <span class="num">+34.4%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-26.0%</span></span>
-        <span class="card-stat"><span class="num">2000&ndash;2026</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-canada-mom').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="canada-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
     <div class="strategy-card" id="germany-momentum-card">
       <div class="card-header">
         <div class="card-title">Beta &mdash; Germany XETRA Momentum</div>
@@ -279,6 +259,27 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
+    <div class="strategy-card" id="indonesia-momentum-card">
+      <div class="card-header">
+        <div class="card-title">Beta &mdash; Indonesia Momentum</div>
+        <span class="card-badge badge-beta">Beta</span>
+      </div>
+      <p id="indonesia-momentum-blur" class="card-desc">12-month momentum strategy on Jakarta Composite (JK) equities. Mcap &ge; 1T IDR (~&euro;60M), no fundamental filter at this floor, JCI (^JKSE) MA200 regime overlay. Monthly rebalance, 15 stocks equal weighted. Research-only, no live signal &mdash; beta pending further liquidity and cost validation after a hostile adversarial audit found the raw backtest inflated by survivorship bias.</p>
+      <div class="card-stats" id="indonesia-momentum-stats">
+        <span class="card-stat">Sharpe: <span class="num">0.56</span></span>
+        <span class="card-stat">CAGR: <span class="num">+15.1%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-47.5%</span></span>
+        <span class="card-stat"><span class="num">2017&ndash;2026 net</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-indonesia-mom').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="indonesia-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
+
     <!-- CHINA MOMENTUM CARD — hidden, re-enable when ready
     <div class="strategy-card" id="china-momentum-card">
       <div class="card-header">
@@ -301,6 +302,27 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
     END CHINA CARD -->
+
+    <div class="strategy-card" id="canada-momentum-card">
+      <div class="card-header">
+        <div class="card-title">Canada TSX Momentum</div>
+        <span class="card-badge badge-review">Awaiting Analysis</span>
+      </div>
+      <p id="canada-momentum-blur" class="card-desc">12-month momentum strategy on TSX equities. Mcap top 80% (percentile), NetIncome(TTM)&gt;0, TSX MA75 regime overlay. Monthly rebalance, 10 stocks equal weighted.</p>
+      <div class="card-stats" id="canada-momentum-stats">
+        <span class="card-stat">Sharpe: <span class="num">1.22</span></span>
+        <span class="card-stat">CAGR: <span class="num">+34.4%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-26.0%</span></span>
+        <span class="card-stat"><span class="num">2000&ndash;2026</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-canada-mom').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="canada-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
 
     <div class="section-label">Bitcoin</div>
 
@@ -582,6 +604,30 @@ END CHINA MODAL -->
   </div>
 </div>
 
+<div class="modal-overlay" id="modal-indonesia-mom" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-indonesia-mom').classList.remove('open')">&times;</button>
+    <h3>Indonesia Momentum &mdash; research strategy, no live signal</h3>
+    <div class="modal-step">
+      <div class="modal-step-num">Status</div>
+      <p>This strategy is <strong>backtest-only</strong>. There is no live portfolio and no monthly signal to follow &mdash; it exists as research, published with full transparency about what an adversarial audit found.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">The rules (as backtested)</div>
+      <p>Universe: Jakarta Composite (IDX), mcap &ge; 1T IDR (~&euro;60M). If <strong>JCI is above its 200-day moving average</strong>: hold the top 15 stocks by 12-month momentum, equal weight. If below: cash. Monthly rebalance.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">The honest numbers</div>
+      <p>The raw full-period backtest (2004&ndash;2026) shows CAGR +28.0% / Sharpe 0.99 &mdash; but that figure is inflated by confirmed survivorship bias (0% delisting coverage 2004&ndash;2016) and favorable benchmark/cost/rf conventions. The survivorship-clean 2017&ndash;2026 window, net of estimated 100bps costs and a realistic risk-free rate, is <strong>CAGR +15.1%, Sharpe 0.56, MaxDD -47.5%</strong> &mdash; that is the number to use.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-step">
+      <div class="modal-step-num">Key caveats</div>
+      <p>Not executable as backtested at scale (28% of positions exceed 100% of daily volume at $1M capital); top 5 stocks = 79% of total P&amp;L; 2026 YTD is -28%. <a href="/research/indonesia_momentum_report.html">Full strategy report &rarr;</a> &middot; <a href="/research/indonesia_audit_report.html">Full adversarial audit &rarr;</a></p>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: Bitcoin Trend Signal -->
 <div class="modal-overlay" id="modal-btc" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
@@ -648,6 +694,11 @@ window.onUnlock = function(email) {
   document.getElementById('norway-momentum-stats').style.filter = 'none';
   document.getElementById('norway-momentum-stats').style.userSelect = 'auto';
   document.getElementById('norway-momentum-actions').innerHTML = '<a href="/norway-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/norway_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
+  document.getElementById('indonesia-momentum-blur').style.filter = 'none';
+  document.getElementById('indonesia-momentum-blur').style.userSelect = 'auto';
+  document.getElementById('indonesia-momentum-stats').style.filter = 'none';
+  document.getElementById('indonesia-momentum-stats').style.userSelect = 'auto';
+  document.getElementById('indonesia-momentum-actions').innerHTML = '<a href="/indonesia-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">Strategy overview &rarr;</a>&nbsp;&nbsp;<a href="/research/indonesia_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/indonesia_audit_report.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85" title="Hostile adversarial audit">Audit &rarr;</a>';
   // CHINA — re-enable when adding card back
   // document.getElementById('china-momentum-blur').style.filter = 'none';
   // document.getElementById('china-momentum-blur').style.userSelect = 'auto';
