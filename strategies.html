@@ -59,6 +59,7 @@ h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin
 .badge-soon { color: var(--accent); background: rgba(196,162,101,0.1); }
 .badge-beta { color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); }
 .badge-review { color: var(--text-muted); background: rgba(90,90,104,0.14); border: 1px solid rgba(90,90,104,0.35); }
+.badge-bugged { color: var(--red); background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); }
 .card-desc { color: var(--text-secondary); font-size: 0.84rem; margin-bottom: 14px; }
 .card-stats { display: flex; gap: 20px; flex-wrap: wrap; }
 .card-stat { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
@@ -170,27 +171,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <button class="hiw-btn" onclick="document.getElementById('modal-mom').classList.add('open')">How it works &darr;</button>
       </div>
       <div id="momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
-    <div class="strategy-card" id="uk-momentum-card">
-      <div class="card-header">
-        <div class="card-title">UK Momentum</div>
-        <span class="card-badge badge-live">Live</span>
-      </div>
-      <p id="uk-momentum-blur" class="card-desc">Systematic 6+9-month momentum strategy on UK equities. Profitability filter, FTSE 100 regime overlay, cash overlay in bear markets, net of UK stamp duty. Monthly rebalance, 7 stocks equal weight.</p>
-      <div class="card-stats" id="uk-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.99</span></span>
-        <span class="card-stat">CAGR: <span class="num">+21.1%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-35.0%</span></span>
-        <span class="card-stat"><span class="num">2001&ndash;2026</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-uk-mom').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="uk-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
         <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
@@ -323,6 +303,27 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
     END CHINA CARD -->
+
+    <div class="strategy-card" id="uk-momentum-card">
+      <div class="card-header">
+        <div class="card-title">Beta &mdash; UK Momentum</div>
+        <span class="card-badge badge-bugged">Beta &mdash; Bugged</span>
+      </div>
+      <p id="uk-momentum-blur" class="card-desc">Systematic 6+9-month momentum strategy on UK equities. Profitability filter, FTSE 100 regime overlay, cash overlay in bear markets, net of UK stamp duty. Monthly rebalance, 7 stocks equal weight. Beta: under active audit &mdash; a zero-lag execution bug and broader EODHD data contamination were found 2026-08-25 and are being corrected.</p>
+      <div class="card-stats" id="uk-momentum-stats">
+        <span class="card-stat">Sharpe: <span class="num">0.99</span></span>
+        <span class="card-stat">CAGR: <span class="num">+21.1%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-35.0%</span></span>
+        <span class="card-stat"><span class="num">2001&ndash;2026</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-uk-mom').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="uk-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
 
     <div class="section-label">Bitcoin</div>
 
