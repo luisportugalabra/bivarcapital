@@ -202,15 +202,36 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
       <p id="canada-momentum-blur" class="card-desc">12-month momentum strategy on TSX equities. Mcap top 80% (percentile), NetIncome(TTM)&gt;0, TSX MA75 regime overlay. Monthly rebalance, 10 stocks equal weighted.</p>
       <div class="card-stats" id="canada-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">1.35</span></span>
-        <span class="card-stat">CAGR: <span class="num">+36.1%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-24.5%</span></span>
+        <span class="card-stat">Sharpe: <span class="num">1.22</span></span>
+        <span class="card-stat">CAGR: <span class="num">+34.4%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-26.0%</span></span>
         <span class="card-stat"><span class="num">2000&ndash;2026</span></span>
       </div>
       <div style="margin-top:14px">
         <button class="hiw-btn" onclick="document.getElementById('modal-canada-mom').classList.add('open')">How it works &darr;</button>
       </div>
       <div id="canada-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
+
+    <div class="strategy-card" id="germany-momentum-card">
+      <div class="card-header">
+        <div class="card-title">Beta &mdash; Germany XETRA Momentum</div>
+        <span class="card-badge badge-beta">Beta</span>
+      </div>
+      <p id="germany-momentum-blur" class="card-desc">12-month momentum strategy on XETRA equities. Mcap top 70% (percentile), no fundamental filter, DAX MA200 regime overlay. Monthly rebalance, 20 stocks equal weighted. Beta: adversarially audited (no lookahead/survivorship inflation found), but several held names carry real spreads well above the 40bps backtest assumption &mdash; sub-EUR-2M capacity, use limit orders.</p>
+      <div class="card-stats" id="germany-momentum-stats">
+        <span class="card-stat">Sharpe: <span class="num">0.95</span></span>
+        <span class="card-stat">CAGR: <span class="num">+20.4%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-28.2%</span></span>
+        <span class="card-stat"><span class="num">2000&ndash;2026</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-germany-mom').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="germany-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
         <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
@@ -538,6 +559,29 @@ END CHINA MODAL -->
   </div>
 </div>
 
+<div class="modal-overlay" id="modal-germany-mom" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-germany-mom').classList.remove('open')">&times;</button>
+    <h3>How to follow Germany XETRA Momentum</h3>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 — Once a month</div>
+      <p>The signal is locked on the <strong>last trading day of the month</strong> and executed on the <strong>first trading day of the new month</strong>. Several held names are thinly traded &mdash; use <strong>limit orders</strong>, not market orders.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 — Check the regime</div>
+      <p>If the <strong>DAX is above its 200-day moving average</strong>: hold the 20 stocks. If it is below: sell everything and stay in <strong>cash (EUR)</strong> until the regime flips back.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 — Execute</div>
+      <p>Buy the <strong>20 XETRA stocks listed</strong> in equal weight (5% each). Sell previous month&apos;s holdings no longer in the top 20. All prices in EUR.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Capacity warning</div>
+      <p>Median measured spread is ~22bps, but several names run 90&ndash;245bps. This is a <strong>sub-EUR-2M-capacity</strong> strategy &mdash; do not scale position sizes blindly.</p>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: Bitcoin Trend Signal -->
 <div class="modal-overlay" id="modal-btc" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
@@ -598,6 +642,7 @@ window.onUnlock = function(email) {
   document.getElementById('denmark-momentum-stats').style.filter = 'none';
   document.getElementById('denmark-momentum-stats').style.userSelect = 'auto';
   document.getElementById('denmark-momentum-actions').innerHTML = '<a href="/denmark-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/denmark_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
+  document.getElementById('germany-momentum-actions').innerHTML = '<a href="/germany-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('norway-momentum-blur').style.filter = 'none';
   document.getElementById('norway-momentum-blur').style.userSelect = 'auto';
   document.getElementById('norway-momentum-stats').style.filter = 'none';
