@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germany Momentum — Strategy Report — Bivar Capital</title>
+<meta property="og:title" content="Germany Momentum — Strategy Report — Bivar Capital">
+<meta property="og:description" content="XETRA momentum backtest: US-ADR mistagging and weekend-calendar bugs found and fixed, joint parameter optimization, final config. CAGR +20.4%, Sharpe 0.95, MaxDD -28.2%.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/germany_momentum_report.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/research/germany_momentum_report.html">
+<meta name="theme-color" content="#060608">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:40px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.pos{color:var(--green)}.neg{color:var(--red)}.hl-row td{background:rgba(196,162,101,.08);color:var(--text);font-weight:600}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-red p{margin:0;color:var(--text);font-size:.78rem}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}.footer a{color:var(--accent)}
+ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps li{margin-bottom:6px}
+@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.two-col{grid-template-columns:1fr}}</style>
+</head>
+<body><style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:18px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:750px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}.nav-social{border-left:none!important;margin-left:0!important;padding-left:0!important}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><span class="nav-social" style="margin-left:10px;padding-left:10px;border-left:1px solid #1a1a22;display:inline-flex;align-items:center;gap:8px;color:#5a5a68"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" aria-label="LinkedIn" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://x.com/Luisbivar" rel="noopener" target="_blank" aria-label="X" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" aria-label="Instagram" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></span><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a href="#" id="nav-signin" class="accent">Sign In</a><a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a><span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span></nav></div></header><div class="container">
+
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>Germany Momentum<span class="it">XETRA strategy report</span></h1>
+<p class="lead">A momentum strategy on Deutsche Börse XETRA, built with the same lookahead-free engine and data-quality discipline as our <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada</a> and <a href="/research/taiwan_momentum_report.html" style="color:var(--accent)">Taiwan</a> strategies. Now running as a <a href="/germany-momentum.html" style="color:var(--accent)">live beta signal</a>, and subjected to two independent hostile audits (Section&nbsp;IX).</p>
+
+<div class="divider"></div>
+<h2>I. Headline Result</h2>
+<div class="grid6">
+<div class="stat"><div class="v pos">+20.4%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v pos">0.95</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v">1.81</div><div class="l">Sortino</div></div>
+<div class="stat"><div class="v neg">&minus;28.2%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">319</div><div class="l">Months</div></div>
+<div class="stat"><div class="v">2000&ndash;2026</div><div class="l">Period</div></div>
+</div>
+<img src="germany_equity_curve.png" alt="Germany momentum equity curve and drawdown, 2000-2026" style="width:100%;border-radius:8px;margin-top:14px;border:1px solid var(--border)">
+<div class="meta-box" style="margin-top:14px">
+<dt>Momentum</dt><dd>12-month return, no skip-month</dd>
+<dt>Universe</dt><dd>XETRA, mcap &ge; 30th percentile (top 70% by size), 226 US-ISIN ADRs excluded</dd>
+<dt>Fundamental filter</dt><dd>None &mdash; tested EBIT/NetIncome/GrossProfit/ROE, all reduce Sharpe here (see Section&nbsp;VI)</dd>
+<dt>Portfolio</dt><dd>Top 20, equal weighted, monthly rebalance</dd>
+<dt>Regime</dt><dd>DAX (^GDAXI) vs its own 200-day moving average</dd>
+<dt>Costs</dt><dd>40bps round-trip on monthly turnover &mdash; now cross-checked against real IBKR spreads measured live for the whole eligible universe (median 35bps, see Section&nbsp;IX)</dd>
+</div>
+<div class="callout"><p><strong>An EBIT&gt;0 / N=20 alternative was tested and rejected in favor of this config.</strong> Sharpe 0.90, Sortino 1.70, CAGR +15.0%, MaxDD only &minus;18.0% &mdash; a genuinely better risk-adjusted / lower-drawdown trade, kept out only because CAGR was prioritized for this decision. See Section&nbsp;VII.</p></div>
+
+<div class="divider"></div>
+<h2>II. Data Quality: US ADRs Mistagged as German</h2>
+<p>EODHD's <code>CountryName</code> field on XETRA tags every US company cross-listed there &mdash; Apple, Microsoft, Tesla, Alphabet, Meta, Nvidia, Amazon, Berkshire Hathaway and more &mdash; as <strong>"Germany"</strong>, the same mistagging class as Canada's CDR problem. The reliable signal instead: <strong>ISIN country prefix</strong> (<code>US...</code> vs <code>DE...</code>), which correctly identifies domicile regardless of what exchange metadata claims. A full scan found <strong>226 US-ISIN tickers</strong> on XETRA (vs 622 genuine DE-ISIN names, plus another few hundred genuine listings from Switzerland, UK, Austria, Netherlands, France and other European markets XETRA also carries). All 226 excluded per explicit request to test the strategy without US ADRs.</p>
+
+<div class="divider"></div>
+<h2>III. A Second Bug: Weekend Contamination in the Signal Itself</h2>
+<p>The raw union-of-all-tickers price panel carries <strong>1,146 weekend "ghost" dates</strong> (average coverage 28 of 1,362 tickers on those dates, vs 465 on real weekdays) &mdash; the same calendar-contamination class found in the Canada research earlier this session. There, the bug lived in the <em>execution</em>-lag lookup and was already fixed by sourcing a clean index calendar. Here we found a second instance of the same root cause: the momentum <em>signal</em> itself, computed via the shared backtest engine's own <code>eom = prices.resample(...).last()</code> step, reads directly from this contaminated panel.</p>
+<div class="callout-red"><p><strong>Verified directly, not assumed: 929 cells where the EOM signal price differs depending on whether weekend ghost rows are included</strong>, by several percent in spot checks &mdash; enough to change which name ranks in or out of the top 20. Fixed by dropping weekend rows from the panel before it ever reaches the backtest engine, rather than patching the shared engine itself. All results in this report reflect the fix; Sections&nbsp;IV&ndash;VI were run twice, before and after, and the fix moved the headline numbers only modestly (e.g. this section's base config: Sharpe 0.890&rarr;0.874 pre-fix comparison at the Phase&nbsp;1 stage) &mdash; real, but not the dominant driver of performance.</p></div>
+
+<div class="divider"></div>
+<h2>IV. Sequential Optimization (Phases 1&ndash;3)</h2>
+<p>One-at-a-time sweeps, same method as Canada/Taiwan: momentum &times; mcap first (no regime, no filter), then regime MA window fixed on the winner, then fundamental filter fixed on that.</p>
+<table>
+<thead><tr><th>Phase</th><th>Winner</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>1 &mdash; Momentum &times; mcap</td><td>9M/skip0, mcap top60%</td><td>0.87</td><td class="neg">&minus;47.7%</td></tr>
+<tr><td>2 &mdash; Regime MA (fixed on Phase 1)</td><td>MA200</td><td>0.84</td><td class="neg">&minus;29.2%</td></tr>
+<tr><td>3 &mdash; Fundamental filter (fixed on Phase 2)</td><td>None</td><td>0.84</td><td class="neg">&minus;29.2%</td></tr>
+</tbody>
+</table>
+<p>Unlike Canada (MA75) and Taiwan (MA75), Germany's regime sweep favors the <strong>longest</strong> window tested &mdash; Sharpe rises roughly monotonically from MA50 (0.66) through MA200 (0.84). The fundamental-filter sweep at this stage found EBIT&gt;0 gave by far the best MaxDD (&minus;19.4%) at real cost to Sharpe and CAGR &mdash; flagged here because Section&nbsp;VII's joint search later found a materially better version of that same trade-off.</p>
+
+<div class="divider"></div>
+<h2>V. Joint Grid &mdash; Sequential Wasn't the Optimum</h2>
+<p>A one-at-a-time search can miss parameter interactions. A reduced joint grid (5 lookback/skip &times; 3 mcap &times; 2 MA &times; 4 N &times; 2 filter = 240 combinations, run around the sequential winner) found a better config on every axis tested:</p>
+<table>
+<thead><tr><th>Config</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr class="hl-row"><td>LB12/SK0, mcap top70%, MA200, N=20, None (final)</td><td>0.945</td><td>1.81</td><td class="pos">+20.4%</td><td class="neg">&minus;28.2%</td></tr>
+<tr><td>LB9/SK0, mcap top70%, MA200, N=20, EBIT&gt;0</td><td>0.899</td><td>1.70</td><td class="pos">+15.0%</td><td class="neg">&minus;18.0%</td></tr>
+<tr><td>Sequential result (Section&nbsp;IV, N=15)</td><td>0.843</td><td>1.76</td><td class="pos">+21.9%</td><td class="neg">&minus;29.2%</td></tr>
+</tbody>
+</table>
+<div class="highlight"><p><strong>N interacts with the fundamental filter.</strong> The sequential search fixed N=15 before testing filters, and found EBIT&gt;0 costly. At N=20 the same filter's MaxDD improves dramatically (&minus;19.4%&rarr;&minus;18.0% is similar, but Sharpe goes 0.72&rarr;0.90) &mdash; a real interaction the greedy one-at-a-time approach couldn't see. Same lesson as Taiwan's NetIncome-filter finding earlier this session.</p></div>
+
+<div class="divider"></div>
+<h2>VI. Deep Audit of the Final Config</h2>
+<p>Verified directly against the real backtest (not a proxy): the top 20 most extreme realized ticker-returns the engine actually used top out at <strong>+164%</strong> (VUL, Jan 2021) &mdash; a plausible small-cap momentum spike, nothing resembling the Taiwan/Canada sentinel-value corruption. Two events exceeded the &plusmn;90%/300% flag threshold (ONK &minus;92% May 2008, AMC &minus;95% Jul 2008); both fell in regime-defensive months and never reached the published return series (<code>ret = lag_rets &times; regime_at_signal</code> zeroes the whole month when regime is off). No further exclusions were needed for this final config.</p>
+
+<div class="divider"></div>
+<h2>VII. The Alternative Not Chosen</h2>
+<p>LB9/SK0, mcap top70%, MA200, N=20, <strong>EBIT(TTM)&gt;0</strong> &mdash; Sharpe 0.899, Sortino 1.70, CAGR +15.0%, MaxDD <strong>&minus;18.0%</strong>. Also independently verified clean: 0 flagged implausible-return events in this config's real held-position history. This is arguably the stronger risk-adjusted choice (10pp shallower MaxDD for 0.05 less Sharpe) &mdash; not used here because CAGR was prioritized for this report, not because it tested worse.</p>
+
+<div class="divider"></div>
+<h2>IX. Hostile Audits &mdash; What Survived and What Didn't</h2>
+<p>The strategy was put through two adversarial audits whose explicit brief was to <em>falsify</em> the results, not improve them: a first full audit (independent reimplementation, lookahead hunt, survivorship forensics, placebo battery), and a second audit run without trusting the first. Everything below was measured against the real locked backtest, reproduced first to 10<sup>&minus;16</sup> precision.</p>
+
+<h3 style="margin-top:18px">What survived</h3>
+<ul class="steps">
+<li><strong>No lookahead, no arithmetic errors.</strong> An independent reimplementation with its own signal and eligibility conventions lands at CAGR 19.5% / Sharpe 0.90 vs the engine's 20.4% / 0.95 &mdash; all divergences trace to eligibility conventions, none to information leakage.</li>
+<li><strong>Conservative conventions, not favorable ones.</strong> Cash earns 0% in defensive months (crediting rf=3% <em>raises</em> Sharpe to 1.01); the DAX benchmark is a total-return performance index, so the <strong>+15.4pp alpha</strong> is already measured against dividends-included returns; rf=3% is already inside the Sharpe.</li>
+<li><strong>Placebos fail as they should.</strong> Inverted ranking (bottom-20 momentum) collapses to Sharpe 0.04; 30 random portfolios through the identical pipeline average Sharpe 0.13 with a max of 0.47 &mdash; the real strategy beats the best of all 30. A 1-month-stale signal still earns 17.9%/0.83, the slow-decay signature of genuine 12-month momentum.</li>
+<li><strong>No dependence on outliers or single names.</strong> Removing the return-sanity clip entirely changes nothing (0.00pp); removing the top-5 contributing stocks leaves 18.4%/0.84; regime timing only protects drawdown (without it: 20.0% CAGR but &minus;52% MaxDD) &mdash; the alpha is the stock selection, not the timing.</li>
+<li><strong>The clean, verifiable window matches the headline.</strong> 2015&ndash;2026 standalone: <strong>+19.6% / 0.96</strong>. 2017&ndash;2026: +19.3% / 0.92. The published number does not depend on the unverifiable early years.</li>
+</ul>
+
+<h3 style="margin-top:18px">What didn't</h3>
+<div class="callout-red"><p><strong>Pre-2015 history is a survivors-only sample.</strong> Zero price histories in the EODHD XETRA dataset end before 2015 &mdash; every delisting from 2000&ndash;2014 is simply absent, including essentially the entire Neuer Markt collapse (16 of 18 famous corpses searched &mdash; EM.TV, Comroad, Brokat, CargoLifter, Holzmann, MobilCom&hellip; &mdash; do not exist in the data). The 2000&ndash;2014 portion of the backtest should be presumed inflated by an unquantifiable amount. The honest expectation for this strategy is the clean-window figure: <strong>roughly 19% CAGR / 0.9 Sharpe, not the 26-year headline.</strong></p></div>
+<p><strong>Delisting coverage was then verified externally:</strong> 54 documented German delistings 2015&ndash;2026 (squeeze-outs, takeovers, pure delistings, insolvencies &mdash; Wirecard, Audi, Osram down to small-caps like Aves One, Stemmer Imaging, USU) were cross-checked against the dataset's price-history end dates. <strong>49 of 54 (91%) are present and end in the correct year</strong>; the 5 genuinely missing all cluster in 2015&ndash;2017 (Sky Deutschland, GAGFAH, Postbank, DVB Bank, McKesson Europe). Conclusion: delisting coverage is effectively complete from 2018 onward, partial 2015&ndash;2017, zero before &mdash; which is exactly why the 2015+/2017+ windows above are the trustworthy ones.</p>
+<p>Three smaller mechanical defects were found and quantified &mdash; all with net effect &asymp; 0 to +0.3pp when corrected, so none changes the conclusion:</p>
+<ul class="steps">
+<li><strong>Duplicate share lines of the same company</strong> (BMW/BMW3, Vestas VWS/VWSB, Sixt, Ericsson&hellip;) can be held simultaneously &mdash; 230 ticker-months of accidental double weight. Deduplicating: 20.7%/0.96.</li>
+<li><strong>The US-ADR exclusion has a blind spot:</strong> 464 tickers carry no ISIN, and 8 US names slipped through by that route (American Express, Union Pacific, Parker-Hannifin&hellip;), 1.9% of held ticker-months. Removing them: 20.7%/0.96.</li>
+<li><strong>"Death = money back":</strong> 34 held positions whose price vanishes mid-month get a 0% return instead of a loss. If those were all &minus;50/&minus;100%: roughly &minus;0.25 to &minus;0.5pp CAGR.</li>
+</ul>
+
+<h3 style="margin-top:18px">Real measured costs and capacity</h3>
+<p>Live bid/ask spreads were pulled from Interactive Brokers for the <strong>entire 288-name eligible universe</strong> (283 quoted): median <strong>35bps</strong>, mean 80bps; for the 20 currently-held names, median 22bps with a heavy tail (two names at 118 and 245bps). The 40bps cost assumption is realistic at small size. Stress tests: 100bps round-trip &rarr; 18.1%/0.82; 200bps &rarr; 14.4%/0.62. Re-running the backtest with today's real spreads as an eligibility filter: names &le;100bps &rarr; 19.9%/0.93; &le;60bps &rarr; 19.4%/0.90; &le;30bps &rarr; 17.9%/0.84. Median position ADV is ~&euro;0.4M/day: <strong>treat this as a sub-&euro;1&ndash;2M strategy; it does not scale.</strong></p>
+<div class="callout"><p><strong>Audit verdict (confidence ~85/100):</strong> the edge is real, of roughly the advertised size in the externally-verifiable decade, executable only at small size. Expect ~19%/0.9 rather than the headline, with &minus;25/&minus;30% drawdowns. First quasi-live datapoint is negative: 2026 YTD &minus;15%.</p></div>
+
+<div class="divider"></div>
+<h2>X. Limitations</h2>
+<ol class="steps">
+<li><strong>Pre-2015 results are unverifiable</strong> (survivorship-inflated by construction; see Section&nbsp;IX). Anchor expectations on 2015&ndash;2026: +19.6%/0.96.</li>
+<li><strong>No out-of-sample holdout.</strong> Every parameter (Sections IV&ndash;V) was chosen looking at the same full 2000&ndash;2026 history used to report performance; Germany was also selected from a multi-market search &mdash; winner's-curse discount applies on top of the audit's numbers.</li>
+<li><strong>Capacity is hard-limited.</strong> Median position ADV ~&euro;0.4M/day, real spread tail up to 245bps &mdash; sub-&euro;1&ndash;2M only, limit orders mandatory.</li>
+<li><strong>Joint grid was reduced, not exhaustive.</strong> 240 combinations around the sequential winner, not a full search of the parameter space.</li>
+<li><strong>Non-US European cross-listings were left in the universe</strong> per the design choice; the audit found the related duplicate-line and no-ISIN defects listed above (net effect &asymp; 0).</li>
+<li><strong>Spreads were measured on one day</strong> (2026-08-25); depth and market impact were not measured, and historical spreads are unknowable.</li>
+</ol>
+
+<div class="footer">
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice. Live beta signal at <a href="/germany-momentum.html" style="color:var(--accent)">/germany-momentum</a>.</p>
+</div>
+
+</div>
+</body>
+</html>

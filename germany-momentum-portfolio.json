@@ -1,0 +1,250 @@
+{
+  "last_rebalance": "2026-08-25",
+  "updated": "2026-08-25",
+  "ytd_2026": null,
+  "regime": "momentum",
+  "currency": "EUR",
+  "dax": 26290.3,
+  "dax_ma200": 24573.1,
+  "holdings": [
+    {
+      "ticker": "SNG",
+      "name": "SINGULUS TECHNOLOGIES AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 8.48,
+      "current_price": 8.48,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "VBK",
+      "name": "Verbio SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 31.68,
+      "current_price": 31.68,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "OHB",
+      "name": "OHB SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 196.0,
+      "current_price": 196.0,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "AIXA",
+      "name": "AIXTRON SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 37.25,
+      "current_price": 37.25,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "SMHN",
+      "name": "SUSS MicroTec SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 70.75,
+      "current_price": 70.75,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "S92",
+      "name": "SMA Solar Technology AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 55.75,
+      "current_price": 55.75,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "SZG",
+      "name": "Salzgitter AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 52.75,
+      "current_price": 52.75,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "TKA",
+      "name": "thyssenkrupp AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 13.67,
+      "current_price": 13.67,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "DR0",
+      "name": "Deutsche Rohstoff AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 86.6,
+      "current_price": 86.6,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "WAF",
+      "name": "Siltronic AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 83.75,
+      "current_price": 83.75,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "JEN",
+      "name": "Jenoptik AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 39.52,
+      "current_price": 39.52,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "M7U",
+      "name": "Nynomic AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 22.7,
+      "current_price": 22.7,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NBG6",
+      "name": "Nuernberger Beteiligungs AG Class B",
+      "entry_date": "2026-08-25",
+      "entry_price": 125.0,
+      "current_price": 125.0,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "TNIE",
+      "name": "tonies SE Class A",
+      "entry_date": "2026-08-25",
+      "entry_price": 11.54,
+      "current_price": 11.54,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "HOT",
+      "name": "HOCHTIEF Aktiengesellschaft",
+      "entry_date": "2026-08-25",
+      "entry_price": 432.2,
+      "current_price": 432.2,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "BKHT",
+      "name": "Brockhaus Technologies AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 21.3,
+      "current_price": 21.3,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NF4",
+      "name": "Netfonds AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 81.5,
+      "current_price": 81.5,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NDX1",
+      "name": "Nordex SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 39.66,
+      "current_price": 39.66,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NDA",
+      "name": "Aurubis AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 177.2,
+      "current_price": 177.2,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "MED",
+      "name": "MEDICLIN Aktiengesellschaft",
+      "entry_date": "2026-08-25",
+      "entry_price": 5.5,
+      "current_price": 5.5,
+      "weight": 0.05,
+      "return_pct": 0.0
+    }
+  ],
+  "monthly_breakdown": [
+    {
+      "month": "Aug 2026",
+      "is_current": true,
+      "start": "2026-08-25",
+      "end": null,
+      "regime": "momentum",
+      "tickers": [
+        "SNG",
+        "VBK",
+        "OHB",
+        "AIXA",
+        "SMHN",
+        "S92",
+        "SZG",
+        "TKA",
+        "DR0",
+        "WAF",
+        "JEN",
+        "M7U",
+        "NBG6",
+        "TNIE",
+        "HOT",
+        "BKHT",
+        "NF4",
+        "NDX1",
+        "NDA",
+        "MED"
+      ],
+      "weights": {
+        "SNG": 0.05,
+        "VBK": 0.05,
+        "OHB": 0.05,
+        "AIXA": 0.05,
+        "SMHN": 0.05,
+        "S92": 0.05,
+        "SZG": 0.05,
+        "TKA": 0.05,
+        "DR0": 0.05,
+        "WAF": 0.05,
+        "JEN": 0.05,
+        "M7U": 0.05,
+        "NBG6": 0.05,
+        "TNIE": 0.05,
+        "HOT": 0.05,
+        "BKHT": 0.05,
+        "NF4": 0.05,
+        "NDX1": 0.05,
+        "NDA": 0.05,
+        "MED": 0.05
+      },
+      "return_pct": null,
+      "config_version": "v1-2026-08-25"
+    }
+  ],
+  "pending_signal": null,
+  "config_version": "v1-2026-08-25",
+  "is_live": true,
+  "not_live_reason": null
+}

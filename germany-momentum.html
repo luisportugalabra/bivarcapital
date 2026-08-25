@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germany Momentum Signal — Bivar Capital</title>
+<meta name="description" content="Germany XETRA Momentum live signal. Top 20 XETRA stocks ranked by 12-month momentum, equal weighted, rebalanced monthly.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.content { padding: 48px 0 80px; }
+h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; margin-bottom: 4px; }
+.subtitle { color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 32px; }
+.regime-box {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px 24px; margin-bottom: 28px;
+}
+.regime-label { font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); margin-bottom: 6px; }
+.regime-value { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; }
+.regime-detail { font-size: 0.75rem; color: var(--text); margin-top: 4px; }
+.regime-momentum { color: var(--green); }
+.regime-cash { color: var(--text-muted); }
+.stats-row { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+.stat-box {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px 18px; text-align: center; flex: 1; min-width: 100px;
+}
+.stat-val { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600; }
+.stat-lbl { font-size: 0.5rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th {
+  text-align: left; padding: 8px 10px;
+  font-family: var(--font-mono); font-size: 0.52rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+th.r, td.r { text-align: right; }
+td {
+  padding: 7px 10px; border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 0.68rem;
+}
+tr.selected { background: rgba(74,222,128,0.06); }
+tr.selected td:first-child { border-left: 3px solid var(--green); }
+.tag-selected {
+  font-family: var(--font-mono); font-size: 0.48rem; font-weight: 700;
+  background: rgba(74,222,128,0.15); color: var(--green);
+  padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em;
+}
+.port-section { margin-bottom: 32px; }
+.port-section-title { font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 6px; }
+.port-section-sub { color: var(--text-secondary); font-size: 0.52rem; font-weight: 400; margin-left: 8px; }
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.date-note { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); margin-bottom: 16px; }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; }
+footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted); }
+#auth-wall { text-align: center; padding: 60px 0; }
+#auth-wall p { color: var(--text-muted); margin-bottom: 16px; }
+#content-area { display: none; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.year-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.year-tab {
+  font-family: var(--font-mono); font-size: 0.55rem; padding: 4px 10px;
+  border: 1px solid var(--border); border-radius: 4px; cursor: pointer;
+  color: var(--text-muted); background: none; transition: all .15s;
+}
+.year-tab.active { border-color: var(--accent); color: var(--accent); }
+.year-tab:hover { color: var(--text); border-color: var(--border-light); }
+@media(max-width:700px) {
+  .container { padding: 0 16px; }
+  .stats-row { flex-direction: column; }
+  .table-wrap table { min-width: 620px; font-size: 0.6rem; }
+  td, th { padding: 5px 6px; white-space: nowrap; }
+  h1 { font-size: 1.4rem; }
+  .subtitle { font-size: 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:18px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:750px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}.nav-social{border-left:none!important;margin-left:0!important;padding-left:0!important}
+}
+</style>
+
+<header class="site-header">
+  <div class="hw">
+    <a href="/" class="hl">Bivar Capital</a><span class="nav-social" style="margin-left:10px;padding-left:10px;border-left:1px solid #1a1a22;display:inline-flex;align-items:center;gap:8px;color:#5a5a68"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" aria-label="LinkedIn" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://x.com/Luisbivar" rel="noopener" target="_blank" aria-label="X" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" aria-label="Instagram" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></span>
+    <button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" id="nav-signin" class="accent">Sign In</a>
+      <a href="#" onclick="event.preventDefault();var t=this;if(t.dataset.busy)return;t.dataset.busy='1';var o=t.textContent;t.textContent='Coming Soon';t.style.opacity='.6';setTimeout(function(){t.textContent=o;t.style.opacity='1';delete t.dataset.busy;},1600);" id="nav-signup" style="background:var(--accent);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
+      <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22">
+        <span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span>
+        <a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="container content">
+
+  <h1>Germany Momentum</h1>
+  <p class="subtitle">Monthly signal. Top 20 XETRA stocks ranked by 12-month momentum, equal weighted.</p>
+
+  <div id="auth-wall">
+    <p>Sign in to view the live Germany momentum signal.</p>
+    <button data-auth="signin" style="padding:11px 28px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.78rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+  </div>
+
+  <div id="content-area">
+
+    <div id="not-live-banner" style="display:none;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.3);border-radius:10px;padding:16px 20px;margin-bottom:20px">
+      <div style="font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red)">&#9888; Signal not live</div>
+      <div id="not-live-reason" style="font-size:.78rem;color:var(--text);margin-top:6px"></div>
+      <div style="font-size:.68rem;color:var(--text-muted);margin-top:6px">Holdings below are frozen from the last successful run and are not being updated. Do not rebalance based on this page until this clears.</div>
+    </div>
+
+    <div style="background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.2);border-radius:10px;padding:14px 18px;margin-bottom:20px">
+      <div style="font-family:var(--font-mono);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">Liquidity note</div>
+      <div style="font-size:.75rem;color:var(--text);margin-top:6px">This strategy holds small/mid-cap XETRA names. Median measured spread ~22bps, but several names run 90-245bps — well above the 40bps the backtest assumes. Use limit orders, and treat this as a sub-EUR-2M-capacity strategy, not one to scale blindly. See the <a href="/research/germany_momentum_report.html" style="color:var(--accent)">strategy report</a> for the full liquidity analysis.</div>
+    </div>
+
+    <div id="regime-container" class="regime-box"></div>
+
+    <div class="port-section-title">Current Portfolio</div>
+    <div id="stats-container" class="stats-row"></div>
+
+    <div class="port-section">
+      <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+        <div class="stat-box" style="flex:0 0 auto;min-width:130px">
+          <div class="stat-val pos" id="ytd-return">—</div>
+          <div class="stat-lbl">2026 YTD Return</div>
+        </div>
+        <div class="stat-box" style="flex:0 0 auto;min-width:130px">
+          <div class="stat-val" id="mtd-return">—</div>
+          <div class="stat-lbl" id="mtd-label">MTD</div>
+        </div>
+        <div class="stat-box" style="flex:0 0 auto;min-width:130px">
+          <div class="stat-val" id="all-time-cagr">+20.4%</div>
+          <div class="stat-lbl">CAGR (2000–2026)</div>
+        </div>
+        <div class="stat-box" style="flex:0 0 auto;min-width:130px">
+          <div class="stat-val" id="all-time-sharpe">0.95</div>
+          <div class="stat-lbl">Sharpe</div>
+        </div>
+        <div class="stat-box" style="flex:0 0 auto;min-width:130px">
+          <div class="stat-val neg" id="all-time-dd">-28.2%</div>
+          <div class="stat-lbl">Max Drawdown</div>
+        </div>
+      </div>
+
+      <div class="port-section-title">Current Portfolio <span class="port-section-sub">· 20 equal weight · Pure monthly rebalance · No stop loss</span></div>
+      <div class="table-wrap">
+      <table id="portfolio-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th class="r">Weight</th>
+            <th class="r">Entry Date</th>
+            <th class="r">Entry (EUR)</th>
+            <th class="r">Current (EUR)</th>
+            <th class="r">Return (MTD)</th>
+          </tr>
+        </thead>
+        <tbody id="portfolio-body"><tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">Loading…</td></tr></tbody>
+      </table>
+      </div>
+
+      <div style="margin-top:28px">
+        <div class="port-section-title" style="margin-bottom:8px">Monthly Breakdown <span id="breakdown-year">2026</span></div>
+        <div class="table-wrap">
+        <table id="monthly-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th class="r">Return</th>
+              <th>Holdings</th>
+            </tr>
+          </thead>
+          <tbody id="monthly-body"><tr><td colspan="3" style="color:var(--text-muted);padding:12px">Loading…</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+
+      <p id="portfolio-updated" style="font-family:var(--font-mono);font-size:0.52rem;color:var(--text-muted);margin-top:10px"></p>
+    </div>
+
+    <div id="calc-section" style="display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:28px">
+      <div class="port-section-title" style="margin-bottom:14px">Rebalance Calculator</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+        <label style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted)">Portfolio value (EUR)</label>
+        <div style="position:relative">
+          <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted)">€</span>
+          <input id="calc-input" type="number" min="0" step="1000" placeholder="100000"
+            style="padding:8px 10px 8px 22px;background:var(--bg);border:1px solid var(--border-light);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.78rem;width:160px;outline:none">
+        </div>
+        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">equal weight</span>
+        <span style="font-family:var(--font-mono);font-size:.55rem;color:var(--text-muted);margin-left:8px">last close</span>
+      </div>
+      <div class="table-wrap">
+      <table id="calc-table" style="display:none">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Current €</th>
+            <th class="r">Allocation</th>
+            <th class="r">Shares</th>
+            <th class="r">Cost</th>
+          </tr>
+        </thead>
+        <tbody id="calc-body"></tbody>
+        <tfoot id="calc-foot"></tfoot>
+      </table>
+      </div>
+    </div>
+
+
+    <hr class="section-divider">
+
+    <div class="date-note">Signal date: <span id="signal-date"></span> &nbsp;|&nbsp; <span id="eligible-count"></span> eligible stocks</div>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Status</th>
+          <th>Ticker</th>
+          <th>Name</th>
+          <th class="r">12M Momentum</th>
+          <th class="r">Weight</th>
+          <th class="r">MCap (EUR B)</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+    </div>
+    <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
+      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; XETRA top 70% by mcap (P30), no fundamental filter &nbsp;|&nbsp; Top 20, equal weight &nbsp;|&nbsp; DAX &lt; MA200 → cash
+      &nbsp;|&nbsp; Rebalance: monthly &nbsp;|&nbsp; <a href="/research/germany_momentum_report.html" style="color:var(--accent)">Strategy report</a> &nbsp;|&nbsp; <a href="/research/germany_momentum_sensitivity.html" style="color:var(--accent)">Sensitivity analysis</a>
+    </p>
+
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
+      <div style="font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Get notified on rebalance day</div>
+      <a href="https://t.me/Bivarbtcbot" target="_blank" rel="noopener"
+        style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;font-family:var(--font-body);font-size:.85rem;font-weight:600;padding:12px 28px;border-radius:10px;text-decoration:none;transition:opacity .2s"
+        onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Telegram Alerts
+      </a>
+      <p style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);margin-top:10px">Alert on rebalance day with the 20 stocks to buy.</p>
+    </div>
+
+  </div><!-- /content-area -->
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Bivar Capital &nbsp;|&nbsp; Luis Portugal</p>
+    <p style="margin-top:8px"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 8px">LinkedIn</a> <a href="https://x.com/Luisbivar" rel="noopener" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 8px">X</a> <a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 8px">Instagram</a></p>
+  </div>
+</footer>
+
+<script>
+const fmtP   = v => v != null ? '€' + v.toFixed(2) : '—';
+const fmtRet = v => v != null ? `<span class="${v >= 0 ? 'pos' : 'neg'}">${v >= 0 ? '+' : ''}${v.toFixed(2)}%</span>` : '—';
+
+let _portData = null;
+let _sigData  = null;
+let _calcHoldings = [];
+
+async function loadPortfolio() {
+  try {
+    const res = await fetch('/germany-momentum-portfolio.json?v=' + Date.now());
+    if (!res.ok) throw new Error('no data');
+    const data = _portData = await res.json();
+
+    if (data.is_live === false) {
+      document.getElementById('not-live-banner').style.display = 'block';
+      document.getElementById('not-live-reason').textContent = data.not_live_reason || 'Data quality check failed.';
+    }
+
+    const ytdVal = data.ytd_2026;
+    if (ytdVal != null) {
+      const el = document.getElementById('ytd-return');
+      el.textContent = (ytdVal >= 0 ? '+' : '') + ytdVal.toFixed(1) + '%';
+      el.className = 'stat-val ' + (ytdVal >= 0 ? 'pos' : 'neg');
+    }
+
+    const cur = (data.monthly_breakdown || []).slice().reverse().find(m => m.is_current);
+    if (cur) {
+      const mtdEl = document.getElementById('mtd-return');
+      let mtd = cur.return_pct;
+      if (mtd == null) {
+        const withRet = (data.holdings || []).filter(h => h.return_pct != null);
+        const wsum = withRet.reduce((a,h) => a + (h.weight ?? 1/withRet.length), 0);
+        mtd = wsum > 0
+          ? withRet.reduce((a,h) => a + h.return_pct * (h.weight ?? 1/withRet.length), 0) / wsum
+          : null;
+      }
+      if (mtd != null) {
+        mtdEl.textContent = (mtd >= 0 ? '+' : '') + mtd.toFixed(2) + '%';
+        mtdEl.className = 'stat-val ' + (mtd >= 0 ? 'pos' : 'neg');
+      }
+      document.getElementById('mtd-label').textContent = cur.month;
+    }
+
+    const holdings = data.holdings || [];
+
+    document.getElementById('stats-container').innerHTML = holdings.map(h => `
+      <div class="stat-box">
+        <div class="stat-val">${h.ticker}</div>
+        <div class="stat-lbl">${fmtRet(h.return_pct)}</div>
+      </div>
+    `).join('');
+
+    document.getElementById('portfolio-body').innerHTML = holdings.length
+      ? holdings.map(h => `<tr class="selected">
+          <td><strong>${h.ticker}</strong></td>
+          <td style="font-family:var(--font-body);font-size:.7rem">${h.name || ''}</td>
+          <td class="r">${h.weight != null ? (h.weight*100).toFixed(1) + '%' : '—'}</td>
+          <td class="r">${h.entry_date || '—'}</td>
+          <td class="r">${fmtP(h.entry_price)}</td>
+          <td class="r">${fmtP(h.current_price)}</td>
+          <td class="r">${fmtRet(h.return_pct)}</td>
+        </tr>`).join('')
+      : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — DAX below MA200).</td></tr>';
+
+    renderMonthlyBreakdown(data.monthly_breakdown || [], new Date().getFullYear());
+
+    if (data.updated)
+      document.getElementById('portfolio-updated').textContent =
+        'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
+
+    if (holdings.length) {
+      _calcHoldings = holdings.filter(h => h.current_price);
+      document.getElementById('calc-section').style.display = 'block';
+      calcRebalance();
+    }
+  } catch(e) {
+    document.getElementById('portfolio-body').innerHTML =
+      '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">Could not load portfolio data.</td></tr>';
+    console.error(e);
+  }
+}
+
+function renderMonthlyBreakdown(breakdown, year) {
+  document.getElementById('breakdown-year').textContent = year;
+  const filtered = breakdown.filter(m => m.month.includes(String(year)));
+  const reversed = filtered.slice().reverse();
+  document.getElementById('monthly-body').innerHTML = reversed.length
+    ? reversed.map(m => {
+        const isCur = m.is_current ? ' style="opacity:.75"' : '';
+        const tickers = m.tickers && m.tickers.length ? m.tickers.join(', ') : '— (cash)';
+        return `<tr${isCur}>
+          <td style="white-space:nowrap">${m.month}</td>
+          <td class="r">${fmtRet(m.return_pct)}</td>
+          <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${tickers}</td>
+        </tr>`;
+      }).join('')
+    : '<tr><td colspan="3" style="color:var(--text-muted);padding:12px">No data for ' + year + '.</td></tr>';
+}
+
+
+async function loadSignal() {
+  try {
+    const res = await fetch('/germany-momentum-data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('no signal');
+    const data = _sigData = await res.json();
+
+    if (data.is_live === false) {
+      document.getElementById('not-live-banner').style.display = 'block';
+      document.getElementById('not-live-reason').textContent = data.not_live_reason || 'Data quality check failed.';
+    }
+
+    const isMom = data.regime === 'momentum';
+    const pctDev = data.dax && data.dax_ma200
+      ? ((data.dax / data.dax_ma200 - 1) * 100).toFixed(1)
+      : null;
+    document.getElementById('regime-container').innerHTML = `
+      <div class="regime-label">Market Regime — DAX vs MA200</div>
+      <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-cash'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — HOLD CASH'}</div>
+      <div class="regime-detail">
+        DAX: ${data.dax?.toLocaleString('de-DE', {maximumFractionDigits:0}) ?? '—'}
+        &nbsp;|&nbsp; MA200: ${data.dax_ma200?.toLocaleString('de-DE', {maximumFractionDigits:0}) ?? '—'}
+        ${pctDev != null ? `&nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA200 (${pctDev}%)` : ''}
+      </div>
+      <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--text-muted)'}">
+        ${isMom ? 'Signal: Buy top 20 momentum stocks (equal weight)' : 'Signal: Hold cash until DAX recovers above MA200'}
+      </div>`;
+
+    document.getElementById('signal-date').textContent = data.date || '—';
+    document.getElementById('eligible-count').textContent = data.total_eligible ?? '—';
+
+    const top30 = data.top30 || [];
+    document.getElementById('table-body').innerHTML = top30.map(s => {
+      const sel = s.selected;
+      const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
+      return `<tr class="${sel ? 'selected' : ''}">
+        <td>${s.rank}</td>
+        <td>${sel ? '<span class="tag-selected">SELECTED</span>' : ''}</td>
+        <td><strong>${s.ticker}</strong></td>
+        <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
+        <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
+        <td class="r">${s.weight != null ? (s.weight*100).toFixed(1) + '%' : '—'}</td>
+        <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
+      </tr>`;
+    }).join('');
+
+  } catch(e) {
+    console.error('Signal load error:', e);
+  }
+}
+
+function calcRebalance() {
+  const total = parseFloat(document.getElementById('calc-input').value);
+  if (!total || total <= 0 || !_calcHoldings.length) {
+    document.getElementById('calc-table').style.display = 'none';
+    return;
+  }
+  const n = _calcHoldings.length;
+  let positions = _calcHoldings.map(h => {
+    const price = h.current_price;
+    if (!price) return null;
+    const alloc = total * (h.weight ?? 1/n);
+    const shares = Math.floor(alloc / price);
+    return { ticker: h.ticker, price, shares, alloc, remainder: alloc - shares * price };
+  }).filter(Boolean);
+
+  let cash = total - positions.reduce((s, p) => s + p.shares * p.price, 0);
+  positions.sort((a, b) => b.remainder - a.remainder);
+  for (const p of positions) {
+    if (cash >= p.price) { p.shares += 1; cash -= p.price; }
+  }
+  positions.sort((a, b) =>
+    _calcHoldings.findIndex(h => h.ticker === a.ticker) -
+    _calcHoldings.findIndex(h => h.ticker === b.ticker)
+  );
+
+  let totalCost = 0;
+  const rows = positions.map(p => {
+    const cost = p.shares * p.price;
+    totalCost += cost;
+    return `<tr class="selected">
+      <td><strong>${p.ticker}</strong></td>
+      <td>€${p.price.toFixed(2)}</td>
+      <td class="r">€${p.alloc.toFixed(0)}</td>
+      <td class="r"><strong>${p.shares}</strong></td>
+      <td class="r">€${cost.toFixed(2)}</td>
+    </tr>`;
+  }).join('');
+  const left = total - totalCost;
+  document.getElementById('calc-body').innerHTML = rows;
+  document.getElementById('calc-foot').innerHTML = `
+    <tr style="border-top:1px solid var(--border-light)">
+      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:8px">Total invested</td>
+      <td></td><td class="r" style="padding-top:8px"><strong>€${totalCost.toFixed(2)}</strong></td>
+    </tr>
+    <tr>
+      <td colspan="3" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);padding-top:4px">Cash remaining</td>
+      <td></td><td class="r" style="padding-top:4px;font-family:var(--font-mono);font-weight:600;color:var(--text-muted)">€${left.toFixed(2)}</td>
+    </tr>`;
+  document.getElementById('calc-table').style.display = 'table';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('calc-input').addEventListener('input', calcRebalance);
+});
+
+window.onUnlock = function() {
+  document.getElementById('auth-wall').style.display = 'none';
+  document.getElementById('content-area').style.display = 'block';
+  loadSignal();
+  loadPortfolio();
+};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="/auth.js?v=2"></script>
+</body>
+</html>
