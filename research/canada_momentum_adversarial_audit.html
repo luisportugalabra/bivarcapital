@@ -56,9 +56,9 @@ footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-m
 <p><strong>Data:</strong> 2026-08-25 · <strong>Motor auditado:</strong> <code>~/eodhd_data/generate_canada_report_v3.py</code> + <code>~/momentum_research/backtest.py</code>
 <strong>Método:</strong> reimplementação independente (<code>~/momentum_research/audit_canada_momentum.py</code>), variantes honestas, falsificação.</p>
 <h2>A. Veredicto executivo</h2>
-<p><strong>Investiria capital real, mas com os números honestos — CAGR ~34.5%, Sharpe ~1.22, MaxDD ~-26% — e não com os publicados (36.1/1.35/-24.5), que incluem um lookahead real no filtro de NetIncome.</strong>
-O edge é genuíno, persistente e sobrevive a todas as tentativas de destruição. O único bug material encontrado vale ~1.7pp de CAGR e 0.13 de Sharpe.
-<strong>Score de confiança: 78/100</strong> (85 depois de corrigir o filing_date e republicar).</p>
+<p><strong>Investiria capital real. O único bug material (lookahead no filtro de NetIncome) foi corrigido e republicado no site em 2026-08-25</strong> — os números ao vivo já são os honestos: CAGR 34.4%, Sharpe 1.22, MaxDD -26.0% (antes: 36.1/1.35/-24.5, commit <code>21b7cd9</code>).
+O edge é genuíno, persistente e sobrevive a todas as tentativas de destruição.
+<strong>Score de confiança: 85/100</strong> (subiu de 78 depois da correção; os dois pontos restantes na secção F são refinamentos, não bugs).</p>
 <h2>B. Tabela de riscos</h2>
 <div class="table-wrap"><table>
 <thead>
@@ -72,11 +72,11 @@ O edge é genuíno, persistente e sobrevive a todas as tentativas de destruiçã
 </thead>
 <tbody>
 <tr>
-<td><strong>Lookahead no NetIncome: 92.4% dos filing_date EODHD TO são ≤ fim do período</strong> — o filtro sabe o resultado trimestral no dia em que o trimestre fecha, 1-3 meses antes de ser público</td>
-<td><strong>ALTA</strong></td>
+<td><strong>Lookahead no NetIncome: 92.4% dos filing_date EODHD TO são ≤ fim do período</strong> — o filtro sabia o resultado trimestral no dia em que o trimestre fechava, 1-3 meses antes de ser público</td>
+<td><strong>ALTA</strong> (era)</td>
 <td>distribuição empírica de 16.264 filing_dates (mediana lag=0 dias); reruns A vs B</td>
-<td>CAGR 36.3→34.6, Sharpe 1.35→1.22, MaxDD -24.5→-26.0</td>
-<td><strong>NÃO</strong> — v3 usa filing_date quando existe; o loader corrigido do resto do projeto (ebit_test.py) já usa +60d fixo</td>
+<td>CAGR 36.1→34.4, Sharpe 1.35→1.22, MaxDD -24.5→-26.0</td>
+<td><strong>SIM — corrigido 2026-08-25</strong> (commit <code>21b7cd9</code>). Loader do v3 passou a usar sempre period+60d, igual ao <code>ebit_test.py</code>. Site já publica os números corrigidos.</td>
 </tr>
 <tr>
 <td>Gap de custos nas transições de regime (declarado no docstring como +1.1pp)</td>
@@ -127,7 +127,7 @@ O edge é genuíno, persistente e sobrevive a todas as tentativas de destruiçã
 </thead>
 <tbody>
 <tr>
-<td>Publicado (site/report v3)</td>
+<td>Publicado ANTES da correção (site/report v3, até 2026-08-24)</td>
 <td>+36.1%</td>
 <td>1.35</td>
 <td>-24.5%</td>
@@ -139,8 +139,14 @@ O edge é genuíno, persistente e sobrevive a todas as tentativas de destruiçã
 <td>-24.5%</td>
 </tr>
 <tr>
-<td><strong>+ NetIncome com lag honesto de 60d</strong></td>
+<td><strong>+ NetIncome com lag honesto de 60d</strong> (auditoria, dados até 24-Ago)</td>
 <td><strong>+34.6%</strong></td>
+<td><strong>1.22</strong></td>
+<td><strong>-26.0%</strong></td>
+</tr>
+<tr>
+<td><strong>PUBLICADO NO SITE desde 2026-08-25</strong> (regeneração completa, commit <code>21b7cd9</code>)</td>
+<td><strong>+34.4%</strong></td>
 <td><strong>1.22</strong></td>
 <td><strong>-26.0%</strong></td>
 </tr>
@@ -170,12 +176,13 @@ O edge é genuíno, persistente e sobrevive a todas as tentativas de destruiçã
 </tr>
 </tbody>
 </table></div>
+<p>A pequena diferença entre 34.6% (auditoria) e 34.4% (site) é ruído de reamostragem TSX/yfinance entre execuções, não um bug adicional.</p>
 <p>Subperíodos (versão honesta): 2000-03: 51.2%/1.91 · 04-08: 29.7%/1.04 · 09-12: 30.8%/1.44 · 13-16: 29.6%/1.33 · 17-20: 44.4%/1.40 · 21-26: 26.8%/0.76 (o mais fraco; pior ano 2023: -15%).
 Placebo: ranking invertido 4.9%/0.07 · random-10 do mesmo universo 10.5% · sinal desfasado 1 mês 30.6%. O pipeline distingue sinal de ruído.
 Concentração: sem top 10% dos meses → 10.0% (TSX na mesma cirurgia: -2.0%) — perfil normal de equities, sem outliers artificiais.</p>
 <h2>D. Alegações anteriores</h2>
 <ul>
-<li>"36.1/1.35/-24.5" → <strong>CONFIRMADA COM RESSALVAS</strong> (reproduz-se exatamente, mas contém o lookahead do filing_date)</li>
+<li>"36.1/1.35/-24.5" → <strong>FALSA/EXAGERADA</strong> (continha lookahead; já não está publicada — corrigida para 34.4/1.22/-26.0 em 2026-08-25)</li>
 <li>"Realistic 1-day execution lag" → <strong>CONFIRMADA</strong> (verificada no código e na réplica)</li>
 <li>"mcap/NI filters independent" → <strong>CONFIRMADA</strong></li>
 <li>"Sharpe rf-adjusted, Sortino RMS" → <strong>CONFIRMADA</strong></li>
@@ -189,12 +196,10 @@ Concentração: sem top 10% dos meses → 10.0% (TSX na mesma cirurgia: -2.0%) �
 <li>Universo TO da EODHD: sem tabela de delistings explícita; tickers extintos estão no painel (o <code>_old</code> sufixo existe) mas não há prova exaustiva de cobertura completa de mortos pré-2010 — risco de survivorship residual não mensurável com esta fonte.</li>
 <li>TSX via yfinance: ~0.2pp de deriva entre downloads (a diferença 36.1 vs 36.3 da minha réplica).</li>
 </ul>
-<h2>F. Próximas 3 auditorias mais valiosas</h2>
-<ol>
-<li><strong>Corrigir o loader NI do v3 para period+60d sempre</strong> (uma linha), regenerar e republicar 34.6/1.22/-26.0 — remove o único bug material.</li>
-<li><strong>Medir o custo real das holdings atuais via IBKR</strong> (spreads TSX das top-80%-mcap) e substituir os 40bps herdados.</li>
-<li><strong>Comparação live vs backtest posição-a-posição durante 3 meses</strong> (o mesmo teste recomendado para o US) — valida o pipeline completo de uma vez.</li>
-</ol>
+<h2>F. Próximas 2 auditorias mais valiosas</h2>
+<p><em>(item 1 da lista original — corrigir o loader NI — está feito e publicado; ficam os dois seguintes)</em>
+1. <strong>Medir o custo real das holdings atuais via IBKR</strong> (spreads TSX das top-80%-mcap) e substituir os 40bps herdados. Tentativa em 2026-08-25 falhou — TSX fechada, dados de bid/ask não fiáveis (bid=ask idêntico em vários nomes). Repetir com a bolsa aberta (9:30-16:00 ET).
+2. <strong>Comparação live vs backtest posição-a-posição durante 3 meses</strong> (o mesmo teste recomendado para o US) — valida o pipeline completo de uma vez.</p>
 </div>
 </main>
 <footer><div class="container" style="padding:0"><p>Bivar Capital &nbsp;|&nbsp; Internal audit note, not investment advice.</p></div></footer>

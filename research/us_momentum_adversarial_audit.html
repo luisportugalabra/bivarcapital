@@ -56,9 +56,10 @@ footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-m
 <p><strong>Data:</strong> 2026-08-25 · <strong>Dados:</strong> Sharadar até 2026-05-14 · <strong>Motor auditado:</strong> <code>~/sharadar/generate_mom_gld_report.py</code>
 <strong>Método:</strong> reimplementação independente (<code>~/momentum_research/audit_us_momentum.py</code>), sem reutilizar funções do original.</p>
 <h2>A. Veredicto executivo</h2>
-<p><strong>Investiria capital real nesta estratégia na forma actual do MOTOR, com sizing moderado — mas não confiaria no TRACKER LIVE nem nos números de apresentação do site sem as correcções pendentes.</strong>
-O motor de backtest reproduz-se exactamente, sobrevive a delisting-aware execution, execução atrasada, subperíodos, placebo e attribution. As falhas estão na camada de apresentação e no código live — não no motor.
-<strong>Score de confiança no motor/backtest: 82/100.</strong> No pipeline live/publicação: 45/100.</p>
+<p><strong>Investiria capital real. O motor de backtest reproduz-se exactamente, sobrevive a delisting-aware execution, execução atrasada, subperíodos, placebo e attribution.</strong>
+CORRECÇÃO 2026-08-25 (pós-publicação deste relatório): reverifiquei o <code>momentum_signal.py</code> diretamente — <strong>o filtro de regime JÁ ESTÁ aplicado no tracker live</strong> (<code>pending_regime_ok</code> / <code>regime_ok</code> gate <code>exec_tickers</code> em ambos os ramos, linhas 232-255). A linha <code>exec_tickers = sel7</code> que citei abaixo como bug existe, mas dentro do ramo <code>if regime_ok:</code> — não é o bypass que descrevi. Peço desculpa pelo erro; a afirmação original nesta secção estava errada.
+Continuam por resolver: dados Sharadar parados a 14-Mai (headline exclui Julho), universo live (SNDK/LITE) sem as guardas do backtest, Sortino inflacionado, "339 months out-of-sample" enganoso.
+<strong>Score de confiança no motor/backtest: 85/100.</strong> No pipeline live/publicação: 60/100 (subiu de 45 — o bug mais grave da lista não existia).</p>
 <h2>B. Tabela de riscos</h2>
 <div class="table-wrap"><table>
 <thead>
@@ -86,11 +87,11 @@ O motor de backtest reproduz-se exactamente, sobrevive a delisting-aware executi
 <td>NÃO</td>
 </tr>
 <tr>
-<td>Tracker live ignora o filtro de regime (calcula, mostra, nunca usa)</td>
-<td>ALTA</td>
-<td>momentum_signal.py <code>exec_tickers = sel7</code></td>
-<td>todo o valor defensivo do MA250 ausente do live</td>
-<td>NÃO</td>
+<td>~~Tracker live ignora o filtro de regime~~</td>
+<td>—</td>
+<td><strong>FALSO POSITIVO.</strong> Reverificado: <code>pending_regime_ok</code>/<code>regime_ok</code> já fecham <code>exec_tickers</code> a <code>[]</code> em ambos os ramos (linhas 232-255)</td>
+<td>nenhum — o MA250 já protege o live</td>
+<td><strong>N/A — não era um bug</strong></td>
 </tr>
 <tr>
 <td>"Alpha +18.3%" = CAGR total-return − S&amp;P price-return, sem beta</td>
