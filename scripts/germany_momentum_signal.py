@@ -12,16 +12,30 @@ audited: two bugs found and fixed (US-ADR mistagging, weekend-calendar
 contamination in the signal), plus an adversarial second audit that found
 no lookahead/survivorship inflation but flagged real capacity/liquidity
 constraints in the smaller names -- see the audit report for detail):
-  - Universe: XETRA, primary listing only (`is_primary==True`,
-    `exchange=='XETR'`) -- this alone excludes the ~226 US megacaps
-    (Apple, Microsoft, Tesla, etc.) cross-listed on XETRA whose primary
-    listing is NASDAQ/NYSE, without needing an ISIN-prefix lookup live
-    (TradingView doesn't expose ISIN in this query; is_primary does the
-    same job for the live signal).
+  - Universe: all XETRA common-stock lines EXCEPT US-domiciled companies
+    (`exchange=='XETR'`, `country != 'United States'`). v1 used
+    `is_primary==True`, which excluded the US megacaps but ALSO threw out
+    every non-US foreign cross-listing (Vestas, Nokia, ASML, ~250 names)
+    that the backtest deliberately keeps -- the explicit design intent is
+    to exclude ONLY the Americans (to avoid raising USA correlation), not
+    all foreigners. TradingView's `country` (domicile) matches the
+    backtest's ISIN-prefix exclusion closely enough, and the resulting
+    universe (~690 names with data) now matches the backtest's EODHD
+    cross-section (~610) instead of v1's ~410, so the mcap percentile is
+    computed over the same population.
   - Eligibility: market cap >= 30th percentile (top 70% by size)
   - No fundamental filter (backtest: EBIT/NetIncome/GrossProfit/ROE all
     reduce Sharpe at this N/mcap/MA combination)
-  - Signal: pure 12-month return (TradingView Perf.Y), no skip-month
+  - Signal: pure 12-month return, no skip-month -- computed from yfinance
+    (.DE lines, auto_adjust=True so it is dividend-adjusted like the
+    backtest's adjusted_close momentum), NOT TradingView Perf.Y. Perf.Y
+    proved unusable on non-primary XETR cross-listing lines: dormant or
+    recently-activated lines (46-233 days of real history) reported
+    fictitious +300..+1100% "12M returns" (Trane, Chubb, Danske, KBC...)
+    and would have filled the entire top-20. The backtest convention --
+    a line must have a real price ~12 months ago or it is ineligible --
+    is enforced here explicitly (>=230 daily closes AND a non-stale
+    price at the 365d anchor).
   - Portfolio: top 20 by momentum, equal weight
   - Regime: DAX (^GDAXI) vs its own 200-day MA -> 100% cash when below
   - Monthly rebalance, 1-trading-day execution lag (pending_signal
@@ -54,21 +68,22 @@ PORTFOLIO_PATH = os.path.join(SITE_DIR, "germany-momentum-portfolio.json")
 MCAP_PCT       = 0.30   # keep top 70% by market cap (percentile, not absolute floor)
 TOP_N          = 20
 MA_W           = 200
-CONFIG_VERSION = "v1-2026-08-25"
+CONFIG_VERSION = "v2-2026-08-25"   # v2: universe = all non-US XETR lines (was primary-only)
 
-MIN_UNIVERSE_ROWS = 250   # normal is ~400-420 primary-listed XETRA common stocks
-                          # with perf+mcap+close present; post-mcap-filter ~280-300
+MIN_UNIVERSE_ROWS = 400   # normal is ~690 non-US XETR common-stock lines with
+                          # mcap+close present; post-mcap-filter ~480
+MIN_MOMENTUM_ROWS = 250   # of those, how many must yield a valid 12M momentum
+                          # (>=230d of real quotes) before we trust the ranking
 TODAY = date.today().isoformat()
 
 
 def fetch_germany():
     print("Fetching TradingView data (Germany XETRA)...")
     _, df = (Query()
-        .select('name', 'description', 'market_cap_basic', 'Perf.Y', 'close', 'type', 'typespecs')
+        .select('name', 'description', 'market_cap_basic', 'close', 'type', 'typespecs', 'country')
         .where(
             col('type') == 'stock',
             col('typespecs').has('common'),
-            col('is_primary') == True,
             col('exchange') == 'XETR',
         )
         .set_markets('germany')
@@ -83,11 +98,15 @@ def fetch_germany():
 
     # Genuine fallback for existing holdings that fall out of the ranking
     # universe (e.g. delisted, name change) -- minimal-requirement set,
-    # same pattern as Canada's broad_prices fix.
+    # same pattern as Canada's broad_prices fix. Built BEFORE the country
+    # filter so even a US-line holding from an older config stays priced.
     broad_prices = df.dropna(subset=['close']).set_index('code')['close'].astype(float).to_dict()
 
-    df = df.dropna(subset=['Perf.Y', 'close', 'market_cap_basic']).copy()
-    print(f"  With perf+mcap+close: {len(df)}")
+    df = df[df['country'] != 'United States'].copy()
+    print(f"  Non-US: {len(df)}")
+
+    df = df.dropna(subset=['close', 'market_cap_basic']).copy()
+    print(f"  With mcap+close: {len(df)}")
     universe_health = len(df)
 
     mc_threshold = df['market_cap_basic'].quantile(MCAP_PCT)
@@ -95,6 +114,53 @@ def fetch_germany():
     print(f"  Above mcap P{int(MCAP_PCT*100)}: {len(df)}")
 
     return df.reset_index(drop=True), universe_health, broad_prices
+
+
+def compute_momentum(codes):
+    """12M total-return momentum from yfinance .DE lines (auto_adjust=True,
+    dividend-adjusted -- same convention as the backtest's adjusted_close).
+
+    Backtest eligibility rule enforced explicitly: a line must have a real
+    price ~12 months ago, or it has no momentum and is ineligible. This is
+    what protects the backtest from dormant/recently-activated XETR
+    cross-listing lines, and what TradingView's Perf.Y does NOT do (it
+    reported +300..+1100% fictitious returns on lines with 46-233 days of
+    history -- the v2 incident of 2026-08-25).
+    """
+    yf_map = {c: c + '.DE' for c in codes}
+    tickers = list(yf_map.values())
+    frames = []
+    for i in range(0, len(tickers), 150):
+        chunk = tickers[i:i + 150]
+        print(f"  yfinance momentum batch {i//150 + 1}/{(len(tickers)-1)//150 + 1} "
+              f"({len(chunk)} tickers)...")
+        raw = yf.download(chunk, period='500d', auto_adjust=True, progress=False)
+        if raw is None or len(raw) == 0:
+            continue
+        if isinstance(raw.columns, pd.MultiIndex):
+            px = raw['Close']
+        else:
+            px = raw[['Close']].rename(columns={'Close': chunk[0]})
+        frames.append(px)
+    if not frames:
+        return {}
+    px = pd.concat(frames, axis=1)
+    px = px.loc[:, ~px.columns.duplicated()]
+    last_date = px.index.max()
+    anchor = last_date - pd.Timedelta(days=365)
+
+    mom = {}
+    for c, yt in yf_map.items():
+        if yt not in px.columns:
+            continue
+        s = px[yt].dropna()
+        if len(s) < 230:                       # needs ~a full year of real quotes
+            continue
+        past = s[s.index <= anchor]
+        if past.empty or (anchor - past.index[-1]).days > 10:   # stale anchor
+            continue
+        mom[c] = round(float(s.iloc[-1] / past.iloc[-1] - 1) * 100, 2)
+    return mom
 
 
 def check_regime():
@@ -225,7 +291,16 @@ def main():
                         f"(expected {MIN_UNIVERSE_ROWS}+) -- likely an API issue")
         return
 
-    df = df.sort_values('Perf.Y', ascending=False).reset_index(drop=True)
+    mom = compute_momentum(df['code'].tolist())
+    df['ret_12m'] = df['code'].map(mom)
+    df = df.dropna(subset=['ret_12m']).copy()
+    print(f"  With valid 12M momentum (>=230d history, non-stale anchor): {len(df)}")
+    if len(df) < MIN_MOMENTUM_ROWS:
+        write_not_live(f"Only {len(df)} tickers with valid 12M momentum "
+                        f"(expected {MIN_MOMENTUM_ROWS}+) -- likely a yfinance outage")
+        return
+
+    df = df.sort_values('ret_12m', ascending=False).reset_index(drop=True)
     top_df = df.head(TOP_N) if regime_ok else df.iloc[0:0]
 
     if len(top_df):
@@ -242,7 +317,7 @@ def main():
             'rank':      int(i) + 1,
             'ticker':    code,
             'name':      str(row.get('description') or row.get('name', code)),
-            'ret_12m':   round(float(row['Perf.Y']), 2),
+            'ret_12m':   round(float(row['ret_12m']), 2),
             'mcap_b':    round(float(row['market_cap_basic']) / 1e9, 3),
             'weight':    weight_map.get(code),
             'selected':  code in selected,
