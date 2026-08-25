@@ -267,6 +267,32 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       &nbsp;|&nbsp; Rebalance: monthly &nbsp;|&nbsp; <a href="/research/germany_momentum_report.html" style="color:var(--accent)">Strategy report</a> &nbsp;|&nbsp; <a href="/research/germany_momentum_sensitivity.html" style="color:var(--accent)">Sensitivity analysis</a>
     </p>
 
+    <div id="tv-compare" style="display:none;margin-top:32px">
+      <div class="port-section-title" style="margin-bottom:4px">Data-Source Comparison — TradingView Ranking</div>
+      <p style="font-size:.68rem;color:var(--text-muted);margin:6px 0 10px;font-family:var(--font-body)">
+        The official ranking above is computed from Yahoo Finance price history (dividend-adjusted, requires ~1 year
+        of real quotes on the XETRA line). The table below is the same strategy ranked by TradingView's <code>Perf.Y</code>
+        instead, published daily for comparison. TradingView reports fictitious 12M returns on dormant / recently-activated
+        XETRA cross-listing lines, so large divergences here are expected — overlap of the two top-20s:
+        <strong id="tv-overlap" style="color:var(--accent)">—</strong>/20.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Status</th>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th class="r">12M (TradingView)</th>
+            <th class="r">MCap (EUR B)</th>
+          </tr>
+        </thead>
+        <tbody id="tv-table-body"></tbody>
+      </table>
+      </div>
+    </div>
+
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
       <div style="font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Get notified on rebalance day</div>
       <a href="https://t.me/Bivarbtcbot" target="_blank" rel="noopener"
@@ -435,6 +461,26 @@ async function loadSignal() {
         <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
       </tr>`;
     }).join('');
+
+    const top30tv = data.top30_tv || [];
+    if (top30tv.length) {
+      document.getElementById('tv-compare').style.display = 'block';
+      document.getElementById('tv-overlap').textContent = data.tv_yf_top20_overlap ?? '—';
+      const yfSel = new Set(top30.filter(s => s.selected).map(s => s.ticker));
+      document.getElementById('tv-table-body').innerHTML = top30tv.map(s => {
+        const sel = s.selected;
+        const inYf = yfSel.has(s.ticker);
+        const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
+        return `<tr class="${sel ? 'selected' : ''}">
+          <td>${s.rank}</td>
+          <td>${sel ? (inYf ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">TV ONLY</span>') : ''}</td>
+          <td><strong>${s.ticker}</strong></td>
+          <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
+          <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
+          <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
+        </tr>`;
+      }).join('');
+    }
 
   } catch(e) {
     console.error('Signal load error:', e);
