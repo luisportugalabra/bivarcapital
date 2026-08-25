@@ -80,7 +80,7 @@ TODAY = date.today().isoformat()
 def fetch_germany():
     print("Fetching TradingView data (Germany XETRA)...")
     _, df = (Query()
-        .select('name', 'description', 'market_cap_basic', 'close', 'type', 'typespecs', 'country')
+        .select('name', 'description', 'market_cap_basic', 'close', 'Perf.Y', 'type', 'typespecs', 'country')
         .where(
             col('type') == 'stock',
             col('typespecs').has('common'),
@@ -293,6 +293,24 @@ def main():
 
     mom = compute_momentum(df['code'].tolist())
     df['ret_12m'] = df['code'].map(mom)
+
+    # Parallel TradingView Perf.Y ranking, published alongside for live
+    # comparison of the two data sources (yfinance stays the authority for
+    # the actual portfolio; this is diagnostic only -- Perf.Y is known to
+    # fabricate returns on dormant XETR lines, which is exactly what this
+    # comparison is meant to surface over time).
+    tv_df = df.dropna(subset=['Perf.Y']).sort_values('Perf.Y', ascending=False).reset_index(drop=True)
+    top30_tv = []
+    for i, row in tv_df.head(30).iterrows():
+        top30_tv.append({
+            'rank':     int(i) + 1,
+            'ticker':   row['code'],
+            'name':     str(row.get('description') or row.get('name', row['code'])),
+            'ret_12m':  round(float(row['Perf.Y']), 2),
+            'mcap_b':   round(float(row['market_cap_basic']) / 1e9, 3),
+            'selected': int(i) < TOP_N,
+        })
+
     df = df.dropna(subset=['ret_12m']).copy()
     print(f"  With valid 12M momentum (>=230d history, non-stale anchor): {len(df)}")
     if len(df) < MIN_MOMENTUM_ROWS:
@@ -332,6 +350,9 @@ def main():
         'total_eligible':     int(len(df)),
         'portfolio':          [s for s in top30 if s['selected']],
         'top30':              top30,
+        'top30_tv':           top30_tv,
+        'tv_yf_top20_overlap': len({s['ticker'] for s in top30 if s['selected']} &
+                                   {s['ticker'] for s in top30_tv if s['selected']}),
         'updated':            TODAY,
         'is_live':            True,
         'not_live_reason':    None,

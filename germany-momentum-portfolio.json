@@ -4,17 +4,17 @@
   "ytd_2026": null,
   "regime": "momentum",
   "currency": "EUR",
-  "dax": 26282.6,
-  "dax_ma200": 24573.1,
+  "dax": 26259.3,
+  "dax_ma200": 24572.9,
   "holdings": [
     {
       "ticker": "YDX",
       "name": "Nebius Group N.V. Class A",
       "entry_date": "2026-08-25",
       "entry_price": 186.26,
-      "current_price": 184.48,
+      "current_price": 186.76,
       "weight": 0.05,
-      "return_pct": -0.96
+      "return_pct": 0.27
     },
     {
       "ticker": "2IS",
@@ -48,9 +48,9 @@
       "name": "Prysmian S.p.A.",
       "entry_date": "2026-08-25",
       "entry_price": 121.85,
-      "current_price": 121.9,
+      "current_price": 121.35,
       "weight": 0.05,
-      "return_pct": 0.04
+      "return_pct": -0.41
     },
     {
       "ticker": "AEX",
@@ -75,9 +75,9 @@
       "name": "Leonardo SpA",
       "entry_date": "2026-08-25",
       "entry_price": 54.85,
-      "current_price": 54.85,
+      "current_price": 54.64,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.38
     },
     {
       "ticker": "LRC",
@@ -147,9 +147,9 @@
       "name": "Danske Bank A/S",
       "entry_date": "2026-08-25",
       "entry_price": 49.9,
-      "current_price": 49.9,
+      "current_price": 49.82,
       "weight": 0.05,
-      "return_pct": 0.0
+      "return_pct": -0.16
     },
     {
       "ticker": "LGI",
