@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Canada Momentum — Parameter Sensitivity &amp; Robustness Analysis — Bivar Capital</title>
-<meta property="og:title" content="Canada Momentum — Parameter Sensitivity &amp; Robustness Analysis — Bivar Capital">
-<meta property="og:description" content="Sensitivity sweeps behind the TSX momentum strategy: momentum lookback, market cap filter, portfolio size, regime window and fundamental filter.">
+<title>Canada Momentum — Parameter Sensitivity & Robustness Analysis — Bivar Capital</title>
+<meta property="og:title" content="Canada Momentum — Parameter Sensitivity & Robustness Analysis — Bivar Capital">
+<meta property="og:description" content="Sensitivity sweeps behind the XETRA momentum strategy: lookback, market cap filter, regime window, portfolio size, fundamental filters, calendar-year returns and rolling 3-year performance.">
 <meta property="og:image" content="https://bivarcapital.com/og-image.png">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://bivarcapital.com/research/canada_momentum_sensitivity.html">
+<meta property="og:url" content="https://bivarcapital.com/research/germany_momentum_sensitivity.html">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://bivarcapital.com/research/canada_momentum_sensitivity.html">
+<link rel="canonical" href="https://bivarcapital.com/research/germany_momentum_sensitivity.html">
 <meta name="theme-color" content="#060608">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:40px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.pos{color:var(--green)}.neg{color:var(--red)}.hl-row td{background:rgba(196,162,101,.08);color:var(--text);font-weight:600}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.callout-green{background:var(--card);border-left:3px solid var(--green);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-green p{margin:0;color:var(--text);font-size:.78rem}.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-red p{margin:0;color:var(--text);font-size:.78rem}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.highlight-amber{background:rgba(196,162,101,.06);border:1px solid rgba(196,162,101,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight-amber p{margin:0}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}.footer a{color:var(--accent)}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:40px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.pos{color:var(--green)}.neg{color:var(--red)}.hl-row td{background:rgba(196,162,101,.08);color:var(--text);font-weight:600}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}.footer a{color:var(--accent)}
 ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps li{margin-bottom:6px}
-@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}</style>
+.yeargrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}
+.yearcell{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:8px;text-align:center}
+.yearcell .y{font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--muted)}
+.yearcell .r{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;margin-top:2px}
+@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.yeargrid{grid-template-columns:repeat(3,1fr)}}</style>
 </head>
 <body><style>
 .site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
@@ -35,154 +39,128 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>Canada Momentum<span class="it">Parameter sensitivity analysis</span></h1>
-<p class="lead">One-at-a-time sensitivity sweeps across momentum lookback, market cap filter, portfolio size, regime window and fundamental filter, behind the <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada TSX momentum strategy</a>. TSX (.TO), EODHD daily data, 2000&ndash;2026.</p>
+<p class="lead">One-at-a-time sweeps across momentum lookback, market cap filter, regime window, portfolio size, fundamental filter and costs, plus calendar-year returns and rolling 3-year performance, behind the <a href="/canada-momentum.html" style="color:var(--accent)">Canada TSX momentum strategy</a>. 2000&ndash;2026, 319 months. All numbers from an independent harness mirroring the production engine's conventions (harness baseline 33.8%/1.19 vs engine 34.4%/1.22 &mdash; convention noise). Data caveat from the delisting forensics: recorded deaths in the TSX dataset are thin before 2017, so pre-2012 results carry survivorship risk; the <a href="/research/canada_momentum_adversarial_audit.html" style="color:var(--accent)">audit's</a> isolated 2017-2026 window (+33.9%/1.01) is the honest anchor.</p>
 
 <div class="divider"></div>
-<h2>I. Universe &amp; Method</h2>
-<div class="two-col">
-<div class="meta-box">
-<dt>Universe</dt><dd>Toronto Stock Exchange (.TO), EODHD daily adjusted prices, 1,766 tickers since 2000</dd>
-<dt>Signal</dt><dd>N-month total return, no skip-month unless noted</dd>
-<dt>Selection</dt><dd>Top K by signal, descending, after all eligibility filters</dd>
-<dt>Rebalance</dt><dd>Monthly, end-of-month signal, executed at the next real trading day's close</dd>
-</div>
-<div class="meta-box">
-<dt>Regime filter</dt><dd>TSX Composite (^GSPTSE) close vs its own N-day moving average</dd>
-<dt>Regime rule</dt><dd>Above MA &rarr; fully invested / Below &rarr; 100% cash</dd>
-<dt>Costs</dt><dd>40bps round-trip on monthly turnover (real IBKR median spread)</dd>
-<dt>Period</dt><dd>2000&ndash;01 to 2026&ndash;07 (319 months)</dd>
-</div>
-</div>
-<p>The engine is audited for lookahead bias: every signal uses only data available as of its decision date, fundamentals enter the universe on their <em>filing</em> date (never the period date), and each month's return is generated by the position decided using the <em>prior</em> month's information, priced at the next real trading day's close &mdash; not the signal day's own close, which isn't achievable live.</p>
-<div class="callout"><p><strong>Baseline for every sweep below:</strong> N=10, 12-month momentum (no skip), mcap &ge; 20th percentile (top 80% by size), NetIncome(TTM)&gt;0, TSX Composite vs its own 75-day moving average, equal weighted, CDRs and preferred shares excluded, since 2000 (319 months) &mdash; CAGR +36.1%, Sharpe 1.35, Sortino 3.43, MaxDD &minus;24.5%, matching the <a href="/research/canada_momentum_report.html" style="color:var(--accent)">live strategy report</a> exactly. There is no volatility-exclusion filter in the current config (tested and rejected earlier as overfit-prone &mdash; see Section&nbsp;VII) and no alternative weighting scheme has been re-tested against equal weight under the current engine.</p></div>
+<h2>I. Baseline (live config)</h2>
+<p>LB 12M skip 0 &middot; mcap top 80% (P20, computed on the full universe, independent of the fundamental filter) &middot; NetIncome(TTM)&gt;0 at +60d availability &middot; N=10 equal weight &middot; TSX vs MA75 &middot; 40bps &mdash; <strong>CAGR +33.82%, Sharpe 1.19, Sortino 2.72, MaxDD -26.0%</strong>.</p>
+<img src="canada_equity_curve_sens.png" alt="Canada momentum equity curve and drawdown" style="width:100%;border-radius:8px;margin:10px 0;border:1px solid var(--border)">
 
 <div class="divider"></div>
-<h2>II. Momentum Lookback &amp; Skip-Month</h2>
-<table>
-<thead><tr><th>Config</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
-<tbody>
-<tr><td>3M, no skip</td><td>0.86</td><td>2.21</td><td class="pos">+27.6%</td><td class="neg">&minus;35.3%</td></tr>
-<tr><td>6M, no skip</td><td>0.94</td><td>2.27</td><td class="pos">+29.4%</td><td class="neg">&minus;35.3%</td></tr>
-<tr><td>6M, skip 1</td><td>0.89</td><td>2.16</td><td class="pos">+28.0%</td><td class="neg">&minus;36.0%</td></tr>
-<tr><td>9M, no skip</td><td>1.03</td><td>2.45</td><td class="pos">+30.0%</td><td class="neg">&minus;25.9%</td></tr>
-<tr><td>9M, skip 1</td><td>1.07</td><td>2.55</td><td class="pos">+30.4%</td><td class="neg">&minus;23.4%</td></tr>
-<tr class="hl-row"><td>12M, no skip (baseline)</td><td>1.35</td><td>3.43</td><td class="pos">+36.1%</td><td class="neg">&minus;24.5%</td></tr>
-<tr><td>12M, skip 1</td><td>1.13</td><td>2.80</td><td class="pos">+31.0%</td><td class="neg">&minus;37.6%</td></tr>
-</tbody>
-</table>
-<p>A clear step up at 12 months, not a gradual drift: Sharpe climbs steadily from 3M (0.86) through 9M (1.03&ndash;1.07), then jumps to 1.35 at 12M &mdash; the biggest single move in this table. We tested the standard academic 12&ndash;1 convention (skip the most recent month, to avoid short-term reversal) against pure 12&ndash;0: no-skip wins clearly here, and not narrowly &mdash; better Sharpe (1.35 vs 1.13), better CAGR (+36.1% vs +31.0%), and a much shallower drawdown (&minus;24.5% vs &minus;37.6%). Skipping the most recent month costs more here than in most academic momentum studies; we kept pure 12&ndash;0.</p>
+<h2>II. Momentum Lookback &times; Skip</h2>
+<div class="table-wrap"><table><thead><tr><th>Config</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr class="hl-row"><td>12M skip 0</td><td>1.19</td><td>2.72</td><td>+33.82%</td><td class="neg">-26.0%</td></tr>
+<tr><td>9M skip 1</td><td>1.096</td><td>2.62</td><td>+32.29%</td><td class="neg">-26.7%</td></tr>
+<tr><td>12M skip 1</td><td>1.057</td><td>2.68</td><td>+30.98%</td><td class="neg">-43.1%</td></tr>
+<tr><td>6M skip 0</td><td>0.989</td><td>2.32</td><td>+29.99%</td><td class="neg">-34.3%</td></tr>
+<tr><td>9M skip 0</td><td>0.986</td><td>2.23</td><td>+29.03%</td><td class="neg">-25.2%</td></tr>
+<tr><td>3M skip 1</td><td>0.898</td><td>2.16</td><td>+29.51%</td><td class="neg">-48.4%</td></tr>
+<tr><td>6M skip 1</td><td>0.879</td><td>1.99</td><td>+27.5%</td><td class="neg">-37.4%</td></tr>
+<tr><td>3M skip 0</td><td>0.804</td><td>1.88</td><td>+25.91%</td><td class="neg">-38.7%</td></tr>
+</tbody></table></div>
+<p>12M/skip-0 tops a smooth plateau (9M/skip-1 at 1.10, 6M/skip-0 and 9M/skip-0 at 0.99). Short lookbacks and 12M/skip-1 degrade materially.</p>
 
 <div class="divider"></div>
 <h2>III. Market Cap Filter</h2>
-<table>
-<thead><tr><th>Filter</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
-<tbody>
-<tr><td>Top 90% (P10)</td><td>1.35</td><td>3.31</td><td class="pos">+37.7%</td><td class="neg">&minus;29.1%</td></tr>
-<tr><td>Top 85% (P15)</td><td>1.35</td><td>3.45</td><td class="pos">+37.6%</td><td class="neg">&minus;26.2%</td></tr>
-<tr class="hl-row"><td>Top 80% (P20, baseline)</td><td>1.35</td><td>3.43</td><td class="pos">+36.1%</td><td class="neg">&minus;24.5%</td></tr>
-<tr><td>Top 75% (P25)</td><td>1.28</td><td>3.23</td><td class="pos">+34.8%</td><td class="neg">&minus;27.4%</td></tr>
-<tr><td>Top 70% (P30)</td><td>1.18</td><td>2.89</td><td class="pos">+32.6%</td><td class="neg">&minus;29.0%</td></tr>
-<tr><td>Top 60% (P40)</td><td>1.04</td><td>2.35</td><td class="pos">+30.1%</td><td class="neg">&minus;31.5%</td></tr>
-</tbody>
-</table>
-<p>Sharpe is essentially flat (1.35) across the three loosest floors tested (top 90/85/80%) and only starts eroding once the floor tightens past P20 &mdash; every step from top 75% down to top 60% is worse on every metric, monotonically. Inside that flat top-90&ndash;80% band the deciding factor is drawdown, not Sharpe: top 80% has the shallowest MaxDD of the three (&minus;24.5% vs &minus;26.2% and &minus;29.1%) for the same risk-adjusted return, which is why it's kept over the even looser alternatives. We use a <strong>percentile</strong> filter rather than a fixed dollar floor specifically because a fixed floor gets stricter every year as the market grows and would need manual re-calibration; a percentile filter doesn't.</p>
+<div class="table-wrap"><table><thead><tr><th>Universe</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>none (all)</td><td>1.339</td><td>3.1</td><td>+39.04%</td><td class="neg">-28.2%</td></tr>
+<tr class="hl-row"><td>top 80% (P20)</td><td>1.19</td><td>2.72</td><td>+33.82%</td><td class="neg">-26.0%</td></tr>
+<tr><td>top 50% (P50)</td><td>0.96</td><td>2.03</td><td>+26.12%</td><td class="neg">-41.8%</td></tr>
+<tr><td>top 30% (P70)</td><td>0.519</td><td>0.96</td><td>+14.03%</td><td class="neg">-40.5%</td></tr>
+</tbody></table></div>
+<p>No mcap filter at all tests <em>better</em> (1.34) than the live P20 (1.19) &mdash; the raw edge concentrates in the very smallest names. P20 is kept deliberately: the smallest 20% of the TSX is where measured spreads blow out and position/ADV ratios become unexecutable. Large-cap-only (P70) destroys the strategy (0.52).</p>
 
 <div class="divider"></div>
 <h2>IV. Regime Filter Window</h2>
-<table>
-<thead><tr><th>MA window</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
-<tbody>
-<tr><td>MA50</td><td>1.25</td><td>2.80</td><td class="pos">+33.0%</td><td class="neg">&minus;44.3%</td></tr>
-<tr class="hl-row"><td>MA75 (baseline)</td><td>1.35</td><td>3.43</td><td class="pos">+36.1%</td><td class="neg">&minus;24.5%</td></tr>
-<tr><td>MA100</td><td>1.22</td><td>2.82</td><td class="pos">+34.1%</td><td class="neg">&minus;35.6%</td></tr>
-<tr><td>MA150</td><td>1.22</td><td>2.81</td><td class="pos">+33.8%</td><td class="neg">&minus;25.2%</td></tr>
-<tr><td>MA200</td><td>1.15</td><td>2.47</td><td class="pos">+32.8%</td><td class="neg">&minus;45.5%</td></tr>
-</tbody>
-</table>
-<p>MA75 dominates on every metric tested &mdash; best Sharpe, best Sortino, best CAGR <em>and</em> best MaxDD simultaneously, which is not the usual shape of a regime-window sweep. The pattern either side of it is not monotonic: MA50 and MA200 both give the two worst drawdowns in the table (&minus;44% and &minus;46%), while MA150 sits in between with a MaxDD close to MA75's despite lower Sharpe &mdash; the window that reacts fastest and the window that reacts slowest both under-protect here, and the ones in between mostly trade Sharpe for no drawdown benefit. This matches what we found the last time this window was swept, before this session's engine fixes (calendar contamination, execution lag, return-date labeling) &mdash; MA75's edge over MA200 held up under both the old and the corrected engine, which is some evidence it isn't an artifact of any one bug.</p>
+<div class="table-wrap"><table><thead><tr><th>Window</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>MA50</td><td>1.063</td><td>2.18</td><td>+29.88%</td><td class="neg">-43.0%</td></tr>
+<tr class="hl-row"><td>MA75</td><td>1.19</td><td>2.72</td><td>+33.82%</td><td class="neg">-26.0%</td></tr>
+<tr><td>MA100</td><td>1.089</td><td>2.34</td><td>+32.08%</td><td class="neg">-36.0%</td></tr>
+<tr><td>MA150</td><td>1.079</td><td>2.31</td><td>+31.7%</td><td class="neg">-29.5%</td></tr>
+<tr><td>MA200</td><td>1.013</td><td>2.04</td><td>+30.54%</td><td class="neg">-47.2%</td></tr>
+<tr><td>MA75 &plusmn;2% band</td><td>1.106</td><td>2.49</td><td>+32.89%</td><td class="neg">-29.1%</td></tr>
+</tbody></table></div>
+<p>MA75 is the local optimum (unlike Germany's MA200) and MA200 here is the worst tested (&minus;47% MaxDD). Note the honest negative result: the &plusmn;2% hysteresis band that looked promising on generic cross-market configs <em>hurts</em> the real Canada config (1.11 vs 1.19) &mdash; the idea stays parked.</p>
 
 <div class="divider"></div>
 <h2>V. Portfolio Size (N)</h2>
-<table>
-<thead><tr><th>N</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
-<tbody>
-<tr><td>5</td><td>0.97</td><td>2.14</td><td class="pos">+33.0%</td><td class="neg">&minus;33.6%</td></tr>
-<tr><td>7</td><td>1.11</td><td>2.57</td><td class="pos">+34.4%</td><td class="neg">&minus;29.1%</td></tr>
-<tr class="hl-row"><td>10 (baseline)</td><td>1.35</td><td>3.43</td><td class="pos">+36.1%</td><td class="neg">&minus;24.5%</td></tr>
-<tr><td>12</td><td>1.28</td><td>3.16</td><td class="pos">+33.8%</td><td class="neg">&minus;21.3%</td></tr>
-<tr><td>15</td><td>1.36</td><td>3.39</td><td class="pos">+32.8%</td><td class="neg">&minus;20.7%</td></tr>
-<tr><td>20</td><td>1.33</td><td>3.19</td><td class="pos">+29.7%</td><td class="neg">&minus;20.7%</td></tr>
-</tbody>
-</table>
-<div class="callout"><p><strong>N=10 is not the strict winner here, and we're not going to pretend it is.</strong> N=15 edges it out on Sharpe (1.36 vs 1.35) and has a meaningfully shallower MaxDD (&minus;20.7% vs &minus;24.5%), at the cost of about 3.3 points of CAGR. N=10 was kept for the extra return and the higher Sortino, on the view that this strategy is explicitly sized for concentrated conviction, not diversification &mdash; but N=15 is a legitimate, honestly-better-on-two-metrics alternative for an investor who weights drawdown more heavily than we do. It is not a case of one config dominating the other on every axis.</p></div>
+<div class="table-wrap"><table><thead><tr><th>N</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>5</td><td>1.009</td><td>2.31</td><td>+34.96%</td><td class="neg">-36.6%</td></tr>
+<tr><td>7</td><td>1.081</td><td>2.46</td><td>+34.98%</td><td class="neg">-37.1%</td></tr>
+<tr class="hl-row"><td>10</td><td>1.19</td><td>2.72</td><td>+33.82%</td><td class="neg">-26.0%</td></tr>
+<tr><td>15</td><td>1.284</td><td>2.98</td><td>+31.17%</td><td class="neg">-23.0%</td></tr>
+<tr><td>20</td><td>1.26</td><td>2.82</td><td>+28.1%</td><td class="neg">-22.4%</td></tr>
+<tr><td>30</td><td>1.337</td><td>3.04</td><td>+26.73%</td><td class="neg">-18.8%</td></tr>
+</tbody></table></div>
+<p>Same pattern as Germany: Sharpe keeps rising with N (N=30: 1.34, MaxDD &minus;18.8%) while CAGR falls. N=10 is the live choice for CAGR and practicality; N=15&ndash;20 is the natural lower-drawdown alternative.</p>
 
 <div class="divider"></div>
 <h2>VI. Fundamental Filter</h2>
-<table>
-<thead><tr><th>Filter</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
-<tbody>
-<tr><td>None</td><td>0.82</td><td>1.88</td><td class="pos">+29.8%</td><td class="neg">&minus;31.3%</td></tr>
-<tr><td>EBIT(TTM)&gt;0</td><td>1.20</td><td>2.92</td><td class="pos">+34.0%</td><td class="neg">&minus;26.4%</td></tr>
-<tr class="hl-row"><td>NetIncome(TTM)&gt;0 (baseline)</td><td>1.35</td><td>3.43</td><td class="pos">+36.1%</td><td class="neg">&minus;24.5%</td></tr>
-<tr><td>GrossProfit(TTM)&gt;0</td><td>0.86</td><td>1.89</td><td class="pos">+29.4%</td><td class="neg">&minus;37.7%</td></tr>
-<tr><td>ROE&gt;0</td><td>1.15</td><td>2.68</td><td class="pos">+32.6%</td><td class="neg">&minus;34.8%</td></tr>
-</tbody>
-</table>
-<p>NetIncome&gt;0 dominates every alternative tested, on every metric, including a new one added this round: ROE&gt;0 (net income divided by trailing book equity), which came in a clear third behind NetIncome and EBIT. GrossProfit&gt;0 barely screens anything meaningful out on the TSX &mdash; it's close to the unfiltered baseline on Sharpe (0.86 vs 0.82) and actually the <em>worst</em> MaxDD in the table (&minus;37.7%), worse than having no fundamental filter at all. The ranking &mdash; NetIncome &gt; EBIT &gt; ROE &gt; GrossProfit &asymp; None &mdash; makes economic sense for this universe: TSX's small/mid-cap resource names routinely post positive gross profit and even positive EBIT on paper while burning cash below the operating line (interest, taxes, impairments), so the bottom-line filter is doing real work the top-line ones don't.</p>
+<div class="table-wrap"><table><thead><tr><th>Filter</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr class="hl-row"><td>NetIncome(TTM)>0 (live)</td><td>1.19</td><td>2.72</td><td>+33.82%</td><td class="neg">-26.0%</td></tr>
+<tr><td>EBIT(TTM)>0</td><td>1.176</td><td>2.81</td><td>+33.4%</td><td class="neg">-27.4%</td></tr>
+<tr><td>None</td><td>0.768</td><td>1.73</td><td>+27.89%</td><td class="neg">-35.0%</td></tr>
+</tbody></table></div>
+<p><strong>The NetIncome(TTM)&gt;0 filter is the single most important component after momentum itself</strong>: removing it costs 0.42 of Sharpe (1.19&rarr;0.77) and 6pp of CAGR, and deepens MaxDD by 9pp. EBIT&gt;0 is statistically indistinguishable from NetIncome&gt;0. Availability is the audited flat +60d convention (EODHD's TO filing_date is not a real publication date; using it naively adds ~+1.7pp of lookahead CAGR).</p>
 
 <div class="divider"></div>
-<h2>VII. A Filter We Tested and Dropped</h2>
-<div class="meta-box">
-<dt>Volatility-exclusion filter</dt>
-<dd>An earlier version of this strategy excluded the most volatile slice of the eligible universe (252-day realized volatility) before ranking by momentum. It was dropped: sensitivity to the exclusion threshold was jagged and non-monotonic in a way more consistent with overfitting than with a real, generalizable effect, and it interacted with the market cap filter in ways that made the two hard to reason about independently. Simpler config, one fewer knob that could be tuned to a backtest.</dd>
-</div>
+<h2>VII. Transaction Costs</h2>
+<div class="table-wrap"><table><thead><tr><th>Round-trip cost</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>0bps RT</td><td>1.267</td><td>2.94</td><td>+35.82%</td><td class="neg">-25.1%</td></tr>
+<tr class="hl-row"><td>40bps RT</td><td>1.19</td><td>2.72</td><td>+33.82%</td><td class="neg">-26.0%</td></tr>
+<tr><td>100bps RT</td><td>1.077</td><td>2.41</td><td>+30.87%</td><td class="neg">-27.2%</td></tr>
+<tr><td>200bps RT</td><td>0.892</td><td>1.92</td><td>+26.09%</td><td class="neg">-29.5%</td></tr>
+</tbody></table></div>
+<p>Robust to costs: even at 200bps RT the strategy keeps a 0.89 Sharpe. Real IBKR spreads measured across 555 TSX names: median 40.5bps &mdash; the 40bps assumption is a measurement, not a guess.</p>
 
 <div class="divider"></div>
-<h2>VIII. Data Quality: What We Checked</h2>
-<div class="two-col">
-<div class="meta-box">
-<dt>CDR &amp; preferred-share contamination</dt>
-<dd>Canadian Depositary Receipts (foreign mega-caps like AAPL, NVDA, TSLA cross-listed on the TSX with huge <em>global</em> market cap but a tiny local float) and preferred-share series with fundamentals data that appears copied from their common-stock parent are both excluded by ticker pattern before ranking. Neither is common enough at N=10 to move the headline numbers meaningfully, but both are excluded on principle.</dd>
-</div>
-<div class="meta-box">
-<dt>Extreme-return scan (this round)</dt>
-<dd>A full scan of the 2000&ndash;2026 universe found 404 monthly ticker-returns beyond &plusmn;300%/&minus;85% &mdash; almost all in names that were never mcap/NetIncome-eligible. Of the 319 months &times; 10 holdings actually held in the real backtest (4,375 ticker-months), exactly <strong>4</strong> coincided with an implausible price move, and all 4 fell in months the regime filter had already zeroed out (TSX below its 75-day MA) &mdash; none reached the published return series. Spot-checked online: one (Epsilon Energy, 2019) was a real, confirmed TSX delisting; one (GLG Life Tech, Dec 2007) was a real IPO-week price spike; one (an early-2000s ticker now reused by MTY Food Group) traces to a genuine shell-company reverse merger under a since-recycled symbol. Not all "extreme" events in this data are errors &mdash; but none of the ones that mattered to this backtest needed to be.</dd>
-</div>
-</div>
+<h2>VIII. Calendar-Year Returns vs TSX</h2>
+<div class="table-wrap"><table><thead><tr><th>Year</th><th>Strategy</th><th>TSX</th><th>Excess</th></tr></thead><tbody>
+<tr><td>2000</td><td>+45.4%</td><td>+6.2%</td><td>+39.2pp</td></tr>
+<tr><td>2001</td><td class="neg">-6.3%</td><td class="neg">-13.9%</td><td>+7.6pp</td></tr>
+<tr><td>2002</td><td>+51.1%</td><td class="neg">-14.0%</td><td>+65.1pp</td></tr>
+<tr><td>2003</td><td>+143.0%</td><td>+24.3%</td><td>+118.7pp</td></tr>
+<tr><td>2004</td><td>+35.3%</td><td>+12.5%</td><td>+22.8pp</td></tr>
+<tr><td>2005</td><td>+29.2%</td><td>+21.9%</td><td>+7.3pp</td></tr>
+<tr><td>2006</td><td>+66.8%</td><td>+14.5%</td><td>+52.3pp</td></tr>
+<tr><td>2007</td><td>+40.7%</td><td>+7.2%</td><td>+33.5pp</td></tr>
+<tr><td>2008</td><td class="neg">-9.5%</td><td class="neg">-35.0%</td><td>+25.5pp</td></tr>
+<tr><td>2009</td><td>+26.0%</td><td>+30.7%</td><td class="neg">-4.7pp</td></tr>
+<tr><td>2010</td><td>+73.6%</td><td>+14.4%</td><td>+59.2pp</td></tr>
+<tr><td>2011</td><td>+1.9%</td><td class="neg">-11.1%</td><td>+13.0pp</td></tr>
+<tr><td>2012</td><td>+27.9%</td><td>+4.0%</td><td>+23.9pp</td></tr>
+<tr><td>2013</td><td>+71.2%</td><td>+9.6%</td><td>+61.6pp</td></tr>
+<tr><td>2014</td><td>+5.8%</td><td>+7.4%</td><td class="neg">-1.6pp</td></tr>
+<tr><td>2015</td><td>+14.9%</td><td class="neg">-11.1%</td><td>+26.0pp</td></tr>
+<tr><td>2016</td><td>+47.2%</td><td>+17.5%</td><td>+29.7pp</td></tr>
+<tr><td>2017</td><td>+91.0%</td><td>+6.0%</td><td>+85.0pp</td></tr>
+<tr><td>2018</td><td>+21.7%</td><td class="neg">-11.6%</td><td>+33.3pp</td></tr>
+<tr><td>2019</td><td>+9.9%</td><td>+19.1%</td><td class="neg">-9.2pp</td></tr>
+<tr><td>2020</td><td>+51.4%</td><td>+2.2%</td><td>+49.2pp</td></tr>
+<tr><td>2021</td><td>+28.8%</td><td>+21.7%</td><td>+7.1pp</td></tr>
+<tr><td>2022</td><td>+25.9%</td><td class="neg">-8.7%</td><td>+34.6pp</td></tr>
+<tr><td>2023</td><td class="neg">-14.2%</td><td>+8.1%</td><td class="neg">-22.3pp</td></tr>
+<tr><td>2024</td><td>+69.2%</td><td>+18.0%</td><td>+51.2pp</td></tr>
+<tr><td>2025</td><td>+68.0%</td><td>+28.2%</td><td>+39.8pp</td></tr>
+<tr><td>2026</td><td class="neg">-6.7%</td><td>+11.1%</td><td class="neg">-17.8pp</td></tr>
+</tbody></table></div>
 
 <div class="divider"></div>
-<h2>IX. Final Configuration</h2>
-<div class="grid6">
-<div class="stat"><div class="v pos">+36.1%</div><div class="l">CAGR</div></div>
-<div class="stat"><div class="v pos">1.35</div><div class="l">Sharpe</div></div>
-<div class="stat"><div class="v">3.43</div><div class="l">Sortino</div></div>
-<div class="stat"><div class="v neg">&minus;24.5%</div><div class="l">Max Drawdown</div></div>
-<div class="stat"><div class="v">319</div><div class="l">Months</div></div>
-<div class="stat"><div class="v">2000&ndash;2026</div><div class="l">Period</div></div>
-</div>
-<div class="meta-box" style="margin-top:8px">
-<dt>Momentum</dt><dd>12-month return, no skip-month</dd>
-<dt>Universe</dt><dd>TSX, mcap &ge; 20th percentile (top 80% by size), excludes CDRs and preferred shares</dd>
-<dt>Fundamental filter</dt><dd>NetIncome(TTM) &gt; 0, point-in-time via filing date</dd>
-<dt>Portfolio</dt><dd>Top 10, equal weighted, monthly rebalance</dd>
-<dt>Regime</dt><dd>TSX Composite vs its own 75-day moving average</dd>
-<dt>Costs</dt><dd>40bps round-trip on monthly turnover</dd>
-</div>
-<p style="margin-top:14px">Full backtest, equity curve and current live holdings are on the <a href="/research/canada_momentum_report.html" style="color:var(--accent)">strategy report</a>. Live signal: <a href="/canada-momentum.html" style="color:var(--accent)">canada-momentum.html</a>.</p>
+<h2>IX. Rolling 3-Year Performance</h2>
+<img src="canada_rolling3y.png" alt="Canada momentum rolling 3-year CAGR" style="width:100%;border-radius:8px;margin:10px 0;border:1px solid var(--border)">
+<p>Mean rolling 3-year CAGR <strong>+34.8%</strong>, range +2.4% to +82.7%, negative in <strong>0.0%</strong> of all 3-year windows.</p>
 
 <div class="divider"></div>
 <h2>X. Limitations</h2>
 <ol class="steps">
-<li><strong>Portfolio size is a genuine trade-off, not a settled question</strong> (Section&nbsp;V): N=15 beats N=10 on Sharpe and MaxDD; N=10 was kept for CAGR and Sortino. A reasonable investor weighting drawdown more heavily could prefer N=15.</li>
-<li><strong>Weighting scheme not re-tested this round.</strong> An earlier (pre-engine-fix) comparison of equal weight vs. inverse-volatility at a different N found a small Sharpe/MaxDD edge for inverse-vol and a CAGR edge for equal weight &mdash; not independently re-verified under the current engine or at N=10.</li>
-<li><strong>Single-market backtest.</strong> Every number here is TSX-only and doesn't necessarily generalize to other markets we run (USA, UK) &mdash; each uses its own independently-tuned config.</li>
-<li><strong>Sector concentration.</strong> The TSX is heavily weighted toward energy and materials; the current top-10 book is seven precious-metals names out of ten, reflecting where 12-month momentum happens to be right now, not a deliberate sector call. This is a real, live-tradeable exposure, not a footnote.</li>
-<li><strong>Drawdown magnitude.</strong> &minus;24.5% is a real number in this backtest, not a tail-risk footnote &mdash; this is a high-volatility, high-conviction strategy, not a low-vol product.</li>
-<li><strong>No out-of-sample holdout.</strong> Every sweep in this article, and the final config it points to, was chosen by looking at the full 2000&ndash;2026 history. That's disclosed, not hidden: nothing here has been validated against data the selection process didn't see.</li>
+<li><strong>Pre-2012 results carry survivorship risk</strong> (recorded TSX deaths are thin before 2017); the audit's 2017-2026 isolated window (+33.9%/1.01) is the honest anchor.</li>
+<li><strong>All sweeps are in-sample</strong>; plateaus, not peaks, are the evidence.</li>
+<li><strong>The mcap filter is a liquidity constraint, not an alpha choice</strong> &mdash; the unfiltered 1.34 is not capturable at scale.</li>
+<li><strong>Strategy capacity ~CAD 1-2M</strong> in the smaller held names.</li>
 </ol>
 
 <div class="footer">
-<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results. Costs shown are estimates; live results will differ. <a href="/research/canada_momentum_report.html">Strategy report</a> &middot; <a href="/canada-momentum.html">Live signal</a></p>
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice.</p>
 </div>
 
 </div>
