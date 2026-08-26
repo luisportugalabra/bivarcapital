@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA Momentum — Parameter Sensitivity & Robustness Analysis — Bivar Capital</title>
+<meta property="og:title" content="USA Momentum — Parameter Sensitivity & Robustness Analysis — Bivar Capital">
+<meta property="og:description" content="Sensitivity sweeps behind the XETRA momentum strategy: lookback, market cap filter, regime window, portfolio size, fundamental filters, calendar-year returns and rolling 3-year performance.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/germany_momentum_sensitivity.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/research/germany_momentum_sensitivity.html">
+<meta name="theme-color" content="#060608">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:40px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.pos{color:var(--green)}.neg{color:var(--red)}.hl-row td{background:rgba(196,162,101,.08);color:var(--text);font-weight:600}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}.footer a{color:var(--accent)}
+ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps li{margin-bottom:6px}
+.yeargrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}
+.yearcell{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:8px;text-align:center}
+.yearcell .y{font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--muted)}
+.yearcell .r{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;margin-top:2px}
+@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.yeargrid{grid-template-columns:repeat(3,1fr)}}</style>
+</head>
+<body><style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:18px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:750px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}.nav-social{border-left:none!important;margin-left:0!important;padding-left:0!important}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><span class="nav-social" style="margin-left:10px;padding-left:10px;border-left:1px solid #1a1a22;display:inline-flex;align-items:center;gap:8px;color:#5a5a68"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" aria-label="LinkedIn" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://x.com/Luisbivar" rel="noopener" target="_blank" aria-label="X" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" aria-label="Instagram" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></span><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a href="#" id="nav-signin" class="accent">Sign In</a><a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a><span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span></nav></div></header><div class="container">
+
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>USA Momentum<span class="it">Parameter sensitivity analysis</span></h1>
+<p class="lead">One-at-a-time sweeps across the momentum blend, market-cap floor, portfolio size, regime window, fundamental filter and costs, plus calendar-year returns and rolling 3-year performance, behind the <a href="/momentum.html" style="color:var(--accent)">USA momentum strategy</a>. 2005&ndash;2026, Sharadar data &mdash; the only market in the family with <strong>survivorship-complete history</strong> (11,000+ recorded delistings back to 1998), so these numbers carry no survivors-only caveat. Harness baseline 26.0%/0.94 vs canonical series 25.6%/0.92 &mdash; convention noise.</p>
+
+<div class="divider"></div>
+<h2>I. Baseline (live config)</h2>
+<p>50% &times; 6M-1 + 50% &times; 12M-1 momentum blend &middot; mcap &gt; $10B &middot; EBIT(TTM)&gt;0 (point-in-time availability) &middot; top 7 equal weight &middot; S&amp;P 500 vs MA250 &middot; 20bps RT &mdash; <strong>CAGR +26.01%, Sharpe 0.944, Sortino 1.95, MaxDD -30.3%</strong>.</p>
+<img src="usa_equity_curve_sens.png" alt="USA momentum equity curve and drawdown" style="width:100%;border-radius:8px;margin:10px 0;border:1px solid var(--border)">
+
+<div class="divider"></div>
+<h2>II. Momentum Blend</h2>
+<div class="table-wrap"><table><thead><tr><th>Blend</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>100% 12-1</td><td>0.98</td><td>2.21</td><td>+26.59%</td><td class="neg">-19.9%</td></tr>
+<tr><td>75/25</td><td>0.962</td><td>2.01</td><td>+26.47%</td><td class="neg">-32.7%</td></tr>
+<tr class="hl-row"><td>50/50 (live)</td><td>0.944</td><td>1.95</td><td>+26.01%</td><td class="neg">-30.3%</td></tr>
+<tr><td>25/75</td><td>0.914</td><td>1.83</td><td>+25.18%</td><td class="neg">-31.9%</td></tr>
+<tr><td>100% 6-1</td><td>0.739</td><td>1.4</td><td>+19.76%</td><td class="neg">-29.7%</td></tr>
+<tr><td>50/50 skip-0 both</td><td>1.04</td><td>2.23</td><td>+27.68%</td><td class="neg">-33.3%</td></tr>
+</tbody></table></div>
+<p>Pure 12-1 tests slightly better than the live 50/50 (0.98 vs 0.94, with a notably shallower &minus;19.9% MaxDD), and skip-0 on both legs better still (1.04) &mdash; all within plateau distance. Pure 6-1 alone is materially worse. The live blend sits mid-plateau; no change is warranted on in-sample differences of this size.</p>
+
+<div class="divider"></div>
+<h2>III. Market Cap Floor</h2>
+<div class="table-wrap"><table><thead><tr><th>Floor</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>$2B</td><td>0.69</td><td>1.29</td><td>+22.96%</td><td class="neg">-47.0%</td></tr>
+<tr><td>$5B</td><td>0.639</td><td>1.18</td><td>+19.56%</td><td class="neg">-41.0%</td></tr>
+<tr class="hl-row"><td>$10B (live)</td><td>0.944</td><td>1.95</td><td>+26.01%</td><td class="neg">-30.3%</td></tr>
+<tr><td>$50B</td><td>0.551</td><td>1.0</td><td>+13.13%</td><td class="neg">-40.2%</td></tr>
+</tbody></table></div>
+<p>An unusual result worth knowing: <strong>lowering the floor makes it worse</strong> ($2B: 0.69, $5B: 0.64 vs $10B: 0.94). Unlike Canada/Germany, the US edge at top-7 concentration lives in liquid mega/large caps &mdash; the $10B floor is an alpha choice here, not just a liquidity constraint. Mega-cap-only ($50B) over-restricts (0.55).</p>
+
+<div class="divider"></div>
+<h2>IV. Portfolio Size (N)</h2>
+<div class="table-wrap"><table><thead><tr><th>N</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>5</td><td>1.025</td><td>2.26</td><td>+30.06%</td><td class="neg">-34.4%</td></tr>
+<tr class="hl-row"><td>7</td><td>0.944</td><td>1.95</td><td>+26.01%</td><td class="neg">-30.3%</td></tr>
+<tr><td>10</td><td>0.916</td><td>1.84</td><td>+22.44%</td><td class="neg">-23.9%</td></tr>
+<tr><td>15</td><td>0.869</td><td>1.7</td><td>+19.62%</td><td class="neg">-22.6%</td></tr>
+<tr><td>20</td><td>0.752</td><td>1.4</td><td>+16.5%</td><td class="neg">-22.9%</td></tr>
+</tbody></table></div>
+<p>Opposite of Canada/Germany: concentration pays in the US &mdash; N=5 gives the best CAGR (+30.1%) and Sharpe (1.03). Diversifying beyond N=10 steadily destroys both. The liquid universe is what makes concentration survivable here.</p>
+
+<div class="divider"></div>
+<h2>V. Regime Filter Window</h2>
+<div class="table-wrap"><table><thead><tr><th>Window</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>MA150</td><td>0.892</td><td>1.75</td><td>+23.07%</td><td class="neg">-34.2%</td></tr>
+<tr><td>MA200</td><td>0.91</td><td>1.8</td><td>+23.86%</td><td class="neg">-25.0%</td></tr>
+<tr class="hl-row"><td>MA250</td><td>0.944</td><td>1.95</td><td>+26.01%</td><td class="neg">-30.3%</td></tr>
+<tr><td>MA300</td><td>0.9</td><td>1.8</td><td>+25.48%</td><td class="neg">-38.7%</td></tr>
+<tr><td>no regime</td><td>0.688</td><td>1.15</td><td>+24.05%</td><td class="neg">-73.5%</td></tr>
+</tbody></table></div>
+<p>MA250 is the best of a flat neighborhood (200&ndash;300 all fine). The regime's job is the drawdown: without it, CAGR barely changes but MaxDD explodes from &minus;30% to <strong>&minus;73.5%</strong>.</p>
+
+<div class="divider"></div>
+<h2>VI. Fundamental Filter</h2>
+<div class="table-wrap"><table><thead><tr><th>Filter</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr class="hl-row"><td>EBIT(TTM)>0 (live)</td><td>0.944</td><td>1.95</td><td>+26.01%</td><td class="neg">-30.3%</td></tr>
+<tr><td>None</td><td>0.755</td><td>1.4</td><td>+23.97%</td><td class="neg">-51.5%</td></tr>
+</tbody></table></div>
+<p>EBIT(TTM)&gt;0 adds +0.19 Sharpe and cuts MaxDD from &minus;51.5% to &minus;30.3% &mdash; it mostly protects the tail (keeps unprofitable story-stocks out of a 7-name book).</p>
+
+<div class="divider"></div>
+<h2>VII. Transaction Costs</h2>
+<div class="table-wrap"><table><thead><tr><th>Cost</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>0bps/side (0bps RT)</td><td>0.986</td><td>2.06</td><td>+27.05%</td><td class="neg">-29.3%</td></tr>
+<tr class="hl-row"><td>10bps/side (20bps RT)</td><td>0.944</td><td>1.95</td><td>+26.01%</td><td class="neg">-30.3%</td></tr>
+<tr><td>25bps/side (50bps RT)</td><td>0.881</td><td>1.8</td><td>+24.47%</td><td class="neg">-32.0%</td></tr>
+<tr><td>50bps/side (100bps RT)</td><td>0.777</td><td>1.54</td><td>+21.94%</td><td class="neg">-34.6%</td></tr>
+</tbody></table></div>
+<p>Mega/large caps: 20bps RT is conservative if anything; even 100bps RT keeps 0.78.</p>
+
+<div class="divider"></div>
+<h2>VIII. Calendar-Year Returns vs S&amp;P 500</h2>
+<div class="table-wrap"><table><thead><tr><th>Year</th><th>Strategy</th><th>S&amp;P 500</th><th>Excess</th></tr></thead><tbody>
+<tr><td>2005</td><td>+37.9%</td><td>+5.7%</td><td>+32.2pp</td></tr>
+<tr><td>2006</td><td class="neg">-3.7%</td><td>+13.6%</td><td class="neg">-17.3pp</td></tr>
+<tr><td>2007</td><td>+79.4%</td><td>+3.5%</td><td>+75.9pp</td></tr>
+<tr><td>2008</td><td>+0.0%</td><td class="neg">-38.5%</td><td>+38.5pp</td></tr>
+<tr><td>2009</td><td>+9.8%</td><td>+23.5%</td><td class="neg">-13.7pp</td></tr>
+<tr><td>2010</td><td>+12.3%</td><td>+12.8%</td><td class="neg">-0.5pp</td></tr>
+<tr><td>2011</td><td class="neg">-3.4%</td><td>+-0.0%</td><td class="neg">-3.4pp</td></tr>
+<tr><td>2012</td><td>+21.1%</td><td>+13.4%</td><td>+7.7pp</td></tr>
+<tr><td>2013</td><td>+64.1%</td><td>+29.6%</td><td>+34.5pp</td></tr>
+<tr><td>2014</td><td>+27.9%</td><td>+11.4%</td><td>+16.5pp</td></tr>
+<tr><td>2015</td><td>+23.3%</td><td class="neg">-0.7%</td><td>+24.0pp</td></tr>
+<tr><td>2016</td><td>+18.4%</td><td>+9.5%</td><td>+8.9pp</td></tr>
+<tr><td>2017</td><td>+37.2%</td><td>+19.4%</td><td>+17.8pp</td></tr>
+<tr><td>2018</td><td class="neg">-10.0%</td><td class="neg">-6.2%</td><td class="neg">-3.8pp</td></tr>
+<tr><td>2019</td><td>+3.7%</td><td>+28.9%</td><td class="neg">-25.2pp</td></tr>
+<tr><td>2020</td><td>+71.8%</td><td>+16.3%</td><td>+55.5pp</td></tr>
+<tr><td>2021</td><td>+20.4%</td><td>+26.9%</td><td class="neg">-6.5pp</td></tr>
+<tr><td>2022</td><td>+0.2%</td><td class="neg">-19.4%</td><td>+19.6pp</td></tr>
+<tr><td>2023</td><td>+4.0%</td><td>+24.2%</td><td class="neg">-20.2pp</td></tr>
+<tr><td>2024</td><td>+116.2%</td><td>+23.3%</td><td>+92.9pp</td></tr>
+<tr><td>2025</td><td>+14.8%</td><td>+16.4%</td><td class="neg">-1.6pp</td></tr>
+<tr><td>2026</td><td>+88.7%</td><td>+4.1%</td><td>+84.6pp</td></tr>
+</tbody></table></div>
+
+<div class="divider"></div>
+<h2>IX. Rolling 3-Year Performance</h2>
+<img src="usa_rolling3y.png" alt="USA momentum rolling 3-year CAGR" style="width:100%;border-radius:8px;margin:10px 0;border:1px solid var(--border)">
+<p>Mean rolling 3-year CAGR <strong>+22.4%</strong>, range +1.0% to +73.0%, negative in <strong>0.0%</strong> of all 3-year windows.</p>
+
+<div class="divider"></div>
+<h2>X. Limitations</h2>
+<ol class="steps">
+<li><strong>All sweeps are in-sample</strong> (2005&ndash;2026); plateaus, not peaks, are the evidence. The strategy also inherits multi-market selection bias.</li>
+<li><strong>Top-7 concentration</strong> means high idiosyncratic risk: single-name events move the book ~14% each.</li>
+<li><strong>S&amp;P 500 benchmark is price-return</strong> in the yearly table (understates the bench by ~2pp/yr of dividends).</li>
+<li><strong>Data is survivorship-complete</strong> (Sharadar) &mdash; the one caveat the other markets carry that this one does not.</li>
+</ol>
+
+<div class="footer">
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice.</p>
+</div>
+
+</div>
+</body>
+</html>
