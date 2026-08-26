@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taiwan Momentum — Strategy Report — Bivar Capital</title>
+<meta property="og:title" content="Taiwan Momentum — Strategy Report — Bivar Capital">
+<meta property="og:description" content="TWSE momentum backtest: data-quality cleanup, phased parameter optimization, and the final config. CAGR +18.3%, Sharpe 0.59, MaxDD -38.1%.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/taiwan_momentum_report.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bivarcapital.com/research/taiwan_momentum_report.html">
+<meta name="theme-color" content="#060608">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}.container{max-width:980px;margin:0 auto;padding:48px 24px 80px}.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}.divider{height:1px;background:var(--border);margin:40px 0}table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}tr:hover{background:var(--card)}th:not(:first-child),td:not(:first-child){text-align:right}.pos{color:var(--green)}.neg{color:var(--red)}.hl-row td{background:rgba(196,162,101,.08);color:var(--text);font-weight:600}.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}.callout-green{background:var(--card);border-left:3px solid var(--green);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-green p{margin:0;color:var(--text);font-size:.78rem}.callout-red{background:var(--card);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout-red p{margin:0;color:var(--text);font-size:.78rem}.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight p{margin:0}.highlight-amber{background:rgba(196,162,101,.06);border:1px solid rgba(196,162,101,.15);border-radius:8px;padding:18px;margin:18px 0}.highlight-amber p{margin:0}.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}.stat .v{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600}.stat .l{font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}.footer a{color:var(--accent)}
+ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps li{margin-bottom:6px}
+@media(max-width:700px){.grid6{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}</style>
+</head>
+<body><style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:18px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:750px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}.nav-social{border-left:none!important;margin-left:0!important;padding-left:0!important}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><span class="nav-social" style="margin-left:10px;padding-left:10px;border-left:1px solid #1a1a22;display:inline-flex;align-items:center;gap:8px;color:#5a5a68"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" aria-label="LinkedIn" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://x.com/Luisbivar" rel="noopener" target="_blank" aria-label="X" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" aria-label="Instagram" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></span><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/about.html">About</a><a href="#" id="nav-signin" class="accent">Sign In</a><a href="#" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Sign Up</a><span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span></nav></div></header><div class="container">
+
+<div class="brand">Bivar Capital &mdash; Quantitative Research</div>
+<h1>Taiwan Momentum<span class="it">TWSE strategy report</span></h1>
+<p class="lead">A momentum strategy on the Taiwan Stock Exchange, built with the same lookahead-free engine and data-quality discipline as our <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada</a> and UK strategies. Research stage &mdash; not yet a live signal.</p>
+
+<div class="divider"></div>
+<h2>I. Headline Result</h2>
+<div class="grid6">
+<div class="stat"><div class="v pos">+18.3%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v pos">0.59</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v">1.06</div><div class="l">Sortino</div></div>
+<div class="stat"><div class="v neg">&minus;38.1%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v">319</div><div class="l">Months</div></div>
+<div class="stat"><div class="v">2000&ndash;2026</div><div class="l">Period</div></div>
+</div>
+<img src="taiwan_equity_curve.png" alt="Taiwan momentum equity curve and drawdown, 2000-2026" style="width:100%;border-radius:8px;margin-top:14px;border:1px solid var(--border)">
+<div class="meta-box" style="margin-top:8px">
+<dt>Momentum</dt><dd>9-month return, skip the most recent month (9&ndash;1)</dd>
+<dt>Universe</dt><dd>TWSE, mcap &ge; 10th percentile (top 90% by size)</dd>
+<dt>Fundamental filter</dt><dd>None &mdash; tested and rejected, see Section&nbsp;V</dd>
+<dt>Portfolio</dt><dd>Top 15, equal weighted, monthly rebalance</dd>
+<dt>Regime</dt><dd>TWSE Weighted Index (^TWII) vs its own 75-day moving average</dd>
+<dt>Costs</dt><dd>40bps round-trip on monthly turnover (Canada's measured rate, not independently verified for Taiwan &mdash; see Limitations)</dd>
+</div>
+
+<div class="divider"></div>
+<h2>II. Data Quality: A Different Bug Than Canada or UK</h2>
+<p>Neither the 999999.9999 sentinel bug (Canada, UK) nor scattered per-company bad ticks were the dominant issue here. A full scan of the raw 2000&ndash;2026 universe found <strong>989 extreme (&gt;+300%/&lt;&minus;85%) monthly ticker-returns across 211 tickers</strong> &mdash; concentrated on a small number of specific calendar dates where <strong>up to 121 unrelated tickers spiked on the exact same day and reverted the next trading day</strong> (e.g. 2000&ndash;05&ndash;06, 05&ndash;20, 06&ndash;03, 06&ndash;17). That pattern &mdash; many unconnected companies, one bad day, clean reversal &mdash; points to a data-pipeline snapshot error on those specific dates, not a per-company corporate-action or reporting issue.</p>
+<div class="callout"><p><strong>A single-day despike (detect a &gt;4x price jump that reverts to &lt;0.3x the next trading day, or the mirror crash-and-recover case) cut the extreme-event count from 989 to 98 &mdash; a 91% reduction</strong> &mdash; using the exact same bounded-ffill mechanism already in the engine for delisted names. Half of the residual 98 events still sit inside the top-50%-by-mcap universe on average, so this isn't a complete cleanup, but it's the difference between an unusable backtest and a plausible one.</p></div>
+
+<div class="callout-red"><p><strong>Verified directly against the real backtest engine which corrupted returns actually reached a held position &mdash; found one that mattered.</strong> Of 3 flagged ticker-months, 2 were the same name (2499): roughly 15% of its entire 26-year price history alternates between two unrelated price levels (&asymp;4.1 and &asymp;200&ndash;250) scattered across the whole period, not a single bad day the despike could catch &mdash; this looks like two different instruments merged under one data file, not a corporate action. Its fake +5142.7% single-month return (capped to +300% by the engine's existing sanity cap before this fix) still single-handedly drove nearly all of one month's published +19.7% return at 6.7% portfolio weight. Ticker excluded entirely; headline numbers above already reflect this (CAGR 18.74%&rarr;18.25%, Sharpe 0.601&rarr;0.589 &mdash; a modest correction, since the existing cap had already bounded the worst of the damage, but the exclusion is the right fix, not the cap alone). The one remaining flagged event (ticker 5531, &minus;99.2% in Jan 2005) is a genuine gradual multi-month collapse (331&rarr;3.29 over ~4 months, smooth decline) &mdash; kept as a real momentum-strategy risk, not a data bug.</p></div>
+
+<div class="divider"></div>
+<h2>III. Phase 1 &mdash; Momentum Lookback &times; Market Cap</h2>
+<p>No regime filter, no fundamental filter, top 15, swept jointly.</p>
+<table>
+<thead><tr><th>Config</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr class="hl-row"><td>9M skip 1, mcap top90%</td><td>0.31</td><td>0.51</td><td class="pos">+13.7%</td><td class="neg">&minus;69.8%</td></tr>
+<tr><td>12M skip 0, mcap top90%</td><td>0.29</td><td>0.48</td><td class="pos">+13.7%</td><td class="neg">&minus;68.9%</td></tr>
+<tr><td>9M skip 1, mcap top80%</td><td>0.29</td><td>0.47</td><td class="pos">+12.9%</td><td class="neg">&minus;70.1%</td></tr>
+<tr><td>9M skip 0, mcap top50%</td><td>0.25</td><td>0.39</td><td class="pos">+11.8%</td><td class="neg">&minus;77.3%</td></tr>
+<tr><td>6M skip 1, mcap top90%</td><td>0.22</td><td>0.35</td><td class="pos">+10.7%</td><td class="neg">&minus;82.0%</td></tr>
+</tbody>
+</table>
+<p>Sharpe is uniformly weak (0.2&ndash;0.3) and MaxDD brutal (&minus;69% to &minus;82%) at this stage &mdash; expected and by design: Phase 1 is deliberately unprotected, matching the same pattern seen in the Canada/UK research (before their own regime filters were added). The full 35-combination grid is in the underlying data file; 9M/skip-1 at a loose mcap floor is the consistent winner across the top of the table.</p>
+
+<div class="divider"></div>
+<h2>IV. Phase 2 &mdash; Regime Filter Window</h2>
+<p>9M/skip-1, mcap top90% fixed, sweeping the ^TWII moving-average window.</p>
+<table>
+<thead><tr><th>MA window</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr class="hl-row"><td>MA75 (final config)</td><td>0.59</td><td>1.06</td><td class="pos">+18.3%</td><td class="neg">&minus;38.1%</td></tr>
+<tr><td>MA50</td><td>0.53</td><td>0.93</td><td class="pos">+16.4%</td><td class="neg">&minus;50.5%</td></tr>
+<tr><td>MA100</td><td>0.44</td><td>0.75</td><td class="pos">+14.4%</td><td class="neg">&minus;42.9%</td></tr>
+<tr><td>MA200</td><td>0.24</td><td>0.39</td><td class="pos">+9.4%</td><td class="neg">&minus;47.7%</td></tr>
+<tr><td>MA150</td><td>0.21</td><td>0.34</td><td class="pos">+8.5%</td><td class="neg">&minus;47.8%</td></tr>
+</tbody>
+</table>
+<div class="highlight"><p><strong>Regime is doing the heavy lifting here.</strong> Adding MA75 alone roughly doubles Sharpe (0.31&rarr;0.60) and nearly halves MaxDD (&minus;70%&rarr;&minus;38%). MA75 also won on Canada's own regime sweep &mdash; the same window dominating in two independently-built, differently-sourced markets is a modest point in favor of it not being a curve-fit artifact of either dataset individually.</p></div>
+
+<div class="divider"></div>
+<h2>V. Phase 3 &mdash; Fundamental Filter</h2>
+<p>9M/skip-1, mcap top90%, MA75 fixed. All four filters used in the Canada study, tested here too:</p>
+<table>
+<thead><tr><th>Filter</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr class="hl-row"><td>None (final config)</td><td>0.59</td><td>1.06</td><td class="pos">+18.3%</td><td class="neg">&minus;38.1%</td></tr>
+<tr><td>GrossProfit(TTM)&gt;0</td><td>0.55</td><td>0.99</td><td class="pos">+16.1%</td><td class="neg">&minus;38.1%</td></tr>
+<tr><td>NetIncome(TTM)&gt;0</td><td>0.54</td><td>0.98</td><td class="pos">+16.0%</td><td class="neg">&minus;39.9%</td></tr>
+<tr><td>ROE&gt;0</td><td>0.53</td><td>1.02</td><td class="pos">+17.9%</td><td class="neg">&minus;42.0%</td></tr>
+<tr><td>EBIT(TTM)&gt;0</td><td>0.52</td><td>0.96</td><td class="pos">+15.8%</td><td class="neg">&minus;39.2%</td></tr>
+</tbody>
+</table>
+<div class="callout-amber" style="background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0"><p style="margin:0;color:var(--text);font-size:.78rem"><strong>Every fundamental filter makes this strategy worse, not better &mdash; the opposite of Canada.</strong> There, NetIncome&gt;0 was the single biggest lever in the whole study (Sharpe 0.82&rarr;1.35). Here, adding any profitability screen consistently shaves 0.05&ndash;0.08 off Sharpe. A plausible reason: Taiwan's momentum leaders in this universe (semiconductor/electronics supply chain names, see Section&nbsp;VI) are often early-cycle or capex-heavy companies whose accounting profitability lags their real operating momentum &mdash; a profitability filter here may be cutting genuine winners, not noise. Not fully diagnosed; a market-specific result, not assumed to generalize.</p></div>
+
+<div class="divider"></div>
+<h2>VI. Current Signal</h2>
+<p>Last signal date 2026&ndash;07&ndash;31, regime MOMENTUM. Fifteen names, equal weighted &mdash; heavily concentrated in the semiconductor/electronics supply chain, consistent with Section&nbsp;V's hypothesis:</p>
+<div class="meta-box">
+<dd>Yageo Corp &middot; Macronix International &middot; Winbond Electronics &middot; Nanya Technology &middot; Lelon Electronics &middot; Walsin Technology &middot; Holy Stone Enterprise &middot; Unimicron Technology &middot; Goldkey Technology &middot; Kinsus Interconnect Technology &middot; Double Bond Chemical Industrial &middot; Innocare Optoelectronics &middot; Topoint Technology &middot; Nan Ya Printed Circuit Board &middot; (ticker 7610, name not resolved in local data)</dd>
+</div>
+
+<div class="divider"></div>
+<h2>VII. Limitations</h2>
+<ol class="steps">
+<li><strong>Transaction costs are borrowed from Canada, not measured for Taiwan.</strong> 40bps round-trip is a placeholder; real TWSE spreads (and Taiwan's securities transaction tax, which Canada's model doesn't have an equivalent for) haven't been pulled from a broker yet.</li>
+<li><strong>Despike is a partial fix, not a full clean.</strong> 91% reduction in extreme events, not 100% &mdash; 98 residual extreme months remain, about half inside the top-50%-mcap universe. Some genuine data corruption likely still sits inside the reported numbers.</li>
+<li><strong>Phase 1&ndash;3 sensitivity tables predate the ticker-2499 exclusion.</strong> Only the two "final config" rows (Sections&nbsp;IV and V) were re-verified after that fix; the other rows in the momentum/mcap/MA/filter grids were run before it. Given the fix moved the final config by only ~0.5pp CAGR / 0.01 Sharpe, the relative rankings across each sweep are very unlikely to flip, but the exact numbers in those non-final rows haven't been individually re-confirmed.</li>
+<li><strong>Research stage only.</strong> No live signal, no production script, no site page &mdash; this report exists to document the backtest, not to announce a new tradeable strategy.</li>
+<li><strong>Sector concentration is structural, not incidental.</strong> Taiwan's investable large/mid-cap universe is itself semiconductor-and-electronics-heavy; a momentum strategy here will very often look like a leveraged bet on that one supply chain, not a diversified equity book.</li>
+<li><strong>No out-of-sample holdout.</strong> Every parameter in the final config (Sections III&ndash;V) was chosen looking at the same full 2000&ndash;2026 history used to report performance.</li>
+<li><strong>Korea (KOSPI) was tested alongside this market and rejected</strong> &mdash; even after the same despike and regime/fundamental sweeps, best Sharpe found was 0.10 with MaxDD still near &minus;79%. Not published; treated as a market where either momentum genuinely doesn't work at this size/universe, or data quality issues remain undiagnosed.</li>
+</ol>
+
+<div class="footer">
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice. Research stage &mdash; no live signal yet.</p>
+</div>
+
+</div>
+</body>
+</html>
