@@ -117,7 +117,17 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 </div>
 
 <div class="divider"></div>
-<h2>VII. Limitations</h2>
+<div class="divider"></div>
+<h2>VII. Data Audit (2026-08-26): Weekend Ghosts, Delistings, Signal Lag</h2>
+<p>Three targeted data checks were run after publication, mirroring the Germany audit battery:</p>
+<ul class="steps">
+<li><strong>Weekend-calendar contamination &mdash; found, fixed, immaterial.</strong> The raw TW panel carries 1,245 weekend "ghost" dates (avg 105 tickers covered vs 554 on weekdays) which alter 9,057 end-of-month signal-price cells (median 1.5%, p95 100%). Root cause connection: the "single-day snapshot spikes" of Section&nbsp;II fall on <em>Saturdays</em> (2000-05-06, 05-20, 06-03, 06-17) &mdash; the despike was treating the symptom of this same phenomenon, which is why fixing the root cause barely moves the headline: CAGR 18.25%&rarr;18.36%, Sharpe 0.589&rarr;0.595. The weekend filter is now in the locked engine; published numbers (kept) are the marginally conservative ones.</li>
+<li><strong>Survivorship &mdash; structural, worse than Germany.</strong> Of 1,205 price histories, only 103 end before the present, <strong>none before 2016</strong>. The 2000&ndash;2015 sample is survivors-only by construction (same EODHD pattern found on XETRA, where deaths start in 2015). The trustworthy window for Taiwan starts around 2017; pre-2016 results should be presumed inflated by an unquantifiable amount. The 103 recorded deaths are all consistently flagged (<code>is_delisted</code> 103/103), and 69 "invisible" names (price data but no fundamentals, hence never eligible) are 90% delisted.</li>
+<li><strong>Signal lag (T/T-1) &mdash; clean.</strong> Signal at month-end close, execution at the next real ^TWII trading day, regime read at signal date &mdash; verified by inspection and stress: +1 extra execution day costs 1.7pp (16.51%/0.534 &mdash; Taiwan is more timing-sensitive than Germany), and a 1-month-stale signal decays gradually to 12.35%/0.369, the signature of genuine slow momentum rather than lookahead.</li>
+</ul>
+
+<div class="divider"></div>
+<h2>VIII. Limitations</h2>
 <ol class="steps">
 <li><strong>Transaction costs are borrowed from Canada, not measured for Taiwan.</strong> 40bps round-trip is a placeholder; real TWSE spreads (and Taiwan's securities transaction tax, which Canada's model doesn't have an equivalent for) haven't been pulled from a broker yet.</li>
 <li><strong>Despike is a partial fix, not a full clean.</strong> 91% reduction in extreme events, not 100% &mdash; 98 residual extreme months remain, about half inside the top-50%-mcap universe. Some genuine data corruption likely still sits inside the reported numbers.</li>
