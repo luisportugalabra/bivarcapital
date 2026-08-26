@@ -36,6 +36,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>Germany Momentum<span class="it">XETRA strategy report</span></h1>
 <p class="lead">A momentum strategy on Deutsche Börse XETRA, built with the same lookahead-free engine and data-quality discipline as our <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada</a> and <a href="/research/taiwan_momentum_report.html" style="color:var(--accent)">Taiwan</a> strategies. Now running as a <a href="/germany-momentum.html" style="color:var(--accent)">live beta signal</a>, and subjected to two independent hostile audits (Section&nbsp;IX).</p>
+<div class="callout" style="margin-top:14px"><p><strong>Live signal runs the German-only variant (since 2026-08-26):</strong> the live universe is restricted to German-domiciled companies &mdash; CAGR +19.2%, Sharpe 0.91, MaxDD &minus;26.8% in the same engine (vs +20.4%/0.945/&minus;28.2% for this report's headline config, which also keeps non-US foreign cross-listings). The foreigners were dropped from the live universe for a data-integrity reason: their XETRA "guest" lines are frequently dormant, and live data providers report fictitious 12M returns on them (measured live: TradingView agreement with Yahoo was 1/20 on the wide universe vs 19/20 on the German-only universe). The ~1.2pp of backtest CAGR they add wasn't worth the structural data risk in production.</p></div>
 
 <div class="divider"></div>
 <h2>I. Headline Result</h2>

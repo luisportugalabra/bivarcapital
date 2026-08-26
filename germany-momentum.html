@@ -163,15 +163,15 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <div class="stat-lbl" id="mtd-label">MTD</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val" id="all-time-cagr">+20.4%</div>
+          <div class="stat-val" id="all-time-cagr">+19.2%</div>
           <div class="stat-lbl">CAGR (2000–2026)</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val" id="all-time-sharpe">0.95</div>
+          <div class="stat-val" id="all-time-sharpe">0.91</div>
           <div class="stat-lbl">Sharpe</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val neg" id="all-time-dd">-28.2%</div>
+          <div class="stat-val neg" id="all-time-dd">-26.8%</div>
           <div class="stat-lbl">Max Drawdown</div>
         </div>
       </div>
@@ -263,18 +263,18 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; XETRA top 70% by mcap (P30), no fundamental filter &nbsp;|&nbsp; Top 20, equal weight &nbsp;|&nbsp; DAX &lt; MA200 → cash
+      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; XETRA, German-domiciled companies only, top 70% by mcap (P30), no fundamental filter &nbsp;|&nbsp; Top 20, equal weight &nbsp;|&nbsp; DAX &lt; MA200 → cash
       &nbsp;|&nbsp; Rebalance: monthly &nbsp;|&nbsp; <a href="/research/germany_momentum_report.html" style="color:var(--accent)">Strategy report</a> &nbsp;|&nbsp; <a href="/research/germany_momentum_sensitivity.html" style="color:var(--accent)">Sensitivity analysis</a>
     </p>
 
-    <div id="tv-compare" style="display:none;margin-top:32px">
-      <div class="port-section-title" style="margin-bottom:4px">Data-Source Comparison — TradingView Ranking</div>
+    <div id="yf-compare" style="display:none;margin-top:32px">
+      <div class="port-section-title" style="margin-bottom:4px">Data-Source Comparison — Yahoo Finance Ranking</div>
       <p style="font-size:.68rem;color:var(--text-muted);margin:6px 0 10px;font-family:var(--font-body)">
-        The official ranking above is computed from Yahoo Finance price history (dividend-adjusted, requires ~1 year
-        of real quotes on the XETRA line). The table below is the same strategy ranked by TradingView's <code>Perf.Y</code>
-        instead, published daily for comparison. TradingView reports fictitious 12M returns on dormant / recently-activated
-        XETRA cross-listing lines, so large divergences here are expected — overlap of the two top-20s:
-        <strong id="tv-overlap" style="color:var(--accent)">—</strong>/20.
+        The official ranking above uses TradingView's <code>Perf.Y</code> on German-domiciled names only — primary
+        XETRA listings with live lines, where the two sources agree closely (measured 19/20). The table below is the
+        same universe ranked by 12M return computed from Yahoo Finance price history (dividend-adjusted), published
+        daily for comparison. Overlap of the two top-20s:
+        <strong id="yf-overlap" style="color:var(--accent)">—</strong>/20.
       </p>
       <div class="table-wrap">
       <table>
@@ -284,11 +284,11 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
             <th>Status</th>
             <th>Ticker</th>
             <th>Name</th>
-            <th class="r">12M (TradingView)</th>
+            <th class="r">12M (Yahoo)</th>
             <th class="r">MCap (EUR B)</th>
           </tr>
         </thead>
-        <tbody id="tv-table-body"></tbody>
+        <tbody id="yf-table-body"></tbody>
       </table>
       </div>
     </div>
@@ -462,18 +462,18 @@ async function loadSignal() {
       </tr>`;
     }).join('');
 
-    const top30tv = data.top30_tv || [];
-    if (top30tv.length) {
-      document.getElementById('tv-compare').style.display = 'block';
-      document.getElementById('tv-overlap').textContent = data.tv_yf_top20_overlap ?? '—';
-      const yfSel = new Set(top30.filter(s => s.selected).map(s => s.ticker));
-      document.getElementById('tv-table-body').innerHTML = top30tv.map(s => {
+    const top30yf = data.top30_yf || [];
+    if (top30yf.length) {
+      document.getElementById('yf-compare').style.display = 'block';
+      document.getElementById('yf-overlap').textContent = data.yf_tv_top20_overlap ?? '—';
+      const tvSel = new Set(top30.filter(s => s.selected).map(s => s.ticker));
+      document.getElementById('yf-table-body').innerHTML = top30yf.map(s => {
         const sel = s.selected;
-        const inYf = yfSel.has(s.ticker);
+        const inTv = tvSel.has(s.ticker);
         const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
         return `<tr class="${sel ? 'selected' : ''}">
           <td>${s.rank}</td>
-          <td>${sel ? (inYf ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">TV ONLY</span>') : ''}</td>
+          <td>${sel ? (inTv ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">YF ONLY</span>') : ''}</td>
           <td><strong>${s.ticker}</strong></td>
           <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
           <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>

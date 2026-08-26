@@ -12,30 +12,28 @@ audited: two bugs found and fixed (US-ADR mistagging, weekend-calendar
 contamination in the signal), plus an adversarial second audit that found
 no lookahead/survivorship inflation but flagged real capacity/liquidity
 constraints in the smaller names -- see the audit report for detail):
-  - Universe: all XETRA common-stock lines EXCEPT US-domiciled companies
-    (`exchange=='XETR'`, `country != 'United States'`). v1 used
-    `is_primary==True`, which excluded the US megacaps but ALSO threw out
-    every non-US foreign cross-listing (Vestas, Nokia, ASML, ~250 names)
-    that the backtest deliberately keeps -- the explicit design intent is
-    to exclude ONLY the Americans (to avoid raising USA correlation), not
-    all foreigners. TradingView's `country` (domicile) matches the
-    backtest's ISIN-prefix exclusion closely enough, and the resulting
-    universe (~690 names with data) now matches the backtest's EODHD
-    cross-section (~610) instead of v1's ~410, so the mcap percentile is
-    computed over the same population.
+  - Universe (v3, 2026-08-26): GERMAN-DOMICILED companies only
+    (`exchange=='XETR'`, `country == 'Germany'`, ~390 names). History:
+    v1 used is_primary (excluded ALL foreigners); v2 widened to all
+    non-US lines to match the backtest -- but that surfaced the
+    dormant-cross-listing problem (TradingView Perf.Y fabricates
+    +300..+1100% returns on dormant guest lines, and yfinance became a
+    hard dependency for the momentum). v3 trades ~1.2pp of backtest CAGR
+    (DE-only: 19.16%/0.911/-26.8% vs 20.41%/0.945/-28.2% with non-US
+    foreigners) for a structurally clean universe where TradingView and
+    yfinance agree 19/20 -- German names are primary XETRA listings with
+    live lines, so Perf.Y is trustworthy again and yfinance is only a
+    diagnostic, not a dependency.
   - Eligibility: market cap >= 30th percentile (top 70% by size)
   - No fundamental filter (backtest: EBIT/NetIncome/GrossProfit/ROE all
     reduce Sharpe at this N/mcap/MA combination)
-  - Signal: pure 12-month return, no skip-month -- computed from yfinance
-    (.DE lines, auto_adjust=True so it is dividend-adjusted like the
-    backtest's adjusted_close momentum), NOT TradingView Perf.Y. Perf.Y
-    proved unusable on non-primary XETR cross-listing lines: dormant or
-    recently-activated lines (46-233 days of real history) reported
-    fictitious +300..+1100% "12M returns" (Trane, Chubb, Danske, KBC...)
-    and would have filled the entire top-20. The backtest convention --
-    a line must have a real price ~12 months ago or it is ineligible --
-    is enforced here explicitly (>=230 daily closes AND a non-stale
-    price at the 365d anchor).
+  - Signal: pure 12-month return (TradingView Perf.Y), no skip-month.
+    Safe on this universe (primary listings only -- see above); a
+    dividend-adjusted yfinance ranking is published alongside as a daily
+    diagnostic (top30_yf / yf_tv_top20_overlap) but never drives the
+    portfolio. Note Perf.Y is price-only (no dividends) and reports
+    since-inception returns for names younger than 12 months -- both
+    accepted deviations from the backtest convention.
   - Portfolio: top 20 by momentum, equal weight
   - Regime: DAX (^GDAXI) vs its own 200-day MA -> 100% cash when below
   - Monthly rebalance, 1-trading-day execution lag (pending_signal
@@ -68,12 +66,12 @@ PORTFOLIO_PATH = os.path.join(SITE_DIR, "germany-momentum-portfolio.json")
 MCAP_PCT       = 0.30   # keep top 70% by market cap (percentile, not absolute floor)
 TOP_N          = 20
 MA_W           = 200
-CONFIG_VERSION = "v2-2026-08-25"   # v2: universe = all non-US XETR lines (was primary-only)
+CONFIG_VERSION = "v3-2026-08-26-de-only"   # v3: German-domiciled companies only;
+                                           # TradingView Perf.Y is the official
+                                           # ranking again, yfinance is diagnostic
 
-MIN_UNIVERSE_ROWS = 400   # normal is ~690 non-US XETR common-stock lines with
-                          # mcap+close present; post-mcap-filter ~480
-MIN_MOMENTUM_ROWS = 250   # of those, how many must yield a valid 12M momentum
-                          # (>=230d of real quotes) before we trust the ranking
+MIN_UNIVERSE_ROWS = 250   # normal is ~390 German-domiciled XETR common stocks
+                          # with mcap+close present; post-mcap-filter ~270
 TODAY = date.today().isoformat()
 
 
@@ -102,8 +100,8 @@ def fetch_germany():
     # filter so even a US-line holding from an older config stays priced.
     broad_prices = df.dropna(subset=['close']).set_index('code')['close'].astype(float).to_dict()
 
-    df = df[df['country'] != 'United States'].copy()
-    print(f"  Non-US: {len(df)}")
+    df = df[df['country'] == 'Germany'].copy()
+    print(f"  German-domiciled only: {len(df)}")
 
     df = df.dropna(subset=['close', 'market_cap_basic']).copy()
     print(f"  With mcap+close: {len(df)}")
@@ -291,34 +289,36 @@ def main():
                         f"(expected {MIN_UNIVERSE_ROWS}+) -- likely an API issue")
         return
 
-    mom = compute_momentum(df['code'].tolist())
-    df['ret_12m'] = df['code'].map(mom)
+    # Official ranking: TradingView Perf.Y. Safe again on this universe --
+    # German-domiciled names are PRIMARY XETRA listings with live lines, so
+    # the dormant-cross-listing failure mode of v2 (fictitious +300..+1100%
+    # returns on guest lines) structurally cannot occur; measured agreement
+    # with yfinance on this universe: 19/20 (2026-08-26).
+    df = df.dropna(subset=['Perf.Y']).copy()
+    df['ret_12m'] = df['Perf.Y'].astype(float)
+    df = df.sort_values('ret_12m', ascending=False).reset_index(drop=True)
 
-    # Parallel TradingView Perf.Y ranking, published alongside for live
-    # comparison of the two data sources (yfinance stays the authority for
-    # the actual portfolio; this is diagnostic only -- Perf.Y is known to
-    # fabricate returns on dormant XETR lines, which is exactly what this
-    # comparison is meant to surface over time).
-    tv_df = df.dropna(subset=['Perf.Y']).sort_values('Perf.Y', ascending=False).reset_index(drop=True)
-    top30_tv = []
-    for i, row in tv_df.head(30).iterrows():
-        top30_tv.append({
+    # Diagnostic yfinance ranking, published alongside for live source
+    # comparison (mirrors USA/Canada). Non-blocking: a yfinance outage
+    # empties the comparison table but never stops the official signal.
+    try:
+        mom = compute_momentum(df['code'].tolist())
+    except Exception as e:
+        print(f"  compute_momentum() failed ({e}) -- publishing without comparison")
+        mom = {}
+    yf_df = df[df['code'].isin(mom)].copy()
+    yf_df['ret_12m_yf'] = yf_df['code'].map(mom)
+    yf_df = yf_df.sort_values('ret_12m_yf', ascending=False).reset_index(drop=True)
+    top30_yf = []
+    for i, row in yf_df.head(30).iterrows():
+        top30_yf.append({
             'rank':     int(i) + 1,
             'ticker':   row['code'],
             'name':     str(row.get('description') or row.get('name', row['code'])),
-            'ret_12m':  round(float(row['Perf.Y']), 2),
+            'ret_12m':  round(float(row['ret_12m_yf']), 2),
             'mcap_b':   round(float(row['market_cap_basic']) / 1e9, 3),
             'selected': int(i) < TOP_N,
         })
-
-    df = df.dropna(subset=['ret_12m']).copy()
-    print(f"  With valid 12M momentum (>=230d history, non-stale anchor): {len(df)}")
-    if len(df) < MIN_MOMENTUM_ROWS:
-        write_not_live(f"Only {len(df)} tickers with valid 12M momentum "
-                        f"(expected {MIN_MOMENTUM_ROWS}+) -- likely a yfinance outage")
-        return
-
-    df = df.sort_values('ret_12m', ascending=False).reset_index(drop=True)
     top_df = df.head(TOP_N) if regime_ok else df.iloc[0:0]
 
     if len(top_df):
@@ -350,9 +350,9 @@ def main():
         'total_eligible':     int(len(df)),
         'portfolio':          [s for s in top30 if s['selected']],
         'top30':              top30,
-        'top30_tv':           top30_tv,
-        'tv_yf_top20_overlap': len({s['ticker'] for s in top30 if s['selected']} &
-                                   {s['ticker'] for s in top30_tv if s['selected']}),
+        'top30_yf':           top30_yf,
+        'yf_tv_top20_overlap': len({s['ticker'] for s in top30 if s['selected']} &
+                                   {s['ticker'] for s in top30_yf if s['selected']}),
         'updated':            TODAY,
         'is_live':            True,
         'not_live_reason':    None,

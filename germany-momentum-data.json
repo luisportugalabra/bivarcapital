@@ -1,17 +1,17 @@
 {
-  "date": "2026-08-24",
+  "date": "2026-08-25",
   "regime": "momentum",
-  "dax": 26106.6,
-  "dax_ma200": 24560.3,
-  "pct_above_ma": 6.3,
-  "total_eligible": 380,
+  "dax": 26266.1,
+  "dax_ma200": 24573.0,
+  "pct_above_ma": 6.9,
+  "total_eligible": 272,
   "portfolio": [
     {
       "rank": 1,
-      "ticker": "TQI0",
-      "name": "Telecom Italia S.p.A.",
-      "ret_12m": 218.7,
-      "mcap_b": 15.649,
+      "ticker": "SNG",
+      "name": "SINGULUS TECHNOLOGIES AG",
+      "ret_12m": 369.86,
+      "mcap_b": 0.076,
       "weight": 0.05,
       "selected": true
     },
@@ -19,7 +19,7 @@
       "rank": 2,
       "ticker": "VBK",
       "name": "Verbio SE",
-      "ret_12m": 200.19,
+      "ret_12m": 204.36,
       "mcap_b": 1.998,
       "weight": 0.05,
       "selected": true
@@ -28,161 +28,161 @@
       "rank": 3,
       "ticker": "OHB",
       "name": "OHB SE",
-      "ret_12m": 194.41,
+      "ret_12m": 192.49,
       "mcap_b": 4.183,
       "weight": 0.05,
       "selected": true
     },
     {
       "rank": 4,
-      "ticker": "SOH1",
-      "name": "Soitec SA",
-      "ret_12m": 191.37,
-      "mcap_b": 3.862,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 5,
       "ticker": "AIXA",
       "name": "AIXTRON SE",
-      "ret_12m": 178.8,
+      "ret_12m": 183.01,
       "mcap_b": 4.486,
       "weight": 0.05,
       "selected": true
     },
     {
-      "rank": 6,
+      "rank": 5,
       "ticker": "SMHN",
       "name": "SUSS MicroTec SE",
-      "ret_12m": 153.03,
+      "ret_12m": 153.99,
       "mcap_b": 1.32,
       "weight": 0.05,
       "selected": true
     },
     {
-      "rank": 7,
-      "ticker": "NOA3",
-      "name": "Nokia Oyj",
-      "ret_12m": 137.08,
-      "mcap_b": 47.889,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 8,
-      "ticker": "S92",
-      "name": "SMA Solar Technology AG",
-      "ret_12m": 136.6,
-      "mcap_b": 1.9,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 9,
-      "ticker": "FMV",
-      "name": "First Majestic Silver Corp.",
-      "ret_12m": 132.56,
-      "mcap_b": 8.813,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 10,
-      "ticker": "ASME",
-      "name": "ASML Holding NV",
-      "ret_12m": 132.36,
-      "mcap_b": 569.081,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 11,
+      "rank": 6,
       "ticker": "SZG",
       "name": "Salzgitter AG",
-      "ret_12m": 128.16,
+      "ret_12m": 137.52,
       "mcap_b": 3.125,
       "weight": 0.05,
       "selected": true
     },
     {
-      "rank": 12,
+      "rank": 7,
+      "ticker": "S92",
+      "name": "SMA Solar Technology AG",
+      "ret_12m": 135.61,
+      "mcap_b": 1.9,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 8,
+      "ticker": "TKA",
+      "name": "thyssenkrupp AG",
+      "ret_12m": 128.86,
+      "mcap_b": 8.457,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 9,
       "ticker": "DR0",
       "name": "Deutsche Rohstoff AG",
-      "ret_12m": 127.02,
+      "ret_12m": 122.05,
       "mcap_b": 0.424,
       "weight": 0.05,
       "selected": true
     },
     {
-      "rank": 13,
-      "ticker": "ARRD",
-      "name": "ArcelorMittal SA",
-      "ret_12m": 118.09,
-      "mcap_b": 46.711,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 14,
-      "ticker": "JEN",
-      "name": "Jenoptik AG",
-      "ret_12m": 117.32,
-      "mcap_b": 2.188,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 15,
-      "ticker": "RAW",
-      "name": "Raiffeisen Bank International AG",
-      "ret_12m": 117.25,
-      "mcap_b": 20.096,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 16,
+      "rank": 10,
       "ticker": "WAF",
       "name": "Siltronic AG",
-      "ret_12m": 116.17,
+      "ret_12m": 114.21,
       "mcap_b": 2.709,
       "weight": 0.05,
       "selected": true
     },
     {
+      "rank": 11,
+      "ticker": "JEN",
+      "name": "Jenoptik AG",
+      "ret_12m": 113.3,
+      "mcap_b": 2.188,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 12,
+      "ticker": "M7U",
+      "name": "Nynomic AG",
+      "ret_12m": 106.39,
+      "mcap_b": 0.145,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 13,
+      "ticker": "NBG6",
+      "name": "Nuernberger Beteiligungs AG Class B",
+      "ret_12m": 95.92,
+      "mcap_b": 1.44,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 14,
+      "ticker": "BKHT",
+      "name": "Brockhaus Technologies AG",
+      "ret_12m": 91.93,
+      "mcap_b": 0.225,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 15,
+      "ticker": "HOT",
+      "name": "HOCHTIEF Aktiengesellschaft",
+      "ret_12m": 90.37,
+      "mcap_b": 31.999,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 16,
+      "ticker": "NF4",
+      "name": "Netfonds AG",
+      "ret_12m": 85.23,
+      "mcap_b": 0.19,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
       "rank": 17,
-      "ticker": "HMSB",
-      "name": "H&M Hennes & Mauritz AB Class B",
-      "ret_12m": 115.63,
-      "mcap_b": 29.718,
+      "ticker": "NDX1",
+      "name": "Nordex SE",
+      "ret_12m": 80.37,
+      "mcap_b": 9.21,
       "weight": 0.05,
       "selected": true
     },
     {
       "rank": 18,
-      "ticker": "DP4B",
-      "name": "A.P. Moller - Maersk A/S Class B",
-      "ret_12m": 114.02,
-      "mcap_b": 42.241,
+      "ticker": "NDA",
+      "name": "Aurubis AG",
+      "ret_12m": 79.9,
+      "mcap_b": 7.701,
       "weight": 0.05,
       "selected": true
     },
     {
       "rank": 19,
-      "ticker": "REP",
-      "name": "Repsol SA",
-      "ret_12m": 104.07,
-      "mcap_b": 29.223,
+      "ticker": "MED",
+      "name": "MEDICLIN Aktiengesellschaft",
+      "ret_12m": 78.1,
+      "mcap_b": 0.261,
       "weight": 0.05,
       "selected": true
     },
     {
       "rank": 20,
-      "ticker": "AVS",
-      "name": "ASM International N.V.",
-      "ret_12m": 102.14,
-      "mcap_b": 40.018,
+      "ticker": "BAYN",
+      "name": "Bayer AG",
+      "ret_12m": 72.66,
+      "mcap_b": 47.628,
       "weight": 0.05,
       "selected": true
     }
@@ -190,11 +190,282 @@
   "top30": [
     {
       "rank": 1,
-      "ticker": "TQI0",
-      "name": "Telecom Italia S.p.A.",
-      "ret_12m": 218.7,
-      "mcap_b": 15.649,
+      "ticker": "SNG",
+      "name": "SINGULUS TECHNOLOGIES AG",
+      "ret_12m": 369.86,
+      "mcap_b": 0.076,
       "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "ticker": "VBK",
+      "name": "Verbio SE",
+      "ret_12m": 204.36,
+      "mcap_b": 1.998,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 3,
+      "ticker": "OHB",
+      "name": "OHB SE",
+      "ret_12m": 192.49,
+      "mcap_b": 4.183,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 4,
+      "ticker": "AIXA",
+      "name": "AIXTRON SE",
+      "ret_12m": 183.01,
+      "mcap_b": 4.486,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 5,
+      "ticker": "SMHN",
+      "name": "SUSS MicroTec SE",
+      "ret_12m": 153.99,
+      "mcap_b": 1.32,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 6,
+      "ticker": "SZG",
+      "name": "Salzgitter AG",
+      "ret_12m": 137.52,
+      "mcap_b": 3.125,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 7,
+      "ticker": "S92",
+      "name": "SMA Solar Technology AG",
+      "ret_12m": 135.61,
+      "mcap_b": 1.9,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 8,
+      "ticker": "TKA",
+      "name": "thyssenkrupp AG",
+      "ret_12m": 128.86,
+      "mcap_b": 8.457,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 9,
+      "ticker": "DR0",
+      "name": "Deutsche Rohstoff AG",
+      "ret_12m": 122.05,
+      "mcap_b": 0.424,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 10,
+      "ticker": "WAF",
+      "name": "Siltronic AG",
+      "ret_12m": 114.21,
+      "mcap_b": 2.709,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 11,
+      "ticker": "JEN",
+      "name": "Jenoptik AG",
+      "ret_12m": 113.3,
+      "mcap_b": 2.188,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 12,
+      "ticker": "M7U",
+      "name": "Nynomic AG",
+      "ret_12m": 106.39,
+      "mcap_b": 0.145,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 13,
+      "ticker": "NBG6",
+      "name": "Nuernberger Beteiligungs AG Class B",
+      "ret_12m": 95.92,
+      "mcap_b": 1.44,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 14,
+      "ticker": "BKHT",
+      "name": "Brockhaus Technologies AG",
+      "ret_12m": 91.93,
+      "mcap_b": 0.225,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 15,
+      "ticker": "HOT",
+      "name": "HOCHTIEF Aktiengesellschaft",
+      "ret_12m": 90.37,
+      "mcap_b": 31.999,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 16,
+      "ticker": "NF4",
+      "name": "Netfonds AG",
+      "ret_12m": 85.23,
+      "mcap_b": 0.19,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 17,
+      "ticker": "NDX1",
+      "name": "Nordex SE",
+      "ret_12m": 80.37,
+      "mcap_b": 9.21,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 18,
+      "ticker": "NDA",
+      "name": "Aurubis AG",
+      "ret_12m": 79.9,
+      "mcap_b": 7.701,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 19,
+      "ticker": "MED",
+      "name": "MEDICLIN Aktiengesellschaft",
+      "ret_12m": 78.1,
+      "mcap_b": 0.261,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 20,
+      "ticker": "BAYN",
+      "name": "Bayer AG",
+      "ret_12m": 72.66,
+      "mcap_b": 47.628,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 21,
+      "ticker": "ENR",
+      "name": "Siemens Energy AG",
+      "ret_12m": 67.87,
+      "mcap_b": 126.715,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 22,
+      "ticker": "LIK",
+      "name": "Limes Schlosskliniken AG",
+      "ret_12m": 67.65,
+      "mcap_b": 0.173,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 23,
+      "ticker": "WOLF",
+      "name": "Meta Wolf AG",
+      "ret_12m": 66.18,
+      "mcap_b": 0.184,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 24,
+      "ticker": "PSAN",
+      "name": "PSI Software SE",
+      "ret_12m": 65.44,
+      "mcap_b": 0.734,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 25,
+      "ticker": "RWE",
+      "name": "RWE AG",
+      "ret_12m": 65.26,
+      "mcap_b": 44.631,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 26,
+      "ticker": "LPK",
+      "name": "LPKF Laser & Electronics SE",
+      "ret_12m": 61.27,
+      "mcap_b": 0.31,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 27,
+      "ticker": "4DS",
+      "name": "Daldrup & Soehne AG",
+      "ret_12m": 58.97,
+      "mcap_b": 0.134,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 28,
+      "ticker": "VME",
+      "name": "Viromed Medical AG",
+      "ret_12m": 57.77,
+      "mcap_b": 0.143,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 29,
+      "ticker": "ELG",
+      "name": "Elmos Semiconductor SE",
+      "ret_12m": 57.71,
+      "mcap_b": 2.208,
+      "weight": null,
+      "selected": false
+    },
+    {
+      "rank": 30,
+      "ticker": "GMM",
+      "name": "Grammer AG",
+      "ret_12m": 56.83,
+      "mcap_b": 0.17,
+      "weight": null,
+      "selected": false
+    }
+  ],
+  "top30_yf": [
+    {
+      "rank": 1,
+      "ticker": "SNG",
+      "name": "SINGULUS TECHNOLOGIES AG",
+      "ret_12m": 402.35,
+      "mcap_b": 0.076,
       "selected": true
     },
     {
@@ -203,7 +474,6 @@
       "name": "Verbio SE",
       "ret_12m": 200.19,
       "mcap_b": 1.998,
-      "weight": 0.05,
       "selected": true
     },
     {
@@ -212,497 +482,227 @@
       "name": "OHB SE",
       "ret_12m": 194.41,
       "mcap_b": 4.183,
-      "weight": 0.05,
       "selected": true
     },
     {
       "rank": 4,
-      "ticker": "SOH1",
-      "name": "Soitec SA",
-      "ret_12m": 191.37,
-      "mcap_b": 3.862,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 5,
       "ticker": "AIXA",
       "name": "AIXTRON SE",
       "ret_12m": 178.8,
       "mcap_b": 4.486,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 6,
-      "ticker": "SMHN",
-      "name": "SUSS MicroTec SE",
-      "ret_12m": 153.03,
-      "mcap_b": 1.32,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 7,
-      "ticker": "NOA3",
-      "name": "Nokia Oyj",
-      "ret_12m": 137.08,
-      "mcap_b": 47.889,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 8,
-      "ticker": "S92",
-      "name": "SMA Solar Technology AG",
-      "ret_12m": 136.6,
-      "mcap_b": 1.9,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 9,
-      "ticker": "FMV",
-      "name": "First Majestic Silver Corp.",
-      "ret_12m": 132.56,
-      "mcap_b": 8.813,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 10,
-      "ticker": "ASME",
-      "name": "ASML Holding NV",
-      "ret_12m": 132.36,
-      "mcap_b": 569.081,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 11,
-      "ticker": "SZG",
-      "name": "Salzgitter AG",
-      "ret_12m": 128.16,
-      "mcap_b": 3.125,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 12,
-      "ticker": "DR0",
-      "name": "Deutsche Rohstoff AG",
-      "ret_12m": 127.02,
-      "mcap_b": 0.424,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 13,
-      "ticker": "ARRD",
-      "name": "ArcelorMittal SA",
-      "ret_12m": 118.09,
-      "mcap_b": 46.711,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 14,
-      "ticker": "JEN",
-      "name": "Jenoptik AG",
-      "ret_12m": 117.32,
-      "mcap_b": 2.188,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 15,
-      "ticker": "RAW",
-      "name": "Raiffeisen Bank International AG",
-      "ret_12m": 117.25,
-      "mcap_b": 20.096,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 16,
-      "ticker": "WAF",
-      "name": "Siltronic AG",
-      "ret_12m": 116.17,
-      "mcap_b": 2.709,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 17,
-      "ticker": "HMSB",
-      "name": "H&M Hennes & Mauritz AB Class B",
-      "ret_12m": 115.63,
-      "mcap_b": 29.718,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 18,
-      "ticker": "DP4B",
-      "name": "A.P. Moller - Maersk A/S Class B",
-      "ret_12m": 114.02,
-      "mcap_b": 42.241,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 19,
-      "ticker": "REP",
-      "name": "Repsol SA",
-      "ret_12m": 104.07,
-      "mcap_b": 29.223,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 20,
-      "ticker": "AVS",
-      "name": "ASM International N.V.",
-      "ret_12m": 102.14,
-      "mcap_b": 40.018,
-      "weight": 0.05,
-      "selected": true
-    },
-    {
-      "rank": 21,
-      "ticker": "TKA",
-      "name": "thyssenkrupp AG",
-      "ret_12m": 100.72,
-      "mcap_b": 8.457,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 22,
-      "ticker": "DP4A",
-      "name": "A.P. Moller - Maersk A/S Class A",
-      "ret_12m": 99.78,
-      "mcap_b": 42.241,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 23,
-      "ticker": "TNIE",
-      "name": "tonies SE Class A",
-      "ret_12m": 95.81,
-      "mcap_b": 1.423,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 24,
-      "ticker": "HOT",
-      "name": "HOCHTIEF Aktiengesellschaft",
-      "ret_12m": 94.39,
-      "mcap_b": 31.999,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 25,
-      "ticker": "NBG6",
-      "name": "Nuernberger Beteiligungs AG Class B",
-      "ret_12m": 94.37,
-      "mcap_b": 1.44,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 26,
-      "ticker": "NGL0",
-      "name": "Anglo American plc",
-      "ret_12m": 94.09,
-      "mcap_b": 51.939,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 27,
-      "ticker": "ERCG",
-      "name": "Telefonaktiebolaget LM Ericsson Class A",
-      "ret_12m": 93.14,
-      "mcap_b": 29.007,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 28,
-      "ticker": "BKHT",
-      "name": "Brockhaus Technologies AG",
-      "ret_12m": 92.83,
-      "mcap_b": 0.225,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 29,
-      "ticker": "ERCB",
-      "name": "Telefonaktiebolaget LM Ericsson Class B",
-      "ret_12m": 90.83,
-      "mcap_b": 29.007,
-      "weight": null,
-      "selected": false
-    },
-    {
-      "rank": 30,
-      "ticker": "NF4",
-      "name": "Netfonds AG",
-      "ret_12m": 88.66,
-      "mcap_b": 0.19,
-      "weight": null,
-      "selected": false
-    }
-  ],
-  "top30_tv": [
-    {
-      "rank": 1,
-      "ticker": "YDX",
-      "name": "Nebius Group N.V. Class A",
-      "ret_12m": 1197.72,
-      "mcap_b": 49.163,
-      "selected": true
-    },
-    {
-      "rank": 2,
-      "ticker": "2IS",
-      "name": "Trane Technologies plc",
-      "ret_12m": 1064.79,
-      "mcap_b": 85.453,
-      "selected": true
-    },
-    {
-      "rank": 3,
-      "ticker": "CSF",
-      "name": "Thales SA",
-      "ret_12m": 760.69,
-      "mcap_b": 51.585,
-      "selected": true
-    },
-    {
-      "rank": 4,
-      "ticker": "ENXB",
-      "name": "Euronext NV",
-      "ret_12m": 719.45,
-      "mcap_b": 16.168,
       "selected": true
     },
     {
       "rank": 5,
-      "ticker": "AEU",
-      "name": "Prysmian S.p.A.",
-      "ret_12m": 698.2,
-      "mcap_b": 34.364,
+      "ticker": "SMHN",
+      "name": "SUSS MicroTec SE",
+      "ret_12m": 153.03,
+      "mcap_b": 1.32,
       "selected": true
     },
     {
       "rank": 6,
-      "ticker": "AEX",
-      "name": "Chubb Limited",
-      "ret_12m": 642.94,
-      "mcap_b": 114.4,
+      "ticker": "S92",
+      "name": "SMA Solar Technology AG",
+      "ret_12m": 136.6,
+      "mcap_b": 1.9,
       "selected": true
     },
     {
       "rank": 7,
-      "ticker": "UNC",
-      "name": "UCB S.A.",
-      "ret_12m": 603.38,
-      "mcap_b": 41.799,
+      "ticker": "SZG",
+      "name": "Salzgitter AG",
+      "ret_12m": 128.16,
+      "mcap_b": 3.125,
       "selected": true
     },
     {
       "rank": 8,
-      "ticker": "FMNB",
-      "name": "Leonardo SpA",
-      "ret_12m": 576.77,
-      "mcap_b": 31.502,
+      "ticker": "DR0",
+      "name": "Deutsche Rohstoff AG",
+      "ret_12m": 127.02,
+      "mcap_b": 0.424,
       "selected": true
     },
     {
       "rank": 9,
-      "ticker": "LRC",
-      "name": "Legrand SA",
-      "ret_12m": 459.43,
-      "mcap_b": 34.85,
+      "ticker": "JEN",
+      "name": "Jenoptik AG",
+      "ret_12m": 117.32,
+      "mcap_b": 2.188,
       "selected": true
     },
     {
       "rank": 10,
-      "ticker": "KDB",
-      "name": "KBC Group N.V.",
-      "ret_12m": 419.14,
-      "mcap_b": 55.361,
+      "ticker": "WAF",
+      "name": "Siltronic AG",
+      "ret_12m": 116.17,
+      "mcap_b": 2.709,
       "selected": true
     },
     {
       "rank": 11,
-      "ticker": "IDA",
-      "name": "Indra Sistemas, S.A. Class A",
-      "ret_12m": 321.23,
-      "mcap_b": 10.668,
+      "ticker": "M7U",
+      "name": "Nynomic AG",
+      "ret_12m": 108.53,
+      "mcap_b": 0.145,
       "selected": true
     },
     {
       "rank": 12,
-      "ticker": "CSA",
-      "name": "Accenture Plc Class A",
-      "ret_12m": 321.18,
-      "mcap_b": 97.872,
+      "ticker": "TKA",
+      "name": "thyssenkrupp AG",
+      "ret_12m": 100.72,
+      "mcap_b": 8.457,
       "selected": true
     },
     {
       "rank": 13,
-      "ticker": "UCM",
-      "name": "Buzzi Spa",
-      "ret_12m": 302.53,
-      "mcap_b": 6.713,
+      "ticker": "VME",
+      "name": "Viromed Medical AG",
+      "ret_12m": 95.83,
+      "mcap_b": 0.143,
       "selected": true
     },
     {
       "rank": 14,
-      "ticker": "RTO1",
-      "name": "Rentokil Initial plc",
-      "ret_12m": 270.18,
-      "mcap_b": 10.245,
+      "ticker": "HOT",
+      "name": "HOCHTIEF Aktiengesellschaft",
+      "ret_12m": 94.39,
+      "mcap_b": 31.999,
       "selected": true
     },
     {
       "rank": 15,
-      "ticker": "ME9",
-      "name": "Mediobanca - Banca di Credito Finanziario S.p.A.",
-      "ret_12m": 260.65,
-      "mcap_b": 22.543,
+      "ticker": "NBG6",
+      "name": "Nuernberger Beteiligungs AG Class B",
+      "ret_12m": 94.37,
+      "mcap_b": 1.44,
       "selected": true
     },
     {
       "rank": 16,
-      "ticker": "DSN",
-      "name": "Danske Bank A/S",
-      "ret_12m": 243.59,
-      "mcap_b": 39.253,
+      "ticker": "BKHT",
+      "name": "Brockhaus Technologies AG",
+      "ret_12m": 92.83,
+      "mcap_b": 0.225,
       "selected": true
     },
     {
       "rank": 17,
-      "ticker": "LGI",
-      "name": "Legal & General Group Plc",
-      "ret_12m": 228.05,
-      "mcap_b": 18.312,
+      "ticker": "NF4",
+      "name": "Netfonds AG",
+      "ret_12m": 88.66,
+      "mcap_b": 0.19,
       "selected": true
     },
     {
       "rank": 18,
-      "ticker": "48CA",
-      "name": "CaixaBank SA",
-      "ret_12m": 221.95,
-      "mcap_b": 92.441,
+      "ticker": "MED",
+      "name": "MEDICLIN Aktiengesellschaft",
+      "ret_12m": 81.66,
+      "mcap_b": 0.261,
       "selected": true
     },
     {
       "rank": 19,
-      "ticker": "VBK",
-      "name": "Verbio SE",
-      "ret_12m": 204.36,
-      "mcap_b": 1.998,
+      "ticker": "NDA",
+      "name": "Aurubis AG",
+      "ret_12m": 81.24,
+      "mcap_b": 7.701,
       "selected": true
     },
     {
       "rank": 20,
-      "ticker": "EF3",
-      "name": "Eiffage SA",
-      "ret_12m": 200.28,
-      "mcap_b": 11.373,
+      "ticker": "NDX1",
+      "name": "Nordex SE",
+      "ret_12m": 80.33,
+      "mcap_b": 9.21,
       "selected": true
     },
     {
       "rank": 21,
-      "ticker": "NKT",
-      "name": "NKT A/S",
-      "ret_12m": 195.63,
-      "mcap_b": 6.64,
+      "ticker": "BAYN",
+      "name": "Bayer AG",
+      "ret_12m": 72.99,
+      "mcap_b": 47.628,
       "selected": false
     },
     {
       "rank": 22,
-      "ticker": "SOH1",
-      "name": "Soitec SA",
-      "ret_12m": 193.67,
-      "mcap_b": 3.862,
+      "ticker": "LIK",
+      "name": "Limes Schlosskliniken AG",
+      "ret_12m": 72.4,
+      "mcap_b": 0.173,
       "selected": false
     },
     {
       "rank": 23,
-      "ticker": "OHB",
-      "name": "OHB SE",
-      "ret_12m": 192.49,
-      "mcap_b": 4.183,
+      "ticker": "93M1",
+      "name": "MPH Health Care AG",
+      "ret_12m": 66.59,
+      "mcap_b": 0.104,
       "selected": false
     },
     {
       "rank": 24,
-      "ticker": "PU4",
-      "name": "Publicis Groupe SA",
-      "ret_12m": 188.43,
-      "mcap_b": 26.11,
+      "ticker": "4DS",
+      "name": "Daldrup & Soehne AG",
+      "ret_12m": 65.33,
+      "mcap_b": 0.134,
       "selected": false
     },
     {
       "rank": 25,
-      "ticker": "AIXA",
-      "name": "AIXTRON SE",
-      "ret_12m": 183.01,
-      "mcap_b": 4.486,
+      "ticker": "GMM",
+      "name": "Grammer AG",
+      "ret_12m": 65.22,
+      "mcap_b": 0.17,
       "selected": false
     },
     {
       "rank": 26,
-      "ticker": "SMHN",
-      "name": "SUSS MicroTec SE",
-      "ret_12m": 153.99,
-      "mcap_b": 1.32,
+      "ticker": "RWE",
+      "name": "RWE AG",
+      "ret_12m": 65.06,
+      "mcap_b": 44.631,
       "selected": false
     },
     {
       "rank": 27,
-      "ticker": "NOA3",
-      "name": "Nokia Oyj",
-      "ret_12m": 143.36,
-      "mcap_b": 47.889,
+      "ticker": "PSAN",
+      "name": "PSI Software SE",
+      "ret_12m": 63.04,
+      "mcap_b": 0.734,
       "selected": false
     },
     {
       "rank": 28,
-      "ticker": "SZG",
-      "name": "Salzgitter AG",
-      "ret_12m": 137.52,
-      "mcap_b": 3.125,
+      "ticker": "ENR",
+      "name": "Siemens Energy AG",
+      "ret_12m": 62.93,
+      "mcap_b": 126.715,
       "selected": false
     },
     {
       "rank": 29,
-      "ticker": "ADG",
-      "name": "AMG Critical Materials N.V.",
-      "ret_12m": 135.9,
-      "mcap_b": 1.153,
+      "ticker": "LPK",
+      "name": "LPKF Laser & Electronics SE",
+      "ret_12m": 59.12,
+      "mcap_b": 0.31,
       "selected": false
     },
     {
       "rank": 30,
-      "ticker": "S92",
-      "name": "SMA Solar Technology AG",
-      "ret_12m": 135.61,
-      "mcap_b": 1.9,
+      "ticker": "INH",
+      "name": "INDUS Holding AG",
+      "ret_12m": 59.12,
+      "mcap_b": 0.89,
       "selected": false
     }
   ],
-  "tv_yf_top20_overlap": 1,
-  "updated": "2026-08-24",
+  "yf_tv_top20_overlap": 19,
+  "updated": "2026-08-25",
   "is_live": true,
   "not_live_reason": null
 }

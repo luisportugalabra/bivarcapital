@@ -4,170 +4,17 @@
   "ytd_2026": null,
   "regime": "momentum",
   "currency": "EUR",
-  "dax": 26106.6,
-  "dax_ma200": 24560.3,
+  "dax": 26266.1,
+  "dax_ma200": 24573.0,
   "holdings": [
     {
-      "ticker": "YDX",
-      "name": "Nebius Group N.V. Class A",
+      "ticker": "SNG",
+      "name": "SINGULUS TECHNOLOGIES AG",
       "entry_date": "2026-08-25",
-      "entry_price": 186.26,
-      "current_price": 187.52,
-      "weight": 0.05,
-      "return_pct": 0.68
-    },
-    {
-      "ticker": "2IS",
-      "name": "Trane Technologies plc",
-      "entry_date": "2026-08-25",
-      "entry_price": 393.0,
-      "current_price": 393.0,
+      "entry_price": 8.34,
+      "current_price": 8.34,
       "weight": 0.05,
       "return_pct": 0.0
-    },
-    {
-      "ticker": "CSF",
-      "name": "Thales SA",
-      "entry_date": "2026-08-25",
-      "entry_price": 250.9,
-      "current_price": 249.6,
-      "weight": 0.05,
-      "return_pct": -0.52
-    },
-    {
-      "ticker": "ENXB",
-      "name": "Euronext NV",
-      "entry_date": "2026-08-25",
-      "entry_price": 164.3,
-      "current_price": 164.3,
-      "weight": 0.05,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "AEU",
-      "name": "Prysmian S.p.A.",
-      "entry_date": "2026-08-25",
-      "entry_price": 121.85,
-      "current_price": 119.65,
-      "weight": 0.05,
-      "return_pct": -1.81
-    },
-    {
-      "ticker": "AEX",
-      "name": "Chubb Limited",
-      "entry_date": "2026-08-25",
-      "entry_price": 295.7,
-      "current_price": 293.5,
-      "weight": 0.05,
-      "return_pct": -0.74
-    },
-    {
-      "ticker": "UNC",
-      "name": "UCB S.A.",
-      "entry_date": "2026-08-25",
-      "entry_price": 222.9,
-      "current_price": 222.9,
-      "weight": 0.05,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "FMNB",
-      "name": "Leonardo SpA",
-      "entry_date": "2026-08-25",
-      "entry_price": 54.85,
-      "current_price": 54.48,
-      "weight": 0.05,
-      "return_pct": -0.67
-    },
-    {
-      "ticker": "LRC",
-      "name": "Legrand SA",
-      "entry_date": "2026-08-25",
-      "entry_price": 136.15,
-      "current_price": 135.55,
-      "weight": 0.05,
-      "return_pct": -0.44
-    },
-    {
-      "ticker": "KDB",
-      "name": "KBC Group N.V.",
-      "entry_date": "2026-08-25",
-      "entry_price": 130.2,
-      "current_price": 130.15,
-      "weight": 0.05,
-      "return_pct": -0.04
-    },
-    {
-      "ticker": "IDA",
-      "name": "Indra Sistemas, S.A. Class A",
-      "entry_date": "2026-08-25",
-      "entry_price": 61.28,
-      "current_price": 61.12,
-      "weight": 0.05,
-      "return_pct": -0.26
-    },
-    {
-      "ticker": "CSA",
-      "name": "Accenture Plc Class A",
-      "entry_date": "2026-08-25",
-      "entry_price": 158.35,
-      "current_price": 160.05,
-      "weight": 0.05,
-      "return_pct": 1.07
-    },
-    {
-      "ticker": "UCM",
-      "name": "Buzzi Spa",
-      "entry_date": "2026-08-25",
-      "entry_price": 39.42,
-      "current_price": 39.85,
-      "weight": 0.05,
-      "return_pct": 1.09
-    },
-    {
-      "ticker": "RTO1",
-      "name": "Rentokil Initial plc",
-      "entry_date": "2026-08-25",
-      "entry_price": 4.069,
-      "current_price": 4.072,
-      "weight": 0.05,
-      "return_pct": 0.07
-    },
-    {
-      "ticker": "ME9",
-      "name": "Mediobanca - Banca di Credito Finanziario S.p.A.",
-      "entry_date": "2026-08-25",
-      "entry_price": 27.59,
-      "current_price": 27.59,
-      "weight": 0.05,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "DSN",
-      "name": "Danske Bank A/S",
-      "entry_date": "2026-08-25",
-      "entry_price": 49.9,
-      "current_price": 49.82,
-      "weight": 0.05,
-      "return_pct": -0.16
-    },
-    {
-      "ticker": "LGI",
-      "name": "Legal & General Group Plc",
-      "entry_date": "2026-08-25",
-      "entry_price": 3.446,
-      "current_price": 3.438,
-      "weight": 0.05,
-      "return_pct": -0.23
-    },
-    {
-      "ticker": "48CA",
-      "name": "CaixaBank SA",
-      "entry_date": "2026-08-25",
-      "entry_price": 13.31,
-      "current_price": 13.2,
-      "weight": 0.05,
-      "return_pct": -0.83
     },
     {
       "ticker": "VBK",
@@ -179,13 +26,166 @@
       "return_pct": 0.0
     },
     {
-      "ticker": "EF3",
-      "name": "Eiffage SA",
+      "ticker": "OHB",
+      "name": "OHB SE",
       "entry_date": "2026-08-25",
-      "entry_price": 118.8,
-      "current_price": 118.1,
+      "entry_price": 192.2,
+      "current_price": 192.2,
       "weight": 0.05,
-      "return_pct": -0.59
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "AIXA",
+      "name": "AIXTRON SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 37.23,
+      "current_price": 37.23,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "SMHN",
+      "name": "SUSS MicroTec SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 70.05,
+      "current_price": 70.05,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "SZG",
+      "name": "Salzgitter AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 53.3,
+      "current_price": 53.3,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "S92",
+      "name": "SMA Solar Technology AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 55.65,
+      "current_price": 55.65,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "TKA",
+      "name": "thyssenkrupp AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 13.705,
+      "current_price": 13.705,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "DR0",
+      "name": "Deutsche Rohstoff AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 86.6,
+      "current_price": 86.6,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "WAF",
+      "name": "Siltronic AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 82.0,
+      "current_price": 82.0,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "JEN",
+      "name": "Jenoptik AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 38.8,
+      "current_price": 38.8,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "M7U",
+      "name": "Nynomic AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 22.6,
+      "current_price": 22.6,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NBG6",
+      "name": "Nuernberger Beteiligungs AG Class B",
+      "entry_date": "2026-08-25",
+      "entry_price": 125.0,
+      "current_price": 125.0,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "BKHT",
+      "name": "Brockhaus Technologies AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 21.4,
+      "current_price": 21.4,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "HOT",
+      "name": "HOCHTIEF Aktiengesellschaft",
+      "entry_date": "2026-08-25",
+      "entry_price": 427.2,
+      "current_price": 427.2,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NF4",
+      "name": "Netfonds AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 81.5,
+      "current_price": 81.5,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NDX1",
+      "name": "Nordex SE",
+      "entry_date": "2026-08-25",
+      "entry_price": 38.78,
+      "current_price": 38.78,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "NDA",
+      "name": "Aurubis AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 176.3,
+      "current_price": 176.3,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "MED",
+      "name": "MEDICLIN Aktiengesellschaft",
+      "entry_date": "2026-08-25",
+      "entry_price": 5.45,
+      "current_price": 5.45,
+      "weight": 0.05,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "BAYN",
+      "name": "Bayer AG",
+      "entry_date": "2026-08-25",
+      "entry_price": 49.26,
+      "current_price": 49.26,
+      "weight": 0.05,
+      "return_pct": 0.0
     }
   ],
   "monthly_breakdown": [
@@ -196,55 +196,55 @@
       "end": null,
       "regime": "momentum",
       "tickers": [
-        "YDX",
-        "2IS",
-        "CSF",
-        "ENXB",
-        "AEU",
-        "AEX",
-        "UNC",
-        "FMNB",
-        "LRC",
-        "KDB",
-        "IDA",
-        "CSA",
-        "UCM",
-        "RTO1",
-        "ME9",
-        "DSN",
-        "LGI",
-        "48CA",
+        "SNG",
         "VBK",
-        "EF3"
+        "OHB",
+        "AIXA",
+        "SMHN",
+        "SZG",
+        "S92",
+        "TKA",
+        "DR0",
+        "WAF",
+        "JEN",
+        "M7U",
+        "NBG6",
+        "BKHT",
+        "HOT",
+        "NF4",
+        "NDX1",
+        "NDA",
+        "MED",
+        "BAYN"
       ],
       "weights": {
-        "YDX": 0.05,
-        "2IS": 0.05,
-        "CSF": 0.05,
-        "ENXB": 0.05,
-        "AEU": 0.05,
-        "AEX": 0.05,
-        "UNC": 0.05,
-        "FMNB": 0.05,
-        "LRC": 0.05,
-        "KDB": 0.05,
-        "IDA": 0.05,
-        "CSA": 0.05,
-        "UCM": 0.05,
-        "RTO1": 0.05,
-        "ME9": 0.05,
-        "DSN": 0.05,
-        "LGI": 0.05,
-        "48CA": 0.05,
+        "SNG": 0.05,
         "VBK": 0.05,
-        "EF3": 0.05
+        "OHB": 0.05,
+        "AIXA": 0.05,
+        "SMHN": 0.05,
+        "SZG": 0.05,
+        "S92": 0.05,
+        "TKA": 0.05,
+        "DR0": 0.05,
+        "WAF": 0.05,
+        "JEN": 0.05,
+        "M7U": 0.05,
+        "NBG6": 0.05,
+        "BKHT": 0.05,
+        "HOT": 0.05,
+        "NF4": 0.05,
+        "NDX1": 0.05,
+        "NDA": 0.05,
+        "MED": 0.05,
+        "BAYN": 0.05
       },
-      "return_pct": 0.07,
-      "config_version": "v2-2026-08-25"
+      "return_pct": null,
+      "config_version": "v3-2026-08-26-de-only"
     }
   ],
   "pending_signal": null,
-  "config_version": "v2-2026-08-25",
+  "config_version": "v3-2026-08-26-de-only",
   "is_live": true,
   "not_live_reason": null
 }
