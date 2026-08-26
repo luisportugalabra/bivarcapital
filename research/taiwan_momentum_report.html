@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taiwan Momentum — Strategy Report — Bivar Capital</title>
 <meta property="og:title" content="Taiwan Momentum — Strategy Report — Bivar Capital">
-<meta property="og:description" content="TWSE momentum backtest: data-quality cleanup, phased parameter optimization, and the final config. CAGR +18.3%, Sharpe 0.59, MaxDD -38.1%.">
+<meta property="og:description" content="TWSE momentum backtest: data-quality cleanup, phased parameter optimization, and the final config. CAGR +18.4%, Sharpe 0.60, MaxDD -38.1%.">
 <meta property="og:image" content="https://bivarcapital.com/og-image.png">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://bivarcapital.com/research/taiwan_momentum_report.html">
@@ -40,10 +40,10 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <div class="divider"></div>
 <h2>I. Headline Result</h2>
 <div class="grid6">
-<div class="stat"><div class="v pos">+18.3%</div><div class="l">CAGR</div></div>
-<div class="stat"><div class="v pos">0.59</div><div class="l">Sharpe</div></div>
-<div class="stat"><div class="v">1.06</div><div class="l">Sortino</div></div>
-<div class="stat"><div class="v neg">&minus;38.1%</div><div class="l">Max Drawdown</div></div>
+<div class="stat"><div class="v pos">+18.4%</div><div class="l">CAGR</div></div>
+<div class="stat"><div class="v pos">0.60</div><div class="l">Sharpe</div></div>
+<div class="stat"><div class="v">1.08</div><div class="l">Sortino</div></div>
+<div class="stat"><div class="v neg">&minus;37.8%</div><div class="l">Max Drawdown</div></div>
 <div class="stat"><div class="v">319</div><div class="l">Months</div></div>
 <div class="stat"><div class="v">2000&ndash;2026</div><div class="l">Period</div></div>
 </div>
@@ -85,7 +85,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>MA window</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
 <tbody>
-<tr class="hl-row"><td>MA75 (final config)</td><td>0.59</td><td>1.06</td><td class="pos">+18.3%</td><td class="neg">&minus;38.1%</td></tr>
+<tr class="hl-row"><td>MA75 (final config)</td><td>0.60</td><td>1.08</td><td class="pos">+18.4%</td><td class="neg">&minus;37.8%</td></tr>
 <tr><td>MA50</td><td>0.53</td><td>0.93</td><td class="pos">+16.4%</td><td class="neg">&minus;50.5%</td></tr>
 <tr><td>MA100</td><td>0.44</td><td>0.75</td><td class="pos">+14.4%</td><td class="neg">&minus;42.9%</td></tr>
 <tr><td>MA200</td><td>0.24</td><td>0.39</td><td class="pos">+9.4%</td><td class="neg">&minus;47.7%</td></tr>
@@ -100,7 +100,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>Filter</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
 <tbody>
-<tr class="hl-row"><td>None (final config)</td><td>0.59</td><td>1.06</td><td class="pos">+18.3%</td><td class="neg">&minus;38.1%</td></tr>
+<tr class="hl-row"><td>None (final config)</td><td>0.60</td><td>1.08</td><td class="pos">+18.4%</td><td class="neg">&minus;37.8%</td></tr>
 <tr><td>GrossProfit(TTM)&gt;0</td><td>0.55</td><td>0.99</td><td class="pos">+16.1%</td><td class="neg">&minus;38.1%</td></tr>
 <tr><td>NetIncome(TTM)&gt;0</td><td>0.54</td><td>0.98</td><td class="pos">+16.0%</td><td class="neg">&minus;39.9%</td></tr>
 <tr><td>ROE&gt;0</td><td>0.53</td><td>1.02</td><td class="pos">+17.9%</td><td class="neg">&minus;42.0%</td></tr>
@@ -121,7 +121,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <h2>VII. Data Audit (2026-08-26): Weekend Ghosts, Delistings, Signal Lag</h2>
 <p>Three targeted data checks were run after publication, mirroring the Germany audit battery:</p>
 <ul class="steps">
-<li><strong>Weekend-calendar contamination &mdash; found, fixed, immaterial.</strong> The raw TW panel carries 1,245 weekend "ghost" dates (avg 105 tickers covered vs 554 on weekdays) which alter 9,057 end-of-month signal-price cells (median 1.5%, p95 100%). Root cause connection: the "single-day snapshot spikes" of Section&nbsp;II fall on <em>Saturdays</em> (2000-05-06, 05-20, 06-03, 06-17) &mdash; the despike was treating the symptom of this same phenomenon, which is why fixing the root cause barely moves the headline: CAGR 18.25%&rarr;18.36%, Sharpe 0.589&rarr;0.595. The weekend filter is now in the locked engine; published numbers (kept) are the marginally conservative ones.</li>
+<li><strong>Weekend-calendar contamination &mdash; found, fixed, immaterial.</strong> The raw TW panel carries 1,245 weekend "ghost" dates (avg 105 tickers covered vs 554 on weekdays) which alter 9,057 end-of-month signal-price cells (median 1.5%, p95 100%). Root cause connection: the "single-day snapshot spikes" of Section&nbsp;II fall on <em>Saturdays</em> (2000-05-06, 05-20, 06-03, 06-17) &mdash; the despike was treating the symptom of this same phenomenon, which is why fixing the root cause barely moves the headline: CAGR 18.25%&rarr;18.36%, Sharpe 0.589&rarr;0.595. The weekend filter is now in the locked engine and the headline numbers above ARE the clean rerun (CAGR +18.36%, Sharpe 0.595, MaxDD &minus;37.8%); the pre-fix figures were 18.25%/0.589/&minus;38.1%.</li>
 <li><strong>Survivorship &mdash; structural, worse than Germany.</strong> Of 1,205 price histories, only 103 end before the present, <strong>none before 2016</strong>. The 2000&ndash;2015 sample is survivors-only by construction (same EODHD pattern found on XETRA, where deaths start in 2015). The trustworthy window for Taiwan starts around 2017; pre-2016 results should be presumed inflated by an unquantifiable amount. The 103 recorded deaths are all consistently flagged (<code>is_delisted</code> 103/103), and 69 "invisible" names (price data but no fundamentals, hence never eligible) are 90% delisted.</li>
 <li><strong>Signal lag (T/T-1) &mdash; clean.</strong> Signal at month-end close, execution at the next real ^TWII trading day, regime read at signal date &mdash; verified by inspection and stress: +1 extra execution day costs 1.7pp (16.51%/0.534 &mdash; Taiwan is more timing-sensitive than Germany), and a 1-month-stale signal decays gradually to 12.35%/0.369, the signature of genuine slow momentum rather than lookahead.</li>
 </ul>
