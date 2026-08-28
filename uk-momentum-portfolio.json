@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-27 04:27 UTC",
-  "ytd_2026": -32.61,
+  "updated": "2026-08-28 06:51 UTC",
+  "ytd_2026": -32.43,
   "holdings": [
     {
       "ticker": "CMCX",
@@ -9,8 +9,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 667.0,
-      "current_price": 713.0,
-      "return_pct": 6.9
+      "current_price": 726.0,
+      "return_pct": 8.85
     },
     {
       "ticker": "AOTI",
@@ -18,8 +18,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 100.0,
-      "current_price": 142.5,
-      "return_pct": 42.5
+      "current_price": 142.0,
+      "return_pct": 42.0
     },
     {
       "ticker": "IOF",
@@ -27,8 +27,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 56.5,
-      "current_price": 52.0,
-      "return_pct": -7.96
+      "current_price": 51.5,
+      "return_pct": -8.85
     },
     {
       "ticker": "FERG",
@@ -45,8 +45,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 657.0,
-      "current_price": 575.5,
-      "return_pct": -12.4
+      "current_price": 584.5,
+      "return_pct": -11.04
     },
     {
       "ticker": "ENQ",
@@ -54,8 +54,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 23.9,
-      "current_price": 24.6,
-      "return_pct": 2.93
+      "current_price": 24.8,
+      "return_pct": 3.77
     },
     {
       "ticker": "GHH",
@@ -63,8 +63,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 1220.0,
-      "current_price": 1215.0,
-      "return_pct": -0.41
+      "current_price": 1205.0,
+      "return_pct": -1.23
     }
   ],
   "monthly_breakdown": [
@@ -208,7 +208,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-27",
+      "end": "2026-08-28",
       "regime": "momentum",
       "tickers": [
         "CMCX",
@@ -219,12 +219,12 @@
         "ENQ",
         "GHH"
       ],
-      "return_pct": 4.51
+      "return_pct": 4.79
     }
   ],
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
-  "ftse100": 10878.1,
-  "ftse100_ma200": 10322.35,
+  "ftse100": 10792.5,
+  "ftse100_ma200": 10326.81,
   "regime": "risk-on"
 }
