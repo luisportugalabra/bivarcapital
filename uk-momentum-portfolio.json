@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-08-28 06:51 UTC",
-  "ytd_2026": -32.43,
+  "updated": "2026-08-29 04:06 UTC",
+  "ytd_2026": -32.84,
   "holdings": [
     {
       "ticker": "CMCX",
@@ -9,8 +9,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 667.0,
-      "current_price": 726.0,
-      "return_pct": 8.85
+      "current_price": 732.0,
+      "return_pct": 9.75
     },
     {
       "ticker": "AOTI",
@@ -18,8 +18,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 100.0,
-      "current_price": 142.0,
-      "return_pct": 42.0
+      "current_price": 135.0,
+      "return_pct": 35.0
     },
     {
       "ticker": "IOF",
@@ -27,8 +27,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 56.5,
-      "current_price": 51.5,
-      "return_pct": -8.85
+      "current_price": 52.0,
+      "return_pct": -7.96
     },
     {
       "ticker": "FERG",
@@ -45,8 +45,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 657.0,
-      "current_price": 584.5,
-      "return_pct": -11.04
+      "current_price": 577.0,
+      "return_pct": -12.18
     },
     {
       "ticker": "ENQ",
@@ -54,8 +54,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 23.9,
-      "current_price": 24.8,
-      "return_pct": 3.77
+      "current_price": 25.1,
+      "return_pct": 5.23
     },
     {
       "ticker": "GHH",
@@ -63,8 +63,8 @@
       "sector": "",
       "entry_date": "2026-07-31",
       "entry_price": 1220.0,
-      "current_price": 1205.0,
-      "return_pct": -1.23
+      "current_price": 1210.0,
+      "return_pct": -0.82
     }
   ],
   "monthly_breakdown": [
@@ -208,7 +208,7 @@
       "month": "Aug 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-08-28",
+      "end": "2026-08-29",
       "regime": "momentum",
       "tickers": [
         "CMCX",
@@ -219,7 +219,7 @@
         "ENQ",
         "GHH"
       ],
-      "return_pct": 4.79
+      "return_pct": 4.15
     }
   ],
   "currency": "GBX",
