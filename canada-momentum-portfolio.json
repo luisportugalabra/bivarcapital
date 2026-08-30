@@ -1,11 +1,11 @@
 {
   "last_rebalance": "2026-08-04",
-  "updated": "2026-08-29",
+  "updated": "2026-08-30",
   "ytd_2026": -6.53,
   "regime": "momentum",
   "currency": "CAD",
-  "tsx": 36834.3,
-  "tsx_ma75": 35293.0,
+  "tsx": 36553.9,
+  "tsx_ma75": 35323.2,
   "holdings": [
     {
       "ticker": "ARG",
@@ -867,7 +867,7 @@
         "MSA": 0.1,
         "TNZ": 0.1
       },
-      "return_pct": 7.32,
+      "return_pct": 7.37,
       "config_version": "v3-netincome-2026-08-21"
     }
   ],

@@ -1,11 +1,11 @@
 {
   "last_rebalance": "2026-08-25",
-  "updated": "2026-08-29",
+  "updated": "2026-08-30",
   "ytd_2026": null,
   "regime": "momentum",
   "currency": "EUR",
-  "dax": 26367.2,
-  "dax_ma200": 24598.6,
+  "dax": 26570.0,
+  "dax_ma200": 24611.0,
   "holdings": [
     {
       "ticker": "SNG",
