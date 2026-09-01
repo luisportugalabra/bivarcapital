@@ -1,9 +1,9 @@
 {
-  "date": "2026-08-30",
+  "date": "2026-09-01",
   "regime": "momentum",
   "ftse100": 10824.3,
   "ftse100_ma200": 10331.4,
-  "total_eligible": 394,
+  "total_eligible": 391,
   "portfolio": [
     {
       "rank": 1,
@@ -581,19 +581,6 @@
     },
     {
       "rank": 38,
-      "ticker": "AVG",
-      "name": "Avingtrans plc",
-      "sector": "Producer Manufacturing",
-      "price": 735.0,
-      "ret_6m": 31.2,
-      "ret_9m": 46.4,
-      "composite": 38.8,
-      "mcap_b": 0.27,
-      "ebit_m": 9.0,
-      "selected": false
-    },
-    {
-      "rank": 39,
       "ticker": "BYIT",
       "name": "Bytes Technology Group Plc",
       "sector": "Technology Services",
@@ -606,7 +593,7 @@
       "selected": false
     },
     {
-      "rank": 40,
+      "rank": 39,
       "ticker": "MSI",
       "name": "MS International PLC",
       "sector": "Electronic Technology",
@@ -616,6 +603,19 @@
       "composite": 38.7,
       "mcap_b": 0.28,
       "ebit_m": 15.0,
+      "selected": false
+    },
+    {
+      "rank": 40,
+      "ticker": "CNE",
+      "name": "Capricorn Energy PLC",
+      "sector": "Energy Minerals",
+      "price": 343.0,
+      "ret_6m": 31.1,
+      "ret_9m": 46.3,
+      "composite": 38.7,
+      "mcap_b": 0.24,
+      "ebit_m": 12.0,
       "selected": false
     }
   ]

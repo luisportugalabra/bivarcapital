@@ -1,6 +1,6 @@
 {
-  "last_rebalance": "2026-08-03",
-  "updated": "2026-08-30 01:12 UTC",
+  "last_rebalance": "2026-09-01",
+  "updated": "2026-09-01 01:46 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1484.98,
-      "return_pct": 439.52
+      "current_price": 1566.7,
+      "return_pct": 469.21
     },
     {
       "ticker": "MU",
@@ -17,17 +17,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 932.86,
-      "return_pct": 72.07
-    },
-    {
-      "ticker": "WDC",
-      "name": "Western Digital Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-01-02",
-      "entry_price": 187.56,
-      "current_price": 459.45,
-      "return_pct": 144.96
+      "current_price": 958.73,
+      "return_pct": 76.85
     },
     {
       "ticker": "LITE",
@@ -35,17 +26,17 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 895.0,
-      "return_pct": 131.8
+      "current_price": 914.76,
+      "return_pct": 136.92
     },
     {
-      "ticker": "BE",
-      "name": "Bloom Energy Corporation",
+      "ticker": "WDC",
+      "name": "Western Digital Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-03-02",
-      "entry_price": 166.0,
-      "current_price": 210.77,
-      "return_pct": 26.97
+      "entry_date": "2026-01-02",
+      "entry_price": 187.56,
+      "current_price": 450.55,
+      "return_pct": 140.22
     },
     {
       "ticker": "STX",
@@ -53,21 +44,30 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-04-01",
       "entry_price": 422.82,
-      "current_price": 829.76,
-      "return_pct": 96.24
+      "current_price": 828.38,
+      "return_pct": 95.92
     },
     {
-      "ticker": "VSAT",
-      "name": "ViaSat, Inc.",
+      "ticker": "DELL",
+      "name": "Dell Technologies Inc.",
       "sector": "Electronic Technology",
-      "entry_date": "2026-08-03",
-      "entry_price": 81.29,
-      "current_price": 67.37,
-      "return_pct": -17.12
+      "entry_date": "2026-09-01",
+      "entry_price": 456.01,
+      "current_price": 456.01,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology, Inc.",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-09-01",
+      "entry_price": 211.66,
+      "current_price": 211.66,
+      "return_pct": 0.0
     }
   ],
   "pending_signal": null,
-  "ytd_2026": 191.07,
+  "ytd_2026": 194.47,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -182,10 +182,10 @@
       "return_pct": -25.03
     },
     {
-      "month": "Aug 2026 (MTD)",
-      "is_current": true,
+      "month": "Aug 2026",
+      "is_current": false,
       "start": "2026-07-31",
-      "end": "2026-08-30",
+      "end": "2026-08-31",
       "tickers": [
         "SNDK",
         "MU",
@@ -195,7 +195,23 @@
         "STX",
         "VSAT"
       ],
-      "return_pct": 4.6
+      "return_pct": 5.82
+    },
+    {
+      "month": "Sep 2026 (MTD)",
+      "is_current": true,
+      "start": "2026-08-31",
+      "end": "2026-09-01",
+      "tickers": [
+        "SNDK",
+        "MU",
+        "LITE",
+        "WDC",
+        "STX",
+        "DELL",
+        "MRVL"
+      ],
+      "return_pct": 0.0
     }
   ]
 }

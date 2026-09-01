@@ -102,5 +102,18 @@
       "STX",
       "VSAT"
     ]
+  },
+  {
+    "start": "2026-08-31",
+    "end": "2026-09-30",
+    "tickers": [
+      "SNDK",
+      "MU",
+      "LITE",
+      "WDC",
+      "STX",
+      "DELL",
+      "MRVL"
+    ]
   }
 ]

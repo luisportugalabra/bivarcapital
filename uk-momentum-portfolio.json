@@ -1,70 +1,70 @@
 {
-  "last_rebalance": "2026-07-31",
-  "updated": "2026-08-30 01:12 UTC",
+  "last_rebalance": "2026-08-30",
+  "updated": "2026-09-01 01:46 UTC",
   "ytd_2026": -32.84,
   "holdings": [
     {
+      "ticker": "SML",
+      "name": "Strategic Minerals PLC",
+      "sector": "Non-Energy Minerals",
+      "entry_date": "2026-09-01",
+      "entry_price": 5.4,
+      "current_price": 5.4,
+      "return_pct": 0.0
+    },
+    {
       "ticker": "CMCX",
       "name": "CMC Markets Plc",
-      "sector": "",
+      "sector": "Finance",
       "entry_date": "2026-07-31",
       "entry_price": 667.0,
       "current_price": 732.0,
       "return_pct": 9.75
     },
     {
-      "ticker": "AOTI",
-      "name": "AO World Plc",
-      "sector": "",
-      "entry_date": "2026-07-31",
-      "entry_price": 100.0,
-      "current_price": 135.0,
-      "return_pct": 35.0
-    },
-    {
-      "ticker": "IOF",
-      "name": "Iofina PLC",
-      "sector": "",
-      "entry_date": "2026-07-31",
-      "entry_price": 56.5,
-      "current_price": 52.0,
-      "return_pct": -7.96
-    },
-    {
-      "ticker": "FERG",
-      "name": "Ferguson Enterprises",
-      "sector": "",
-      "entry_date": "2026-07-31",
-      "entry_price": 234.33,
-      "current_price": null,
+      "ticker": "SFOR",
+      "name": "S4 Capital plc",
+      "sector": "Commercial Services",
+      "entry_date": "2026-09-01",
+      "entry_price": 49.5,
+      "current_price": 49.5,
       "return_pct": 0.0
     },
     {
-      "ticker": "RPI",
-      "name": "Regional REIT",
-      "sector": "",
-      "entry_date": "2026-07-31",
-      "entry_price": 657.0,
-      "current_price": 577.0,
-      "return_pct": -12.18
+      "ticker": "DIA",
+      "name": "Dialight plc",
+      "sector": "Producer Manufacturing",
+      "entry_date": "2026-09-01",
+      "entry_price": 554.0,
+      "current_price": 554.0,
+      "return_pct": 0.0
     },
     {
-      "ticker": "ENQ",
-      "name": "EnQuest PLC",
-      "sector": "",
-      "entry_date": "2026-07-31",
-      "entry_price": 23.9,
-      "current_price": 25.1,
-      "return_pct": 5.23
+      "ticker": "TLW",
+      "name": "Tullow Oil plc",
+      "sector": "Energy Minerals",
+      "entry_date": "2026-09-01",
+      "entry_price": 20.5,
+      "current_price": 20.5,
+      "return_pct": 0.0
     },
     {
-      "ticker": "GHH",
-      "name": "Gooch & Housego PLC",
-      "sector": "",
-      "entry_date": "2026-07-31",
-      "entry_price": 1220.0,
-      "current_price": 1210.0,
-      "return_pct": -0.82
+      "ticker": "CCC",
+      "name": "Computacenter Plc",
+      "sector": "Technology Services",
+      "entry_date": "2026-09-01",
+      "entry_price": 5670.0,
+      "current_price": 5670.0,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "HFD",
+      "name": "Halfords Group Plc",
+      "sector": "Retail Trade",
+      "entry_date": "2026-09-01",
+      "entry_price": 273.5,
+      "current_price": 273.5,
+      "return_pct": 0.0
     }
   ],
   "monthly_breakdown": [
@@ -205,8 +205,8 @@
       "return_pct": -14.08
     },
     {
-      "month": "Aug 2026 (MTD)",
-      "is_current": true,
+      "month": "Aug 2026",
+      "is_current": false,
       "start": "2026-07-31",
       "end": "2026-08-30",
       "regime": "momentum",
@@ -219,12 +219,30 @@
         "ENQ",
         "GHH"
       ],
-      "return_pct": 4.15
+      "return_pct": 4.14
+    },
+    {
+      "month": "Sep 2026 (MTD)",
+      "is_current": true,
+      "start": "2026-08-30",
+      "end": "2026-09-01",
+      "regime": "momentum",
+      "tickers": [
+        "SML",
+        "CMCX",
+        "SFOR",
+        "DIA",
+        "TLW",
+        "CCC",
+        "HFD"
+      ],
+      "return_pct": 1.39
     }
   ],
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
   "ftse100": 10824.3,
   "ftse100_ma200": 10331.38,
-  "regime": "risk-on"
+  "regime": "risk-on",
+  "pending_signal": null
 }
