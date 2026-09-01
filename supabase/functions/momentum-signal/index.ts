@@ -33,8 +33,12 @@ serve(async (req) => {
     }
     if (!BOT_TOKEN) throw new Error("TELEGRAM_BOT_TOKEN secret is not set");
 
-    // force=1 re-sends this month's signal even if it was already sent
-    const force = new URL(req.url).searchParams.get("force") === "1";
+    const url = new URL(req.url);
+    // force=1 re-sends a month already marked as sent.
+    // test=1 renders the message and sends it only to ADMIN_CHAT, without
+    // touching the monthly state — a dry run that never reaches subscribers.
+    const force = url.searchParams.get("force") === "1";
+    const test = url.searchParams.get("test") === "1";
     const currentPeriod = new Date().toISOString().slice(0, 7); // "2026-09"
 
     // The site renders momentum-portfolio.json — the holdings actually bought
@@ -52,7 +56,7 @@ serve(async (req) => {
       data = await fetchJson("momentum-data.json");
     }
 
-    if (portfolio.last_rebalance?.slice(0, 7) !== currentPeriod) {
+    if (portfolio.last_rebalance?.slice(0, 7) !== currentPeriod && !test) {
       console.log(
         `USA: no rebalance for ${currentPeriod} yet ` +
           `(last_rebalance=${portfolio.last_rebalance}) — not sending`
@@ -84,17 +88,19 @@ serve(async (req) => {
 
     const alreadySent = (prevRow?.month || null) === currentPeriod;
 
-    const { error: upsertErr } = await sb.from("momentum_signal_state").upsert({
-      id: STATE_ID,
-      month: currentPeriod,
-      date,
-      regime,
-      portfolio: JSON.stringify(holdings.map((h: any) => h.ticker)),
-      updated: new Date().toISOString(),
-    });
+    const { error: upsertErr } = test
+      ? { error: null }
+      : await sb.from("momentum_signal_state").upsert({
+          id: STATE_ID,
+          month: currentPeriod,
+          date,
+          regime,
+          portfolio: JSON.stringify(holdings.map((h: any) => h.ticker)),
+          updated: new Date().toISOString(),
+        });
     if (upsertErr) throw new Error(`state upsert failed: ${upsertErr.message}`);
 
-    if (alreadySent && !force) {
+    if (alreadySent && !force && !test) {
       console.log("USA: already sent this month — skipping Telegram");
       return new Response(
         JSON.stringify({ regime, skipped: true, reason: "already_sent", month: currentPeriod }),
@@ -102,17 +108,23 @@ serve(async (req) => {
       );
     }
 
-    const { data: subscribers } = await sb
-      .from("telegram_subscribers")
-      .select("chat_id")
-      .eq("status", "approved");
+    let chatIds: number[];
+    if (test) {
+      chatIds = [ADMIN_CHAT];
+    } else {
+      const { data: subscribers } = await sb
+        .from("telegram_subscribers")
+        .select("chat_id")
+        .eq("status", "approved");
+      chatIds = subscribers?.map((s: any) => s.chat_id) || [];
+    }
+    console.log(`USA: sending to ${chatIds.length} chat(s)${test ? " [TEST]" : ""}`);
 
-    const chatIds = subscribers?.map((s: any) => s.chat_id) || [];
-    console.log(`USA: sending to ${chatIds.length} subscribers`);
-
+    const banner = test ? "🧪 <b>TEST — not sent to subscribers</b>\n\n" : "";
     let msg: string;
     if (regime === "cash") {
       msg =
+        banner +
         `🛡 <b>USA MOMENTUM — DEFENSIVE</b>\n\n` +
         `S&P 500 ($${sp500?.toLocaleString("en-US")}) is <b>below</b> MA250 ($${ma250?.toLocaleString("en-US")})\n\n` +
         `<b>Action: Sell all stocks → Move to cash (100%)</b>\n\n` +
@@ -136,6 +148,7 @@ serve(async (req) => {
 
       const weight = (100 / holdings.length).toFixed(1);
       msg =
+        banner +
         `📈 <b>USA MOMENTUM — BUY STOCKS</b>\n\n` +
         `S&P 500 ($${sp500?.toLocaleString("en-US")}) is <b>above</b> MA250 ($${ma250?.toLocaleString("en-US")})\n\n` +
         `<b>Portfolio (equal weight ~${weight}% each):</b>\n\n` +
@@ -155,7 +168,7 @@ serve(async (req) => {
     }
 
     return new Response(
-      JSON.stringify({ regime, date, sent: chatIds.length, forced: force }),
+      JSON.stringify({ regime, date, sent: chatIds.length, forced: force, test }),
       { headers: { "Content-Type": "application/json" } }
     );
   } catch (e) {
