@@ -96,3 +96,25 @@ jobs:
             git pull --rebase --autostash origin main
             git push
           fi
+
+      # Fires straight after the push so subscribers get the signal the same
+      # day, instead of waiting for a cron that may run before the data lands.
+      # Each function is a no-op unless its own monthly rebalance is in the
+      # freshly pushed files, so running this daily is safe.
+      - name: Trigger Telegram momentum signals (USA, Canada, Germany)
+        continue-on-error: true
+        env:
+          CRON_SECRET: ${{ secrets.SUPABASE_CRON_SECRET }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo "SUPABASE_CRON_SECRET not set — skipping Telegram trigger"
+            exit 0
+          fi
+          for fn in momentum-signal canada-momentum-signal germany-momentum-signal; do
+            echo "--- $fn"
+            curl -sS -X POST \
+              -H "Authorization: Bearer $CRON_SECRET" \
+              -w '\nHTTP %{http_code}\n' \
+              "https://efiyeiwdywodjxxnslvu.functions.supabase.co/$fn" \
+              || echo "  trigger failed (non-fatal)"
+          done
