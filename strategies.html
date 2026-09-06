@@ -225,6 +225,27 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
+    <div class="strategy-card" id="druckenmiller-13f-card">
+      <div class="card-header">
+        <div class="card-title">Beta &mdash; Druckenmiller 13F Tracker</div>
+        <span class="card-badge badge-beta">Beta</span>
+      </div>
+      <p id="druckenmiller-13f-blur" class="card-desc">Copies the Duquesne Family Office (Stanley Druckenmiller) long equity portfolio from its quarterly SEC 13F filing &mdash; value weighted, bought one trading day after each filing, held until the next one. No model, no ranking: pure replication with a 45-day reporting lag. Beta: in a 9-manager test on the identical pipeline Druckenmiller was the only one who beat the S&amp;P 500 &mdash; this is a bet on one person (key-man risk), and reported option positions (3&ndash;16% of filing value) are excluded.</p>
+      <div class="card-stats" id="druckenmiller-13f-stats">
+        <span class="card-stat">Sharpe: <span class="num">0.96</span></span>
+        <span class="card-stat">CAGR: <span class="num">+20.8%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-38.5%</span></span>
+        <span class="card-stat"><span class="num">2012&ndash;2026</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-druckenmiller-13f').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="druckenmiller-13f-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
+
     <div class="strategy-card" id="taiwan-momentum-card">
       <div class="card-header">
         <div class="card-title">Beta &mdash; Taiwan TWSE Momentum</div>
@@ -630,6 +651,29 @@ END CHINA MODAL -->
   </div>
 </div>
 
+<div class="modal-overlay" id="modal-druckenmiller-13f" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-druckenmiller-13f').classList.remove('open')">&times;</button>
+    <h3>How to follow the Druckenmiller 13F Tracker</h3>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 &mdash; Four times a year</div>
+      <p>Duquesne Family Office files its 13F with the SEC around <strong>Feb 14, May 15, Aug 14 and Nov 14</strong> (45 days after each quarter end). The portfolio on this site updates the same day; you buy at the <strong>next trading day&apos;s prices</strong>.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 &mdash; Copy the book</div>
+      <p>Buy the reported long equity positions at their <strong>reported value weights</strong>. With a small account, the top ~25 names (&gt;90% of the portfolio) are enough &mdash; the rebalance calculator on the signal page drops positions under 0.5%.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 &mdash; Hold until the next filing</div>
+      <p>No stops, no monthly maintenance. Hold the portfolio unchanged until the next 13F drops, then rotate into the new book the following trading day.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">What this is &mdash; and is not</div>
+      <p>Backtest 2012&ndash;2026 net of costs: <strong>+20.8% CAGR vs +14.7% for SPY</strong>, but with beta 1.17 and a &minus;38% drawdown in 2022. In the same test <strong>8 other famous managers all failed to beat the index</strong> &mdash; this works only as long as Druckenmiller keeps being the exception. If Duquesne winds down or he steps back, the strategy is over. Treat it as a satellite position, not a core allocation.</p>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="modal-indonesia-mom" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal-indonesia-mom').classList.remove('open')">&times;</button>
@@ -715,6 +759,7 @@ window.onUnlock = function(email) {
   document.getElementById('denmark-momentum-stats').style.userSelect = 'auto';
   document.getElementById('denmark-momentum-actions').innerHTML = '<a href="/denmark-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/denmark_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('germany-momentum-actions').innerHTML = '<a href="/germany-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_adversarial_audit.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Adversarial audit &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
+  document.getElementById('druckenmiller-13f-actions').innerHTML = '<a href="/druckenmiller-13f.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>';
   document.getElementById('taiwan-momentum-actions').innerHTML = '<a href="/research/taiwan_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('norway-momentum-blur').style.filter = 'none';
   document.getElementById('norway-momentum-blur').style.userSelect = 'auto';

@@ -1,0 +1,843 @@
+{
+ "last_rebalance": "2026-08-17",
+ "updated": "2026-09-06",
+ "ytd_2026": 20.3,
+ "report_date": "2026-06-30",
+ "filing_date": "2026-08-14",
+ "next_filing": "2026-11-16",
+ "currency": "USD",
+ "holdings": [
+  {
+   "ticker": "NTRA",
+   "name": "Natera Inc",
+   "entry_price": 314.18,
+   "current_price": 328.18,
+   "return_pct": 4.46,
+   "weight": 0.1986,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "TSM",
+   "name": "Taiwan Semiconductor Manufac",
+   "entry_price": 431.98,
+   "current_price": 428.91,
+   "return_pct": -0.71,
+   "weight": 0.0647,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "STM",
+   "name": "Stmicroelectronics N V",
+   "entry_price": 55.85,
+   "current_price": 52.24,
+   "return_pct": -6.46,
+   "weight": 0.0534,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "INSM",
+   "name": "Insmed Inc",
+   "entry_price": 128.32,
+   "current_price": 126.29,
+   "return_pct": -1.58,
+   "weight": 0.0349,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "YPF",
+   "name": "Ypf Sociedad Anonima",
+   "entry_price": 52.7,
+   "current_price": 52.62,
+   "return_pct": -0.15,
+   "weight": 0.0328,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "AMZN",
+   "name": "Amazon Com Inc",
+   "entry_price": 261.31,
+   "current_price": 258.51,
+   "return_pct": -1.07,
+   "weight": 0.0296,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "TBBB",
+   "name": "Bbb Foods Inc",
+   "entry_price": 48.45,
+   "current_price": 49.77,
+   "return_pct": 2.72,
+   "weight": 0.0278,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "GOOGL",
+   "name": "Alphabet Inc",
+   "entry_price": 344.21,
+   "current_price": 338.46,
+   "return_pct": -1.67,
+   "weight": 0.0276,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "EWZ",
+   "name": "Ishares Inc",
+   "entry_price": 34.29,
+   "current_price": 37.86,
+   "return_pct": 10.41,
+   "weight": 0.0272,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "STX",
+   "name": "Seagate Technology Hldngs Pl",
+   "entry_price": 995.5,
+   "current_price": 849.28,
+   "return_pct": -14.69,
+   "weight": 0.027,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "FOXA",
+   "name": "Fox Corp",
+   "entry_price": 69.19,
+   "current_price": 65.42,
+   "return_pct": -5.45,
+   "weight": 0.0264,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "UAL",
+   "name": "United Airls Hldgs Inc",
+   "entry_price": 122.26,
+   "current_price": 111.38,
+   "return_pct": -8.9,
+   "weight": 0.0248,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "SE",
+   "name": "Sea Ltd",
+   "entry_price": 119.45,
+   "current_price": 112.09,
+   "return_pct": -6.16,
+   "weight": 0.0242,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CDW",
+   "name": "Cdw Corp",
+   "entry_price": 136.1,
+   "current_price": 152.38,
+   "return_pct": 11.96,
+   "weight": 0.024,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "NAMS",
+   "name": "Newamsterdam Pharma Company",
+   "entry_price": 26.9,
+   "current_price": 25.4,
+   "return_pct": -5.58,
+   "weight": 0.0239,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "SNDK",
+   "name": "Sandisk Corp",
+   "entry_price": 1786.85,
+   "current_price": 1740.0,
+   "return_pct": -2.62,
+   "weight": 0.0182,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RVMD",
+   "name": "Revolution Medicines Inc",
+   "entry_price": 212.0,
+   "current_price": 210.02,
+   "return_pct": -0.93,
+   "weight": 0.0172,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "BTDR",
+   "name": "Bitdeer Technologies Group",
+   "entry_price": 9.39,
+   "current_price": 12.38,
+   "return_pct": 31.84,
+   "weight": 0.0149,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CRH",
+   "name": "Crh Plc",
+   "entry_price": 96.79,
+   "current_price": 94.26,
+   "return_pct": -2.61,
+   "weight": 0.0136,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "DAL",
+   "name": "Delta Air Lines Inc",
+   "entry_price": 88.04,
+   "current_price": 80.17,
+   "return_pct": -8.94,
+   "weight": 0.013,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "FLR",
+   "name": "Fluor Corp",
+   "entry_price": 54.74,
+   "current_price": 56.16,
+   "return_pct": 2.59,
+   "weight": 0.0118,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "DHI",
+   "name": "D R Horton Inc",
+   "entry_price": 148.78,
+   "current_price": 142.75,
+   "return_pct": -4.05,
+   "weight": 0.0112,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CPNG",
+   "name": "Coupang Inc",
+   "entry_price": 15.72,
+   "current_price": 15.29,
+   "return_pct": -2.74,
+   "weight": 0.0106,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "AMD",
+   "name": "Advanced Micro Devices Inc",
+   "entry_price": 506.0,
+   "current_price": 477.57,
+   "return_pct": -5.62,
+   "weight": 0.0097,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CLF",
+   "name": "Cleveland-Cliffs Inc New",
+   "entry_price": 12.31,
+   "current_price": 12.5,
+   "return_pct": 1.54,
+   "weight": 0.0091,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "PANW",
+   "name": "Palo Alto Networks Inc",
+   "entry_price": 375.76,
+   "current_price": 333.26,
+   "return_pct": -11.31,
+   "weight": 0.0091,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "HUT",
+   "name": "Hut 8 Corp",
+   "entry_price": 88.04,
+   "current_price": 93.54,
+   "return_pct": 6.25,
+   "weight": 0.0083,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CAI",
+   "name": "Caris Life Sciences Inc",
+   "entry_price": 21.63,
+   "current_price": 25.07,
+   "return_pct": 15.9,
+   "weight": 0.0078,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "ARGT",
+   "name": "Global X Fds",
+   "entry_price": 91.66,
+   "current_price": 96.41,
+   "return_pct": 5.18,
+   "weight": 0.0069,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "FOX",
+   "name": "Fox Corp",
+   "entry_price": 61.49,
+   "current_price": 58.42,
+   "return_pct": -4.99,
+   "weight": 0.0068,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "WWD",
+   "name": "Woodward Inc",
+   "entry_price": 370.73,
+   "current_price": 346.22,
+   "return_pct": -6.61,
+   "weight": 0.0066,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "NUVB",
+   "name": "Nuvation Bio Inc",
+   "entry_price": 6.48,
+   "current_price": 6.81,
+   "return_pct": 5.09,
+   "weight": 0.0059,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "PTGX",
+   "name": "Protagonist Therapeutics Inc",
+   "entry_price": 158.62,
+   "current_price": 145.72,
+   "return_pct": -8.13,
+   "weight": 0.0059,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "ROKU",
+   "name": "Roku Inc",
+   "entry_price": 158.31,
+   "current_price": 155.59,
+   "return_pct": -1.72,
+   "weight": 0.0058,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CVCO",
+   "name": "Cavco Inds Inc Del",
+   "entry_price": 599.98,
+   "current_price": 566.19,
+   "return_pct": -5.63,
+   "weight": 0.0056,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "ADMA",
+   "name": "Adma Biologics Inc",
+   "entry_price": 9.34,
+   "current_price": 9.62,
+   "return_pct": 3.0,
+   "weight": 0.0054,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "PURR",
+   "name": "Hyperliquid Strategies Inc",
+   "entry_price": 7.15,
+   "current_price": 12.18,
+   "return_pct": 70.35,
+   "weight": 0.0053,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RMBS",
+   "name": "Rambus Inc Del",
+   "entry_price": 100.61,
+   "current_price": 85.46,
+   "return_pct": -15.06,
+   "weight": 0.0053,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RYTM",
+   "name": "Rhythm Pharmaceuticals Inc",
+   "entry_price": 115.44,
+   "current_price": 102.74,
+   "return_pct": -11.0,
+   "weight": 0.0052,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "SKY",
+   "name": "Champion Homes Inc",
+   "entry_price": 93.21,
+   "current_price": 87.76,
+   "return_pct": -5.85,
+   "weight": 0.0051,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "DAKT",
+   "name": "Daktronics Inc",
+   "entry_price": 19.94,
+   "current_price": 19.35,
+   "return_pct": -2.96,
+   "weight": 0.005,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "PCT",
+   "name": "Purecycle Technologies Inc",
+   "entry_price": 7.22,
+   "current_price": 6.39,
+   "return_pct": -11.5,
+   "weight": 0.005,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "ENTG",
+   "name": "Entegris Inc",
+   "entry_price": 163.23,
+   "current_price": 138.74,
+   "return_pct": -15.0,
+   "weight": 0.0049,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "LIN",
+   "name": "Linde Plc",
+   "entry_price": 475.83,
+   "current_price": 477.57,
+   "return_pct": 0.37,
+   "weight": 0.0049,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "SCCO",
+   "name": "Southern Copper Corp",
+   "entry_price": 195.42,
+   "current_price": 198.76,
+   "return_pct": 1.71,
+   "weight": 0.0049,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "TEVA",
+   "name": "Teva Pharmaceutical Inds Ltd",
+   "entry_price": 36.46,
+   "current_price": 36.36,
+   "return_pct": -0.27,
+   "weight": 0.0049,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "AEVA",
+   "name": "Aeva Technologies Inc",
+   "entry_price": 23.75,
+   "current_price": 15.69,
+   "return_pct": -33.94,
+   "weight": 0.0048,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "U",
+   "name": "Unity Software Inc",
+   "entry_price": 45.45,
+   "current_price": 41.66,
+   "return_pct": -8.34,
+   "weight": 0.0048,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "Q",
+   "name": "Qnity Electronics Inc",
+   "entry_price": 140.83,
+   "current_price": 120.47,
+   "return_pct": -14.46,
+   "weight": 0.0047,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RIOT",
+   "name": "Riot Platforms Inc",
+   "entry_price": 20.04,
+   "current_price": 21.8,
+   "return_pct": 8.78,
+   "weight": 0.0047,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "EQIX",
+   "name": "Equinix Inc",
+   "entry_price": 1103.04,
+   "current_price": 1035.98,
+   "return_pct": -6.08,
+   "weight": 0.0044,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "LRCX",
+   "name": "Lam Research Corp",
+   "entry_price": 344.08,
+   "current_price": 307.65,
+   "return_pct": -10.59,
+   "weight": 0.0043,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "DFTX",
+   "name": "Definium Therapeutics Inc",
+   "entry_price": 45.26,
+   "current_price": 38.09,
+   "return_pct": -15.84,
+   "weight": 0.0039,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "BLTE",
+   "name": "Belite Bio Inc Sponsored",
+   "entry_price": 163.21,
+   "current_price": 193.61,
+   "return_pct": 18.63,
+   "weight": 0.0038,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RSP",
+   "name": "Invesco Exchange Traded Fd T",
+   "entry_price": 221.65,
+   "current_price": 219.0,
+   "return_pct": -1.2,
+   "weight": 0.0036,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "TXG",
+   "name": "10X Genomics Inc",
+   "entry_price": 57.99,
+   "current_price": 62.65,
+   "return_pct": 8.04,
+   "weight": 0.0035,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "WAB",
+   "name": "Wabtec",
+   "entry_price": 301.02,
+   "current_price": 282.86,
+   "return_pct": -6.03,
+   "weight": 0.0035,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "LLY",
+   "name": "Eli Lilly & Co",
+   "entry_price": 1186.9,
+   "current_price": 1149.36,
+   "return_pct": -3.16,
+   "weight": 0.0034,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "XENE",
+   "name": "Xenon Pharmaceuticals Inc",
+   "entry_price": 62.36,
+   "current_price": 59.75,
+   "return_pct": -4.19,
+   "weight": 0.0033,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "OLMA",
+   "name": "Olema Pharmaceuticals Inc",
+   "entry_price": 10.77,
+   "current_price": 10.75,
+   "return_pct": -0.19,
+   "weight": 0.0028,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RGEN",
+   "name": "Repligen Corp",
+   "entry_price": 169.04,
+   "current_price": 167.6,
+   "return_pct": -0.85,
+   "weight": 0.0024,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RKT",
+   "name": "Rocket Cos Inc",
+   "entry_price": 14.5,
+   "current_price": 14.06,
+   "return_pct": -3.03,
+   "weight": 0.0024,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "ARM",
+   "name": "Arm Holdings Plc",
+   "entry_price": 271.43,
+   "current_price": 252.09,
+   "return_pct": -7.13,
+   "weight": 0.0023,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "BIDU",
+   "name": "Baidu Inc",
+   "entry_price": 104.12,
+   "current_price": 99.47,
+   "return_pct": -4.47,
+   "weight": 0.0023,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CVNA",
+   "name": "Carvana Co",
+   "entry_price": 70.09,
+   "current_price": 74.59,
+   "return_pct": 6.42,
+   "weight": 0.0023,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RDDT",
+   "name": "Reddit Inc",
+   "entry_price": 164.5,
+   "current_price": 154.46,
+   "return_pct": -6.1,
+   "weight": 0.0023,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "AA",
+   "name": "Alcoa Corp",
+   "entry_price": 51.89,
+   "current_price": 49.97,
+   "return_pct": -3.7,
+   "weight": 0.0022,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "DHR",
+   "name": "Danaher Corp Del",
+   "entry_price": 203.05,
+   "current_price": 207.66,
+   "return_pct": 2.27,
+   "weight": 0.0022,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "TMO",
+   "name": "Thermo Fisher Scientific Inc",
+   "entry_price": 586.1,
+   "current_price": 613.78,
+   "return_pct": 4.72,
+   "weight": 0.0022,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "FFIV",
+   "name": "F5 Inc",
+   "entry_price": 395.54,
+   "current_price": 390.47,
+   "return_pct": -1.28,
+   "weight": 0.0021,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "VIST",
+   "name": "Vista Energy S.A.B. De C.V.",
+   "entry_price": 72.16,
+   "current_price": 73.73,
+   "return_pct": 2.18,
+   "weight": 0.002,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "JBS",
+   "name": "Jbs N.V.",
+   "entry_price": 14.52,
+   "current_price": 13.03,
+   "return_pct": -10.26,
+   "weight": 0.0018,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "SKE",
+   "name": "Skeena Res Ltd New",
+   "entry_price": 32.15,
+   "current_price": 33.09,
+   "return_pct": 2.92,
+   "weight": 0.0018,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "GLUE",
+   "name": "Monte Rosa Therapeutics Inc",
+   "entry_price": 15.38,
+   "current_price": 13.84,
+   "return_pct": -10.01,
+   "weight": 0.0017,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "RLAY",
+   "name": "Relay Therapeutics Inc",
+   "entry_price": 20.67,
+   "current_price": 19.04,
+   "return_pct": -7.89,
+   "weight": 0.0015,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "CCC",
+   "name": "Ccc Intelligent Solutions Hl",
+   "entry_price": 6.69,
+   "current_price": 7.51,
+   "return_pct": 12.26,
+   "weight": 0.0014,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "DBVT",
+   "name": "Dbv Technologies S A Sponsored",
+   "entry_price": 14.67,
+   "current_price": 13.47,
+   "return_pct": -8.18,
+   "weight": 0.0014,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "UWMC",
+   "name": "Uwm Holdings Corporation",
+   "entry_price": 1.56,
+   "current_price": 1.47,
+   "return_pct": -5.77,
+   "weight": 0.0014,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "FTAI",
+   "name": "Ftai Aviation Ltd",
+   "entry_price": 227.94,
+   "current_price": 196.28,
+   "return_pct": -13.89,
+   "weight": 0.0013,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "NVTS",
+   "name": "Navitas Semiconductor Corp",
+   "entry_price": 14.58,
+   "current_price": 11.8,
+   "return_pct": -19.07,
+   "weight": 0.0013,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "SOLS",
+   "name": "Solstice Advanced Matls Inc",
+   "entry_price": 62.61,
+   "current_price": 63.73,
+   "return_pct": 1.79,
+   "weight": 0.0013,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "BEAM",
+   "name": "Beam Therapeutics Inc",
+   "entry_price": 27.1,
+   "current_price": 29.66,
+   "return_pct": 9.45,
+   "weight": 0.0012,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "AUR",
+   "name": "Aurora Innovation Inc",
+   "entry_price": 6.97,
+   "current_price": 6.34,
+   "return_pct": -9.04,
+   "weight": 0.001,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "IREN",
+   "name": "Iren Limited",
+   "entry_price": 44.9,
+   "current_price": 44.68,
+   "return_pct": -0.49,
+   "weight": 0.0009,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "GGAL",
+   "name": "Grupo Financiero Galicia S.A",
+   "entry_price": 43.46,
+   "current_price": 44.36,
+   "return_pct": 2.07,
+   "weight": 0.0007,
+   "entry_date": "2026-08-17"
+  },
+  {
+   "ticker": "WVE",
+   "name": "Wave Life Sciences Ltd",
+   "entry_price": 5.09,
+   "current_price": 4.86,
+   "return_pct": -4.52,
+   "weight": 0.0002,
+   "entry_date": "2026-08-17"
+  }
+ ],
+ "monthly_breakdown": [
+  {
+   "month": "Jan 2026",
+   "return_pct": 1.87,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "Feb 2026",
+   "return_pct": -3.17,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "Mar 2026",
+   "return_pct": -4.3,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "Apr 2026",
+   "return_pct": 8.35,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "May 2026",
+   "return_pct": 5.27,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "Jun 2026",
+   "return_pct": 5.78,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "Jul 2026",
+   "return_pct": -4.85,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "Aug 2026",
+   "return_pct": 8.88,
+   "is_current": false,
+   "tickers": []
+  },
+  {
+   "month": "Sep 2026",
+   "return_pct": 1.97,
+   "is_current": true,
+   "tickers": []
+  }
+ ],
+ "is_live": true,
+ "not_live_reason": null
+}
