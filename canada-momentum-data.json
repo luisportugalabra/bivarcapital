@@ -4,7 +4,7 @@
   "tsx": 36513.8,
   "tsx_ma75": 35473.7,
   "pct_above_ma": 2.9,
-  "total_eligible": 347,
+  "total_eligible": 346,
   "portfolio": [
     {
       "rank": 1,
@@ -12,7 +12,7 @@
       "name": "Tidewater Renewables Ltd.",
       "ret_12m": 414.08,
       "net_income_ttm_m": 0.3,
-      "mcap_b": 0.68,
+      "mcap_b": 0.667,
       "weight": 0.1,
       "selected": true
     },
@@ -22,7 +22,7 @@
       "name": "Orvana Minerals Corp.",
       "ret_12m": 346.67,
       "net_income_ttm_m": 25.9,
-      "mcap_b": 0.372,
+      "mcap_b": 0.366,
       "weight": 0.1,
       "selected": true
     },
@@ -32,7 +32,7 @@
       "name": "Liberty Gold Corp",
       "ret_12m": 259.62,
       "net_income_ttm_m": 28.6,
-      "mcap_b": 1.041,
+      "mcap_b": 1.025,
       "weight": 0.1,
       "selected": true
     },
@@ -42,7 +42,7 @@
       "name": "Amerigo Resources Ltd",
       "ret_12m": 245.49,
       "net_income_ttm_m": 79.7,
-      "mcap_b": 1.282,
+      "mcap_b": 1.3,
       "weight": 0.1,
       "selected": true
     },
@@ -52,7 +52,7 @@
       "name": "Cavvy Energy Ltd",
       "ret_12m": 202.94,
       "net_income_ttm_m": 8.0,
-      "mcap_b": 0.631,
+      "mcap_b": 0.61,
       "weight": 0.1,
       "selected": true
     },
@@ -62,7 +62,7 @@
       "name": "Discovery Mining Ltd.",
       "ret_12m": 200.23,
       "net_income_ttm_m": 333.7,
-      "mcap_b": 10.852,
+      "mcap_b": 10.681,
       "weight": 0.1,
       "selected": true
     },
@@ -72,7 +72,7 @@
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 199.89,
       "net_income_ttm_m": 18.4,
-      "mcap_b": 0.293,
+      "mcap_b": 0.306,
       "weight": 0.1,
       "selected": true
     },
@@ -82,7 +82,7 @@
       "name": "Bird Construction Inc.",
       "ret_12m": 190.73,
       "net_income_ttm_m": 59.4,
-      "mcap_b": 3.77,
+      "mcap_b": 3.892,
       "weight": 0.1,
       "selected": true
     },
@@ -92,7 +92,7 @@
       "name": "Tenaz Energy Corp",
       "ret_12m": 184.16,
       "net_income_ttm_m": 110.3,
-      "mcap_b": 2.098,
+      "mcap_b": 2.109,
       "weight": 0.1,
       "selected": true
     },
@@ -102,7 +102,7 @@
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 175.47,
       "net_income_ttm_m": 155.5,
-      "mcap_b": 5.92,
+      "mcap_b": 5.757,
       "weight": 0.1,
       "selected": true
     }
@@ -114,7 +114,7 @@
       "name": "Tidewater Renewables Ltd.",
       "ret_12m": 414.08,
       "net_income_ttm_m": 0.3,
-      "mcap_b": 0.68,
+      "mcap_b": 0.667,
       "weight": 0.1,
       "selected": true
     },
@@ -124,7 +124,7 @@
       "name": "Orvana Minerals Corp.",
       "ret_12m": 346.67,
       "net_income_ttm_m": 25.9,
-      "mcap_b": 0.372,
+      "mcap_b": 0.366,
       "weight": 0.1,
       "selected": true
     },
@@ -134,7 +134,7 @@
       "name": "Liberty Gold Corp",
       "ret_12m": 259.62,
       "net_income_ttm_m": 28.6,
-      "mcap_b": 1.041,
+      "mcap_b": 1.025,
       "weight": 0.1,
       "selected": true
     },
@@ -144,7 +144,7 @@
       "name": "Amerigo Resources Ltd",
       "ret_12m": 245.49,
       "net_income_ttm_m": 79.7,
-      "mcap_b": 1.282,
+      "mcap_b": 1.3,
       "weight": 0.1,
       "selected": true
     },
@@ -154,7 +154,7 @@
       "name": "Cavvy Energy Ltd",
       "ret_12m": 202.94,
       "net_income_ttm_m": 8.0,
-      "mcap_b": 0.631,
+      "mcap_b": 0.61,
       "weight": 0.1,
       "selected": true
     },
@@ -164,7 +164,7 @@
       "name": "Discovery Mining Ltd.",
       "ret_12m": 200.23,
       "net_income_ttm_m": 333.7,
-      "mcap_b": 10.852,
+      "mcap_b": 10.681,
       "weight": 0.1,
       "selected": true
     },
@@ -174,7 +174,7 @@
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 199.89,
       "net_income_ttm_m": 18.4,
-      "mcap_b": 0.293,
+      "mcap_b": 0.306,
       "weight": 0.1,
       "selected": true
     },
@@ -184,7 +184,7 @@
       "name": "Bird Construction Inc.",
       "ret_12m": 190.73,
       "net_income_ttm_m": 59.4,
-      "mcap_b": 3.77,
+      "mcap_b": 3.892,
       "weight": 0.1,
       "selected": true
     },
@@ -194,7 +194,7 @@
       "name": "Tenaz Energy Corp",
       "ret_12m": 184.16,
       "net_income_ttm_m": 110.3,
-      "mcap_b": 2.098,
+      "mcap_b": 2.109,
       "weight": 0.1,
       "selected": true
     },
@@ -204,7 +204,7 @@
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 175.47,
       "net_income_ttm_m": 155.5,
-      "mcap_b": 5.92,
+      "mcap_b": 5.757,
       "weight": 0.1,
       "selected": true
     },
@@ -214,7 +214,7 @@
       "name": "Centerra Gold Inc.",
       "ret_12m": 173.3,
       "net_income_ttm_m": 880.0,
-      "mcap_b": 6.216,
+      "mcap_b": 6.207,
       "weight": null,
       "selected": false
     },
@@ -224,7 +224,7 @@
       "name": "Spartan Delta Corp",
       "ret_12m": 168.8,
       "net_income_ttm_m": 70.5,
-      "mcap_b": 2.729,
+      "mcap_b": 2.669,
       "weight": null,
       "selected": false
     },
@@ -234,7 +234,7 @@
       "name": "Saturn Oil & Gas Inc.",
       "ret_12m": 156.57,
       "net_income_ttm_m": 45.5,
-      "mcap_b": 1.157,
+      "mcap_b": 1.146,
       "weight": null,
       "selected": false
     },
@@ -244,7 +244,7 @@
       "name": "Tamarack Valley Energy Ltd.",
       "ret_12m": 153.99,
       "net_income_ttm_m": 24.5,
-      "mcap_b": 6.417,
+      "mcap_b": 6.336,
       "weight": null,
       "selected": false
     },
@@ -254,7 +254,7 @@
       "name": "Total Energy Services Inc.",
       "ret_12m": 150.04,
       "net_income_ttm_m": 89.0,
-      "mcap_b": 1.187,
+      "mcap_b": 1.197,
       "weight": null,
       "selected": false
     },
@@ -264,7 +264,7 @@
       "name": "Trekor Metals Limited",
       "ret_12m": 149.79,
       "net_income_ttm_m": 15.7,
-      "mcap_b": 4.25,
+      "mcap_b": 4.279,
       "weight": null,
       "selected": false
     },
@@ -274,7 +274,7 @@
       "name": "D-BOX Technologies Inc. Class A",
       "ret_12m": 149.44,
       "net_income_ttm_m": 18.4,
-      "mcap_b": 0.243,
+      "mcap_b": 0.247,
       "weight": null,
       "selected": false
     },
@@ -284,7 +284,7 @@
       "name": "Silvercorp Metals Inc.",
       "ret_12m": 148.48,
       "net_income_ttm_m": 43.3,
-      "mcap_b": 3.999,
+      "mcap_b": 3.809,
       "weight": null,
       "selected": false
     },
@@ -294,7 +294,7 @@
       "name": "G Mining Ventures Corp",
       "ret_12m": 140.0,
       "net_income_ttm_m": 507.2,
-      "mcap_b": 15.74,
+      "mcap_b": 15.286,
       "weight": null,
       "selected": false
     },
@@ -304,7 +304,7 @@
       "name": "Extendicare Inc.",
       "ret_12m": 139.97,
       "net_income_ttm_m": 121.3,
-      "mcap_b": 2.962,
+      "mcap_b": 2.956,
       "weight": null,
       "selected": false
     }
@@ -312,162 +312,162 @@
   "top20_yf": [
     {
       "rank": 1,
-      "ticker": "XLY",
-      "name": "Auxly Cannabis Group Inc.",
-      "ret_12m": 2093.1,
-      "mcap_b": 0.327,
+      "ticker": "TLO",
+      "name": "Talon Metals Corp.",
+      "ret_12m": 1905.26,
+      "mcap_b": 1.234,
       "selected": true
     },
     {
       "rank": 2,
-      "ticker": "TLO",
-      "name": "Talon Metals Corp.",
-      "ret_12m": 1905.26,
-      "mcap_b": 1.207,
+      "ticker": "LCFS",
+      "name": "Tidewater Renewables Ltd.",
+      "ret_12m": 448.05,
+      "mcap_b": 0.667,
       "selected": true
     },
     {
       "rank": 3,
-      "ticker": "LCFS",
-      "name": "Tidewater Renewables Ltd.",
-      "ret_12m": 448.05,
-      "mcap_b": 0.68,
+      "ticker": "ORV",
+      "name": "Orvana Minerals Corp.",
+      "ret_12m": 370.18,
+      "mcap_b": 0.366,
       "selected": true
     },
     {
       "rank": 4,
-      "ticker": "ORV",
-      "name": "Orvana Minerals Corp.",
-      "ret_12m": 370.18,
-      "mcap_b": 0.372,
+      "ticker": "ARG",
+      "name": "Amerigo Resources Ltd",
+      "ret_12m": 285.22,
+      "mcap_b": 1.3,
       "selected": true
     },
     {
       "rank": 5,
-      "ticker": "ARG",
-      "name": "Amerigo Resources Ltd",
-      "ret_12m": 285.22,
-      "mcap_b": 1.282,
+      "ticker": "LGD",
+      "name": "Liberty Gold Corp",
+      "ret_12m": 274.0,
+      "mcap_b": 1.025,
       "selected": true
     },
     {
       "rank": 6,
-      "ticker": "LGD",
-      "name": "Liberty Gold Corp",
-      "ret_12m": 274.0,
-      "mcap_b": 1.041,
+      "ticker": "DSV",
+      "name": "Discovery Mining Ltd.",
+      "ret_12m": 205.12,
+      "mcap_b": 10.681,
       "selected": true
     },
     {
       "rank": 7,
-      "ticker": "DSV",
-      "name": "Discovery Mining Ltd.",
-      "ret_12m": 205.12,
-      "mcap_b": 10.852,
+      "ticker": "CVVY",
+      "name": "Cavvy Energy Ltd",
+      "ret_12m": 202.94,
+      "mcap_b": 0.61,
       "selected": true
     },
     {
       "rank": 8,
-      "ticker": "CVVY",
-      "name": "Cavvy Energy Ltd",
-      "ret_12m": 202.94,
-      "mcap_b": 0.631,
+      "ticker": "HMM.A",
+      "name": "Hammond Manufacturing Co. Ltd. Class A",
+      "ret_12m": 200.49,
+      "mcap_b": 0.306,
       "selected": true
     },
     {
       "rank": 9,
-      "ticker": "HMM.A",
-      "name": "Hammond Manufacturing Co. Ltd. Class A",
-      "ret_12m": 200.49,
-      "mcap_b": 0.293,
+      "ticker": "TNZ",
+      "name": "Tenaz Energy Corp",
+      "ret_12m": 191.24,
+      "mcap_b": 2.109,
       "selected": true
     },
     {
       "rank": 10,
-      "ticker": "TNZ",
-      "name": "Tenaz Energy Corp",
-      "ret_12m": 191.24,
-      "mcap_b": 2.098,
+      "ticker": "CG",
+      "name": "Centerra Gold Inc.",
+      "ret_12m": 179.3,
+      "mcap_b": 6.207,
       "selected": true
     },
     {
       "rank": 11,
-      "ticker": "CG",
-      "name": "Centerra Gold Inc.",
-      "ret_12m": 179.3,
-      "mcap_b": 6.216,
+      "ticker": "BDT",
+      "name": "Bird Construction Inc.",
+      "ret_12m": 176.04,
+      "mcap_b": 3.892,
       "selected": false
     },
     {
       "rank": 12,
-      "ticker": "BDT",
-      "name": "Bird Construction Inc.",
-      "ret_12m": 176.04,
-      "mcap_b": 3.77,
+      "ticker": "AYA",
+      "name": "Aya Gold & Silver Inc.",
+      "ret_12m": 173.58,
+      "mcap_b": 5.757,
       "selected": false
     },
     {
       "rank": 13,
-      "ticker": "AYA",
-      "name": "Aya Gold & Silver Inc.",
-      "ret_12m": 173.58,
-      "mcap_b": 5.92,
+      "ticker": "SDE",
+      "name": "Spartan Delta Corp",
+      "ret_12m": 166.05,
+      "mcap_b": 2.669,
       "selected": false
     },
     {
       "rank": 14,
-      "ticker": "SDE",
-      "name": "Spartan Delta Corp",
-      "ret_12m": 166.05,
-      "mcap_b": 2.729,
+      "ticker": "TOT",
+      "name": "Total Energy Services Inc.",
+      "ret_12m": 156.41,
+      "mcap_b": 1.197,
       "selected": false
     },
     {
       "rank": 15,
-      "ticker": "TOT",
-      "name": "Total Energy Services Inc.",
-      "ret_12m": 156.41,
-      "mcap_b": 1.187,
+      "ticker": "TVE",
+      "name": "Tamarack Valley Energy Ltd.",
+      "ret_12m": 155.21,
+      "mcap_b": 6.336,
       "selected": false
     },
     {
       "rank": 16,
-      "ticker": "TVE",
-      "name": "Tamarack Valley Energy Ltd.",
-      "ret_12m": 155.21,
-      "mcap_b": 6.417,
+      "ticker": "SOIL",
+      "name": "Saturn Oil & Gas Inc.",
+      "ret_12m": 152.55,
+      "mcap_b": 1.146,
       "selected": false
     },
     {
       "rank": 17,
-      "ticker": "SOIL",
-      "name": "Saturn Oil & Gas Inc.",
-      "ret_12m": 152.55,
-      "mcap_b": 1.157,
+      "ticker": "TKO",
+      "name": "Trekor Metals Limited",
+      "ret_12m": 152.48,
+      "mcap_b": 4.279,
       "selected": false
     },
     {
       "rank": 18,
-      "ticker": "TKO",
-      "name": "Trekor Metals Limited",
-      "ret_12m": 152.48,
-      "mcap_b": 4.25,
+      "ticker": "SVM",
+      "name": "Silvercorp Metals Inc.",
+      "ret_12m": 152.45,
+      "mcap_b": 3.809,
       "selected": false
     },
     {
       "rank": 19,
-      "ticker": "SVM",
-      "name": "Silvercorp Metals Inc.",
-      "ret_12m": 152.45,
-      "mcap_b": 3.999,
+      "ticker": "DBO",
+      "name": "D-BOX Technologies Inc. Class A",
+      "ret_12m": 152.27,
+      "mcap_b": 0.247,
       "selected": false
     },
     {
       "rank": 20,
-      "ticker": "DBO",
-      "name": "D-BOX Technologies Inc. Class A",
-      "ret_12m": 152.27,
-      "mcap_b": 0.243,
+      "ticker": "EXE",
+      "name": "Extendicare Inc.",
+      "ret_12m": 144.58,
+      "mcap_b": 2.956,
       "selected": false
     }
   ],
