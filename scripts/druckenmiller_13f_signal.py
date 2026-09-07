@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Druckenmiller 13F Tracker — site signal updater.
+Druckenmiller 13F Tracker (top 10) — site signal updater.
+
+Holds the 10 largest long equity positions of the latest Duquesne 13F,
+at reported value weights renormalized within the top 10.
 
 Run any day to refresh prices; on/after a 13F filing day it detects the new
 filing automatically and rolls the portfolio.
@@ -97,9 +100,10 @@ def main():
             print(f'  WARNING unmapped: {len(unmapped)} positions, {miss/tot_all*100:.2f}% of value')
             for c,n,v in unmapped: print('   ', c, n)
         entry_date = next_trading_day(dt.date.fromisoformat(fdate))
-        tot = sum(a['value'] for a in agg.values())
+        top = sorted(agg.values(), key=lambda x: -x['value'])[:10]
+        tot = sum(a['value'] for a in top)
         holdings = []
-        for a in sorted(agg.values(), key=lambda x: -x['value']):
+        for a in top:
             holdings.append({'ticker': a['ticker'], 'name': a['name'],
                              'entry_date': str(entry_date), 'entry_price': None,
                              'current_price': None, 'weight': round(a['value']/tot, 4),

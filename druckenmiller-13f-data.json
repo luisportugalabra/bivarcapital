@@ -1,19 +1,18 @@
 {
- "date": "2026-09-06",
+ "date": "2026-09-04",
  "source": "SEC EDGAR 13F-HR, Duquesne Family Office LLC (CIK 1536411)",
  "backtest": {
   "period": "2012-02 \u2013 2026-09",
-  "total_x": 15.8,
-  "cagr": 20.8,
-  "sharpe": 0.96,
-  "maxdd": -38.5,
+  "total_x": 17.5,
+  "cagr": 21.7,
+  "sharpe": 0.95,
+  "maxdd": -35.8,
   "costs_bps": 10,
   "spy_cagr": 14.7,
   "spy_sharpe": 0.91,
-  "beta": 1.17,
-  "alpha_pp": 2.0
+  "variant": "top 10 by reported value, value weighted within top 10"
  },
- "n_positions": 86,
+ "n_positions": 10,
  "is_live": true,
  "not_live_reason": null
 }

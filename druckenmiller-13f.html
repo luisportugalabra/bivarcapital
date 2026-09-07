@@ -127,7 +127,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>Druckenmiller 13F Tracker</h1>
-  <p class="subtitle">Quarterly signal. Copies the Duquesne Family Office (Stanley Druckenmiller) 13F long equity portfolio, value weighted, bought one trading day after each SEC filing.</p>
+  <p class="subtitle">Quarterly signal. Copies the top 10 positions of the Duquesne Family Office (Stanley Druckenmiller) 13F, at his reported weights renormalized within the top 10, bought one trading day after each SEC filing.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the Druckenmiller 13F tracker.</p>
@@ -144,7 +144,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 
     <div style="background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.2);border-radius:10px;padding:14px 18px;margin-bottom:20px">
       <div style="font-family:var(--font-mono);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">Beta &mdash; read this first</div>
-      <div style="font-size:.75rem;color:var(--text);margin-top:6px">This is a <strong>copy strategy, not a model</strong>: it holds whatever Duquesne reported in its last 13F, 45+ days after quarter end. In our 9-manager test on the identical pipeline, Druckenmiller was the <strong>only</strong> manager who beat the S&amp;P 500 &mdash; choosing him is a bet that a historical exception continues. Full key-man risk: if Duquesne winds down or Druckenmiller steps back, exit &mdash; there is no strategy without him. Option positions in the filing (typically 3&ndash;16% of value) are excluded.</div>
+      <div style="font-size:.75rem;color:var(--text);margin-top:6px">This is a <strong>copy strategy, not a model</strong>: it holds whatever Duquesne reported in its last 13F, 45+ days after quarter end. In our 9-manager test on the identical pipeline, Druckenmiller was the <strong>only</strong> manager who beat the S&amp;P 500 &mdash; choosing him is a bet that a historical exception continues. Full key-man risk: if Duquesne winds down or Druckenmiller steps back, exit &mdash; there is no strategy without him. Option positions in the filing (typically 3&ndash;16% of value) are excluded. This tracker holds only the <strong>top 10 positions</strong> at his renormalized weights &mdash; single positions can exceed 30% of the portfolio (NTRA is ~38% right now), so expect concentration: the full-book variant did &minus;26% in 2022, this one &minus;25% but with a &minus;43%-style year fully possible.</div>
     </div>
 
     <div id="regime-container" class="regime-box"></div>
@@ -160,15 +160,15 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <div class="stat-lbl" id="mtd-label">MTD</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val" id="all-time-cagr">+20.8%</div>
+          <div class="stat-val" id="all-time-cagr">+21.7%</div>
           <div class="stat-lbl">CAGR net (2012&ndash;2026)</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val" id="all-time-sharpe">0.96</div>
+          <div class="stat-val" id="all-time-sharpe">0.95</div>
           <div class="stat-lbl">Sharpe</div>
         </div>
         <div class="stat-box" style="flex:0 0 auto;min-width:130px">
-          <div class="stat-val neg" id="all-time-dd">-38.5%</div>
+          <div class="stat-val neg" id="all-time-dd">-35.8%</div>
           <div class="stat-lbl">Max Drawdown</div>
         </div>
       </div>
@@ -176,7 +176,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       <div class="port-section-title">Top Holdings</div>
       <div id="stats-container" class="stats-row"></div>
 
-      <div class="port-section-title">Current Portfolio <span class="port-section-sub" id="port-sub">&middot; value weighted &middot; rebalanced the day after each 13F filing</span></div>
+      <div class="port-section-title">Current Portfolio <span class="port-section-sub" id="port-sub">&middot; top 10 &middot; his weights renormalized &middot; rebalanced the day after each 13F filing</span></div>
       <div class="table-wrap">
       <table id="portfolio-table">
         <thead>
@@ -224,7 +224,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
         <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)">value weighted</span>
         <span style="font-family:var(--font-mono);font-size:.55rem;color:var(--text-muted);margin-left:8px">last close</span>
       </div>
-      <p style="font-family:var(--font-mono);font-size:.55rem;color:var(--text-muted);margin-bottom:10px">Positions under 0.5% weight are grouped out of the calculator &mdash; with a small account, replicating the top ~25 names captures &gt;90% of the portfolio.</p>
+      
       <div class="table-wrap">
       <table id="calc-table" style="display:none">
         <thead>
@@ -245,7 +245,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     <hr class="section-divider">
 
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: hold the Duquesne Family Office LLC 13F long equity book (SEC EDGAR, CIK 1536411), weighted by reported position value &nbsp;|&nbsp; Bought at the close of the first trading day after each filing (filings due ~Feb 14, May 15, Aug 14, Nov 14) &nbsp;|&nbsp; Options, bonds and non-US-listed positions excluded &nbsp;|&nbsp; Backtest 2012&ndash;2026 net of 10bps: CAGR +20.8%, Sharpe 0.96, MaxDD &minus;38.5% vs SPY +14.7% / 0.91 / &minus;33.7%
+      Strategy: hold the 10 largest long equity positions of the Duquesne Family Office LLC 13F (SEC EDGAR, CIK 1536411), at reported value weights renormalized within the top 10 &nbsp;|&nbsp; Bought at the close of the first trading day after each filing (filings due ~Feb 14, May 15, Aug 14, Nov 14) &nbsp;|&nbsp; Options, bonds and non-US-listed positions excluded &nbsp;|&nbsp; Backtest 2012&ndash;2026 net of 10bps: CAGR +21.7%, Sharpe 0.95, MaxDD &minus;35.8% vs SPY +14.7% / 0.91 / &minus;33.7%
     </p>
 
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;text-align:center">
@@ -351,7 +351,7 @@ async function loadPortfolio() {
         Signal: hold current portfolio until the next filing, then rebalance the following trading day
       </div>`;
 
-    _calcHoldings = holdings.filter(h => h.current_price && h.weight >= 0.005);
+    _calcHoldings = holdings.filter(h => h.current_price);
     if (_calcHoldings.length) {
       document.getElementById('calc-section').style.display = 'block';
       calcRebalance();

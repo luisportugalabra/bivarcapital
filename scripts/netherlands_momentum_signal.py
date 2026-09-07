@@ -2,9 +2,10 @@
 """
 Netherlands Momentum Signal Generator
 Ranking signal comes exclusively from TradingView Screener. Regime comes
-exclusively from Yahoo Finance (real AEX index). EODHD is used only for
-historical data that TradingView's live snapshot doesn't carry: start-of-month
-entry prices and 252-day realized volatility for the inverse-vol weights.
+exclusively from Yahoo Finance (real AEX index). Historical daily bars needed
+for start-of-month entry prices and 252-day realized volatility (inverse-vol
+weights) come from TradingView too, via tvdatafeed — no EODHD, no local-only
+data, so this runs unmodified on GitHub Actions.
 
 Strategy (see research/netherlands_momentum_report.html):
   - Universe: Euronext Amsterdam (AS), all listed stocks
@@ -22,23 +23,43 @@ Saves:
   - netherlands-momentum-data.json
   - netherlands-momentum-portfolio.json
 """
-import os, json, statistics
+import os, json, statistics, time
 from datetime import datetime, date
 
 import pandas as pd
 from tradingview_screener import Query, col
+from tvDatafeed import TvDatafeed, Interval
 
 SCRIPT_DIR     = os.path.dirname(os.path.abspath(__file__))
 SITE_DIR       = os.path.dirname(SCRIPT_DIR)
 DATA_PATH      = os.path.join(SITE_DIR, "netherlands-momentum-data.json")
 PORTFOLIO_PATH = os.path.join(SITE_DIR, "netherlands-momentum-portfolio.json")
-EODHD_DIR      = os.path.normpath(os.path.join(os.path.expanduser("~"), "eodhd_data", "AS", "prices"))
 
 MCAP_FLOOR_EUR = 92_000_000
 MCAP_PCTILE    = 0.40   # drop bottom 40% by mcap among floor-passers
 TOP_N          = 10
 VOL_LOOKBACK   = 252
 TODAY          = date.today().isoformat()
+
+_tv_client = None
+def tv_client():
+    global _tv_client
+    if _tv_client is None:
+        _tv_client = TvDatafeed()
+    return _tv_client
+
+
+def fetch_tv_bars(code, n_bars=VOL_LOOKBACK + 40):
+    """Real daily OHLC bars for a Euronext Amsterdam ticker, straight from TradingView."""
+    try:
+        bars = tv_client().get_hist(symbol=code, exchange='EURONEXT',
+                                     interval=Interval.in_daily, n_bars=n_bars)
+        if bars is None or bars.empty:
+            return None
+        return bars
+    except Exception as e:
+        print(f"    {code}: TV history fetch failed ({e})")
+        return None
 
 
 def fetch_netherlands():
@@ -77,7 +98,10 @@ def check_regime():
     import yfinance as yf, warnings
     warnings.filterwarnings('ignore')
     df = yf.download('^AEX', period='200d', auto_adjust=True, progress=False)
-    close = df['Close'].dropna()
+    close = df['Close']
+    if isinstance(close, pd.DataFrame):
+        close = close.iloc[:, 0]
+    close = close.dropna()
     if len(close) < 100:
         return True, None, None
     last  = float(close.iloc[-1])

@@ -83,7 +83,7 @@ serve(async (req) => {
     } else {
       const stockList = portfolio
         .map((s: any, i: number) =>
-          `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   ${s.composite != null ? (s.composite >= 0 ? "+" : "") + s.composite.toFixed(1) + "% comp" : ""} · C$${s.mcap_b?.toFixed(2)}B`
+          `${i + 1}. <b>${s.ticker}</b> — ${s.name}\n   C$${s.mcap_b?.toFixed(2)}B`
         )
         .join("\n");
 
