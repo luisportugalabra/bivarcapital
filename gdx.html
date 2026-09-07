@@ -54,7 +54,7 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;text-alig
 .price-val{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600;color:var(--gold)}
 .chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:24px}
 .chart-title{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:24px}
 .stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center}
 .stat .v{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:600}
 .stat .l{font-size:.45rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
@@ -150,6 +150,7 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;text-alig
 
   <!-- STATS -->
   <div class="stats">
+    <div class="stat"><div class="v" id="ytd-return">&mdash;</div><div class="l">2026 YTD (GLD+SLV 50/50)</div></div>
     <div class="stat"><div class="v" style="color:var(--green)">+10.2%</div><div class="l">CAGR (total capital)</div></div>
     <div class="stat"><div class="v" style="color:var(--green)">+32.1%</div><div class="l">Active CAGR (when invested)</div></div>
     <div class="stat"><div class="v" style="color:var(--green)">1.23</div><div class="l">Sharpe</div></div>
@@ -227,6 +228,11 @@ async function loadSignal() {
     document.getElementById('gdx-price').textContent = official.gdx_close ? '$' + official.gdx_close.toFixed(2) : '—';
     if (official.gold_price) document.getElementById('gold-price').textContent = '$' + official.gold_price.toLocaleString('en-US', {maximumFractionDigits:1});
     if (official.silver_price) document.getElementById('silver-price').textContent = '$' + official.silver_price.toFixed(3);
+    if (official.ytd_2026 != null) {
+      const y = document.getElementById('ytd-return');
+      y.textContent = (official.ytd_2026 >= 0 ? '+' : '') + official.ytd_2026.toFixed(1) + '%';
+      y.style.color = official.ytd_2026 >= 0 ? 'var(--green)' : 'var(--red)';
+    }
   }
 
   // ── Fetch GDX weekly history for chart ──

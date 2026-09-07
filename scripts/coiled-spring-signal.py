@@ -270,9 +270,22 @@ else:
         holdings.append(h)
     last_rebalance_date = existing_portfolio.get('last_rebalance', output['date'])
 
+# ── NAV tracking (since launch 2026-07-27): chain equal-weight return of
+# tickers common to the previous snapshot ─────────────────────────────────────
+nav = existing_portfolio.get('nav', 1.0) or 1.0
+prev_px = {h0['ticker']: h0.get('current_price') for h0 in existing_portfolio.get('holdings', [])}
+common = [h1 for h1 in holdings
+          if h1.get('current_price') and prev_px.get(h1['ticker'])]
+if common and existing_portfolio.get('updated') != output['date']:
+    r = sum(h1['current_price'] / prev_px[h1['ticker']] - 1 for h1 in common) / len(common)
+    nav = nav * (1 + r)
+
 portfolio_output = {
     'last_rebalance': last_rebalance_date,
     'updated':        output['date'],
+    'nav':            round(nav, 6),
+    'inception':      existing_portfolio.get('inception', '2026-07-27'),
+    'ytd_2026':       round((nav - 1) * 100, 2),
     'holdings':       holdings,
 }
 with open(PORTFOLIO_PATH, 'w') as f:

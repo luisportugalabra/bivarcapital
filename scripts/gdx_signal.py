@@ -85,6 +85,54 @@ except (FileNotFoundError, json.JSONDecodeError):
 
 already_ran_this_week = (prev_week == week_date)
 
+
+# ── 2026 YTD of the strategy (GLD+SLV 50/50, Mon open -> Fri close) ──────────
+def yf_daily(ticker, start_ts):
+    url = (f'https://query1.finance.yahoo.com/v8/finance/chart/{urllib.parse.quote(ticker)}'
+           f'?period1={start_ts}&period2={int(datetime.now().timestamp())}&interval=1d')
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    data = json.loads(urllib.request.urlopen(req, context=ctx, timeout=15).read())
+    res = data['chart']['result'][0]
+    q = res['indicators']['quote'][0]
+    out = {}
+    for t, o, c in zip(res['timestamp'], q['open'], q['close']):
+        if o and c:
+            d = datetime.fromtimestamp(t, tz=timezone.utc).date()
+            out[d] = (o, c)
+    return out
+
+ytd_2026 = None
+weeks_invested_2026 = None
+try:
+    jan1 = int(datetime(2025, 12, 1).timestamp())
+    gdx_wk = yf_weekly('GDX', weeks=45)
+    gld = yf_daily('GLD', jan1)
+    slv = yf_daily('SLV', jan1)
+    nav = 1.0
+    weeks_invested_2026 = 0
+    for i in range(1, len(gdx_wk)):
+        wk_start = datetime.fromtimestamp(gdx_wk[i][0], tz=timezone.utc).date()
+        # signal week ended before wk_start; position held during week starting wk_start
+        if wk_start.year != 2026:
+            continue
+        prev_ret = gdx_wk[i][1] / gdx_wk[i-1][1] - 1 if i >= 1 else 0
+        # signal from PREVIOUS completed week
+        sig_ret = gdx_wk[i-1][1] / gdx_wk[i-2][1] - 1 if i >= 2 else 0
+        if sig_ret <= THR:
+            continue
+        days = sorted(d for d in gld if wk_start <= d <= wk_start + timedelta(days=6))
+        days = [d for d in days if d in slv]
+        if len(days) < 2:
+            continue
+        mon, fri = days[0], days[-1]
+        r = 0.5 * (gld[fri][1] / gld[mon][0] - 1) + 0.5 * (slv[fri][1] / slv[mon][0] - 1)
+        nav *= (1 + r)
+        weeks_invested_2026 += 1
+    ytd_2026 = round((nav - 1) * 100, 2)
+    print(f"2026 YTD (GLD+SLV 50/50): {ytd_2026:+.2f}% over {weeks_invested_2026} invested weeks")
+except Exception as e:
+    print(f"YTD computation failed: {e}")
+
 # ── Save current signal ──────────────────────────────────────────────────────
 signal_data = {
     'week': week_date,
@@ -95,6 +143,8 @@ signal_data = {
     'signal': signal,
     'gold_price': round(gold_price, 1) if gold_price else None,
     'silver_price': round(silver_price, 3) if silver_price else None,
+    'ytd_2026': ytd_2026,
+    'weeks_invested_2026': weeks_invested_2026,
     'updated': datetime.now(timezone.utc).isoformat()
 }
 with open(signal_file, 'w') as f:
