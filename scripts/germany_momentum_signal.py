@@ -402,17 +402,23 @@ def main():
             exec_picks = []
 
         holdings = []
+        prev_by_tk = {h['ticker']: h for h in existing.get('holdings', [])}
         for p in exec_picks:
             code = p['ticker']
             cp   = price_map.get(code) or price_map_full.get(code)
+            prev = prev_by_tk.get(code)
+            if prev and prev.get('entry_price'):
+                ep, edate = prev['entry_price'], prev['entry_date']
+            else:
+                ep, edate = cp, TODAY
             holdings.append({
                 'ticker':        code,
                 'name':          p.get('name', code),
-                'entry_date':    TODAY,
-                'entry_price':   round(cp, 4) if cp else None,
+                'entry_date':    edate,
+                'entry_price':   round(ep, 4) if ep else None,
                 'current_price': round(cp, 4) if cp else None,
                 'weight':        float(p.get('weight', 0)),
-                'return_pct':    0.0,
+                'return_pct':    round((cp / ep - 1) * 100, 2) if cp and ep else 0.0,
             })
         last_rebalance = TODAY
     else:

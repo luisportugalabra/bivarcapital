@@ -1,897 +1,897 @@
 {
-  "last_rebalance": "2026-09-01",
-  "updated": "2026-09-06",
-  "ytd_2026": -0.57,
-  "regime": "momentum",
-  "currency": "CAD",
-  "tsx": 36513.8,
-  "tsx_ma75": 35473.7,
-  "holdings": [
-    {
-      "ticker": "LCFS",
-      "name": "Tidewater Renewables Ltd.",
-      "entry_date": "2026-09-01",
-      "entry_price": 19.43,
-      "current_price": 18.25,
-      "weight": 0.1,
-      "return_pct": -6.07
-    },
-    {
-      "ticker": "ORV",
-      "name": "Orvana Minerals Corp.",
-      "entry_date": "2026-09-01",
-      "entry_price": 2.68,
-      "current_price": 2.68,
-      "weight": 0.1,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "LGD",
-      "name": "Liberty Gold Corp",
-      "entry_date": "2026-09-01",
-      "entry_price": 1.75,
-      "current_price": 1.87,
-      "weight": 0.1,
-      "return_pct": 6.86
-    },
-    {
-      "ticker": "ARG",
-      "name": "Amerigo Resources Ltd",
-      "entry_date": "2026-09-01",
-      "entry_price": 7.94,
-      "current_price": 8.05,
-      "weight": 0.1,
-      "return_pct": 1.39
-    },
-    {
-      "ticker": "CVVY",
-      "name": "Cavvy Energy Ltd",
-      "entry_date": "2026-09-01",
-      "entry_price": 2.17,
-      "current_price": 2.06,
-      "weight": 0.1,
-      "return_pct": -5.07
-    },
-    {
-      "ticker": "DSV",
-      "name": "Discovery Mining Ltd.",
-      "entry_date": "2026-09-01",
-      "entry_price": 11.93,
-      "current_price": 13.12,
-      "weight": 0.1,
-      "return_pct": 9.97
-    },
-    {
-      "ticker": "AYA",
-      "name": "Aya Gold & Silver Inc.",
-      "entry_date": "2026-09-01",
-      "entry_price": 36.68,
-      "current_price": 39.97,
-      "weight": 0.1,
-      "return_pct": 8.97
-    },
-    {
-      "ticker": "BDT",
-      "name": "Bird Construction Inc.",
-      "entry_date": "2026-09-01",
-      "entry_price": 64.69,
-      "current_price": 70.24,
-      "weight": 0.1,
-      "return_pct": 8.58
-    },
-    {
-      "ticker": "CG",
-      "name": "Centerra Gold Inc.",
-      "entry_date": "2026-09-01",
-      "entry_price": 30.28,
-      "current_price": 31.73,
-      "weight": 0.1,
-      "return_pct": 4.79
-    },
-    {
-      "ticker": "DBO",
-      "name": "D-BOX Technologies Inc. Class A",
-      "entry_date": "2026-09-01",
-      "entry_price": 1.09,
-      "current_price": 1.11,
-      "weight": 0.1,
-      "return_pct": 1.83
-    }
-  ],
-  "monthly_breakdown": [
-    {
-      "month": "Sep 2023",
-      "is_current": false,
-      "start": "2023-09-05",
-      "end": "2023-10-03",
-      "tickers": [
-        "HPS-A",
-        "NVDA",
-        "MATR",
-        "ERO",
-        "CS",
-        "BBD-B",
-        "NOA",
-        "CLS",
-        "SHOP",
-        "IMG"
-      ],
-      "return_pct": -13.45
-    },
-    {
-      "month": "Oct 2023",
-      "is_current": false,
-      "start": "2023-10-03",
-      "end": "2023-11-02",
-      "tickers": [],
-      "return_pct": 0.0
-    },
-    {
-      "month": "Nov 2023",
-      "is_current": false,
-      "start": "2023-11-02",
-      "end": "2023-12-04",
-      "tickers": [],
-      "return_pct": 0.0
-    },
-    {
-      "month": "Dec 2023",
-      "is_current": false,
-      "start": "2023-12-04",
-      "end": "2024-01-03",
-      "tickers": [
-        "HPS-A",
-        "NVDA",
-        "META",
-        "CLS",
-        "MDA",
-        "CCO",
-        "ARE",
-        "ATH",
-        "ATRL",
-        "BDT"
-      ],
-      "return_pct": 4.98
-    },
-    {
-      "month": "Jan 2024",
-      "is_current": false,
-      "start": "2024-01-03",
-      "end": "2024-02-02",
-      "tickers": [
-        "HPS-A",
-        "NVDA",
-        "QBTC",
-        "META",
-        "CLS",
-        "CCO",
-        "NGEX",
-        "SHOP",
-        "MDA",
-        "ARE"
-      ],
-      "return_pct": 18.55
-    },
-    {
-      "month": "Feb 2024",
-      "is_current": false,
-      "start": "2024-02-02",
-      "end": "2024-03-04",
-      "tickers": [
-        "HPS-A",
-        "NGEX",
-        "NVDA",
-        "CLS",
-        "ARE",
-        "QBTC",
-        "META",
-        "TVK",
-        "BDT",
-        "MDA"
-      ],
-      "return_pct": 20.04
-    },
-    {
-      "month": "Mar 2024",
-      "is_current": false,
-      "start": "2024-03-04",
-      "end": "2024-04-02",
-      "tickers": [
-        "HPS-A",
-        "NVDA",
-        "CLS",
-        "META",
-        "NGEX",
-        "PRL",
-        "ARE",
-        "U-U",
-        "SHOP",
-        "NXE"
-      ],
-      "return_pct": 7.5
-    },
-    {
-      "month": "Apr 2024",
-      "is_current": false,
-      "start": "2024-04-02",
-      "end": "2024-05-02",
-      "tickers": [
-        "CLS",
-        "HPS-A",
-        "NVDA",
-        "PRL",
-        "META",
-        "VHI",
-        "QBTC-U",
-        "QBTC",
-        "MDA",
-        "TVK"
-      ],
-      "return_pct": 0.31
-    },
-    {
-      "month": "May 2024",
-      "is_current": false,
-      "start": "2024-05-02",
-      "end": "2024-06-04",
-      "tickers": [
-        "CLS",
-        "HPS-A",
-        "NVDA",
-        "PRL",
-        "TVK",
-        "MDA",
-        "NXE",
-        "BDT",
-        "ARE",
-        "CEU"
-      ],
-      "return_pct": 4.92
-    },
-    {
-      "month": "Jun 2024",
-      "is_current": false,
-      "start": "2024-06-04",
-      "end": "2024-07-02",
-      "tickers": [
-        "AIDX",
-        "CLS",
-        "PRL",
-        "TVK",
-        "HPS-A",
-        "CEU",
-        "BDT",
-        "NVDA",
-        "ARE",
-        "QBTC"
-      ],
-      "return_pct": 5.52
-    },
-    {
-      "month": "Jul 2024",
-      "is_current": false,
-      "start": "2024-07-02",
-      "end": "2024-08-02",
-      "tickers": [],
-      "return_pct": 0.0
-    },
-    {
-      "month": "Aug 2024",
-      "is_current": false,
-      "start": "2024-08-02",
-      "end": "2024-09-04",
-      "tickers": [
-        "PRL",
-        "BDT",
-        "CLS",
-        "NVDA",
-        "CEU",
-        "TVK",
-        "FCU",
-        "ARE",
-        "SIL",
-        "CMG"
-      ],
-      "return_pct": 2.87
-    },
-    {
-      "month": "Sep 2024",
-      "is_current": false,
-      "start": "2024-09-04",
-      "end": "2024-10-02",
-      "tickers": [
-        "PRL",
-        "BDT",
-        "ARE",
-        "TVK",
-        "NGD",
-        "NVDA",
-        "CEU",
-        "CLS",
-        "HPS-A",
-        "HRX"
-      ],
-      "return_pct": 9.6
-    },
-    {
-      "month": "Oct 2024",
-      "is_current": false,
-      "start": "2024-10-02",
-      "end": "2024-11-04",
-      "tickers": [
-        "PRL",
-        "MAU",
-        "TVK",
-        "FFN",
-        "NVDA",
-        "NGD",
-        "HPS-A",
-        "ARE",
-        "NVEI",
-        "BDT"
-      ],
-      "return_pct": 16.27
-    },
-    {
-      "month": "Nov 2024",
-      "is_current": false,
-      "start": "2024-11-04",
-      "end": "2024-12-03",
-      "tickers": [
-        "PRL",
-        "VHI",
-        "ARE",
-        "TVK",
-        "NVDA",
-        "NGD",
-        "FFN",
-        "AYA",
-        "GLXY",
-        "ATZ"
-      ],
-      "return_pct": 3.27
-    },
-    {
-      "month": "Dec 2024",
-      "is_current": false,
-      "start": "2024-12-03",
-      "end": "2025-01-03",
-      "tickers": [
-        "ARE",
-        "PPTA",
-        "PRL",
-        "NVDA",
-        "TVK",
-        "CLS",
-        "BDT",
-        "EDR",
-        "VHI",
-        "CEU"
-      ],
-      "return_pct": -1.06
-    },
-    {
-      "month": "Jan 2025",
-      "is_current": false,
-      "start": "2025-01-03",
-      "end": "2025-02-04",
-      "tickers": [
-        "PPTA",
-        "CLS",
-        "PRL",
-        "NVDA",
-        "CEU",
-        "VHI",
-        "ARE",
-        "TVK",
-        "CIX",
-        "EDR"
-      ],
-      "return_pct": 3.99
-    },
-    {
-      "month": "Feb 2025",
-      "is_current": false,
-      "start": "2025-02-04",
-      "end": "2025-03-04",
-      "tickers": [
-        "PPTA",
-        "TNZ",
-        "HUT",
-        "CLS",
-        "GLXY",
-        "EDR",
-        "MDA",
-        "CEU",
-        "ARE",
-        "PRL"
-      ],
-      "return_pct": -19.27
-    },
-    {
-      "month": "Mar 2025",
-      "is_current": false,
-      "start": "2025-03-04",
-      "end": "2025-04-02",
-      "tickers": [],
-      "return_pct": 0.0
-    },
-    {
-      "month": "Apr 2025",
-      "is_current": false,
-      "start": "2025-04-02",
-      "end": "2025-05-02",
-      "tickers": [
-        "TNZ",
-        "CIX",
-        "SSRM",
-        "LUG",
-        "CLS",
-        "CNL",
-        "PPTA",
-        "K",
-        "EXE",
-        "MAU"
-      ],
-      "return_pct": 11.39
-    },
-    {
-      "month": "May 2025",
-      "is_current": false,
-      "start": "2025-05-02",
-      "end": "2025-06-03",
-      "tickers": [
-        "CNL",
-        "TNZ",
-        "MAU",
-        "LUG",
-        "CIX",
-        "PPTA",
-        "NGD",
-        "K",
-        "TXG",
-        "TVK"
-      ],
-      "return_pct": 17.74
-    },
-    {
-      "month": "Jun 2025",
-      "is_current": false,
-      "start": "2025-06-03",
-      "end": "2025-07-02",
-      "tickers": [
-        "TNZ",
-        "CNL",
-        "LUG",
-        "CIX",
-        "SKE",
-        "MAU",
-        "TVK",
-        "PPTA",
-        "SSRM",
-        "TXG"
-      ],
-      "return_pct": -2.27
-    },
-    {
-      "month": "Jul 2025",
-      "is_current": false,
-      "start": "2025-07-02",
-      "end": "2025-08-04",
-      "tickers": [
-        "CNL",
-        "LUG",
-        "MAU",
-        "PPTA",
-        "USA",
-        "SSRM",
-        "CIX",
-        "AAUC",
-        "TVK",
-        "NGD"
-      ],
-      "return_pct": -0.38
-    },
-    {
-      "month": "Aug 2025",
-      "is_current": false,
-      "start": "2025-08-04",
-      "end": "2025-09-02",
-      "tickers": [
-        "CNL",
-        "USA",
-        "CLS",
-        "LUG",
-        "MDA",
-        "TNZ",
-        "SSRM",
-        "MAU",
-        "SKE",
-        "CIX"
-      ],
-      "return_pct": 27.34
-    },
-    {
-      "month": "Sep 2025",
-      "is_current": false,
-      "start": "2025-09-02",
-      "end": "2025-10-02",
-      "tickers": [
-        "DSV",
-        "CLS",
-        "USA",
-        "CNL",
-        "MDA",
-        "LUG",
-        "SSRM",
-        "MSA",
-        "MAU",
-        "TNZ"
-      ],
-      "return_pct": 11.65
-    },
-    {
-      "month": "Oct 2025",
-      "is_current": false,
-      "start": "2025-10-02",
-      "end": "2025-11-04",
-      "tickers": [
-        "DSV",
-        "CNL",
-        "CLS",
-        "USA",
-        "ARA",
-        "MSA",
-        "SSRM",
-        "LUG",
-        "MAU",
-        "TNZ"
-      ],
-      "return_pct": 3.78
-    },
-    {
-      "month": "Nov 2025",
-      "is_current": false,
-      "start": "2025-11-04",
-      "end": "2025-12-02",
-      "tickers": [
-        "DSV",
-        "USA",
-        "MSA",
-        "CNL",
-        "SSRM",
-        "CLS",
-        "III",
-        "NDM",
-        "LUG",
-        "TMQ"
-      ],
-      "return_pct": 14.78
-    },
-    {
-      "month": "Dec 2025",
-      "is_current": false,
-      "start": "2025-12-02",
-      "end": "2026-01-05",
-      "tickers": [
-        "DSV",
-        "NDM",
-        "CLS",
-        "USA",
-        "SSRM",
-        "MSA",
-        "III",
-        "MAU",
-        "CNL",
-        "LUG"
-      ],
-      "return_pct": 9.76
-    },
-    {
-      "month": "Jan 2026",
-      "is_current": false,
-      "start": "2026-01-02",
-      "end": "2026-02-02",
-      "regime": "momentum",
-      "tickers": [
-        "APM",
-        "ARIS",
-        "ASM",
-        "DBO",
-        "DSV",
-        "GRGD",
-        "III",
-        "LCFS",
-        "RIO",
-        "TI"
-      ],
-      "weights": {
-        "APM": 0.1,
-        "ARIS": 0.1,
-        "ASM": 0.1,
-        "DBO": 0.1,
-        "DSV": 0.1,
-        "GRGD": 0.1,
-        "III": 0.1,
-        "LCFS": 0.1,
-        "RIO": 0.1,
-        "TI": 0.1
-      },
-      "return_pct": 10.3,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "Feb 2026",
-      "is_current": false,
-      "start": "2026-02-02",
-      "end": "2026-03-02",
-      "regime": "momentum",
-      "tickers": [
-        "APM",
-        "ARIS",
-        "ASM",
-        "CGG",
-        "DBO",
-        "DSV",
-        "ELVA",
-        "GRGD",
-        "III",
-        "LCFS"
-      ],
-      "weights": {
-        "APM": 0.1,
-        "ARIS": 0.1,
-        "ASM": 0.1,
-        "CGG": 0.1,
-        "DBO": 0.1,
-        "DSV": 0.1,
-        "ELVA": 0.1,
-        "GRGD": 0.1,
-        "III": 0.1,
-        "LCFS": 0.1
-      },
-      "return_pct": 7.11,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "Mar 2026",
-      "is_current": false,
-      "start": "2026-03-02",
-      "end": "2026-04-01",
-      "regime": "momentum",
-      "tickers": [
-        "AG",
-        "APM",
-        "ARIS",
-        "ASM",
-        "CGG",
-        "DSV",
-        "GRGD",
-        "NGD",
-        "OGC",
-        "VNP"
-      ],
-      "weights": {
-        "AG": 0.1,
-        "APM": 0.1,
-        "ARIS": 0.1,
-        "ASM": 0.1,
-        "CGG": 0.1,
-        "DSV": 0.1,
-        "GRGD": 0.1,
-        "NGD": 0.1,
-        "OGC": 0.1,
-        "VNP": 0.1
-      },
-      "return_pct": -17.14,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "Apr 2026",
-      "is_current": false,
-      "start": "2026-04-01",
-      "end": "2026-05-01",
-      "regime": "momentum",
-      "tickers": [
-        "APM",
-        "ARIS",
-        "ASM",
-        "CLS",
-        "DBO",
-        "DSV",
-        "GRGD",
-        "SDE",
-        "TNZ",
-        "VNP"
-      ],
-      "weights": {
-        "APM": 0.1,
-        "ARIS": 0.1,
-        "ASM": 0.1,
-        "CLS": 0.1,
-        "DBO": 0.1,
-        "DSV": 0.1,
-        "GRGD": 0.1,
-        "SDE": 0.1,
-        "TNZ": 0.1,
-        "VNP": 0.1
-      },
-      "return_pct": 6.05,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "May 2026",
-      "is_current": false,
-      "start": "2026-05-01",
-      "end": "2026-06-01",
-      "regime": "momentum",
-      "tickers": [
-        "CLS",
-        "DBO",
-        "EFX",
-        "GRGD",
-        "IFA",
-        "JOY",
-        "SDE",
-        "SOIL",
-        "TNZ",
-        "VNP"
-      ],
-      "weights": {
-        "CLS": 0.1,
-        "DBO": 0.1,
-        "EFX": 0.1,
-        "GRGD": 0.1,
-        "IFA": 0.1,
-        "JOY": 0.1,
-        "SDE": 0.1,
-        "SOIL": 0.1,
-        "TNZ": 0.1,
-        "VNP": 0.1
-      },
-      "return_pct": -0.69,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "Jun 2026",
-      "is_current": false,
-      "start": "2026-06-01",
-      "end": "2026-07-02",
-      "regime": "momentum",
-      "tickers": [
-        "AG",
-        "ARG",
-        "EFX",
-        "ELVA",
-        "GRGD",
-        "IFA",
-        "LCFS",
-        "SDE",
-        "SOIL",
-        "VNP"
-      ],
-      "weights": {
-        "AG": 0.1,
-        "ARG": 0.1,
-        "EFX": 0.1,
-        "ELVA": 0.1,
-        "GRGD": 0.1,
-        "IFA": 0.1,
-        "LCFS": 0.1,
-        "SDE": 0.1,
-        "SOIL": 0.1,
-        "VNP": 0.1
-      },
-      "return_pct": -10.28,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "Jul 2026",
-      "is_current": false,
-      "start": "2026-07-02",
-      "end": "2026-08-04",
-      "regime": "momentum",
-      "tickers": [
-        "ARG",
-        "BB",
-        "DBO",
-        "DSV",
-        "EFX",
-        "ELVA",
-        "IFA",
-        "LCFS",
-        "SDE",
-        "VNP"
-      ],
-      "weights": {
-        "ARG": 0.1,
-        "BB": 0.1,
-        "DBO": 0.1,
-        "DSV": 0.1,
-        "EFX": 0.1,
-        "ELVA": 0.1,
-        "IFA": 0.1,
-        "LCFS": 0.1,
-        "SDE": 0.1,
-        "VNP": 0.1
-      },
-      "return_pct": 1.05,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "Aug 2026",
-      "is_current": false,
-      "start": "2026-08-04",
-      "end": "2026-09-01",
-      "regime": "momentum",
-      "tickers": [
-        "ARG",
-        "CGG",
-        "DBO",
-        "DSV",
-        "EFX",
-        "EXE",
-        "IFA",
-        "LCFS",
-        "MSA",
-        "TNZ"
-      ],
-      "weights": {
-        "ARG": 0.1,
-        "CGG": 0.1,
-        "DBO": 0.1,
-        "DSV": 0.1,
-        "EFX": 0.1,
-        "EXE": 0.1,
-        "IFA": 0.1,
-        "LCFS": 0.1,
-        "MSA": 0.1,
-        "TNZ": 0.1
-      },
-      "return_pct": 6.37,
-      "config_version": "v3-netincome-2026-08-21"
-    },
-    {
-      "month": "Sep 2026",
-      "is_current": true,
-      "start": "2026-09-01",
-      "end": null,
-      "regime": "momentum",
-      "tickers": [
-        "LCFS",
-        "ORV",
-        "LGD",
-        "ARG",
-        "CVVY",
-        "DSV",
-        "AYA",
-        "BDT",
-        "CG",
-        "DBO"
-      ],
-      "weights": {
-        "LCFS": 0.1,
-        "ORV": 0.1,
-        "LGD": 0.1,
-        "ARG": 0.1,
-        "CVVY": 0.1,
-        "DSV": 0.1,
-        "AYA": 0.1,
-        "BDT": 0.1,
-        "CG": 0.1,
-        "DBO": 0.1
-      },
-      "return_pct": 3.12,
-      "config_version": "v3-netincome-2026-08-21"
-    }
-  ],
-  "tsx_annual": {
-    "2024": 18.47,
-    "2025": 27.37,
-    "2026": 13.34
+ "last_rebalance": "2026-09-01",
+ "updated": "2026-09-06",
+ "ytd_2026": -0.57,
+ "regime": "momentum",
+ "currency": "CAD",
+ "tsx": 36513.8,
+ "tsx_ma75": 35473.7,
+ "holdings": [
+  {
+   "ticker": "LCFS",
+   "name": "Tidewater Renewables Ltd.",
+   "entry_date": "2026-06-01",
+   "entry_price": 11.69,
+   "current_price": 18.25,
+   "weight": 0.1,
+   "return_pct": 56.12
   },
-  "pending_signal": null,
-  "config_version": "v3-netincome-2026-08-21",
-  "is_live": true,
-  "not_live_reason": null
+  {
+   "ticker": "ORV",
+   "name": "Orvana Minerals Corp.",
+   "entry_date": "2026-09-01",
+   "entry_price": 2.68,
+   "current_price": 2.68,
+   "weight": 0.1,
+   "return_pct": 0.0
+  },
+  {
+   "ticker": "LGD",
+   "name": "Liberty Gold Corp",
+   "entry_date": "2026-09-01",
+   "entry_price": 1.75,
+   "current_price": 1.87,
+   "weight": 0.1,
+   "return_pct": 6.86
+  },
+  {
+   "ticker": "ARG",
+   "name": "Amerigo Resources Ltd",
+   "entry_date": "2026-06-01",
+   "entry_price": 6.93,
+   "current_price": 8.05,
+   "weight": 0.1,
+   "return_pct": 16.16
+  },
+  {
+   "ticker": "CVVY",
+   "name": "Cavvy Energy Ltd",
+   "entry_date": "2026-09-01",
+   "entry_price": 2.17,
+   "current_price": 2.06,
+   "weight": 0.1,
+   "return_pct": -5.07
+  },
+  {
+   "ticker": "DSV",
+   "name": "Discovery Mining Ltd.",
+   "entry_date": "2026-07-02",
+   "entry_price": 9.13,
+   "current_price": 13.12,
+   "weight": 0.1,
+   "return_pct": 43.7
+  },
+  {
+   "ticker": "AYA",
+   "name": "Aya Gold & Silver Inc.",
+   "entry_date": "2026-09-01",
+   "entry_price": 36.68,
+   "current_price": 39.97,
+   "weight": 0.1,
+   "return_pct": 8.97
+  },
+  {
+   "ticker": "BDT",
+   "name": "Bird Construction Inc.",
+   "entry_date": "2026-09-01",
+   "entry_price": 64.69,
+   "current_price": 70.24,
+   "weight": 0.1,
+   "return_pct": 8.58
+  },
+  {
+   "ticker": "CG",
+   "name": "Centerra Gold Inc.",
+   "entry_date": "2026-09-01",
+   "entry_price": 30.28,
+   "current_price": 31.73,
+   "weight": 0.1,
+   "return_pct": 4.79
+  },
+  {
+   "ticker": "DBO",
+   "name": "D-BOX Technologies Inc. Class A",
+   "entry_date": "2026-07-02",
+   "entry_price": 1.19,
+   "current_price": 1.11,
+   "weight": 0.1,
+   "return_pct": -6.72
+  }
+ ],
+ "monthly_breakdown": [
+  {
+   "month": "Sep 2023",
+   "is_current": false,
+   "start": "2023-09-05",
+   "end": "2023-10-03",
+   "tickers": [
+    "HPS-A",
+    "NVDA",
+    "MATR",
+    "ERO",
+    "CS",
+    "BBD-B",
+    "NOA",
+    "CLS",
+    "SHOP",
+    "IMG"
+   ],
+   "return_pct": -13.45
+  },
+  {
+   "month": "Oct 2023",
+   "is_current": false,
+   "start": "2023-10-03",
+   "end": "2023-11-02",
+   "tickers": [],
+   "return_pct": 0.0
+  },
+  {
+   "month": "Nov 2023",
+   "is_current": false,
+   "start": "2023-11-02",
+   "end": "2023-12-04",
+   "tickers": [],
+   "return_pct": 0.0
+  },
+  {
+   "month": "Dec 2023",
+   "is_current": false,
+   "start": "2023-12-04",
+   "end": "2024-01-03",
+   "tickers": [
+    "HPS-A",
+    "NVDA",
+    "META",
+    "CLS",
+    "MDA",
+    "CCO",
+    "ARE",
+    "ATH",
+    "ATRL",
+    "BDT"
+   ],
+   "return_pct": 4.98
+  },
+  {
+   "month": "Jan 2024",
+   "is_current": false,
+   "start": "2024-01-03",
+   "end": "2024-02-02",
+   "tickers": [
+    "HPS-A",
+    "NVDA",
+    "QBTC",
+    "META",
+    "CLS",
+    "CCO",
+    "NGEX",
+    "SHOP",
+    "MDA",
+    "ARE"
+   ],
+   "return_pct": 18.55
+  },
+  {
+   "month": "Feb 2024",
+   "is_current": false,
+   "start": "2024-02-02",
+   "end": "2024-03-04",
+   "tickers": [
+    "HPS-A",
+    "NGEX",
+    "NVDA",
+    "CLS",
+    "ARE",
+    "QBTC",
+    "META",
+    "TVK",
+    "BDT",
+    "MDA"
+   ],
+   "return_pct": 20.04
+  },
+  {
+   "month": "Mar 2024",
+   "is_current": false,
+   "start": "2024-03-04",
+   "end": "2024-04-02",
+   "tickers": [
+    "HPS-A",
+    "NVDA",
+    "CLS",
+    "META",
+    "NGEX",
+    "PRL",
+    "ARE",
+    "U-U",
+    "SHOP",
+    "NXE"
+   ],
+   "return_pct": 7.5
+  },
+  {
+   "month": "Apr 2024",
+   "is_current": false,
+   "start": "2024-04-02",
+   "end": "2024-05-02",
+   "tickers": [
+    "CLS",
+    "HPS-A",
+    "NVDA",
+    "PRL",
+    "META",
+    "VHI",
+    "QBTC-U",
+    "QBTC",
+    "MDA",
+    "TVK"
+   ],
+   "return_pct": 0.31
+  },
+  {
+   "month": "May 2024",
+   "is_current": false,
+   "start": "2024-05-02",
+   "end": "2024-06-04",
+   "tickers": [
+    "CLS",
+    "HPS-A",
+    "NVDA",
+    "PRL",
+    "TVK",
+    "MDA",
+    "NXE",
+    "BDT",
+    "ARE",
+    "CEU"
+   ],
+   "return_pct": 4.92
+  },
+  {
+   "month": "Jun 2024",
+   "is_current": false,
+   "start": "2024-06-04",
+   "end": "2024-07-02",
+   "tickers": [
+    "AIDX",
+    "CLS",
+    "PRL",
+    "TVK",
+    "HPS-A",
+    "CEU",
+    "BDT",
+    "NVDA",
+    "ARE",
+    "QBTC"
+   ],
+   "return_pct": 5.52
+  },
+  {
+   "month": "Jul 2024",
+   "is_current": false,
+   "start": "2024-07-02",
+   "end": "2024-08-02",
+   "tickers": [],
+   "return_pct": 0.0
+  },
+  {
+   "month": "Aug 2024",
+   "is_current": false,
+   "start": "2024-08-02",
+   "end": "2024-09-04",
+   "tickers": [
+    "PRL",
+    "BDT",
+    "CLS",
+    "NVDA",
+    "CEU",
+    "TVK",
+    "FCU",
+    "ARE",
+    "SIL",
+    "CMG"
+   ],
+   "return_pct": 2.87
+  },
+  {
+   "month": "Sep 2024",
+   "is_current": false,
+   "start": "2024-09-04",
+   "end": "2024-10-02",
+   "tickers": [
+    "PRL",
+    "BDT",
+    "ARE",
+    "TVK",
+    "NGD",
+    "NVDA",
+    "CEU",
+    "CLS",
+    "HPS-A",
+    "HRX"
+   ],
+   "return_pct": 9.6
+  },
+  {
+   "month": "Oct 2024",
+   "is_current": false,
+   "start": "2024-10-02",
+   "end": "2024-11-04",
+   "tickers": [
+    "PRL",
+    "MAU",
+    "TVK",
+    "FFN",
+    "NVDA",
+    "NGD",
+    "HPS-A",
+    "ARE",
+    "NVEI",
+    "BDT"
+   ],
+   "return_pct": 16.27
+  },
+  {
+   "month": "Nov 2024",
+   "is_current": false,
+   "start": "2024-11-04",
+   "end": "2024-12-03",
+   "tickers": [
+    "PRL",
+    "VHI",
+    "ARE",
+    "TVK",
+    "NVDA",
+    "NGD",
+    "FFN",
+    "AYA",
+    "GLXY",
+    "ATZ"
+   ],
+   "return_pct": 3.27
+  },
+  {
+   "month": "Dec 2024",
+   "is_current": false,
+   "start": "2024-12-03",
+   "end": "2025-01-03",
+   "tickers": [
+    "ARE",
+    "PPTA",
+    "PRL",
+    "NVDA",
+    "TVK",
+    "CLS",
+    "BDT",
+    "EDR",
+    "VHI",
+    "CEU"
+   ],
+   "return_pct": -1.06
+  },
+  {
+   "month": "Jan 2025",
+   "is_current": false,
+   "start": "2025-01-03",
+   "end": "2025-02-04",
+   "tickers": [
+    "PPTA",
+    "CLS",
+    "PRL",
+    "NVDA",
+    "CEU",
+    "VHI",
+    "ARE",
+    "TVK",
+    "CIX",
+    "EDR"
+   ],
+   "return_pct": 3.99
+  },
+  {
+   "month": "Feb 2025",
+   "is_current": false,
+   "start": "2025-02-04",
+   "end": "2025-03-04",
+   "tickers": [
+    "PPTA",
+    "TNZ",
+    "HUT",
+    "CLS",
+    "GLXY",
+    "EDR",
+    "MDA",
+    "CEU",
+    "ARE",
+    "PRL"
+   ],
+   "return_pct": -19.27
+  },
+  {
+   "month": "Mar 2025",
+   "is_current": false,
+   "start": "2025-03-04",
+   "end": "2025-04-02",
+   "tickers": [],
+   "return_pct": 0.0
+  },
+  {
+   "month": "Apr 2025",
+   "is_current": false,
+   "start": "2025-04-02",
+   "end": "2025-05-02",
+   "tickers": [
+    "TNZ",
+    "CIX",
+    "SSRM",
+    "LUG",
+    "CLS",
+    "CNL",
+    "PPTA",
+    "K",
+    "EXE",
+    "MAU"
+   ],
+   "return_pct": 11.39
+  },
+  {
+   "month": "May 2025",
+   "is_current": false,
+   "start": "2025-05-02",
+   "end": "2025-06-03",
+   "tickers": [
+    "CNL",
+    "TNZ",
+    "MAU",
+    "LUG",
+    "CIX",
+    "PPTA",
+    "NGD",
+    "K",
+    "TXG",
+    "TVK"
+   ],
+   "return_pct": 17.74
+  },
+  {
+   "month": "Jun 2025",
+   "is_current": false,
+   "start": "2025-06-03",
+   "end": "2025-07-02",
+   "tickers": [
+    "TNZ",
+    "CNL",
+    "LUG",
+    "CIX",
+    "SKE",
+    "MAU",
+    "TVK",
+    "PPTA",
+    "SSRM",
+    "TXG"
+   ],
+   "return_pct": -2.27
+  },
+  {
+   "month": "Jul 2025",
+   "is_current": false,
+   "start": "2025-07-02",
+   "end": "2025-08-04",
+   "tickers": [
+    "CNL",
+    "LUG",
+    "MAU",
+    "PPTA",
+    "USA",
+    "SSRM",
+    "CIX",
+    "AAUC",
+    "TVK",
+    "NGD"
+   ],
+   "return_pct": -0.38
+  },
+  {
+   "month": "Aug 2025",
+   "is_current": false,
+   "start": "2025-08-04",
+   "end": "2025-09-02",
+   "tickers": [
+    "CNL",
+    "USA",
+    "CLS",
+    "LUG",
+    "MDA",
+    "TNZ",
+    "SSRM",
+    "MAU",
+    "SKE",
+    "CIX"
+   ],
+   "return_pct": 27.34
+  },
+  {
+   "month": "Sep 2025",
+   "is_current": false,
+   "start": "2025-09-02",
+   "end": "2025-10-02",
+   "tickers": [
+    "DSV",
+    "CLS",
+    "USA",
+    "CNL",
+    "MDA",
+    "LUG",
+    "SSRM",
+    "MSA",
+    "MAU",
+    "TNZ"
+   ],
+   "return_pct": 11.65
+  },
+  {
+   "month": "Oct 2025",
+   "is_current": false,
+   "start": "2025-10-02",
+   "end": "2025-11-04",
+   "tickers": [
+    "DSV",
+    "CNL",
+    "CLS",
+    "USA",
+    "ARA",
+    "MSA",
+    "SSRM",
+    "LUG",
+    "MAU",
+    "TNZ"
+   ],
+   "return_pct": 3.78
+  },
+  {
+   "month": "Nov 2025",
+   "is_current": false,
+   "start": "2025-11-04",
+   "end": "2025-12-02",
+   "tickers": [
+    "DSV",
+    "USA",
+    "MSA",
+    "CNL",
+    "SSRM",
+    "CLS",
+    "III",
+    "NDM",
+    "LUG",
+    "TMQ"
+   ],
+   "return_pct": 14.78
+  },
+  {
+   "month": "Dec 2025",
+   "is_current": false,
+   "start": "2025-12-02",
+   "end": "2026-01-05",
+   "tickers": [
+    "DSV",
+    "NDM",
+    "CLS",
+    "USA",
+    "SSRM",
+    "MSA",
+    "III",
+    "MAU",
+    "CNL",
+    "LUG"
+   ],
+   "return_pct": 9.76
+  },
+  {
+   "month": "Jan 2026",
+   "is_current": false,
+   "start": "2026-01-02",
+   "end": "2026-02-02",
+   "regime": "momentum",
+   "tickers": [
+    "APM",
+    "ARIS",
+    "ASM",
+    "DBO",
+    "DSV",
+    "GRGD",
+    "III",
+    "LCFS",
+    "RIO",
+    "TI"
+   ],
+   "weights": {
+    "APM": 0.1,
+    "ARIS": 0.1,
+    "ASM": 0.1,
+    "DBO": 0.1,
+    "DSV": 0.1,
+    "GRGD": 0.1,
+    "III": 0.1,
+    "LCFS": 0.1,
+    "RIO": 0.1,
+    "TI": 0.1
+   },
+   "return_pct": 10.3,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "Feb 2026",
+   "is_current": false,
+   "start": "2026-02-02",
+   "end": "2026-03-02",
+   "regime": "momentum",
+   "tickers": [
+    "APM",
+    "ARIS",
+    "ASM",
+    "CGG",
+    "DBO",
+    "DSV",
+    "ELVA",
+    "GRGD",
+    "III",
+    "LCFS"
+   ],
+   "weights": {
+    "APM": 0.1,
+    "ARIS": 0.1,
+    "ASM": 0.1,
+    "CGG": 0.1,
+    "DBO": 0.1,
+    "DSV": 0.1,
+    "ELVA": 0.1,
+    "GRGD": 0.1,
+    "III": 0.1,
+    "LCFS": 0.1
+   },
+   "return_pct": 7.11,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "Mar 2026",
+   "is_current": false,
+   "start": "2026-03-02",
+   "end": "2026-04-01",
+   "regime": "momentum",
+   "tickers": [
+    "AG",
+    "APM",
+    "ARIS",
+    "ASM",
+    "CGG",
+    "DSV",
+    "GRGD",
+    "NGD",
+    "OGC",
+    "VNP"
+   ],
+   "weights": {
+    "AG": 0.1,
+    "APM": 0.1,
+    "ARIS": 0.1,
+    "ASM": 0.1,
+    "CGG": 0.1,
+    "DSV": 0.1,
+    "GRGD": 0.1,
+    "NGD": 0.1,
+    "OGC": 0.1,
+    "VNP": 0.1
+   },
+   "return_pct": -17.14,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "Apr 2026",
+   "is_current": false,
+   "start": "2026-04-01",
+   "end": "2026-05-01",
+   "regime": "momentum",
+   "tickers": [
+    "APM",
+    "ARIS",
+    "ASM",
+    "CLS",
+    "DBO",
+    "DSV",
+    "GRGD",
+    "SDE",
+    "TNZ",
+    "VNP"
+   ],
+   "weights": {
+    "APM": 0.1,
+    "ARIS": 0.1,
+    "ASM": 0.1,
+    "CLS": 0.1,
+    "DBO": 0.1,
+    "DSV": 0.1,
+    "GRGD": 0.1,
+    "SDE": 0.1,
+    "TNZ": 0.1,
+    "VNP": 0.1
+   },
+   "return_pct": 6.05,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "May 2026",
+   "is_current": false,
+   "start": "2026-05-01",
+   "end": "2026-06-01",
+   "regime": "momentum",
+   "tickers": [
+    "CLS",
+    "DBO",
+    "EFX",
+    "GRGD",
+    "IFA",
+    "JOY",
+    "SDE",
+    "SOIL",
+    "TNZ",
+    "VNP"
+   ],
+   "weights": {
+    "CLS": 0.1,
+    "DBO": 0.1,
+    "EFX": 0.1,
+    "GRGD": 0.1,
+    "IFA": 0.1,
+    "JOY": 0.1,
+    "SDE": 0.1,
+    "SOIL": 0.1,
+    "TNZ": 0.1,
+    "VNP": 0.1
+   },
+   "return_pct": -0.69,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "Jun 2026",
+   "is_current": false,
+   "start": "2026-06-01",
+   "end": "2026-07-02",
+   "regime": "momentum",
+   "tickers": [
+    "AG",
+    "ARG",
+    "EFX",
+    "ELVA",
+    "GRGD",
+    "IFA",
+    "LCFS",
+    "SDE",
+    "SOIL",
+    "VNP"
+   ],
+   "weights": {
+    "AG": 0.1,
+    "ARG": 0.1,
+    "EFX": 0.1,
+    "ELVA": 0.1,
+    "GRGD": 0.1,
+    "IFA": 0.1,
+    "LCFS": 0.1,
+    "SDE": 0.1,
+    "SOIL": 0.1,
+    "VNP": 0.1
+   },
+   "return_pct": -10.28,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "Jul 2026",
+   "is_current": false,
+   "start": "2026-07-02",
+   "end": "2026-08-04",
+   "regime": "momentum",
+   "tickers": [
+    "ARG",
+    "BB",
+    "DBO",
+    "DSV",
+    "EFX",
+    "ELVA",
+    "IFA",
+    "LCFS",
+    "SDE",
+    "VNP"
+   ],
+   "weights": {
+    "ARG": 0.1,
+    "BB": 0.1,
+    "DBO": 0.1,
+    "DSV": 0.1,
+    "EFX": 0.1,
+    "ELVA": 0.1,
+    "IFA": 0.1,
+    "LCFS": 0.1,
+    "SDE": 0.1,
+    "VNP": 0.1
+   },
+   "return_pct": 1.05,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "Aug 2026",
+   "is_current": false,
+   "start": "2026-08-04",
+   "end": "2026-09-01",
+   "regime": "momentum",
+   "tickers": [
+    "ARG",
+    "CGG",
+    "DBO",
+    "DSV",
+    "EFX",
+    "EXE",
+    "IFA",
+    "LCFS",
+    "MSA",
+    "TNZ"
+   ],
+   "weights": {
+    "ARG": 0.1,
+    "CGG": 0.1,
+    "DBO": 0.1,
+    "DSV": 0.1,
+    "EFX": 0.1,
+    "EXE": 0.1,
+    "IFA": 0.1,
+    "LCFS": 0.1,
+    "MSA": 0.1,
+    "TNZ": 0.1
+   },
+   "return_pct": 6.37,
+   "config_version": "v3-netincome-2026-08-21"
+  },
+  {
+   "month": "Sep 2026",
+   "is_current": true,
+   "start": "2026-09-01",
+   "end": null,
+   "regime": "momentum",
+   "tickers": [
+    "LCFS",
+    "ORV",
+    "LGD",
+    "ARG",
+    "CVVY",
+    "DSV",
+    "AYA",
+    "BDT",
+    "CG",
+    "DBO"
+   ],
+   "weights": {
+    "LCFS": 0.1,
+    "ORV": 0.1,
+    "LGD": 0.1,
+    "ARG": 0.1,
+    "CVVY": 0.1,
+    "DSV": 0.1,
+    "AYA": 0.1,
+    "BDT": 0.1,
+    "CG": 0.1,
+    "DBO": 0.1
+   },
+   "return_pct": 3.12,
+   "config_version": "v3-netincome-2026-08-21"
+  }
+ ],
+ "tsx_annual": {
+  "2024": 18.47,
+  "2025": 27.37,
+  "2026": 13.34
+ },
+ "pending_signal": null,
+ "config_version": "v3-netincome-2026-08-21",
+ "is_live": true,
+ "not_live_reason": null
 }

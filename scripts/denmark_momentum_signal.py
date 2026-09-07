@@ -239,9 +239,13 @@ def main():
             code = row['code']
             tk   = row['ticker_eodhd']
             cp   = price_map.get(code)
-            ep, edate = get_som_price(code)
-            if ep is None:
-                ep, edate = cp, TODAY
+            prev = existing_map.get(tk)
+            if prev and prev.get('entry_price'):
+                ep, edate = prev['entry_price'], prev['entry_date']
+            else:
+                ep, edate = get_som_price(code)
+                if ep is None:
+                    ep, edate = cp, TODAY
             ret = round((cp / ep - 1) * 100, 2) if ep and cp else None
             holdings.append({
                 'ticker':        tk,

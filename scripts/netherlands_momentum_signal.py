@@ -253,7 +253,11 @@ def main():
         for _, row in top_df.iterrows():
             code = row['code']
             cp   = price_map.get(code)
-            ep, edate = get_som_price(code)
+            prev = {h['ticker']: h for h in existing.get('holdings', [])}.get(code)
+            if prev and prev.get('entry_price'):
+                ep, edate = prev['entry_price'], prev['entry_date']
+            else:
+                ep, edate = get_som_price(code)
             if ep is None:
                 ep, edate = cp, TODAY
             ret = round((cp / ep - 1) * 100, 2) if ep and cp else None
