@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-08-30",
-  "updated": "2026-09-06 00:47 UTC",
-  "ytd_2026": -32.93,
+  "updated": "2026-09-08 01:02 UTC",
+  "ytd_2026": -32.83,
   "holdings": [
     {
       "ticker": "SML",
@@ -18,8 +18,8 @@
       "sector": "Finance",
       "entry_date": "2026-07-31",
       "entry_price": 667.0,
-      "current_price": 765.0,
-      "return_pct": 14.69
+      "current_price": 785.0,
+      "return_pct": 17.69
     },
     {
       "ticker": "SFOR",
@@ -27,8 +27,8 @@
       "sector": "Commercial Services",
       "entry_date": "2026-09-01",
       "entry_price": 49.5,
-      "current_price": 49.6,
-      "return_pct": 0.2
+      "current_price": 49.0,
+      "return_pct": -1.11
     },
     {
       "ticker": "DIA",
@@ -36,8 +36,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-09-01",
       "entry_price": 554.0,
-      "current_price": 562.0,
-      "return_pct": 1.44
+      "current_price": 560.0,
+      "return_pct": 1.08
     },
     {
       "ticker": "TLW",
@@ -45,8 +45,8 @@
       "sector": "Energy Minerals",
       "entry_date": "2026-09-01",
       "entry_price": 20.5,
-      "current_price": 20.8,
-      "return_pct": 1.46
+      "current_price": 21.1,
+      "return_pct": 2.93
     },
     {
       "ticker": "CCC",
@@ -54,8 +54,8 @@
       "sector": "Technology Services",
       "entry_date": "2026-09-01",
       "entry_price": 5670.0,
-      "current_price": 5590.0,
-      "return_pct": -1.41
+      "current_price": 5600.0,
+      "return_pct": -1.23
     },
     {
       "ticker": "HFD",
@@ -63,8 +63,8 @@
       "sector": "Retail Trade",
       "entry_date": "2026-09-01",
       "entry_price": 273.5,
-      "current_price": 264.0,
-      "return_pct": -3.47
+      "current_price": 259.5,
+      "return_pct": -5.12
     }
   ],
   "monthly_breakdown": [
@@ -225,7 +225,7 @@
       "month": "Sep 2026 (MTD)",
       "is_current": true,
       "start": "2026-08-30",
-      "end": "2026-09-06",
+      "end": "2026-09-08",
       "regime": "momentum",
       "tickers": [
         "SML",
@@ -236,13 +236,13 @@
         "CCC",
         "HFD"
       ],
-      "return_pct": 1.32
+      "return_pct": 1.51
     }
   ],
   "currency": "GBX",
   "currency_note": "Prices in pence (GBX). \u00a31 = 100p.",
-  "ftse100": 10831.1,
-  "ftse100_ma200": 10353.75,
+  "ftse100": 10822.1,
+  "ftse100_ma200": 10360.32,
   "regime": "risk-on",
   "pending_signal": null
 }
