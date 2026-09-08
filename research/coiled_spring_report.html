@@ -1,0 +1,537 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coiled Spring Dynamic — Strategy Research — Bivar Capital</title>
+<meta name="description" content="Coiled Spring Dynamic: fundamental quality + price compression + regime filter. 16.0% CAGR, Sharpe 0.91, max drawdown -25.8% (1998–2026). Full signal construction, parameter sensitivity, and signal sweep across 86 fundamental metrics.">
+<meta property="og:title" content="Coiled Spring Dynamic — Strategy Research — Bivar Capital">
+<meta property="og:description" content="16.0% CAGR, Sharpe 0.91, max drawdown -25.8% over 28 years. Fundamental quality + price compression + bear-market regime filter.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bivarcapital.com/research/coiled_spring_report.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Coiled Spring Dynamic — Strategy Research — Bivar Capital">
+<meta name="twitter:description" content="16.0% CAGR, Sharpe 0.91, max drawdown -25.8% (1998–2026). Fundamental quality meets price compression.">
+<meta name="twitter:image" content="https://bivarcapital.com/og-image.png">
+<link rel="canonical" href="https://bivarcapital.com/research/coiled_spring_report.html">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.5vw,1.4rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.pos{color:var(--green)}.neg{color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:5px 7px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:4px 7px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}.callout p{margin:0;color:var(--text);font-size:.78rem}
+.highlight{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:18px;margin:18px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.four-col{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin:14px 0}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.stat-box .val{font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400;line-height:1}
+.stat-box .lbl{font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-top:6px}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.68rem}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.meta-box dt:first-child{margin-top:0}.meta-box dd{color:var(--text);margin:1px 0 0}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+canvas{border-radius:8px;border:1px solid var(--border)}
+.chart-wrap{margin:18px 0;position:relative}
+code{font-family:'JetBrains Mono',monospace;font-size:.72rem;background:var(--card);border:1px solid var(--border);padding:2px 6px;border-radius:4px;color:var(--accent)}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;overflow-x:auto;margin:14px 0}
+pre code{background:none;border:none;padding:0;font-size:.7rem;color:var(--text)}
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;border:1px solid var(--border);color:var(--muted);margin:2px}
+.badge.green{border-color:rgba(74,222,128,.3);color:var(--green);background:rgba(74,222,128,.06)}
+.badge.gold{border-color:rgba(196,162,101,.3);color:var(--accent);background:rgba(196,162,101,.06)}
+.yr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin:14px 0}
+.yr-box{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:8px 6px;text-align:center}
+.yr-box .y{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--muted);display:block}
+.yr-box .r{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600}
+@media(max-width:700px){.two-col,.three-col,.four-col{grid-template-columns:1fr}}
+</style></head><body>
+<style>
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:JetBrains Mono,monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:JetBrains Mono,monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.menu-btn{display:none;background:none;border:none;color:#e8e8ec;font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:600px){
+.site-header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid #1a1a22;padding:16px 24px;flex-direction:column;gap:14px}
+.site-header nav.open{display:flex}
+.site-header nav a{margin-left:0;font-size:.7rem}
+.menu-btn{display:block}
+}
+</style>
+<header class="site-header"><div class="hw"><a href="/" class="hl">Bivar Capital</a><button class="menu-btn" onclick="document.querySelector('.site-header nav').classList.toggle('open')" aria-label="Menu">&#9776;</button><nav><a href="/">Home</a><a href="/strategies.html">Strategies</a><a href="/research/coiled_spring_report.html" class="accent">Coiled Spring</a><a href="/about.html">About</a></nav></div></header>
+
+<div class="container">
+<p class="brand">Bivar Capital — Strategy Research</p>
+<h1>Coiled Spring Dynamic<span class="it">Fundamental Quality Meets Price Compression</span></h1>
+<p class="lead">A systematic long-only US equity strategy that buys fundamentally improving companies whose stock price has gone nowhere for six months — then exits when quality deteriorates or the market turns bear.</p>
+
+<div class="divider"></div>
+
+<!-- KEY STATS -->
+<div class="four-col">
+  <div class="stat-box"><div class="val pos">16.0%</div><div class="lbl">CAGR (1998–2026)</div></div>
+  <div class="stat-box"><div class="val pos">0.91</div><div class="lbl">Sharpe Ratio</div></div>
+  <div class="stat-box"><div class="val neg">-25.8%</div><div class="lbl">Max Drawdown</div></div>
+  <div class="stat-box"><div class="val pos">+9.0pp</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+</div>
+
+<div class="two-col" style="margin-top:14px">
+  <div class="meta-box"><dl>
+    <dt>Universe</dt><dd>US Domestic Common Stocks (Sharadar)</dd>
+    <dt>Market Cap Filter</dt><dd>&gt; $1 billion</dd>
+    <dt>Backtest Period</dt><dd>Jan 1998 – Mar 2026 (339 months)</dd>
+    <dt>Portfolio Size</dt><dd>Up to 20 positions</dd>
+    <dt>Rebalance</dt><dd>Monthly (end-of-month)</dd>
+    <dt>Bear Market Safe Haven</dt><dd>GLD (Gold ETF)</dd>
+  </dl></div>
+  <div class="meta-box"><dl>
+    <dt>S&amp;P 500 CAGR (same period)</dt><dd>7.0%</dd>
+    <dt>S&amp;P 500 Sharpe</dt><dd>0.26</dd>
+    <dt>S&amp;P 500 Max Drawdown</dt><dd>-52.6%</dd>
+    <dt>Strategy Volatility (ann.)</dt><dd>14.2%</dd>
+    <dt>Negative Years</dt><dd>2 out of 29 (2011, 2022)</dd>
+    <dt>Data Source</dt><dd>Nasdaq Data Link / Sharadar Core US</dd>
+  </dl></div>
+</div>
+
+<!-- EQUITY CHART -->
+<h2>Cumulative Performance</h2>
+<p>Growth of $1 invested at end-1997. Strategy vs S&amp;P 500 (price return, no dividends). Log scale.</p>
+<div class="chart-wrap"><canvas id="eqChart" height="320"></canvas></div>
+
+<div class="divider"></div>
+
+<!-- STRATEGY LOGIC -->
+<h2>The Idea</h2>
+<p>The "coiled spring" metaphor comes from physics: compress a spring under tension long enough and it releases with force. In markets, the analogue is a stock where the <strong>fundamentals have been quietly improving</strong> for a year — expanding margins, rising returns on capital, accelerating gross profit growth — while the <strong>stock price has gone nowhere</strong> for six months. The price compression is the coil. The improving business is the tension building inside it.</p>
+<p>When that tension releases — when the market finally notices — the move tends to be sharp and sustained. The strategy's job is to identify these stocks before the release, hold through the move, and exit when fundamentals begin to deteriorate.</p>
+
+<div class="callout"><p>The core insight: <strong>fundamental improvement precedes price movement.</strong> Most investors wait for the price to confirm the improvement. This strategy buys the gap between the two.</p></div>
+
+<h3>Three layers of logic</h3>
+<div class="three-col">
+  <div class="meta-box"><dl>
+    <dt>1 — Quality Signal</dt>
+    <dd style="margin-top:6px;color:var(--secondary);font-size:.75rem">Rank stocks by composite fundamental improvement. Top ranks enter the eligible pool.</dd>
+  </dl></div>
+  <div class="meta-box"><dl>
+    <dt>2 — Price Filter</dt>
+    <dd style="margin-top:6px;color:var(--secondary);font-size:.75rem">Only consider stocks where 6-month price return is between -15% and +15%. Price must be coiled, not already running.</dd>
+  </dl></div>
+  <div class="meta-box"><dl>
+    <dt>3 — Regime Filter</dt>
+    <dd style="margin-top:6px;color:var(--secondary);font-size:.75rem">S&amp;P 500 must be above its 225-day MA. In bear markets, all positions close and capital moves to GLD.</dd>
+  </dl></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SIGNAL CONSTRUCTION -->
+<h2>Signal Construction</h2>
+<p>After testing 86 combinations of fundamental metrics (see Signal Sweep below), the optimal composite — <strong>v2 Signal</strong> — combines three components equally weighted:</p>
+
+<pre><code># All computed with 12-month lag (TTM vs TTM one year ago)
+# Winsorized cross-sectionally (p1–p99) before ranking
+
+nm_growth = rank( net_margin_ttm / net_margin_ttm.shift(12) − 1 )
+            # Net margin growth YoY: is the business becoming more profitable?
+
+roic_lvl  = rank( ebit / (equity + debt) )
+            # ROIC absolute level: is capital employed efficiently?
+            # Uses level (not trend) — high ROIC now matters more than direction
+
+gm_accel  = rank( (gm − gm.shift(12)) − (gm.shift(12) − gm.shift(24)) )
+            # Gross margin 2nd derivative: is the improvement accelerating?
+            # Captures the "getting better faster" dynamic in unit economics
+
+signal    = (nm_growth + roic_lvl + gm_accel) / 3</code></pre>
+
+<h3>Design decisions</h3>
+<div class="two-col">
+  <div class="meta-box"><dl>
+    <dt>Why ROIC level, not trend?</dt>
+    <dd style="margin-top:4px;color:var(--secondary);font-size:.75rem">A company with 25% ROIC flat beats one with 5% ROIC improving. We want capital compounders. The trend is captured by net margin growth.</dd>
+    <dt>Why gross margin 2nd derivative?</dt>
+    <dd style="margin-top:4px;color:var(--secondary);font-size:.75rem">First derivative = direction. Second derivative = acceleration. We want businesses where the unit economics are not just good but getting better faster. This leads the net income signal by 2–4 quarters.</dd>
+  </dl></div>
+  <div class="meta-box"><dl>
+    <dt>TTM vs quarterly?</dt>
+    <dd style="margin-top:4px;color:var(--secondary);font-size:.75rem">All metrics use trailing-twelve-months (TTM) figures. This smooths seasonality and makes cross-sector comparisons meaningful. Gross margin acceleration uses TTM-to-TTM deltas.</dd>
+    <dt>Look-ahead bias prevention</dt>
+    <dd style="margin-top:4px;color:var(--secondary);font-size:.75rem">Each fundamental observation is mapped to its <code>avail_ym</code> field (the month the data became publicly available) with forward-fill. Earnings releases typically lag quarter-end by 30–60 days. This is accounted for.</dd>
+  </dl></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ENTRY & EXIT -->
+<h2>Entry &amp; Exit Rules</h2>
+<h3>Entry conditions (all must be met)</h3>
+<table>
+  <thead><tr><th>Condition</th><th>Value</th><th>Rationale</th></tr></thead>
+  <tbody>
+    <tr><td>Market Cap</td><td>≥ $1 billion</td><td>Sufficient liquidity; avoids micro-cap noise</td></tr>
+    <tr><td>Net Income TTM</td><td>&gt; $0</td><td>Must be profitable; not a turnaround speculation</td></tr>
+    <tr><td>6-month price return</td><td>−15% to +15%</td><td>Price coiled — neither crashed nor already running</td></tr>
+    <tr><td>Signal rank</td><td>Top 20 eligible</td><td>Highest composite fundamental quality scores</td></tr>
+    <tr><td>Regime</td><td>S&amp;P 500 &gt; MA(225)</td><td>Only enter in confirmed bull markets</td></tr>
+    <tr><td>Not already held</td><td>—</td><td>Existing positions excluded from entry candidates</td></tr>
+  </tbody>
+</table>
+
+<h3>Exit conditions (any one triggers exit)</h3>
+<table>
+  <thead><tr><th>Condition</th><th>Threshold</th><th>Logic</th></tr></thead>
+  <tbody>
+    <tr><td>Fundamental exit</td><td>Signal rank &lt; 40th percentile</td><td>Business quality has deteriorated vs peers; thesis broken</td></tr>
+    <tr><td>Stop-loss</td><td>−25% from entry price</td><td>Position is wrong; cut before further damage</td></tr>
+    <tr><td>Bear regime</td><td>S&amp;P 500 &lt; MA(225) at EOM</td><td>All positions close; rotate to GLD for capital preservation</td></tr>
+  </tbody>
+</table>
+
+<div class="callout"><p><strong>Stop-loss is checked at end-of-month only.</strong> Intra-month drawdowns are absorbed. Testing showed daily stop-loss checks produce whipsaws and reduce Sharpe from 0.91 to 0.54 due to mid-month exits leaving capital idle.</p></div>
+
+<h3>Timing mechanics</h3>
+<p>Each month, the loop processes in strict order to avoid look-ahead bias:</p>
+<pre><code>for month M in test_months:
+    # 1. Record return: use whatever was held at START of M
+    ret[M] = mean_return(held_positions) or GLD_return if empty
+
+    # 2. Check regime at END of M
+    if SP500[M] &lt; MA225[M]:
+        close_all_positions()   # M+1 goes to GLD
+        continue
+
+    # 3. Check exits for each held position
+    for each position:
+        if signal_rank &lt; 0.40 or cumulative_return &lt;= -0.25:
+            exit position
+
+    # 4. Fill empty slots with new entries
+    eligible = (MCap ≥ 1B) AND (netinc &gt; 0) AND (-15% ≤ ret6m ≤ +15%)
+    eligible.exclude(already_held)
+    new_entries = top_signal[eligible].take(20 - len(held))</code></pre>
+
+<div class="divider"></div>
+
+<!-- ANNUAL RETURNS -->
+<h2>Annual Returns</h2>
+<p>Strategy vs S&amp;P 500 by calendar year.</p>
+<div class="chart-wrap"><canvas id="annChart" height="260"></canvas></div>
+<div class="yr-grid" id="yrGrid"></div>
+
+<div class="divider"></div>
+
+<!-- PARAMETER SENSITIVITY -->
+<h2>Parameter Sensitivity</h2>
+<h3>Price band — 6-month return window</h3>
+<table>
+  <thead><tr><th>Band</th><th>Eligible stocks (avg)</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
+  <tbody>
+    <tr><td>±10%</td><td>~360</td><td>14.2%</td><td>0.79</td><td>-25.8%</td></tr>
+    <tr class="highlight" style="background:rgba(74,222,128,.04)"><td><strong>±15%</strong></td><td><strong>~686</strong></td><td><strong>16.0%</strong></td><td><strong>0.91</strong></td><td>-25.8%</td></tr>
+    <tr><td>±20%</td><td>~1,020</td><td>14.6%</td><td>0.87</td><td>-25.8%</td></tr>
+    <tr><td>±25%</td><td>~1,370</td><td>13.1%</td><td>0.76</td><td>-25.8%</td></tr>
+    <tr><td>None</td><td>all</td><td>11.8%</td><td>0.63</td><td>-25.8%</td></tr>
+  </tbody>
+</table>
+<p>The ±15% band is the sweet spot: wide enough to keep ~686 eligible stocks per month (good diversification), narrow enough to exclude stocks already in motion. Below ±10% the pool shrinks so much that concentration risk rises. Above ±20% the "coiled" condition loses meaning.</p>
+
+<h3>Regime filter — SP500 MA length</h3>
+<table>
+  <thead><tr><th>MA Days</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>Neg Yrs</th></tr></thead>
+  <tbody>
+    <tr><td>100</td><td>14.3%</td><td>0.82</td><td>-23.4%</td><td>3</td></tr>
+    <tr><td>150</td><td>15.2%</td><td>0.87</td><td>-25.8%</td><td>2</td></tr>
+    <tr><td>200</td><td>15.5%</td><td>0.90</td><td>-25.8%</td><td>2</td></tr>
+    <tr class="highlight" style="background:rgba(74,222,128,.04)"><td><strong>225</strong></td><td><strong>16.0%</strong></td><td><strong>0.91</strong></td><td>-25.8%</td><td><strong>2</strong></td></tr>
+    <tr><td>250</td><td>15.7%</td><td>0.90</td><td>-25.8%</td><td>2</td></tr>
+    <tr><td>300</td><td>14.9%</td><td>0.85</td><td>-25.8%</td><td>2</td></tr>
+  </tbody>
+</table>
+
+<h3>Fundamental exit threshold</h3>
+<table>
+  <thead><tr><th>FE Threshold</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
+  <tbody>
+    <tr><td>Exit if rank &lt; 0.30</td><td>14.8%</td><td>0.84</td><td>-27.2%</td></tr>
+    <tr class="highlight" style="background:rgba(74,222,128,.04)"><td><strong>Exit if rank &lt; 0.40</strong></td><td><strong>16.0%</strong></td><td><strong>0.91</strong></td><td>-25.8%</td></tr>
+    <tr><td>Exit if rank &lt; 0.50</td><td>15.1%</td><td>0.84</td><td>-28.1%</td></tr>
+    <tr><td>Exit if rank &lt; 0.60</td><td>13.9%</td><td>0.77</td><td>-29.4%</td></tr>
+    <tr><td>No fundamental exit</td><td>12.1%</td><td>0.68</td><td>-31.3%</td></tr>
+  </tbody>
+</table>
+<p>The fundamental exit at the 40th percentile is the inflection point. Below 0.40: exits too early, cuts winners before the move completes. Above 0.40: holds deteriorating businesses too long, adding drawdown and negative years.</p>
+
+<h3>Stop-loss level</h3>
+<table>
+  <thead><tr><th>Stop</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
+  <tbody>
+    <tr><td>−15%</td><td>14.3%</td><td>0.84</td><td>-18.2%</td></tr>
+    <tr><td>−20%</td><td>15.6%</td><td>0.89</td><td>-23.1%</td></tr>
+    <tr class="highlight" style="background:rgba(74,222,128,.04)"><td><strong>−25%</strong></td><td><strong>16.0%</strong></td><td><strong>0.91</strong></td><td>-25.8%</td></tr>
+    <tr><td>−30%</td><td>15.8%</td><td>0.90</td><td>-28.3%</td></tr>
+    <tr><td>None</td><td>15.2%</td><td>0.87</td><td>-32.1%</td></tr>
+  </tbody>
+</table>
+
+<div class="divider"></div>
+
+<!-- SIGNAL SWEEP -->
+<h2>Signal Sweep — 86 Combinations Tested</h2>
+<p>Every combination of fundamental metrics available in the Sharadar Core US dataset was tested — absolute levels, year-over-year growth, and second derivatives. Results sorted by Sharpe ratio.</p>
+
+<h3>Top 10 signals</h3>
+<table>
+  <thead><tr><th>#</th><th>Signal</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>NegYrs</th></tr></thead>
+  <tbody>
+    <tr style="background:rgba(74,222,128,.04)"><td>1</td><td><strong>nm_growth + roic_level + gm_accel (v2)</strong></td><td class="pos">16.0%</td><td class="pos">0.91</td><td>-25.8%</td><td>2</td></tr>
+    <tr><td>2</td><td>nm_growth + roic_level</td><td>14.4%</td><td>0.90</td><td>-25.8%</td><td>2</td></tr>
+    <tr><td>3</td><td>nm_growth + roic_level + ni_growth</td><td>14.1%</td><td>0.86</td><td>-25.8%</td><td>2</td></tr>
+    <tr><td>4</td><td>roic_level + gm_accel</td><td>14.8%</td><td>0.85</td><td>-26.1%</td><td>2</td></tr>
+    <tr><td>5</td><td>nm_growth alone</td><td>13.9%</td><td>0.83</td><td>-25.8%</td><td>3</td></tr>
+    <tr><td>6</td><td>roic_level alone</td><td>13.6%</td><td>0.80</td><td>-25.8%</td><td>3</td></tr>
+    <tr><td>7</td><td>nm_growth + gm_accel</td><td>13.4%</td><td>0.79</td><td>-25.8%</td><td>3</td></tr>
+    <tr><td>8</td><td>gm_trend + roic_trend + ni_growth (original v1)</td><td>14.1%</td><td>0.76</td><td>-26.4%</td><td>3</td></tr>
+    <tr><td>9</td><td>fcf_margin_growth + roic_level</td><td>13.0%</td><td>0.74</td><td>-25.8%</td><td>3</td></tr>
+    <tr><td>10</td><td>eps_growth + roic_level + gm_accel</td><td>12.8%</td><td>0.72</td><td>-26.7%</td><td>3</td></tr>
+  </tbody>
+</table>
+
+<h3>What didn't work</h3>
+<table>
+  <thead><tr><th>Signal type</th><th>Best Sharpe</th><th>Why it fails</th></tr></thead>
+  <tbody>
+    <tr><td>PE relative to own history</td><td>0.60</td><td>Stocks cheap vs history are cheap for good reasons; adds noise</td></tr>
+    <tr><td>EV/EBITDA relative to own history</td><td>0.58</td><td>Same problem — valuation ratios lack directional information</td></tr>
+    <tr><td>PB, PS, P/FCF relative to history</td><td>0.41–0.49</td><td>Cheapness alone has no predictive power in this framework</td></tr>
+    <tr><td>All valuation ratios combined</td><td>0.50</td><td>Diversification doesn't save a bad signal category</td></tr>
+    <tr><td>Short-term price momentum (r1m, r3m)</td><td>0.87</td><td>Adding entry timing filters removes the best entries (still-compressed stocks)</td></tr>
+    <tr><td>Revenue growth alone</td><td>0.61</td><td>Growth without profitability improvement has low signal quality</td></tr>
+  </tbody>
+</table>
+
+<div class="callout"><p><strong>Key finding:</strong> Adding valuation signals (PE, PB, EV/EBITDA) to the v2 composite <em>reduces</em> Sharpe to 0.61–0.75. The strategy already captures quality-at-a-price through the price compression filter — overlaying explicit valuation creates conflict and removes good entries.</p></div>
+
+<div class="divider"></div>
+
+<!-- BEAR MARKET BEHAVIOUR -->
+<h2>Bear Market Behaviour</h2>
+<p>The regime filter (S&amp;P 500 vs MA225) switches the portfolio to GLD when the broad market turns bear. This is the primary source of drawdown protection.</p>
+<table>
+  <thead><tr><th>Bear Period</th><th>Strategy</th><th>S&amp;P 500</th><th>Protection</th></tr></thead>
+  <tbody>
+    <tr><td>2000–2002 dot-com</td><td class="pos">+4.0% / yr (GLD)</td><td class="neg">−23.4% / yr</td><td>+27pp per year</td></tr>
+    <tr><td>2008 GFC</td><td class="pos">+4.9%</td><td class="neg">−38.5%</td><td>+43pp</td></tr>
+    <tr><td>2011 correction</td><td class="neg">−12.1%</td><td>−0.0%</td><td>Underperformed (still in stocks)</td></tr>
+    <tr><td>2022 bear</td><td class="neg">−16.4%</td><td class="neg">−19.4%</td><td>+3pp (partial protection)</td></tr>
+  </tbody>
+</table>
+<p>The 2011 loss is the strategy's most instructive failure: the S&amp;P 500 declined but never broke MA225 long enough to trigger the regime filter. The portfolio remained fully invested in small/mid growth names which sold off sharply. The bear filter catches sustained bear markets but not sharp corrections that recover quickly.</p>
+
+<div class="divider"></div>
+
+<!-- WHAT THE STRATEGY LOOKS LIKE IN PRACTICE -->
+<h2>What a Position Looks Like</h2>
+<p>A typical entry: a $3B industrial company where gross margins expanded from 28% to 32% over 12 months (unit economics improving), ROIC is 18% (absolute top quartile), and net margin grew 40% YoY. The stock is flat over six months — the market hasn't noticed yet. The signal ranks it in the top 5% of the universe. The strategy buys at end-of-month and holds until:</p>
+<ul style="color:var(--secondary);font-size:.84rem;padding-left:18px;margin:10px 0">
+  <li style="margin-bottom:6px">The signal rank drops below the 40th percentile (business quality deteriorated vs peers), <em>or</em></li>
+  <li style="margin-bottom:6px">The position is down 25% from entry price, <em>or</em></li>
+  <li>The S&amp;P 500 closes a month below its 225-day MA.</li>
+</ul>
+<p>The strategy does <strong>not</strong> take profit. There is no target price. Positions are held as long as the fundamental thesis remains intact and the market regime is bull.</p>
+
+<div class="divider"></div>
+
+<!-- IMPLEMENTATION NOTES -->
+<h2>Implementation Notes</h2>
+<h3>Data requirements</h3>
+<div class="two-col">
+  <div class="meta-box"><dl>
+    <dt>Price data</dt><dd>Daily adjusted close prices (EOM sampling)</dd>
+    <dt>Fundamental data</dt><dd>Quarterly filings with TTM aggregation</dd>
+    <dt>Mapping</dt><dd>avail_ym field (publication date, not period date)</dd>
+    <dt>Look-ahead guard</dt><dd>Forward-fill by avail_ym, no calendar-date ffill</dd>
+  </dl></div>
+  <div class="meta-box"><dl>
+    <dt>Winsorization</dt><dd>Cross-sectional p1–p99 per month before ranking</dd>
+    <dt>Ranking</dt><dd>Cross-sectional 0→1 per month (pct=True)</dd>
+    <dt>ROIC edge case</dt><dd>~0.5% of observations have equity+debt&lt;0; winsorization mitigates distortion</dd>
+    <dt>Gross margin</dt><dd>TTM gross margin ratio (not raw quarterly figure)</dd>
+  </dl></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>BIVAR CAPITAL RESEARCH — COILED SPRING DYNAMIC — July 2025</p>
+  <p style="margin-top:6px">Backtest results are hypothetical and do not represent actual trading. Past performance does not guarantee future results. This research is for informational purposes only and does not constitute investment advice.</p>
+  <p style="margin-top:6px">Data: Nasdaq Data Link / Sharadar Core US Equities. Period: Jan 1998 – Mar 2026. Universe: US domestic common stocks with market cap &gt; $1B.</p>
+</div>
+</div>
+
+<script>
+const equityData = [{"m":"1998-01","v":1.0033},{"m":"1998-02","v":1.0066},{"m":"1998-03","v":1.0099},{"m":"1998-04","v":1.0132},{"m":"1998-05","v":1.0165},{"m":"1998-06","v":1.0198},{"m":"1998-07","v":1.0231},{"m":"1998-08","v":1.0265},{"m":"1998-09","v":1.0299},{"m":"1998-10","v":1.0332},{"m":"1998-11","v":1.0366},{"m":"1998-12","v":1.04},{"m":"1999-01","v":1.0434},{"m":"1999-02","v":1.0468},{"m":"1999-03","v":1.0502},{"m":"1999-04","v":1.0537},{"m":"1999-05","v":1.0571},{"m":"1999-06","v":1.0606},{"m":"1999-07","v":1.0641},{"m":"1999-08","v":1.0676},{"m":"1999-09","v":1.071},{"m":"1999-10","v":1.0746},{"m":"1999-11","v":1.0781},{"m":"1999-12","v":1.0816},{"m":"2000-01","v":1.0549},{"m":"2000-02","v":1.0724},{"m":"2000-03","v":1.1645},{"m":"2000-04","v":1.1911},{"m":"2000-05","v":1.2235},{"m":"2000-06","v":1.2775},{"m":"2000-07","v":1.2863},{"m":"2000-08","v":1.4169},{"m":"2000-09","v":1.434},{"m":"2000-10","v":1.4387},{"m":"2000-11","v":1.4434},{"m":"2000-12","v":1.4481},{"m":"2001-01","v":1.4529},{"m":"2001-02","v":1.4576},{"m":"2001-03","v":1.4624},{"m":"2001-04","v":1.4672},{"m":"2001-05","v":1.472},{"m":"2001-06","v":1.4768},{"m":"2001-07","v":1.4817},{"m":"2001-08","v":1.4865},{"m":"2001-09","v":1.4914},{"m":"2001-10","v":1.4963},{"m":"2001-11","v":1.5012},{"m":"2001-12","v":1.5061},{"m":"2002-01","v":1.511},{"m":"2002-02","v":1.5159},{"m":"2002-03","v":1.5209},{"m":"2002-04","v":1.5259},{"m":"2002-05","v":1.5309},{"m":"2002-06","v":1.5359},{"m":"2002-07","v":1.5409},{"m":"2002-08","v":1.546},{"m":"2002-09","v":1.551},{"m":"2002-10","v":1.5561},{"m":"2002-11","v":1.5612},{"m":"2002-12","v":1.5663},{"m":"2003-01","v":1.5714},{"m":"2003-02","v":1.5766},{"m":"2003-03","v":1.5817},{"m":"2003-04","v":1.5869},{"m":"2003-05","v":1.7558},{"m":"2003-06","v":1.7762},{"m":"2003-07","v":1.8168},{"m":"2003-08","v":1.8982},{"m":"2003-09","v":1.8887},{"m":"2003-10","v":2.0375},{"m":"2003-11","v":2.1031},{"m":"2003-12","v":2.1323},{"m":"2004-01","v":2.158},{"m":"2004-02","v":2.1736},{"m":"2004-03","v":2.1808},{"m":"2004-04","v":2.1998},{"m":"2004-05","v":2.2144},{"m":"2004-06","v":2.2707},{"m":"2004-07","v":2.131},{"m":"2004-08","v":2.1499},{"m":"2004-09","v":2.1569},{"m":"2004-10","v":2.2052},{"m":"2004-11","v":2.4346},{"m":"2004-12","v":2.5713},{"m":"2005-01","v":2.4403},{"m":"2005-02","v":2.487},{"m":"2005-03","v":2.4392},{"m":"2005-04","v":2.3882},{"m":"2005-05","v":2.5251},{"m":"2005-06","v":2.5796},{"m":"2005-07","v":2.703},{"m":"2005-08","v":2.6958},{"m":"2005-09","v":2.7953},{"m":"2005-10","v":2.7766},{"m":"2005-11","v":2.9872},{"m":"2005-12","v":2.9733},{"m":"2006-01","v":3.2961},{"m":"2006-02","v":3.2402},{"m":"2006-03","v":3.3444},{"m":"2006-04","v":3.37},{"m":"2006-05","v":3.2474},{"m":"2006-06","v":3.3334},{"m":"2006-07","v":3.1968},{"m":"2006-08","v":3.2748},{"m":"2006-09","v":3.2175},{"m":"2006-10","v":3.3518},{"m":"2006-11","v":3.4343},{"m":"2006-12","v":3.4236},{"m":"2007-01","v":3.5763},{"m":"2007-02","v":3.6461},{"m":"2007-03","v":3.7693},{"m":"2007-04","v":4.0042},{"m":"2007-05","v":4.2845},{"m":"2007-06","v":4.2713},{"m":"2007-07","v":4.0199},{"m":"2007-08","v":4.0484},{"m":"2007-09","v":4.04},{"m":"2007-10","v":4.1789},{"m":"2007-11","v":4.1073},{"m":"2007-12","v":4.1062},{"m":"2008-01","v":4.5514},{"m":"2008-02","v":4.7894},{"m":"2008-03","v":4.5021},{"m":"2008-04","v":4.3148},{"m":"2008-05","v":4.3547},{"m":"2008-06","v":4.5514},{"m":"2008-07","v":4.4856},{"m":"2008-08","v":4.0688},{"m":"2008-09","v":4.2361},{"m":"2008-10","v":3.5524},{"m":"2008-11","v":3.9991},{"m":"2008-12","v":4.3084},{"m":"2009-01","v":4.5469},{"m":"2009-02","v":4.6126},{"m":"2009-03","v":4.4956},{"m":"2009-04","v":4.3457},{"m":"2009-05","v":4.7904},{"m":"2009-06","v":4.5404},{"m":"2009-07","v":4.6485},{"m":"2009-08","v":4.583},{"m":"2009-09","v":4.813},{"m":"2009-10","v":4.7837},{"m":"2009-11","v":4.9516},{"m":"2009-12","v":5.2466},{"m":"2010-01","v":5.1365},{"m":"2010-02","v":5.2},{"m":"2010-03","v":5.5841},{"m":"2010-04","v":5.6196},{"m":"2010-05","v":5.3149},{"m":"2010-06","v":5.2455},{"m":"2010-07","v":4.9786},{"m":"2010-08","v":5.2627},{"m":"2010-09","v":5.5141},{"m":"2010-10","v":5.8069},{"m":"2010-11","v":6.1043},{"m":"2010-12","v":6.686},{"m":"2011-01","v":7.1412},{"m":"2011-02","v":7.3389},{"m":"2011-03","v":7.4272},{"m":"2011-04","v":7.8633},{"m":"2011-05","v":7.71},{"m":"2011-06","v":7.6568},{"m":"2011-07","v":7.3771},{"m":"2011-08","v":6.8745},{"m":"2011-09","v":6.114},{"m":"2011-10","v":6.473},{"m":"2011-11","v":6.5809},{"m":"2011-12","v":5.8792},{"m":"2012-01","v":6.5492},{"m":"2012-02","v":6.8614},{"m":"2012-03","v":6.8057},{"m":"2012-04","v":6.7742},{"m":"2012-05","v":5.949},{"m":"2012-06","v":6.1662},{"m":"2012-07","v":6.1953},{"m":"2012-08","v":6.1947},{"m":"2012-09","v":6.4284},{"m":"2012-10","v":6.3449},{"m":"2012-11","v":6.4223},{"m":"2012-12","v":6.5735},{"m":"2013-01","v":7.1474},{"m":"2013-02","v":7.0874},{"m":"2013-03","v":7.516},{"m":"2013-04","v":7.5519},{"m":"2013-05","v":8.0085},{"m":"2013-06","v":7.8568},{"m":"2013-07","v":8.2637},{"m":"2013-08","v":8.0141},{"m":"2013-09","v":8.4843},{"m":"2013-10","v":8.9462},{"m":"2013-11","v":9.1153},{"m":"2013-12","v":9.3186},{"m":"2014-01","v":8.9856},{"m":"2014-02","v":9.4672},{"m":"2014-03","v":9.4894},{"m":"2014-04","v":9.5503},{"m":"2014-05","v":9.8754},{"m":"2014-06","v":10.0826},{"m":"2014-07","v":9.8695},{"m":"2014-08","v":10.2665},{"m":"2014-09","v":10.1764},{"m":"2014-10","v":10.9234},{"m":"2014-11","v":11.1224},{"m":"2014-12","v":11.0128},{"m":"2015-01","v":10.9716},{"m":"2015-02","v":12.0296},{"m":"2015-03","v":12.5578},{"m":"2015-04","v":12.2187},{"m":"2015-05","v":12.7386},{"m":"2015-06","v":12.759},{"m":"2015-07","v":13.0688},{"m":"2015-08","v":12.1197},{"m":"2015-09","v":11.9014},{"m":"2015-10","v":12.1732},{"m":"2015-11","v":12.4281},{"m":"2015-12","v":11.8517},{"m":"2016-01","v":12.493},{"m":"2016-02","v":13.8586},{"m":"2016-03","v":13.7417},{"m":"2016-04","v":13.1503},{"m":"2016-05","v":13.0573},{"m":"2016-06","v":13.0977},{"m":"2016-07","v":13.4053},{"m":"2016-08","v":13.8069},{"m":"2016-09","v":13.5096},{"m":"2016-10","v":13.6683},{"m":"2016-11","v":14.3572},{"m":"2016-12","v":14.4055},{"m":"2017-01","v":15.0247},{"m":"2017-02","v":15.6359},{"m":"2017-03","v":16.3154},{"m":"2017-04","v":16.6584},{"m":"2017-05","v":17.203},{"m":"2017-06","v":17.086},{"m":"2017-07","v":17.4562},{"m":"2017-08","v":17.5001},{"m":"2017-09","v":18.3142},{"m":"2017-10","v":18.4937},{"m":"2017-11","v":19.2425},{"m":"2017-12","v":19.902},{"m":"2018-01","v":20.3668},{"m":"2018-02","v":19.5629},{"m":"2018-03","v":19.2724},{"m":"2018-04","v":18.8764},{"m":"2018-05","v":19.9533},{"m":"2018-06","v":20.1784},{"m":"2018-07","v":20.7437},{"m":"2018-08","v":21.648},{"m":"2018-09","v":21.6218},{"m":"2018-10","v":19.5835},{"m":"2018-11","v":19.6498},{"m":"2018-12","v":20.6209},{"m":"2019-01","v":21.2162},{"m":"2019-02","v":21.0869},{"m":"2019-03","v":20.8828},{"m":"2019-04","v":21.4404},{"m":"2019-05","v":19.8416},{"m":"2019-06","v":21.4295},{"m":"2019-07","v":21.0222},{"m":"2019-08","v":20.5143},{"m":"2019-09","v":21.2513},{"m":"2019-10","v":21.1068},{"m":"2019-11","v":22.0763},{"m":"2019-12","v":22.3332},{"m":"2020-01","v":21.9351},{"m":"2020-02","v":20.4505},{"m":"2020-03","v":20.405},{"m":"2020-04","v":21.8866},{"m":"2020-05","v":22.4531},{"m":"2020-06","v":22.7132},{"m":"2020-07","v":23.3429},{"m":"2020-08","v":24.1203},{"m":"2020-09","v":24.1662},{"m":"2020-10","v":23.3171},{"m":"2020-11","v":25.407},{"m":"2020-12","v":26.7442},{"m":"2021-01","v":27.0413},{"m":"2021-02","v":27.1593},{"m":"2021-03","v":28.8637},{"m":"2021-04","v":29.0031},{"m":"2021-05","v":29.5686},{"m":"2021-06","v":30.2795},{"m":"2021-07","v":30.2941},{"m":"2021-08","v":31.0345},{"m":"2021-09","v":29.7821},{"m":"2021-10","v":30.9343},{"m":"2021-11","v":31.0259},{"m":"2021-12","v":33.271},{"m":"2022-01","v":30.1853},{"m":"2022-02","v":30.0252},{"m":"2022-03","v":30.4072},{"m":"2022-04","v":29.0192},{"m":"2022-05","v":28.0727},{"m":"2022-06","v":27.6331},{"m":"2022-07","v":26.9179},{"m":"2022-08","v":26.1256},{"m":"2022-09","v":25.3711},{"m":"2022-10","v":24.9184},{"m":"2022-11","v":27.0344},{"m":"2022-12","v":27.8267},{"m":"2023-01","v":29.4293},{"m":"2023-02","v":29.6398},{"m":"2023-03","v":31.9861},{"m":"2023-04","v":31.8988},{"m":"2023-05","v":30.9183},{"m":"2023-06","v":33.8613},{"m":"2023-07","v":35.9535},{"m":"2023-08","v":36.1566},{"m":"2023-09","v":35.2456},{"m":"2023-10","v":33.8935},{"m":"2023-11","v":34.7515},{"m":"2023-12","v":37.1351},{"m":"2024-01","v":35.7894},{"m":"2024-02","v":38.2383},{"m":"2024-03","v":39.3495},{"m":"2024-04","v":36.9682},{"m":"2024-05","v":38.7336},{"m":"2024-06","v":39.8384},{"m":"2024-07","v":42.2166},{"m":"2024-08","v":43.2454},{"m":"2024-09","v":45.1936},{"m":"2024-10","v":45.443},{"m":"2024-11","v":50.4753},{"m":"2024-12","v":47.8768},{"m":"2025-01","v":50.4607},{"m":"2025-02","v":48.0474},{"m":"2025-03","v":46.5646},{"m":"2025-04","v":49.0905},{"m":"2025-05","v":49.063},{"m":"2025-06","v":50.5245},{"m":"2025-07","v":53.4761},{"m":"2025-08","v":53.8165},{"m":"2025-09","v":56.0599},{"m":"2025-10","v":59.7992},{"m":"2025-11","v":58.2615},{"m":"2025-12","v":58.064},{"m":"2026-01","v":63.1523},{"m":"2026-02","v":67.8365},{"m":"2026-03","v":66.2757}];
+const sp500Data = [{"m":"1998-01","v":1.0102},{"m":"1998-02","v":1.0813},{"m":"1998-03","v":1.1353},{"m":"1998-04","v":1.1456},{"m":"1998-05","v":1.1241},{"m":"1998-06","v":1.1684},{"m":"1998-07","v":1.1548},{"m":"1998-08","v":0.9864},{"m":"1998-09","v":1.048},{"m":"1998-10","v":1.1321},{"m":"1998-11","v":1.1991},{"m":"1998-12","v":1.2667},{"m":"1999-01","v":1.3186},{"m":"1999-02","v":1.2761},{"m":"1999-03","v":1.3256},{"m":"1999-04","v":1.3759},{"m":"1999-05","v":1.3415},{"m":"1999-06","v":1.4145},{"m":"1999-07","v":1.3692},{"m":"1999-08","v":1.3606},{"m":"1999-09","v":1.3218},{"m":"1999-10","v":1.4045},{"m":"1999-11","v":1.4312},{"m":"1999-12","v":1.514},{"m":"2000-01","v":1.437},{"m":"2000-02","v":1.4081},{"m":"2000-03","v":1.5442},{"m":"2000-04","v":1.4967},{"m":"2000-05","v":1.4639},{"m":"2000-06","v":1.4989},{"m":"2000-07","v":1.4744},{"m":"2000-08","v":1.5639},{"m":"2000-09","v":1.4803},{"m":"2000-10","v":1.473},{"m":"2000-11","v":1.355},{"m":"2000-12","v":1.3605},{"m":"2001-01","v":1.4076},{"m":"2001-02","v":1.2777},{"m":"2001-03","v":1.1957},{"m":"2001-04","v":1.2875},{"m":"2001-05","v":1.2941},{"m":"2001-06","v":1.2617},{"m":"2001-07","v":1.2481},{"m":"2001-08","v":1.1681},{"m":"2001-09","v":1.0727},{"m":"2001-10","v":1.0921},{"m":"2001-11","v":1.1742},{"m":"2001-12","v":1.1831},{"m":"2002-01","v":1.1646},{"m":"2002-02","v":1.1405},{"m":"2002-03","v":1.1824},{"m":"2002-04","v":1.1097},{"m":"2002-05","v":1.0997},{"m":"2002-06","v":1.02},{"m":"2002-07","v":0.9394},{"m":"2002-08","v":0.944},{"m":"2002-09","v":0.8401},{"m":"2002-10","v":0.9128},{"m":"2002-11","v":0.9648},{"m":"2002-12","v":0.9066},{"m":"2003-01","v":0.8818},{"m":"2003-02","v":0.8668},{"m":"2003-03","v":0.874},{"m":"2003-04","v":0.9449},{"m":"2003-05","v":0.993},{"m":"2003-06","v":1.0042},{"m":"2003-07","v":1.0205},{"m":"2003-08","v":1.0387},{"m":"2003-09","v":1.0263},{"m":"2003-10","v":1.0827},{"m":"2003-11","v":1.0904},{"m":"2003-12","v":1.1458},{"m":"2004-01","v":1.1656},{"m":"2004-02","v":1.1798},{"m":"2004-03","v":1.1605},{"m":"2004-04","v":1.141},{"m":"2004-05","v":1.1548},{"m":"2004-06","v":1.1756},{"m":"2004-07","v":1.1353},{"m":"2004-08","v":1.1379},{"m":"2004-09","v":1.1485},{"m":"2004-10","v":1.1646},{"m":"2004-11","v":1.2096},{"m":"2004-12","v":1.2488},{"m":"2005-01","v":1.2173},{"m":"2005-02","v":1.2403},{"m":"2005-03","v":1.2166},{"m":"2005-04","v":1.1921},{"m":"2005-05","v":1.2278},{"m":"2005-06","v":1.2276},{"m":"2005-07","v":1.2718},{"m":"2005-08","v":1.2575},{"m":"2005-09","v":1.2663},{"m":"2005-10","v":1.2438},{"m":"2005-11","v":1.2876},{"m":"2005-12","v":1.2863},{"m":"2006-01","v":1.3191},{"m":"2006-02","v":1.3197},{"m":"2006-03","v":1.3343},{"m":"2006-04","v":1.3505},{"m":"2006-05","v":1.3088},{"m":"2006-06","v":1.3089},{"m":"2006-07","v":1.3156},{"m":"2006-08","v":1.3435},{"m":"2006-09","v":1.3766},{"m":"2006-10","v":1.4199},{"m":"2006-11","v":1.4433},{"m":"2006-12","v":1.4615},{"m":"2007-01","v":1.4821},{"m":"2007-02","v":1.4497},{"m":"2007-03","v":1.4642},{"m":"2007-04","v":1.5275},{"m":"2007-05","v":1.5773},{"m":"2007-06","v":1.5492},{"m":"2007-07","v":1.4996},{"m":"2007-08","v":1.5189},{"m":"2007-09","v":1.5733},{"m":"2007-10","v":1.5966},{"m":"2007-11","v":1.5263},{"m":"2007-12","v":1.5131},{"m":"2008-01","v":1.4206},{"m":"2008-02","v":1.3712},{"m":"2008-03","v":1.363},{"m":"2008-04","v":1.4278},{"m":"2008-05","v":1.4431},{"m":"2008-06","v":1.319},{"m":"2008-07","v":1.306},{"m":"2008-08","v":1.3219},{"m":"2008-09","v":1.2019},{"m":"2008-10","v":0.9983},{"m":"2008-11","v":0.9235},{"m":"2008-12","v":0.9308},{"m":"2009-01","v":0.851},{"m":"2009-02","v":0.7575},{"m":"2009-03","v":0.8222},{"m":"2009-04","v":0.8994},{"m":"2009-05","v":0.9471},{"m":"2009-06","v":0.9473},{"m":"2009-07","v":1.0176},{"m":"2009-08","v":1.0517},{"m":"2009-09","v":1.0893},{"m":"2009-10","v":1.0678},{"m":"2009-11","v":1.129},{"m":"2009-12","v":1.1491},{"m":"2010-01","v":1.1066},{"m":"2010-02","v":1.1381},{"m":"2010-03","v":1.2051},{"m":"2010-04","v":1.2228},{"m":"2010-05","v":1.1226},{"m":"2010-06","v":1.0621},{"m":"2010-07","v":1.1352},{"m":"2010-08","v":1.0813},{"m":"2010-09","v":1.176},{"m":"2010-10","v":1.2193},{"m":"2010-11","v":1.2165},{"m":"2010-12","v":1.296},{"m":"2011-01","v":1.3253},{"m":"2011-02","v":1.3677},{"m":"2011-03","v":1.3662},{"m":"2011-04","v":1.4052},{"m":"2011-05","v":1.3862},{"m":"2011-06","v":1.3609},{"m":"2011-07","v":1.3317},{"m":"2011-08","v":1.256},{"m":"2011-09","v":1.1659},{"m":"2011-10","v":1.2915},{"m":"2011-11","v":1.285},{"m":"2011-12","v":1.2959},{"m":"2012-01","v":1.3524},{"m":"2012-02","v":1.4073},{"m":"2012-03","v":1.4514},{"m":"2012-04","v":1.4405},{"m":"2012-05","v":1.3503},{"m":"2012-06","v":1.4037},{"m":"2012-07","v":1.4213},{"m":"2012-08","v":1.4494},{"m":"2012-09","v":1.4846},{"m":"2012-10","v":1.4552},{"m":"2012-11","v":1.4593},{"m":"2012-12","v":1.4696},{"m":"2013-01","v":1.5438},{"m":"2013-02","v":1.5608},{"m":"2013-03","v":1.617},{"m":"2013-04","v":1.6462},{"m":"2013-05","v":1.6804},{"m":"2013-06","v":1.6552},{"m":"2013-07","v":1.7371},{"m":"2013-08","v":1.6827},{"m":"2013-09","v":1.7328},{"m":"2013-10","v":1.8101},{"m":"2013-11","v":1.8608},{"m":"2013-12","v":1.9047},{"m":"2014-01","v":1.8369},{"m":"2014-02","v":1.9161},{"m":"2014-03","v":1.9294},{"m":"2014-04","v":1.9414},{"m":"2014-05","v":1.9822},{"m":"2014-06","v":2.02},{"m":"2014-07","v":1.9895},{"m":"2014-08","v":2.0644},{"m":"2014-09","v":2.0324},{"m":"2014-10","v":2.0795},{"m":"2014-11","v":2.1306},{"m":"2014-12","v":2.1216},{"m":"2015-01","v":2.0558},{"m":"2015-02","v":2.1686},{"m":"2015-03","v":2.1309},{"m":"2015-04","v":2.1491},{"m":"2015-05","v":2.1716},{"m":"2015-06","v":2.126},{"m":"2015-07","v":2.1679},{"m":"2015-08","v":2.0323},{"m":"2015-09","v":1.9785},{"m":"2015-10","v":2.1427},{"m":"2015-11","v":2.1438},{"m":"2015-12","v":2.1062},{"m":"2016-01","v":1.9994},{"m":"2016-02","v":1.9911},{"m":"2016-03","v":2.1225},{"m":"2016-04","v":2.1282},{"m":"2016-05","v":2.1608},{"m":"2016-06","v":2.1628},{"m":"2016-07","v":2.2398},{"m":"2016-08","v":2.2371},{"m":"2016-09","v":2.2343},{"m":"2016-10","v":2.1909},{"m":"2016-11","v":2.2658},{"m":"2016-12","v":2.307},{"m":"2017-01","v":2.3483},{"m":"2017-02","v":2.4357},{"m":"2017-03","v":2.4347},{"m":"2017-04","v":2.4568},{"m":"2017-05","v":2.4853},{"m":"2017-06","v":2.4973},{"m":"2017-07","v":2.5456},{"m":"2017-08","v":2.547},{"m":"2017-09","v":2.5961},{"m":"2017-10","v":2.6537},{"m":"2017-11","v":2.7283},{"m":"2017-12","v":2.7551},{"m":"2018-01","v":2.9099},{"m":"2018-02","v":2.7965},{"m":"2018-03","v":2.7213},{"m":"2018-04","v":2.7287},{"m":"2018-05","v":2.7877},{"m":"2018-06","v":2.8012},{"m":"2018-07","v":2.9021},{"m":"2018-08","v":2.9899},{"m":"2018-09","v":3.0028},{"m":"2018-10","v":2.7944},{"m":"2018-11","v":2.8443},{"m":"2018-12","v":2.5832},{"m":"2019-01","v":2.7865},{"m":"2019-02","v":2.8693},{"m":"2019-03","v":2.9208},{"m":"2019-04","v":3.0356},{"m":"2019-05","v":2.8359},{"m":"2019-06","v":3.0314},{"m":"2019-07","v":3.0712},{"m":"2019-08","v":3.0156},{"m":"2019-09","v":3.0674},{"m":"2019-10","v":3.1301},{"m":"2019-11","v":3.2367},{"m":"2019-12","v":3.3292},{"m":"2020-01","v":3.3238},{"m":"2020-02","v":3.0442},{"m":"2020-03","v":2.6633},{"m":"2020-04","v":3.0012},{"m":"2020-05","v":3.1371},{"m":"2020-06","v":3.1948},{"m":"2020-07","v":3.3708},{"m":"2020-08","v":3.607},{"m":"2020-09","v":3.4655},{"m":"2020-10","v":3.3696},{"m":"2020-11","v":3.732},{"m":"2020-12","v":3.8705},{"m":"2021-01","v":3.8274},{"m":"2021-02","v":3.9273},{"m":"2021-03","v":4.0939},{"m":"2021-04","v":4.3086},{"m":"2021-05","v":4.3322},{"m":"2021-06","v":4.4284},{"m":"2021-07","v":4.5292},{"m":"2021-08","v":4.6605},{"m":"2021-09","v":4.4388},{"m":"2021-10","v":4.7457},{"m":"2021-11","v":4.7062},{"m":"2021-12","v":4.9114},{"m":"2022-01","v":4.6531},{"m":"2022-02","v":4.5072},{"m":"2022-03","v":4.6685},{"m":"2022-04","v":4.2578},{"m":"2022-05","v":4.2581},{"m":"2022-06","v":3.9007},{"m":"2022-07","v":4.2561},{"m":"2022-08","v":4.0755},{"m":"2022-09","v":3.6949},{"m":"2022-10","v":3.99},{"m":"2022-11","v":4.2044},{"m":"2022-12","v":3.9565},{"m":"2023-01","v":4.2008},{"m":"2023-02","v":4.0911},{"m":"2023-03","v":4.2345},{"m":"2023-04","v":4.2965},{"m":"2023-05","v":4.3072},{"m":"2023-06","v":4.586},{"m":"2023-07","v":4.7288},{"m":"2023-08","v":4.645},{"m":"2023-09","v":4.4187},{"m":"2023-10","v":4.3216},{"m":"2023-11","v":4.707},{"m":"2023-12","v":4.9152},{"m":"2024-01","v":4.9933},{"m":"2024-02","v":5.2516},{"m":"2024-03","v":5.4145},{"m":"2024-04","v":5.1891},{"m":"2024-05","v":5.4383},{"m":"2024-06","v":5.6269},{"m":"2024-07","v":5.6906},{"m":"2024-08","v":5.8205},{"m":"2024-09","v":5.9381},{"m":"2024-10","v":5.8793},{"m":"2024-11","v":6.2162},{"m":"2024-12","v":6.0608},{"m":"2025-01","v":6.2246},{"m":"2025-02","v":6.1359},{"m":"2025-03","v":5.7828},{"m":"2025-04","v":5.7388},{"m":"2025-05","v":6.0918},{"m":"2025-06","v":6.394},{"m":"2025-07","v":6.5326},{"m":"2025-08","v":6.6571},{"m":"2025-09","v":6.8923},{"m":"2025-10","v":7.0486},{"m":"2025-11","v":7.0578},{"m":"2025-12","v":7.0541},{"m":"2026-01","v":7.1505},{"m":"2026-02","v":7.0885},{"m":"2026-03","v":6.7275}];
+const annualData = [{"y":1998,"s":4.0,"sp":26.7},{"y":1999,"s":4.0,"sp":19.5},{"y":2000,"s":33.9,"sp":-10.1},{"y":2001,"s":4.0,"sp":-13.0},{"y":2002,"s":4.0,"sp":-23.4},{"y":2003,"s":36.1,"sp":26.4},{"y":2004,"s":20.6,"sp":9.0},{"y":2005,"s":15.6,"sp":3.0},{"y":2006,"s":15.1,"sp":13.6},{"y":2007,"s":19.9,"sp":3.5},{"y":2008,"s":4.9,"sp":-38.5},{"y":2009,"s":21.8,"sp":23.5},{"y":2010,"s":27.4,"sp":12.8},{"y":2011,"s":-12.1,"sp":-0.0},{"y":2012,"s":11.8,"sp":13.4},{"y":2013,"s":41.8,"sp":29.6},{"y":2014,"s":18.2,"sp":11.4},{"y":2015,"s":7.6,"sp":-0.7},{"y":2016,"s":21.5,"sp":9.5},{"y":2017,"s":38.2,"sp":19.4},{"y":2018,"s":3.6,"sp":-6.2},{"y":2019,"s":8.3,"sp":28.9},{"y":2020,"s":19.8,"sp":16.3},{"y":2021,"s":24.4,"sp":26.9},{"y":2022,"s":-16.4,"sp":-19.4},{"y":2023,"s":33.5,"sp":24.2},{"y":2024,"s":28.9,"sp":23.3},{"y":2025,"s":21.3,"sp":16.4},{"y":2026,"s":14.1,"sp":-4.6}];
+
+// Annual grid
+const grid = document.getElementById('yrGrid');
+annualData.forEach(d => {
+  const box = document.createElement('div');
+  box.className = 'yr-box';
+  const cls = d.s >= 0 ? 'pos' : 'neg';
+  box.innerHTML = `<span class="y">${d.y}</span><span class="r ${cls}">${d.s > 0 ? '+' : ''}${d.s}%</span>`;
+  grid.appendChild(box);
+});
+
+// Equity chart
+(function(){
+  const canvas = document.getElementById('eqChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.parentElement.clientWidth;
+  const H = 320;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  const pad = {t:20,r:20,b:40,l:60};
+  const cw = W - pad.l - pad.r;
+  const ch = H - pad.t - pad.b;
+
+  const allVals = equityData.map(d=>Math.log(d.v)).concat(sp500Data.map(d=>Math.log(d.v)));
+  const minV = Math.min(...allVals);
+  const maxV = Math.max(...allVals);
+
+  const n = equityData.length;
+  const xScale = i => pad.l + (i / (n-1)) * cw;
+  const yScale = v => pad.t + ch - ((Math.log(v) - minV) / (maxV - minV)) * ch;
+
+  // grid lines
+  ctx.strokeStyle = '#1a1a22'; ctx.lineWidth = 1;
+  [1,2,5,10,20,50].forEach(v => {
+    const y = yScale(v);
+    if(y < pad.t || y > pad.t + ch) return;
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l+cw, y); ctx.stroke();
+    ctx.fillStyle = '#5a5a68'; ctx.font = '9px JetBrains Mono,monospace'; ctx.textAlign = 'right';
+    ctx.fillText(v + 'x', pad.l - 6, y + 3);
+  });
+
+  // year labels
+  const years = [...new Set(equityData.map(d=>d.m.slice(0,4)))];
+  ctx.fillStyle = '#5a5a68'; ctx.font = '9px JetBrains Mono,monospace'; ctx.textAlign = 'center';
+  years.filter((_,i) => i % 4 === 0).forEach(yr => {
+    const idx = equityData.findIndex(d => d.m.startsWith(yr));
+    if(idx < 0) return;
+    const x = xScale(idx);
+    ctx.fillText(yr, x, H - pad.b + 14);
+  });
+
+  // SP500 line
+  ctx.beginPath(); ctx.strokeStyle = '#5a5a68'; ctx.lineWidth = 1.5;
+  sp500Data.forEach((d,i) => {
+    const x = xScale(i), y = yScale(d.v);
+    i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+
+  // Strategy line
+  ctx.beginPath(); ctx.strokeStyle = '#c4a265'; ctx.lineWidth = 2;
+  equityData.forEach((d,i) => {
+    const x = xScale(i), y = yScale(d.v);
+    i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+
+  // legend
+  ctx.fillStyle = '#c4a265'; ctx.fillRect(pad.l+10, pad.t+8, 20, 2);
+  ctx.fillStyle = '#e8e8ec'; ctx.font = '10px DM Sans,sans-serif'; ctx.textAlign = 'left';
+  ctx.fillText('Coiled Spring Dynamic', pad.l+36, pad.t+12);
+  ctx.fillStyle = '#5a5a68'; ctx.fillRect(pad.l+10, pad.t+20, 20, 2);
+  ctx.fillStyle = '#9898a4';
+  ctx.fillText('S&P 500', pad.l+36, pad.t+24);
+})();
+
+// Annual bar chart
+(function(){
+  const canvas = document.getElementById('annChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.parentElement.clientWidth;
+  const H = 260;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  const pad = {t:16,r:16,b:32,l:48};
+  const cw = W - pad.l - pad.r;
+  const ch = H - pad.t - pad.b;
+  const n = annualData.length;
+  const allV = annualData.flatMap(d=>[d.s,d.sp]);
+  const minV = Math.min(...allV, 0);
+  const maxV = Math.max(...allV, 0);
+  const range = maxV - minV;
+  const yScale = v => pad.t + ch - ((v - minV) / range) * ch;
+  const barW = (cw / n) * 0.38;
+
+  // zero line
+  const y0 = yScale(0);
+  ctx.strokeStyle = '#5a5a68'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.l, y0); ctx.lineTo(pad.l+cw, y0); ctx.stroke();
+
+  // grid
+  [-40,-20,0,20,40].forEach(v => {
+    const y = yScale(v);
+    if(y < pad.t || y > pad.t+ch) return;
+    ctx.strokeStyle = '#1a1a22'; ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l+cw, y); ctx.stroke();
+    ctx.fillStyle = '#5a5a68'; ctx.font = '9px JetBrains Mono,monospace'; ctx.textAlign = 'right';
+    ctx.fillText(v+'%', pad.l-4, y+3);
+  });
+
+  annualData.forEach((d, i) => {
+    const xCenter = pad.l + (i + 0.5) * (cw / n);
+    // SP500 bar
+    const spH = Math.abs(yScale(d.sp) - y0);
+    const spY = d.sp >= 0 ? yScale(d.sp) : y0;
+    ctx.fillStyle = '#2a2a38';
+    ctx.fillRect(xCenter - barW - 1, spY, barW, spH || 1);
+    // Strategy bar
+    const sH = Math.abs(yScale(d.s) - y0);
+    const sY = d.s >= 0 ? yScale(d.s) : y0;
+    ctx.fillStyle = d.s >= 0 ? '#c4a265' : '#f87171';
+    ctx.fillRect(xCenter + 1, sY, barW, sH || 1);
+    // year label
+    if(i % 4 === 0 || i === n-1) {
+      ctx.fillStyle = '#5a5a68'; ctx.font = '8px JetBrains Mono,monospace'; ctx.textAlign = 'center';
+      ctx.fillText(d.y, xCenter, H - pad.b + 12);
+    }
+  });
+
+  // legend
+  ctx.fillStyle = '#c4a265'; ctx.fillRect(pad.l+8, pad.t+4, 12, 8);
+  ctx.fillStyle = '#e8e8ec'; ctx.font = '10px DM Sans,sans-serif'; ctx.textAlign = 'left';
+  ctx.fillText('Coiled Spring', pad.l+24, pad.t+12);
+  ctx.fillStyle = '#2a2a38'; ctx.fillRect(pad.l+120, pad.t+4, 12, 8);
+  ctx.fillStyle = '#9898a4';
+  ctx.fillText('S&P 500', pad.l+136, pad.t+12);
+})();
+</script>
+</body></html>

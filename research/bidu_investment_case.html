@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baidu — Investment Case — Bivar Capital</title>
+<meta name="description" content="Baidu at $97.81: net cash covers ~80% of the market cap, leaving an ~$7B enterprise value for China's AI cloud, robotaxi leader and chip maker. The ads business is melting. Everything else is nearly free.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.5vw,1.4rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.neutral{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+td.pos{color:var(--green)}
+td.neg{color:var(--red)}
+td.accent{color:var(--accent);font-weight:600}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.82rem}
+.callout.green{border-left-color:var(--green)}
+.callout.red{border-left-color:var(--red)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:2px 0 0;font-family:'JetBrains Mono',monospace;font-size:.72rem}
+.meta-box .big-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);display:block;margin-top:4px}
+.scenario-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:8px 0}
+.scenario-box .price{font-family:'DM Serif Display',serif;font-size:2rem;display:block;margin:8px 0}
+.scenario-box .prob{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.tag.buy{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+.tag.risk{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.tag.neutral{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.risk-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.risk-item:last-child{border-bottom:none}
+.risk-num{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--border);flex-shrink:0;width:28px}
+.risk-body p{margin-bottom:0;font-size:.82rem}
+.risk-body strong{font-size:.82rem}
+.catalyst-row{display:grid;grid-template-columns:1fr 1fr 80px;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.72rem;font-family:'JetBrains Mono',monospace}
+.catalyst-row:first-child{font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.catalyst-row .impact-high{color:var(--green)}
+.catalyst-row .impact-med{color:var(--accent)}
+.sensitivity{overflow-x:auto;margin:16px 0}
+.sensitivity table td:first-child{color:var(--muted)}
+.sensitivity table td.highlight{background:rgba(196,162,101,.08);color:var(--accent);font-weight:600}
+@media(max-width:700px){.two-col,.three-col{grid-template-columns:1fr}.catalyst-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hw">
+    <a href="/" class="hl">Bivar Capital</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" class="accent">Research</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="brand">Bivar Capital &mdash; Investment Research &mdash; September 2026</div>
+
+  <h1>Baidu (NASDAQ: BIDU)<span class="it">The ice cube is melting. The iceberg underneath is free.</span></h1>
+
+  <p class="lead">
+    Search advertising — the business Baidu was built on — fell 19% year-over-year and is being eaten by the
+    very AI wave Baidu helped start. But net cash covers roughly 80% of the market cap, leaving an enterprise
+    value of ~$7B for: China's #2 AI cloud growing 50%, the world's most international robotaxi operation,
+    and one of the only working Nvidia alternatives inside China.
+  </p>
+
+  <div class="divider"></div>
+
+  <h3>Snapshot — September 4, 2026</h3>
+  <div class="three-col">
+    <div class="meta-box">
+      <dt>Price (ADR)</dt>
+      <dd class="big-num">$97.81</dd>
+      <dt>52-Week Range</dt>
+      <dd>$89.60 — $165.30</dd>
+      <dt>YTD</dt>
+      <dd class="neg">-25.1%</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Market Cap</dt>
+      <dd class="big-num" style="font-size:1.3rem">~$33.7B</dd>
+      <dt>Cash + Investments</dt>
+      <dd>~$41.7B (RMB 283B)</dd>
+      <dt>Total Debt</dt>
+      <dd>~$15.3B → net cash ~$26B</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Enterprise Value</dt>
+      <dd class="big-num" style="font-size:1.3rem">~$7-8B</dd>
+      <dt>Non-GAAP Net Income (Q2 ann.)</dt>
+      <dd>~$1.5B/yr</dd>
+      <dt>EV / Earnings</dt>
+      <dd>~5×</dd>
+    </div>
+  </div>
+
+  <h2>Investment Thesis</h2>
+  <p>
+    Baidu is two companies wearing one ticker. Company A is a declining search-ads franchise: online marketing
+    revenue of RMB 13.1B fell <strong>-19% YoY</strong> as Chinese users migrate queries to AI chatbots — including
+    Baidu's own. Company B is an AI infrastructure complex: <strong>AI Cloud infra +50% YoY</strong> (GPU cloud
+    +283%), the Kunlun chip line selling into a China desperate for non-Nvidia compute, and Apollo Go — 350M+
+    autonomous miles, operating in 28 cities including London, Dubai, Hong Kong and Switzerland.
+  </p>
+  <p>
+    The market prices the blend as a value trap: ~$34B market cap for a company holding ~$26B in net cash and
+    earning ~$1.5B/yr non-GAAP even mid-transition. Strip the cash and you pay <strong>~5× earnings for the AI
+    businesses plus the robotaxi option</strong>. AI-powered revenue is already 50% of Baidu Core ex-ads-decline —
+    this is no longer a story about whether the mix shifts. It is shifting. The question is only whether
+    shareholders ever see the cash.
+  </p>
+  <div class="callout">
+    <p>At ~$7-8B of enterprise value, you are paying roughly one year of OpenAI's compute bill for China's #2
+    AI cloud, its leading robotaxi platform, and a working domestic AI chip. The ads decline is real — and
+    it is also the only reason this price exists.</p>
+  </div>
+
+  <h2>Bull Points</h2>
+
+  <h3>01 — The Balance Sheet Is Most of the Price</h3>
+  <p>
+    RMB 283B (~$41.7B) in cash, deposits and investments against ~$15.3B of total debt: <strong>~$26B net cash
+    vs a $33.7B market cap</strong>. Even applying a harsh 40-50% "China cash discount", the operating business
+    trades at a low-teens billion valuation while producing positive operating income (RMB 3.8B non-GAAP in Q2
+    alone) through the worst ads quarter in its history.
+  </p>
+
+  <h3>02 — The AI Mix Shift Is Real and Measured</h3>
+  <p>
+    AI-powered business revenue hit RMB 12.5B in Q2, +25% YoY, now <strong>50% of core general business</strong>:
+    AI Cloud infra RMB 7.3B (+50%), GPU cloud +283%, AI applications RMB 2.5B, AI-native marketing RMB 2.6B.
+    Within roughly two quarters the growing half of Baidu becomes larger than the shrinking half — the headline
+    revenue number inflects mechanically, and screens start showing a growth company again.
+  </p>
+
+  <h3>03 — Apollo Go: The Most International Robotaxi Company on Earth</h3>
+  <p>
+    350M+ cumulative autonomous miles, 28 cities, and the only operator running driverless programs simultaneously
+    in China, the Middle East and Europe (London, Dubai, Hong Kong, Switzerland). Waymo is bigger in the US and
+    worth $45B+ in private markets. Apollo Go is carried inside Baidu at, effectively, zero.
+  </p>
+
+  <h3>04 — Kunlun: Scarcity Pricing for Domestic AI Compute</h3>
+  <p>
+    Export controls made non-Nvidia AI compute a strategic necessity in China. Kunlunxin is one of a handful of
+    working alternatives, with reported multi-billion-RMB orders and a public product roadmap. Baidu is both its
+    own anchor customer (the GPU cloud growing 283% runs partly on it) and an emerging merchant supplier into a
+    market with essentially captive demand.
+  </p>
+
+  <h3>05 — HK Dual-Primary Listing → Southbound Flows</h3>
+  <p>
+    Conversion to dual-primary status in Hong Kong is expected within 2026, making BIDU eligible for Stock Connect.
+    Mainland investors — who see Apollo Go on their streets and cannot buy the ADR — get access. For comparable
+    conversions this has been a durable, mechanical source of demand.
+  </p>
+
+  <h3>06 — Still Profitable Through the Trough</h3>
+  <p>
+    This is not a cash-burning turnaround: Q2 non-GAAP operating income RMB 3.8B, non-GAAP net income RMB 2.6B,
+    operating cash flow RMB 3.4B. Baidu funds the robotaxi expansion and chip R&D from its own P&L while ads melt.
+    Few "melting ice cube" stocks self-fund their second act.
+  </p>
+
+  <h2>Risks &amp; Bear Points</h2>
+  <div class="risk-item"><div class="risk-num">01</div><div class="risk-body">
+    <p><strong>The cash may never reach you.</strong> Buybacks of just $259M since Q1 — under 2% of market cap
+    annualized — against $26B of net cash. Most of it sits onshore in RMB inside a VIE structure. If capital
+    never returns to shareholders, the "net cash floor" is theoretical and the market is right to discount it.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">02</div><div class="risk-body">
+    <p><strong>Ads decline could accelerate past the AI offset.</strong> -19% YoY is not a fade, it's a cliff.
+    If chatbot substitution (Doubao, DeepSeek, WeChat AI) keeps compressing search faster than cloud grows,
+    total revenue keeps shrinking and the transition narrative dies before the mix flips.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">03</div><div class="risk-body">
+    <p><strong>AI cloud economics are unproven in a price war.</strong> Alibaba, Tencent, ByteDance and the
+    carriers all subsidize AI compute. GPU cloud +283% says nothing about gross margin; Chinese cloud has
+    historically destroyed capital.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">04</div><div class="risk-body">
+    <p><strong>Robotaxi is a capital furnace with regulatory beta.</strong> Scaling 28 cities of driverless
+    operations costs billions before unit economics are proven, and a single high-profile accident anywhere
+    resets timelines everywhere.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">05</div><div class="risk-body">
+    <p><strong>Structural China discount: VIE, ADR delisting risk, geopolitics.</strong> None of it is new,
+    all of it is real, and it caps the multiple this will ever trade at. The exit likely comes from cash
+    returns or the HK line, not from a US re-rating.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">06</div><div class="risk-body">
+    <p><strong>iQIYI consolidation muddies everything.</strong> RMB 6.3B of declining, low-margin video revenue
+    and part of that consolidated cash belongs to iQIYI's minority holders — SOTP math needs a haircut for it.</p>
+  </div></div>
+
+  <h2>Financial Model — Sum of the Parts</h2>
+  <table>
+    <tr><th>Segment</th><th>Basis</th><th>Value</th><th>Per ADS (~344M)</th></tr>
+    <tr><td>Net cash</td><td>$26B × 50% China discount</td><td>$13.0B</td><td>$38</td></tr>
+    <tr><td>Search / marketing (declining)</td><td>~$7.5B rev × 1.2× (terminal decline)</td><td>$9.0B</td><td>$26</td></tr>
+    <tr><td>AI Cloud</td><td>~$4.5B run-rate × 3× sales</td><td>$13.5B</td><td>$39</td></tr>
+    <tr><td>Apollo Go + Kunlun</td><td>0.15× Waymo's $45B + chip option</td><td>$8.0B</td><td>$23</td></tr>
+    <tr><td>iQIYI stake &amp; other</td><td>market value, haircut</td><td>$1.5B</td><td>$4</td></tr>
+    <tr><td class="accent">Total</td><td></td><td class="accent">~$45B</td><td class="accent">~$130</td></tr>
+  </table>
+
+  <h2>Scenario Analysis</h2>
+  <div class="three-col">
+    <div class="scenario-box">
+      <span class="tag risk">Bear — 25%</span>
+      <span class="price neg">$70</span>
+      <span class="prob">-28% · ads decay accelerates, cloud price war bites, cash stays locked, market caps it at discounted cash value</span>
+    </div>
+    <div class="scenario-box">
+      <span class="tag neutral">Base — 50%</span>
+      <span class="price neutral">$130</span>
+      <span class="prob">+33% · mix flips growth positive in 2027, HK conversion lands, modest buyback expansion, SOTP partially recognized</span>
+    </div>
+    <div class="scenario-box">
+      <span class="tag buy">Bull — 25%</span>
+      <span class="price pos">$185</span>
+      <span class="prob">+89% · Kunlun becomes a merchant chip story, Apollo Go gets a marked valuation event, meaningful capital-return program</span>
+    </div>
+  </div>
+  <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted)">
+    Probability-weighted value: ~$129 &nbsp;·&nbsp; +32% vs current $97.81
+  </p>
+
+  <h2>Catalysts to Watch</h2>
+  <div class="catalyst-row"><span>Catalyst</span><span>Why it matters</span><span>Impact</span></div>
+  <div class="catalyst-row"><span>HK dual-primary conversion (2026)</span><span>Stock Connect eligibility → mainland flows</span><span class="impact-high">High</span></div>
+  <div class="catalyst-row"><span>Q3: ads decline rate</span><span>-19% → -12% is a thesis-maker; → -25% a thesis-breaker</span><span class="impact-high">High</span></div>
+  <div class="catalyst-row"><span>Kunlun external orders</span><span>Merchant chip sales would force a re-model of the whole company</span><span class="impact-high">High</span></div>
+  <div class="catalyst-row"><span>Apollo Go economics disclosure</span><span>Any unit-level data lets the market price it above zero</span><span class="impact-med">Medium</span></div>
+  <div class="catalyst-row"><span>Capital returns expansion</span><span>The single change that collapses the cash discount</span><span class="impact-high">High</span></div>
+
+  <h2>Verdict</h2>
+  <div class="verdict">
+    <p class="big">You are not buying the search business. You are buying $26B of cash and three AI lottery
+    tickets for $34B — while the market stares at the one line item that's dying.</p>
+    <p class="sub">DEEP VALUE WITH OPTIONALITY · CHINA-SIZED POSITION ONLY · THESIS BREAKS IF ADS DECAY OUTRUNS CLOUD GROWTH THROUGH 2027</p>
+  </div>
+  <p>
+    Baidu is cheaper than Coupang on every metric and riskier on every dimension that matters: governance,
+    capital return, jurisdiction. It is a bet that arithmetic eventually beats narrative — that a profitable
+    company trading near net cash, with its growth segment at 50% of core and compounding at 25%+, does not
+    stay at a ~$7B enterprise value. Size it like what it is: a mispriced option, not a compounder.
+  </p>
+
+  <div class="footer">
+    <p>BIVAR CAPITAL — INVESTMENT RESEARCH — SEPTEMBER 2026<br>
+    NOT INVESTMENT ADVICE. DATA FROM COMPANY FILINGS (Q2 2026 6-K), IBKR MARKET DATA AS OF SEP 4, 2026. AUTHOR MAY HOLD POSITIONS.</p>
+  </div>
+
+</div>
+</body>
+</html>

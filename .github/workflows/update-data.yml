@@ -52,14 +52,6 @@ jobs:
         continue-on-error: true
         run: python scripts/update_ytd.py
 
-      - name: Update UK momentum signal
-        continue-on-error: true
-        run: python scripts/uk_momentum_signal.py
-
-      - name: Update UK momentum YTD
-        continue-on-error: true
-        run: python scripts/uk_momentum_ytd.py
-
       - name: Update China momentum portfolio
         continue-on-error: true
         run: python scripts/china_momentum_ytd.py

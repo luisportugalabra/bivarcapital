@@ -329,7 +329,8 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     </div>
     END CHINA CARD -->
 
-    <div class="strategy-card" id="uk-momentum-card">
+    <!-- UK MOMENTUM CARD — removido do site 2026-09-08 (bugs de dados EODHD; ver AUDITORIA)
+<div class="strategy-card" id="uk-momentum-card">
       <div class="card-header">
         <div class="card-title">Beta &mdash; UK Momentum</div>
         <span class="card-badge badge-bugged">Beta &mdash; Bugged</span>
@@ -349,6 +350,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
     </div>
+    END UK CARD -->
 
     <div class="section-label">Bitcoin</div>
 
@@ -702,11 +704,6 @@ window.onUnlock = function(email) {
   document.getElementById('btc-stats').style.filter = 'none';
   document.getElementById('btc-stats').style.userSelect = 'auto';
   document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/us_momentum_adversarial_audit.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85" title="Provisional adversarial audit note">Audit &rarr;</a>&nbsp;&nbsp;<a href="/research/usa_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
-  document.getElementById('uk-momentum-blur').style.filter = 'none';
-  document.getElementById('uk-momentum-blur').style.userSelect = 'auto';
-  document.getElementById('uk-momentum-stats').style.filter = 'none';
-  document.getElementById('uk-momentum-stats').style.userSelect = 'auto';
-  document.getElementById('uk-momentum-actions').innerHTML = '<a href="/uk-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/uk_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('canada-momentum-blur').style.filter = 'none';
   document.getElementById('canada-momentum-blur').style.userSelect = 'auto';
   document.getElementById('canada-momentum-stats').style.filter = 'none';

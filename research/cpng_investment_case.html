@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coupang — Investment Case — Bivar Capital</title>
+<meta name="description" content="Coupang at $15.61: down 54% from highs after Korea's largest data breach and a record fine. The market is pricing permanent damage. The customer data says temporary.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--card:#0c0c10;--border:#1a1a22;--text:#e8e8ec;--muted:#5a5a68;--secondary:#9898a4;--accent:#c4a265;--green:#4ade80;--red:#f87171;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;line-height:1.1;text-align:center}
+h1 .it{font-style:italic;color:var(--accent);display:block;margin-top:4px}
+.lead{font-size:.9rem;color:var(--secondary);max-width:700px;margin:14px auto 0;text-align:center}
+h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin:48px 0 8px}
+h3{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin:28px 0 10px}
+p{color:var(--secondary);margin-bottom:12px;font-size:.84rem}
+strong{color:var(--text)}
+.divider{height:1px;background:var(--border);margin:40px 0}
+.verdict{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:28px 0;text-align:center}
+.verdict .big{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.5vw,1.4rem)}
+.verdict .sub{color:var(--muted);font-size:.65rem;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.neutral{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:.7rem;margin:10px 0}
+th{text-align:left;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem}
+tr:hover{background:var(--card)}
+td.pos{color:var(--green)}
+td.neg{color:var(--red)}
+td.accent{color:var(--accent);font-weight:600}
+.callout{background:var(--card);border-left:3px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout p{margin:0;color:var(--text);font-size:.82rem}
+.callout.green{border-left-color:var(--green)}
+.callout.red{border-left-color:var(--red)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.meta-box dt{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+.meta-box dt:first-child{margin-top:0}
+.meta-box dd{color:var(--text);margin:2px 0 0;font-family:'JetBrains Mono',monospace;font-size:.72rem}
+.meta-box .big-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);display:block;margin-top:4px}
+.scenario-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:8px 0}
+.scenario-box .price{font-family:'DM Serif Display',serif;font-size:2rem;display:block;margin:8px 0}
+.scenario-box .prob{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.tag.buy{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+.tag.risk{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.tag.neutral{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a22;padding:14px 0}
+.site-header .hw{max-width:980px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.site-header .hl{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8e8ec;text-decoration:none}
+.site-header nav a{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5a5a68;text-decoration:none;margin-left:24px}
+.site-header nav a.accent{color:#c4a265}
+.risk-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.risk-item:last-child{border-bottom:none}
+.risk-num{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--border);flex-shrink:0;width:28px}
+.risk-body p{margin-bottom:0;font-size:.82rem}
+.risk-body strong{font-size:.82rem}
+.catalyst-row{display:grid;grid-template-columns:1fr 1fr 80px;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.72rem;font-family:'JetBrains Mono',monospace}
+.catalyst-row:first-child{font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.catalyst-row .impact-high{color:var(--green)}
+.catalyst-row .impact-med{color:var(--accent)}
+.sensitivity{overflow-x:auto;margin:16px 0}
+.sensitivity table td:first-child{color:var(--muted)}
+.sensitivity table td.highlight{background:rgba(196,162,101,.08);color:var(--accent);font-weight:600}
+@media(max-width:700px){.two-col,.three-col{grid-template-columns:1fr}.catalyst-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hw">
+    <a href="/" class="hl">Bivar Capital</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" class="accent">Research</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="brand">Bivar Capital &mdash; Investment Research &mdash; September 2026</div>
+
+  <h1>Coupang (NYSE: CPNG)<span class="it">A broken stock is not a broken business.</span></h1>
+
+  <p class="lead">
+    Down 54% from its 52-week high after Korea's largest-ever data breach, a record $430M fine, and a quarter
+    of ugly optics. Underneath: core commerce still growing 8% FX-neutral, 24.7M customers still growing,
+    and a logistics moat nobody else in Korea can replicate. The market is pricing the damage as permanent.
+    The customer data says it is temporary.
+  </p>
+
+  <div class="divider"></div>
+
+  <h3>Snapshot — September 4, 2026</h3>
+  <div class="three-col">
+    <div class="meta-box">
+      <dt>Price</dt>
+      <dd class="big-num">$15.61</dd>
+      <dt>52-Week Range</dt>
+      <dd>$14.92 — $34.07</dd>
+      <dt>YTD</dt>
+      <dd class="neg">-33.8%</dd>
+    </div>
+    <div class="meta-box">
+      <dt>Market Cap</dt>
+      <dd class="big-num" style="font-size:1.3rem">~$28.6B</dd>
+      <dt>Net Cash</dt>
+      <dd>~$2.4B ($6.1B cash / $3.7B debt)</dd>
+      <dt>Enterprise Value</dt>
+      <dd>~$26B</dd>
+    </div>
+    <div class="meta-box">
+      <dt>EV / Sales (TTM)</dt>
+      <dd class="big-num" style="font-size:1.3rem">~0.74×</dd>
+      <dt>Active Customers</dt>
+      <dd>24.7M (+3% YoY)</dd>
+      <dt>TTM FCF</dt>
+      <dd>$105M</dd>
+    </div>
+  </div>
+
+  <h2>Investment Thesis</h2>
+  <p>
+    In late 2025 Coupang suffered the largest data breach in Korean corporate history — roughly 34M accounts —
+    followed in 2026 by a record <strong>KRW 624.7B (~$430M) administrative fine</strong>. Q2 2026 shows the full
+    cost of the cleanup: a $570M net loss, gross margin down 188bps, Product Commerce EBITDA margin down 390bps
+    to 5.1%, as the company carries excess capacity and elevated marketing spend to win back customers, all while
+    the won moved against the reported numbers.
+  </p>
+  <p>
+    The bear case is that the breach permanently damaged the franchise. The evidence disagrees: <strong>active
+    customers grew 3% YoY through the worst of it</strong>, FX-neutral revenue per customer grew 5%, Product Commerce
+    grew 8% FX-neutral, and Developing Offerings (Taiwan, Eats, Play, Farfetch) grew 24% while narrowing losses.
+    Customers did not leave. They shopped slightly less, and Coupang paid up — once — to bring activity back.
+  </p>
+  <div class="callout">
+    <p>You are paying ~0.74× sales for Korea's dominant e-commerce platform — a business the market valued at
+    over 1.5× sales a year ago — because of a fine that has already been recognized and a margin dip management
+    has explicitly guided to reverse by mid-2027.</p>
+  </div>
+
+  <h2>Bull Points</h2>
+
+  <h3>01 — The Fine Is Recognized, One-Off, and Survivable</h3>
+  <p>
+    Of the $570M Q2 net loss, <strong>$410M was administrative fines</strong> — adjusted net loss was $160M.
+    The company holds $6.1B in cash against $3.7B of debt. The worst regulatory outcome is now a booked number,
+    not an open-ended threat, and it amounts to ~1.4% of market cap.
+  </p>
+
+  <h3>02 — The Customer Base Held</h3>
+  <p>
+    24.7M active customers, up 3% YoY, measured <em>after</em> the breach dominated Korean headlines for months.
+    Revenue per customer of $301 was down 2% reported but <strong>+5% in constant currency</strong>. A franchise
+    suffering permanent reputational damage does not put up those numbers. Rocket Delivery's same-day/dawn
+    delivery network remains the reason: there is no substitute service to churn to.
+  </p>
+
+  <h3>03 — The Margin Dip Is Spending, Not Structure</h3>
+  <p>
+    Product Commerce EBITDA margin fell from ~9% to 5.1% — driven by reacquisition marketing, goodwill promotions,
+    and deliberately retained excess fulfillment capacity. These are choices, not costs imposed by competition.
+    Management has guided to <strong>full margin recovery by mid-2027</strong>. Every quarter between now and then
+    is a checkpoint the market can mark to.
+  </p>
+
+  <h3>04 — Developing Offerings Is Quietly Working</h3>
+  <p>
+    +24% FX-neutral growth with losses narrowing ($219M loss, improved YoY). Taiwan is scaling on the Korean
+    playbook, Eats is taking share in food delivery, and Farfetch — bought for scraps in 2024 — stopped bleeding.
+    A segment the market models at zero (or negative) is compounding at 20%+.
+  </p>
+
+  <h3>05 — The Moat Did Not Get Breached</h3>
+  <p>
+    The breach hit a database, not the physical network: the fulfillment centers within 7 miles of ~70% of Koreans,
+    the last-mile fleet, the 30M+ SKUs on Rocket. That infrastructure took a decade and $10B+ to build. Naver and
+    the traditional retailers still cannot match next-dawn delivery at scale. The asset that justified $50B+
+    valuations is intact.
+  </p>
+
+  <h3>06 — Founder-Led, Long-Horizon Ownership</h3>
+  <p>
+    Bom Kim controls the company via dual-class shares and has consistently chosen decade-scale bets (Taiwan, Eats,
+    WOW membership pricing) over quarterly optics. The same governance that annoys traders is what lets the company
+    spend through a crisis instead of managing EPS through it.
+  </p>
+
+  <h2>Risks &amp; Bear Points</h2>
+  <div class="risk-item"><div class="risk-num">01</div><div class="risk-body">
+    <p><strong>The churn tail is not fully visible yet.</strong> Reported revenue per customer is still negative
+    YoY and management admits activity has not fully recovered. If Q3/Q4 show reacquisition spend becoming
+    permanent rather than temporary, the margin-recovery thesis breaks.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">02</div><div class="risk-body">
+    <p><strong>FCF is effectively zero.</strong> TTM free cash flow of $105M on a $28.6B market cap. The valuation
+    argument rests entirely on normalized 2027+ earnings power, not on cash being generated today.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">03</div><div class="risk-body">
+    <p><strong>Regulatory overhang beyond the fine.</strong> Korean regulators (KFTC, PIPC) have Coupang's market
+    power in their sights structurally — the breach gave political cover for a harder line on everything from
+    seller fees to WOW bundling.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">04</div><div class="risk-body">
+    <p><strong>KRW translation.</strong> ~85% of revenue is won-denominated. The 6pp gap between reported and
+    FX-neutral growth this quarter cuts both ways; a weaker won makes the dollar numbers look sick even when
+    the business is fine.</p>
+  </div></div>
+  <div class="risk-item"><div class="risk-num">05</div><div class="risk-body">
+    <p><strong>Korea is a mature market.</strong> E-commerce penetration is among the highest on earth. Ex-Taiwan,
+    long-run growth converges to Korean consumption growth — mid single digits. The terminal multiple should
+    respect that.</p>
+  </div></div>
+
+  <h2>Financial Model — FY2027E (recovery case)</h2>
+  <table>
+    <tr><th></th><th>FY2025A</th><th>FY2026E</th><th>FY2027E</th></tr>
+    <tr><td>Total revenue</td><td>~$33.5B</td><td>~$35.5B</td><td class="accent">~$39B</td></tr>
+    <tr><td>Product Commerce EBITDA margin</td><td>~8.5%</td><td class="neg">~5%</td><td class="accent">~8%</td></tr>
+    <tr><td>Adj. EBITDA (group)</td><td>~$1.9B</td><td class="neg">~$0.8B</td><td class="accent">~$2.6B</td></tr>
+    <tr><td>Developing Offerings EBITDA</td><td class="neg">-$0.9B</td><td class="neg">-$0.8B</td><td>-$0.5B</td></tr>
+  </table>
+
+  <h3>EV/EBITDA Sensitivity — Equity Value per Share (FY2027E, ~1.83B shares)</h3>
+  <div class="sensitivity"><table>
+    <tr><th>Adj. EBITDA \ Multiple</th><th>10×</th><th>13×</th><th>16×</th><th>20×</th></tr>
+    <tr><td>$2.2B (slow recovery)</td><td>$13.3</td><td>$16.9</td><td>$20.5</td><td>$25.3</td></tr>
+    <tr><td>$2.6B (base)</td><td>$15.5</td><td class="highlight">$19.8</td><td class="highlight">$24.0</td><td>$29.7</td></tr>
+    <tr><td>$3.0B (full recovery)</td><td>$17.7</td><td>$22.6</td><td>$27.5</td><td class="highlight">$34.1</td></tr>
+  </table></div>
+
+  <h2>Scenario Analysis</h2>
+  <div class="three-col">
+    <div class="scenario-box">
+      <span class="tag risk">Bear — 30%</span>
+      <span class="price neg">$10</span>
+      <span class="prob">-36% · churn proves sticky, margin recovery slips past 2027, regulator opens new fronts, DO losses stop narrowing</span>
+    </div>
+    <div class="scenario-box">
+      <span class="tag neutral">Base — 50%</span>
+      <span class="price neutral">$24</span>
+      <span class="prob">+54% · margins recover on schedule by mid-2027, customers reaccelerate, 13-16× on ~$2.6B EBITDA</span>
+    </div>
+    <div class="scenario-box">
+      <span class="tag buy">Bull — 20%</span>
+      <span class="price pos">$34</span>
+      <span class="prob">+118% · full recovery plus DO inflection: Taiwan turns profitable, Eats #1, market re-rates growth</span>
+    </div>
+  </div>
+  <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted)">
+    Probability-weighted value: ~$21.8 &nbsp;·&nbsp; +40% vs current $15.61
+  </p>
+
+  <h2>Catalysts to Watch</h2>
+  <div class="catalyst-row"><span>Catalyst</span><span>Why it matters</span><span>Impact</span></div>
+  <div class="catalyst-row"><span>Q3 2026 print (Nov)</span><span>First clean-ish quarter post-fine; PC margin direction is the whole thesis</span><span class="impact-high">High</span></div>
+  <div class="catalyst-row"><span>Fine appeal outcome</span><span>Any reduction of the KRW 624.7B is pure recovery of booked loss</span><span class="impact-med">Medium</span></div>
+  <div class="catalyst-row"><span>DO segment breakeven path</span><span>Taiwan/Eats loss narrowing → group EBITDA optics flip fast</span><span class="impact-high">High</span></div>
+  <div class="catalyst-row"><span>Buyback authorization</span><span>$2.4B net cash + depressed stock; any repurchase signal re-rates</span><span class="impact-med">Medium</span></div>
+
+  <h2>Verdict</h2>
+  <div class="verdict">
+    <p class="big">The breach cost Coupang a fine, a bad year of margins, and half its market cap.
+    Only one of those three is permanent — and it's the smallest.</p>
+    <p class="sub">ASYMMETRIC LONG · SIZE FOR A VOLATILE 12-18 MONTHS · THESIS BREAKS IF PC MARGINS DON'T INFLECT BY MID-2027</p>
+  </div>
+  <p>
+    At 0.74× EV/Sales you are being paid to underwrite a single question: was the damage to customer behavior
+    temporary? Three data points — customers +3%, FX-neutral spend per customer +5%, PC revenue +8% FX-neutral —
+    say yes. The stock near its 52-week low says the market hasn't looked. We'd rather own that disagreement
+    than most things at this price.
+  </p>
+
+  <div class="footer">
+    <p>BIVAR CAPITAL — INVESTMENT RESEARCH — SEPTEMBER 2026<br>
+    NOT INVESTMENT ADVICE. DATA FROM COMPANY FILINGS (Q2 2026), IBKR MARKET DATA AS OF SEP 4, 2026. AUTHOR MAY HOLD POSITIONS.</p>
+  </div>
+
+</div>
+</body>
+</html>

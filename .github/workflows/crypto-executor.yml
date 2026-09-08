@@ -1,0 +1,22 @@
+name: Crypto Executor (Kraken)
+
+on:
+  schedule:
+    - cron: '5 0 * * *'    # ~00:05 UTC diário (GH pode atrasar 5-20 min — aceitável)
+  workflow_dispatch:
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install ccxt
+      - name: Run executor
+        env:
+          KRAKEN_API_KEY: ${{ secrets.KRAKEN_API_KEY }}
+          KRAKEN_API_SECRET: ${{ secrets.KRAKEN_API_SECRET }}
+          DRY_RUN: ${{ vars.CRYPTO_DRY_RUN || '1' }}
+        run: python scripts/crypto_executor.py
