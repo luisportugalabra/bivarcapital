@@ -264,27 +264,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <div class="strategy-card" id="denmark-momentum-card">
-      <div class="card-header">
-        <div class="card-title">Beta &mdash; Denmark Momentum</div>
-        <span class="card-badge badge-beta">Beta</span>
-      </div>
-      <p id="denmark-momentum-blur" class="card-desc">6M+12M momentum strategy on Nasdaq Copenhagen equities. Market cap &gt;700M DKK, EBIT&gt;0, synthetic index MA100 regime overlay. Monthly rebalance, 10 stocks inverse-vol weighted. Beta: launched but not yet reviewed to the same depth as the site's Live strategies &mdash; transaction costs not yet modeled.</p>
-      <div class="card-stats" id="denmark-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">1.11</span></span>
-        <span class="card-stat">CAGR: <span class="num">+17.5%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-34.6%</span></span>
-        <span class="card-stat"><span class="num">2001&ndash;2026</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-denmark-mom').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="denmark-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
     <div class="strategy-card" id="norway-momentum-card">
       <div class="card-header">
         <div class="card-title">Beta &mdash; Norway Momentum</div>
@@ -563,26 +542,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 </div>
 END CHINA MODAL -->
 
-<!-- MODAL: Denmark Momentum -->
-<div class="modal-overlay" id="modal-denmark-mom" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-denmark-mom').classList.remove('open')">&times;</button>
-    <h3>How to follow Denmark Momentum</h3>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 1 — Once a month</div>
-      <p>At <strong>month-end</strong>, check the signal on this site. Takes ~5 minutes to execute via Interactive Brokers or any broker with access to Nasdaq Copenhagen.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 2 — Check the regime</div>
-      <p>If the <strong>synthetic Danish index is above its 100-day moving average</strong>: hold the 10 stocks. If it is below: sell everything and stay in <strong>cash (DKK)</strong>.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 3 — Execute</div>
-      <p>Buy the <strong>10 stocks listed</strong> inverse-volatility weighted. Sell previous month&apos;s holdings no longer in the top 10. All prices in DKK.</p>
-    </div>
-  </div>
-</div>
-
 <!-- MODAL: Norway Momentum -->
 <div class="modal-overlay" id="modal-norway-mom" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
@@ -753,11 +712,6 @@ window.onUnlock = function(email) {
   document.getElementById('canada-momentum-stats').style.filter = 'none';
   document.getElementById('canada-momentum-stats').style.userSelect = 'auto';
   document.getElementById('canada-momentum-actions').innerHTML = '<a href="/canada-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_adversarial_audit.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85" title="Provisional adversarial audit note">Audit &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
-  document.getElementById('denmark-momentum-blur').style.filter = 'none';
-  document.getElementById('denmark-momentum-blur').style.userSelect = 'auto';
-  document.getElementById('denmark-momentum-stats').style.filter = 'none';
-  document.getElementById('denmark-momentum-stats').style.userSelect = 'auto';
-  document.getElementById('denmark-momentum-actions').innerHTML = '<a href="/denmark-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/denmark_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('germany-momentum-actions').innerHTML = '<a href="/germany-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_adversarial_audit.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Adversarial audit &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
   document.getElementById('druckenmiller-13f-actions').innerHTML = '<a href="/druckenmiller-13f.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>';
   document.getElementById('taiwan-momentum-actions').innerHTML = '<a href="/research/taiwan_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
