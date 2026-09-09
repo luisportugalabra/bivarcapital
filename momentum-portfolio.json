@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-09-01",
-  "updated": "2026-09-08 01:02 UTC",
+  "updated": "2026-09-09 01:08 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1740.0,
-      "return_pct": 532.18
+      "current_price": 1737.99,
+      "return_pct": 531.45
     },
     {
       "ticker": "MU",
@@ -17,8 +17,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 1016.59,
-      "return_pct": 87.52
+      "current_price": 1000.26,
+      "return_pct": 84.51
     },
     {
       "ticker": "LITE",
@@ -26,8 +26,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 881.25,
-      "return_pct": 128.24
+      "current_price": 978.53,
+      "return_pct": 153.43
     },
     {
       "ticker": "WDC",
@@ -35,8 +35,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 187.56,
-      "current_price": 467.46,
-      "return_pct": 149.23
+      "current_price": 477.3,
+      "return_pct": 154.48
     },
     {
       "ticker": "STX",
@@ -44,8 +44,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-04-01",
       "entry_price": 422.82,
-      "current_price": 849.28,
-      "return_pct": 100.86
+      "current_price": 904.38,
+      "return_pct": 113.89
     },
     {
       "ticker": "DELL",
@@ -53,8 +53,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
       "entry_price": 456.01,
-      "current_price": 524.14,
-      "return_pct": 14.94
+      "current_price": 533.88,
+      "return_pct": 17.08
     },
     {
       "ticker": "MRVL",
@@ -62,12 +62,12 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
       "entry_price": 211.66,
-      "current_price": 223.55,
-      "return_pct": 5.62
+      "current_price": 225.41,
+      "return_pct": 6.5
     }
   ],
   "pending_signal": null,
-  "ytd_2026": 211.41,
+  "ytd_2026": 220.1,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -201,7 +201,7 @@
       "month": "Sep 2026 (MTD)",
       "is_current": true,
       "start": "2026-08-31",
-      "end": "2026-09-08",
+      "end": "2026-09-09",
       "tickers": [
         "SNDK",
         "MU",
@@ -211,7 +211,7 @@
         "DELL",
         "MRVL"
       ],
-      "return_pct": 5.75
+      "return_pct": 8.7
     }
   ]
 }

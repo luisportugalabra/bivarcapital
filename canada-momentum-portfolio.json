@@ -1,101 +1,101 @@
 {
   "last_rebalance": "2026-09-01",
-  "updated": "2026-09-08",
+  "updated": "2026-09-09",
   "ytd_2026": -0.57,
   "regime": "momentum",
   "currency": "CAD",
-  "tsx": 36513.8,
-  "tsx_ma75": 35473.7,
+  "tsx": 36123.1,
+  "tsx_ma75": 35496.6,
   "holdings": [
     {
       "ticker": "LCFS",
       "name": "Tidewater Renewables Ltd.",
       "entry_date": "2026-06-01",
       "entry_price": 11.69,
-      "current_price": 18.25,
+      "current_price": 18.83,
       "weight": 0.1,
-      "return_pct": 56.12
+      "return_pct": 61.08
     },
     {
       "ticker": "ORV",
       "name": "Orvana Minerals Corp.",
       "entry_date": "2026-09-01",
       "entry_price": 2.68,
-      "current_price": 2.68,
+      "current_price": 2.71,
       "weight": 0.1,
-      "return_pct": 0.0
+      "return_pct": 1.12
     },
     {
       "ticker": "LGD",
       "name": "Liberty Gold Corp",
       "entry_date": "2026-09-01",
       "entry_price": 1.75,
-      "current_price": 1.87,
+      "current_price": 1.97,
       "weight": 0.1,
-      "return_pct": 6.86
+      "return_pct": 12.57
     },
     {
       "ticker": "ARG",
       "name": "Amerigo Resources Ltd",
       "entry_date": "2026-06-01",
       "entry_price": 6.93,
-      "current_price": 8.05,
+      "current_price": 8.48,
       "weight": 0.1,
-      "return_pct": 16.16
+      "return_pct": 22.37
     },
     {
       "ticker": "CVVY",
       "name": "Cavvy Energy Ltd",
       "entry_date": "2026-09-01",
       "entry_price": 2.17,
-      "current_price": 2.06,
+      "current_price": 2.09,
       "weight": 0.1,
-      "return_pct": -5.07
+      "return_pct": -3.69
     },
     {
       "ticker": "DSV",
       "name": "Discovery Mining Ltd.",
       "entry_date": "2026-07-02",
       "entry_price": 9.13,
-      "current_price": 13.12,
+      "current_price": 12.84,
       "weight": 0.1,
-      "return_pct": 43.7
+      "return_pct": 40.64
     },
     {
       "ticker": "AYA",
       "name": "Aya Gold & Silver Inc.",
       "entry_date": "2026-09-01",
       "entry_price": 36.68,
-      "current_price": 39.97,
+      "current_price": 40.16,
       "weight": 0.1,
-      "return_pct": 8.97
+      "return_pct": 9.49
     },
     {
       "ticker": "BDT",
       "name": "Bird Construction Inc.",
       "entry_date": "2026-09-01",
       "entry_price": 64.69,
-      "current_price": 70.24,
+      "current_price": 73.28,
       "weight": 0.1,
-      "return_pct": 8.58
+      "return_pct": 13.28
     },
     {
       "ticker": "CG",
       "name": "Centerra Gold Inc.",
       "entry_date": "2026-09-01",
       "entry_price": 30.28,
-      "current_price": 31.73,
+      "current_price": 31.51,
       "weight": 0.1,
-      "return_pct": 4.79
+      "return_pct": 4.06
     },
     {
       "ticker": "DBO",
       "name": "D-BOX Technologies Inc. Class A",
       "entry_date": "2026-07-02",
       "entry_price": 1.19,
-      "current_price": 1.11,
+      "current_price": 1.09,
       "weight": 0.1,
-      "return_pct": -6.72
+      "return_pct": -8.4
     }
   ],
   "monthly_breakdown": [
@@ -881,7 +881,7 @@
         "CG": 0.1,
         "DBO": 0.1
       },
-      "return_pct": 3.12,
+      "return_pct": 4.82,
       "config_version": "v3-netincome-2026-08-21"
     }
   ],
