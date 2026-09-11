@@ -1,13 +1,13 @@
 {
-  "week": "2026-09-04",
-  "gdx_close": 99.26,
-  "gdx_prev_close": 99.26,
-  "gdx_weekly_ret": 0.0,
+  "week": "2026-09-11",
+  "gdx_close": 97.1,
+  "gdx_prev_close": 96.03,
+  "gdx_weekly_ret": 1.11,
   "threshold": 2.0,
   "signal": "CASH",
-  "gold_price": 4476.6,
-  "silver_price": 66.748,
+  "gold_price": 4390.0,
+  "silver_price": 65.02,
   "ytd_2026": -12.81,
   "weeks_invested_2026": 16,
-  "updated": "2026-09-07T05:48:51.535024+00:00"
+  "updated": "2026-09-11T23:59:24.227762+00:00"
 }
