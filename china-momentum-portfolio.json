@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-07-31",
-  "updated": "2026-09-12",
+  "updated": "2026-09-13",
   "ytd_2026": 3.81,
   "currency": "CNY",
   "currency_note": "Prices in CNY (Chinese Yuan Renminbi).",
@@ -138,7 +138,7 @@
       "month": "Sep 2026 (MTD)",
       "is_current": true,
       "start": "2026-07-31",
-      "end": "2026-09-12",
+      "end": "2026-09-13",
       "regime": "momentum",
       "tickers": [
         "301377",
