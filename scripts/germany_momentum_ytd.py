@@ -108,9 +108,15 @@ for m in breakdown:
 current_entry   = next((m for m in updated_breakdown if m.get('is_current')), None)
 live_config_ver = current_entry.get('config_version') if current_entry else None
 
+# 2026-09-18: YTD runs 1 Jan -> today. Months before the 25 Aug 2026 live
+# inception are carried as simulated entries (source='backtest') produced by
+# ~/eodhd_data/germany_n10_final.py with the current config (top 10 + EUR100k
+# ADV floor); they have no tickers, so the price loop above skips them and
+# their return_pct is preserved. Live months must still match the live config.
 months_2026 = [m for m in updated_breakdown
-               if m.get('start') and m.get('tickers') and not m.get('is_current')
-               and '2026' in m.get('month', '') and m.get('config_version') == live_config_ver]
+               if m.get('start') and not m.get('is_current') and '2026' in m.get('month', '')
+               and (m.get('source') == 'backtest'
+                    or (m.get('tickers') and m.get('config_version') == live_config_ver))]
 if months_2026:
     ytd_factor = 1.0
     for m in months_2026:
