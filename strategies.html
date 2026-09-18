@@ -209,7 +209,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">Beta &mdash; Germany XETRA Momentum</div>
         <span class="card-badge badge-beta">Beta</span>
       </div>
-      <p id="germany-momentum-blur" class="card-desc">12-month momentum strategy on XETRA equities, German-domiciled companies only. Mcap top 70% (percentile), no fundamental filter, DAX MA200 regime overlay. Monthly rebalance, 20 stocks equal weighted. Beta: adversarially audited (no lookahead/survivorship inflation found), but several held names carry real spreads well above the 40bps backtest assumption &mdash; sub-EUR-2M capacity, use limit orders.</p>
+      <p id="germany-momentum-blur" class="card-desc">12-month momentum strategy on XETRA equities, German-domiciled companies only. Mcap top 70% (percentile), no fundamental filter, DAX MA200 regime overlay. Monthly rebalance, 10 stocks equal weighted. Beta: adversarially audited (no lookahead/survivorship inflation found), but several held names carry real spreads well above the 40bps backtest assumption &mdash; sub-EUR-2M capacity, use limit orders.</p>
       <div class="card-stats" id="germany-momentum-stats">
         <span class="card-stat">Sharpe: <span class="num">0.91</span></span>
         <span class="card-stat">CAGR: <span class="num">+19.2%</span></span>
@@ -280,6 +280,24 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <button class="hiw-btn" onclick="document.getElementById('modal-norway-mom').classList.add('open')">How it works &darr;</button>
       </div>
       <div id="norway-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
+
+    <div class="strategy-card" id="tvmix-card">
+      <div class="card-header">
+        <div class="card-title">Beta &mdash; TV-Mix (US Trending Value)</div>
+        <span class="card-badge badge-beta">Beta</span>
+      </div>
+      <p id="tvmix-blur" class="card-desc">Value composite (P/E, P/B, P/S, EV/EBITDA, EV/FCF) crossed with 12-month momentum, run in both directions: 5 cheapest-then-strongest plus 5 strongest-then-cheapest. US primary common stocks, market cap &gt;$500M, ADV &gt;$2M, S&amp;P 500 MA200 regime overlay. Monthly rebalance, 10 stocks equal weighted, net of 20bps costs. Beta: new strategy (Sep 2026), no sealed holdout and no live track record &mdash; published for monitoring.</p>
+      <div class="card-stats" id="tvmix-stats">
+        <span class="card-stat">Sharpe: <span class="num">0.83</span></span>
+        <span class="card-stat">CAGR: <span class="num">+16.8%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-33.1%</span></span>
+        <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
+      </div>
+      <div id="tvmix-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
         <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
         <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
       </div>
@@ -721,6 +739,8 @@ window.onUnlock = function(email) {
   document.getElementById('indonesia-momentum-blur').style.userSelect = 'auto';
   document.getElementById('indonesia-momentum-stats').style.filter = 'none';
   document.getElementById('indonesia-momentum-stats').style.userSelect = 'auto';
+  var _tv = document.getElementById('tvmix-actions');
+  if (_tv) _tv.innerHTML = '<a href="/tvmix.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/tvmix_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('indonesia-momentum-actions').innerHTML = '<a href="/indonesia-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">Strategy overview &rarr;</a>&nbsp;&nbsp;<a href="/research/indonesia_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/indonesia_audit_report.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85" title="Hostile adversarial audit">Audit &rarr;</a>';
   // CHINA — re-enable when adding card back
   // document.getElementById('china-momentum-blur').style.filter = 'none';

@@ -1,0 +1,142 @@
+{
+ "strategy": "TV-Mix (Trending Value US, duas pernas)",
+ "updated": "2026-09-18 12:08 UTC",
+ "signal_date": "2026-09-18",
+ "regime": "invested",
+ "spx": 7637.8,
+ "spx_ma200": 7178.9,
+ "universe_size": 2398,
+ "cheap_cut_pct": 20.9,
+ "mom_cut_pct": 29.6,
+ "overlap": [
+  "PARR",
+  "PBF"
+ ],
+ "legs": {
+  "classic": [
+   {
+    "ticker": "IRWD",
+    "name": "Ironwood Pharmaceuticals, Inc.",
+    "sector": "Health Technology",
+    "leg": "classic",
+    "price": 4.23,
+    "mcap_musd": 699,
+    "mom12_pct": 222.9,
+    "value_pct": 18.9,
+    "adv_musd": 6.5,
+    "weight": 0.1
+   },
+   {
+    "ticker": "PBF",
+    "name": "PBF Energy Inc.",
+    "sector": "Energy Minerals",
+    "leg": "classic",
+    "price": 77.16,
+    "mcap_musd": 9146,
+    "mom12_pct": 154.5,
+    "value_pct": 10.0,
+    "adv_musd": 295.3,
+    "weight": 0.2
+   },
+   {
+    "ticker": "PARR",
+    "name": "Par Pacific Holdings, Inc. Common Stock",
+    "sector": "Energy Minerals",
+    "leg": "classic",
+    "price": 86.49,
+    "mcap_musd": 4333,
+    "mom12_pct": 146.8,
+    "value_pct": 12.6,
+    "adv_musd": 74.0,
+    "weight": 0.2
+   },
+   {
+    "ticker": "NEXA",
+    "name": "Nexa Resources S.A.",
+    "sector": "Non-Energy Minerals",
+    "leg": "classic",
+    "price": 12.92,
+    "mcap_musd": 1711,
+    "mom12_pct": 142.9,
+    "value_pct": 15.5,
+    "adv_musd": 11.5,
+    "weight": 0.1
+   },
+   {
+    "ticker": "TEN",
+    "name": "Tsakos Energy Navigation Ltd",
+    "sector": "Transportation",
+    "leg": "classic",
+    "price": 52.81,
+    "mcap_musd": 1555,
+    "mom12_pct": 129.6,
+    "value_pct": 19.2,
+    "adv_musd": 30.5,
+    "weight": 0.1
+   }
+  ],
+  "inverse": [
+   {
+    "ticker": "PBF",
+    "name": "PBF Energy Inc.",
+    "sector": "Energy Minerals",
+    "leg": "inverse",
+    "price": 77.16,
+    "mcap_musd": 9146,
+    "mom12_pct": 154.5,
+    "value_pct": 10.0,
+    "adv_musd": 295.3,
+    "weight": 0.2
+   },
+   {
+    "ticker": "CHRD",
+    "name": "Chord Energy Corporation",
+    "sector": "Energy Minerals",
+    "leg": "inverse",
+    "price": 146.27,
+    "mcap_musd": 8001,
+    "mom12_pct": 38.5,
+    "value_pct": 10.4,
+    "adv_musd": 92.2,
+    "weight": 0.1
+   },
+   {
+    "ticker": "GSL",
+    "name": "Global Ship Lease Inc New",
+    "sector": "Transportation",
+    "leg": "inverse",
+    "price": 46.13,
+    "mcap_musd": 1662,
+    "mom12_pct": 44.2,
+    "value_pct": 10.6,
+    "adv_musd": 11.8,
+    "weight": 0.1
+   },
+   {
+    "ticker": "PARR",
+    "name": "Par Pacific Holdings, Inc. Common Stock",
+    "sector": "Energy Minerals",
+    "leg": "inverse",
+    "price": 86.49,
+    "mcap_musd": 4333,
+    "mom12_pct": 146.8,
+    "value_pct": 12.6,
+    "adv_musd": 74.0,
+    "weight": 0.2
+   },
+   {
+    "ticker": "AMN",
+    "name": "AMN Healthcare Services Inc",
+    "sector": "Commercial Services",
+    "leg": "inverse",
+    "price": 34.55,
+    "mcap_musd": 1338,
+    "mom12_pct": 87.3,
+    "value_pct": 13.7,
+    "adv_musd": 20.9,
+    "weight": 0.1
+   }
+  ]
+ },
+ "note": "Estrategia nova (2026-09-10), sem holdout selado nem track record. Backtest 2005-2026: CAGR 16,8%, Sharpe 0,83, MaxDD -33,1%."
+}
