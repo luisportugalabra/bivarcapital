@@ -11,44 +11,47 @@
 -- and before the earliest open of the three (XETRA, 07:00 UTC in summer).
 -- Five runs give four retries; once a message goes out the rest no-op on the
 -- month check in momentum_signal_state.
+--
+-- Nothing in here needs editing: the bearer token is lifted out of the existing
+-- BTC cron job rather than pasted in, so the secret is never handled by hand.
 
 begin;
 
--- 1. Secrets. Replace the placeholder once, here, before running.
---    (Skip this block if vault already holds these from the BTC setup.)
-select vault.create_secret('REPLACE_WITH_CRON_SECRET', 'cron_secret', 'Bearer token for scheduled edge functions')
-where not exists (select 1 from vault.decrypted_secrets where name = 'cron_secret');
-
--- 2. Drop any existing schedule pointing at the momentum alert functions, so
---    this migration is idempotent and clears out the old monthly-only jobs
---    without needing to know what they were named.
 do $$
-declare j record;
+declare
+  auth   text;
+  fn     text;
+  base   text := 'https://efiyeiwdywodjxxnslvu.supabase.co/functions/v1/';
+  j      record;
 begin
+  -- 1. Reuse the Authorization header the working BTC job already carries.
+  select (regexp_match(command, '''(Bearer [^'']+)'''))[1]
+    into auth
+    from cron.job
+   where command like '%btc-signal%'
+   limit 1;
+
+  if auth is null then
+    raise exception 'could not read the bearer token from the btc-signal cron job '
+                    '-- check: select jobname, command from cron.job;';
+  end if;
+
+  -- 2. Drop any existing schedule pointing at the momentum alert functions, so
+  --    this is idempotent and clears the old monthly-only jobs without needing
+  --    to know their names.
   for j in
     select jobname from cron.job
-    where command like '%momentum-signal%'
-       or command like '%canada-momentum-signal%'
-       or command like '%germany-momentum-signal%'
-       or command like '%uk-momentum-signal%'
+     where command like '%momentum-signal%'
+        or command like '%canada-momentum-signal%'
+        or command like '%germany-momentum-signal%'
+        or command like '%uk-momentum-signal%'
   loop
     perform cron.unschedule(j.jobname);
     raise notice 'unscheduled %', j.jobname;
   end loop;
-end $$;
 
--- 3. Reschedule, one independent job per strategy, so a failure in one cannot
---    stop the others.
-do $$
-declare
-  secret text := (select decrypted_secret from vault.decrypted_secrets where name = 'cron_secret');
-  fn     text;
-  base   text := 'https://efiyeiwdywodjxxnslvu.supabase.co/functions/v1/';
-begin
-  if secret is null then
-    raise exception 'vault secret cron_secret is missing -- set it in step 1 first';
-  end if;
-
+  -- 3. One independent job per strategy, so a failure in one cannot stop the
+  --    others.
   foreach fn in array array['momentum-signal', 'canada-momentum-signal', 'germany-momentum-signal']
   loop
     perform cron.schedule(
@@ -57,17 +60,15 @@ begin
       format(
         $q$select net.http_post(
               url    := %L,
-              headers:= jsonb_build_object(
-                          'Content-Type',  'application/json',
-                          'Authorization', %L),
+              headers:= jsonb_build_object('Content-Type', 'application/json',
+                                           'Authorization', %L),
               timeout_milliseconds := 30000
             );$q$,
-        base || fn, 'Bearer ' || secret)
+        base || fn, auth)
     );
+    raise notice 'scheduled %-alert', fn;
   end loop;
 end $$;
-
-commit;
 
 -- 4. Seed the idempotency rows for the current month so deploying this does not
 --    fire a backdated alert for a rebalance that already happened. Germany
@@ -78,6 +79,8 @@ values (1, to_char(now(), 'YYYY-MM'), now()),
        (4, to_char(now(), 'YYYY-MM'), now())
 on conflict (id) do update set month = excluded.month, updated = excluded.updated;
 
+commit;
+
 -- Verify:
 --   select jobname, schedule, active from cron.job order by jobname;
---   select * from momentum_signal_state order by id;
+--   select id, month, updated from momentum_signal_state order by id;
