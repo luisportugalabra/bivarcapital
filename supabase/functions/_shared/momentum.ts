@@ -1,5 +1,11 @@
 // Shared delivery logic for the three monthly momentum alerts.
 //
+// Execution convention, matching the backtests: the signal is taken at the
+// month-end close (T) and the positions are bought at the CLOSE of the next
+// trading day (T+1). The alert therefore goes out in the early hours of T+1,
+// which leaves the whole session to work a market-on-close order, and the
+// tracker's entry_price is that day's close -- the two agree by construction.
+//
 // The alert is driven entirely by the data the signal job publishes, never by
 // the cron's firing date. The signal job locks in `pending_signal` on the last
 // trading day of the month (it knows the real trading calendar; this function
@@ -112,13 +118,13 @@ export function pendingAnnouncement(pf: any) {
 export function buildMessage(cfg: Cfg, a: any): string {
   const when = a.executeOn ? prettyDate(a.executeOn) : "the next trading day";
   const late = a.kind === "executed"
-    ? `\n\n⚠️ Sent after the rebalance — execute at the next open.`
+    ? `\n\n⚠️ Sent after the rebalance — execute at the next close.`
     : "";
   if (a.cash) {
     return `🛡 <b>${cfg.label.toUpperCase()} — DEFENSIVE</b>\n\n` +
       `The regime filter is off.\n\n` +
       `<b>Action: sell everything, hold cash.</b>\n\n` +
-      `Effective at the open on ${when}.${late}\n\n${cfg.page}`;
+      `Sell at the close on ${when}.${late}\n\n${cfg.page}`;
   }
   const w = (100 / a.picks.length).toFixed(1);
   const list = a.picks.map((s: any, i: number) => {
@@ -126,7 +132,7 @@ export function buildMessage(cfg: Cfg, a: any): string {
     return `${i + 1}. <b>${s.ticker}</b>${bits ? `\n    ${bits}` : ""}`;
   }).join("\n");
   return `📈 <b>${cfg.label.toUpperCase()} — REBALANCE</b>\n\n` +
-    `<b>Buy at the open on ${when}</b>, ${w}% each:\n\n${list}\n\n` +
+    `<b>Buy at the close on ${when}</b>, ${w}% each:\n\n${list}\n\n` +
     (a.computedOn ? `Signal locked in at the ${a.computedOn} close.` : "") +
     `${late}\n\n${cfg.page}`;
 }
