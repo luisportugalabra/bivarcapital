@@ -107,9 +107,9 @@ async function updateGitHub(signalData: Record<string, any>) {
 serve(async (req) => {
   try {
     // Auth: check cron secret
-    const CRON_SECRET = Deno.env.get("CRON_SECRET") || "";
+    const CRON_SECRET = Deno.env.get("ALERT_CRON_SECRET") || Deno.env.get("CRON_SECRET") || "";
     const authHeader = req.headers.get("Authorization");
-    if (authHeader !== `Bearer ${CRON_SECRET}`) {
+    if (!CRON_SECRET || authHeader !== `Bearer ${CRON_SECRET}`) {
       return new Response("Unauthorized", { status: 401 });
     }
     // Dry run: compute the signal for real, but send only to the admin and

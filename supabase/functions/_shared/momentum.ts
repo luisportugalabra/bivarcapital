@@ -26,7 +26,9 @@ const FALLBACK_WINDOW_DAYS = 4;
 export interface Cfg {
   key: string;        // "usa" | "canada" | "germany"
   label: string;      // headline name
-  stateId: number;    // row in momentum_signal_state
+  // Row in momentum_signal_state, which has CHECK (id IN (1,2,3)): 1 = USA,
+  // 2 = Germany (inherited from the retired UK sleeve), 3 = Canada.
+  stateId: number;
   portfolio: string;  // portfolio JSON filename
   cur: string;        // currency symbol
   page: string;       // strategy page URL
@@ -141,8 +143,10 @@ export async function handle(req: Request, cfg: Cfg): Promise<Response> {
   try {
     const url = new URL(req.url);
     const isTest = url.searchParams.get("test") === "1";
-    const secret = Deno.env.get("CRON_SECRET") || "";
-    if (req.headers.get("Authorization") !== `Bearer ${secret}`) {
+    // ALERT_CRON_SECRET is what the pg_cron jobs send; CRON_SECRET is kept as a
+    // fallback so anything still configured against it keeps working.
+    const secret = Deno.env.get("ALERT_CRON_SECRET") || Deno.env.get("CRON_SECRET") || "";
+    if (!secret || req.headers.get("Authorization") !== `Bearer ${secret}`) {
       return new Response("Unauthorized", { status: 401 });
     }
 
