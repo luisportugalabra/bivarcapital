@@ -52,10 +52,6 @@ jobs:
         continue-on-error: true
         run: python scripts/update_ytd.py
 
-      - name: Update China momentum portfolio
-        continue-on-error: true
-        run: python scripts/china_momentum_ytd.py
-
       - name: Update Canada momentum signal
         continue-on-error: true
         run: python scripts/canada_momentum_signal.py
@@ -63,10 +59,6 @@ jobs:
       - name: Update Canada momentum portfolio
         continue-on-error: true
         run: python scripts/canada_momentum_ytd.py
-
-      - name: Update TV-Mix signal
-        continue-on-error: true
-        run: python scripts/tvmix_signal.py
 
       - name: Update Germany momentum signal
         continue-on-error: true

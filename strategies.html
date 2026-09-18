@@ -246,128 +246,10 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
-    <div class="strategy-card" id="taiwan-momentum-card">
-      <div class="card-header">
-        <div class="card-title">Beta &mdash; Taiwan TWSE Momentum</div>
-        <span class="card-badge badge-beta">Beta</span>
-      </div>
-      <p id="taiwan-momentum-blur" class="card-desc">9-month momentum (skip-month) on Taiwan Stock Exchange equities. Mcap top 90%, no fundamental filter, TWSE MA75 regime overlay. Monthly rebalance, 15 stocks equal weighted. Beta: research stage &mdash; no live signal yet; heavy data-pipeline cleaning was required (single-day snapshot spikes despiked, one merged-instrument ticker excluded) and costs are borrowed from Canada, not measured for Taiwan.</p>
-      <div class="card-stats" id="taiwan-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.60</span></span>
-        <span class="card-stat">CAGR: <span class="num">+18.4%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-37.8%</span></span>
-        <span class="card-stat"><span class="num">2000&ndash;2026</span></span>
-      </div>
-      <div id="taiwan-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
-    <div class="strategy-card" id="norway-momentum-card">
-      <div class="card-header">
-        <div class="card-title">Beta &mdash; Norway Momentum</div>
-        <span class="card-badge badge-beta">Beta</span>
-      </div>
-      <p id="norway-momentum-blur" class="card-desc">9-month momentum strategy on Oslo B&oslash;rs equities. Market cap &gt;565M NOK (~&euro;50M), EBIT&gt;0, OSEBX MA100 regime overlay. Monthly rebalance, 15 stocks equal weighted, net of 66bps costs. Beta: newer strategy, pre-2013 backtest relies on a validated synthetic regime index.</p>
-      <div class="card-stats" id="norway-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">1.04</span></span>
-        <span class="card-stat">CAGR: <span class="num">+15.1%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-32.2%</span></span>
-        <span class="card-stat"><span class="num">2000&ndash;2026</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-norway-mom').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="norway-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
-    <div class="strategy-card" id="tvmix-card">
-      <div class="card-header">
-        <div class="card-title">Beta &mdash; TV-Mix (US Trending Value)</div>
-        <span class="card-badge badge-beta">Beta</span>
-      </div>
-      <p id="tvmix-blur" class="card-desc">Value composite (P/E, P/B, P/S, EV/EBITDA, EV/FCF) crossed with 12-month momentum, run in both directions: 5 cheapest-then-strongest plus 5 strongest-then-cheapest. US primary common stocks, market cap &gt;$500M, ADV &gt;$2M, S&amp;P 500 MA200 regime overlay. Monthly rebalance, 10 stocks equal weighted, net of 20bps costs. Beta: new strategy (Sep 2026), no sealed holdout and no live track record &mdash; published for monitoring.</p>
-      <div class="card-stats" id="tvmix-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.83</span></span>
-        <span class="card-stat">CAGR: <span class="num">+16.8%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-33.1%</span></span>
-        <span class="card-stat"><span class="num">2005&ndash;2026</span></span>
-      </div>
-      <div id="tvmix-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
-    <div class="strategy-card" id="indonesia-momentum-card">
-      <div class="card-header">
-        <div class="card-title">Beta &mdash; Indonesia Momentum</div>
-        <span class="card-badge badge-beta">Beta</span>
-      </div>
-      <p id="indonesia-momentum-blur" class="card-desc">12-month momentum strategy on Jakarta Composite (JK) equities. Mcap &ge; 1T IDR (~&euro;60M), no fundamental filter at this floor, JCI (^JKSE) MA200 regime overlay. Monthly rebalance, 15 stocks equal weighted. Research-only, no live signal &mdash; beta pending further liquidity and cost validation after a hostile adversarial audit found the raw backtest inflated by survivorship bias.</p>
-      <div class="card-stats" id="indonesia-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.56</span></span>
-        <span class="card-stat">CAGR: <span class="num">+15.1%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-47.5%</span></span>
-        <span class="card-stat"><span class="num">2017&ndash;2026 net</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-indonesia-mom').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="indonesia-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
-
     <!-- CHINA MOMENTUM CARD — hidden, re-enable when ready
-    <div class="strategy-card" id="china-momentum-card">
-      <div class="card-header">
-        <div class="card-title">China A-shares Momentum</div>
-        <span class="card-badge badge-live">Live</span>
-      </div>
-      <p id="china-momentum-blur" class="card-desc">21-month momentum strategy on China A-shares (SHG + SHE). Market cap &gt;¥20B CNY, CSI 300 MA150 regime overlay. Monthly rebalance, 10 stocks equal weight.</p>
-      <div class="card-stats" id="china-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.54</span></span>
-        <span class="card-stat">CAGR: <span class="num">+11.8%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-55.6%</span></span>
-        <span class="card-stat"><span class="num">2007&ndash;2026</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-china-mom').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="china-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
     END CHINA CARD -->
 
     <!-- UK MOMENTUM CARD — removido do site 2026-09-08 (bugs de dados EODHD; ver AUDITORIA)
-<div class="strategy-card" id="uk-momentum-card">
-      <div class="card-header">
-        <div class="card-title">Beta &mdash; UK Momentum</div>
-        <span class="card-badge badge-bugged">Beta &mdash; Bugged</span>
-      </div>
-      <p id="uk-momentum-blur" class="card-desc">Systematic 6+9-month momentum strategy on UK equities. Profitability filter, FTSE 100 regime overlay, cash overlay in bear markets, net of UK stamp duty. Monthly rebalance, 7 stocks equal weight. Beta: under active audit &mdash; a zero-lag execution bug and broader EODHD data contamination were found 2026-08-25 and are being corrected.</p>
-      <div class="card-stats" id="uk-momentum-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.99</span></span>
-        <span class="card-stat">CAGR: <span class="num">+21.1%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-35.0%</span></span>
-        <span class="card-stat"><span class="num">2001&ndash;2026</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-uk-mom').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="uk-momentum-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
     END UK CARD -->
 
     <div class="section-label">Bitcoin</div>
@@ -395,27 +277,6 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 
     <!-- OTHERS SECTION (Coiled Spring, GDX) — hidden, re-enable when ready
     <div class="section-label">Others</div>
-
-    <div class="strategy-card" id="coiled-card">
-      <div class="card-header">
-        <div class="card-title">Coiled Spring</div>
-        <span class="card-badge badge-live">Live</span>
-      </div>
-      <p id="coiled-blur" class="card-desc">Quality + growth factor strategy on US equities. Ranks stocks by ROIC, net income growth, FCF growth, and FCF margin. Monthly rebalance, 10 stocks equal weight.</p>
-      <div class="card-stats" id="coiled-stats">
-        <span class="card-stat">Sharpe: <span class="num">0.94</span></span>
-        <span class="card-stat">CAGR: <span class="num">+18.7%</span></span>
-        <span class="card-stat">MaxDD: <span class="num">-25.8%</span></span>
-        <span class="card-stat"><span class="num">2001&ndash;2024</span></span>
-      </div>
-      <div style="margin-top:14px">
-        <button class="hiw-btn" onclick="document.getElementById('modal-coiled').classList.add('open')">How it works &darr;</button>
-      </div>
-      <div id="coiled-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
-        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
-        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
-      </div>
-    </div>
 
     <div class="strategy-card">
       <div class="card-header">
@@ -464,128 +325,15 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
 </div>
 
 <!-- MODAL: GDX Weekly Signal -->
-<div class="modal-overlay" id="modal-gdx" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-gdx').classList.remove('open')">&times;</button>
-    <h3>How to follow the GDX Weekly Signal</h3>
-
-    <div class="modal-step">
-      <div class="modal-step-num">Step 1 — Check every Friday evening</div>
-      <p>After NYSE close (~4pm ET), the signal is computed and sent automatically via <strong>Telegram</strong>. It shows BUY or CASH for the following week.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 2 — The rule</div>
-      <p>If <strong>GDX (VanEck Gold Miners ETF)</strong> returned more than <strong>+2% this week</strong>, the signal is BUY. Otherwise, stay in cash. One condition, no interpretation needed.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 3 — Execute Monday open</div>
-      <p>On <strong>BUY weeks</strong>: buy equal weight Gold + Silver at Monday open. <strong>Sell at Friday close</strong>. Instruments: GLD + SLV (ETFs, any broker) or GC + SI futures.</p>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Strategy is invested ~35% of the time (~18 weeks/year). Signal based on weekly closing prices. Backtest 2006–2026, 20 years, 18 of 20 years positive. Not investment advice.</p>
-    </div>
-  </div>
-</div>
 
 <!-- MODAL: Coiled Spring -->
-<div class="modal-overlay" id="modal-coiled" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-coiled').classList.remove('open')">&times;</button>
-    <h3>How to follow Coiled Spring</h3>
-
-    <div class="modal-step">
-      <div class="modal-step-num">Step 1 — Once a month</div>
-      <p>On the <strong>1st business day of each month</strong>, check the signal on this site. The rebalance takes ~10 minutes.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 2 — Check the regime</div>
-      <p>If the S&P 500 is <strong>above its 225-day moving average</strong>: hold the 10 stocks. If it is below: sell everything and <strong>stay in cash</strong> until the regime flips back.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 3 — Execute</div>
-      <p>Buy the <strong>10 stocks listed</strong> in equal weight (10% each). Sell the previous month's holdings that are no longer in the top 10.</p>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Universe: US equities, market cap &ge;$1B, positive operating income, 6-month return between &minus;15% and +15% (lateral price action). Signal = (ROIC + NM growth + FCF growth + FCF level) / 4, all cross-sectional percentile ranks.</p>
-    </div>
-  </div>
-</div>
 
 <!-- MODAL: UK Momentum -->
-<div class="modal-overlay" id="modal-uk-mom" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-uk-mom').classList.remove('open')">&times;</button>
-    <h3>How to follow UK Momentum</h3>
-
-    <div class="modal-step">
-      <div class="modal-step-num">Step 1 — Once a month</div>
-      <p>On the <strong>1st business day of each month</strong>, check the signal on this site. Takes ~5 minutes to execute.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 2 — Check the regime</div>
-      <p>If the <strong>FTSE 100 is above its 200-day moving average</strong>: hold the 7 UK stocks. If it is below: sell everything and move to <strong>cash</strong> until the regime flips back.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 3 — Execute</div>
-      <p>In momentum mode: buy the <strong>7 stocks listed</strong> in equal weight (~14.3% each) on your UK broker (e.g. Interactive Brokers, Hargreaves Lansdown). Sell the previous month&apos;s holdings no longer in the top 7. In cash mode: hold cash until the regime flips back. Backtested net of UK stamp duty (0.5%) and estimated slippage.</p>
-    </div>
-  </div>
-</div>
 
 <!-- CHINA MODAL — hidden, re-enable when ready
-<div class="modal-overlay" id="modal-china-mom" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-china-mom').classList.remove('open')">&times;</button>
-    <h3>How to follow China A-shares Momentum</h3>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 1 — Once a month</div>
-      <p>On the <strong>1st business day of each month</strong>, check the signal on this site. Takes ~5 minutes to execute via Interactive Brokers (Stock Connect access required).</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 2 — Check the regime</div>
-      <p>If the <strong>CSI 300 is above its 150-day moving average</strong>: hold the 10 stocks. If it is below: sell everything and stay in <strong>cash</strong> until the regime flips back. The strategy is in cash ~47% of the time.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 3 — Execute</div>
-      <p>Buy the <strong>10 stocks listed</strong> in equal weight (10% each) via Shanghai or Shenzhen Stock Connect on IBKR. Sell the previous month&apos;s holdings no longer in the top 10.</p>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Universe: China A-shares (SHG + SHE), market cap &gt;¥20B CNY (~$2.8B USD). Signal = 21-month return, skip last month. No fundamental filter. Backtest 2007–2026: CAGR +11.8%, Sharpe 0.54, MaxDD -55.6%.</p>
-    </div>
-  </div>
-</div>
 END CHINA MODAL -->
 
 <!-- MODAL: Norway Momentum -->
-<div class="modal-overlay" id="modal-norway-mom" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-norway-mom').classList.remove('open')">&times;</button>
-    <h3>How to follow Norway Momentum</h3>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 1 — Once a month</div>
-      <p>At <strong>month-end</strong>, check the signal on this site. Takes ~5 minutes to execute via Interactive Brokers or any broker with access to Oslo B&oslash;rs.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 2 — Check the regime</div>
-      <p>If the <strong>OSEBX is above its 100-day moving average</strong>: hold the 15 stocks. If it is below: sell everything and stay in <strong>cash (NOK)</strong>. The strategy is in cash ~37% of the time.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">Step 3 — Execute</div>
-      <p>Buy the <strong>15 stocks listed</strong> in equal weight (~6.7% each). Sell previous month&apos;s holdings no longer in the top 15. All prices in NOK.</p>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key details</div>
-      <p>Universe: Oslo B&oslash;rs, Norwegian companies only, mcap &gt;565M NOK (~&euro;50M), EBIT&gt;0. Signal = 9-month return. Backtest 2000&ndash;2026 net of 66bps costs: CAGR +15.1%, Sharpe 1.04, MaxDD -32.2%. <a href="/research/norway_momentum_report.html">Full report &rarr;</a></p>
-    </div>
-  </div>
-</div>
 
 <!-- MODAL: Canada TSX Momentum -->
 <div class="modal-overlay" id="modal-canada-mom" onclick="if(event.target===this)this.classList.remove('open')">
@@ -653,30 +401,6 @@ END CHINA MODAL -->
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-indonesia-mom" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-indonesia-mom').classList.remove('open')">&times;</button>
-    <h3>Indonesia Momentum &mdash; research strategy, no live signal</h3>
-    <div class="modal-step">
-      <div class="modal-step-num">Status</div>
-      <p>This strategy is <strong>backtest-only</strong>. There is no live portfolio and no monthly signal to follow &mdash; it exists as research, published with full transparency about what an adversarial audit found.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">The rules (as backtested)</div>
-      <p>Universe: Jakarta Composite (IDX), mcap &ge; 1T IDR (~&euro;60M). If <strong>JCI is above its 200-day moving average</strong>: hold the top 15 stocks by 12-month momentum, equal weight. If below: cash. Monthly rebalance.</p>
-    </div>
-    <div class="modal-step">
-      <div class="modal-step-num">The honest numbers</div>
-      <p>The raw full-period backtest (2004&ndash;2026) shows CAGR +28.0% / Sharpe 0.99 &mdash; but that figure is inflated by confirmed survivorship bias (0% delisting coverage 2004&ndash;2016) and favorable benchmark/cost/rf conventions. The survivorship-clean 2017&ndash;2026 window, net of estimated 100bps costs and a realistic risk-free rate, is <strong>CAGR +15.1%, Sharpe 0.56, MaxDD -47.5%</strong> &mdash; that is the number to use.</p>
-    </div>
-    <div class="modal-divider"></div>
-    <div class="modal-step">
-      <div class="modal-step-num">Key caveats</div>
-      <p>Not executable as backtested at scale (28% of positions exceed 100% of daily volume at $1M capital); top 5 stocks = 79% of total P&amp;L; 2026 YTD is -28%. <a href="/research/indonesia_momentum_report.html">Full strategy report &rarr;</a> &middot; <a href="/research/indonesia_audit_report.html">Full adversarial audit &rarr;</a></p>
-    </div>
-  </div>
-</div>
-
 <!-- MODAL: Bitcoin Trend Signal -->
 <div class="modal-overlay" id="modal-btc" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
@@ -729,38 +453,30 @@ window.onUnlock = function(email) {
   document.getElementById('canada-momentum-actions').innerHTML = '<a href="/canada-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_adversarial_audit.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85" title="Provisional adversarial audit note">Audit &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
   document.getElementById('germany-momentum-actions').innerHTML = '<a href="/germany-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_adversarial_audit.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Adversarial audit &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
   document.getElementById('druckenmiller-13f-actions').innerHTML = '<a href="/druckenmiller-13f.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>';
-  document.getElementById('taiwan-momentum-actions').innerHTML = '<a href="/research/taiwan_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('norway-momentum-blur').style.filter = 'none';
   document.getElementById('norway-momentum-blur').style.userSelect = 'auto';
   document.getElementById('norway-momentum-stats').style.filter = 'none';
   document.getElementById('norway-momentum-stats').style.userSelect = 'auto';
-  document.getElementById('norway-momentum-actions').innerHTML = '<a href="/norway-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/norway_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   document.getElementById('indonesia-momentum-blur').style.filter = 'none';
   document.getElementById('indonesia-momentum-blur').style.userSelect = 'auto';
   document.getElementById('indonesia-momentum-stats').style.filter = 'none';
   document.getElementById('indonesia-momentum-stats').style.userSelect = 'auto';
-  var _tv = document.getElementById('tvmix-actions');
-  if (_tv) _tv.innerHTML = '<a href="/tvmix.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/tvmix_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
-  document.getElementById('indonesia-momentum-actions').innerHTML = '<a href="/indonesia-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">Strategy overview &rarr;</a>&nbsp;&nbsp;<a href="/research/indonesia_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/indonesia_audit_report.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85" title="Hostile adversarial audit">Audit &rarr;</a>';
   // CHINA — re-enable when adding card back
   // document.getElementById('china-momentum-blur').style.filter = 'none';
   // document.getElementById('china-momentum-blur').style.userSelect = 'auto';
   // document.getElementById('china-momentum-stats').style.filter = 'none';
   // document.getElementById('china-momentum-stats').style.userSelect = 'auto';
-  // document.getElementById('china-momentum-actions').innerHTML = '<a href="/china-momentum.html" ...>View live signal &rarr;</a>';
   document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>';
   // GDX — re-enable when adding card back
   // document.getElementById('gdx-blur').style.filter = 'none';
   // document.getElementById('gdx-blur').style.userSelect = 'auto';
   // document.getElementById('gdx-stats').style.filter = 'none';
   // document.getElementById('gdx-stats').style.userSelect = 'auto';
-  // document.getElementById('gdx-actions').innerHTML = '<a href="/gdx.html" ...>View live signal &rarr;</a>';
   // COILED SPRING — re-enable when adding card back
   // document.getElementById('coiled-blur').style.filter = 'none';
   // document.getElementById('coiled-blur').style.userSelect = 'auto';
   // document.getElementById('coiled-stats').style.filter = 'none';
   // document.getElementById('coiled-stats').style.userSelect = 'auto';
-  // document.getElementById('coiled-actions').innerHTML = '<a href="/coiled-spring.html" ...>View live signal &rarr;</a>';
 };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="/auth.js?v=2"></script>
