@@ -479,6 +479,7 @@ def main():
         new_pending_signal = {
             'for_month':     next_month_str,
             'computed_date': TODAY,
+            'execute_on':    next_trading_candidate.isoformat(),
             'regime':        regime_str,
             'picks':         today_sel if regime_ok else [],
         }

@@ -449,15 +449,25 @@ def main():
     # actually rebalances; a same-month re-run just marks prices, it never
     # re-decides exposure.
     if is_new_month:
-        if regime_ok:
-            if pending_signal and pending_signal.get('for_month') == current_m and not legacy_strategy:
+        matched = (pending_signal and pending_signal.get('for_month') == current_m
+                   and not legacy_strategy)
+        if matched:
+            # Exposure is decided by the regime as it stood at lock-in, matching
+            # the backtest where the signal at T gates the T->T+1 holding period.
+            # Using today's regime instead would read a different day's state.
+            locked_regime_ok = pending_signal.get('regime', 'momentum') == 'momentum'
+            if locked_regime_ok:
                 print(f"  Portfolio: NEW MONTH ({current_m}), executing signal locked in on "
                       f"{pending_signal.get('computed_date')}...")
                 exec_picks = pending_signal['picks']  # [{ticker, name, weight}, ...]
             else:
-                print(f"  Portfolio: NEW MONTH ({current_m}), no matching locked signal "
-                      f"-- falling back to today's data...")
-                exec_picks = today_sel
+                print(f"  Portfolio: NEW MONTH ({current_m}), regime was DEFENSIVE at lock-in on "
+                      f"{pending_signal.get('computed_date')} — moving to cash...")
+                exec_picks = []
+        elif regime_ok:
+            print(f"  Portfolio: NEW MONTH ({current_m}), no matching locked signal "
+                  f"-- falling back to today's data...")
+            exec_picks = today_sel
         else:
             print(f"  Portfolio: NEW MONTH ({current_m}), regime DEFENSIVE — moving to cash...")
             exec_picks = []
@@ -538,12 +548,14 @@ def main():
     is_month_end_today = (next_trading_candidate.month != today_date.month
                            or next_trading_candidate.year != today_date.year)
 
-    if is_month_end_today and regime_ok:
+    if is_month_end_today:
         next_month_str = next_trading_candidate.strftime('%Y-%m')
         new_pending_signal = {
             'for_month':     next_month_str,
             'computed_date': TODAY,
-            'picks':         today_sel,
+            'execute_on':    next_trading_candidate.isoformat(),
+            'regime':        regime_str,
+            'picks':         today_sel if regime_ok else [],
         }
         print(f"  Today ({TODAY}) is the last trading day of the month -- "
               f"locked in signal for {next_month_str}: {[p['ticker'] for p in today_sel]}")

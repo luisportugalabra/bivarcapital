@@ -200,6 +200,18 @@ def _update_picks_history(tickers, today_str):
         print("  Picks history: empty, skipping")
 
 
+def next_weekday(d):
+    """Next calendar day that isn't a Saturday or Sunday -- used to find the
+    real next trading day for month-end detection, instead of naive
+    tomorrow=today+1 arithmetic, which misses month boundaries that fall on
+    a weekend (e.g. last trading day is Fri the 29th, tomorrow=Sat the 30th
+    is still the same calendar month, so a same-month check never fires)."""
+    nd = d + timedelta(days=1)
+    while nd.weekday() >= 5:  # 5=Saturday, 6=Sunday
+        nd += timedelta(days=1)
+    return nd
+
+
 def main():
     print("Fetching TradingView data...")
     df = fetch_stocks()
@@ -388,16 +400,20 @@ def main():
             holdings.append(h)
         last_rebalance_date = existing_portfolio.get('last_rebalance', output['date'])
 
-    # Lock in tomorrow's signal if today is the last trading day of the month
+    # Lock in the signal if today is the last trading day of the month. The
+    # next *trading* day is what defines the boundary -- a plain today+1 misses
+    # every month that ends on a weekend, which is roughly 3 months in 7.
     today_date = datetime.strptime(output['date'], '%Y-%m-%d').date()
-    tomorrow = today_date + timedelta(days=1)
-    is_month_end_today = tomorrow.month != today_date.month or tomorrow.year != today_date.year
+    next_trading_candidate = next_weekday(today_date)
+    is_month_end_today = (next_trading_candidate.month != today_date.month
+                          or next_trading_candidate.year != today_date.year)
 
     if is_month_end_today:
-        next_month_str = tomorrow.strftime('%Y-%m')
+        next_month_str = next_trading_candidate.strftime('%Y-%m')
         new_pending_signal = {
             'for_month':     next_month_str,
             'computed_date': output['date'],
+            'execute_on':    next_trading_candidate.isoformat(),
             'regime_ok':     regime_ok,
             'picks': [
                 {'ticker': tk, 'name': name_map.get(tk, tk), 'sector': sector_map.get(tk, '')}

@@ -112,6 +112,9 @@ serve(async (req) => {
     if (authHeader !== `Bearer ${CRON_SECRET}`) {
       return new Response("Unauthorized", { status: 401 });
     }
+    // Dry run: compute the signal for real, but send only to the admin and
+    // leave both the state table and the repo untouched.
+    const isTest = new URL(req.url).searchParams.get("test") === "1";
 
     const closes = await fetchPrices();
     const n = closes.length;
@@ -151,18 +154,16 @@ serve(async (req) => {
     console.log(`Date: ${date}, Close: $${price.toFixed(0)}, Live: $${livePrice.toFixed(0)}, RSI: ${rsi.toFixed(1)}, MA155: $${ma155.toFixed(0)}, Vol: ${(vol * 100).toFixed(0)}%, Signal: ${signal}`);
 
     // Check previous signal from Supabase (stored in a simple key-value)
-    const { data: prevRow } = await sb
-      .from("btc_signal_state")
-      .select("*")
-      .eq("id", 1)
-      .single();
+    const { data: prevRow } = isTest
+      ? { data: null }
+      : await sb.from("btc_signal_state").select("*").eq("id", 1).single();
 
     const prevSignal = prevRow?.signal || null;
     const prevDate = prevRow?.date || null;
     const alreadyRanToday = prevDate === date;
 
     // Save state to Supabase
-    const { error: upsertErr } = await sb.from("btc_signal_state").upsert({
+    const { error: upsertErr } = isTest ? { error: null } : await sb.from("btc_signal_state").upsert({
       id: 1,
       date,
       price: Math.round(livePrice * 100) / 100,
@@ -184,7 +185,7 @@ serve(async (req) => {
       signal,
       updated: new Date().toISOString(),
     };
-    await updateGitHub(signalData);
+    if (!isTest) await updateGitHub(signalData);
 
     // Send Telegram (skip if already sent today with same signal)
     if (alreadyRanToday && prevSignal === signal) {
@@ -195,10 +196,9 @@ serve(async (req) => {
     }
 
     // Get subscribers
-    const { data: subscribers } = await sb
-      .from("telegram_subscribers")
-      .select("chat_id")
-      .eq("status", "approved");
+    const { data: subscribers } = isTest
+      ? { data: null }
+      : await sb.from("telegram_subscribers").select("chat_id").eq("status", "approved");
 
     const chatIds = subscribers?.map((s) => s.chat_id) || [ADMIN_CHAT_ID];
     console.log(`Sending to ${chatIds.length} subscribers`);
@@ -217,6 +217,8 @@ serve(async (req) => {
       const volIcon = vol < 1.0 ? "✓" : "✗";
       tgMsg = `${emoji} Daily BTC: ${signal}\n\nPrice: $${livePrice.toLocaleString("en-US", { maximumFractionDigits: 0 })}\n${rsiIcon} RSI14: ${rsi.toFixed(1)} (>54)\n${maIcon} MA155: $${ma155.toLocaleString("en-US", { maximumFractionDigits: 0 })} (${price > ma155 ? "above" : "below"})\n${volIcon} Vol20: ${(vol * 100).toFixed(0)}% (<100%)\n\nNo change from yesterday.\nhttps://bivarcapital.com/btc.html`;
     }
+
+    if (isTest) tgMsg = `\u{1F9EA} TEST\n\n${tgMsg}`;
 
     for (const chatId of chatIds) {
       try {
