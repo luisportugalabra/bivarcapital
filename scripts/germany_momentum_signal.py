@@ -64,7 +64,8 @@ DATA_PATH      = os.path.join(SITE_DIR, "germany-momentum-data.json")
 PORTFOLIO_PATH = os.path.join(SITE_DIR, "germany-momentum-portfolio.json")
 
 MCAP_PCT       = 0.30   # keep top 70% by market cap (percentile, not absolute floor)
-TOP_N          = 20
+MIN_ADV_EUR    = 100_000  # 60-day average euro volume floor (2026-09-18)
+TOP_N          = 10   # 2026-09-18: 20->10 (backtest: mesmo CAGR, menos ordens; c/ filtro ADV o N=10 aguenta melhor)
 MA_W           = 200
 CONFIG_VERSION = "v3-2026-08-26-de-only"   # v3: German-domiciled companies only;
                                            # TradingView Perf.Y is the official
@@ -78,7 +79,7 @@ TODAY = date.today().isoformat()
 def fetch_germany():
     print("Fetching TradingView data (Germany XETRA)...")
     _, df = (Query()
-        .select('name', 'description', 'market_cap_basic', 'close', 'Perf.Y', 'type', 'typespecs', 'country')
+        .select('name', 'description', 'market_cap_basic', 'close', 'Perf.Y', 'type', 'typespecs', 'country', 'average_volume_60d_calc')
         .where(
             col('type') == 'stock',
             col('typespecs').has('common'),
@@ -110,6 +111,18 @@ def fetch_germany():
     mc_threshold = df['market_cap_basic'].quantile(MCAP_PCT)
     df = df[df['market_cap_basic'] >= mc_threshold].copy()
     print(f"  Above mcap P{int(MCAP_PCT*100)}: {len(df)}")
+
+    # Liquidity filter (added 2026-09-18). 60-day average euro volume -- same
+    # window as the backtest sweep in ~/eodhd_data/de_liquidity.py. Measured
+    # spreads on the old N=20 portfolio found 5 of 20 names untradeable at a
+    # EUR20k position (Netfonds EUR2.3k/day = 884% of ADV, Nuernberger 197%,
+    # Grammer 64%). At EUR100k the backtest gives 19.6% CAGR vs 20.5% unfiltered
+    # -- the whole cost is 0.9pp and it removes names that cannot be bought.
+    df['adv_eur'] = (pd.to_numeric(df['average_volume_60d_calc'], errors='coerce')
+                     * pd.to_numeric(df['close'], errors='coerce'))
+    before = len(df)
+    df = df[df['adv_eur'] >= MIN_ADV_EUR].copy()
+    print(f"  Above ADV EUR{MIN_ADV_EUR:,.0f}/day (60d): {len(df)} (dropped {before - len(df)})")
 
     return df.reset_index(drop=True), universe_health, broad_prices
 
