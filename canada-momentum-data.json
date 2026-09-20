@@ -4,7 +4,7 @@
   "tsx": 35806.7,
   "tsx_ma75": 35604.7,
   "pct_above_ma": 0.6,
-  "total_eligible": 345,
+  "total_eligible": 342,
   "portfolio": [
     {
       "rank": 1,
@@ -300,11 +300,11 @@
     },
     {
       "rank": 20,
-      "ticker": "DBO",
-      "name": "D-BOX Technologies Inc. Class A",
-      "ret_12m": 131.11,
-      "net_income_ttm_m": 18.4,
-      "mcap_b": 0.231,
+      "ticker": "EXE",
+      "name": "Extendicare Inc.",
+      "ret_12m": 128.26,
+      "net_income_ttm_m": 121.3,
+      "mcap_b": 2.894,
       "weight": null,
       "selected": false
     }

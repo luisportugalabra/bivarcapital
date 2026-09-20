@@ -113,8 +113,9 @@ live_config_ver = current_entry.get('config_version') if current_entry else None
 # ~/eodhd_data/germany_n10_final.py with the current config (top 10 + EUR100k
 # ADV floor); they have no tickers, so the price loop above skips them and
 # their return_pct is preserved. Live months must still match the live config.
+# YTD runs 1 January to today -- the current month counts at its MTD.
 months_2026 = [m for m in updated_breakdown
-               if m.get('start') and not m.get('is_current') and '2026' in m.get('month', '')
+               if m.get('start') and '2026' in m.get('month', '')
                and (m.get('source') == 'backtest'
                     or (m.get('tickers') and m.get('config_version') == live_config_ver))]
 if months_2026:

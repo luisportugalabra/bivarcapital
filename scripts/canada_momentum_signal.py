@@ -521,8 +521,8 @@ def main():
     # it were one continuous track record -- ytd_2026 stayed pinned at the
     # dead strategy's 15.8% number. Only count months tagged with the
     # CURRENT config_version; YTD now starts fresh from the migration date.
+    # YTD runs 1 January to today -- the current month counts at its MTD.
     months_2026 = [m for m in breakdown if '2026' in m.get('month', '')
-                   and not m.get('is_current')
                    and m.get('config_version') == CONFIG_VERSION]
     if months_2026:
         ytd = 1.0

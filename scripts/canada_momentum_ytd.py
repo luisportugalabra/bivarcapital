@@ -105,8 +105,11 @@ for m in breakdown:
 current_entry   = next((m for m in updated_breakdown if m.get('is_current')), None)
 live_config_ver = current_entry.get('config_version') if current_entry else None
 
+# YTD runs 1 January to today: the current month is included at its
+# month-to-date return, which the holdings' entry-to-current prices already
+# give. Excluding it left YTD stale by up to a month.
 months_2026 = [m for m in updated_breakdown
-               if m.get('start') and m.get('tickers') and not m.get('is_current')
+               if m.get('start') and m.get('tickers')
                and '2026' in m.get('month', '') and m.get('config_version') == live_config_ver]
 if months_2026:
     ytd_factor = 1.0

@@ -469,9 +469,9 @@ def main():
     # left YTD showing the last closed month alone. Same rule as
     # germany_momentum_ytd.py: take the simulated months, and the live ones
     # only when they were produced by the config running now.
+    # YTD runs 1 January to today -- the current month counts at its MTD.
     months_this_year = [m for m in breakdown
                         if str(date.fromisoformat(TODAY).year) in m.get('month', '')
-                        and not m.get('is_current')
                         and (m.get('source') == 'backtest'
                              or m.get('config_version') == CONFIG_VERSION)]
     if months_this_year:
