@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Germany Momentum — Strategy Report — Bivar Capital</title>
 <meta property="og:title" content="Germany Momentum — Strategy Report — Bivar Capital">
-<meta property="og:description" content="XETRA momentum backtest: US-ADR mistagging and weekend-calendar bugs found and fixed, joint parameter optimization, final config. CAGR +20.4%, Sharpe 0.95, MaxDD -28.2%.">
+<meta property="og:description" content="Germany XETRA momentum: the rule in full, the 26-year record, the asymmetry that produces it, every drawdown past 10%, capacity at real turnover, and what would say it has stopped working.">
 <meta property="og:image" content="https://bivarcapital.com/og-image.png">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://bivarcapital.com/research/germany_momentum_report.html">
@@ -35,118 +35,191 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>Germany Momentum<span class="it">XETRA strategy report</span></h1>
-<p class="lead">A momentum strategy on Deutsche Börse XETRA, built with the same lookahead-free engine and data-quality discipline as our <a href="/research/canada_momentum_report.html" style="color:var(--accent)">Canada</a> and <a href="/research/taiwan_momentum_report.html" style="color:var(--accent)">Taiwan</a> strategies. Now running as a <a href="/germany-momentum.html" style="color:var(--accent)">live beta signal</a>, and subjected to two independent hostile audits (Section&nbsp;IX).</p>
-<div class="callout" style="margin-top:14px"><p><strong>The headline above is the live configuration:</strong> German-domiciled companies only, top 10 equal weight, no liquidity filter &mdash; CAGR +19.1%, Sharpe 0.72, MaxDD &minus;39.1%, from the independent harness that reproduces the audit's Section C.2 to the decimal. N=20 is the better configuration on paper &mdash; Sharpe 0.90 and MaxDD &minus;27.8% for the same CAGR &mdash; and the audit says so in Section C.2. We run 10 for practicality: twenty positions is a lot of book to turn over every month, and the ten that N=20 adds are largely the ones that cannot be filled anyway. On 2026-09-20, four of ranks 11-20 traded under EUR42k a day, Nuernberger at EUR1,201 against EUR1.43B of market cap. The cost of the choice is the drawdown: &minus;39.1% against &minus;27.8%. The production engine reads +19.2%/0.91/&minus;26.8% on the same inputs; the lower of the two is published. An earlier config that also kept non-US foreign cross-listings returned +20.4%/0.945/&minus;28.2%, and tables below dated before 2026-08-26 still describe it. The foreigners were dropped from the live universe for a data-integrity reason: their XETRA "guest" lines are frequently dormant, and live data providers report fictitious 12M returns on them (measured live: TradingView agreement with Yahoo was 1/20 on the wide universe vs 19/20 on the German-only universe). The ~1.2pp of backtest CAGR they add wasn't worth the structural data risk in production.</p></div>
-
+<p class="lead">A momentum strategy on Deutsche B&ouml;rse XETRA: buy the ten German-domiciled
+companies with the strongest twelve-month return, equal weighted, rebalance monthly, stand aside when the
+DAX is below its 200-day average. 2000&ndash;2026, 319 months. Live since August 2026.
+<strong>It is presently 28.1% below its May 2026 high &mdash; the deepest drawdown in the
+record &mdash; and down 18.9% on the year.</strong> That is where the report starts,
+because it is the most useful thing to know about it today.</p>
 <div class="divider"></div>
-<h2>I. Headline Result</h2>
-<div class="grid6">
-<div class="stat"><div class="v pos">+19.1%</div><div class="l">CAGR</div></div>
-<div class="stat"><div class="v pos">0.72</div><div class="l">Sharpe</div></div>
-<div class="stat"><div class="v">1.34</div><div class="l">Sortino</div></div>
-<div class="stat"><div class="v neg">&minus;39.1%</div><div class="l">Max Drawdown</div></div>
-<div class="stat"><div class="v">319</div><div class="l">Months</div></div>
-<div class="stat"><div class="v">2000&ndash;2026</div><div class="l">Period</div></div>
-</div>
-<img src="germany_equity_curve.png" alt="Germany momentum equity curve and drawdown, 2000-2026" style="width:100%;border-radius:8px;margin-top:14px;border:1px solid var(--border)">
-<div class="meta-box" style="margin-top:14px">
-<dt>Momentum</dt><dd>12-month return, no skip-month</dd>
-<dt>Universe</dt><dd>XETRA, mcap &ge; 30th percentile (top 70% by size), 226 US-ISIN ADRs excluded</dd>
-<dt>Liquidity</dt><dd>None. A 60-day average euro volume is computed for every name and printed beside its rank, so the number is in front of you at execution &mdash; but nothing is filtered on it</dd>
-<dt>Fundamental filter</dt><dd>None &mdash; tested EBIT/NetIncome/GrossProfit/ROE, all reduce Sharpe here (see Section&nbsp;VI)</dd>
-<dt>Portfolio</dt><dd>Top 10, equal weighted, monthly rebalance &mdash; N=20 scores better and is not used; see Section&nbsp;VII</dd>
-<dt>Regime</dt><dd>DAX (^GDAXI) vs its own 200-day moving average</dd>
-<dt>Costs</dt><dd>40bps round-trip on monthly turnover &mdash; now cross-checked against real IBKR spreads measured live for the whole eligible universe (median 35bps, see Section&nbsp;IX)</dd>
-</div>
-<div class="callout"><p><strong>Two configurations score better than the one that runs, and neither is used.</strong> N=20 gives Sharpe 0.899 and MaxDD &minus;27.8% for the same CAGR; an EBIT&gt;0 screen at N=20 gives 0.899 and &minus;18.0%. Both are set out in Section&nbsp;VII with the cost of not using them.</p></div>
-
+<h2>I. Where it stands</h2>
+<p>The strategy was up 13.4% through May. June cost 13.4% and July another 17.0%, wiping the year and more.
+August and September have been flat. YTD -18.9%.</p>
+<div class="table-wrap"><table><thead><tr><th>Month 2026</th><th>Return</th></tr></thead><tbody>
+<tr><td>Jan 2026</td><td>+3.0%</td></tr>
+<tr><td>Feb 2026</td><td>+0.8%</td></tr>
+<tr><td>Mar 2026</td><td>+3.5%</td></tr>
+<tr><td>Apr 2026</td><td>-0.2%</td></tr>
+<tr><td>May 2026</td><td>+5.8%</td></tr>
+<tr class="hl-row"><td>Jun 2026</td><td>-13.4%</td></tr>
+<tr class="hl-row"><td>Jul 2026</td><td>-17.0%</td></tr>
+<tr><td>Aug 2026</td><td>-1.4%</td></tr>
+<tr><td>Sep 2026</td><td>+0.8%</td></tr></tbody></table></div>
+<p>Two months took back fourteen months of gains. This is not a malfunction &mdash; it is the shape of the
+return distribution the strategy has always had, and Section&nbsp;V sets out how often it happens. What is
+unusual is the depth: 28.1% is the largest peak-to-trough fall in 27 years of
+history, and it is not over.</p>
 <div class="divider"></div>
-<h2>II. Data Quality: US ADRs Mistagged as German</h2>
-<p>EODHD's <code>CountryName</code> field on XETRA tags every US company cross-listed there &mdash; Apple, Microsoft, Tesla, Alphabet, Meta, Nvidia, Amazon, Berkshire Hathaway and more &mdash; as <strong>"Germany"</strong>, the same mistagging class as Canada's CDR problem. The reliable signal instead: <strong>ISIN country prefix</strong> (<code>US...</code> vs <code>DE...</code>), which correctly identifies domicile regardless of what exchange metadata claims. A full scan found <strong>226 US-ISIN tickers</strong> on XETRA (vs 622 genuine DE-ISIN names, plus another few hundred genuine listings from Switzerland, UK, Austria, Netherlands, France and other European markets XETRA also carries). All 226 excluded per explicit request to test the strategy without US ADRs.</p>
-
+<h2>II. The rule</h2>
+<p>Everything, with nothing omitted:</p>
+<ol class="steps">
+<li><strong>Universe.</strong> XETRA, German-domiciled companies only. Domicile is read from the ISIN
+country prefix, not the exchange's own country field &mdash; that field tags every US company cross-listed
+in Frankfurt as German.</li>
+<li><strong>Size.</strong> Keep the top 70% by market capitalisation, measured against that month's own
+universe rather than a fixed euro floor.</li>
+<li><strong>Signal.</strong> Twelve-month total return, no skip month. Rank, take the top ten.</li>
+<li><strong>Weights.</strong> Equal, 10% each. No volatility targeting, no conviction sizing.</li>
+<li><strong>Timing.</strong> Rank on the last trading day of the month; buy at the close of the next.</li>
+<li><strong>Regime.</strong> If the DAX closed below its 200-day moving average on the signal day, hold
+cash for the month instead.</li>
+<li><strong>Liquidity.</strong> Not filtered. A 60-day average euro turnover is computed and printed
+beside each name so the constraint is visible when the order is placed.</li>
+</ol>
+<p>No fundamental screen, no stop loss, no target. The regime filter is the only thing that ever takes
+the book to cash, and it has done so in 1% of months.</p>
 <div class="divider"></div>
-<h2>III. A Second Bug: Weekend Contamination in the Signal Itself</h2>
-<p>The raw union-of-all-tickers price panel carries <strong>1,146 weekend "ghost" dates</strong> (average coverage 28 of 1,362 tickers on those dates, vs 465 on real weekdays) &mdash; the same calendar-contamination class found in the Canada research earlier this session. There, the bug lived in the <em>execution</em>-lag lookup and was already fixed by sourcing a clean index calendar. Here we found a second instance of the same root cause: the momentum <em>signal</em> itself, computed via the shared backtest engine's own <code>eom = prices.resample(...).last()</code> step, reads directly from this contaminated panel.</p>
-<div class="callout-red"><p><strong>Verified directly, not assumed: 929 cells where the EOM signal price differs depending on whether weekend ghost rows are included</strong>, by several percent in spot checks &mdash; enough to change which name ranks in or out of the top 20. Fixed by dropping weekend rows from the panel before it ever reaches the backtest engine, rather than patching the shared engine itself. All results in this report reflect the fix; Sections&nbsp;IV&ndash;VI were run twice, before and after, and the fix moved the headline numbers only modestly (e.g. this section's base config: Sharpe 0.890&rarr;0.874 pre-fix comparison at the Phase&nbsp;1 stage) &mdash; real, but not the dominant driver of performance.</p></div>
-
+<h2>III. The record</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>CAGR</td><td>+19.1%</td></tr>
+<tr><td>Volatility</td><td>22.5%</td></tr>
+<tr><td>Sharpe (rf 3%)</td><td>0.72</td></tr>
+<tr><td>Sortino</td><td>1.34</td></tr>
+<tr><td>Max drawdown</td><td><span class="neg">-39.1%</span></td></tr>
+<tr><td>Worst month</td><td><span class="neg">-17.0%</span></td></tr>
+<tr><td>Best month</td><td>+28.6%</td></tr>
+<tr><td>Positive months</td><td>43%</td></tr>
+<tr><td>DAX over the same window</td><td>+5.0%</td></tr></tbody></table></div>
+<p>Against the DAX it beat the index in <strong>20 of 27 years</strong>,
+with a beta of 0.35 and an alpha of +15.4pp.</p>
 <div class="divider"></div>
-<h2>IV. Sequential Optimization (Phases 1&ndash;3)</h2>
-<p>One-at-a-time sweeps, same method as Canada/Taiwan: momentum &times; mcap first (no regime, no filter), then regime MA window fixed on the winner, then fundamental filter fixed on that.</p>
-<table>
-<thead><tr><th>Phase</th><th>Winner</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
-<tbody>
-<tr><td>1 &mdash; Momentum &times; mcap</td><td>9M/skip0, mcap top60%</td><td>0.87</td><td class="neg">&minus;47.7%</td></tr>
-<tr><td>2 &mdash; Regime MA (fixed on Phase 1)</td><td>MA200</td><td>0.84</td><td class="neg">&minus;29.2%</td></tr>
-<tr><td>3 &mdash; Fundamental filter (fixed on Phase 2)</td><td>None</td><td>0.84</td><td class="neg">&minus;29.2%</td></tr>
-</tbody>
-</table>
-<p>Unlike Canada (MA75) and Taiwan (MA75), Germany's regime sweep favors the <strong>longest</strong> window tested &mdash; Sharpe rises roughly monotonically from MA50 (0.66) through MA200 (0.84). The fundamental-filter sweep at this stage found EBIT&gt;0 gave by far the best MaxDD (&minus;19.4%) at real cost to Sharpe and CAGR &mdash; flagged here because Section&nbsp;VII's joint search later found a materially better version of that same trade-off.</p>
-
+<h2>IV. Why it returns what it returns</h2>
+<p>The number that explains the strategy is not the CAGR, it is the asymmetry:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>Upside capture (months the DAX rose)</td><td>0.80</td></tr>
+<tr><td>Downside capture (months the DAX fell)</td><td>0.14</td></tr>
+<tr><td>Beta</td><td>0.35</td></tr></tbody></table></div>
+<p>It takes 80% of the index's up months and
+14% of its down months. Almost all of that comes from the regime filter: in a
+falling market it is usually in cash, so the down months it does participate in are the ones where the
+DAX fell while its own trend filter was still on.</p>
+<p>That asymmetry is the whole edge, and it is also the fragility. A market that falls fast enough to hurt
+before the 200-day average turns &mdash; June and July of this year &mdash; is the case the filter cannot
+catch, because a 200-day average by construction lags a two-month move.</p>
 <div class="divider"></div>
-<h2>V. Joint Grid &mdash; Sequential Wasn't the Optimum</h2>
-<p>A one-at-a-time search can miss parameter interactions. A reduced joint grid (5 lookback/skip &times; 3 mcap &times; 2 MA &times; 4 N &times; 2 filter = 240 combinations, run around the sequential winner) found a better config on every axis tested:</p>
-<table>
-<thead><tr><th>Config</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
-<tbody>
-<tr class="hl-row"><td>LB12/SK0, mcap top70%, MA200, N=20, None (2026-08 config, since superseded)</td><td>0.945</td><td>1.81</td><td class="pos">+20.4%</td><td class="neg">&minus;28.2%</td></tr>
-<tr><td>LB9/SK0, mcap top70%, MA200, N=20, EBIT&gt;0</td><td>0.899</td><td>1.70</td><td class="pos">+15.0%</td><td class="neg">&minus;18.0%</td></tr>
-<tr><td>Sequential result (Section&nbsp;IV, N=15)</td><td>0.843</td><td>1.76</td><td class="pos">+21.9%</td><td class="neg">&minus;29.2%</td></tr>
-</tbody>
-</table>
-<div class="highlight"><p><strong>N interacts with the fundamental filter.</strong> The sequential search fixed N=15 before testing filters, and found EBIT&gt;0 costly. At N=20 the same filter's MaxDD improves dramatically (&minus;19.4%&rarr;&minus;18.0% is similar, but Sharpe goes 0.72&rarr;0.90) &mdash; a real interaction the greedy one-at-a-time approach couldn't see. Same lesson as Taiwan's NetIncome-filter finding earlier this session.</p></div>
-
+<h2>V. What the bad periods look like</h2>
+<div class="table-wrap"><table><thead><tr><th>Started</th><th>Trough</th><th>Depth</th><th>To trough</th><th>To recover</th></tr></thead><tbody>
+<tr><td>2021-07</td><td>2023-12</td><td><span class="neg">-39.1%</span></td><td>29m</td><td>14m</td></tr>
+<tr><td>2007-11</td><td>2009-06</td><td><span class="neg">-32.5%</span></td><td>19m</td><td>8m</td></tr>
+<tr class="hl-row"><td>2026-06</td><td>2026-07</td><td><span class="neg">-28.1%</span></td><td>1m</td><td><strong>open</strong></td></tr>
+<tr><td>2000-03</td><td>2003-05</td><td><span class="neg">-22.9%</span></td><td>38m</td><td>2m</td></tr>
+<tr><td>2011-01</td><td>2012-01</td><td><span class="neg">-22.4%</span></td><td>12m</td><td>10m</td></tr>
+<tr><td>2005-11</td><td>2005-11</td><td><span class="neg">-21.4%</span></td><td>0m</td><td>3m</td></tr></tbody></table></div>
+<p>Six drawdowns past 10% in 27 years. The two worst took 29 and 19 months to bottom and
+another 14 and 8 to recover &mdash; a bad episode is measured in years, not weeks. The current one reached
+its depth in two months, which is faster than anything before it.</p>
+<div class="table-wrap"><table><thead><tr><th>Worst months</th><th>Strategy</th><th>DAX</th></tr></thead><tbody>
+<tr><td>2026-07</td><td><span class="neg">-17.0%</span></td><td>+2.5%</td></tr>
+<tr><td>2008-01</td><td><span class="neg">-16.9%</span></td><td>-15.1%</td></tr>
+<tr><td>2000-09</td><td><span class="neg">-16.0%</span></td><td>-5.8%</td></tr>
+<tr><td>2025-11</td><td><span class="neg">-15.0%</span></td><td>-0.5%</td></tr>
+<tr><td>2005-11</td><td><span class="neg">-14.3%</span></td><td>+5.4%</td></tr>
+<tr><td>2000-05</td><td><span class="neg">-13.8%</span></td><td>-4.1%</td></tr></tbody></table></div>
 <div class="divider"></div>
-<h2>VI. Deep Audit of the Final Config</h2>
-<p>Verified directly against the real backtest (not a proxy): the top 20 most extreme realized ticker-returns the engine actually used top out at <strong>+164%</strong> (VUL, Jan 2021) &mdash; a plausible small-cap momentum spike, nothing resembling the Taiwan/Canada sentinel-value corruption. Two events exceeded the &plusmn;90%/300% flag threshold (ONK &minus;92% May 2008, AMC &minus;95% Jul 2008); both fell in regime-defensive months and never reached the published return series (<code>ret = lag_rets &times; regime_at_signal</code> zeroes the whole month when regime is off). No further exclusions were needed for this final config.</p>
-
+<h2>VI. It has not worked the same throughout</h2>
+<div class="table-wrap"><table><thead><tr><th>Period</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th><th>DAX</th></tr></thead><tbody>
+<tr><td>2000-2007</td><td>+22.6%</td><td>0.74</td><td><span class="neg">-22.9%</span></td><td>+1.9%</td></tr>
+<tr><td>2008-2014</td><td>+16.7%</td><td>0.73</td><td><span class="neg">-22.4%</span></td><td>+2.8%</td></tr>
+<tr><td>2015-2026 (com mortes no dataset)</td><td>+18.3%</td><td>0.71</td><td><span class="neg">-39.1%</span></td><td>+8.6%</td></tr>
+<tr class="hl-row"><td>2021-2026</td><td>+6.9%</td><td>0.16</td><td><span class="neg">-39.1%</span></td><td>+11.8%</td></tr></tbody></table></div>
+<p>The first fifteen years and the last eleven look alike on Sharpe. <strong>The last five do not</strong>:
++6.9% a year at a Sharpe of 0.16, with the
+whole <span class="neg">-39.1%</span> drawdown inside it. Anyone deciding on this strategy should
+weigh that period more heavily than its length suggests: it is the part of the sample where the dataset's
+delisting coverage is verified complete, and it is the part that resembles trading it now.</p>
 <div class="divider"></div>
-<h2>VII. The Alternatives Not Chosen</h2>
-<p><strong>N=20 instead of N=10.</strong> Re-running the battery at the live config &mdash; German-domiciled universe, no liquidity filter, everything else held &mdash; gives this:</p>
-<div class="table-wrap"><table><thead><tr><th>N</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody><tr><td>5</td><td>0.274</td><td>0.45</td><td>+10.82%</td><td class="neg">-59.8%</td></tr><tr><td>7</td><td>0.566</td><td>1.03</td><td>+17.71%</td><td class="neg">-46.4%</td></tr><tr class="hl-row"><td>10</td><td>0.716</td><td>1.34</td><td>+19.14%</td><td class="neg">-39.1%</td></tr><tr><td>15</td><td>0.794</td><td>1.46</td><td>+18.03%</td><td class="neg">-33.1%</td></tr><tr><td>20</td><td>0.899</td><td>1.73</td><td>+19.00%</td><td class="neg">-27.8%</td></tr><tr><td>25</td><td>0.919</td><td>1.76</td><td>+18.22%</td><td class="neg">-24.4%</td></tr><tr><td>30</td><td>1.019</td><td>1.98</td><td>+18.66%</td><td class="neg">-25.0%</td></tr></tbody></table></div>
-<p>N=20 is better on every risk measure for the same return: Sharpe 0.899 against 0.716, MaxDD &minus;27.8% against &minus;39.1%, CAGR within a tenth of a point. The adversarial audit reached the same conclusion independently. <strong>We run ten anyway, and the reason is practical rather than statistical.</strong> Twenty positions is a lot of book to turn over every month, and the ten that N=20 adds are in large part the ones that cannot be filled: on 2026-09-20, four of ranks 11&ndash;20 traded under &euro;42k a day, Nuernberger at &euro;1,201 a day against &euro;1.43B of market cap. The price of the choice is eleven points of drawdown, and it is paid knowingly.</p>
-<p><strong>The EBIT&gt;0 variant.</strong> 
-<p>LB9/SK0, mcap top70%, MA200, N=20, <strong>EBIT(TTM)&gt;0</strong> &mdash; Sharpe 0.899, Sortino 1.70, CAGR +15.0%, MaxDD <strong>&minus;18.0%</strong>. Also independently verified clean: 0 flagged implausible-return events in this config's real held-position history. This is arguably the stronger risk-adjusted choice (10pp shallower MaxDD for 0.05 less Sharpe) &mdash; not used here because CAGR was prioritized for this report, not because it tested worse.</p>
-
+<h2>VII. Year by year</h2>
+<div class="table-wrap"><table><thead><tr><th>Year</th><th>Strategy</th><th>DAX</th><th>Excess</th></tr></thead><tbody>
+<tr><td>2000</td><td>+21.1%</td><td>-7.5%</td><td>+28.6pp</td></tr>
+<tr><td>2001</td><td>-2.0%</td><td>-19.8%</td><td>+17.8pp</td></tr>
+<tr><td>2002</td><td>-0.1%</td><td>-43.9%</td><td>+43.9pp</td></tr>
+<tr><td>2003</td><td>+58.3%</td><td>+37.1%</td><td>+21.2pp</td></tr>
+<tr><td>2004</td><td>+33.3%</td><td>+7.3%</td><td>+26.0pp</td></tr>
+<tr><td>2005</td><td>+45.7%</td><td>+27.1%</td><td>+18.6pp</td></tr>
+<tr><td>2006</td><td>+42.3%</td><td>+22.0%</td><td>+20.3pp</td></tr>
+<tr><td>2007</td><td>-1.3%</td><td>+22.3%</td><td>-23.6pp</td></tr>
+<tr class="hl-row"><td>2008</td><td>-18.2%</td><td>-40.4%</td><td>+22.2pp</td></tr>
+<tr><td>2009</td><td>+34.3%</td><td>+23.8%</td><td>+10.5pp</td></tr>
+<tr><td>2010</td><td>+37.0%</td><td>+16.1%</td><td>+21.0pp</td></tr>
+<tr><td>2011</td><td>-16.8%</td><td>-14.7%</td><td>-2.1pp</td></tr>
+<tr><td>2012</td><td>+36.8%</td><td>+29.1%</td><td>+7.7pp</td></tr>
+<tr><td>2013</td><td>+68.0%</td><td>+25.5%</td><td>+42.5pp</td></tr>
+<tr><td>2014</td><td>+2.3%</td><td>+2.7%</td><td>-0.4pp</td></tr>
+<tr><td>2015</td><td>+46.9%</td><td>+9.6%</td><td>+37.3pp</td></tr>
+<tr><td>2016</td><td>+2.1%</td><td>+6.9%</td><td>-4.8pp</td></tr>
+<tr><td>2017</td><td>+69.7%</td><td>+12.5%</td><td>+57.2pp</td></tr>
+<tr><td>2018</td><td>+8.2%</td><td>-18.3%</td><td>+26.4pp</td></tr>
+<tr><td>2019</td><td>+47.1%</td><td>+25.5%</td><td>+21.6pp</td></tr>
+<tr><td>2020</td><td>+18.7%</td><td>+3.5%</td><td>+15.2pp</td></tr>
+<tr><td>2021</td><td>+12.6%</td><td>+15.8%</td><td>-3.2pp</td></tr>
+<tr class="hl-row"><td>2022</td><td>-7.9%</td><td>-12.3%</td><td>+4.5pp</td></tr>
+<tr><td>2023</td><td>-16.2%</td><td>+20.3%</td><td>-36.5pp</td></tr>
+<tr><td>2024</td><td>+37.8%</td><td>+18.8%</td><td>+19.0pp</td></tr>
+<tr><td>2025</td><td>+48.4%</td><td>+23.0%</td><td>+25.4pp</td></tr>
+<tr class="hl-row"><td>2026</td><td>-18.4%</td><td>+4.7%</td><td>-23.1pp</td></tr></tbody></table></div>
 <div class="divider"></div>
-<h2>IX. Hostile Audits &mdash; What Survived and What Didn't</h2>
-<p>The strategy was put through two adversarial audits whose explicit brief was to <em>falsify</em> the results, not improve them: a first full audit (independent reimplementation, lookahead hunt, survivorship forensics, placebo battery), and a second audit run without trusting the first. Everything below was measured against the real locked backtest, reproduced first to 10<sup>&minus;16</sup> precision.</p>
-
-<h3 style="margin-top:18px">What survived</h3>
-<ul class="steps">
-<li><strong>No lookahead, no arithmetic errors.</strong> An independent reimplementation with its own signal and eligibility conventions lands at CAGR 19.5% / Sharpe 0.90 vs the engine's 20.4% / 0.95 &mdash; all divergences trace to eligibility conventions, none to information leakage.</li>
-<li><strong>Conservative conventions, not favorable ones.</strong> Cash earns 0% in defensive months (crediting rf=3% <em>raises</em> Sharpe to 1.01); the DAX benchmark is a total-return performance index, so the <strong>+15.4pp alpha</strong> is already measured against dividends-included returns; rf=3% is already inside the Sharpe.</li>
-<li><strong>Placebos fail as they should.</strong> Inverted ranking (bottom-20 momentum) collapses to Sharpe 0.04; 30 random portfolios through the identical pipeline average Sharpe 0.13 with a max of 0.47 &mdash; the real strategy beats the best of all 30. A 1-month-stale signal still earns 17.9%/0.83, the slow-decay signature of genuine 12-month momentum.</li>
-<li><strong>No dependence on outliers or single names.</strong> Removing the return-sanity clip entirely changes nothing (0.00pp); removing the top-5 contributing stocks leaves 18.4%/0.84; regime timing only protects drawdown (without it: 20.0% CAGR but &minus;52% MaxDD) &mdash; the alpha is the stock selection, not the timing.</li>
-<li><strong>The clean, verifiable window matches the headline.</strong> 2015&ndash;2026 standalone: <strong>+19.6% / 0.96</strong>. 2017&ndash;2026: +19.3% / 0.92. The published number does not depend on the unverifiable early years.</li>
-</ul>
-
-<h3 style="margin-top:18px">What didn't</h3>
-<div class="callout-red"><p><strong>Pre-2015 history is a survivors-only sample.</strong> Zero price histories in the EODHD XETRA dataset end before 2015 &mdash; every delisting from 2000&ndash;2014 is simply absent, including essentially the entire Neuer Markt collapse (16 of 18 famous corpses searched &mdash; EM.TV, Comroad, Brokat, CargoLifter, Holzmann, MobilCom&hellip; &mdash; do not exist in the data). The 2000&ndash;2014 portion of the backtest should be presumed inflated by an unquantifiable amount. The honest expectation for this strategy is the clean-window figure: <strong>roughly 19% CAGR / 0.9 Sharpe, not the 26-year headline.</strong></p></div>
-<p><strong>Delisting coverage was then verified externally:</strong> 54 documented German delistings 2015&ndash;2026 (squeeze-outs, takeovers, pure delistings, insolvencies &mdash; Wirecard, Audi, Osram down to small-caps like Aves One, Stemmer Imaging, USU) were cross-checked against the dataset's price-history end dates. <strong>49 of 54 (91%) are present and end in the correct year</strong>; the 5 genuinely missing all cluster in 2015&ndash;2017 (Sky Deutschland, GAGFAH, Postbank, DVB Bank, McKesson Europe). Conclusion: delisting coverage is effectively complete from 2018 onward, partial 2015&ndash;2017, zero before &mdash; which is exactly why the 2015+/2017+ windows above are the trustworthy ones.</p>
-<p>Three smaller mechanical defects were found and quantified &mdash; all with net effect &asymp; 0 to +0.3pp when corrected, so none changes the conclusion:</p>
-<ul class="steps">
-<li><strong>Duplicate share lines of the same company</strong> (BMW/BMW3, Vestas VWS/VWSB, Sixt, Ericsson&hellip;) can be held simultaneously &mdash; 230 ticker-months of accidental double weight. Deduplicating: 20.7%/0.96.</li>
-<li><strong>The US-ADR exclusion has a blind spot:</strong> 464 tickers carry no ISIN, and 8 US names slipped through by that route (American Express, Union Pacific, Parker-Hannifin&hellip;), 1.9% of held ticker-months. Removing them: 20.7%/0.96.</li>
-<li><strong>"Death = money back":</strong> 34 held positions whose price vanishes mid-month get a 0% return instead of a loss. If those were all &minus;50/&minus;100%: roughly &minus;0.25 to &minus;0.5pp CAGR.</li>
-</ul>
-
-<h3 style="margin-top:18px">Real measured costs and capacity</h3>
-<p>Live bid/ask spreads were pulled from Interactive Brokers for the <strong>entire 288-name eligible universe</strong> (283 quoted): median <strong>35bps</strong>, mean 80bps; for the 20 currently-held names, median 22bps with a heavy tail (two names at 118 and 245bps). The 40bps cost assumption is realistic at small size. Stress tests: 100bps round-trip &rarr; 18.1%/0.82; 200bps &rarr; 14.4%/0.62. Re-running the backtest with today's real spreads as an eligibility filter: names &le;100bps &rarr; 19.9%/0.93; &le;60bps &rarr; 19.4%/0.90; &le;30bps &rarr; 17.9%/0.84. Median position ADV is ~&euro;0.4M/day: <strong>treat this as a sub-&euro;1&ndash;2M strategy; it does not scale.</strong></p>
-<div class="callout"><p><strong>Audit verdict (confidence ~85/100):</strong> the edge is real, of roughly the advertised size in the externally-verifiable decade, executable only at small size. Expect ~19%/0.9 rather than the headline, with &minus;25/&minus;30% drawdowns. First quasi-live datapoint is negative: 2026 YTD &minus;15%.</p></div>
-
+<h2>VIII. Capacity and execution</h2>
+<div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Name</th><th>Mcap</th><th>12M</th><th>ADV &euro;/day</th></tr></thead><tbody>
+<tr class="hl-row"><td>SNG</td><td>SINGULUS TECHNOLOGIES AG</td><td>&euro;0.08B</td><td>+457.3%</td><td>&euro;342,561</td></tr>
+<tr><td>VBK</td><td>Verbio SE</td><td>&euro;1.95B</td><td>+185.8%</td><td>&euro;2,681,493</td></tr>
+<tr><td>OHB</td><td>OHB SE</td><td>&euro;3.63B</td><td>+177.9%</td><td>&euro;6,172,498</td></tr>
+<tr><td>AIXA</td><td>AIXTRON SE</td><td>&euro;4.25B</td><td>+167.9%</td><td>&euro;23,426,574</td></tr>
+<tr><td>S92</td><td>SMA Solar Technology AG</td><td>&euro;1.97B</td><td>+165.4%</td><td>&euro;6,458,494</td></tr>
+<tr><td>SMHN</td><td>SUSS MicroTec SE</td><td>&euro;1.30B</td><td>+142.2%</td><td>&euro;6,662,524</td></tr>
+<tr><td>JEN</td><td>Jenoptik AG</td><td>&euro;2.26B</td><td>+139.9%</td><td>&euro;5,737,693</td></tr>
+<tr><td>DR0</td><td>Deutsche Rohstoff AG</td><td>&euro;0.44B</td><td>+127.6%</td><td>&euro;1,294,828</td></tr>
+<tr><td>SZG</td><td>Salzgitter AG</td><td>&euro;3.10B</td><td>+122.9%</td><td>&euro;8,788,693</td></tr>
+<tr><td>M7U</td><td>Nynomic AG</td><td>&euro;0.15B</td><td>+120.1%</td><td>&euro;526,112</td></tr></tbody></table></div>
+<p>Median turnover across the current book is &euro;5,955,096 a day, the thinnest name
+&euro;342,561. At a &euro;12,500 position &mdash; a &euro;125k book &mdash; the median holding is
+0.2% of a day's volume and the worst is 3.6%. At &euro;50,000 a position the worst becomes 14.6%, which is
+a day or two of patient working rather than a single order.</p>
+<p>The practical ceiling is not the ten names held but the tail of the ranking they are drawn from. Costs
+are modelled at 40bps round trip against a measured median spread of 35bps across the eligible universe.
+Sub-&euro;2M of capital is comfortable; beyond that the thin names start to bind.</p>
+<div class="divider"></div>
+<h2>IX. What would tell me it has stopped working</h2>
+<ol class="steps">
+<li><strong>A rolling three-year return below zero.</strong> Over the whole history that has happened in
+8% of windows, with a worst of -10%. Two
+consecutive negative three-year windows would be outside anything in the record.</li>
+<li><strong>The regime filter failing to protect.</strong> The case for this strategy over buying the DAX
+rests on 0.14 downside capture. If a bear market arrives and the book participates
+fully, the thesis is gone regardless of what the CAGR says.</li>
+<li><strong>Drawdown past 45%.</strong> The record's worst is <span class="neg">-39.1%</span> and the current episode is
+at 28%. Beyond 45% the strategy would be outside its own history and I would not assume mean reversion.</li>
+<li><strong>Turnover rising without return.</strong> Roughly three of ten names change every month; if
+that climbs while the excess over the DAX does not, the signal is chasing noise.</li>
+</ol>
 <div class="divider"></div>
 <h2>X. Limitations</h2>
 <ol class="steps">
-<li><strong>Pre-2015 results are unverifiable</strong> (survivorship-inflated by construction; see Section&nbsp;IX). Anchor expectations on 2015&ndash;2026: +19.6%/0.96.</li>
-<li><strong>No out-of-sample holdout.</strong> Every parameter (Sections IV&ndash;V) was chosen looking at the same full 2000&ndash;2026 history used to report performance; Germany was also selected from a multi-market search &mdash; winner's-curse discount applies on top of the audit's numbers.</li>
-<li><strong>Capacity is hard-limited.</strong> Median position ADV ~&euro;0.4M/day, real spread tail up to 245bps &mdash; sub-&euro;1&ndash;2M only, limit orders mandatory.</li>
-<li><strong>Joint grid was reduced, not exhaustive.</strong> 240 combinations around the sequential winner, not a full search of the parameter space.</li>
-<li><strong>Non-US European cross-listings were left in the universe</strong> per the design choice; the audit found the related duplicate-line and no-ISIN defects listed above (net effect &asymp; 0).</li>
-<li><strong>Spreads were measured on one day</strong> (2026-08-25); depth and market impact were not measured, and historical spreads are unknowable.</li>
+<li><strong>Pre-2015 is survivors only.</strong> The XETRA dataset records no delisting before 2015 &mdash;
+the entire Neuer Markt collapse is absent. Coverage is externally verified complete from 2018. The
+2015&ndash;2026 window returns +18.3%, close to the
+headline, which is reassuring but not proof.</li>
+<li><strong>N=10 is the practical choice, not the optimal one.</strong> N=20 returns the same CAGR at
+Sharpe 0.90 and a <span class="neg">-27.8%</span> drawdown. Ten is run because twenty positions is a lot of monthly
+turnover and the extra ten are largely unfillable. The eleven points of drawdown is the price.</li>
+<li><strong>The configuration was selected in-sample</strong> across the same 2000&ndash;2026 history. The
+plateaus in the <a href="/research/germany_momentum_sensitivity.html" style="color:var(--accent)">sensitivity
+analysis</a> are the mitigation &mdash; the parameters sit on broad shelves rather than spikes &mdash; not
+a cure.</li>
+<li><strong>Drawdowns are measured at month ends.</strong> The intra-month low is worse.</li>
+<li><strong>Two months of live history.</strong> Everything before August 2026 is simulation.</li>
 </ol>
-
 <div class="footer">
-<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice. Live beta signal at <a href="/germany-momentum.html" style="color:var(--accent)">/germany-momentum</a>.</p>
+<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice.</p>
 </div>
 
 </div>
