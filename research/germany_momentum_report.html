@@ -52,12 +52,13 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <div class="meta-box" style="margin-top:14px">
 <dt>Momentum</dt><dd>12-month return, no skip-month</dd>
 <dt>Universe</dt><dd>XETRA, mcap &ge; 30th percentile (top 70% by size), 226 US-ISIN ADRs excluded</dd>
+<dt>Liquidity</dt><dd>None. A 60-day average euro volume is computed for every name and printed beside its rank, so the number is in front of you at execution &mdash; but nothing is filtered on it</dd>
 <dt>Fundamental filter</dt><dd>None &mdash; tested EBIT/NetIncome/GrossProfit/ROE, all reduce Sharpe here (see Section&nbsp;VI)</dd>
-<dt>Portfolio</dt><dd>Top 20, equal weighted, monthly rebalance</dd>
+<dt>Portfolio</dt><dd>Top 10, equal weighted, monthly rebalance &mdash; N=20 scores better and is not used; see Section&nbsp;VII</dd>
 <dt>Regime</dt><dd>DAX (^GDAXI) vs its own 200-day moving average</dd>
 <dt>Costs</dt><dd>40bps round-trip on monthly turnover &mdash; now cross-checked against real IBKR spreads measured live for the whole eligible universe (median 35bps, see Section&nbsp;IX)</dd>
 </div>
-<div class="callout"><p><strong>An EBIT&gt;0 / N=20 alternative was tested and rejected in favor of this config.</strong> Sharpe 0.90, Sortino 1.70, CAGR +15.0%, MaxDD only &minus;18.0% &mdash; a genuinely better risk-adjusted / lower-drawdown trade, kept out only because CAGR was prioritized for this decision. See Section&nbsp;VII.</p></div>
+<div class="callout"><p><strong>Two configurations score better than the one that runs, and neither is used.</strong> N=20 gives Sharpe 0.899 and MaxDD &minus;27.8% for the same CAGR; an EBIT&gt;0 screen at N=20 gives 0.899 and &minus;18.0%. Both are set out in Section&nbsp;VII with the cost of not using them.</p></div>
 
 <div class="divider"></div>
 <h2>II. Data Quality: US ADRs Mistagged as German</h2>
@@ -87,7 +88,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <table>
 <thead><tr><th>Config</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead>
 <tbody>
-<tr class="hl-row"><td>LB12/SK0, mcap top70%, MA200, N=20, None (final)</td><td>0.945</td><td>1.81</td><td class="pos">+20.4%</td><td class="neg">&minus;28.2%</td></tr>
+<tr class="hl-row"><td>LB12/SK0, mcap top70%, MA200, N=20, None (2026-08 config, since superseded)</td><td>0.945</td><td>1.81</td><td class="pos">+20.4%</td><td class="neg">&minus;28.2%</td></tr>
 <tr><td>LB9/SK0, mcap top70%, MA200, N=20, EBIT&gt;0</td><td>0.899</td><td>1.70</td><td class="pos">+15.0%</td><td class="neg">&minus;18.0%</td></tr>
 <tr><td>Sequential result (Section&nbsp;IV, N=15)</td><td>0.843</td><td>1.76</td><td class="pos">+21.9%</td><td class="neg">&minus;29.2%</td></tr>
 </tbody>
@@ -99,7 +100,11 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <p>Verified directly against the real backtest (not a proxy): the top 20 most extreme realized ticker-returns the engine actually used top out at <strong>+164%</strong> (VUL, Jan 2021) &mdash; a plausible small-cap momentum spike, nothing resembling the Taiwan/Canada sentinel-value corruption. Two events exceeded the &plusmn;90%/300% flag threshold (ONK &minus;92% May 2008, AMC &minus;95% Jul 2008); both fell in regime-defensive months and never reached the published return series (<code>ret = lag_rets &times; regime_at_signal</code> zeroes the whole month when regime is off). No further exclusions were needed for this final config.</p>
 
 <div class="divider"></div>
-<h2>VII. The Alternative Not Chosen</h2>
+<h2>VII. The Alternatives Not Chosen</h2>
+<p><strong>N=20 instead of N=10.</strong> Re-running the battery at the live config &mdash; German-domiciled universe, no liquidity filter, everything else held &mdash; gives this:</p>
+<div class="table-wrap"><table><thead><tr><th>N</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody><tr><td>5</td><td>0.274</td><td>0.45</td><td>+10.82%</td><td class="neg">-59.8%</td></tr><tr><td>7</td><td>0.566</td><td>1.03</td><td>+17.71%</td><td class="neg">-46.4%</td></tr><tr class="hl-row"><td>10</td><td>0.716</td><td>1.34</td><td>+19.14%</td><td class="neg">-39.1%</td></tr><tr><td>15</td><td>0.794</td><td>1.46</td><td>+18.03%</td><td class="neg">-33.1%</td></tr><tr><td>20</td><td>0.899</td><td>1.73</td><td>+19.00%</td><td class="neg">-27.8%</td></tr><tr><td>25</td><td>0.919</td><td>1.76</td><td>+18.22%</td><td class="neg">-24.4%</td></tr><tr><td>30</td><td>1.019</td><td>1.98</td><td>+18.66%</td><td class="neg">-25.0%</td></tr></tbody></table></div>
+<p>N=20 is better on every risk measure for the same return: Sharpe 0.899 against 0.716, MaxDD &minus;27.8% against &minus;39.1%, CAGR within a tenth of a point. The adversarial audit reached the same conclusion independently. <strong>We run ten anyway, and the reason is practical rather than statistical.</strong> Twenty positions is a lot of book to turn over every month, and the ten that N=20 adds are in large part the ones that cannot be filled: on 2026-09-20, four of ranks 11&ndash;20 traded under &euro;42k a day, Nuernberger at &euro;1,201 a day against &euro;1.43B of market cap. The price of the choice is eleven points of drawdown, and it is paid knowingly.</p>
+<p><strong>The EBIT&gt;0 variant.</strong> 
 <p>LB9/SK0, mcap top70%, MA200, N=20, <strong>EBIT(TTM)&gt;0</strong> &mdash; Sharpe 0.899, Sortino 1.70, CAGR +15.0%, MaxDD <strong>&minus;18.0%</strong>. Also independently verified clean: 0 flagged implausible-return events in this config's real held-position history. This is arguably the stronger risk-adjusted choice (10pp shallower MaxDD for 0.05 less Sharpe) &mdash; not used here because CAGR was prioritized for this report, not because it tested worse.</p>
 
 <div class="divider"></div>
