@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto — Bivar Capital</title>
+<meta property="og:title" content="Strategies — Bivar Capital">
+<meta property="og:description" content="Bitcoin Trend Signal — systematic, rules-based crypto strategy. Live signal, adversarial validation.">
+<meta property="og:image" content="https://bivarcapital.com/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bivarcapital.com/strategies.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Strategies — Bivar Capital">
+<meta name="twitter:description" content="Bitcoin Trend Signal — systematic, rules-based crypto strategy. Live signal, adversarial validation.">
+<link rel="canonical" href="https://bivarcapital.com/strategies.html">
+<meta name="theme-color" content="#060608">
+<meta name="description" content="Bitcoin Trend Signal — systematic, rules-based crypto strategy. Live signal, adversarial validation.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+.container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,6,8,0.85); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border); padding: 16px 0;
+}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); text-decoration: none;; white-space:nowrap; flex-shrink:0; }
+nav a { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; margin-left: 18px; transition: color 0.2s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--text); }
+.content { padding: 60px 0 80px; }
+h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin-bottom: 8px; }
+.subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 40px; }
+.strategy-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 20px; transition: border-color 0.2s;
+}
+.strategy-card:hover { border-color: var(--border-light); }
+.strategy-card a { text-decoration: none; color: inherit; }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.card-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; }
+.card-badge {
+  font-family: var(--font-mono); font-size: 0.55rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px;
+  border-radius: 4px;
+}
+.badge-live { color: var(--green); background: rgba(74,222,128,0.1); }
+.badge-soon { color: var(--accent); background: rgba(196,162,101,0.1); }
+.badge-beta { color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); }
+.badge-review { color: var(--text-muted); background: rgba(90,90,104,0.14); border: 1px solid rgba(90,90,104,0.35); }
+.badge-bugged { color: var(--red); background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); }
+.card-desc { color: var(--text-secondary); font-size: 0.84rem; margin-bottom: 14px; }
+.card-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.card-stat { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+.card-stat .num { color: var(--text); font-weight: 600; }
+.card-link {
+  display: inline-block; margin-top: 14px;
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent);
+  text-decoration: none; transition: color 0.2s;
+}
+.card-link:hover { color: var(--text); }
+/* Modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg-card); border: 1px solid var(--border-light);
+  border-radius: 14px; padding: 32px; max-width: 480px; width: 100%;
+  position: relative; max-height: 90vh; overflow-y: auto;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; color: var(--text-muted);
+  font-size: 1.2rem; cursor: pointer; line-height: 1;
+}
+.modal-close:hover { color: var(--text); }
+.modal h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: 20px; }
+.modal-step { margin-bottom: 18px; }
+.modal-step-num {
+  font-family: var(--font-mono); font-size: 0.55rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
+}
+.modal-step p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.65; }
+.modal-step p strong { color: var(--text); }
+.modal-divider { height: 1px; background: var(--border); margin: 20px 0; }
+.hiw-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-secondary);
+  text-decoration: underline; text-underline-offset: 3px; padding: 0;
+  transition: color 0.2s;
+}
+.hiw-btn:hover { color: var(--text); }
+footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); }
+footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
+.section-label {
+  font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 12px; margin: 36px 0 16px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-light); }
+.section-label:first-child { margin-top: 0; }
+.menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:4px}
+@media(max-width:750px){
+  header nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,8,0.97);border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:14px}
+  header nav.open{display:flex}
+  header nav a{margin-left:0;font-size:.7rem}
+  .menu-btn{display:block}.nav-social{border-left:none!important;margin-left:0!important;padding-left:0!important}
+  .container{padding:0 16px}
+  h1{font-size:1.5rem}
+  .subtitle{font-size:.82rem}
+  .strategy-card{padding:20px}
+  .card-stats{gap:12px}
+  #nav-user{border-left:none;padding-left:0;margin-left:0}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <a href="/" class="logo">Bivar Capital</a><span class="nav-social" style="margin-left:10px;padding-left:10px;border-left:1px solid var(--border);display:inline-flex;align-items:center;gap:8px;color:var(--text-muted)"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" aria-label="LinkedIn" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://x.com/Luisbivar" rel="noopener" target="_blank" aria-label="X" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" aria-label="Instagram" style="color:inherit;opacity:.55;display:inline-flex;line-height:0;transition:opacity .15s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></span>
+    <button class="menu-btn" onclick="this.parentElement.querySelector('nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/strategies.html" class="active">Strategies</a>
+      <a href="/about.html">About</a>
+      <a href="#" id="nav-signin" style="color:var(--accent)">Sign In</a>
+      <a href="#" onclick="event.preventDefault();var t=this;if(t.dataset.busy)return;t.dataset.busy='1';var o=t.textContent;t.textContent='Coming Soon';t.style.opacity='.6';setTimeout(function(){t.textContent=o;t.style.opacity='1';delete t.dataset.busy;},1600);" id="nav-signup" style="background:var(--accent);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
+      <span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid var(--border)">
+        <span id="nav-email" style="font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted)"></span>
+        <a href="#" id="nav-signout" style="font-family:var(--font-mono);font-size:.6rem;color:var(--red);margin-left:12px;text-decoration:none">Sign Out</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="content">
+    <h1>Crypto</h1>
+    <p class="subtitle">Systematic, rules-based. No discretion, no narrative.</p>
+
+    <div class="section-label">Bitcoin</div>
+
+    <div class="strategy-card">
+      <div class="card-header">
+        <div class="card-title">Bitcoin Trend Signal</div>
+        <span class="card-badge badge-live">Live</span>
+      </div>
+      <p id="btc-blur" class="card-desc">Trend-following system for Bitcoin. Invested 33% of the time, avoids major crashes.</p>
+      <div class="card-stats" id="btc-stats">
+        <span class="card-stat">Sharpe: <span class="num">2.37</span></span>
+        <span class="card-stat">CAGR: <span class="num">+88.8%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-30%</span></span>
+        <span class="card-stat">Since: <span class="num">2015</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-btc').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div id="btc-actions" style="display:flex;align-items:center;gap:12px;margin-top:12px">
+        <button data-auth="signin" style="padding:9px 24px;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:none;border-radius:6px;cursor:pointer">Sign In</button>
+        <button data-auth="signupEmail" style="padding:9px 24px;background:none;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--accent);border-radius:6px;cursor:pointer">Sign Up</button>
+      </div>
+    </div>
+
+
+
+  </section>
+</main>
+
+<!-- MODAL: Bitcoin Trend Signal -->
+<div class="modal-overlay" id="modal-btc" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-btc').classList.remove('open')">&times;</button>
+    <h3>How to follow the Bitcoin Trend Signal</h3>
+
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 — Receive the daily signal</div>
+      <p>The signal updates <strong>every day after market close</strong> and is sent automatically to the <strong>Telegram channel</strong> — no need to check the site manually. It shows BUY or OUT clearly.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 — Two positions only</div>
+      <p>The strategy is binary: either <strong>fully invested in Bitcoin</strong> (spot, on your exchange of choice) or <strong>fully in cash</strong>. No partial positions, no leverage.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 — Act on signal changes</div>
+      <p>You only need to act when the signal <strong>changes</strong>. If it was BUY yesterday and is BUY today — do nothing. When it flips to OUT: sell. When it flips to BUY: buy. On average the signal changes ~22 times per year.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-step">
+      <div class="modal-step-num">Key details</div>
+      <p>The strategy is invested ~34% of the time. Cash earns 0% in the backtest — any yield on idle cash is upside. Signal is based on daily closing prices.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="brand">Bivar Capital</p>
+    <p>Luis Portugal</p>
+    <p style="margin-top:8px"><a href="https://linkedin.com/in/luís-portugal-6a252441" rel="noopener" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 8px">LinkedIn</a> <a href="https://x.com/Luisbivar" rel="noopener" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 8px">X</a> <a href="https://instagram.com/luisportugalabra" rel="noopener" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 8px">Instagram</a></p>
+  </div>
+</footer>
+<script>
+// Page-specific unlock for strategies page
+window.onUnlock = function(email) {
+  document.getElementById('btc-blur').style.filter = 'none';
+  document.getElementById('btc-blur').style.userSelect = 'auto';
+  document.getElementById('btc-stats').style.filter = 'none';
+  document.getElementById('btc-stats').style.userSelect = 'auto';
+  document.getElementById('btc-actions').innerHTML = '<a href="/btc.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/btc_validation_report.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Validation &rarr;</a>&nbsp;&nbsp;<a href="/research/crypto_cross_asset_report.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Cross-asset &rarr;</a>';
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="/auth.js?v=2"></script>
+</body>
+</html>

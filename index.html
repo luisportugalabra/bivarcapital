@@ -128,6 +128,7 @@ nav a:hover { color: var(--text); }
   letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px;
 }
 .tag-research { color: var(--accent); background: rgba(196,162,101,0.1); }
+.tag-crypto { color: #fb923c; background: rgba(251,146,60,0.1); }
 .tag-position { color: var(--green); background: rgba(74,222,128,0.1); }
 .tag-rebalance { color: #818cf8; background: rgba(129,140,248,0.1); }
 .tag-performance { color: #22d3ee; background: rgba(34,211,238,0.1); }
@@ -202,6 +203,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <nav>
       <a href="/">Home</a>
       <a href="/strategies.html">Strategies</a>
+      <a href="/crypto.html">Crypto</a>
       <a href="/about.html">About</a>
       <a href="#" id="nav-signin" style="color:var(--accent)">Sign In</a>
       <a href="#" onclick="event.preventDefault();var t=this;if(t.dataset.busy)return;t.dataset.busy='1';var o=t.textContent;t.textContent='Coming Soon';t.style.opacity='.6';setTimeout(function(){t.textContent=o;t.style.opacity='1';delete t.dataset.busy;},1600);" id="nav-signup" style="background:var(--accent);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
@@ -242,22 +244,24 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       <button data-filter="investment">Investment</button>
       <span class="sep">&middot;</span>
       <button data-filter="research">Research</button>
+      <span class="sep">&middot;</span>
+      <button data-filter="crypto">Crypto</button>
     </div>
 
-    <article class="entry" data-category="research">
+    <article class="entry" data-category="crypto">
       <div class="entry-meta">
         <span class="entry-date">Sep 2026</span>
-        <span class="entry-tag tag-research">Research</span>
+        <span class="entry-tag tag-crypto">Crypto</span>
       </div>
       <h2 class="entry-title"><a href="/research/btc_validation_report.html">BTC Strategy &mdash; Adversarial Validation Report</a></h2>
       <p class="entry-body">The production BTC signal (RSI14 &gt; 54 &middot; price &gt; MA155 &middot; vol &lt; 100%) against everything we could throw at it: 360 parameter variants, 5 timeframes, 66 challenger systems, long/short overlays &mdash; all net of live-measured costs (19bps round-trip). It ranked #1 of 360 on both windows. 45% CAGR net since 2018, Sharpe 1.32, MaxDD &minus;32% vs &minus;77% for Buy &amp; Hold. Verdict: do not touch the signal.</p>
       <a href="/research/btc_validation_report.html" class="entry-link">Read &rarr;</a>
     </article>
 
-    <article class="entry" data-category="research">
+    <article class="entry" data-category="crypto">
       <div class="entry-meta">
         <span class="entry-date">Sep 2026</span>
-        <span class="entry-tag tag-research">Research</span>
+        <span class="entry-tag tag-crypto">Crypto</span>
       </div>
       <h2 class="entry-title"><a href="/research/crypto_cross_asset_report.html">Does the Signal Travel? &mdash; Cross-Asset Crypto Report</a></h2>
       <p class="entry-body">The BTC signal applied to 10 other coins, plus 753 coin-specific challengers with a strict train/test split. What travels is the protection, not the alpha: every freshly-fitted champion collapsed 51&ndash;110% out of sample while the un-refitted BTC signal held Sharpe 1.37. Every multi-coin blend lost to BTC alone. The book stays BTC-only.</p>
