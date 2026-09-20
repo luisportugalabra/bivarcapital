@@ -13,7 +13,7 @@
       "ret_12m": 457.32,
       "mcap_b": 0.081,
       "adv_eur": 342561,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -23,7 +23,7 @@
       "ret_12m": 185.82,
       "mcap_b": 1.948,
       "adv_eur": 2681493,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -33,7 +33,7 @@
       "ret_12m": 177.93,
       "mcap_b": 3.634,
       "adv_eur": 6172498,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -43,7 +43,7 @@
       "ret_12m": 167.92,
       "mcap_b": 4.252,
       "adv_eur": 23426574,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -53,7 +53,7 @@
       "ret_12m": 165.42,
       "mcap_b": 1.971,
       "adv_eur": 6458494,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -63,7 +63,7 @@
       "ret_12m": 142.17,
       "mcap_b": 1.301,
       "adv_eur": 6662524,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -73,7 +73,7 @@
       "ret_12m": 139.93,
       "mcap_b": 2.263,
       "adv_eur": 5737693,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -83,7 +83,7 @@
       "ret_12m": 127.57,
       "mcap_b": 0.442,
       "adv_eur": 1294828,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -93,7 +93,7 @@
       "ret_12m": 122.94,
       "mcap_b": 3.095,
       "adv_eur": 8788693,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -103,7 +103,107 @@
       "ret_12m": 120.1,
       "mcap_b": 0.151,
       "adv_eur": 526112,
-      "weight": 0.1,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 11,
+      "ticker": "BKHT",
+      "name": "Brockhaus Technologies AG",
+      "ret_12m": 111.42,
+      "mcap_b": 0.22,
+      "adv_eur": 215072,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 12,
+      "ticker": "GMM",
+      "name": "Grammer AG",
+      "ret_12m": 104.72,
+      "mcap_b": 0.194,
+      "adv_eur": 28879,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 13,
+      "ticker": "4DS",
+      "name": "Daldrup & Soehne AG",
+      "ret_12m": 100.87,
+      "mcap_b": 0.138,
+      "adv_eur": 41366,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 14,
+      "ticker": "TKA",
+      "name": "thyssenkrupp AG",
+      "ret_12m": 95.12,
+      "mcap_b": 9.459,
+      "adv_eur": 32196329,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 15,
+      "ticker": "NBG6",
+      "name": "Nuernberger Beteiligungs AG Class B",
+      "ret_12m": 91.54,
+      "mcap_b": 1.434,
+      "adv_eur": 1201,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 16,
+      "ticker": "NDX1",
+      "name": "Nordex SE",
+      "ret_12m": 87.6,
+      "mcap_b": 9.314,
+      "adv_eur": 20130784,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 17,
+      "ticker": "MED",
+      "name": "MEDICLIN Aktiengesellschaft",
+      "ret_12m": 87.07,
+      "mcap_b": 0.261,
+      "adv_eur": 37365,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 18,
+      "ticker": "WAF",
+      "name": "Siltronic AG",
+      "ret_12m": 84.53,
+      "mcap_b": 2.539,
+      "adv_eur": 8893931,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 19,
+      "ticker": "ELG",
+      "name": "Elmos Semiconductor SE",
+      "ret_12m": 82.12,
+      "mcap_b": 2.334,
+      "adv_eur": 3912546,
+      "weight": 0.05,
+      "selected": true
+    },
+    {
+      "rank": 20,
+      "ticker": "2GB",
+      "name": "2G Energy AG",
+      "ret_12m": 78.91,
+      "mcap_b": 1.035,
+      "adv_eur": 2293199,
+      "weight": 0.05,
       "selected": true
     }
   ],
@@ -115,7 +215,7 @@
       "ret_12m": 457.32,
       "mcap_b": 0.081,
       "adv_eur": 342561,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -125,7 +225,7 @@
       "ret_12m": 185.82,
       "mcap_b": 1.948,
       "adv_eur": 2681493,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -135,7 +235,7 @@
       "ret_12m": 177.93,
       "mcap_b": 3.634,
       "adv_eur": 6172498,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -145,7 +245,7 @@
       "ret_12m": 167.92,
       "mcap_b": 4.252,
       "adv_eur": 23426574,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -155,7 +255,7 @@
       "ret_12m": 165.42,
       "mcap_b": 1.971,
       "adv_eur": 6458494,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -165,7 +265,7 @@
       "ret_12m": 142.17,
       "mcap_b": 1.301,
       "adv_eur": 6662524,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -175,7 +275,7 @@
       "ret_12m": 139.93,
       "mcap_b": 2.263,
       "adv_eur": 5737693,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -185,7 +285,7 @@
       "ret_12m": 127.57,
       "mcap_b": 0.442,
       "adv_eur": 1294828,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -195,7 +295,7 @@
       "ret_12m": 122.94,
       "mcap_b": 3.095,
       "adv_eur": 8788693,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -205,7 +305,7 @@
       "ret_12m": 120.1,
       "mcap_b": 0.151,
       "adv_eur": 526112,
-      "weight": 0.1,
+      "weight": 0.05,
       "selected": true
     },
     {
@@ -215,8 +315,8 @@
       "ret_12m": 111.42,
       "mcap_b": 0.22,
       "adv_eur": 215072,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 12,
@@ -225,8 +325,8 @@
       "ret_12m": 104.72,
       "mcap_b": 0.194,
       "adv_eur": 28879,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 13,
@@ -235,8 +335,8 @@
       "ret_12m": 100.87,
       "mcap_b": 0.138,
       "adv_eur": 41366,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 14,
@@ -245,8 +345,8 @@
       "ret_12m": 95.12,
       "mcap_b": 9.459,
       "adv_eur": 32196329,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 15,
@@ -255,8 +355,8 @@
       "ret_12m": 91.54,
       "mcap_b": 1.434,
       "adv_eur": 1201,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 16,
@@ -265,8 +365,8 @@
       "ret_12m": 87.6,
       "mcap_b": 9.314,
       "adv_eur": 20130784,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 17,
@@ -275,8 +375,8 @@
       "ret_12m": 87.07,
       "mcap_b": 0.261,
       "adv_eur": 37365,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 18,
@@ -285,8 +385,8 @@
       "ret_12m": 84.53,
       "mcap_b": 2.539,
       "adv_eur": 8893931,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 19,
@@ -295,8 +395,8 @@
       "ret_12m": 82.12,
       "mcap_b": 2.334,
       "adv_eur": 3912546,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 20,
@@ -305,8 +405,8 @@
       "ret_12m": 78.91,
       "mcap_b": 1.035,
       "adv_eur": 2293199,
-      "weight": null,
-      "selected": false
+      "weight": 0.05,
+      "selected": true
     },
     {
       "rank": 21,
@@ -496,7 +596,7 @@
       "name": "Brockhaus Technologies AG",
       "ret_12m": 114.0,
       "mcap_b": 0.22,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 12,
@@ -504,7 +604,7 @@
       "name": "Grammer AG",
       "ret_12m": 96.8,
       "mcap_b": 0.194,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 13,
@@ -512,7 +612,7 @@
       "name": "Nuernberger Beteiligungs AG Class B",
       "ret_12m": 96.78,
       "mcap_b": 1.434,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 14,
@@ -520,7 +620,7 @@
       "name": "Daldrup & Soehne AG",
       "ret_12m": 96.51,
       "mcap_b": 0.138,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 15,
@@ -528,7 +628,7 @@
       "name": "MEDICLIN Aktiengesellschaft",
       "ret_12m": 91.63,
       "mcap_b": 0.261,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 16,
@@ -536,7 +636,7 @@
       "name": "Nordex SE",
       "ret_12m": 87.4,
       "mcap_b": 9.314,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 17,
@@ -544,7 +644,7 @@
       "name": "INDUS Holding AG",
       "ret_12m": 85.17,
       "mcap_b": 1.007,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 18,
@@ -552,7 +652,7 @@
       "name": "Bayer AG",
       "ret_12m": 78.3,
       "mcap_b": 47.245,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 19,
@@ -560,7 +660,7 @@
       "name": "Netfonds AG",
       "ret_12m": 76.72,
       "mcap_b": 0.191,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 20,
@@ -568,7 +668,7 @@
       "name": "Siltronic AG",
       "ret_12m": 76.09,
       "mcap_b": 2.539,
-      "selected": false
+      "selected": true
     },
     {
       "rank": 21,
@@ -651,7 +751,7 @@
       "selected": false
     }
   ],
-  "yf_tv_top20_overlap": 10,
+  "yf_tv_top20_overlap": 17,
   "updated": "2026-09-18",
   "is_live": true,
   "not_live_reason": null

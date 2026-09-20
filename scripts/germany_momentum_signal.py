@@ -65,7 +65,10 @@ PORTFOLIO_PATH = os.path.join(SITE_DIR, "germany-momentum-portfolio.json")
 
 MCAP_PCT       = 0.30   # keep top 70% by market cap (percentile, not absolute floor)
 # No liquidity floor: ADV is computed and reported per name, never filtered on.
-TOP_N          = 10   # 2026-09-18: 20->10 (backtest: mesmo CAGR, menos ordens; c/ filtro ADV o N=10 aguenta melhor)
+TOP_N          = 20   # 2026-09-20: back to 20. The N=10 case rested on the
+                      # ADV-filtered backtest, whose filter was mis-applied; with
+                      # the filter gone the audit's verdict stands -- N=20 gives
+                      # Sharpe 0.90 vs 0.72 and MaxDD -27.8% vs -39.1%.
 MA_W           = 200
 CONFIG_VERSION = "v3-2026-08-26-de-only"   # v3: German-domiciled companies only;
                                            # TradingView Perf.Y is the official
