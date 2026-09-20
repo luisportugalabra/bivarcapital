@@ -64,7 +64,7 @@ DATA_PATH      = os.path.join(SITE_DIR, "germany-momentum-data.json")
 PORTFOLIO_PATH = os.path.join(SITE_DIR, "germany-momentum-portfolio.json")
 
 MCAP_PCT       = 0.30   # keep top 70% by market cap (percentile, not absolute floor)
-MIN_ADV_EUR    = 50_000   # 60-day average euro volume floor (2026-09-20: 100k->50k)
+# No liquidity floor: ADV is computed and reported per name, never filtered on.
 TOP_N          = 10   # 2026-09-18: 20->10 (backtest: mesmo CAGR, menos ordens; c/ filtro ADV o N=10 aguenta melhor)
 MA_W           = 200
 CONFIG_VERSION = "v3-2026-08-26-de-only"   # v3: German-domiciled companies only;
@@ -113,30 +113,22 @@ def fetch_germany():
     df = df[df['market_cap_basic'] >= mc_threshold].copy()
     print(f"  Above mcap P{int(MCAP_PCT*100)}: {len(df)}")
 
-    # Liquidity filter (added 2026-09-18). 60-day average euro volume -- same
-    # window as the backtest sweep in ~/eodhd_data/de_liquidity.py. Measured
-    # spreads on the old N=20 portfolio found 5 of 20 names untradeable at a
-    # EUR20k position (Netfonds EUR2.3k/day = 884% of ADV, Nuernberger 197%,
-    # Grammer 64%). At EUR100k the backtest gives 19.6% CAGR vs 20.5% unfiltered
-    # -- the whole cost is 0.9pp and it removes names that cannot be bought.
-    # A missing 60-day average is not evidence of illiquidity, and NaN >= floor
-    # is False, so taking the field at face value drops the name silently. On
-    # 2026-09-20 that was 5 of 270 German names, among them Alzchem (EUR1.7B,
-    # 23k shares traded that day) purely for a missing average. Fall back to the
-    # 30-day average, then to the session's own turnover, and only drop a name
-    # once none of the three exist -- and say which ones.
+    # Liquidity is reported, not filtered (2026-09-20). A floor was in place
+    # from 2026-09-18 but it changed the picks on a judgement the screen cannot
+    # make: whether a given name is buyable depends on the position size and on
+    # working the order, which is decided at execution, not here. The audited
+    # backtest without the filter is the one the reports carry. adv_eur travels
+    # with every row so the number is in front of you when you place the trade.
     px = pd.to_numeric(df['close'], errors='coerce')
     adv = pd.to_numeric(df.get('average_volume_60d_calc'), errors='coerce') * px
     for fb in ('average_volume_30d_calc', 'volume'):
         if fb in df.columns:
             adv = adv.fillna(pd.to_numeric(df[fb], errors='coerce') * px)
     df['adv_eur'] = adv
-    no_data = df[df['adv_eur'].isna()]
-    if len(no_data):
-        print(f"  No volume data at all, dropped: {', '.join(no_data['code'].astype(str))}")
-    before = len(df)
-    df = df[df['adv_eur'] >= MIN_ADV_EUR].copy()
-    print(f"  Above ADV EUR{MIN_ADV_EUR:,.0f}/day: {len(df)} (dropped {before - len(df)})")
+    thin = df[df['adv_eur'].fillna(0) < 50_000]
+    if len(thin):
+        print(f"  Thin (<EUR50k/day), kept: {', '.join(thin['code'].astype(str).head(12))}"
+              + (f" +{len(thin)-12} more" if len(thin) > 12 else ""))
 
     return df.reset_index(drop=True), universe_health, broad_prices
 
@@ -364,6 +356,8 @@ def main():
             'name':      str(row.get('description') or row.get('name', code)),
             'ret_12m':   round(float(row['ret_12m']), 2),
             'mcap_b':    round(float(row['market_cap_basic']) / 1e9, 3),
+            'adv_eur':   (None if pd.isna(row.get('adv_eur'))
+                          else int(round(float(row['adv_eur'])))),
             'weight':    weight_map.get(code),
             'selected':  code in selected,
         })
@@ -527,13 +521,18 @@ def main():
     print(f"\n{'='*80}")
     print(f"Germany Momentum — {TODAY} — {regime_str.upper()}")
     print(f"{'='*80}")
-    print(f"{'#':>3} {'':>3} {'Ticker':<8} {'Name':<32} {'12M':>8} {'Wt':>6} {'MCap B EUR':>12}")
-    print(f"{'-'*80}")
+    print(f"{'#':>3} {'':>3} {'Ticker':<8} {'Name':<30} {'12M':>8} {'Wt':>6} "
+          f"{'MCap B':>8} {'ADV EUR/d':>11}")
+    print(f"{'-'*88}")
     for s in top30:
         mk = ">>>" if s['selected'] else ""
         wt = f"{s['weight']*100:.1f}%" if s['weight'] else ""
-        print(f"{s['rank']:3d} {mk:>3} {s['ticker']:<8} {s['name'][:31]:<32} "
-              f"{s['ret_12m']:>+7.1f}% {wt:>6} {s['mcap_b']:>10.3f}")
+        a = s.get('adv_eur')
+        # flag what a EUR12.5k position would be as a share of a day's turnover
+        adv = "     no data" if a is None else (f"{a:>10,}" + ("!" if a < 50_000 else " "))
+        print(f"{s['rank']:3d} {mk:>3} {s['ticker']:<8} {s['name'][:29]:<30} "
+              f"{s['ret_12m']:>+7.1f}% {wt:>6} {s['mcap_b']:>8.3f} {adv}")
+    print("  ! = under EUR50k/day. Nothing is filtered on this; it is yours to judge.")
     print(f"\nTop {TOP_N} selected | {len(df)} eligible | Regime: {regime_str.upper()}")
 
 
