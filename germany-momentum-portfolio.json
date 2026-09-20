@@ -1,7 +1,7 @@
 {
   "last_rebalance": "2026-09-01",
   "updated": "2026-09-18",
-  "ytd_2026": -1.45,
+  "ytd_2026": -19.59,
   "regime": "momentum",
   "currency": "EUR",
   "dax": 25304.1,
@@ -107,8 +107,8 @@
       "regime": "momentum",
       "tickers": [],
       "weights": {},
-      "return_pct": 10.94,
-      "config_version": "backtest-n10-adv100k",
+      "return_pct": 3.04,
+      "config_version": "backtest-n10-noadv",
       "source": "backtest"
     },
     {
@@ -119,8 +119,8 @@
       "regime": "momentum",
       "tickers": [],
       "weights": {},
-      "return_pct": 15.59,
-      "config_version": "backtest-n10-adv100k",
+      "return_pct": 0.75,
+      "config_version": "backtest-n10-noadv",
       "source": "backtest"
     },
     {
@@ -131,8 +131,8 @@
       "regime": "momentum",
       "tickers": [],
       "weights": {},
-      "return_pct": -2.01,
-      "config_version": "backtest-n10-adv100k",
+      "return_pct": 3.48,
+      "config_version": "backtest-n10-noadv",
       "source": "backtest"
     },
     {
@@ -143,8 +143,8 @@
       "regime": "momentum",
       "tickers": [],
       "weights": {},
-      "return_pct": -0.12,
-      "config_version": "backtest-n10-adv100k",
+      "return_pct": -0.16,
+      "config_version": "backtest-n10-noadv",
       "source": "backtest"
     },
     {
@@ -155,8 +155,8 @@
       "regime": "momentum",
       "tickers": [],
       "weights": {},
-      "return_pct": 7.35,
-      "config_version": "backtest-n10-adv100k",
+      "return_pct": 5.76,
+      "config_version": "backtest-n10-noadv",
       "source": "backtest"
     },
     {
@@ -167,8 +167,8 @@
       "regime": "momentum",
       "tickers": [],
       "weights": {},
-      "return_pct": -13.36,
-      "config_version": "backtest-n10-adv100k",
+      "return_pct": -13.38,
+      "config_version": "backtest-n10-noadv",
       "source": "backtest"
     },
     {
@@ -179,8 +179,8 @@
       "regime": "momentum",
       "tickers": [],
       "weights": {},
-      "return_pct": -20.03,
-      "config_version": "backtest-n10-adv100k",
+      "return_pct": -16.96,
+      "config_version": "backtest-n10-noadv",
       "source": "backtest"
     },
     {

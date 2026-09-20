@@ -464,9 +464,16 @@ def main():
 
     breakdown = build_monthly_breakdown(existing, holdings, is_new_month, regime_str)
 
-    months_this_year = [m for m in breakdown if str(date.fromisoformat(TODAY).year) in m.get('month', '')
-                         and not m.get('is_current')
-                         and m.get('config_version') == CONFIG_VERSION]
+    # Months before live inception are carried as simulated entries with their
+    # own config tag; requiring an exact config_version match dropped them and
+    # left YTD showing the last closed month alone. Same rule as
+    # germany_momentum_ytd.py: take the simulated months, and the live ones
+    # only when they were produced by the config running now.
+    months_this_year = [m for m in breakdown
+                        if str(date.fromisoformat(TODAY).year) in m.get('month', '')
+                        and not m.get('is_current')
+                        and (m.get('source') == 'backtest'
+                             or m.get('config_version') == CONFIG_VERSION)]
     if months_this_year:
         ytd = 1.0
         for m in months_this_year:
