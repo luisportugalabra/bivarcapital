@@ -56,7 +56,7 @@ footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-m
 <p><strong>Data:</strong> 2026-08-25 · <strong>Motor auditado:</strong> <code>~/eodhd_data/generate_canada_report_v3.py</code> + <code>~/momentum_research/backtest.py</code>
 <strong>Método:</strong> reimplementação independente (<code>~/momentum_research/audit_canada_momentum.py</code>), variantes honestas, falsificação.</p>
 <h2>A. Veredicto executivo</h2>
-<p><strong>Investiria capital real. O único bug material (lookahead no filtro de NetIncome) foi corrigido e republicado no site em 2026-08-25</strong> — os números ao vivo já são os honestos: CAGR 34.4%, Sharpe 1.22, MaxDD -26.0% (antes: 36.1/1.35/-24.5, commit <code>21b7cd9</code>).
+<p><strong>Investiria capital real. O único bug material (lookahead no filtro de NetIncome) foi corrigido e republicado no site em 2026-08-25</strong> — os números ao vivo já são os honestos (antes: 36.1/1.35/-24.5, commit <code>21b7cd9</code>). O motor de produção lê 34.4%/1.22 e o harness independente lê 33.8%/1.19 sobre os mesmos inputs; desde 2026-09-20 o site publica o valor mais baixo, 33.8%/1.19/-26.0%.
 O edge é genuíno, persistente e sobrevive a todas as tentativas de destruição.
 <strong>Score de confiança: 85/100</strong> (subiu de 78 depois da correção; os dois pontos restantes na secção F são refinamentos, não bugs).</p>
 <h2>B. Tabela de riscos</h2>
