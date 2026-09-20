@@ -39,190 +39,160 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 
 <div class="brand">Bivar Capital &mdash; Quantitative Research</div>
 <h1>Combined Portfolio<span class="it">USA + Canada + Germany momentum</span></h1>
-<p class="lead">The three live momentum sleeves — <a href="/momentum.html" style="color:var(--accent)">USA</a> (top-7 large caps), <a href="/canada-momentum.html" style="color:var(--accent)">Canada</a> (top-10 TSX) and <a href="/germany-momentum.html" style="color:var(--accent)">Germany</a> (run at N=10, the top-10 of the published ranking) — combined at 1/3 each, monthly. Common window 2006-03-31 — 2026-04-30 (242 meses) (limited by the USA series start). Each sleeve's own caveats (survivorship windows, capacity, in-sample selection) carry through; see the per-strategy audits.</p>
-
+<p class="lead">The three live momentum sleeves &mdash;
+<a href="/momentum.html" style="color:var(--accent)">USA</a> (top 7 large caps),
+<a href="/canada-momentum.html" style="color:var(--accent)">Canada</a> (top 10 TSX) and
+<a href="/germany-momentum.html" style="color:var(--accent)">Germany</a> (top 10 XETRA) &mdash; combined.
+2000-01 to 2026-04, 316 months. Rebuilt 2026-09-20 from the series each strategy publishes, after the
+previous version was found to be running a Canada series contaminated by a look-ahead in the fundamental
+filter and a Germany variant that no longer exists. Every sleeve's own caveats carry through: survivorship
+windows, capacity limits, in-sample config selection.</p>
 <div class="divider"></div>
-<h2>I. The Case for Combining</h2>
-<div class="table-wrap"><table><thead><tr><th>Sleeve</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
-<tr><td>US</td><td>0.92</td><td>1.94</td><td>+25.6%</td><td class="neg">-30.3%</td></tr>
-<tr><td>CA</td><td>1.27</td><td>3.32</td><td>+34.3%</td><td class="neg">-24.5%</td></tr>
-<tr><td>DE</td><td>0.76</td><td>1.45</td><td>+18.4%</td><td class="neg">-39.1%</td></tr>
-<tr class="hl-row"><td>COMBINED 1/3 each</td><td>1.52</td><td>3.67</td><td>+27.5%</td><td class="neg">-16.6%</td></tr>
-</tbody></table></div>
-<p>The combined portfolio's Sharpe (1.52) exceeds every individual sleeve's, and its MaxDD (&minus;16.6%) is barely half the best individual sleeve's. That is the diversification premium of three strategies with 0.19&ndash;0.25 correlations and regimes that de-risk independently.</p>
-<img src="combo_equity_curve.png" alt="Combined portfolio equity curve vs sleeves" style="width:100%;border-radius:8px;margin:10px 0;border:1px solid var(--border)">
-
+<h2>I. The Three Sleeves</h2>
+<div class="table-wrap"><table><thead><tr><th>Sleeve</th><th>CAGR</th><th>Vol</th><th>Sharpe</th><th>Sortino</th><th>MaxDD</th><th>Worst month</th></tr></thead><tbody>
+<tr><td>USA</td><td>+25.3%</td><td>26.4%</td><td>0.85</td><td>1.80</td><td><span class="neg">-35.5%</span></td><td><span class="neg">-22.9%</span></td></tr>
+<tr><td>Canada</td><td>+34.8%</td><td>25.9%</td><td>1.23</td><td>2.85</td><td><span class="neg">-26.0%</span></td><td><span class="neg">-18.9%</span></td></tr>
+<tr><td>Germany</td><td>+20.6%</td><td>22.1%</td><td>0.79</td><td>1.55</td><td><span class="neg">-39.1%</span></td><td><span class="neg">-16.9%</span></td></tr></tbody></table></div>
+<p>Canada carries the book and Germany is the weakest leg on every measure. That is the starting
+point, not the conclusion &mdash; what follows is about whether the mix beats its parts.</p>
 <div class="divider"></div>
 <h2>II. Correlations</h2>
-<div class="table-wrap"><table><thead><tr><th></th><th>DE</th><th>CA</th><th>US</th></tr></thead><tbody>
-<tr><td>DE</td><td>1.00</td><td>0.19</td><td>0.244</td></tr>
-<tr><td>CA</td><td>0.19</td><td>1.00</td><td>0.247</td></tr>
-<tr><td>US</td><td>0.244</td><td>0.247</td><td>1.00</td></tr>
-</tbody></table></div>
-<p>Full-series monthly correlations. Two structural sources: different stock selection (measured 0.23&ndash;0.45 when both sleeves are invested) <em>plus</em> regime divergence &mdash; roughly a quarter of all months have one sleeve in cash while another is invested, and the invested sleeve earns above its average in those months. Caveat: rolling 36-month correlations are unstable &mdash; DE-CA has ranged -0.14 to 0.57, DE-US -0.13 to 0.62, CA-US -0.21 to 0.64. Do not budget on the averages holding in every triennium.</p>
-<h3 style="margin-top:18px">Pairwise combos (what each sleeve adds)</h3>
-<div class="table-wrap"><table><thead><tr><th>Pair (50/50)</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
-<tr><td>DE+CA</td><td>1.4</td><td>3.39</td><td>+27.3%</td><td class="neg">-25.4%</td></tr>
-<tr><td>DE+US</td><td>1.13</td><td>2.34</td><td>+23.0%</td><td class="neg">-21.7%</td></tr>
-<tr><td>CA+US</td><td>1.45</td><td>3.52</td><td>+31.2%</td><td class="neg">-16.3%</td></tr>
-</tbody></table></div>
-
+<div class="table-wrap"><table><thead><tr><th></th><th>USA</th><th>Canada</th><th>Germany</th></tr></thead><tbody>
+<tr><td>USA</td><td>1.00</td><td>0.30</td><td>0.29</td></tr>
+<tr><td>Canada</td><td>0.30</td><td>1.00</td><td>0.26</td></tr>
+<tr><td>Germany</td><td>0.29</td><td>0.26</td><td>1.00</td></tr></tbody></table></div><p style="margin-top:14px">And in the worst fifth of months for the portfolio:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>USA</th><th>Canada</th><th>Germany</th></tr></thead><tbody>
+<tr><td>USA</td><td>1.00</td><td>-0.22</td><td>-0.13</td></tr>
+<tr><td>Canada</td><td>-0.22</td><td>1.00</td><td>-0.28</td></tr>
+<tr><td>Germany</td><td>-0.13</td><td>-0.28</td><td>1.00</td></tr></tbody></table></div>
+<p>The pairwise average falls from
+0.29 to
+-0.21 in the tail &mdash; the sleeves do not sink
+together on a bad month. That is the whole reason the combination exists, and it is also the claim to
+distrust first: three long-equity momentum books will correlate in a genuine systemic crash however they
+behaved in this sample.</p>
 <div class="divider"></div>
-<h2>III. Monthly Return Distribution</h2>
-<p>Mean <strong>+2.15%/month</strong>, standard deviation <strong>4.66%</strong> (annualized ~25.8% / 16.1% vol). 62% of months positive, skew +0.78 &mdash; the fat tail is on the upside. Worst month in 242 meses: <strong>-7.52%</strong>; best: +20.75%.</p>
-<ul class="steps">
-<li><strong>Normal month (&plusmn;1&sigma;):</strong> -2.5% to +6.8% &mdash; about 2 of every 3 months.</li>
-<li><strong>Bad month (&minus;2&sigma;):</strong> ~-7.2% &mdash; roughly once every 2 years.</li>
-<li><strong>Outside the entire 20-year sample:</strong> worse than &minus;10% in a month &mdash; never happened; treat as an investigation trigger, not noise.</li>
-</ul>
-
+<h2>III. Weight Grid</h2>
+<div class="table-wrap"><table><thead><tr><th>USA/CAN/GER</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>25/50/25</td><td>+30.4%</td><td>1.459</td><td><span class="neg">-20.3%</span></td></tr>
+<tr><td>20/50/30</td><td>+30.1%</td><td>1.458</td><td><span class="neg">-21.2%</span></td></tr>
+<tr><td>25/45/30</td><td>+29.7%</td><td>1.457</td><td><span class="neg">-20.6%</span></td></tr>
+<tr><td>20/55/25</td><td>+30.8%</td><td>1.455</td><td><span class="neg">-20.9%</span></td></tr>
+<tr><td>30/45/25</td><td>+29.9%</td><td>1.453</td><td><span class="neg">-19.7%</span></td></tr>
+<tr><td>25/55/20</td><td>+31.0%</td><td>1.452</td><td><span class="neg">-20.1%</span></td></tr>
+<tr><td>30/50/20</td><td>+30.6%</td><td>1.451</td><td><span class="neg">-19.5%</span></td></tr>
+<tr><td>20/45/35</td><td>+29.4%</td><td>1.451</td><td><span class="neg">-21.4%</span></td></tr>
+<tr><td>15/55/30</td><td>+30.5%</td><td>1.447</td><td><span class="neg">-21.8%</span></td></tr>
+<tr><td>15/50/35</td><td>+29.8%</td><td>1.446</td><td><span class="neg">-22.0%</span></td></tr>
+<tr><td>30/40/30</td><td>+29.3%</td><td>1.445</td><td><span class="neg">-20.0%</span></td></tr>
+<tr><td>25/40/35</td><td>+29.0%</td><td>1.445</td><td><span class="neg">-20.8%</span></td></tr>
+<tr><td>20/60/20</td><td>+31.4%</td><td>1.444</td><td><span class="neg">-20.7%</span></td></tr>
+<tr><td>30/55/15</td><td>+31.3%</td><td>1.441</td><td><span class="neg">-19.2%</span></td></tr></tbody></table></div>
+<p>Top of 231 combinations on a 5% grid. The best reads Sharpe
+1.459 at 25/50/25, but the standard error of a Sharpe
+estimated from 316 months is <strong>0.081</strong> &mdash; so <strong>65 of
+231 combinations are statistically tied with it</strong>. Choosing between them on this
+evidence is choosing noise.</p>
 <div class="divider"></div>
-<h2>IV. Worst Months &mdash; How It Fails</h2>
-<div class="table-wrap"><table><thead><tr><th>Month</th><th>Combo</th><th>DE</th><th>CA</th><th>US</th></tr></thead><tbody>
-<tr><td>2018-10-31</td><td class="neg">-7.5%</td><td class="neg">-0.0%</td><td class="neg">-0.0%</td><td class="neg">-22.5%</td></tr>
-<tr><td>2026-03-31</td><td class="neg">-7.1%</td><td>3.5%</td><td class="neg">-15.6%</td><td class="neg">-9.1%</td></tr>
-<tr><td>2020-02-29</td><td class="neg">-6.7%</td><td class="neg">-3.8%</td><td class="neg">-10.7%</td><td class="neg">-5.7%</td></tr>
-<tr><td>2006-05-31</td><td class="neg">-6.5%</td><td class="neg">-7.9%</td><td class="neg">-7.4%</td><td class="neg">-4.3%</td></tr>
-<tr><td>2019-09-30</td><td class="neg">-6.5%</td><td>2.0%</td><td class="neg">-9.0%</td><td class="neg">-12.5%</td></tr>
-<tr><td>2007-11-30</td><td class="neg">-6.5%</td><td class="neg">-10.5%</td><td class="neg">-4.9%</td><td class="neg">-4.0%</td></tr>
-<tr><td>2014-07-31</td><td class="neg">-6.1%</td><td class="neg">-13.4%</td><td class="neg">-2.6%</td><td class="neg">-2.2%</td></tr>
-<tr><td>2008-01-31</td><td class="neg">-5.7%</td><td class="neg">-16.9%</td><td class="neg">-0.2%</td><td>0.0%</td></tr>
-<tr><td>2015-08-31</td><td class="neg">-5.5%</td><td class="neg">-9.4%</td><td class="neg">-0.2%</td><td class="neg">-7.0%</td></tr>
-<tr><td>2011-08-31</td><td class="neg">-5.3%</td><td class="neg">-8.1%</td><td class="neg">-0.1%</td><td class="neg">-7.7%</td></tr>
-</tbody></table></div>
-<p>The failure mode is always <strong>one sleeve blowing up while the others cushion</strong> (US &minus;22.5% in Oct-2018 &rarr; combo &minus;7.5%; CA &minus;15.6% in Mar-2026 &rarr; combo &minus;7.1%). In 242 months the three sleeves never all fell hard together &mdash; the common regime mechanism pulls them all to cash in genuine crises instead.</p>
-
-<h2 style="margin-top:26px">Best Months &mdash; How It Wins</h2>
-<div class="table-wrap"><table><thead><tr><th>Month</th><th>Combo</th><th>DE</th><th>CA</th><th>US</th></tr></thead><tbody>
-<tr><td>2021-02-28</td><td>+20.7%</td><td>+23.8%</td><td>+39.9%</td><td class="neg">-1.4%</td></tr>
-<tr><td>2024-02-29</td><td>+18.8%</td><td>+11.8%</td><td>+8.5%</td><td>+36.1%</td></tr>
-<tr><td>2025-09-30</td><td>+16.3%</td><td>+11.0%</td><td>+14.5%</td><td>+23.3%</td></tr>
-<tr><td>2017-01-31</td><td>+15.1%</td><td>+11.7%</td><td>+27.1%</td><td>+6.5%</td></tr>
-<tr><td>2026-04-30</td><td>+14.5%</td><td class="neg">-0.2%</td><td>+5.9%</td><td>+37.8%</td></tr>
-<tr><td>2018-08-31</td><td>+13.1%</td><td class="neg">-1.4%</td><td>+23.4%</td><td>+17.4%</td></tr>
-<tr><td>2024-01-31</td><td>+12.7%</td><td>+4.1%</td><td>+18.0%</td><td>+16.1%</td></tr>
-<tr><td>2020-12-31</td><td>+12.5%</td><td>+13.4%</td><td>+15.0%</td><td>+9.1%</td></tr>
-<tr><td>2026-01-31</td><td>+11.8%</td><td>+3.0%</td><td>+10.1%</td><td>+22.1%</td></tr>
-<tr><td>2020-06-30</td><td>+10.7%</td><td class="neg">-0.1%</td><td>+21.4%</td><td>+10.7%</td></tr>
-</tbody></table></div>
-
+<h2>IV. Candidates</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th>USA/CAN/GER</th><th>CAGR</th><th>Vol</th><th>Sharpe</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>equal</td><td>33/33/34</td><td>+28.4%</td><td>18.0%</td><td>1.41</td><td><span class="neg">-20.0%</span></td></tr>
+<tr class="hl-row"><td>35/40/25</td><td>35/40/25</td><td>+29.5%</td><td>18.5%</td><td>1.44</td><td><span class="neg">-19.5%</span></td></tr>
+<tr><td>best</td><td>25/50/25</td><td>+30.4%</td><td>18.8%</td><td>1.46</td><td><span class="neg">-20.3%</span></td></tr>
+<tr><td>inv-vol</td><td>31/32/37</td><td>+28.2%</td><td>17.8%</td><td>1.41</td><td><span class="neg">-20.3%</span></td></tr></tbody></table></div>
+<p>All four sit inside the tie. Every one roughly halves the drawdown of the best single sleeve
+while landing between its CAGR and the weakest sleeve's.</p>
 <div class="divider"></div>
-<h2>V. Drawdown Profile</h2>
-<p>MaxDD <strong>-16.6%</strong>. Time spent in &gt;5% drawdown: 28% of months (normal operation, not a malfunction); in &gt;10%: 9%. All drawdown episodes deeper than 8%:</p>
-<div class="table-wrap"><table><thead><tr><th>Start</th><th>Trough</th><th>Depth</th></tr></thead><tbody>
-<tr><td>2006-06-30</td><td>2006-09-30</td><td class="neg">-13.0%</td></tr>
-<tr><td>2008-01-31</td><td>2009-04-30</td><td class="neg">-16.6%</td></tr>
-<tr><td>2010-06-30</td><td>2010-06-30</td><td class="neg">-9.4%</td></tr>
-<tr><td>2011-08-31</td><td>2011-12-31</td><td class="neg">-9.5%</td></tr>
-<tr><td>2018-12-31</td><td>2019-01-31</td><td class="neg">-10.5%</td></tr>
-<tr><td>2021-09-30</td><td>2021-09-30</td><td class="neg">-8.3%</td></tr>
-<tr><td>2023-05-31</td><td>2023-10-31</td><td class="neg">-13.1%</td></tr>
-</tbody></table></div>
-
+<h2>V. Walk-Forward &mdash; the test that decides</h2>
+<p>Re-optimising the weights every January on the previous 60 months and holding them for the next
+twelve, repeated across the sample &mdash; 252 months out of sample:</p>
+<div class="table-wrap"><table><thead><tr><th>Rule</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>otimizado</td><td>+28.7%</td><td>1.30</td><td><span class="neg">-23.6%</span></td></tr>
+<tr><td>equal</td><td>+27.2%</td><td>1.48</td><td><span class="neg">-19.9%</span></td></tr>
+<tr class="hl-row"><td>35/40/25</td><td>+28.1%</td><td>1.49</td><td><span class="neg">-19.1%</span></td></tr></tbody></table></div>
+<p><strong>Re-optimising loses.</strong> It gives up 0.18
+of Sharpe against simply holding equal weights and digs a drawdown
+-4.5 points deeper than the fixed 35/40/25. The
+optimiser chases whatever did well in the training window and arrives after it has stopped working.
+A fixed 35/40/25 beats both on every column.</p>
 <div class="divider"></div>
-<h2>VI. Weight Sensitivity</h2>
-<div class="table-wrap"><table><thead><tr><th>Weights</th><th>Sharpe</th><th>Sortino</th><th>CAGR</th><th>MaxDD</th></tr></thead><tbody>
-<tr class="hl-row"><td>1/3 cada (baseline)</td><td>1.52</td><td>3.67</td><td>+27.5%</td><td class="neg">-16.6%</td></tr>
-<tr><td>DE25/CA40/US35</td><td>1.54</td><td>3.82</td><td>+28.7%</td><td class="neg">-16.0%</td></tr>
-<tr><td>DE20/CA50/US30</td><td>1.55</td><td>3.94</td><td>+29.9%</td><td class="neg">-17.1%</td></tr>
-<tr><td>DE50/CA25/US25</td><td>1.42</td><td>3.25</td><td>+25.5%</td><td class="neg">-19.3%</td></tr>
-<tr><td>DE25/CA25/US50</td><td>1.42</td><td>3.34</td><td>+27.3%</td><td class="neg">-15.4%</td></tr>
-<tr><td>sem DE (50/50 CA+US)</td><td>1.45</td><td>3.52</td><td>+31.2%</td><td class="neg">-16.3%</td></tr>
-</tbody></table></div>
-<p>Equal weight is within 0.03 Sharpe of every sensible tilt &mdash; the diversification does the work, not the weights. Dropping Germany entirely costs 0.07 Sharpe and ~1.6pp of MaxDD; overweighting any single sleeve to 50% costs ~0.10. There is nothing to optimize here.</p>
-
+<h2>VI. The Optimal Balance</h2>
+<p><strong>35/40/25 &mdash; USA, Canada, Germany.</strong> It is not the in-sample peak
+(25/50/25 is, by 0.024 of Sharpe,
+a quarter of one standard error). It is the weight that wins the only test that looks forward: Sharpe
+1.49 against 1.30 for the optimiser and
+1.48 for equal weights, with the shallowest drawdown of the three.</p>
+<p>In-sample it delivers CAGR +29.5%, Sharpe 1.44,
+MaxDD -19.5% &mdash; against <span class="neg">-26.0%</span> for the best sleeve
+standing alone. Roughly two thirds of the return of the strongest leg, at half its drawdown.</p>
+<p>Two things this does not say. It does not say 35/40/25 is better than 30/40/30 or 35/45/20 &mdash;
+those are inside the tie and the data cannot separate them. And the drawdowns here are measured on
+month-end values: the intra-month low is worse, by a factor of roughly 1.5 on the one sleeve where daily
+data exists to check it.</p>
 <div class="divider"></div>
-<h2>VII. Calendar Years</h2>
-<div class="table-wrap"><table><thead><tr><th>Year</th><th>Combo</th><th>US</th><th>CA</th><th>DE</th></tr></thead><tbody>
-<tr><td>2006</td><td>+17.3%</td><td class="neg">-3.7%</td><td>+41.1%</td><td>+13.9%</td></tr>
-<tr><td>2007</td><td>+36.8%</td><td>+79.4%</td><td>+40.6%</td><td class="neg">-1.3%</td></tr>
-<tr><td>2008</td><td class="neg">-10.2%</td><td>+0.0%</td><td class="neg">-13.0%</td><td class="neg">-18.2%</td></tr>
-<tr><td>2009</td><td>+25.3%</td><td>+9.8%</td><td>+30.2%</td><td>+34.3%</td></tr>
-<tr><td>2010</td><td>+34.6%</td><td>+12.3%</td><td>+54.2%</td><td>+37.0%</td></tr>
-<tr><td>2011</td><td class="neg">-5.4%</td><td class="neg">-3.4%</td><td>+3.6%</td><td class="neg">-16.8%</td></tr>
-<tr><td>2012</td><td>+29.9%</td><td>+21.1%</td><td>+30.7%</td><td>+36.8%</td></tr>
-<tr><td>2013</td><td>+73.1%</td><td>+64.1%</td><td>+84.4%</td><td>+68.0%</td></tr>
-<tr><td>2014</td><td>+16.5%</td><td>+27.9%</td><td>+17.6%</td><td>+2.3%</td></tr>
-<tr><td>2015</td><td>+26.9%</td><td>+23.3%</td><td>+11.5%</td><td>+46.9%</td></tr>
-<tr><td>2016</td><td>+30.4%</td><td>+18.4%</td><td>+78.2%</td><td>+2.1%</td></tr>
-<tr><td>2017</td><td>+64.3%</td><td>+37.2%</td><td>+79.2%</td><td>+69.7%</td></tr>
-<tr><td>2018</td><td>+9.0%</td><td class="neg">-10.0%</td><td>+25.2%</td><td>+8.2%</td></tr>
-<tr><td>2019</td><td>+21.7%</td><td>+3.7%</td><td>+16.1%</td><td>+47.1%</td></tr>
-<tr><td>2020</td><td>+47.5%</td><td>+71.8%</td><td>+50.6%</td><td>+18.7%</td></tr>
-<tr><td>2021</td><td>+23.3%</td><td>+20.4%</td><td>+29.5%</td><td>+12.6%</td></tr>
-<tr><td>2022</td><td>+6.9%</td><td>+0.2%</td><td>+25.8%</td><td class="neg">-7.9%</td></tr>
-<tr><td>2023</td><td class="neg">-5.6%</td><td>+4.0%</td><td class="neg">-5.9%</td><td class="neg">-16.2%</td></tr>
-<tr><td>2024</td><td>+72.5%</td><td>+116.2%</td><td>+63.0%</td><td>+37.8%</td></tr>
-<tr><td>2025</td><td>+49.6%</td><td>+14.8%</td><td>+82.7%</td><td>+48.4%</td></tr>
-<tr><td>2026</td><td>+31.3%</td><td>+88.7%</td><td>+5.4%</td><td>+7.3%</td></tr>
-</tbody></table></div>
-<p>Mean year +28.4%; 3 negative years in 21 (worst: -10.2% in 2008); best +73.1% (2013).</p>
-
+<h2>VII. Year by Year (35/40/25)</h2>
+<div class="table-wrap"><table><thead><tr><th>Year</th><th>USA</th><th>Canada</th><th>Germany</th><th>Portfolio</th></tr></thead><tbody>
+<tr><td>2000</td><td>+16.9%</td><td>+45.4%</td><td>+21.1%</td><td><strong>+32.5%</strong></td></tr>
+<tr><td>2001</td><td>+0.0%</td><td>-6.3%</td><td>-2.0%</td><td><strong>-3.0%</strong></td></tr>
+<tr><td>2002</td><td>+0.0%</td><td>+51.1%</td><td>-0.1%</td><td><strong>+18.6%</strong></td></tr>
+<tr><td>2003</td><td>+33.0%</td><td>+143.0%</td><td>+58.3%</td><td><strong>+79.2%</strong></td></tr>
+<tr><td>2004</td><td>+14.4%</td><td>+35.3%</td><td>+33.3%</td><td><strong>+28.9%</strong></td></tr>
+<tr><td>2005</td><td>+32.7%</td><td>+29.2%</td><td>+45.7%</td><td><strong>+35.6%</strong></td></tr>
+<tr><td>2006</td><td>-8.5%</td><td>+66.8%</td><td>+42.3%</td><td><strong>+32.6%</strong></td></tr>
+<tr><td>2007</td><td>+81.7%</td><td>+40.7%</td><td>-1.3%</td><td><strong>+42.2%</strong></td></tr>
+<tr><td>2008</td><td>-13.2%</td><td>-9.5%</td><td>-18.2%</td><td><strong>-12.6%</strong></td></tr>
+<tr><td>2009</td><td>+14.8%</td><td>+26.0%</td><td>+34.3%</td><td><strong>+24.7%</strong></td></tr>
+<tr><td>2010</td><td>+20.3%</td><td>+73.6%</td><td>+37.0%</td><td><strong>+45.3%</strong></td></tr>
+<tr><td>2011</td><td>-3.9%</td><td>+1.9%</td><td>-16.8%</td><td><strong>-4.5%</strong></td></tr>
+<tr><td>2012</td><td>+29.1%</td><td>+27.9%</td><td>+36.8%</td><td><strong>+31.0%</strong></td></tr>
+<tr><td>2013</td><td>+46.4%</td><td>+71.2%</td><td>+68.0%</td><td><strong>+62.3%</strong></td></tr>
+<tr><td>2014</td><td>+23.1%</td><td>+5.8%</td><td>+2.3%</td><td><strong>+11.7%</strong></td></tr>
+<tr><td>2015</td><td>-1.0%</td><td>+14.9%</td><td>+46.9%</td><td><strong>+16.5%</strong></td></tr>
+<tr><td>2016</td><td>+13.9%</td><td>+47.2%</td><td>+2.1%</td><td><strong>+24.3%</strong></td></tr>
+<tr><td>2017</td><td>+43.0%</td><td>+91.0%</td><td>+69.7%</td><td><strong>+71.0%</strong></td></tr>
+<tr><td>2018</td><td>-9.7%</td><td>+21.7%</td><td>+8.2%</td><td><strong>+8.5%</strong></td></tr>
+<tr><td>2019</td><td>+4.7%</td><td>+9.9%</td><td>+47.1%</td><td><strong>+17.0%</strong></td></tr>
+<tr><td>2020</td><td>+69.8%</td><td>+51.4%</td><td>+18.7%</td><td><strong>+50.7%</strong></td></tr>
+<tr><td>2021</td><td>+26.4%</td><td>+28.8%</td><td>+12.6%</td><td><strong>+26.7%</strong></td></tr>
+<tr><td>2022</td><td>+11.0%</td><td>+25.9%</td><td>-7.9%</td><td><strong>+13.4%</strong></td></tr>
+<tr><td>2023</td><td>+20.0%</td><td>-14.2%</td><td>-16.2%</td><td><strong>-3.1%</strong></td></tr>
+<tr><td>2024</td><td>+149.8%</td><td>+69.2%</td><td>+37.8%</td><td><strong>+87.5%</strong></td></tr>
+<tr><td>2025</td><td>+51.9%</td><td>+68.0%</td><td>+48.4%</td><td><strong>+60.2%</strong></td></tr>
+<tr><td>2026</td><td>+120.0%</td><td>+5.4%</td><td>+7.3%</td><td><strong>+41.4%</strong></td></tr></tbody></table></div>
+<p>23 of 27 years positive.</p>
 <div class="divider"></div>
-<h2>VIII. Rolling 3-Year Performance</h2>
-<img src="combo_rolling3y.png" alt="Combined portfolio rolling 3-year CAGR" style="width:100%;border-radius:8px;margin:10px 0;border:1px solid var(--border)">
-<p>Mean rolling 3-year CAGR <strong>+25.9%</strong>, range +7.6% to +50.2%, negative in <strong>0.0%</strong> of all 3-year windows.</p>
-
+<h2>VIII. Worst Months</h2>
+<div class="table-wrap"><table><thead><tr><th>Month</th><th>USA</th><th>Canada</th><th>Germany</th><th>Portfolio</th><th>Sleeves down</th></tr></thead><tbody>
+<tr><td>2004-04</td><td>-13.1%</td><td>-14.1%</td><td>-3.2%</td><td><strong>-11.0%</strong></td><td>3/3</td></tr>
+<tr><td>2008-01</td><td>-15.4%</td><td>-0.1%</td><td>-16.9%</td><td><strong>-9.6%</strong></td><td>3/3</td></tr>
+<tr><td>2026-03</td><td>-8.0%</td><td>-18.9%</td><td>+3.5%</td><td><strong>-9.5%</strong></td><td>2/3</td></tr>
+<tr><td>2000-03</td><td>-17.6%</td><td>+1.2%</td><td>-13.4%</td><td><strong>-9.0%</strong></td><td>2/3</td></tr>
+<tr><td>2000-05</td><td>-13.7%</td><td>-1.5%</td><td>-13.8%</td><td><strong>-8.8%</strong></td><td>3/3</td></tr>
+<tr><td>2018-10</td><td>-22.9%</td><td>-0.0%</td><td>-0.0%</td><td><strong>-8.1%</strong></td><td>3/3</td></tr>
+<tr><td>2019-09</td><td>-11.5%</td><td>-11.1%</td><td>+2.0%</td><td><strong>-8.0%</strong></td><td>2/3</td></tr>
+<tr><td>2020-02</td><td>-6.5%</td><td>-11.4%</td><td>-3.8%</td><td><strong>-7.8%</strong></td><td>3/3</td></tr></tbody></table></div>
+<p>Read the last column. Most bad months are one sleeve having a bad time; the months where all
+three fall together are the ones that set the drawdown.</p>
 <div class="divider"></div>
-<h2>IX. Honest Forward Expectations</h2>
-<p>Backtest numbers are in-sample compositions of in-sample strategies. Applying the standard live haircut (expected live Sharpe &asymp; 0.6&ndash;0.75&times; backtest): <strong>expect roughly 15&ndash;20%/year at Sharpe ~1.0&ndash;1.2, and budget for a real MaxDD around &minus;20 to &minus;25%</strong> rather than the backtest's &minus;16.6%. Judge the portfolio against a month-by-month simulated track, over 3+ year horizons &mdash; any single year between &minus;10% and +40% is within script.</p>
-
-<div class="divider"></div>
-<h2>XI. Germany Sleeve: N=10 vs N=20</h2>
-<div class="table-wrap"><table><thead><tr><th>Variant</th><th>Sharpe</th><th>CAGR</th><th>Ann. vol</th><th>MaxDD</th></tr></thead><tbody>
-<tr><td>Germany sleeve N=10 (standalone)</td><td>0.76</td><td>+18.4%</td><td>20.2%</td><td class="neg">-39.1%</td></tr>
-<tr><td>Germany sleeve N=20 (standalone)</td><td>0.88</td><td>+17.4%</td><td>16.3%</td><td class="neg">-27.8%</td></tr>
-<tr class="hl-row"><td>Combo with DE N=10 (operational choice)</td><td>1.52</td><td>+27.5%</td><td>16.1%</td><td class="neg">-16.6%</td></tr>
-<tr><td>Combo with DE N=20</td><td>1.54</td><td>+27.0%</td><td>15.5%</td><td class="neg">-15.2%</td></tr>
-</tbody></table></div>
-<p>Standalone, N=10 is clearly worse for the German sleeve (MaxDD &minus;39% vs &minus;28%). At the combo level the difference nearly vanishes &mdash; 0.02 of Sharpe and 1.4pp of MaxDD &mdash; because the extra idiosyncratic risk diversifies away (N=10's correlations to the other sleeves are even slightly lower). N=10 is the operational choice: buy the top-10 of the published top-20 at 10% each.</p>
-<h3 style="margin-top:18px">Distribution detail (combo)</h3>
-<div class="table-wrap"><table><thead><tr><th></th><th>DE N=10</th><th>DE N=20</th></tr></thead><tbody>
-<tr><td>Mean monthly return</td><td>+2.15%</td><td>+2.11%</td></tr>
-<tr><td>Monthly standard deviation</td><td>4.66%</td><td>4.48%</td></tr>
-<tr><td>Annualized volatility</td><td>16.1%</td><td>15.5%</td></tr>
-<tr><td>Worst month</td><td class="neg">-7.5%</td><td class="neg">-8.2%</td></tr>
-<tr><td>Best month</td><td>+20.7%</td><td>+18.4%</td></tr>
-<tr><td>Months positive</td><td>62%</td><td>62%</td></tr>
-</tbody></table></div>
-
-<div class="divider"></div>
-<h2>XII. Monthly Returns Over Time</h2>
-<img src="combo_monthly_bars.png" alt="Combined portfolio monthly returns with sigma bands" style="width:100%;border-radius:8px;margin:10px 0;border:1px solid var(--border)">
-<p>Every monthly return of the combo (DE N=10 variant), with &plusmn;1&sigma; (dashed) and &plusmn;2&sigma; (dotted) bands around the mean. Full month-by-month table:</p>
-<div class="table-wrap"><table><thead><tr><th>Year</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th><th>Year</th></tr></thead><tbody>
-<tr><td>2006</td><td></td><td></td><td>+7.0</td><td>+3.8</td><td class="neg">-6.5</td><td class="neg">-3.7</td><td class="neg">-0.2</td><td>+1.6</td><td class="neg">-4.7</td><td>+8.6</td><td>+1.5</td><td>+10.2</td><td>+17.3</td></tr>
-<tr><td>2007</td><td>+2.6</td><td>+0.3</td><td>+2.3</td><td>+6.1</td><td>+7.7</td><td>+2.7</td><td>+1.9</td><td>+0.6</td><td>+3.5</td><td>+9.1</td><td class="neg">-6.5</td><td>+2.4</td><td>+36.8</td></tr>
-<tr><td>2008</td><td class="neg">-5.7</td><td class="neg">-0.1</td><td class="neg">-0.5</td><td>+0.2</td><td>+0.9</td><td class="neg">-1.2</td><td class="neg">-3.8</td><td class="neg">-0.1</td><td>+-0.0</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td class="neg">-10.2</td></tr>
-<tr><td>2009</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td class="neg">-2.8</td><td>+5.6</td><td>+0.9</td><td>+3.6</td><td>+1.8</td><td>+6.8</td><td>+0.4</td><td>+7.4</td><td class="neg">-0.2</td><td>+25.3</td></tr>
-<tr><td>2010</td><td class="neg">-1.9</td><td>+5.6</td><td>+9.7</td><td>+4.8</td><td class="neg">-5.2</td><td class="neg">-4.4</td><td>+4.2</td><td>+1.1</td><td>+2.8</td><td>+6.1</td><td>+5.7</td><td>+2.5</td><td>+34.6</td></tr>
-<tr><td>2011</td><td class="neg">-1.4</td><td>+5.9</td><td class="neg">-0.9</td><td>+0.2</td><td class="neg">-0.9</td><td class="neg">-1.8</td><td>+-0.0</td><td class="neg">-5.3</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td>+-0.0</td><td class="neg">-0.8</td><td class="neg">-5.4</td></tr>
-<tr><td>2012</td><td>+3.2</td><td>+6.6</td><td>+3.0</td><td>+1.2</td><td class="neg">-3.5</td><td>+0.4</td><td>+3.0</td><td>+1.7</td><td>+3.0</td><td>+1.2</td><td>+4.5</td><td>+2.5</td><td>+29.9</td></tr>
-<tr><td>2013</td><td>+7.2</td><td>+4.3</td><td>+6.5</td><td>+0.5</td><td>+2.6</td><td class="neg">-2.0</td><td>+8.4</td><td>+2.9</td><td>+9.6</td><td>+10.1</td><td>+4.4</td><td>+2.4</td><td>+73.1</td></tr>
-<tr><td>2014</td><td>+2.2</td><td>+6.0</td><td>+3.5</td><td class="neg">-1.6</td><td>+6.5</td><td class="neg">-0.2</td><td class="neg">-6.1</td><td>+2.0</td><td>+1.6</td><td class="neg">-1.1</td><td>+2.3</td><td>+1.0</td><td>+16.5</td></tr>
-<tr><td>2015</td><td>+4.7</td><td>+9.1</td><td>+6.4</td><td class="neg">-1.7</td><td>+6.7</td><td class="neg">-0.3</td><td>+3.4</td><td class="neg">-5.5</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td>+1.1</td><td>+1.1</td><td>+26.9</td></tr>
-<tr><td>2016</td><td class="neg">-0.1</td><td>+-0.0</td><td>+1.2</td><td>+4.0</td><td>+1.9</td><td>+7.7</td><td>+5.6</td><td class="neg">-1.0</td><td>+4.0</td><td class="neg">-3.8</td><td>+3.1</td><td>+4.8</td><td>+30.4</td></tr>
-<tr><td>2017</td><td>+15.1</td><td>+1.2</td><td>+3.4</td><td>+1.4</td><td>+9.0</td><td class="neg">-0.6</td><td>+0.8</td><td class="neg">-1.0</td><td>+6.3</td><td>+4.0</td><td>+3.6</td><td>+8.7</td><td>+64.3</td></tr>
-<tr><td>2018</td><td>+0.9</td><td>+3.6</td><td class="neg">-2.0</td><td>+0.3</td><td>+4.2</td><td>+5.1</td><td class="neg">-4.9</td><td>+13.1</td><td>+0.6</td><td class="neg">-7.5</td><td class="neg">-0.1</td><td class="neg">-3.1</td><td>+9.0</td></tr>
-<tr><td>2019</td><td class="neg">-0.1</td><td>+1.7</td><td>+4.8</td><td class="neg">-0.9</td><td>+1.8</td><td>+3.0</td><td>+0.9</td><td>+1.4</td><td class="neg">-6.5</td><td>+4.1</td><td>+3.3</td><td>+6.9</td><td>+21.7</td></tr>
-<tr><td>2020</td><td>+0.8</td><td class="neg">-6.7</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td>+10.7</td><td>+7.2</td><td>+9.4</td><td>+5.6</td><td class="neg">-2.3</td><td>+4.6</td><td>+12.5</td><td>+47.5</td></tr>
-<tr><td>2021</td><td>+10.6</td><td>+20.7</td><td>+0.1</td><td class="neg">-2.9</td><td>+1.5</td><td class="neg">-0.9</td><td class="neg">-3.7</td><td class="neg">-0.8</td><td class="neg">-1.6</td><td>+5.3</td><td class="neg">-3.8</td><td class="neg">-0.8</td><td>+23.3</td></tr>
-<tr><td>2022</td><td>+2.5</td><td>+5.1</td><td class="neg">-0.1</td><td>+1.3</td><td>+0.0</td><td>+-0.0</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td class="neg">-0.1</td><td>+0.9</td><td class="neg">-2.5</td><td>+6.9</td></tr>
-<tr><td>2023</td><td>+0.1</td><td class="neg">-5.2</td><td>+1.7</td><td class="neg">-2.2</td><td class="neg">-4.0</td><td>+4.0</td><td>+5.0</td><td class="neg">-5.1</td><td class="neg">-1.7</td><td class="neg">-3.3</td><td>+3.6</td><td>+2.2</td><td class="neg">-5.6</td></tr>
-<tr><td>2024</td><td>+12.7</td><td>+18.8</td><td>+7.2</td><td>+1.2</td><td>+9.3</td><td class="neg">-1.5</td><td class="neg">-3.5</td><td>+1.5</td><td>+6.7</td><td>+2.9</td><td>+7.5</td><td class="neg">-4.7</td><td>+72.5</td></tr>
-<tr><td>2025</td><td>+7.8</td><td class="neg">-1.3</td><td>+0.7</td><td>+3.4</td><td>+2.8</td><td class="neg">-1.0</td><td>+9.9</td><td>+2.8</td><td>+16.3</td><td>+1.1</td><td class="neg">-4.5</td><td>+4.6</td><td>+49.6</td></tr>
-<tr><td>2026</td><td>+11.8</td><td>+10.4</td><td class="neg">-7.1</td><td>+14.5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>+31.3</td></tr>
-</tbody></table></div>
-
-<div class="divider"></div>
-<h2>X. Limitations</h2>
+<h2>IX. Provenance and Limitations</h2>
 <ol class="steps">
-<li><strong>Common window starts 2006</strong> (USA series); Canada/Germany sleeve numbers over this window differ slightly from their full-sample (2000+) headline figures.</li>
-<li><strong>Each sleeve's own caveats compound here</strong>: Canada/Germany pre-2015-ish survivorship, capacity limits (CA/DE sub-$2M sleeves), multi-market selection bias.</li>
-<li><strong>Correlations are regime-dependent</strong> &mdash; the 0.2 averages have ranged to 0.65 in 3-year stretches.</li>
-<li><strong>Germany sleeve here is N=10</strong> (top-10 of the published top-20, 10% each) &mdash; the operational choice; N=20 gives a near-identical combo (Sharpe 1.54, MaxDD &minus;15.2%).</li>
+<li><strong>Canada</strong> uses the harness series that the strategy publishes: CAGR +33.8%, Sharpe 1.19,
+MaxDD &minus;26.0% &mdash; reproduced here exactly. The previous version of this report used a series with
+a look-ahead in the NetIncome filter (it read the quarter's results on the day the quarter closed), which
+showed &minus;24.5% and about 3pp more CAGR.</li>
+<li><strong>Germany</strong> uses the live N=10 config with no liquidity filter: +19.1%, 0.72,
+&minus;39.1%, reproduced exactly. The previous version used a fourth variant that exists nowhere else.</li>
+<li><strong>USA does not reproduce exactly.</strong> The series here reads
++25.3%/0.85/-35.5% against the published
++25.6%/0.87/&minus;33.2%. The Sharpe matches to the decimal; the CAGR is 0.5pp and the drawdown 2.3pp
+apart, and I could not locate which script produced the published pair. Treat the USA leg as
+approximate.</li>
+<li><strong>All weights are chosen in-sample</strong> over the same history the sleeves were built on.
+The walk-forward in Section&nbsp;V is the mitigation, not a cure.</li>
+<li><strong>Month-end drawdowns understate the experience.</strong></li>
+<li><strong>The tail correlations are a sample, not a law.</strong> One systemic crash is in this window
+(2008); the diversification held then, which is one observation.</li>
 </ol>
-
 <div class="footer">
 <p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice.</p>
 </div>
