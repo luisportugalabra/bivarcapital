@@ -45,7 +45,7 @@ ol.steps{margin:8px 0 8px 20px;color:var(--secondary);font-size:.84rem}ol.steps 
 <a href="/germany-momentum.html" style="color:var(--accent)">Germany</a> (top 10 XETRA) &mdash; combined.
 2000-01 to 2026-04, 316 months. Rebuilt 2026-09-20 from the series each strategy publishes, after the
 previous version was found to be running a Canada series contaminated by a look-ahead in the fundamental
-filter and a Germany variant that no longer exists. Every sleeve's own caveats carry through: survivorship
+filter, and over a window starting in 2006 rather than 2000. Every sleeve's own caveats carry through: survivorship
 windows, capacity limits, in-sample config selection.</p>
 <div class="divider"></div>
 <h2>I. The Three Sleeves</h2>
@@ -181,7 +181,7 @@ MaxDD &minus;26.0% &mdash; reproduced here exactly. The previous version of this
 a look-ahead in the NetIncome filter (it read the quarter's results on the day the quarter closed), which
 showed &minus;24.5% and about 3pp more CAGR.</li>
 <li><strong>Germany</strong> uses the live N=10 config with no liquidity filter: +19.1%, 0.72,
-&minus;39.1%, reproduced exactly. The previous version used a fourth variant that exists nowhere else.</li>
+&minus;39.1%, reproduced exactly. The previous version of this report ran the same configuration; over its shorter 2006&ndash;2026 window that series reads +18.4%/0.76/&minus;39.1%, which reproduces here to the decimal. The Germany leg was never the problem.</li>
 <li><strong>USA does not reproduce exactly.</strong> The series here reads
 +25.3%/0.85/-35.5% against the published
 +25.6%/0.87/&minus;33.2%. The Sharpe matches to the decimal; the CAGR is 0.5pp and the drawdown 2.3pp
