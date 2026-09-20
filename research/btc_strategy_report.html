@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bitcoin Trend Strategy — Bivar Capital</title>
+<title>Bitcoin Trend Strategy (v1, superseded) — Bivar Capital</title>
 <meta property="og:title" content="Bitcoin Trend Strategy — Bivar Capital">
 <meta property="og:description" content="BTC trend-following. RSI + MA155 + Vol filter. Sharpe 1.71, CAGR +75.9%.">
 <meta property="og:image" content="https://bivarcapital.com/og-image.png">
@@ -76,10 +76,8 @@ p.note strong{color:var(--text)}
     <a href="/" style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--text);text-decoration:none">Bivar Capital</a>
     <nav style="display:flex;align-items:center;gap:24px">
       <a href="/" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">Home</a>
-      <a href="/strategies.html" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">Strategies</a>
-      <a href="/about.html" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">About</a>
-      <a href="#" onclick="event.preventDefault();var t=this;if(t.dataset.busy)return;t.dataset.busy='1';var o=t.textContent;t.textContent='Coming Soon';t.style.opacity='.6';setTimeout(function(){t.textContent=o;t.style.opacity='1';delete t.dataset.busy;},1600);" style="background:var(--accent);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none">Get Access</a>
-    </nav>
+      <a href="/strategies.html" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">Equities</a><a href="/crypto.html" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">Crypto</a>
+      <a href="/about.html" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase">About</a><a href="#" id="nav-signin" class="accent">Sign In</a><a href="#" onclick="event.preventDefault();var t=this;if(t.dataset.busy)return;t.dataset.busy='1';var o=t.textContent;t.textContent='Coming Soon';t.style.opacity='.6';setTimeout(function(){t.textContent=o;t.style.opacity='1';delete t.dataset.busy;},1600);" id="nav-signup" style="background:var(--accent,#c4a265);color:#060608;padding:6px 14px;border-radius:5px;font-weight:700;font-size:0.6rem;margin-left:12px;text-decoration:none">Get Access</a><span id="nav-user" style="display:none;margin-left:16px;padding-left:16px;border-left:1px solid #1a1a22"><span id="nav-email" style="font-size:.6rem;color:#5a5a68"></span><a href="#" id="nav-signout" style="font-size:.6rem;color:#f87171;margin-left:12px;text-decoration:none">Sign Out</a></span></nav>
   </div>
 </header>
 
