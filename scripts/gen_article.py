@@ -4,9 +4,9 @@ D=json.load(open('article_data.json')); C=json.load(open('art_charts.json'))
 shell=open(f'{SITE}/research/germany_momentum_sensitivity.html').read()
 head=shell[:shell.find('<p class="lead"')]
 head=head.replace('Germany Momentum<span class="it">Parameter sensitivity analysis</span>',
-                  'The Regime Filter<span class="it">130 rules, three markets, and why we changed nothing</span>')
+                  'The Regime Filter<span class="it">130 rules across three markets</span>')
 import re
-head=re.sub(r'(<title>)[^<]*(</title>)', r'\1Does the Regime Filter Work? — Bivar Capital\2', head)
+head=re.sub(r'(<title>)[^<]*(</title>)', r'\1Testing the Regime Filter — Bivar Capital\2', head)
 head=re.sub(r'(content=")[^"]*(")', lambda m: m.group(1)+'We tested 130 ways to time three momentum strategies. The filters already running won in two of three, re-optimising lost everywhere, and two of our own results turned out to be look-ahead.'+m.group(2), head, count=3)
 tail='\n<div class="footer">\n<p>Bivar Capital &mdash; Quantitative Research. Backtested performance, not a guarantee of future results, not investment advice.</p>\n</div>\n\n</div>\n</body>\n</html>\n'
 MK=['USA','ALEMANHA','CANADA']; EN={'USA':'USA','ALEMANHA':'Germany','CANADA':'Canada'}
