@@ -4,7 +4,7 @@
   "dax": 25304.1,
   "dax_ma200": 24771.5,
   "pct_above_ma": 2.2,
-  "total_eligible": 182,
+  "total_eligible": 210,
   "portfolio": [
     {
       "rank": 1,
@@ -374,7 +374,7 @@
       "rank": 1,
       "ticker": "SNG",
       "name": "SINGULUS TECHNOLOGIES AG",
-      "ret_12m": 473.04,
+      "ret_12m": 454.23,
       "mcap_b": 0.081,
       "selected": true
     },
@@ -382,7 +382,7 @@
       "rank": 2,
       "ticker": "VBK",
       "name": "Verbio SE",
-      "ret_12m": 169.86,
+      "ret_12m": 176.77,
       "mcap_b": 1.948,
       "selected": true
     },
@@ -390,7 +390,7 @@
       "rank": 3,
       "ticker": "OHB",
       "name": "OHB SE",
-      "ret_12m": 169.62,
+      "ret_12m": 172.7,
       "mcap_b": 3.634,
       "selected": true
     },
@@ -398,7 +398,7 @@
       "rank": 4,
       "ticker": "S92",
       "name": "SMA Solar Technology AG",
-      "ret_12m": 155.63,
+      "ret_12m": 148.87,
       "mcap_b": 1.971,
       "selected": true
     },
@@ -406,7 +406,7 @@
       "rank": 5,
       "ticker": "AIXA",
       "name": "AIXTRON SE",
-      "ret_12m": 151.22,
+      "ret_12m": 146.24,
       "mcap_b": 4.252,
       "selected": true
     },
@@ -414,40 +414,40 @@
       "rank": 6,
       "ticker": "DR0",
       "name": "Deutsche Rohstoff AG",
-      "ret_12m": 137.27,
+      "ret_12m": 142.76,
       "mcap_b": 0.442,
       "selected": true
     },
     {
       "rank": 7,
-      "ticker": "JEN",
-      "name": "Jenoptik AG",
-      "ret_12m": 132.15,
-      "mcap_b": 2.263,
-      "selected": true
-    },
-    {
-      "rank": 8,
-      "ticker": "SMHN",
-      "name": "SUSS MicroTec SE",
-      "ret_12m": 129.68,
-      "mcap_b": 1.301,
-      "selected": true
-    },
-    {
-      "rank": 9,
       "ticker": "SZG",
       "name": "Salzgitter AG",
-      "ret_12m": 121.7,
+      "ret_12m": 136.55,
       "mcap_b": 3.095,
       "selected": true
     },
     {
-      "rank": 10,
+      "rank": 8,
       "ticker": "M7U",
       "name": "Nynomic AG",
-      "ret_12m": 120.1,
+      "ret_12m": 130.62,
       "mcap_b": 0.151,
+      "selected": true
+    },
+    {
+      "rank": 9,
+      "ticker": "JEN",
+      "name": "Jenoptik AG",
+      "ret_12m": 127.21,
+      "mcap_b": 2.263,
+      "selected": true
+    },
+    {
+      "rank": 10,
+      "ticker": "SMHN",
+      "name": "SUSS MicroTec SE",
+      "ret_12m": 125.46,
+      "mcap_b": 1.301,
       "selected": true
     },
     {
@@ -462,7 +462,7 @@
       "rank": 12,
       "ticker": "NDX1",
       "name": "Nordex SE",
-      "ret_12m": 89.04,
+      "ret_12m": 87.4,
       "mcap_b": 9.314,
       "selected": false
     },
@@ -470,28 +470,20 @@
       "rank": 13,
       "ticker": "INH",
       "name": "INDUS Holding AG",
-      "ret_12m": 85.41,
+      "ret_12m": 85.17,
       "mcap_b": 1.007,
       "selected": false
     },
     {
       "rank": 14,
-      "ticker": "2GB",
-      "name": "2G Energy AG",
-      "ret_12m": 80.41,
-      "mcap_b": 1.035,
+      "ticker": "BAYN",
+      "name": "Bayer AG",
+      "ret_12m": 78.3,
+      "mcap_b": 47.245,
       "selected": false
     },
     {
       "rank": 15,
-      "ticker": "NDA",
-      "name": "Aurubis AG",
-      "ret_12m": 77.65,
-      "mcap_b": 7.295,
-      "selected": false
-    },
-    {
-      "rank": 16,
       "ticker": "WAF",
       "name": "Siltronic AG",
       "ret_12m": 76.09,
@@ -499,75 +491,83 @@
       "selected": false
     },
     {
+      "rank": 16,
+      "ticker": "TKA",
+      "name": "thyssenkrupp AG",
+      "ret_12m": 76.02,
+      "mcap_b": 9.459,
+      "selected": false
+    },
+    {
       "rank": 17,
-      "ticker": "BAYN",
-      "name": "Bayer AG",
-      "ret_12m": 75.06,
-      "mcap_b": 47.245,
+      "ticker": "NDA",
+      "name": "Aurubis AG",
+      "ret_12m": 75.09,
+      "mcap_b": 7.295,
       "selected": false
     },
     {
       "rank": 18,
-      "ticker": "TKA",
-      "name": "thyssenkrupp AG",
-      "ret_12m": 74.93,
-      "mcap_b": 9.459,
+      "ticker": "2GB",
+      "name": "2G Energy AG",
+      "ret_12m": 74.47,
+      "mcap_b": 1.035,
       "selected": false
     },
     {
       "rank": 19,
       "ticker": "RWE",
       "name": "RWE AG",
-      "ret_12m": 74.85,
+      "ret_12m": 73.34,
       "mcap_b": 47.142,
       "selected": false
     },
     {
       "rank": 20,
-      "ticker": "LPK",
-      "name": "LPKF Laser & Electronics SE",
-      "ret_12m": 73.46,
-      "mcap_b": 0.303,
-      "selected": false
-    },
-    {
-      "rank": 21,
       "ticker": "ELG",
       "name": "Elmos Semiconductor SE",
-      "ret_12m": 72.87,
+      "ret_12m": 71.89,
       "mcap_b": 2.334,
       "selected": false
     },
     {
+      "rank": 21,
+      "ticker": "LPK",
+      "name": "LPKF Laser & Electronics SE",
+      "ret_12m": 69.24,
+      "mcap_b": 0.303,
+      "selected": false
+    },
+    {
       "rank": 22,
-      "ticker": "HOT",
-      "name": "HOCHTIEF Aktiengesellschaft",
-      "ret_12m": 71.79,
-      "mcap_b": 29.757,
+      "ticker": "93M1",
+      "name": "MPH Health Care AG",
+      "ret_12m": 68.54,
+      "mcap_b": 0.113,
       "selected": false
     },
     {
       "rank": 23,
-      "ticker": "IFX",
-      "name": "Infineon Technologies AG",
-      "ret_12m": 67.11,
-      "mcap_b": 72.695,
+      "ticker": "HOT",
+      "name": "HOCHTIEF Aktiengesellschaft",
+      "ret_12m": 68.49,
+      "mcap_b": 29.757,
       "selected": false
     },
     {
       "rank": 24,
-      "ticker": "DRW8",
-      "name": "Draegerwerk AG & Co. KGaA",
-      "ret_12m": 62.09,
-      "mcap_b": 1.852,
+      "ticker": "IFX",
+      "name": "Infineon Technologies AG",
+      "ret_12m": 64.53,
+      "mcap_b": 72.695,
       "selected": false
     },
     {
       "rank": 25,
-      "ticker": "A1OS",
-      "name": "All for One Group SE",
-      "ret_12m": 55.71,
-      "mcap_b": 0.339,
+      "ticker": "DRW8",
+      "name": "Draegerwerk AG & Co. KGaA",
+      "ret_12m": 61.33,
+      "mcap_b": 1.852,
       "selected": false
     },
     {
@@ -580,34 +580,34 @@
     },
     {
       "rank": 27,
-      "ticker": "DHL",
-      "name": "DHL AG",
-      "ret_12m": 53.16,
-      "mcap_b": 62.678,
+      "ticker": "A1OS",
+      "name": "All for One Group SE",
+      "ret_12m": 55.25,
+      "mcap_b": 0.339,
       "selected": false
     },
     {
       "rank": 28,
-      "ticker": "ERAG",
-      "name": "Ernst Russ AG",
-      "ret_12m": 50.97,
-      "mcap_b": 0.337,
-      "selected": false
-    },
-    {
-      "rank": 29,
       "ticker": "SFQ",
       "name": "SAF-HOLLAND SE",
-      "ret_12m": 50.35,
+      "ret_12m": 55.13,
       "mcap_b": 1.001,
       "selected": false
     },
     {
+      "rank": 29,
+      "ticker": "ERAG",
+      "name": "Ernst Russ AG",
+      "ret_12m": 53.23,
+      "mcap_b": 0.337,
+      "selected": false
+    },
+    {
       "rank": 30,
-      "ticker": "GFT",
-      "name": "GFT Technologies SE",
-      "ret_12m": 48.44,
-      "mcap_b": 0.687,
+      "ticker": "M12",
+      "name": "M1 Kliniken AG",
+      "ret_12m": 52.54,
+      "mcap_b": 0.35,
       "selected": false
     }
   ],

@@ -64,7 +64,7 @@ DATA_PATH      = os.path.join(SITE_DIR, "germany-momentum-data.json")
 PORTFOLIO_PATH = os.path.join(SITE_DIR, "germany-momentum-portfolio.json")
 
 MCAP_PCT       = 0.30   # keep top 70% by market cap (percentile, not absolute floor)
-MIN_ADV_EUR    = 100_000  # 60-day average euro volume floor (2026-09-18)
+MIN_ADV_EUR    = 50_000   # 60-day average euro volume floor (2026-09-20: 100k->50k)
 TOP_N          = 10   # 2026-09-18: 20->10 (backtest: mesmo CAGR, menos ordens; c/ filtro ADV o N=10 aguenta melhor)
 MA_W           = 200
 CONFIG_VERSION = "v3-2026-08-26-de-only"   # v3: German-domiciled companies only;
@@ -79,7 +79,8 @@ TODAY = date.today().isoformat()
 def fetch_germany():
     print("Fetching TradingView data (Germany XETRA)...")
     _, df = (Query()
-        .select('name', 'description', 'market_cap_basic', 'close', 'Perf.Y', 'type', 'typespecs', 'country', 'average_volume_60d_calc')
+        .select('name', 'description', 'market_cap_basic', 'close', 'Perf.Y', 'type', 'typespecs', 'country',
+                 'average_volume_60d_calc', 'average_volume_30d_calc', 'volume')
         .where(
             col('type') == 'stock',
             col('typespecs').has('common'),
@@ -118,11 +119,24 @@ def fetch_germany():
     # EUR20k position (Netfonds EUR2.3k/day = 884% of ADV, Nuernberger 197%,
     # Grammer 64%). At EUR100k the backtest gives 19.6% CAGR vs 20.5% unfiltered
     # -- the whole cost is 0.9pp and it removes names that cannot be bought.
-    df['adv_eur'] = (pd.to_numeric(df['average_volume_60d_calc'], errors='coerce')
-                     * pd.to_numeric(df['close'], errors='coerce'))
+    # A missing 60-day average is not evidence of illiquidity, and NaN >= floor
+    # is False, so taking the field at face value drops the name silently. On
+    # 2026-09-20 that was 5 of 270 German names, among them Alzchem (EUR1.7B,
+    # 23k shares traded that day) purely for a missing average. Fall back to the
+    # 30-day average, then to the session's own turnover, and only drop a name
+    # once none of the three exist -- and say which ones.
+    px = pd.to_numeric(df['close'], errors='coerce')
+    adv = pd.to_numeric(df.get('average_volume_60d_calc'), errors='coerce') * px
+    for fb in ('average_volume_30d_calc', 'volume'):
+        if fb in df.columns:
+            adv = adv.fillna(pd.to_numeric(df[fb], errors='coerce') * px)
+    df['adv_eur'] = adv
+    no_data = df[df['adv_eur'].isna()]
+    if len(no_data):
+        print(f"  No volume data at all, dropped: {', '.join(no_data['code'].astype(str))}")
     before = len(df)
     df = df[df['adv_eur'] >= MIN_ADV_EUR].copy()
-    print(f"  Above ADV EUR{MIN_ADV_EUR:,.0f}/day (60d): {len(df)} (dropped {before - len(df)})")
+    print(f"  Above ADV EUR{MIN_ADV_EUR:,.0f}/day: {len(df)} (dropped {before - len(df)})")
 
     return df.reset_index(drop=True), universe_health, broad_prices
 
