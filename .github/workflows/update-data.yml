@@ -31,15 +31,6 @@ jobs:
         working-directory: scripts
         run: python download_tv.py
 
-      - name: Run VC2 processing
-        continue-on-error: true
-        working-directory: scripts
-        run: python vc2_trending_value.py
-
-      - name: Copy wizard-data.json to repo root
-        continue-on-error: true
-        run: cp scripts/wizard-data.json wizard-data.json
-
       - name: Update momentum signal
         continue-on-error: true
         run: python scripts/momentum_signal.py
