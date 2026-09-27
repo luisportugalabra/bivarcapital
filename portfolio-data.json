@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26 01:20 UTC",
+  "updated": "2026-09-27 01:13 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -48,8 +48,8 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 27.33,
-          "mkt_value": 51079.19,
+          "price": 27.35,
+          "mkt_value": 51119.95,
           "weight": 5.0
         },
         {
@@ -76,8 +76,8 @@
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 41.11,
-          "mkt_value": 37413.88,
+          "price": 41.15,
+          "mkt_value": 37443.74,
           "weight": 3.7
         },
         {
@@ -153,8 +153,8 @@
         {
           "ticker": "WISE",
           "qty": 1000.0,
-          "price": 11.49,
-          "mkt_value": 11489.96,
+          "price": 11.5,
+          "mkt_value": 11496.05,
           "weight": 1.1
         },
         {
@@ -172,7 +172,7 @@
           "weight": 0.6
         }
       ],
-      "total_value": 1021617.11,
+      "total_value": 1021693.82,
       "n_positions": 24,
       "ytd_2026": 8.5
     },
@@ -421,6 +421,10 @@
   },
   "activity": [
     {
+      "date": "Sep 27",
+      "text": "Prices updated from market close"
+    },
+    {
       "date": "Sep 26",
       "text": "Prices updated from market close"
     },
@@ -434,10 +438,6 @@
     },
     {
       "date": "Sep 23",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Sep 22",
       "text": "Prices updated from market close"
     }
   ]
