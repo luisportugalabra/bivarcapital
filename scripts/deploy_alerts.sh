@@ -19,8 +19,8 @@ done
 
 echo
 echo "Deployed. Two steps left:"
-echo "  1. Run supabase/migrations/20260918_momentum_alert_crons.sql in the SQL editor"
-echo "     (nothing to edit -- it reads the bearer token off the BTC cron job)."
+echo "  1. Run supabase/migrations/20260918_momentum_alert_crons.sql and"
+echo "     20260929_momentum_subscribers.sql in the SQL editor."
 echo "  2. Smoke-test each one; ?test=1 sends to the admin chat only and writes nothing:"
 echo
 # btc-signal is deliberately NOT here. It is live and already working; a

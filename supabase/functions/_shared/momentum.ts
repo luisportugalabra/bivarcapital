@@ -17,7 +17,7 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL = "https://efiyeiwdywodjxxnslvu.supabase.co";
-const BOT_TOKEN = "8528820380:AAHNc3wBp_Nm2DCKunZurOGRRvi2e3fJ-MI";
+const BOT_TOKEN = "8898288130:AAETRzPyVxq6ppuSAGWEKimRCt4r9pQlQRI";
 const ADMIN_CHAT_ID = 5151262026;
 const RAW = "https://raw.githubusercontent.com/luisportugalabra/bivarcapital/main";
 // How long after a rebalance a missed-lock-in alert may still go out.
@@ -187,7 +187,7 @@ export async function handle(req: Request, cfg: Cfg): Promise<Response> {
 
     let chatIds: number[] = [ADMIN_CHAT_ID];
     if (client) {
-      const { data: subs } = await client.from("telegram_subscribers")
+      const { data: subs } = await client.from("momentum_subscribers")
         .select("chat_id").eq("status", "approved");
       chatIds = subs?.map((s: any) => s.chat_id) || [];
     }
