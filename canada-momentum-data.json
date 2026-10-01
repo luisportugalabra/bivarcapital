@@ -4,7 +4,7 @@
   "tsx": 35235.9,
   "tsx_ma75": 35720.8,
   "pct_above_ma": -1.4,
-  "total_eligible": 346,
+  "total_eligible": 347,
   "portfolio": [],
   "top20": [
     {
@@ -13,7 +13,7 @@
       "name": "Tidewater Renewables Ltd.",
       "ret_12m": 432.08,
       "net_income_ttm_m": 0.3,
-      "mcap_b": 0.871,
+      "mcap_b": 0.879,
       "weight": null,
       "selected": false
     },
@@ -23,7 +23,7 @@
       "name": "Orvana Minerals Corp.",
       "ret_12m": 266.13,
       "net_income_ttm_m": 25.9,
-      "mcap_b": 0.313,
+      "mcap_b": 0.31,
       "weight": null,
       "selected": false
     },
@@ -33,7 +33,7 @@
       "name": "Amerigo Resources Ltd",
       "ret_12m": 226.12,
       "net_income_ttm_m": 79.7,
-      "mcap_b": 1.427,
+      "mcap_b": 1.411,
       "weight": null,
       "selected": false
     },
@@ -43,7 +43,7 @@
       "name": "Liberty Gold Corp",
       "ret_12m": 223.44,
       "net_income_ttm_m": 28.6,
-      "mcap_b": 1.14,
+      "mcap_b": 1.134,
       "weight": null,
       "selected": false
     },
@@ -53,7 +53,7 @@
       "name": "Tenaz Energy Corp",
       "ret_12m": 214.96,
       "net_income_ttm_m": 110.3,
-      "mcap_b": 2.05,
+      "mcap_b": 2.048,
       "weight": null,
       "selected": false
     },
@@ -63,7 +63,7 @@
       "name": "Cavvy Energy Ltd",
       "ret_12m": 205.48,
       "net_income_ttm_m": 8.0,
-      "mcap_b": 0.65,
+      "mcap_b": 0.661,
       "weight": null,
       "selected": false
     },
@@ -73,7 +73,7 @@
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 188.63,
       "net_income_ttm_m": 18.4,
-      "mcap_b": 0.315,
+      "mcap_b": 0.319,
       "weight": null,
       "selected": false
     },
@@ -83,7 +83,7 @@
       "name": "Bird Construction Inc.",
       "ret_12m": 176.2,
       "net_income_ttm_m": 59.4,
-      "mcap_b": 4.46,
+      "mcap_b": 4.545,
       "weight": null,
       "selected": false
     },
@@ -93,7 +93,7 @@
       "name": "D-BOX Technologies Inc. Class A",
       "ret_12m": 152.87,
       "net_income_ttm_m": 18.4,
-      "mcap_b": 0.252,
+      "mcap_b": 0.245,
       "weight": null,
       "selected": false
     },
@@ -103,7 +103,7 @@
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 147.16,
       "net_income_ttm_m": 155.5,
-      "mcap_b": 5.547,
+      "mcap_b": 5.518,
       "weight": null,
       "selected": false
     },
@@ -113,7 +113,7 @@
       "name": "Saturn Oil & Gas Inc.",
       "ret_12m": 146.79,
       "net_income_ttm_m": 45.5,
-      "mcap_b": 1.196,
+      "mcap_b": 1.23,
       "weight": null,
       "selected": false
     },
@@ -123,7 +123,7 @@
       "name": "Discovery Mining Ltd.",
       "ret_12m": 131.7,
       "net_income_ttm_m": 333.7,
-      "mcap_b": 10.136,
+      "mcap_b": 9.997,
       "weight": null,
       "selected": false
     },
@@ -133,7 +133,7 @@
       "name": "Total Energy Services Inc.",
       "ret_12m": 129.78,
       "net_income_ttm_m": 89.0,
-      "mcap_b": 1.257,
+      "mcap_b": 1.233,
       "weight": null,
       "selected": false
     },
@@ -153,7 +153,7 @@
       "name": "Hammond Power Solutions Inc. Class A",
       "ret_12m": 127.63,
       "net_income_ttm_m": 61.6,
-      "mcap_b": 3.418,
+      "mcap_b": 3.362,
       "weight": null,
       "selected": false
     },
@@ -163,7 +163,7 @@
       "name": "Mineros SA",
       "ret_12m": 122.73,
       "net_income_ttm_m": 305.6,
-      "mcap_b": 2.884,
+      "mcap_b": 2.862,
       "weight": null,
       "selected": false
     },
@@ -173,7 +173,7 @@
       "name": "Orezone Gold Corporation",
       "ret_12m": 120.14,
       "net_income_ttm_m": 162.8,
-      "mcap_b": 2.105,
+      "mcap_b": 2.118,
       "weight": null,
       "selected": false
     },
@@ -183,7 +183,7 @@
       "name": "Firan Technology Group Corporation",
       "ret_12m": 118.34,
       "net_income_ttm_m": 14.9,
-      "mcap_b": 0.621,
+      "mcap_b": 0.629,
       "weight": null,
       "selected": false
     },
@@ -193,7 +193,7 @@
       "name": "Tamarack Valley Energy Ltd.",
       "ret_12m": 117.85,
       "net_income_ttm_m": 24.5,
-      "mcap_b": 6.159,
+      "mcap_b": 6.225,
       "weight": null,
       "selected": false
     },
@@ -203,7 +203,7 @@
       "name": "Russel Metals Inc.",
       "ret_12m": 117.29,
       "net_income_ttm_m": 215.7,
-      "mcap_b": 4.772,
+      "mcap_b": 4.967,
       "weight": null,
       "selected": false
     }
@@ -214,7 +214,7 @@
       "ticker": "TLO",
       "name": "Talon Metals Corp.",
       "ret_12m": 1940.91,
-      "mcap_b": 1.463,
+      "mcap_b": 1.454,
       "selected": true
     },
     {
@@ -222,7 +222,7 @@
       "ticker": "LCFS",
       "name": "Tidewater Renewables Ltd.",
       "ret_12m": 433.26,
-      "mcap_b": 0.871,
+      "mcap_b": 0.879,
       "selected": true
     },
     {
@@ -230,7 +230,7 @@
       "ticker": "ORV",
       "name": "Orvana Minerals Corp.",
       "ret_12m": 266.13,
-      "mcap_b": 0.313,
+      "mcap_b": 0.31,
       "selected": true
     },
     {
@@ -238,7 +238,7 @@
       "ticker": "ARG",
       "name": "Amerigo Resources Ltd",
       "ret_12m": 260.6,
-      "mcap_b": 1.427,
+      "mcap_b": 1.411,
       "selected": true
     },
     {
@@ -246,7 +246,7 @@
       "ticker": "LGD",
       "name": "Liberty Gold Corp",
       "ret_12m": 228.57,
-      "mcap_b": 1.14,
+      "mcap_b": 1.134,
       "selected": true
     },
     {
@@ -254,7 +254,7 @@
       "ticker": "TNZ",
       "name": "Tenaz Energy Corp",
       "ret_12m": 215.11,
-      "mcap_b": 2.05,
+      "mcap_b": 2.048,
       "selected": true
     },
     {
@@ -262,7 +262,7 @@
       "ticker": "CVVY",
       "name": "Cavvy Energy Ltd",
       "ret_12m": 197.33,
-      "mcap_b": 0.65,
+      "mcap_b": 0.661,
       "selected": true
     },
     {
@@ -270,7 +270,7 @@
       "ticker": "HMM.A",
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 186.62,
-      "mcap_b": 0.315,
+      "mcap_b": 0.319,
       "selected": true
     },
     {
@@ -278,7 +278,7 @@
       "ticker": "BDT",
       "name": "Bird Construction Inc.",
       "ret_12m": 177.41,
-      "mcap_b": 4.46,
+      "mcap_b": 4.545,
       "selected": true
     },
     {
@@ -286,7 +286,7 @@
       "ticker": "DBO",
       "name": "D-BOX Technologies Inc. Class A",
       "ret_12m": 155.81,
-      "mcap_b": 0.252,
+      "mcap_b": 0.245,
       "selected": true
     },
     {
@@ -294,7 +294,7 @@
       "ticker": "SOIL",
       "name": "Saturn Oil & Gas Inc.",
       "ret_12m": 151.27,
-      "mcap_b": 1.196,
+      "mcap_b": 1.23,
       "selected": false
     },
     {
@@ -302,7 +302,7 @@
       "ticker": "TOT",
       "name": "Total Energy Services Inc.",
       "ret_12m": 140.16,
-      "mcap_b": 1.257,
+      "mcap_b": 1.233,
       "selected": false
     },
     {
@@ -310,7 +310,7 @@
       "ticker": "DSV",
       "name": "Discovery Mining Ltd.",
       "ret_12m": 137.98,
-      "mcap_b": 10.136,
+      "mcap_b": 9.997,
       "selected": false
     },
     {
@@ -318,7 +318,7 @@
       "ticker": "AYA",
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 137.95,
-      "mcap_b": 5.547,
+      "mcap_b": 5.518,
       "selected": false
     },
     {
@@ -334,7 +334,7 @@
       "ticker": "HPS.A",
       "name": "Hammond Power Solutions Inc. Class A",
       "ret_12m": 129.95,
-      "mcap_b": 3.418,
+      "mcap_b": 3.362,
       "selected": false
     },
     {
@@ -342,7 +342,7 @@
       "ticker": "RUS",
       "name": "Russel Metals Inc.",
       "ret_12m": 124.25,
-      "mcap_b": 4.772,
+      "mcap_b": 4.967,
       "selected": false
     },
     {
@@ -350,7 +350,7 @@
       "ticker": "MSA",
       "name": "Mineros SA",
       "ret_12m": 122.18,
-      "mcap_b": 2.884,
+      "mcap_b": 2.862,
       "selected": false
     },
     {
@@ -358,7 +358,7 @@
       "ticker": "TVE",
       "name": "Tamarack Valley Energy Ltd.",
       "ret_12m": 121.32,
-      "mcap_b": 6.159,
+      "mcap_b": 6.225,
       "selected": false
     },
     {
@@ -366,7 +366,7 @@
       "ticker": "ORE",
       "name": "Orezone Gold Corporation",
       "ret_12m": 120.14,
-      "mcap_b": 2.105,
+      "mcap_b": 2.118,
       "selected": false
     }
   ],

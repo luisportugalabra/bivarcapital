@@ -1,101 +1,101 @@
 {
-  "last_rebalance": "2026-09-01",
+  "last_rebalance": "2026-10-01",
   "updated": "2026-10-01",
-  "ytd_2026": -15.57,
+  "ytd_2026": -16.4,
   "regime": "momentum",
   "currency": "EUR",
-  "dax": 25199.2,
-  "dax_ma200": 24825.4,
+  "dax": 25022.2,
+  "dax_ma200": 24829.4,
   "holdings": [
     {
       "ticker": "SNG",
       "name": "SINGULUS TECHNOLOGIES AG",
       "entry_date": "2026-09-01",
       "entry_price": 7.98,
-      "current_price": 10.65,
+      "current_price": 10.85,
       "weight": 0.1,
-      "return_pct": 33.46
-    },
-    {
-      "ticker": "VBK",
-      "name": "Verbio SE",
-      "entry_date": "2026-09-01",
-      "entry_price": 29.58,
-      "current_price": 27.92,
-      "weight": 0.1,
-      "return_pct": -5.61
-    },
-    {
-      "ticker": "OHB",
-      "name": "OHB SE",
-      "entry_date": "2026-09-01",
-      "entry_price": 178.0,
-      "current_price": 178.0,
-      "weight": 0.1,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "AIXA",
-      "name": "AIXTRON SE",
-      "entry_date": "2026-09-01",
-      "entry_price": 35.7,
-      "current_price": 37.92,
-      "weight": 0.1,
-      "return_pct": 6.22
-    },
-    {
-      "ticker": "SMHN",
-      "name": "SUSS MicroTec SE",
-      "entry_date": "2026-09-01",
-      "entry_price": 68.15,
-      "current_price": 73.4,
-      "weight": 0.1,
-      "return_pct": 7.7
+      "return_pct": 35.96
     },
     {
       "ticker": "S92",
       "name": "SMA Solar Technology AG",
       "entry_date": "2026-09-01",
       "entry_price": 56.15,
-      "current_price": 59.95,
+      "current_price": 60.8,
       "weight": 0.1,
-      "return_pct": 6.77
+      "return_pct": 8.28
     },
     {
-      "ticker": "SZG",
-      "name": "Salzgitter AG",
+      "ticker": "VBK",
+      "name": "Verbio SE",
       "entry_date": "2026-09-01",
-      "entry_price": 55.65,
-      "current_price": 50.85,
+      "entry_price": 29.58,
+      "current_price": 27.26,
       "weight": 0.1,
-      "return_pct": -8.63
+      "return_pct": -7.84
     },
     {
-      "ticker": "TKA",
-      "name": "thyssenkrupp AG",
+      "ticker": "AIXA",
+      "name": "AIXTRON SE",
       "entry_date": "2026-09-01",
-      "entry_price": 14.01,
-      "current_price": 14.64,
+      "entry_price": 35.7,
+      "current_price": 36.62,
       "weight": 0.1,
-      "return_pct": 4.5
+      "return_pct": 2.58
+    },
+    {
+      "ticker": "GMM",
+      "name": "Grammer AG",
+      "entry_date": "2026-10-01",
+      "entry_price": 16.0,
+      "current_price": 16.0,
+      "weight": 0.1,
+      "return_pct": 0.0
     },
     {
       "ticker": "JEN",
       "name": "Jenoptik AG",
       "entry_date": "2026-09-01",
       "entry_price": 39.0,
-      "current_price": 41.98,
+      "current_price": 42.0,
       "weight": 0.1,
-      "return_pct": 7.64
+      "return_pct": 7.69
     },
     {
-      "ticker": "WAF",
-      "name": "Siltronic AG",
+      "ticker": "SMHN",
+      "name": "SUSS MicroTec SE",
       "entry_date": "2026-09-01",
-      "entry_price": 77.45,
-      "current_price": 81.3,
+      "entry_price": 68.15,
+      "current_price": 73.05,
       "weight": 0.1,
-      "return_pct": 4.97
+      "return_pct": 7.19
+    },
+    {
+      "ticker": "LPK",
+      "name": "LPKF Laser & Electronics SE",
+      "entry_date": "2026-10-01",
+      "entry_price": 15.45,
+      "current_price": 15.95,
+      "weight": 0.1,
+      "return_pct": 3.24
+    },
+    {
+      "ticker": "M7U",
+      "name": "Nynomic AG",
+      "entry_date": "2026-10-01",
+      "entry_price": 26.1,
+      "current_price": 26.1,
+      "weight": 0.1,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "SZG",
+      "name": "Salzgitter AG",
+      "entry_date": "2026-09-01",
+      "entry_price": 55.65,
+      "current_price": 49.5,
+      "weight": 0.1,
+      "return_pct": -11.05
     }
   ],
   "monthly_breakdown": [
@@ -219,9 +219,9 @@
     },
     {
       "month": "Sep 2026",
-      "is_current": true,
+      "is_current": false,
       "start": "2026-09-01",
-      "end": null,
+      "end": "2026-10-01",
       "regime": "momentum",
       "tickers": [
         "SNG",
@@ -247,69 +247,45 @@
         "JEN": 0.1,
         "WAF": 0.1
       },
-      "return_pct": 5.0,
+      "return_pct": 3.97,
       "config_version": "v3-2026-08-26-de-only",
       "source": "live"
+    },
+    {
+      "month": "Oct 2026",
+      "is_current": true,
+      "start": "2026-10-01",
+      "end": null,
+      "regime": "momentum",
+      "tickers": [
+        "SNG",
+        "S92",
+        "VBK",
+        "AIXA",
+        "GMM",
+        "JEN",
+        "SMHN",
+        "LPK",
+        "M7U",
+        "SZG"
+      ],
+      "weights": {
+        "SNG": 0.1,
+        "S92": 0.1,
+        "VBK": 0.1,
+        "AIXA": 0.1,
+        "GMM": 0.1,
+        "JEN": 0.1,
+        "SMHN": 0.1,
+        "LPK": 0.1,
+        "M7U": 0.1,
+        "SZG": 0.1
+      },
+      "return_pct": 0.0,
+      "config_version": "v3-2026-08-26-de-only"
     }
   ],
-  "pending_signal": {
-    "for_month": "2026-10",
-    "computed_date": "2026-09-30",
-    "execute_on": "2026-10-01",
-    "regime": "momentum",
-    "picks": [
-      {
-        "ticker": "SNG",
-        "name": "SINGULUS TECHNOLOGIES AG",
-        "weight": 0.1
-      },
-      {
-        "ticker": "S92",
-        "name": "SMA Solar Technology AG",
-        "weight": 0.1
-      },
-      {
-        "ticker": "VBK",
-        "name": "Verbio SE",
-        "weight": 0.1
-      },
-      {
-        "ticker": "AIXA",
-        "name": "AIXTRON SE",
-        "weight": 0.1
-      },
-      {
-        "ticker": "GMM",
-        "name": "Grammer AG",
-        "weight": 0.1
-      },
-      {
-        "ticker": "JEN",
-        "name": "Jenoptik AG",
-        "weight": 0.1
-      },
-      {
-        "ticker": "SMHN",
-        "name": "SUSS MicroTec SE",
-        "weight": 0.1
-      },
-      {
-        "ticker": "LPK",
-        "name": "LPKF Laser & Electronics SE",
-        "weight": 0.1
-      },
-      {
-        "ticker": "M7U",
-        "name": "Nynomic AG",
-        "weight": 0.1
-      },
-      {
-        "ticker": "SZG",
-        "name": "Salzgitter AG",
-        "weight": 0.1
-      }
-    ]
-  },
+  "pending_signal": null,
   "config_version": "v3-2026-08-26-de-only",
   "is_live": true,
   "not_live_reason": null

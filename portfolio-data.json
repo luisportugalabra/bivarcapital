@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01 01:54 UTC",
+  "updated": "2026-10-01 09:55 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -8,14 +8,14 @@
           "qty": 312.0,
           "price": 497.95,
           "mkt_value": 155360.4,
-          "weight": 15.4
+          "weight": 15.5
         },
         {
           "ticker": "JD",
           "qty": 3875.0,
           "price": 26.6,
           "mkt_value": 103075.0,
-          "weight": 10.2
+          "weight": 10.3
         },
         {
           "ticker": "META",
@@ -29,7 +29,7 @@
           "qty": 156.0,
           "price": 512.9,
           "mkt_value": 80012.4,
-          "weight": 7.9
+          "weight": 8.0
         },
         {
           "ticker": "AMZN",
@@ -48,9 +48,9 @@
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 25.54,
-          "mkt_value": 47741.68,
-          "weight": 4.7
+          "price": 24.83,
+          "mkt_value": 46398.1,
+          "weight": 4.6
         },
         {
           "ticker": "SE",
@@ -64,7 +64,7 @@
           "qty": 481.0,
           "price": 84.61,
           "mkt_value": 40696.52,
-          "weight": 4.0
+          "weight": 4.1
         },
         {
           "ticker": "GOOGL",
@@ -76,8 +76,8 @@
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 40.25,
-          "mkt_value": 36631.01,
+          "price": 39.99,
+          "mkt_value": 36391.78,
           "weight": 3.6
         },
         {
@@ -125,8 +125,8 @@
         {
           "ticker": "2330",
           "qty": 178.0,
-          "price": 77.97,
-          "mkt_value": 13878.44,
+          "price": 78.44,
+          "mkt_value": 13961.88,
           "weight": 1.4
         },
         {
@@ -153,8 +153,8 @@
         {
           "ticker": "WISE",
           "qty": 1000.0,
-          "price": 11.47,
-          "mkt_value": 11465.1,
+          "price": 11.19,
+          "mkt_value": 11190.38,
           "weight": 1.1
         },
         {
@@ -172,9 +172,9 @@
           "weight": 0.6
         }
       ],
-      "total_value": 1006473.4,
+      "total_value": 1004699.31,
       "n_positions": 24,
-      "ytd_2026": 6.9
+      "ytd_2026": 6.7
     },
     "vc2": {
       "positions": [
@@ -383,7 +383,7 @@
   "returns": {
     "discretionary": {
       "2025": 46.1,
-      "2026_ytd": 6.9
+      "2026_ytd": 6.7
     },
     "vc2": {
       "2025": 23.1,
