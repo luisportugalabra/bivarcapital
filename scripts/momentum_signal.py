@@ -138,15 +138,20 @@ def check_regime():
         data = yf.download('^GSPC', period='2y', progress=False)
         close = data['Close'].squeeze().dropna()
         if len(close) == 0:
-            return None, None, True  # no data, assume OK
+            return None, None, True, None  # no data, assume OK
         last = float(close.iloc[-1])
         ma250 = float(close.tail(250).mean())
         # Guard against NaN (e.g. weekend/holiday runs with no market data)
         if math.isnan(last) or math.isnan(ma250):
-            return None, None, True  # assume OK if can't determine
-        return last, ma250, last >= ma250
+            return None, None, True, None  # assume OK if can't determine
+        # Date of the most recent CLOSE actually available. The month rollover
+        # is gated on this, not on the wall clock: the backtest buys at the
+        # T+1 close, so the new month may only be executed once that close
+        # exists. Keying off datetime.now() rolled the book in the small hours
+        # of the 1st and stamped the signal-day (T) close with a T+1 date.
+        return last, ma250, last >= ma250, close.index[-1].strftime('%Y-%m-%d')
     except Exception:
-        return None, None, True  # assume OK if can't check
+        return None, None, True, None  # assume OK if can't check
 
 
 def select_top(df, n=7):
@@ -218,8 +223,12 @@ def main():
     print(f"  Eligible: {len(df)} stocks")
 
     # Regime
-    sp_last, sp_ma250, regime_ok = check_regime()
+    sp_last, sp_ma250, regime_ok, market_date = check_regime()
     regime = "momentum" if regime_ok else "cash"
+    if not market_date:
+        market_date = datetime.now().strftime('%Y-%m-%d')
+        print("  WARNING: no market date from ^GSPC, falling back to wall clock")
+    print(f"  Market date (last available close): {market_date}")
     print(f"  S&P 500: {sp_last:,.2f}  MA250: {sp_ma250:,.2f}  Regime: {regime.upper()}")
 
     # Select top 7
@@ -274,7 +283,7 @@ def main():
 
     # Build JSON
     output = {
-        "date": datetime.now().strftime("%Y-%m-%d"),
+        "date": market_date,
         "regime": regime,
         "sp500": round(sp_last, 2) if sp_last else None,
         "sp500_ma250": round(sp_ma250, 2) if sp_ma250 else None,
@@ -305,7 +314,10 @@ def main():
         last_rebalance_month = ''
         pending_signal = None
 
-    current_month = datetime.now().strftime('%Y-%m')
+    # Gated on the market date, not the wall clock: on the 1st of the month the
+    # run fires before the session, so the T+1 close does not exist yet and the
+    # book must not roll until the evening run. Canada/Germany already do this.
+    current_month = market_date[:7]
     is_new_month  = current_month != last_rebalance_month
 
     # Build name/sector lookup from current signal
@@ -355,13 +367,17 @@ def main():
             print(f"  Fetching entry prices for: {new_entries}")
             try:
                 import yfinance as yf
-                ep_dl = yf.download(new_entries, period='1d', progress=False, auto_adjust=True)
+                ep_dl = yf.download(new_entries, period='5d', progress=False, auto_adjust=True)
                 for t in new_entries:
                     try:
-                        if len(new_entries) == 1:
-                            entry_prices[t] = float(ep_dl['Close'].dropna().iloc[-1])
-                        else:
-                            entry_prices[t] = float(ep_dl['Close'][t].dropna().iloc[-1])
+                        col = ep_dl['Close'] if len(new_entries) == 1 else ep_dl['Close'][t]
+                        col = col.dropna()
+                        col.index = [d.strftime('%Y-%m-%d') for d in col.index]
+                        # Must be the close of the execution day itself. Taking
+                        # the newest row would silently book the prior session.
+                        entry_prices[t] = float(col.loc[market_date]) if market_date in col.index else None
+                        if entry_prices[t] is None:
+                            print(f"  Warning: no {market_date} close for {t}, entry price left blank")
                     except Exception:
                         entry_prices[t] = None
             except Exception as e:

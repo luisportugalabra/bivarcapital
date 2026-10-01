@@ -1,6 +1,6 @@
 {
-  "last_rebalance": "2026-10-01",
-  "updated": "2026-10-01 01:54 UTC",
+  "last_rebalance": "2026-09-01",
+  "updated": "2026-09-30 01:55 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1739.89,
-      "return_pct": 532.14
+      "current_price": 1729.76,
+      "return_pct": 528.46
     },
     {
       "ticker": "MU",
@@ -17,26 +17,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 1065.11,
-      "return_pct": 96.47
-    },
-    {
-      "ticker": "VICR",
-      "name": "Vicor Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-10-01",
-      "entry_price": 288.94,
-      "current_price": 288.94,
-      "return_pct": 0.0
-    },
-    {
-      "ticker": "DELL",
-      "name": "Dell Technologies Inc.",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-09-01",
-      "entry_price": 456.01,
-      "current_price": 537.95,
-      "return_pct": 17.97
+      "current_price": 1065.08,
+      "return_pct": 96.46
     },
     {
       "ticker": "LITE",
@@ -44,29 +26,89 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 971.26,
-      "return_pct": 151.55
+      "current_price": 973.49,
+      "return_pct": 152.13
     },
     {
-      "ticker": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
+      "ticker": "WDC",
+      "name": "Western Digital Corporation",
       "sector": "Electronic Technology",
-      "entry_date": "2026-10-01",
-      "entry_price": 611.76,
-      "current_price": 611.76,
-      "return_pct": 0.0
+      "entry_date": "2026-01-02",
+      "entry_price": 187.56,
+      "current_price": 453.48,
+      "return_pct": 141.78
     },
     {
-      "ticker": "BE",
-      "name": "Bloom Energy Corporation",
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
       "sector": "Electronic Technology",
-      "entry_date": "2026-10-01",
-      "entry_price": 276.98,
-      "current_price": 276.98,
-      "return_pct": 0.0
+      "entry_date": "2026-04-01",
+      "entry_price": 422.82,
+      "current_price": 913.45,
+      "return_pct": 116.04
+    },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies Inc.",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-09-01",
+      "entry_price": 456.01,
+      "current_price": 539.59,
+      "return_pct": 18.33
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology, Inc.",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-09-01",
+      "entry_price": 211.66,
+      "current_price": 263.27,
+      "return_pct": 24.38
     }
   ],
-  "pending_signal": null,
+  "pending_signal": {
+    "for_month": "2026-10",
+    "computed_date": "2026-09-30",
+    "execute_on": "2026-10-01",
+    "regime_ok": true,
+    "picks": [
+      {
+        "ticker": "SNDK",
+        "name": "Sandisk Corporation",
+        "sector": "Electronic Technology"
+      },
+      {
+        "ticker": "MU",
+        "name": "Micron Technology, Inc.",
+        "sector": "Electronic Technology"
+      },
+      {
+        "ticker": "VICR",
+        "name": "Vicor Corporation",
+        "sector": "Electronic Technology"
+      },
+      {
+        "ticker": "DELL",
+        "name": "Dell Technologies Inc.",
+        "sector": "Electronic Technology"
+      },
+      {
+        "ticker": "LITE",
+        "name": "Lumentum Holdings Inc.",
+        "sector": "Producer Manufacturing"
+      },
+      {
+        "ticker": "AMD",
+        "name": "Advanced Micro Devices, Inc.",
+        "sector": "Electronic Technology"
+      },
+      {
+        "ticker": "BE",
+        "name": "Bloom Energy Corporation",
+        "sector": "Electronic Technology"
+      }
+    ]
+  },
   "ytd_2026": 229.58,
   "monthly_breakdown": [
     {
