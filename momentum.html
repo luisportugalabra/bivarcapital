@@ -355,6 +355,9 @@ async function loadPortfolio() {
     const holdings = _isPending
       ? (_regimeOn ? (_ps.picks || []).map(p => ({
           ticker: p.ticker, name: p.name, sector: p.sector,
+          // weight must survive the mapping: Canada and Germany render it as a
+          // column, and dropping it printed an em dash on every row.
+          weight: (p.weight != null ? p.weight : 1 / ((_ps.picks || []).length || 1)),
           entry_date: null, entry_price: null,
           current_price: (p.price != null ? p.price : null),
           return_pct: null, _pending: true,
