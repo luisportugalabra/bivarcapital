@@ -294,52 +294,62 @@
       {
         "ticker": "SNG",
         "name": "SINGULUS TECHNOLOGIES AG",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 10.65
       },
       {
         "ticker": "S92",
         "name": "SMA Solar Technology AG",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 59.95
       },
       {
         "ticker": "VBK",
         "name": "Verbio SE",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 27.92
       },
       {
         "ticker": "AIXA",
         "name": "AIXTRON SE",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 37.92
       },
       {
         "ticker": "GMM",
         "name": "Grammer AG",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 16.3
       },
       {
         "ticker": "JEN",
         "name": "Jenoptik AG",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 41.98
       },
       {
         "ticker": "SMHN",
         "name": "SUSS MicroTec SE",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 73.4
       },
       {
         "ticker": "LPK",
         "name": "LPKF Laser & Electronics SE",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 15.35
       },
       {
         "ticker": "M7U",
         "name": "Nynomic AG",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 24.9
       },
       {
         "ticker": "SZG",
         "name": "Salzgitter AG",
-        "weight": 0.1
+        "weight": 0.1,
+        "price": 50.85
       }
     ]
   },

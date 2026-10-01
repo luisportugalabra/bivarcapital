@@ -410,8 +410,11 @@ def main():
     price_map = {row['code']: float(row['close']) for _, row in df.iterrows()}
     price_map_full = broad_prices
 
+    # price = the signal-day close, carried into the locked picks so the site can
+    # size the new month's book on day 1, before the execution close exists.
     today_sel = [{'ticker': row['code'], 'name': str(row.get('description') or row.get('name', row['code'])),
-                  'weight': float(weight_map.get(row['code'], 0))} for _, row in top_df.iterrows()]
+                  'weight': float(weight_map.get(row['code'], 0)),
+                  'price': round(float(row['close']), 4)} for _, row in top_df.iterrows()]
 
     if is_new_month:
         # Backtest convention: the regime is evaluated at the month-end SIGNAL

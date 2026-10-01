@@ -448,8 +448,11 @@ def main():
     # filtered out for any other reason.
     price_map_full = broad_prices
 
+    # price = the signal-day close, carried into the locked picks so the site can
+    # size the new month's book on day 1, before the execution close exists.
     today_sel = [{'ticker': row['code'], 'name': str(row.get('description') or row.get('name', row['code'])),
-                  'weight': float(weight_map.get(row['code'], 0))} for _, row in top_df.iterrows()]
+                  'weight': float(weight_map.get(row['code'], 0)),
+                  'price': round(float(row['close']), 4)} for _, row in top_df.iterrows()]
 
     # BUG FIXED 2026-08-21 (found by external Claude-app review): regime was
     # being re-applied on EVERY run (`elif not regime_ok: holdings = []`

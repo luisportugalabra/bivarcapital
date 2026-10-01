@@ -150,6 +150,10 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 
     <div id="regime-container" class="regime-box"></div>
 
+      <div id="pending-banner" style="display:none;background:rgba(196,162,101,.09);border:1px solid var(--accent);border-radius:8px;padding:14px 18px;margin-bottom:14px">
+        <div style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px" id="pending-banner-title"></div>
+        <div style="font-size:.82rem;line-height:1.55;color:var(--text-secondary)" id="pending-banner-body"></div>
+      </div>
     <div class="port-section-title">Current Portfolio</div>
     <div id="stats-container" class="stats-row"></div>
 
@@ -361,7 +365,48 @@ async function loadPortfolio() {
       document.getElementById('mtd-label').textContent = cur.month;
     }
 
-    const holdings = data.holdings || [];
+
+    // --- New month, book not rolled yet ------------------------------------
+    // The calendar month turns at midnight but the book only rolls tonight,
+    // once the T+1 close exists. Between those two moments this page must
+    // already show the NEW month's portfolio -- that is what you buy today.
+    // Entry prices stay blank until the close fills them in.
+    const _ym = new Date().toISOString().slice(0, 7);
+    const _ps = data.pending_signal;
+    const _isPending = !!(_ps && _ps.for_month === _ym &&
+                          String(data.last_rebalance || '').slice(0, 7) !== _ym);
+    const _regimeOn = !_ps ? true
+      : (_ps.regime_ok !== undefined ? !!_ps.regime_ok
+                                     : (_ps.regime || 'momentum') === 'momentum');
+    const _pendingCash = _isPending && !_regimeOn;
+    const holdings = _isPending
+      ? (_regimeOn ? (_ps.picks || []).map(p => ({
+          ticker: p.ticker, name: p.name, sector: p.sector,
+          entry_date: null, entry_price: null,
+          current_price: (p.price != null ? p.price : null),
+          return_pct: null, _pending: true,
+        })) : [])
+      : (data.holdings || []);
+
+    if (_isPending) {
+      const b = document.getElementById('pending-banner');
+      if (b) {
+        const mName = new Date(_ym + '-01T12:00:00Z')
+          .toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+        document.getElementById('pending-banner-title').textContent =
+          mName.toUpperCase() + ' PORTFOLIO — ' + (_pendingCash ? 'CASH' : 'BUY AT TODAY\'S CLOSE');
+        document.getElementById('pending-banner-body').innerHTML = _pendingCash
+          ? 'The regime filter is off for ' + mName + '. <strong>Sell everything and hold cash</strong>, '
+            + 'executing at today\'s close. The table below is already the new month; the previous '
+            + 'month\'s book is closed.'
+          : 'This is the <strong>' + mName + '</strong> portfolio, locked in at the '
+            + (_ps.computed_date || 'month-end') + ' close. <strong>Buy at today\'s close</strong>, '
+            + 'equal weight. Prices shown are the signal-day close and are what the calculator sizes '
+            + 'on — entry prices are filled in tonight once the execution close exists.';
+        b.style.display = 'block';
+      }
+    }
+
 
     document.getElementById('stats-container').innerHTML = holdings.map(h => `
       <div class="stat-box">
@@ -375,12 +420,14 @@ async function loadPortfolio() {
           <td><strong>${h.ticker}</strong></td>
           <td style="font-family:var(--font-body);font-size:.7rem">${h.name || ''}</td>
           <td class="r">${h.weight != null ? (h.weight*100).toFixed(1) + '%' : '—'}</td>
-          <td class="r">${h.entry_date || '—'}</td>
-          <td class="r">${fmtP(h.entry_price)}</td>
+          <td class="r">${h._pending ? '<span style="color:var(--accent)">today\'s close</span>' : (h.entry_date || '—')}</td>
+          <td class="r">${h._pending ? '<span style="color:var(--text-muted)">pending</span>' : fmtP(h.entry_price)}</td>
           <td class="r">${fmtP(h.current_price)}</td>
           <td class="r">${fmtRet(h.return_pct)}</td>
         </tr>`).join('')
-      : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — DAX below MA200).</td></tr>';
+      : (_pendingCash
+          ? '<tr><td colspan="7" style="color:var(--accent);text-align:center;padding:20px"><strong>CASH</strong> — regime filter off. Sell everything at today\'s close.</td></tr>'
+          : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — DAX below MA200).</td></tr>');
 
     renderMonthlyBreakdown(data.monthly_breakdown || [], new Date().getFullYear());
 

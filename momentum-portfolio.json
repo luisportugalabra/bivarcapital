@@ -75,37 +75,44 @@
       {
         "ticker": "SNDK",
         "name": "Sandisk Corporation",
-        "sector": "Electronic Technology"
+        "sector": "Electronic Technology",
+        "price": 1739.89
       },
       {
         "ticker": "MU",
         "name": "Micron Technology, Inc.",
-        "sector": "Electronic Technology"
+        "sector": "Electronic Technology",
+        "price": 1065.11
       },
       {
         "ticker": "VICR",
         "name": "Vicor Corporation",
-        "sector": "Electronic Technology"
+        "sector": "Electronic Technology",
+        "price": 288.94
       },
       {
         "ticker": "LITE",
         "name": "Lumentum Holdings Inc.",
-        "sector": "Producer Manufacturing"
+        "sector": "Producer Manufacturing",
+        "price": 971.26
       },
       {
         "ticker": "DELL",
         "name": "Dell Technologies Inc.",
-        "sector": "Electronic Technology"
+        "sector": "Electronic Technology",
+        "price": 537.95
       },
       {
         "ticker": "AMD",
         "name": "Advanced Micro Devices, Inc.",
-        "sector": "Electronic Technology"
+        "sector": "Electronic Technology",
+        "price": 611.76
       },
       {
         "ticker": "STX",
         "name": "Seagate Technology Holdings PLC",
-        "sector": "Electronic Technology"
+        "sector": "Electronic Technology",
+        "price": 922.34
       }
     ]
   },

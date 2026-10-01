@@ -335,6 +335,10 @@ def main():
     # Build name/sector lookup from current signal
     name_map   = {str(row['ticker']): str(row['name'])   for _, row in df.head(30).iterrows()}
     sector_map = {str(row['ticker']): str(row['sector']) for _, row in df.head(30).iterrows()}
+    # Signal-day close per ticker. Carried into the locked picks so the site can
+    # size the new month's book on day 1, before the execution close exists.
+    price_map  = {str(row['ticker']): round(float(row.get('close', 0) or 0), 2)
+                  for _, row in df.head(30).iterrows()}
 
     if is_new_month:
         if pending_signal and pending_signal.get('for_month') == current_month:
@@ -444,7 +448,8 @@ def main():
             'execute_on':    next_trading_candidate.isoformat(),
             'regime_ok':     regime_ok,
             'picks': [
-                {'ticker': tk, 'name': name_map.get(tk, tk), 'sector': sector_map.get(tk, '')}
+                {'ticker': tk, 'name': name_map.get(tk, tk), 'sector': sector_map.get(tk, ''),
+                 'price': price_map.get(tk)}
                 for tk in sel7
             ],
         }
