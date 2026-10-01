@@ -405,8 +405,12 @@ def main():
             'mcap_b':   round(float(row['market_cap_basic']) / 1e9, 3),
             'selected': int(i) < TOP_N,
         })
-    yf_overlap = len({s['ticker'] for s in top20 if s['selected']} &
-                     {s['ticker'] for s in top20_yf if s['selected']})
+    # Compare the two RANKINGS, not the two portfolios. `selected` means "in the
+    # book", and the book is empty whenever the regime is defensive -- which made
+    # the overlap read 0/N and flagged every yfinance name as YF ONLY even when
+    # the two sources agreed on 19 of 20 tickers (Canada, 2026-10-01).
+    yf_overlap = len({s['ticker'] for s in top20[:TOP_N]} &
+                     {s['ticker'] for s in top20_yf[:TOP_N]})
     print(f"  yfinance comparison: {len(yf_mom)} names with valid 12M, "
           f"top-{TOP_N} overlap vs TradingView: {yf_overlap}/{TOP_N}")
 

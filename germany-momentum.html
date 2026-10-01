@@ -528,7 +528,11 @@ async function loadSignal() {
     if (top30yf.length) {
       document.getElementById('yf-compare').style.display = 'block';
       document.getElementById('yf-overlap').textContent = data.yf_tv_top20_overlap ?? '—';
-      const tvSel = new Set(top30.filter(s => s.selected).map(s => s.ticker));
+      // Top-N by RANK, not by `selected`: the book is empty under a defensive
+      // regime, which made every yfinance name render as YF ONLY.
+      const _n = top30yf.filter(s => s.selected).length
+              || top30.filter(s => s.selected).length || 10;
+      const tvSel = new Set(top30.slice(0, _n).map(s => s.ticker));
       document.getElementById('yf-table-body').innerHTML = top30yf.map(s => {
         const sel = s.selected;
         const inTv = tvSel.has(s.ticker);

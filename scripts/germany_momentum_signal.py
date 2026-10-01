@@ -395,8 +395,10 @@ def main():
         'portfolio':          [s for s in top30 if s['selected']],
         'top30':              top30,
         'top30_yf':           top30_yf,
-        'yf_tv_top20_overlap': len({s['ticker'] for s in top30 if s['selected']} &
-                                   {s['ticker'] for s in top30_yf if s['selected']}),
+        # Rankings, not portfolios: `selected` is empty under a defensive regime,
+        # which made this read 0 and flag every yfinance name as YF ONLY.
+        'yf_tv_top20_overlap': len({s['ticker'] for s in top30[:TOP_N]} &
+                                   {s['ticker'] for s in top30_yf[:TOP_N]}),
         'updated':            TODAY,
         'is_live':            True,
         'not_live_reason':    None,
