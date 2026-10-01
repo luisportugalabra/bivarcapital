@@ -413,7 +413,25 @@ async function loadPortfolio() {
           : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:20px">No holdings.</td></tr>');
 
     // Monthly breakdown table
-    const breakdown = (data.monthly_breakdown || []).slice().reverse();
+    // The breakdown has no row for the new month until the book rolls (it is
+    // written by the *_ytd.py scripts, which only run after execution). Add a
+    // provisional row so the new month does not look like it vanished, and
+    // un-flag the previous month as current.
+    let _bd = (data.monthly_breakdown || []);
+    if (_isPending) {
+      const _mLbl = new Date(_ym + '-01T12:00:00Z')
+        .toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+      // Drop any row already written for this month, so the provisional row never
+      // duplicates. Match on the label prefix, not on start: labels vary
+      // ("Oct 2026" vs "Oct 2026 (MTD)") and the US dates each period by its
+      // signal day, which falls in the PREVIOUS month.
+      _bd = _bd.filter(m => !String(m.month || '').startsWith(_mLbl))
+               .map(m => Object.assign({}, m, { is_current: false })).concat([{
+        month: _mLbl, is_current: true, return_pct: null,
+        tickers: _regimeOn ? (_ps.picks || []).map(p => p.ticker) : [],
+      }]);
+    }
+    const breakdown = _bd.slice().reverse();
     document.getElementById('monthly-body').innerHTML = breakdown.length
       ? breakdown.map(m => {
           const retHtml = fmtRet(m.return_pct);

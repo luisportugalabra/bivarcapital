@@ -469,7 +469,25 @@ async function loadPortfolio() {
           : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — TSX below MA75).</td></tr>');
 
     // Monthly breakdown — show current year by default
-    renderMonthlyBreakdown(data.monthly_breakdown || [], new Date().getFullYear());
+    // The breakdown has no row for the new month until the book rolls (it is
+    // written by the *_ytd.py scripts, which only run after execution). Add a
+    // provisional row so the new month does not look like it vanished, and
+    // un-flag the previous month as current.
+    let _bd = (data.monthly_breakdown || []);
+    if (_isPending) {
+      const _mLbl = new Date(_ym + '-01T12:00:00Z')
+        .toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+      // Drop any row already written for this month, so the provisional row never
+      // duplicates. Match on the label prefix, not on start: labels vary
+      // ("Oct 2026" vs "Oct 2026 (MTD)") and the US dates each period by its
+      // signal day, which falls in the PREVIOUS month.
+      _bd = _bd.filter(m => !String(m.month || '').startsWith(_mLbl))
+               .map(m => Object.assign({}, m, { is_current: false })).concat([{
+        month: _mLbl, is_current: true, return_pct: null,
+        tickers: _regimeOn ? (_ps.picks || []).map(p => p.ticker) : [],
+      }]);
+    }
+    renderMonthlyBreakdown(_bd, new Date().getFullYear());
 
     // Annual returns table
 
@@ -497,7 +515,8 @@ function renderMonthlyBreakdown(breakdown, year) {
   document.getElementById('monthly-body').innerHTML = reversed.length
     ? reversed.map(m => {
         const isCur = m.is_current ? ' style="opacity:.75"' : '';
-        const tickers = m.tickers && m.tickers.length ? m.tickers.join(', ') : '— (cash)';
+        const tickers = m.tickers && m.tickers.length ? m.tickers.join(', ')
+          : '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>';
         return `<tr${isCur}>
           <td style="white-space:nowrap">${m.month}</td>
           <td class="r">${fmtRet(m.return_pct)}</td>
