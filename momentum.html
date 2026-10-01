@@ -427,7 +427,7 @@ async function loadPortfolio() {
       // signal day, which falls in the PREVIOUS month.
       _bd = _bd.filter(m => !String(m.month || '').startsWith(_mLbl))
                .map(m => Object.assign({}, m, { is_current: false })).concat([{
-        month: _mLbl, is_current: true, return_pct: null,
+        month: _mLbl, is_current: true, return_pct: null, _cash: !_regimeOn,
         tickers: _regimeOn ? (_ps.picks || []).map(p => p.ticker) : [],
       }]);
     }
@@ -439,7 +439,10 @@ async function loadPortfolio() {
           return `<tr${isCur}>
             <td style="white-space:nowrap">${m.month}</td>
             <td class="r">${retHtml}</td>
-            <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${m.tickers.join(', ')}</td>
+            <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${
+              m.tickers && m.tickers.length ? m.tickers.join(', ')
+                : ((m._cash || m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
+                                                   : '<span style="color:var(--text-muted)">\u2014 not recorded</span>')}</td>
           </tr>`;
         }).join('')
       : '<tr><td colspan="3" style="color:var(--text-muted);padding:12px">No data.</td></tr>';

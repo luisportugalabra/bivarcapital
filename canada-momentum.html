@@ -483,7 +483,7 @@ async function loadPortfolio() {
       // signal day, which falls in the PREVIOUS month.
       _bd = _bd.filter(m => !String(m.month || '').startsWith(_mLbl))
                .map(m => Object.assign({}, m, { is_current: false })).concat([{
-        month: _mLbl, is_current: true, return_pct: null,
+        month: _mLbl, is_current: true, return_pct: null, _cash: !_regimeOn,
         tickers: _regimeOn ? (_ps.picks || []).map(p => p.ticker) : [],
       }]);
     }
@@ -515,8 +515,14 @@ function renderMonthlyBreakdown(breakdown, year) {
   document.getElementById('monthly-body').innerHTML = reversed.length
     ? reversed.map(m => {
         const isCur = m.is_current ? ' style="opacity:.75"' : '';
+          // Empty tickers means one of two very different things. A real cash month
+          // has a return of exactly zero. A month with an empty list but a non-zero
+          // return is simply one whose composition was never recorded -- Germany's
+          // Jan-Jul 2026 are backfilled returns from before live tracking began,
+          // and labelling those CASH asserts something false about the book.
         const tickers = m.tickers && m.tickers.length ? m.tickers.join(', ')
-          : '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>';
+          : ((m._cash || m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
+                                             : '<span style="color:var(--text-muted)">\u2014 not recorded</span>');
         return `<tr${isCur}>
           <td style="white-space:nowrap">${m.month}</td>
           <td class="r">${fmtRet(m.return_pct)}</td>
