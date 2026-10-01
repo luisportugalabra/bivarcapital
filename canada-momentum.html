@@ -403,6 +403,10 @@ async function loadPortfolio() {
       : (_ps.regime_ok !== undefined ? !!_ps.regime_ok
                                      : (_ps.regime || 'momentum') === 'momentum');
     const _pendingCash = _isPending && !_regimeOn;
+    // Going to cash shows nothing to buy, so show what to SELL instead --
+    // otherwise the page just empties and reads as broken rather than as an
+    // instruction. These are last month's holdings, now being closed.
+    const _exiting = _pendingCash ? (data.holdings || []) : [];
     const holdings = _isPending
       ? (_regimeOn ? (_ps.picks || []).map(p => ({
           ticker: p.ticker, name: p.name, sector: p.sector,
@@ -433,7 +437,9 @@ async function loadPortfolio() {
 
 
     // Top stat cards — actual held portfolio (not today's recomputed ranking)
-    document.getElementById('stats-container').innerHTML = holdings.map(h => `
+    document.getElementById('stats-container').innerHTML = _pendingCash
+      ? `<div class="stat-box" style="border-color:var(--accent)"><div class="stat-val" style="color:var(--accent)">CASH</div><div class="stat-lbl">100% — regime off</div></div>`
+      : holdings.map(h => `
       <div class="stat-box">
         <div class="stat-val">${h.ticker}</div>
         <div class="stat-lbl">${fmtRet(h.return_pct)}</div>
@@ -451,7 +457,15 @@ async function loadPortfolio() {
           <td class="r">${fmtRet(h.return_pct)}</td>
         </tr>`).join('')
       : (_pendingCash
-          ? '<tr><td colspan="7" style="color:var(--accent);text-align:center;padding:20px"><strong>CASH</strong> — regime filter off. Sell everything at today\'s close.</td></tr>'
+          ? ('<tr><td colspan="7" style="color:var(--accent);text-align:center;padding:16px;'
+             + 'border-bottom:1px solid var(--border)"><strong>CASH — SELL EVERYTHING AT TODAY\'S CLOSE</strong>'
+             + '</td></tr>'
+             + (_exiting.length
+                 ? _exiting.map(h => '<tr style="opacity:.75"><td><strong>' + h.ticker + '</strong></td>'
+                     + '<td style="font-family:var(--font-body);font-size:.7rem">' + (h.name || '') + '</td>'
+                     + '<td colspan="5" class="r" style="color:var(--red);'
+                     + 'font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em">SELL</td></tr>').join('')
+                 : ''))
           : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — TSX below MA75).</td></tr>');
 
     // Monthly breakdown — show current year by default
