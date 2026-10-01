@@ -219,9 +219,17 @@ def check_regime():
         return None, None, None, None
 
 
+# Market holidays that fall on a fixed calendar date for NYSE, TSX and XETRA
+# alike. Without these, a month ending on 31 December locks execute_on =
+# 1 January, which is a Friday in 2027 and a closed market everywhere. The
+# Telegram layer already skips them (FIXED_CLOSURES in _shared/momentum.ts);
+# this keeps the stored date honest too.
+FIXED_CLOSURES = {(1, 1), (12, 25), (12, 26)}
+
+
 def next_weekday(d):
     nd = d + timedelta(days=1)
-    while nd.weekday() >= 5:
+    while nd.weekday() >= 5 or (nd.month, nd.day) in FIXED_CLOSURES:
         nd += timedelta(days=1)
     return nd
 
