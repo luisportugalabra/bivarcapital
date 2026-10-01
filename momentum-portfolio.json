@@ -52,18 +52,18 @@
       "name": "Dell Technologies Inc.",
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
-      "entry_price": 456.01,
+      "entry_price": 425.0,
       "current_price": 539.59,
-      "return_pct": 18.33
+      "return_pct": 26.96
     },
     {
       "ticker": "MRVL",
       "name": "Marvell Technology, Inc.",
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
-      "entry_price": 211.66,
+      "entry_price": 210.39,
       "current_price": 263.27,
-      "return_pct": 24.38
+      "return_pct": 25.13
     }
   ],
   "pending_signal": {
