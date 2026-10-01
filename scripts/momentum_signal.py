@@ -137,6 +137,18 @@ def check_regime():
         warnings.filterwarnings('ignore')
         data = yf.download('^GSPC', period='2y', progress=False)
         close = data['Close'].squeeze().dropna()
+
+        # Guard against an in-progress session: yfinance returns a partial bar
+        # for the current day while the market is open, so market_date would
+        # advance mid-session and the book would roll at an intraday price
+        # instead of the close. Every exchange tracked here (NYSE, TSX, XETRA)
+        # is shut by 22:00 UTC in both DST regimes.
+        from datetime import datetime as _dt, timezone as _tz
+        _now = _dt.now(_tz.utc)
+        if len(close) and close.index[-1].date() == _now.date() and _now.hour < 22:
+            print(f"  Dropping in-progress {_now.date()} bar (now {_now:%H:%M} UTC, "
+                  f"market still open)")
+            close = close.iloc[:-1]
         if len(close) == 0:
             return None, None, True, None  # no data, assume OK
         last = float(close.iloc[-1])
