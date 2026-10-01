@@ -115,5 +115,18 @@
       "DELL",
       "MRVL"
     ]
+  },
+  {
+    "start": "2026-09-30",
+    "end": "2026-10-31",
+    "tickers": [
+      "SNDK",
+      "MU",
+      "VICR",
+      "DELL",
+      "LITE",
+      "AMD",
+      "BE"
+    ]
   }
 ]
