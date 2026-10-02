@@ -283,9 +283,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
       <tbody id="table-body"></tbody>
     </table>
     </div>
-    <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      &nbsp;|&nbsp; <a href="/research/canada_momentum_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a> &nbsp;|&nbsp; <a href="/research/canada_momentum_adversarial_audit.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Adversarial audit (provisional) &rarr;</a> &nbsp;|&nbsp; <a href="/research/canada_momentum_sensitivity.html" style="color:var(--accent);text-decoration:none">Sensitivity analysis &rarr;</a>
-      &nbsp;|&nbsp; Rebalance: monthly
+    <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">&nbsp; <a href="/research/canada_momentum_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a> &nbsp;|&nbsp; Rebalance: monthly
     </p>
 
     <div id="yf-compare" style="display:none;margin-top:32px">
@@ -355,7 +353,7 @@ async function loadPortfolio() {
 
     if (data.is_live === false) {
       document.getElementById('not-live-banner').style.display = 'block';
-      document.getElementById('not-live-reason').textContent = data.not_live_reason || 'Data quality check failed.';
+      document.getElementById('not-live-reason').textContent = data.not_live_reason| 'Data quality check failed.';
     }
 
     // YTD
@@ -367,13 +365,13 @@ async function loadPortfolio() {
     }
 
     // MTD — most recent is_current month
-    const cur = (data.monthly_breakdown || []).slice().reverse().find(m => m.is_current);
+    const cur = (data.monthly_breakdown| []).slice().reverse().find(m => m.is_current);
     if (cur) {
       const mtdEl = document.getElementById('mtd-return');
       // Compute MTD from holdings if return_pct is null
       let mtd = cur.return_pct;
       if (mtd == null) {
-        const withRet = (data.holdings || []).filter(h => h.return_pct != null);
+        const withRet = (data.holdings| []).filter(h => h.return_pct != null);
         const wsum = withRet.reduce((a,h) => a + (h.weight ?? 1/withRet.length), 0);
         mtd = wsum > 0
           ? withRet.reduce((a,h) => a + h.return_pct * (h.weight ?? 1/withRet.length), 0) / wsum
@@ -396,26 +394,26 @@ async function loadPortfolio() {
     const _ym = new Date().toISOString().slice(0, 7);
     const _ps = data.pending_signal;
     const _isPending = !!(_ps && _ps.for_month === _ym &&
-                          String(data.last_rebalance || '').slice(0, 7) !== _ym);
+                          String(data.last_rebalance| '').slice(0, 7) !== _ym);
     const _regimeOn = !_ps ? true
       : (_ps.regime_ok !== undefined ? !!_ps.regime_ok
-                                     : (_ps.regime || 'momentum') === 'momentum');
+                                     : (_ps.regime| 'momentum') === 'momentum');
     const _pendingCash = _isPending && !_regimeOn;
     // Going to cash shows nothing to buy, so show what to SELL instead --
     // otherwise the page just empties and reads as broken rather than as an
     // instruction. These are last month's holdings, now being closed.
-    const _exiting = _pendingCash ? (data.holdings || []) : [];
+    const _exiting = _pendingCash ? (data.holdings| []) : [];
     const holdings = _isPending
-      ? (_regimeOn ? (_ps.picks || []).map(p => ({
+      ? (_regimeOn ? (_ps.picks| []).map(p => ({
           ticker: p.ticker, name: p.name, sector: p.sector,
           // weight must survive the mapping: Canada and Germany render it as a
           // column, and dropping it printed an em dash on every row.
-          weight: (p.weight != null ? p.weight : 1 / ((_ps.picks || []).length || 1)),
+          weight: (p.weight != null ? p.weight : 1 / ((_ps.picks| []).length| 1)),
           entry_date: null, entry_price: null,
           current_price: (p.price != null ? p.price : null),
           return_pct: null, _pending: true,
         })) : [])
-      : (data.holdings || []);
+      : (data.holdings| []);
 
     if (_isPending) {
       const b = document.getElementById('pending-banner');
@@ -429,7 +427,7 @@ async function loadPortfolio() {
             + 'executing at today\'s close. The table below is already the new month; the previous '
             + 'month\'s book is closed.'
           : 'This is the <strong>' + mName + '</strong> portfolio, locked in at the '
-            + (_ps.computed_date || 'month-end') + ' close. <strong>Buy at today\'s close</strong>, '
+            + (_ps.computed_date| 'month-end') + ' close. <strong>Buy at today\'s close</strong>, '
             + 'equal weight. Prices shown are the signal-day close and are what the calculator sizes '
             + 'on — entry prices are filled in tonight once the execution close exists.';
         b.style.display = 'block';
@@ -450,9 +448,9 @@ async function loadPortfolio() {
     document.getElementById('portfolio-body').innerHTML = holdings.length
       ? holdings.map(h => `<tr class="selected">
           <td><strong>${h.ticker}</strong></td>
-          <td style="font-family:var(--font-body);font-size:.7rem">${h.name || ''}</td>
+          <td style="font-family:var(--font-body);font-size:.7rem">${h.name| ''}</td>
           <td class="r">${h.weight != null ? (h.weight*100).toFixed(1) + '%' : '—'}</td>
-          <td class="r">${h._pending ? '<span style="color:var(--accent)">today\'s close</span>' : (h.entry_date || '—')}</td>
+          <td class="r">${h._pending ? '<span style="color:var(--accent)">today\'s close</span>' : (h.entry_date| '—')}</td>
           <td class="r">${h._pending ? '<span style="color:var(--text-muted)">pending</span>' : fmtP(h.entry_price)}</td>
           <td class="r">${fmtP(h.current_price)}</td>
           <td class="r">${fmtRet(h.return_pct)}</td>
@@ -463,7 +461,7 @@ async function loadPortfolio() {
              + '</td></tr>'
              + (_exiting.length
                  ? _exiting.map(h => '<tr style="opacity:.75"><td><strong>' + h.ticker + '</strong></td>'
-                     + '<td style="font-family:var(--font-body);font-size:.7rem">' + (h.name || '') + '</td>'
+                     + '<td style="font-family:var(--font-body);font-size:.7rem">' + (h.name| '') + '</td>'
                      + '<td colspan="5" class="r" style="color:var(--red);'
                      + 'font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em">SELL</td></tr>').join('')
                  : ''))
@@ -474,7 +472,7 @@ async function loadPortfolio() {
     // written by the *_ytd.py scripts, which only run after execution). Add a
     // provisional row so the new month does not look like it vanished, and
     // un-flag the previous month as current.
-    let _bd = (data.monthly_breakdown || []);
+    let _bd = (data.monthly_breakdown| []);
     if (_isPending) {
       const _mLbl = new Date(_ym + '-01T12:00:00Z')
         .toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
@@ -482,10 +480,10 @@ async function loadPortfolio() {
       // duplicates. Match on the label prefix, not on start: labels vary
       // ("Oct 2026" vs "Oct 2026 (MTD)") and the US dates each period by its
       // signal day, which falls in the PREVIOUS month.
-      _bd = _bd.filter(m => !String(m.month || '').startsWith(_mLbl))
+      _bd = _bd.filter(m => !String(m.month| '').startsWith(_mLbl))
                .map(m => Object.assign({}, m, { is_current: false })).concat([{
         month: _mLbl, is_current: true, return_pct: null, _cash: !_regimeOn,
-        tickers: _regimeOn ? (_ps.picks || []).map(p => p.ticker) : [],
+        tickers: _regimeOn ? (_ps.picks| []).map(p => p.ticker) : [],
       }]);
     }
     renderMonthlyBreakdown(_bd, new Date().getFullYear());
@@ -494,7 +492,7 @@ async function loadPortfolio() {
 
     if (data.updated)
       document.getElementById('portfolio-updated').textContent =
-        'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
+        'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance| '—');
 
     // Calculator
     if (holdings.length) {
@@ -522,7 +520,7 @@ function renderMonthlyBreakdown(breakdown, year) {
           // Jan-Jul 2026 are backfilled returns from before live tracking began,
           // and labelling those CASH asserts something false about the book.
         const tickers = m.tickers && m.tickers.length ? m.tickers.join(', ')
-          : ((m._cash || m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
+          : ((m._cash| m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
                                              : '<span style="color:var(--text-muted)">\u2014 not recorded</span>');
         return `<tr${isCur}>
           <td style="white-space:nowrap">${m.month}</td>
@@ -542,14 +540,11 @@ async function loadSignal() {
 
     if (data.is_live === false) {
       document.getElementById('not-live-banner').style.display = 'block';
-      document.getElementById('not-live-reason').textContent = data.not_live_reason || 'Data quality check failed.';
+      document.getElementById('not-live-reason').textContent = data.not_live_reason| 'Data quality check failed.';
     }
 
     // Regime box
     const isMom = data.regime === 'momentum';
-    const pctDev = data.tsx && data.tsx_ma75
-      ? ((data.tsx / data.tsx_ma75 - 1) * 100).toFixed(1)
-      : null;
     document.getElementById('regime-container').innerHTML = `
       <div class="regime-label">Market Regime</div>
       <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-cash'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — HOLD CASH'}</div>
@@ -558,10 +553,10 @@ async function loadSignal() {
       </div>`;
 
     // Signal date + eligible count
-    document.getElementById('signal-date').textContent = data.date || '—';
+    document.getElementById('signal-date').textContent = data.date| '—';
 
     // Top 20 signal table
-    const top20 = data.top20 || [];
+    const top20 = data.top20| [];
     document.getElementById('table-body').innerHTML = top20.map(s => {
       const sel = s.selected;
       const r12cls = s.ret_12m >= 0 ? 'pos' : 'neg';
@@ -569,21 +564,20 @@ async function loadSignal() {
         <td>${s.rank}</td>
         <td>${sel ? '<span class="tag-selected">SELECTED</span>' : ''}</td>
         <td><strong>${s.ticker}</strong></td>
-        <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
+        <td style="font-family:var(--font-body);font-size:.7rem">${s.name| ''}</td>
         <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
         <td class="r">${s.weight != null ? (s.weight*100).toFixed(1) + '%' : '—'}</td>
         <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
       </tr>`;
     }).join('');
 
-    const top20yf = data.top20_yf || [];
+    const top20yf = data.top20_yf| [];
     if (top20yf.length) {
       document.getElementById('yf-compare').style.display = 'block';
       document.getElementById('yf-overlap').textContent = data.yf_tv_overlap ?? '—';
       // Top-N by RANK, not by `selected`: the book is empty under a defensive
       // regime, which made every yfinance name render as YF ONLY.
-      const _n = top20yf.filter(s => s.selected).length
-              || top20.filter(s => s.selected).length || 10;
+      const _n = top20yf.filter(s => s.selected).length| top20.filter(s => s.selected).length| 10;
       const tvSel = new Set(top20.slice(0, _n).map(s => s.ticker));
       document.getElementById('yf-table-body').innerHTML = top20yf.map(s => {
         const sel = s.selected;
@@ -593,7 +587,7 @@ async function loadSignal() {
           <td>${s.rank}</td>
           <td>${sel ? (inTv ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">YF ONLY</span>') : ''}</td>
           <td><strong>${s.ticker}</strong></td>
-          <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
+          <td style="font-family:var(--font-body);font-size:.7rem">${s.name| ''}</td>
           <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
           <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
         </tr>`;
@@ -607,7 +601,7 @@ async function loadSignal() {
 
 function calcRebalance() {
   const total = parseFloat(document.getElementById('calc-input').value);
-  if (!total || total <= 0 || !_calcHoldings.length) {
+  if (!total| total <= 0| !_calcHoldings.length) {
     document.getElementById('calc-table').style.display = 'none';
     return;
   }
