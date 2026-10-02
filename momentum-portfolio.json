@@ -216,18 +216,18 @@
     {
       "month": "Oct 2026 (MTD)",
       "is_current": true,
-      "start": "2026-09-30",
+      "start": "2026-10-01",
       "end": "2026-10-02",
       "tickers": [
         "SNDK",
         "MU",
         "VICR",
-        "DELL",
         "LITE",
+        "DELL",
         "AMD",
-        "BE"
+        "STX"
       ],
-      "return_pct": 3.12
+      "return_pct": 0.0
     }
   ]
 }
