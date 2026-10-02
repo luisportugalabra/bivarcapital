@@ -1,6 +1,6 @@
 {
-  "last_rebalance": "2026-09-01",
-  "updated": "2026-10-01 09:55 UTC",
+  "last_rebalance": "2026-10-01",
+  "updated": "2026-10-02 02:05 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1739.89,
-      "return_pct": 532.14
+      "current_price": 1787.69,
+      "return_pct": 549.5
     },
     {
       "ticker": "MU",
@@ -17,8 +17,17 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 1065.11,
-      "return_pct": 96.47
+      "current_price": 1097.39,
+      "return_pct": 102.42
+    },
+    {
+      "ticker": "VICR",
+      "name": "Vicor Corporation",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-10-01",
+      "entry_price": 308.59,
+      "current_price": 308.59,
+      "return_pct": 0.0
     },
     {
       "ticker": "LITE",
@@ -26,26 +35,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 971.26,
-      "return_pct": 151.55
-    },
-    {
-      "ticker": "WDC",
-      "name": "Western Digital Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-01-02",
-      "entry_price": 187.56,
-      "current_price": 454.46,
-      "return_pct": 142.3
-    },
-    {
-      "ticker": "STX",
-      "name": "Seagate Technology Holdings PLC",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-04-01",
-      "entry_price": 422.82,
-      "current_price": 922.34,
-      "return_pct": 118.14
+      "current_price": 1045.78,
+      "return_pct": 170.85
     },
     {
       "ticker": "DELL",
@@ -53,70 +44,30 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
       "entry_price": 425.0,
-      "current_price": 537.95,
-      "return_pct": 26.58
+      "current_price": 541.74,
+      "return_pct": 27.47
     },
     {
-      "ticker": "MRVL",
-      "name": "Marvell Technology, Inc.",
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
       "sector": "Electronic Technology",
-      "entry_date": "2026-09-01",
-      "entry_price": 210.39,
-      "current_price": 264.21,
-      "return_pct": 25.58
+      "entry_date": "2026-10-01",
+      "entry_price": 615.73,
+      "current_price": 615.73,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
+      "sector": "Electronic Technology",
+      "entry_date": "2026-04-01",
+      "entry_price": 422.82,
+      "current_price": 945.57,
+      "return_pct": 123.63
     }
   ],
-  "pending_signal": {
-    "for_month": "2026-10",
-    "computed_date": "2026-09-30",
-    "execute_on": "2026-10-01",
-    "regime_ok": true,
-    "picks": [
-      {
-        "ticker": "SNDK",
-        "name": "Sandisk Corporation",
-        "sector": "Electronic Technology",
-        "price": 1739.89
-      },
-      {
-        "ticker": "MU",
-        "name": "Micron Technology, Inc.",
-        "sector": "Electronic Technology",
-        "price": 1065.11
-      },
-      {
-        "ticker": "VICR",
-        "name": "Vicor Corporation",
-        "sector": "Electronic Technology",
-        "price": 288.94
-      },
-      {
-        "ticker": "LITE",
-        "name": "Lumentum Holdings Inc.",
-        "sector": "Producer Manufacturing",
-        "price": 971.26
-      },
-      {
-        "ticker": "DELL",
-        "name": "Dell Technologies Inc.",
-        "sector": "Electronic Technology",
-        "price": 537.95
-      },
-      {
-        "ticker": "AMD",
-        "name": "Advanced Micro Devices, Inc.",
-        "sector": "Electronic Technology",
-        "price": 611.76
-      },
-      {
-        "ticker": "STX",
-        "name": "Seagate Technology Holdings PLC",
-        "sector": "Electronic Technology",
-        "price": 922.34
-      }
-    ]
-  },
-  "ytd_2026": 229.57,
+  "pending_signal": null,
+  "ytd_2026": 239.85,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -266,7 +217,7 @@
       "month": "Oct 2026 (MTD)",
       "is_current": true,
       "start": "2026-09-30",
-      "end": "2026-10-01",
+      "end": "2026-10-02",
       "tickers": [
         "SNDK",
         "MU",
@@ -276,7 +227,7 @@
         "AMD",
         "BE"
       ],
-      "return_pct": 0.0
+      "return_pct": 3.12
     }
   ]
 }
