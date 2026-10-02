@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>USA Momentum Signal — Bivar Capital</title>
-<meta name="description" content="Bivar USA Momentum live signal. Monthly rebalance.">
+<meta name="description" content="Bivar USA Momentum live signal. Top 20 momentum stocks ranked by composite momentum.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -114,7 +114,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>USA Momentum</h1>
-  <p class="subtitle">Monthly signal. US large-cap equities.</p>
+  <p class="subtitle">Monthly signal. Top 20 ranked by composite momentum, portfolio of 7 selected.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the live momentum signal.</p>
@@ -211,7 +211,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 
     <hr class="section-divider">
 
-    <div class="date-note">Signal date: <span id="signal-date"></span></div>
+    <div class="date-note">Signal date: <span id="signal-date"></span> &nbsp;|&nbsp; <span id="eligible-count"></span> eligible stocks</div>
     <div class="table-wrap">
     <table>
       <thead>
@@ -223,13 +223,19 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <th>Sector</th>
           <th>Ret 6M</th>
           <th>Ret 12M</th>
+          <th>Composite</th>
           <th>MCap ($B)</th>
+          <th>EBIT ($M)</th>
         </tr>
       </thead>
       <tbody id="table-body"></tbody>
     </table>
     </div>
-    <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">&nbsp; <a href="/research/momentum_strategy_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a> &nbsp;</p>
+    <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
+      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7 &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; Cash
+      &nbsp;|&nbsp; <a href="/research/momentum_strategy_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a> &nbsp;|&nbsp; <a href="/research/us_momentum_adversarial_audit.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Adversarial audit (provisional) &rarr;</a>
+      &nbsp;|&nbsp; <a href="/research/signal_day_sensitivity.html" style="color:var(--accent);text-decoration:none">Signal day sensitivity &rarr;</a> &nbsp;|&nbsp; <a href="/research/usa_momentum_sensitivity.html" style="color:var(--accent);text-decoration:none">Parameter sensitivity &rarr;</a>
+    </p>
 
     <div id="yf-compare" style="display:none;margin-top:32px">
       <div style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px">Data-Source Comparison — Yahoo Finance Ranking</div>
@@ -249,7 +255,8 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
             <th>Name</th>
             <th>Ret 6M</th>
             <th>Ret 12M</th>
-              <th>MCap ($B)</th>
+            <th>Composite</th>
+            <th>MCap ($B)</th>
           </tr>
         </thead>
         <tbody id="yf-table-body"></tbody>
@@ -311,12 +318,12 @@ async function loadPortfolio() {
       ytdEl.className = 'stat-val ' + (ytdVal >= 0 ? 'pos' : 'neg');
     }
     // MTD — mês corrente do breakdown
-    const cur = (data.monthly_breakdown| []).find(m => m.is_current);
+    const cur = (data.monthly_breakdown || []).find(m => m.is_current);
     if (cur) {
       const mtdEl = document.getElementById('mtd-return');
       let mtd = cur.return_pct;
       if (mtd == null) {
-        const rets = (data.holdings| []).map(h => h.return_pct).filter(r => r != null);
+        const rets = (data.holdings || []).map(h => h.return_pct).filter(r => r != null);
         mtd = rets.length ? rets.reduce((a,b) => a+b, 0) / rets.length : null;
       }
       if (mtd != null) {
@@ -336,26 +343,26 @@ async function loadPortfolio() {
     const _ym = new Date().toISOString().slice(0, 7);
     const _ps = data.pending_signal;
     const _isPending = !!(_ps && _ps.for_month === _ym &&
-                          String(data.last_rebalance| '').slice(0, 7) !== _ym);
+                          String(data.last_rebalance || '').slice(0, 7) !== _ym);
     const _regimeOn = !_ps ? true
       : (_ps.regime_ok !== undefined ? !!_ps.regime_ok
-                                     : (_ps.regime| 'momentum') === 'momentum');
+                                     : (_ps.regime || 'momentum') === 'momentum');
     const _pendingCash = _isPending && !_regimeOn;
     // Going to cash shows nothing to buy, so show what to SELL instead --
     // otherwise the page just empties and reads as broken rather than as an
     // instruction. These are last month's holdings, now being closed.
-    const _exiting = _pendingCash ? (data.holdings| []) : [];
+    const _exiting = _pendingCash ? (data.holdings || []) : [];
     const holdings = _isPending
-      ? (_regimeOn ? (_ps.picks| []).map(p => ({
+      ? (_regimeOn ? (_ps.picks || []).map(p => ({
           ticker: p.ticker, name: p.name, sector: p.sector,
           // weight must survive the mapping: Canada and Germany render it as a
           // column, and dropping it printed an em dash on every row.
-          weight: (p.weight != null ? p.weight : 1 / ((_ps.picks| []).length| 1)),
+          weight: (p.weight != null ? p.weight : 1 / ((_ps.picks || []).length || 1)),
           entry_date: null, entry_price: null,
           current_price: (p.price != null ? p.price : null),
           return_pct: null, _pending: true,
         })) : [])
-      : (data.holdings| []);
+      : (data.holdings || []);
 
     if (_isPending) {
       const b = document.getElementById('pending-banner');
@@ -369,7 +376,7 @@ async function loadPortfolio() {
             + 'executing at today\'s close. The table below is already the new month; the previous '
             + 'month\'s book is closed.'
           : 'This is the <strong>' + mName + '</strong> portfolio, locked in at the '
-            + (_ps.computed_date| 'month-end') + ' close. <strong>Buy at today\'s close</strong>, '
+            + (_ps.computed_date || 'month-end') + ' close. <strong>Buy at today\'s close</strong>, '
             + 'equal weight. Prices shown are the signal-day close and are what the calculator sizes '
             + 'on — entry prices are filled in tonight once the execution close exists.';
         b.style.display = 'block';
@@ -390,8 +397,8 @@ async function loadPortfolio() {
     document.getElementById('portfolio-body').innerHTML = holdings.length
       ? holdings.map(h => `<tr class="selected">
           <td><strong>${h.ticker}</strong></td>
-          <td style="font-family:var(--font-body);font-size:.7rem">${h.name| ''}</td>
-          <td class="r">${h._pending ? '<span style="color:var(--accent)">today\'s close</span>' : (h.entry_date| '—')}</td>
+          <td style="font-family:var(--font-body);font-size:.7rem">${h.name || ''}</td>
+          <td class="r">${h._pending ? '<span style="color:var(--accent)">today\'s close</span>' : (h.entry_date || '—')}</td>
           <td class="r">${h._pending ? '<span style="color:var(--text-muted)">pending</span>' : fmtP(h.entry_price)}</td>
           <td class="r">${fmtP(h.current_price)}</td>
           <td class="r">${fmtRet(h.return_pct)}</td>
@@ -402,7 +409,7 @@ async function loadPortfolio() {
              + '</td></tr>'
              + (_exiting.length
                  ? _exiting.map(h => '<tr style="opacity:.75"><td><strong>' + h.ticker + '</strong></td>'
-                     + '<td style="font-family:var(--font-body);font-size:.7rem">' + (h.name| '') + '</td>'
+                     + '<td style="font-family:var(--font-body);font-size:.7rem">' + (h.name || '') + '</td>'
                      + '<td colspan="4" class="r" style="color:var(--red);'
                      + 'font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em">SELL</td></tr>').join('')
                  : ''))
@@ -413,7 +420,7 @@ async function loadPortfolio() {
     // written by the *_ytd.py scripts, which only run after execution). Add a
     // provisional row so the new month does not look like it vanished, and
     // un-flag the previous month as current.
-    let _bd = (data.monthly_breakdown| []);
+    let _bd = (data.monthly_breakdown || []);
     if (_isPending) {
       const _mLbl = new Date(_ym + '-01T12:00:00Z')
         .toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
@@ -421,10 +428,10 @@ async function loadPortfolio() {
       // duplicates. Match on the label prefix, not on start: labels vary
       // ("Oct 2026" vs "Oct 2026 (MTD)") and the US dates each period by its
       // signal day, which falls in the PREVIOUS month.
-      _bd = _bd.filter(m => !String(m.month| '').startsWith(_mLbl))
+      _bd = _bd.filter(m => !String(m.month || '').startsWith(_mLbl))
                .map(m => Object.assign({}, m, { is_current: false })).concat([{
         month: _mLbl, is_current: true, return_pct: null, _cash: !_regimeOn,
-        tickers: _regimeOn ? (_ps.picks| []).map(p => p.ticker) : [],
+        tickers: _regimeOn ? (_ps.picks || []).map(p => p.ticker) : [],
       }]);
     }
     const breakdown = _bd.slice().reverse();
@@ -437,7 +444,7 @@ async function loadPortfolio() {
             <td class="r">${retHtml}</td>
             <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${
               m.tickers && m.tickers.length ? m.tickers.join(', ')
-                : ((m._cash| m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
+                : ((m._cash || m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
                                                    : '<span style="color:var(--text-muted)">\u2014 not recorded</span>')}</td>
           </tr>`;
         }).join('')
@@ -445,7 +452,7 @@ async function loadPortfolio() {
 
     if (data.updated)
       document.getElementById('portfolio-updated').textContent =
-        'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance| '—');
+        'Updated: ' + data.updated + '  ·  Last rebalance: ' + (data.last_rebalance || '—');
 
     // Calculator — seed with stored prices; live prices fetched on first focus
     if (holdings.length) {
@@ -468,39 +475,43 @@ async function loadData() {
   rc.innerHTML = `
     <div class="regime-label">Market Regime</div>
     <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — CASH'}</div>
-    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">${isMom ? 'Signal: Invested in equities' : 'Signal: Out of the market \u2014 100% cash'}</div>
+    <div class="regime-detail">S&P 500: ${data.sp500?.toLocaleString()} &nbsp;|&nbsp; MA250: ${data.sp500_ma250?.toLocaleString()} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA250 (${((data.sp500/data.sp500_ma250-1)*100).toFixed(1)}%)</div>
+    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">${isMom ? 'Signal: Buy top 7 momentum stocks (equal weight)' : 'Signal: Sell all stocks, move to cash (100%)'}</div>
   `;
   document.getElementById('signal-date').textContent = data.date;
+  document.getElementById('eligible-count').textContent = data.total_eligible;
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = data.top20.map(s => {
     let cls = '', status = '';
     if (s.selected) { cls = 'selected'; status = '<span class="tag-selected">SELECTED</span>'; }
     const retCls6 = s.ret_6m >= 0 ? 'pos' : 'neg';
     const retCls12 = s.ret_12m >= 0 ? 'pos' : 'neg';
-    return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td>${s.mcap_b}</td></tr>`;
+    const compCls = s.composite >= 0 ? 'pos' : 'neg';
+    return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td><td>${s.ebit_m.toLocaleString()}</td></tr>`;
   }).join('');
 
-  const top20yf = data.top20_yf| [];
+  const top20yf = data.top20_yf || [];
   if (top20yf.length) {
     document.getElementById('yf-compare').style.display = 'block';
     document.getElementById('yf-overlap').textContent = data.yf_tv_overlap ?? '—';
     // Top-N by RANK, not by `selected`: the book is empty under a defensive
     // regime, which made every yfinance name render as YF ONLY.
-    const _n = top20yf.filter(s => s.selected).length| (data.top20| []).filter(s => s.selected).length| 7;
-    const tvSel = new Set((data.top20| []).slice(0, _n).map(s => s.ticker));
+    const _n = top20yf.filter(s => s.selected).length
+            || (data.top20 || []).filter(s => s.selected).length || 7;
+    const tvSel = new Set((data.top20 || []).slice(0, _n).map(s => s.ticker));
     document.getElementById('yf-table-body').innerHTML = top20yf.map(s => {
       const sel = s.selected;
       const inTv = tvSel.has(s.ticker);
       const status = sel ? (inTv ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">YF ONLY</span>') : '';
-      const c6 = s.ret_6m >= 0 ? 'pos' : 'neg', c12 = s.ret_12m >= 0 ? 'pos' : 'neg';
-      return `<tr class="${sel ? 'selected' : ''}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td class="${c6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${c12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td>${s.mcap_b}</td></tr>`;
+      const c6 = s.ret_6m >= 0 ? 'pos' : 'neg', c12 = s.ret_12m >= 0 ? 'pos' : 'neg', cc = s.composite >= 0 ? 'pos' : 'neg';
+      return `<tr class="${sel ? 'selected' : ''}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td class="${c6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${c12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${cc}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td></tr>`;
     }).join('');
   }
 }
 let _calcHoldings = [];
 function calcRebalance() {
   const total = parseFloat(document.getElementById('calc-input').value);
-  if (!total| total <= 0| !_calcHoldings.length) {
+  if (!total || total <= 0 || !_calcHoldings.length) {
     document.getElementById('calc-table').style.display = 'none';
     return;
   }

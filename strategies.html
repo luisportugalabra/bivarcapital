@@ -168,7 +168,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">USA Momentum</div>
         <span class="card-badge badge-live">Live</span>
       </div>
-      <p id="momentum-blur" class="card-desc">Systematic momentum strategy on US large-cap equities, with a market regime overlay that moves the book to cash in bear markets. Monthly rebalance, 7 positions, equal weighted.</p>
+      <p id="momentum-blur" class="card-desc">Systematic momentum strategy on US large-cap equities with a profitability filter and market regime overlay. Cash overlay in bear markets. Monthly rebalance.</p>
       <div class="card-stats" id="momentum-stats">
         <span class="card-stat">Sharpe: <span class="num">0.87</span></span>
         <span class="card-stat">CAGR: <span class="num">+25.6%</span></span>
@@ -189,7 +189,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">Canada TSX Momentum</div>
         <span class="card-badge badge-live">Live</span>
       </div>
-      <p id="canada-momentum-blur" class="card-desc">Systematic momentum strategy on Canadian equities, with a market regime overlay that moves the book to cash in bear markets. Monthly rebalance, 10 positions, equal weighted.</p>
+      <p id="canada-momentum-blur" class="card-desc">12-month momentum strategy on TSX equities. Mcap top 80% (percentile), NetIncome(TTM)&gt;0, TSX MA75 regime overlay. Monthly rebalance, 10 stocks equal weighted.</p>
       <div class="card-stats" id="canada-momentum-stats">
         <span class="card-stat">Sharpe: <span class="num">1.19</span></span>
         <span class="card-stat">CAGR: <span class="num">+33.8%</span></span>
@@ -210,7 +210,7 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
         <div class="card-title">Beta &mdash; Germany XETRA Momentum</div>
         <span class="card-badge badge-beta">Beta</span>
       </div>
-      <p id="germany-momentum-blur" class="card-desc">Systematic momentum strategy on German equities, with a market regime overlay that moves the book to cash in bear markets. Monthly rebalance, 10 positions, equal weighted. Beta: holds small and mid-cap names where spreads can be wide &mdash; use limit orders and size accordingly.</p>
+      <p id="germany-momentum-blur" class="card-desc">12-month momentum strategy on XETRA equities, German-domiciled companies only. Mcap top 70% (percentile), no fundamental filter, DAX MA200 regime overlay. Monthly rebalance, 10 stocks equal weighted. Beta: adversarially audited (no lookahead/survivorship inflation found), but several held names carry real spreads well above the 40bps backtest assumption &mdash; sub-EUR-2M capacity, use limit orders.</p>
       <div class="card-stats" id="germany-momentum-stats">
         <span class="card-stat">Sharpe: <span class="num">0.72</span></span>
         <span class="card-stat">CAGR: <span class="num">+19.1%</span></span>
@@ -395,13 +395,13 @@ window.onUnlock = function(email) {
   document.getElementById('momentum-blur').style.userSelect = 'auto';
   document.getElementById('momentum-stats').style.filter = 'none';
   document.getElementById('momentum-stats').style.userSelect = 'auto';
-  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;';
+  document.getElementById('momentum-actions').innerHTML = '<a href="/momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/momentum_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/usa_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
   document.getElementById('canada-momentum-blur').style.filter = 'none';
   document.getElementById('canada-momentum-blur').style.userSelect = 'auto';
   document.getElementById('canada-momentum-stats').style.filter = 'none';
   document.getElementById('canada-momentum-stats').style.userSelect = 'auto';
-  document.getElementById('canada-momentum-actions').innerHTML = '<a href="/canada-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;';
-  document.getElementById('germany-momentum-actions').innerHTML = '<a href="/germany-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;';
+  document.getElementById('canada-momentum-actions').innerHTML = '<a href="/canada-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/canada_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
+  document.getElementById('germany-momentum-actions').innerHTML = '<a href="/germany-momentum.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>&nbsp;&nbsp;<a href="/research/germany_momentum_sensitivity.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--accent);text-decoration:none;opacity:.85">Sensitivity &rarr;</a>';
   document.getElementById('druckenmiller-13f-actions').innerHTML = '<a href="/druckenmiller-13f.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>';
   // CHINA — re-enable when adding card back
   // document.getElementById('china-momentum-blur').style.filter = 'none';

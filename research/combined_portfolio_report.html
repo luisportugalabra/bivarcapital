@@ -50,7 +50,7 @@ previous version was found to be running a Canada series contaminated by a look-
 filter, and over a window starting in 2006 rather than 2000. Every sleeve's own caveats carry through: survivorship
 windows, capacity limits, in-sample config selection.</p>
 <div class="divider"></div>
-<h2>The Three Sleeves</h2>
+<h2>I. The Three Sleeves</h2>
 <div class="table-wrap"><table><thead><tr><th>Sleeve</th><th>CAGR</th><th>Vol</th><th>Sharpe</th><th>Sortino</th><th>MaxDD</th><th>Worst month</th></tr></thead><tbody>
 <tr><td>USA</td><td>+25.3%</td><td>26.4%</td><td>0.85</td><td>1.80</td><td><span class="neg">-35.5%</span></td><td><span class="neg">-22.9%</span></td></tr>
 <tr><td>Canada</td><td>+34.8%</td><td>25.9%</td><td>1.23</td><td>2.85</td><td><span class="neg">-26.0%</span></td><td><span class="neg">-18.9%</span></td></tr>
@@ -58,7 +58,7 @@ windows, capacity limits, in-sample config selection.</p>
 <p>Canada carries the book and Germany is the weakest leg on every measure. That is the starting
 point, not the conclusion &mdash; what follows is about whether the mix beats its parts.</p>
 <div class="divider"></div>
-<h2>Correlations</h2>
+<h2>II. Correlations</h2>
 <div class="table-wrap"><table><thead><tr><th></th><th>USA</th><th>Canada</th><th>Germany</th></tr></thead><tbody>
 <tr><td>USA</td><td>1.00</td><td>0.30</td><td>0.29</td></tr>
 <tr><td>Canada</td><td>0.30</td><td>1.00</td><td>0.26</td></tr>
@@ -74,7 +74,51 @@ together on a bad month. That is the whole reason the combination exists, and it
 distrust first: three long-equity momentum books will correlate in a genuine systemic crash however they
 behaved in this sample.</p>
 <div class="divider"></div>
-<h2>The Optimal Balance</h2>
+<h2>III. Weight Grid</h2>
+<div class="table-wrap"><table><thead><tr><th>USA/CAN/GER</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>25/50/25</td><td>+30.4%</td><td>1.459</td><td><span class="neg">-20.3%</span></td></tr>
+<tr><td>20/50/30</td><td>+30.1%</td><td>1.458</td><td><span class="neg">-21.2%</span></td></tr>
+<tr><td>25/45/30</td><td>+29.7%</td><td>1.457</td><td><span class="neg">-20.6%</span></td></tr>
+<tr><td>20/55/25</td><td>+30.8%</td><td>1.455</td><td><span class="neg">-20.9%</span></td></tr>
+<tr><td>30/45/25</td><td>+29.9%</td><td>1.453</td><td><span class="neg">-19.7%</span></td></tr>
+<tr><td>25/55/20</td><td>+31.0%</td><td>1.452</td><td><span class="neg">-20.1%</span></td></tr>
+<tr><td>30/50/20</td><td>+30.6%</td><td>1.451</td><td><span class="neg">-19.5%</span></td></tr>
+<tr><td>20/45/35</td><td>+29.4%</td><td>1.451</td><td><span class="neg">-21.4%</span></td></tr>
+<tr><td>15/55/30</td><td>+30.5%</td><td>1.447</td><td><span class="neg">-21.8%</span></td></tr>
+<tr><td>15/50/35</td><td>+29.8%</td><td>1.446</td><td><span class="neg">-22.0%</span></td></tr>
+<tr><td>30/40/30</td><td>+29.3%</td><td>1.445</td><td><span class="neg">-20.0%</span></td></tr>
+<tr><td>25/40/35</td><td>+29.0%</td><td>1.445</td><td><span class="neg">-20.8%</span></td></tr>
+<tr><td>20/60/20</td><td>+31.4%</td><td>1.444</td><td><span class="neg">-20.7%</span></td></tr>
+<tr><td>30/55/15</td><td>+31.3%</td><td>1.441</td><td><span class="neg">-19.2%</span></td></tr></tbody></table></div>
+<p>Top of 231 combinations on a 5% grid. The best reads Sharpe
+1.459 at 25/50/25, but the standard error of a Sharpe
+estimated from 316 months is <strong>0.081</strong> &mdash; so <strong>65 of
+231 combinations are statistically tied with it</strong>. Choosing between them on this
+evidence is choosing noise.</p>
+<div class="divider"></div>
+<h2>IV. Candidates</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th>USA/CAN/GER</th><th>CAGR</th><th>Vol</th><th>Sharpe</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>equal</td><td>33/33/34</td><td>+28.4%</td><td>18.0%</td><td>1.41</td><td><span class="neg">-20.0%</span></td></tr>
+<tr class="hl-row"><td>35/40/25</td><td>35/40/25</td><td>+29.5%</td><td>18.5%</td><td>1.44</td><td><span class="neg">-19.5%</span></td></tr>
+<tr><td>best</td><td>25/50/25</td><td>+30.4%</td><td>18.8%</td><td>1.46</td><td><span class="neg">-20.3%</span></td></tr>
+<tr><td>inv-vol</td><td>31/32/37</td><td>+28.2%</td><td>17.8%</td><td>1.41</td><td><span class="neg">-20.3%</span></td></tr></tbody></table></div>
+<p>All four sit inside the tie. Every one roughly halves the drawdown of the best single sleeve
+while landing between its CAGR and the weakest sleeve's.</p>
+<div class="divider"></div>
+<h2>V. Walk-Forward &mdash; the test that decides</h2>
+<p>Re-optimising the weights every January on the previous 60 months and holding them for the next
+twelve, repeated across the sample &mdash; 252 months out of sample:</p>
+<div class="table-wrap"><table><thead><tr><th>Rule</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead><tbody>
+<tr><td>otimizado</td><td>+28.7%</td><td>1.30</td><td><span class="neg">-23.6%</span></td></tr>
+<tr><td>equal</td><td>+27.2%</td><td>1.48</td><td><span class="neg">-19.9%</span></td></tr>
+<tr class="hl-row"><td>35/40/25</td><td>+28.1%</td><td>1.49</td><td><span class="neg">-19.1%</span></td></tr></tbody></table></div>
+<p><strong>Re-optimising loses.</strong> It gives up 0.18
+of Sharpe against simply holding equal weights and digs a drawdown
+-4.5 points deeper than the fixed 35/40/25. The
+optimiser chases whatever did well in the training window and arrives after it has stopped working.
+A fixed 35/40/25 beats both on every column.</p>
+<div class="divider"></div>
+<h2>VI. The Optimal Balance</h2>
 <p><strong>35/40/25 &mdash; USA, Canada, Germany.</strong> It is not the in-sample peak
 (25/50/25 is, by 0.024 of Sharpe,
 a quarter of one standard error). It is the weight that wins the only test that looks forward: Sharpe
@@ -88,7 +132,7 @@ those are inside the tie and the data cannot separate them. And the drawdowns he
 month-end values: the intra-month low is worse, by a factor of roughly 1.5 on the one sleeve where daily
 data exists to check it.</p>
 <div class="divider"></div>
-<h2>Year by Year (35/40/25)</h2>
+<h2>VII. Year by Year (35/40/25)</h2>
 <div class="table-wrap"><table><thead><tr><th>Year</th><th>USA</th><th>Canada</th><th>Germany</th><th>Portfolio</th></tr></thead><tbody>
 <tr><td>2000</td><td>+16.9%</td><td>+45.4%</td><td>+21.1%</td><td><strong>+32.5%</strong></td></tr>
 <tr><td>2001</td><td>+0.0%</td><td>-6.3%</td><td>-2.0%</td><td><strong>-3.0%</strong></td></tr>
@@ -119,7 +163,7 @@ data exists to check it.</p>
 <tr><td>2026</td><td>+120.0%</td><td>+5.4%</td><td>+7.3%</td><td><strong>+41.4%</strong></td></tr></tbody></table></div>
 <p>23 of 27 years positive.</p>
 <div class="divider"></div>
-<h2>Worst Months</h2>
+<h2>VIII. Worst Months</h2>
 <div class="table-wrap"><table><thead><tr><th>Month</th><th>USA</th><th>Canada</th><th>Germany</th><th>Portfolio</th><th>Sleeves down</th></tr></thead><tbody>
 <tr><td>2004-04</td><td>-13.1%</td><td>-14.1%</td><td>-3.2%</td><td><strong>-11.0%</strong></td><td>3/3</td></tr>
 <tr><td>2008-01</td><td>-15.4%</td><td>-0.1%</td><td>-16.9%</td><td><strong>-9.6%</strong></td><td>3/3</td></tr>
@@ -132,11 +176,11 @@ data exists to check it.</p>
 <p>Read the last column. Most bad months are one sleeve having a bad time; the months where all
 three fall together are the ones that set the drawdown.</p>
 <div class="divider"></div>
-<h2>Provenance and Limitations</h2>
+<h2>IX. Provenance and Limitations</h2>
 <ol class="steps">
 <li><strong>Canada</strong> uses the harness series that the strategy publishes: CAGR +33.8%, Sharpe 1.19,
 MaxDD &minus;26.0% &mdash; reproduced here exactly. The previous version of this report used a series with
-a look-ahead in one of the fundamental inputs, which
+a look-ahead in the NetIncome filter (it read the quarter's results on the day the quarter closed), which
 showed &minus;24.5% and about 3pp more CAGR.</li>
 <li><strong>Germany</strong> uses the live N=10 config with no liquidity filter: +19.1%, 0.72,
 &minus;39.1%, reproduced exactly. The previous version of this report ran the same configuration; over its shorter 2006&ndash;2026 window that series reads +18.4%/0.76/&minus;39.1%, which reproduces here to the decimal. The Germany leg was never the problem.</li>
@@ -146,7 +190,7 @@ showed &minus;24.5% and about 3pp more CAGR.</li>
 apart, and I could not locate which script produced the published pair. Treat the USA leg as
 approximate.</li>
 <li><strong>All weights are chosen in-sample</strong> over the same history the sleeves were built on.
-Out-of-sample testing is the mitigation, not a cure.</li>
+The walk-forward in Section&nbsp;V is the mitigation, not a cure.</li>
 <li><strong>Month-end drawdowns understate the experience.</strong></li>
 <li><strong>The tail correlations are a sample, not a law.</strong> One systemic crash is in this window
 (2008); the diversification held then, which is one observation.</li>
