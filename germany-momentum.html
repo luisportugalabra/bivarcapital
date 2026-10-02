@@ -495,7 +495,7 @@ function renderMonthlyBreakdown(breakdown, year) {
           // Jan-Jul 2026 are backfilled returns from before live tracking began,
           // and labelling those CASH asserts something false about the book.
         const tickers = m.tickers && m.tickers.length ? m.tickers.join(', ')
-          : ((m._cash || m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
+          : ((m._cash || m.regime === 'defensive' || m.return_pct === 0 || m.return_pct == null) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
                                              : '<span style="color:var(--text-muted)">\u2014 not recorded</span>');
         return `<tr${isCur}>
           <td style="white-space:nowrap">${m.month}</td>

@@ -444,7 +444,7 @@ async function loadPortfolio() {
             <td class="r">${retHtml}</td>
             <td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${
               m.tickers && m.tickers.length ? m.tickers.join(', ')
-                : ((m._cash || m.return_pct === 0) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
+                : ((m._cash || m.regime === 'defensive' || m.return_pct === 0 || m.return_pct == null) ? '<span style="color:var(--accent);font-family:var(--font-mono);letter-spacing:.08em">CASH</span>'
                                                    : '<span style="color:var(--text-muted)">\u2014 not recorded</span>')}</td>
           </tr>`;
         }).join('')
