@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germany XETRA Momentum — Adversarial Audit — Bivar Capital</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608; --bg-card: #0c0c10; --border: #1a1a22; --border-light: #2a2a35;
+  --text: #e8e8ec; --text-secondary: #9898a4; --text-muted: #5a5a68;
+  --accent: #c4a265; --green: #4ade80; --red: #f87171;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+.badge { font-family: var(--font-mono); font-size: .55rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(196,162,101,0.14); border: 1px solid rgba(196,162,101,0.3); padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 16px; }
+.back { font-family: var(--font-mono); font-size: .6rem; color: var(--text-muted); text-decoration: none; display: inline-block; margin-bottom: 24px; }
+.back:hover { color: var(--accent); }
+h1 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; margin: 8px 0 6px; }
+h2 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin: 36px 0 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+h2:first-of-type { border-top: none; }
+h3 { font-family: var(--font-mono); font-size: .85rem; color: var(--accent); margin: 22px 0 8px; text-transform: uppercase; letter-spacing: .04em; }
+p { color: var(--text-secondary); font-size: .87rem; margin-bottom: 12px; }
+strong { color: var(--text); }
+em { color: var(--text-secondary); }
+a { color: var(--accent); }
+ul, ol { margin: 0 0 14px 22px; color: var(--text-secondary); font-size: .87rem; }
+li { margin-bottom: 5px; }
+li p { margin-bottom: 4px; }
+hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+code { font-family: var(--font-mono); font-size: .82em; background: var(--bg-card); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; color: var(--accent); }
+pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+.table-wrap { overflow-x: auto; margin: 10px 0 18px; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: .74rem; }
+th { text-align: left; padding: 7px 10px; font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 1px solid var(--border-light); white-space: nowrap; }
+td { padding: 6px 10px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .72rem; color: var(--text-secondary); }
+tr:first-child td { color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; margin-top: 20px; }
+footer p { font-family: var(--font-mono); font-size: .55rem; color: var(--text-muted); }
+@media(max-width:700px){ h1{font-size:1.35rem} }
+</style>
+</head>
+<body>
+<main>
+<div class="container">
+  <a href="/strategies.html" class="back">&larr; Strategies</a>
+  <span class="badge">Provisional &middot; Internal Audit</span>
+  <h1>Auditoria adversarial independente — Germany XETRA Momentum</h1>
+<p><strong>Datas:</strong> 2026-08-25/26 · <strong>Motor auditado:</strong> <code>germany_final_locked.py</code> + <code>backtest.py</code> partilhado · <strong>Duas auditorias independentes</strong> (a segunda sem confiar na primeira), mais a bateria completa re-corrida sobre a variante live (só empresas alemãs).
+<strong>Método:</strong> reprodução exacta, reimplementação independente, forense de survivorship com verificação externa, placebos, stress de custos com spreads reais medidos, falsificação.</p>
+
+<h2>A. Veredicto executivo</h2>
+<p><strong>Investiria em tamanho pequeno (sub-EUR 1-2M), tratando ~18-19%/0.9 como o número real</strong> — não os 26 anos de headline. O dataset EODHD para a XETRA não tem <em>nenhuma</em> história de preços a terminar antes de 2015: todos os delistings de 2000-2014 estão ausentes, incluindo o colapso inteiro do Neuer Markt (16 dos 18 cadáveres célebres procurados — EM.TV, Comroad, Brokat, CargoLifter, Holzmann, MobilCom… — não existem nos dados). O período 2000-2014 é uma amostra de sobreviventes e presume-se inflacionado.</p>
+<p>A diferença crítica face a mercados que chumbaram esta auditoria (Indonésia): <strong>a janela limpa não colapsa.</strong> 2015-2026 standalone entrega o mesmo nível do headline, as convenções são conservadoras (cash a 0% nos meses defensivos; benchmark DAX é um índice de performance/total-return; rf=3% já dentro do Sharpe), os placebos falham como devem, e a cobertura de delistings foi <em>verificada externamente</em>: 54 delistings alemães documentados 2015-2026 cruzados com os dados — 49/54 (91%) presentes com a história a terminar no ano certo; os 5 em falta concentram-se todos em 2015-2017. Cobertura efectivamente completa de 2018 em diante.</p>
+<p><strong>Score de confiança: 85/100.</strong> Os 15 restantes: magnitude do survivorship pré-2015 inquantificável, spreads medidos num só dia, e o primeiro dado quase-live de 2026 é negativo.</p>
+
+<h2>B. Tabela de riscos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>#</th><th>Problema</th><th>Severidade</th><th>Impacto</th><th>Estado</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Survivorship estrutural pré-2015 (zero mortes no dataset antes de 2015; Neuer Markt ausente)</td><td>CRÍTICA</td><td>2000-2014 inquantificável; mitigante: 2015-26 ≈ headline</td><td>Irresolúvel com estes dados; janela limpa verificada</td></tr>
+<tr><td>2</td><td>Capacidade/custos: ADV mediano ~€0.4M; spreads reais IBKR medidos para o universo inteiro (283 nomes): mediana 35bps, cauda até 245bps</td><td>ALTA</td><td>100bps→18.1%/0.82; 200bps→14.4%/0.62; filtro de elegibilidade a spread real ≤30bps→17.9%/0.84</td><td>Sub-EUR-2M ok; não escala</td></tr>
+<tr><td>3</td><td>Selecção in-sample da config (grelha conjunta; Alemanha escolhida de pesquisa multi-mercado)</td><td>ALTA</td><td>Winner's curse; mitigado por plateau (Sharpe sobe monotonicamente MA50→MA200; N=20 domina N=5-15 em tudo)</td><td>Mitigado, não eliminado</td></tr>
+<tr><td>4</td><td>Linhas duplicadas da mesma empresa detidas em simultâneo (230 ticker-meses; Vestas em peso duplo 40 meses)</td><td>MÉDIA</td><td>Corrigir <em>melhora</em>: 20.7%/0.96</td><td>Quantificado; sem direcção anti-conservadora</td></tr>
+<tr><td>5</td><td>Exclusão US incompleta (464 tickers sem ISIN escondiam 8 nomes US detidos, 1.9% dos ticker-meses)</td><td>BAIXA</td><td>Remover melhora: 20.7%/0.96</td><td>Quantificado</td></tr>
+<tr><td>6</td><td>Convenção "morte = dinheiro de volta" (34 posições com preço de venda desaparecido recebem 0%)</td><td>MÉDIA</td><td>Se fossem -50/-100%: ~-0.25 a -0.5pp CAGR</td><td>Estimado</td></tr>
+<tr><td>7</td><td>2021-2026 é o período mais fraco (variante live: Sharpe 0.43; 2023 falhou +20% do DAX — momentum crash pós-bear, não resolúvel por regime: nenhuma das 18 variantes de regime testadas o recupera)</td><td>MÉDIA</td><td>Expectativa recente 10-16%/0.4-0.8</td><td>Estrutural do momentum; a vigiar live</td></tr>
+</tbody></table></div>
+
+<h2>C. Resultados auditados</h2>
+<h3>C.1 Config do relatório (com estrangeiras não-US) — reproduzida a 10<sup>-16</sup></h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Variante</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>Original (locked)</td><td>+20.41%</td><td>0.945</td><td>-28.2%</td></tr>
+<tr><td>Reimplementação independente (convenções próprias)</td><td>+19.46%</td><td>0.904</td><td>-26.8%</td></tr>
+<tr><td>Cash rende rf=3% nos meses defensivos</td><td>+21.54%</td><td>1.011</td><td>-28.0%</td></tr>
+<tr><td>Custos 100 / 200 bps</td><td>18.1 / 14.4%</td><td>0.82 / 0.62</td><td>—</td></tr>
+<tr><td>Sem regime (sempre investido)</td><td>+19.96%</td><td>0.758</td><td>-52.3%</td></tr>
+<tr><td>2015-2026 standalone (janela com mortes no dataset)</td><td>+19.58%</td><td>0.96</td><td>-28.2%</td></tr>
+<tr><td>DAX TR no mesmo período (alpha +15.4pp)</td><td>+5.03%</td><td>0.10</td><td>-68.3%</td></tr>
+<tr><td>Placebo invertido (bottom-20)</td><td>+3.83%</td><td>0.04</td><td>-48.3%</td></tr>
+<tr><td>Placebo aleatório ×30 (mesma pipeline)</td><td>4.6% [0.9–8.8]</td><td>0.13 [máx 0.47]</td><td>—</td></tr>
+<tr><td>Placebo sinal +1 mês</td><td>+17.88%</td><td>0.83</td><td>-23.0%</td></tr>
+<tr><td>Top-5 contribuidores removidos</td><td>+18.38%</td><td>0.84</td><td>-28.3%</td></tr>
+</tbody></table></div>
+
+<h3>C.2 Variante LIVE (só empresas alemãs) — bateria re-corrida</h3>
+<p>O sinal em produção corre um universo restrito a empresas de domicílio alemão (ver secção E). Números próprios, auditados com a mesma bateria:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Variante (DE-only)</th><th>CAGR</th><th>Sharpe</th><th>MaxDD</th></tr></thead>
+<tbody>
+<tr><td>Baseline — reimpl. independente (motor: 19.16/0.911)</td><td>+19.00%</td><td>0.899</td><td>-27.8%</td></tr>
+<tr><td>2015-2026 standalone</td><td>+18.62%</td><td>0.92</td><td>-27.8%</td></tr>
+<tr><td>2021-2026 (pior subperíodo)</td><td>+10.60%</td><td>0.43</td><td>-27.8%</td></tr>
+<tr><td>Placebo invertido</td><td>+1.11%</td><td>-0.11</td><td>-52.5%</td></tr>
+<tr><td>Placebo aleatório ×15</td><td>5.0% [0.2–7.4]</td><td>0.15 [máx 0.34]</td><td>—</td></tr>
+<tr><td>Top-5 contribuidores removidos (SZG, ADL, EVD, AIXA, RHM)</td><td>+17.28%</td><td>0.81</td><td>-28.6%</td></tr>
+<tr><td>N=5 / N=10 / N=15 (N=20 domina em tudo)</td><td>10.8 / 19.1 / 18.0%</td><td>0.27 / 0.72 / 0.79</td><td>-60 / -39 / -33%</td></tr>
+</tbody></table></div>
+<p>22 de 27 anos com excesso positivo sobre o DAX; protecção real nas crises (2002: 0% vs -44%; 2008: -16% vs -40%; 2018: -1% vs -18%). Pior ano relativo: 2023 (-3.5% vs DAX +20%) — momentum crash pós-bear clássico, comum a todas as variantes de regime testadas (MAs 50-250, histerese entrada/saída, cruzamentos, bandas).</p>
+
+<h2>D. Verificação externa do survivorship (o teste decisivo)</h2>
+<p>54 delistings alemães documentados 2015-2026 — de Wirecard, Audi e Osram a small-caps como Aves One, Stemmer Imaging, USU, EQS — cruzados com as datas de fim de história de preços no dataset:</p>
+<ul>
+<li><strong>49/54 (91%) presentes, com a história a terminar no ano certo (±1)</strong> — incluindo Wincor sob "Diebold Nixdorf AG"; 2 aparentes falhas eram erros da data esperada, não do dataset (Biotest e MeVis ficaram listadas mais tempo).</li>
+<li><strong>5 genuinamente ausentes, todos 2015-2017</strong>: Sky Deutschland, GAGFAH, Postbank, DVB Bank, McKesson Europe/Celesio.</li>
+<li>Conclusão: cobertura de delistings <strong>completa de 2018 em diante, parcial 2015-2017, zero antes</strong> — exactamente por isso a janela 2015+/2018+ é a fiável, e é ela que sustenta o veredicto.</li>
+</ul>
+
+<h2>E. A saga do sinal live (v1 → v3) e o bug das linhas dormentes</h2>
+<p>A construção do sinal de produção encontrou uma classe de bug de dados nova, documentada aqui porque afecta qualquer estratégia live em bolsas com cross-listings:</p>
+<ul>
+<li><strong>v1</strong>: universo <code>is_primary</code> (só listagens primárias) — excluía as ~250 estrangeiras não-US que o backtest do relatório mantinha.</li>
+<li><strong>v2</strong>: universo alargado a todas as não-US para casar com o backtest — e o <code>Perf.Y</code> do TradingView encheu o top-20 de retornos fictícios (+300% a +1100%: Trane, Chubb, Danske, KBC…) vindos de <strong>linhas XETR dormentes/recém-reactivadas</strong> com 46-233 dias de cotações reais: o "preço de há 12 meses" era um print velho de anos, não um preço de mercado. Overlap medido entre o ranking TradingView e um ranking Yahoo dividend-adjusted com exigência de 12 meses de história real: <strong>1/20</strong>. O backtest é imune por construção (sem preço há 12 meses → momentum NaN → inelegível).</li>
+<li><strong>v3 (live actual)</strong>: universo só de empresas alemãs — listagens primárias vivas, onde as duas fontes concordam <strong>19/20</strong> (única divergência: convenções de ajuste de um spin-off). TradingView voltou a ser a autoridade do ranking; o Yahoo ficou como diagnóstico diário publicado na página (overlap dos dois top-20, tabela comparativa). Custo da troca: ~1.2pp de CAGR de backtest (19.2 vs 20.4) pela integridade estrutural dos dados.</li>
+</ul>
+<p>Validação cruzada do mesmo diagnóstico noutros mercados live (dia 1): EUA 7/7 de overlap entre fontes, Canadá 8/10 — universos de listagens primárias concordam; o problema é exclusivo das linhas convidadas.</p>
+
+<h2>F. Custos reais medidos e diversificação</h2>
+<p><strong>Spreads bid/ask reais</strong> (IBKR, medidos live para o universo elegível inteiro, 283 nomes cotados): mediana 35bps, média 80bps; carteira detida: mediana 22bps com cauda a 118/245bps. A hipótese de 40bps do backtest é realista em tamanho pequeno; ordens limitadas obrigatórias nos nomes finos.</p>
+<p><strong>Correlação com as outras estratégias live</strong> (mensal, 2006-2026): 0.21 com Canadá, 0.29 com EUA — e 26% dos meses têm regimes divergentes com o Canadá (uma perna em cash enquanto a outra rende, +3.8%/mês do Canadá quando a Alemanha dorme). Equal-weight 1/3 Alemanha+Canadá+EUA: <strong>CAGR 27.0%, Sharpe 1.54, MaxDD -15.2%</strong> — contra Sharpe standalone de 0.88/1.27/0.92.</p>
+
+<h2>G. O que continua incerto</h2>
+<ul>
+<li>Magnitude do survivorship 2000-2014 — inquantificável; os anos dourados 2003-2006 devem ler-se com desconto.</li>
+<li>Spreads medidos num só dia; profundidade e impacto de mercado não medidos.</li>
+<li>mcap histórico usa adjusted_close (subestima o mcap de pagadores de dividendos no passado); robustez ao corte de percentil testada, nível não fiável.</li>
+<li>2026 YTD da variante live: -1.9% (a variante larga estava -15% — as estrangeiras eram a dor deste ano). Primeiro ano quase-live, a vigiar.</li>
+</ul>
+
+<h2>H. Próximas auditorias mais valiosas</h2>
+<ol>
+<li><strong>Paper-trading com a regra congelada</strong> — comparar fills reais vs fechos do backtest; único teste que nenhum histórico falsifica.</li>
+<li><strong>Dedup por empresa + passe nominal anti-US nos sem-ISIN + morte a -50%</strong> no motor — três correcções baratas, efeito líquido esperado ≈ 0 a +0.3pp, eliminam três objecções.</li>
+<li><strong>Cruzar 2015-2017</strong> com a lista completa da Deutsche Börse para fechar a janela parcial.</li>
+</ol>
+
+<hr>
+<p><em>Artefactos: <code>~/eodhd_data/audit2_de/</code> (scripts, posições, preços de execução, baterias de regime e placebos). Página do sinal live: <a href="/germany-momentum.html">/germany-momentum</a> · Relatório da estratégia: <a href="/research/germany_momentum_report.html">germany_momentum_report</a> · Sensibilidade: <a href="/research/germany_momentum_sensitivity.html">germany_momentum_sensitivity</a>.</em></p>
+
+</div>
+</main>
+<footer><div class="container"><p>Bivar Capital — auditoria interna. Backtests não garantem resultados futuros. Não é aconselhamento de investimento.</p></div></footer>
+</body>
+</html>
