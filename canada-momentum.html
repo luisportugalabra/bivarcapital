@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Canada Momentum Signal — Bivar Capital</title>
-<meta name="description" content="Canada TSX Momentum live signal. Top 10 TSX stocks ranked by 12-month momentum, equal weighted, rebalanced monthly.">
+<meta name="description" content="Canada TSX Momentum live signal. Monthly rebalance.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -141,7 +141,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>Canada Momentum</h1>
-  <p class="subtitle">Monthly signal. Top 10 TSX stocks ranked by 12-month momentum, equal weighted.</p>
+  <p class="subtitle">Monthly signal. Canadian equities.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the live Canada momentum signal.</p>
@@ -266,7 +266,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     <hr class="section-divider">
 
     <!-- Signal table -->
-    <div class="date-note">Signal date: <span id="signal-date"></span> &nbsp;|&nbsp; <span id="eligible-count"></span> eligible stocks</div>
+    <div class="date-note">Signal date: <span id="signal-date"></span></div>
     <div class="table-wrap">
     <table>
       <thead>
@@ -276,7 +276,6 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <th>Ticker</th>
           <th>Name</th>
           <th class="r">12M Momentum</th>
-          <th class="r">Net Income TTM ($M)</th>
           <th class="r">Weight</th>
           <th class="r">MCap (CAD B)</th>
         </tr>
@@ -285,7 +284,6 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 12-month return, no skip-month &nbsp;|&nbsp; TSX top 80% by mcap (P20), NetIncome(TTM) &gt; 0 &nbsp;|&nbsp; Top 10, equal weight &nbsp;|&nbsp; TSX &lt; MA75 → cash
       &nbsp;|&nbsp; <a href="/research/canada_momentum_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a> &nbsp;|&nbsp; <a href="/research/canada_momentum_adversarial_audit.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Adversarial audit (provisional) &rarr;</a> &nbsp;|&nbsp; <a href="/research/canada_momentum_sensitivity.html" style="color:var(--accent);text-decoration:none">Sensitivity analysis &rarr;</a>
       &nbsp;|&nbsp; Rebalance: monthly
     </p>
@@ -469,7 +467,7 @@ async function loadPortfolio() {
                      + '<td colspan="5" class="r" style="color:var(--red);'
                      + 'font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em">SELL</td></tr>').join('')
                  : ''))
-          : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings (cash — TSX below MA75).</td></tr>');
+          : '<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:20px">No holdings — the model is in cash.</td></tr>');
 
     // Monthly breakdown — show current year by default
     // The breakdown has no row for the new month until the book rolls (it is
@@ -553,20 +551,14 @@ async function loadSignal() {
       ? ((data.tsx / data.tsx_ma75 - 1) * 100).toFixed(1)
       : null;
     document.getElementById('regime-container').innerHTML = `
-      <div class="regime-label">Market Regime — TSX vs MA75</div>
+      <div class="regime-label">Market Regime</div>
       <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-cash'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — HOLD CASH'}</div>
-      <div class="regime-detail">
-        TSX: ${data.tsx?.toLocaleString('en-CA', {maximumFractionDigits:0}) ?? '—'}
-        &nbsp;|&nbsp; MA75: ${data.tsx_ma75?.toLocaleString('en-CA', {maximumFractionDigits:0}) ?? '—'}
-        ${pctDev != null ? `&nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA75 (${pctDev}%)` : ''}
-      </div>
       <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--text-muted)'}">
-        ${isMom ? 'Signal: Buy top 10 momentum stocks (equal weight)' : 'Signal: Hold cash until TSX recovers above MA75'}
+        ${isMom ? 'Signal: Invested in equities' : 'Signal: Out of the market — 100% cash'}
       </div>`;
 
     // Signal date + eligible count
     document.getElementById('signal-date').textContent = data.date || '—';
-    document.getElementById('eligible-count').textContent = data.total_eligible ?? '—';
 
     // Top 20 signal table
     const top20 = data.top20 || [];
@@ -579,7 +571,6 @@ async function loadSignal() {
         <td><strong>${s.ticker}</strong></td>
         <td style="font-family:var(--font-body);font-size:.7rem">${s.name || ''}</td>
         <td class="r ${r12cls}"><strong>${s.ret_12m >= 0 ? '+' : ''}${s.ret_12m}%</strong></td>
-        <td class="r">${s.net_income_ttm_m != null ? s.net_income_ttm_m : '—'}</td>
         <td class="r">${s.weight != null ? (s.weight*100).toFixed(1) + '%' : '—'}</td>
         <td class="r">${s.mcap_b != null ? s.mcap_b : '—'}</td>
       </tr>`;

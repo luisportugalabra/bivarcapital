@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>USA Momentum Signal — Bivar Capital</title>
-<meta name="description" content="Bivar USA Momentum live signal. Top 20 momentum stocks ranked by composite momentum.">
+<meta name="description" content="Bivar USA Momentum live signal. Monthly rebalance.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -114,7 +114,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 <div class="container content">
 
   <h1>USA Momentum</h1>
-  <p class="subtitle">Monthly signal. Top 20 ranked by composite momentum, portfolio of 7 selected.</p>
+  <p class="subtitle">Monthly signal. US large-cap equities.</p>
 
   <div id="auth-wall">
     <p>Sign in to view the live momentum signal.</p>
@@ -211,7 +211,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
 
     <hr class="section-divider">
 
-    <div class="date-note">Signal date: <span id="signal-date"></span> &nbsp;|&nbsp; <span id="eligible-count"></span> eligible stocks</div>
+    <div class="date-note">Signal date: <span id="signal-date"></span></div>
     <div class="table-wrap">
     <table>
       <thead>
@@ -223,16 +223,13 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
           <th>Sector</th>
           <th>Ret 6M</th>
           <th>Ret 12M</th>
-          <th>Composite</th>
           <th>MCap ($B)</th>
-          <th>EBIT ($M)</th>
         </tr>
       </thead>
       <tbody id="table-body"></tbody>
     </table>
     </div>
     <p style="font-size:.65rem;color:var(--text-muted);margin-top:14px;font-family:var(--font-mono)">
-      Strategy: 50% &times; 6-month return + 50% &times; 12-month return &nbsp;|&nbsp; &gt;$10B mcap, EBIT&gt;0 &nbsp;|&nbsp; Top 7 &nbsp;|&nbsp; S&amp;P 500 &lt; MA250 &rarr; Cash
       &nbsp;|&nbsp; <a href="/research/momentum_strategy_report.html" style="color:var(--accent);text-decoration:none">Full strategy report &rarr;</a> &nbsp;|&nbsp; <a href="/research/us_momentum_adversarial_audit.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);opacity:.85">Adversarial audit (provisional) &rarr;</a>
       &nbsp;|&nbsp; <a href="/research/signal_day_sensitivity.html" style="color:var(--accent);text-decoration:none">Signal day sensitivity &rarr;</a> &nbsp;|&nbsp; <a href="/research/usa_momentum_sensitivity.html" style="color:var(--accent);text-decoration:none">Parameter sensitivity &rarr;</a>
     </p>
@@ -255,8 +252,7 @@ footer p { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-
             <th>Name</th>
             <th>Ret 6M</th>
             <th>Ret 12M</th>
-            <th>Composite</th>
-            <th>MCap ($B)</th>
+              <th>MCap ($B)</th>
           </tr>
         </thead>
         <tbody id="yf-table-body"></tbody>
@@ -475,19 +471,16 @@ async function loadData() {
   rc.innerHTML = `
     <div class="regime-label">Market Regime</div>
     <div class="regime-value ${isMom ? 'regime-momentum' : 'regime-gld'}">${isMom ? 'MOMENTUM — BUY STOCKS' : 'DEFENSIVE — CASH'}</div>
-    <div class="regime-detail">S&P 500: ${data.sp500?.toLocaleString()} &nbsp;|&nbsp; MA250: ${data.sp500_ma250?.toLocaleString()} &nbsp;|&nbsp; ${isMom ? 'Above' : 'Below'} MA250 (${((data.sp500/data.sp500_ma250-1)*100).toFixed(1)}%)</div>
-    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">${isMom ? 'Signal: Buy top 7 momentum stocks (equal weight)' : 'Signal: Sell all stocks, move to cash (100%)'}</div>
+    <div style="margin-top:8px;font-family:var(--font-mono);font-size:.7rem;color:${isMom ? 'var(--green)' : 'var(--accent)'}">${isMom ? 'Signal: Invested in equities' : 'Signal: Out of the market \u2014 100% cash'}</div>
   `;
   document.getElementById('signal-date').textContent = data.date;
-  document.getElementById('eligible-count').textContent = data.total_eligible;
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = data.top20.map(s => {
     let cls = '', status = '';
     if (s.selected) { cls = 'selected'; status = '<span class="tag-selected">SELECTED</span>'; }
     const retCls6 = s.ret_6m >= 0 ? 'pos' : 'neg';
     const retCls12 = s.ret_12m >= 0 ? 'pos' : 'neg';
-    const compCls = s.composite >= 0 ? 'pos' : 'neg';
-    return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${compCls}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td><td>${s.ebit_m.toLocaleString()}</td></tr>`;
+    return `<tr class="${cls}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td style="font-family:var(--font-body);font-size:.65rem;color:var(--text-muted)">${s.sector}</td><td class="${retCls6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${retCls12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td>${s.mcap_b}</td></tr>`;
   }).join('');
 
   const top20yf = data.top20_yf || [];
@@ -503,8 +496,8 @@ async function loadData() {
       const sel = s.selected;
       const inTv = tvSel.has(s.ticker);
       const status = sel ? (inTv ? '<span class="tag-selected">BOTH</span>' : '<span class="tag-selected" style="background:rgba(248,113,113,0.15);color:#f87171">YF ONLY</span>') : '';
-      const c6 = s.ret_6m >= 0 ? 'pos' : 'neg', c12 = s.ret_12m >= 0 ? 'pos' : 'neg', cc = s.composite >= 0 ? 'pos' : 'neg';
-      return `<tr class="${sel ? 'selected' : ''}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td class="${c6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${c12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td class="${cc}"><strong>${s.composite > 0 ? '+' : ''}${s.composite}%</strong></td><td>${s.mcap_b}</td></tr>`;
+      const c6 = s.ret_6m >= 0 ? 'pos' : 'neg', c12 = s.ret_12m >= 0 ? 'pos' : 'neg';
+      return `<tr class="${sel ? 'selected' : ''}"><td>${s.rank}</td><td>${status}</td><td><strong>${s.ticker}</strong></td><td style="font-family:var(--font-body);font-size:.7rem">${s.name}</td><td class="${c6}">${s.ret_6m > 0 ? '+' : ''}${s.ret_6m}%</td><td class="${c12}">${s.ret_12m > 0 ? '+' : ''}${s.ret_12m}%</td><td>${s.mcap_b}</td></tr>`;
     }).join('');
   }
 }
