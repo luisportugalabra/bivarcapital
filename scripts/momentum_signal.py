@@ -202,8 +202,13 @@ def _update_picks_history(tickers, today_str):
         last_day = calendar.monthrange(today.year, today.month)[1]
         new_end = date(today.year, today.month, last_day).isoformat()
 
+        # The period runs execution-close to execution-close, not signal to
+        # signal: the signal-day close is the price you needed in order to know
+        # what to buy, so you cannot have bought at it. Closing the previous
+        # period here too keeps the series contiguous.
+        history[-1]['end'] = today_str
         new_period = {
-            "start": history[-1]['end'],
+            "start": today_str,
             "end": new_end,
             "tickers": list(tickers),
         }
