@@ -1,11 +1,11 @@
 {
   "last_rebalance": "2026-10-01",
-  "updated": "2026-10-06",
+  "updated": "2026-10-07",
   "ytd_2026": 5.96,
   "regime": "defensive",
   "currency": "CAD",
-  "tsx": 35518.6,
-  "tsx_ma75": 35726.0,
+  "tsx": 35649.5,
+  "tsx_ma75": 35735.0,
   "holdings": [],
   "monthly_breakdown": [
     {
