@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-10-01",
-  "updated": "2026-10-09 02:52 UTC",
+  "updated": "2026-10-10 02:12 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1609.46,
-      "return_pct": 484.75
+      "current_price": 1581.82,
+      "return_pct": 474.71
     },
     {
       "ticker": "MU",
@@ -17,8 +17,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 1035.84,
-      "return_pct": 91.07
+      "current_price": 1029.0,
+      "return_pct": 89.81
     },
     {
       "ticker": "VICR",
@@ -26,8 +26,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-10-01",
       "entry_price": 308.59,
-      "current_price": 262.32,
-      "return_pct": -14.99
+      "current_price": 266.07,
+      "return_pct": -13.78
     },
     {
       "ticker": "LITE",
@@ -35,8 +35,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 1048.6,
-      "return_pct": 171.58
+      "current_price": 1103.36,
+      "return_pct": 185.76
     },
     {
       "ticker": "DELL",
@@ -44,8 +44,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
       "entry_price": 425.0,
-      "current_price": 574.55,
-      "return_pct": 35.19
+      "current_price": 586.06,
+      "return_pct": 37.9
     },
     {
       "ticker": "AMD",
@@ -53,8 +53,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-10-01",
       "entry_price": 615.73,
-      "current_price": 620.68,
-      "return_pct": 0.8
+      "current_price": 608.1,
+      "return_pct": -1.24
     },
     {
       "ticker": "STX",
@@ -62,12 +62,12 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-04-01",
       "entry_price": 422.82,
-      "current_price": 774.83,
-      "return_pct": 83.25
+      "current_price": 783.0,
+      "return_pct": 85.19
     }
   ],
   "pending_signal": null,
-  "ytd_2026": 210.04,
+  "ytd_2026": 229.42,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -83,7 +83,7 @@
         "WBD",
         "STX"
       ],
-      "return_pct": 41.56
+      "return_pct": 49.23
     },
     {
       "month": "Feb 2026",
@@ -217,7 +217,7 @@
       "month": "Oct 2026 (MTD)",
       "is_current": true,
       "start": "2026-10-01",
-      "end": "2026-10-09",
+      "end": "2026-10-10",
       "tickers": [
         "SNDK",
         "MU",
@@ -227,7 +227,7 @@
         "AMD",
         "STX"
       ],
-      "return_pct": -5.93
+      "return_pct": -5.18
     }
   ]
 }
