@@ -177,7 +177,27 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
       </div>
     </div>
 
+    <div class="section-label">Ethereum</div>
 
+    <div class="strategy-card">
+      <div class="card-header">
+        <div class="card-title">Ethereum Trend Signal</div>
+        <span class="card-badge badge-live">Live</span>
+      </div>
+      <p class="card-desc">Trend-following system for Ethereum. Invested 42% of the time. Parameters from a single grid search — not yet adversarially audited.</p>
+      <div class="card-stats">
+        <span class="card-stat">Sharpe: <span class="num">1.02</span></span>
+        <span class="card-stat">CAGR: <span class="num">+51.7%</span></span>
+        <span class="card-stat">MaxDD: <span class="num">-60%</span></span>
+        <span class="card-stat">Since: <span class="num">2017</span></span>
+      </div>
+      <div style="margin-top:14px">
+        <button class="hiw-btn" onclick="document.getElementById('modal-eth').classList.add('open')">How it works &darr;</button>
+      </div>
+      <div style="margin-top:14px">
+        <a href="/eth.html" style="font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-decoration:none">View live signal &rarr;</a>&nbsp;&nbsp;<a href="/research/eth_strategy_report.html" style="padding:8px 18px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;text-decoration:none">Strategy report &rarr;</a>
+      </div>
+    </div>
 
   </section>
 </main>
@@ -204,6 +224,32 @@ footer .brand { font-family: var(--font-display); font-size: 0.9rem; color: var(
     <div class="modal-step">
       <div class="modal-step-num">Key details</div>
       <p>The strategy is invested ~34% of the time. Cash earns 0% in the backtest — any yield on idle cash is upside. Signal is based on daily closing prices.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Ethereum Trend Signal -->
+<div class="modal-overlay" id="modal-eth" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-eth').classList.remove('open')">&times;</button>
+    <h3>How the Ethereum Trend Signal works</h3>
+
+    <div class="modal-step">
+      <div class="modal-step-num">Step 1 — Check the signal</div>
+      <p>The signal is computed <strong>client-side on page load</strong> from live Ethereum price data. Visit the <a href="/eth.html" style="color:var(--accent)">live signal page</a> to see today's reading. No Telegram bot yet for this one.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 2 — Two positions only</div>
+      <p>Binary: either <strong>fully invested in Ethereum</strong> (spot) or <strong>fully in cash</strong>. No partial positions, no leverage.</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">Step 3 — Act on signal changes</div>
+      <p>Only act when the signal <strong>changes</strong>. On average ~16 round trips per year.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-step">
+      <div class="modal-step-num">Key details</div>
+      <p>Invested ~42% of the time. No volatility filter, so it trades through chaotic periods — that's why the drawdown (-60%) is deeper than the BTC signal's. Parameters came from a single grid search on ETH's own history and have <strong>not</strong> been adversarially audited yet — read the <a href="/research/eth_strategy_report.html" style="color:var(--accent)">strategy report</a> before following this one.</p>
     </div>
   </div>
 </div>
