@@ -1,56 +1,56 @@
 {
-  "updated": "2026-10-28 02:05 UTC",
+  "updated": "2026-10-29 02:15 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
         {
           "ticker": "BRK-B",
           "qty": 312.0,
-          "price": 542.99,
-          "mkt_value": 169412.88,
-          "weight": 16.9
+          "price": 540.34,
+          "mkt_value": 168586.09,
+          "weight": 16.8
         },
         {
           "ticker": "JD",
           "qty": 3875.0,
-          "price": 25.57,
-          "mkt_value": 99083.75,
+          "price": 25.45,
+          "mkt_value": 98618.75,
           "weight": 9.9
         },
         {
           "ticker": "MSFT",
           "qty": 156.0,
-          "price": 531.33,
-          "mkt_value": 82887.48,
+          "price": 531.01,
+          "mkt_value": 82837.56,
           "weight": 8.3
         },
         {
           "ticker": "META",
           "qty": 133.0,
-          "price": 620.19,
-          "mkt_value": 82485.27,
-          "weight": 8.2
+          "price": 612.49,
+          "mkt_value": 81461.17,
+          "weight": 8.1
         },
         {
           "ticker": "AMZN",
           "qty": 305.0,
-          "price": 253.1,
-          "mkt_value": 77195.5,
-          "weight": 7.7
+          "price": 254.6,
+          "mkt_value": 77653.0,
+          "weight": 7.8
         },
         {
           "ticker": "AMD",
           "qty": 100.0,
-          "price": 560.26,
-          "mkt_value": 56026.0,
-          "weight": 5.6
+          "price": 578.44,
+          "mkt_value": 57844.0,
+          "weight": 5.8
         },
         {
           "ticker": "CLNX",
           "qty": 1869.0,
-          "price": 28.43,
-          "mkt_value": 53129.67,
-          "weight": 5.3
+          "price": 27.86,
+          "mkt_value": 52074.23,
+          "weight": 5.2
         },
         {
           "ticker": "EXO",
@@ -62,117 +62,117 @@
         {
           "ticker": "V",
           "qty": 100.0,
-          "price": 401.86,
-          "mkt_value": 40186.0,
+          "price": 400.6,
+          "mkt_value": 40060.0,
           "weight": 4.0
         },
         {
           "ticker": "GOOGL",
           "qty": 112.0,
-          "price": 320.58,
-          "mkt_value": 35904.96,
+          "price": 324.89,
+          "mkt_value": 36387.68,
           "weight": 3.6
         },
         {
           "ticker": "MELI",
           "qty": 21.0,
-          "price": 1680.51,
-          "mkt_value": 35290.71,
+          "price": 1673.09,
+          "mkt_value": 35134.89,
           "weight": 3.5
         },
         {
           "ticker": "PRX",
           "qty": 910.0,
-          "price": 38.12,
-          "mkt_value": 34691.98,
+          "price": 38.37,
+          "mkt_value": 34914.47,
           "weight": 3.5
         },
         {
           "ticker": "SE",
           "qty": 452.0,
-          "price": 74.73,
-          "mkt_value": 33777.96,
+          "price": 75.18,
+          "mkt_value": 33981.36,
           "weight": 3.4
         },
         {
           "ticker": "NOMD",
           "qty": 2100.0,
-          "price": 11.8,
-          "mkt_value": 24780.0,
+          "price": 11.79,
+          "mkt_value": 24759.0,
           "weight": 2.5
         },
         {
           "ticker": "JD",
           "qty": 741.0,
-          "price": 25.57,
-          "mkt_value": 18947.37,
+          "price": 25.45,
+          "mkt_value": 18858.45,
           "weight": 1.9
         },
         {
           "ticker": "ACN",
           "qty": 75.0,
-          "price": 235.16,
-          "mkt_value": 17637.0,
+          "price": 243.4,
+          "mkt_value": 18255.0,
           "weight": 1.8
         },
         {
           "ticker": "FISV",
           "qty": 370.0,
-          "price": 47.4,
-          "mkt_value": 17538.0,
+          "price": 47.86,
+          "mkt_value": 17708.2,
           "weight": 1.8
         },
         {
           "ticker": "BABA",
           "qty": 150.0,
-          "price": 100.24,
-          "mkt_value": 15036.0,
+          "price": 100.96,
+          "mkt_value": 15144.0,
           "weight": 1.5
-        },
-        {
-          "ticker": "SFM",
-          "qty": 200.0,
-          "price": 64.41,
-          "mkt_value": 12882.0,
-          "weight": 1.3
         },
         {
           "ticker": "2330",
           "qty": 178.0,
-          "price": 75.78,
-          "mkt_value": 13489.06,
+          "price": 75.0,
+          "mkt_value": 13350.0,
           "weight": 1.3
+        },
+        {
+          "ticker": "SFM",
+          "qty": 200.0,
+          "price": 62.0,
+          "mkt_value": 12400.0,
+          "weight": 1.2
         },
         {
           "ticker": "MA",
           "qty": 20.0,
-          "price": 609.85,
-          "mkt_value": 12197.0,
+          "price": 610.31,
+          "mkt_value": 12206.2,
           "weight": 1.2
         },
         {
           "ticker": "NVO",
           "qty": 300.0,
-          "price": 38.67,
-          "mkt_value": 11601.0,
-          "weight": 1.2
+          "price": 38.29,
+          "mkt_value": 11487.0,
+          "weight": 1.1
         },
         {
           "ticker": "WISE",
           "qty": 1000.0,
-          "price": 10.88,
-          "mkt_value": 10878.04,
+          "price": 10.92,
+          "mkt_value": 10916.75,
           "weight": 1.1
         },
         {
           "ticker": "CHTR",
           "qty": 50.0,
-          "price": 104.93,
-          "mkt_value": 5246.5,
+          "price": 105.39,
+          "mkt_value": 5269.5,
           "weight": 0.5
         }
       ],
-      "total_value": 1001000.65,
+      "total_value": 1000603.82,
       "n_positions": 24,
       "ytd_2026": 6.3
     },
@@ -181,203 +181,203 @@
         {
           "ticker": "SM",
           "qty": 481.6,
-          "price": 39.07,
-          "mkt_value": 18816.11,
-          "weight": 18.4
+          "price": 39.56,
+          "mkt_value": 19052.1,
+          "weight": 18.7
         },
         {
           "ticker": "APA",
           "qty": 181.0,
-          "price": 50.79,
-          "mkt_value": 9192.99,
-          "weight": 9.0
+          "price": 51.11,
+          "mkt_value": 9250.91,
+          "weight": 9.1
         },
         {
           "ticker": "HOG",
           "qty": 277.0,
-          "price": 29.44,
-          "mkt_value": 8154.88,
+          "price": 29.52,
+          "mkt_value": 8177.04,
           "weight": 8.0
         },
         {
           "ticker": "WNC",
           "qty": 510.0,
-          "price": 13.79,
-          "mkt_value": 7032.9,
+          "price": 13.82,
+          "mkt_value": 7048.2,
           "weight": 6.9
         },
         {
           "ticker": "PVH",
           "qty": 81.0,
-          "price": 85.61,
-          "mkt_value": 6934.41,
+          "price": 85.25,
+          "mkt_value": 6905.25,
           "weight": 6.8
         },
         {
           "ticker": "ACCO",
           "qty": 1492.0,
-          "price": 4.48,
-          "mkt_value": 6684.16,
-          "weight": 6.6
-        },
-        {
-          "ticker": "AMCX",
-          "qty": 696.0,
-          "price": 7.84,
-          "mkt_value": 5456.64,
-          "weight": 5.3
+          "price": 4.38,
+          "mkt_value": 6534.96,
+          "weight": 6.4
         },
         {
           "ticker": "SGU",
           "qty": 423.0,
-          "price": 12.89,
-          "mkt_value": 5452.47,
-          "weight": 5.3
+          "price": 13.07,
+          "mkt_value": 5528.61,
+          "weight": 5.4
+        },
+        {
+          "ticker": "AMCX",
+          "qty": 696.0,
+          "price": 7.65,
+          "mkt_value": 5324.4,
+          "weight": 5.2
         },
         {
           "ticker": "DXC",
           "qty": 330.0,
-          "price": 15.84,
-          "mkt_value": 5227.2,
-          "weight": 5.1
+          "price": 16.09,
+          "mkt_value": 5309.7,
+          "weight": 5.2
         },
         {
           "ticker": "GPK",
           "qty": 506.0,
-          "price": 8.69,
-          "mkt_value": 4397.14,
-          "weight": 4.3
-        },
-        {
-          "ticker": "ANGI",
-          "qty": 675.0,
-          "price": 6.15,
-          "mkt_value": 4151.25,
-          "weight": 4.1
-        },
-        {
-          "ticker": "CNXC",
-          "qty": 128.0,
-          "price": 31.02,
-          "mkt_value": 3970.56,
-          "weight": 3.9
-        },
-        {
-          "ticker": "CMCSA",
-          "qty": 181.0,
-          "price": 21.84,
-          "mkt_value": 3953.04,
-          "weight": 3.9
+          "price": 8.54,
+          "mkt_value": 4321.24,
+          "weight": 4.2
         },
         {
           "ticker": "EBS",
           "qty": 598.0,
-          "price": 6.67,
-          "mkt_value": 3988.66,
+          "price": 7.09,
+          "mkt_value": 4239.82,
+          "weight": 4.2
+        },
+        {
+          "ticker": "ANGI",
+          "qty": 675.0,
+          "price": 5.96,
+          "mkt_value": 4023.0,
           "weight": 3.9
+        },
+        {
+          "ticker": "CNXC",
+          "qty": 128.0,
+          "price": 30.53,
+          "mkt_value": 3907.84,
+          "weight": 3.8
+        },
+        {
+          "ticker": "CMCSA",
+          "qty": 181.0,
+          "price": 21.57,
+          "mkt_value": 3904.17,
+          "weight": 3.8
         },
         {
           "ticker": "CALM",
           "qty": 57.0,
-          "price": 62.37,
-          "mkt_value": 3555.09,
-          "weight": 3.5
+          "price": 61.18,
+          "mkt_value": 3487.26,
+          "weight": 3.4
         },
         {
           "ticker": "NUS",
           "qty": 690.0,
-          "price": 4.73,
-          "mkt_value": 3263.7,
+          "price": 4.76,
+          "mkt_value": 3284.4,
           "weight": 3.2
         },
         {
           "ticker": "SSTK",
           "qty": 304.0,
-          "price": 4.38,
-          "mkt_value": 1331.52,
+          "price": 4.41,
+          "mkt_value": 1340.64,
           "weight": 1.3
         },
         {
           "ticker": "VSNT",
           "qty": 14.0,
-          "price": 30.85,
-          "mkt_value": 431.9,
+          "price": 30.67,
+          "mkt_value": 429.38,
           "weight": 0.4
         }
       ],
-      "total_value": 101994.62,
+      "total_value": 102068.92,
       "n_positions": 18,
-      "ytd_2026": 14.7
+      "ytd_2026": 14.8
     },
     "vc2trend": {
       "positions": [
         {
           "ticker": "DINO",
           "qty": 87.0,
-          "price": 114.21,
-          "mkt_value": 9936.27,
-          "weight": 19.7
+          "price": 111.96,
+          "mkt_value": 9740.52,
+          "weight": 19.5
         },
         {
           "ticker": "SENEA",
           "qty": 42.0,
-          "price": 155.72,
-          "mkt_value": 6540.24,
-          "weight": 12.9
+          "price": 156.46,
+          "mkt_value": 6571.32,
+          "weight": 13.2
         },
         {
           "ticker": "M",
           "qty": 235.0,
-          "price": 23.86,
-          "mkt_value": 5607.1,
-          "weight": 11.1
+          "price": 23.74,
+          "mkt_value": 5578.9,
+          "weight": 11.2
         },
         {
           "ticker": "EBF",
           "qty": 242.0,
-          "price": 22.54,
-          "mkt_value": 5454.68,
+          "price": 22.23,
+          "mkt_value": 5379.66,
           "weight": 10.8
-        },
-        {
-          "ticker": "IMKTA",
-          "qty": 59.0,
-          "price": 85.49,
-          "mkt_value": 5043.91,
-          "weight": 10.0
         },
         {
           "ticker": "GM",
           "qty": 62.0,
-          "price": 80.54,
-          "mkt_value": 4993.48,
+          "price": 82.48,
+          "mkt_value": 5113.76,
+          "weight": 10.2
+        },
+        {
+          "ticker": "IMKTA",
+          "qty": 59.0,
+          "price": 83.63,
+          "mkt_value": 4934.17,
           "weight": 9.9
         },
         {
           "ticker": "EIX",
           "qty": 77.0,
-          "price": 58.19,
-          "mkt_value": 4480.63,
-          "weight": 8.9
+          "price": 58.83,
+          "mkt_value": 4529.91,
+          "weight": 9.1
         },
         {
           "ticker": "CYH",
           "qty": 1552.0,
-          "price": 2.84,
-          "mkt_value": 4407.68,
-          "weight": 8.7
+          "price": 2.66,
+          "mkt_value": 4128.32,
+          "weight": 8.3
         },
         {
           "ticker": "UHS",
           "qty": 23.0,
-          "price": 177.32,
-          "mkt_value": 4078.36,
-          "weight": 8.1
+          "price": 172.18,
+          "mkt_value": 3960.14,
+          "weight": 7.9
         }
       ],
-      "total_value": 50542.35,
+      "total_value": 49936.7,
       "n_positions": 9,
-      "ytd_2026": 12.7
+      "ytd_2026": 11.4
     }
   },
   "returns": {
@@ -387,11 +387,11 @@
     },
     "vc2": {
       "2025": 23.1,
-      "2026_ytd": 14.7
+      "2026_ytd": 14.8
     },
     "vc2trend": {
       "2025": 24.0,
-      "2026_ytd": 12.7
+      "2026_ytd": 11.4
     }
   },
   "sp500_returns": {
@@ -421,6 +421,10 @@
   },
   "activity": [
     {
+      "date": "Oct 29",
+      "text": "Prices updated from market close"
+    },
+    {
       "date": "Oct 28",
       "text": "Prices updated from market close"
     },
@@ -434,10 +438,6 @@
     },
     {
       "date": "Oct 24",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Oct 23",
       "text": "Prices updated from market close"
     }
   ]
