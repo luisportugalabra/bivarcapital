@@ -3,7 +3,7 @@
   "regime": "momentum",
   "sp500": 7580.07,
   "sp500_ma250": 7212.71,
-  "total_eligible": 697,
+  "total_eligible": 698,
   "portfolio": [
     {
       "rank": 1,
@@ -15,7 +15,7 @@
       "ret_12m": 499.4,
       "composite": 254.0,
       "mcap_b": 166.3,
-      "ebit_m": 12468.0,
+      "ebit_m": 21056.0,
       "selected": true
     },
     {
@@ -80,7 +80,7 @@
       "ret_12m": 150.0,
       "composite": 113.6,
       "mcap_b": 35.6,
-      "ebit_m": 987.0,
+      "ebit_m": 941.0,
       "selected": true
     },
     {
@@ -108,7 +108,7 @@
       "ret_12m": 499.4,
       "composite": 254.0,
       "mcap_b": 166.3,
-      "ebit_m": 12468.0,
+      "ebit_m": 21056.0,
       "selected": true
     },
     {
@@ -173,7 +173,7 @@
       "ret_12m": 150.0,
       "composite": 113.6,
       "mcap_b": 35.6,
-      "ebit_m": 987.0,
+      "ebit_m": 941.0,
       "selected": true
     },
     {
@@ -393,7 +393,7 @@
       "ret_6m": -3.4,
       "ret_12m": 149.6,
       "composite": 73.1,
-      "mcap_b": 146.6,
+      "mcap_b": 148.0,
       "ebit_m": 5587.0,
       "selected": false
     },
@@ -459,7 +459,7 @@
       "ret_12m": 98.1,
       "composite": 67.3,
       "mcap_b": 13.2,
-      "ebit_m": 529.0,
+      "ebit_m": 595.0,
       "selected": false
     },
     {
@@ -471,7 +471,7 @@
       "ret_6m": 57.7,
       "ret_12m": 75.8,
       "composite": 66.7,
-      "mcap_b": 17.2,
+      "mcap_b": 16.9,
       "ebit_m": 1004.0,
       "selected": false
     },
