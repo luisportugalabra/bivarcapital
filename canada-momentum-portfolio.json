@@ -1,21 +1,13 @@
 {
-  "last_rebalance": "2026-10-01",
-  "updated": "2026-11-01",
+  "last_rebalance": "2026-11-02",
+  "updated": "2026-11-03",
   "ytd_2026": 5.96,
   "regime": "defensive",
   "currency": "CAD",
-  "tsx": 35620.0,
-  "tsx_ma75": 35925.0,
+  "tsx": 35801.1,
+  "tsx_ma75": 35930.1,
   "holdings": [],
   "monthly_breakdown": [
-    {
-      "month": "Oct 2023",
-      "is_current": false,
-      "start": "2023-10-03",
-      "end": "2023-11-02",
-      "tickers": [],
-      "return_pct": 0.0
-    },
     {
       "month": "Nov 2023",
       "is_current": false,
@@ -776,8 +768,19 @@
     },
     {
       "month": "Oct 2026",
-      "is_current": true,
+      "is_current": false,
       "start": "2026-10-01",
+      "end": "2026-11-02",
+      "regime": "defensive",
+      "tickers": [],
+      "weights": {},
+      "return_pct": null,
+      "config_version": "v3-netincome-2026-08-21"
+    },
+    {
+      "month": "Nov 2026",
+      "is_current": true,
+      "start": "2026-11-02",
       "end": null,
       "regime": "defensive",
       "tickers": [],
@@ -791,13 +794,7 @@
     "2025": 27.37,
     "2026": 13.34
   },
-  "pending_signal": {
-    "for_month": "2026-11",
-    "computed_date": "2026-10-30",
-    "execute_on": "2026-11-02",
-    "regime": "defensive",
-    "picks": []
-  },
+  "pending_signal": null,
   "config_version": "v3-netincome-2026-08-21",
   "is_live": true,
   "not_live_reason": null

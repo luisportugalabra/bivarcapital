@@ -1,101 +1,101 @@
 {
-  "last_rebalance": "2026-10-01",
-  "updated": "2026-11-01",
-  "ytd_2026": -13.36,
+  "last_rebalance": "2026-11-02",
+  "updated": "2026-11-03",
+  "ytd_2026": -13.35,
   "regime": "momentum",
   "currency": "EUR",
-  "dax": 25818.2,
-  "dax_ma200": 24893.7,
+  "dax": 25981.1,
+  "dax_ma200": 24900.8,
   "holdings": [
     {
       "ticker": "SNG",
       "name": "SINGULUS TECHNOLOGIES AG",
       "entry_date": "2026-09-01",
       "entry_price": 7.98,
-      "current_price": 11.55,
+      "current_price": 12.5,
       "weight": 0.1,
-      "return_pct": 44.74
-    },
-    {
-      "ticker": "S92",
-      "name": "SMA Solar Technology AG",
-      "entry_date": "2026-09-01",
-      "entry_price": 56.15,
-      "current_price": 47.58,
-      "weight": 0.1,
-      "return_pct": -15.26
-    },
-    {
-      "ticker": "VBK",
-      "name": "Verbio SE",
-      "entry_date": "2026-09-01",
-      "entry_price": 29.58,
-      "current_price": 27.88,
-      "weight": 0.1,
-      "return_pct": -5.75
+      "return_pct": 56.64
     },
     {
       "ticker": "AIXA",
       "name": "AIXTRON SE",
       "entry_date": "2026-09-01",
       "entry_price": 35.7,
-      "current_price": 32.34,
+      "current_price": 33.59,
       "weight": 0.1,
-      "return_pct": -9.41
-    },
-    {
-      "ticker": "GMM",
-      "name": "Grammer AG",
-      "entry_date": "2026-10-01",
-      "entry_price": 15.3,
-      "current_price": 9.45,
-      "weight": 0.1,
-      "return_pct": -38.24
-    },
-    {
-      "ticker": "JEN",
-      "name": "Jenoptik AG",
-      "entry_date": "2026-09-01",
-      "entry_price": 39.0,
-      "current_price": 38.84,
-      "weight": 0.1,
-      "return_pct": -0.41
-    },
-    {
-      "ticker": "SMHN",
-      "name": "SUSS MicroTec SE",
-      "entry_date": "2026-09-01",
-      "entry_price": 68.15,
-      "current_price": 50.95,
-      "weight": 0.1,
-      "return_pct": -25.24
-    },
-    {
-      "ticker": "LPK",
-      "name": "LPKF Laser & Electronics SE",
-      "entry_date": "2026-10-01",
-      "entry_price": 16.05,
-      "current_price": 10.25,
-      "weight": 0.1,
-      "return_pct": -36.14
+      "return_pct": -5.91
     },
     {
       "ticker": "M7U",
       "name": "Nynomic AG",
       "entry_date": "2026-10-01",
       "entry_price": 25.5,
-      "current_price": 23.7,
+      "current_price": 23.1,
       "weight": 0.1,
-      "return_pct": -7.06
+      "return_pct": -9.41
     },
     {
-      "ticker": "SZG",
-      "name": "Salzgitter AG",
-      "entry_date": "2026-09-01",
-      "entry_price": 55.65,
-      "current_price": 47.1,
+      "ticker": "OHB",
+      "name": "OHB SE",
+      "entry_date": "2026-11-02",
+      "entry_price": 217.0,
+      "current_price": 217.0,
       "weight": 0.1,
-      "return_pct": -15.36
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "JEN",
+      "name": "Jenoptik AG",
+      "entry_date": "2026-09-01",
+      "entry_price": 39.0,
+      "current_price": 39.14,
+      "weight": 0.1,
+      "return_pct": 0.36
+    },
+    {
+      "ticker": "A1OS",
+      "name": "All for One Group SE",
+      "entry_date": "2026-11-02",
+      "entry_price": 80.2,
+      "current_price": 80.2,
+      "weight": 0.1,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "DR0",
+      "name": "Deutsche Rohstoff AG",
+      "entry_date": "2026-11-02",
+      "entry_price": 85.7,
+      "current_price": 85.7,
+      "weight": 0.1,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "SMHN",
+      "name": "SUSS MicroTec SE",
+      "entry_date": "2026-09-01",
+      "entry_price": 68.15,
+      "current_price": 51.2,
+      "weight": 0.1,
+      "return_pct": -24.87
+    },
+    {
+      "ticker": "NF4",
+      "name": "Netfonds AG",
+      "entry_date": "2026-11-02",
+      "entry_price": 81.0,
+      "current_price": 81.0,
+      "weight": 0.1,
+      "return_pct": 0.0
+    },
+    {
+      "ticker": "BAYN",
+      "name": "Bayer AG",
+      "entry_date": "2026-11-02",
+      "entry_price": 50.02,
+      "current_price": 50.02,
+      "weight": 0.1,
+      "return_pct": 0.0
     }
   ],
   "monthly_breakdown": [
@@ -378,9 +378,9 @@
     },
     {
       "month": "Oct 2026",
-      "is_current": true,
+      "is_current": false,
       "start": "2026-10-01",
-      "end": null,
+      "end": "2026-11-02",
       "regime": "momentum",
       "tickers": [
         "SNG",
@@ -408,76 +408,42 @@
       },
       "return_pct": -13.93,
       "config_version": "v3-2026-08-26-de-only"
+    },
+    {
+      "month": "Nov 2026",
+      "is_current": true,
+      "start": "2026-11-02",
+      "end": null,
+      "regime": "momentum",
+      "tickers": [
+        "SNG",
+        "AIXA",
+        "M7U",
+        "OHB",
+        "JEN",
+        "A1OS",
+        "DR0",
+        "SMHN",
+        "NF4",
+        "BAYN"
+      ],
+      "weights": {
+        "SNG": 0.1,
+        "AIXA": 0.1,
+        "M7U": 0.1,
+        "OHB": 0.1,
+        "JEN": 0.1,
+        "A1OS": 0.1,
+        "DR0": 0.1,
+        "SMHN": 0.1,
+        "NF4": 0.1,
+        "BAYN": 0.1
+      },
+      "return_pct": 0.02,
+      "config_version": "v3-2026-08-26-de-only"
     }
   ],
-  "pending_signal": {
-    "for_month": "2026-11",
-    "computed_date": "2026-10-30",
-    "execute_on": "2026-11-02",
-    "regime": "momentum",
-    "picks": [
-      {
-        "ticker": "SNG",
-        "name": "SINGULUS TECHNOLOGIES AG",
-        "weight": 0.1,
-        "price": 11.55
-      },
-      {
-        "ticker": "AIXA",
-        "name": "AIXTRON SE",
-        "weight": 0.1,
-        "price": 32.34
-      },
-      {
-        "ticker": "M7U",
-        "name": "Nynomic AG",
-        "weight": 0.1,
-        "price": 23.7
-      },
-      {
-        "ticker": "OHB",
-        "name": "OHB SE",
-        "weight": 0.1,
-        "price": 224.0
-      },
-      {
-        "ticker": "JEN",
-        "name": "Jenoptik AG",
-        "weight": 0.1,
-        "price": 38.84
-      },
-      {
-        "ticker": "A1OS",
-        "name": "All for One Group SE",
-        "weight": 0.1,
-        "price": 81.0
-      },
-      {
-        "ticker": "DR0",
-        "name": "Deutsche Rohstoff AG",
-        "weight": 0.1,
-        "price": 91.2
-      },
-      {
-        "ticker": "SMHN",
-        "name": "SUSS MicroTec SE",
-        "weight": 0.1,
-        "price": 50.95
-      },
-      {
-        "ticker": "NF4",
-        "name": "Netfonds AG",
-        "weight": 0.1,
-        "price": 80.5
-      },
-      {
-        "ticker": "BAYN",
-        "name": "Bayer AG",
-        "weight": 0.1,
-        "price": 50.58
-      }
-    ]
-  },
+  "pending_signal": null,
   "config_version": "v3-2026-08-26-de-only",
   "is_live": true,
   "not_live_reason": null

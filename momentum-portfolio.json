@@ -1,6 +1,6 @@
 {
-  "last_rebalance": "2026-10-01",
-  "updated": "2026-11-01 02:00 UTC",
+  "last_rebalance": "2026-11-02",
+  "updated": "2026-11-03 03:53 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 1150.89,
-      "return_pct": 318.14
+      "current_price": 1075.08,
+      "return_pct": 290.6
     },
     {
       "ticker": "MU",
@@ -17,17 +17,17 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 884.74,
-      "return_pct": 63.2
+      "current_price": 833.59,
+      "return_pct": 53.76
     },
     {
-      "ticker": "VICR",
-      "name": "Vicor Corporation",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-10-01",
-      "entry_price": 308.59,
-      "current_price": 191.09,
-      "return_pct": -38.08
+      "ticker": "OKTA",
+      "name": "Okta, Inc.",
+      "sector": "Technology Services",
+      "entry_date": "2026-11-02",
+      "entry_price": 184.87,
+      "current_price": 184.87,
+      "return_pct": 0.0
     },
     {
       "ticker": "LITE",
@@ -35,8 +35,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 840.7,
-      "return_pct": 117.74
+      "current_price": 684.4,
+      "return_pct": 77.26
     },
     {
       "ticker": "DELL",
@@ -44,79 +44,30 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
       "entry_price": 425.0,
-      "current_price": 424.3,
-      "return_pct": -0.16
+      "current_price": 392.78,
+      "return_pct": -7.58
     },
     {
-      "ticker": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
-      "sector": "Electronic Technology",
-      "entry_date": "2026-10-01",
-      "entry_price": 615.73,
-      "current_price": 504.8,
-      "return_pct": -18.02
+      "ticker": "ILMN",
+      "name": "Illumina, Inc.",
+      "sector": "Health Technology",
+      "entry_date": "2026-11-02",
+      "entry_price": 226.58,
+      "current_price": 226.58,
+      "return_pct": 0.0
     },
     {
-      "ticker": "STX",
-      "name": "Seagate Technology Holdings PLC",
+      "ticker": "HPE",
+      "name": "Hewlett Packard Enterprise Company",
       "sector": "Electronic Technology",
-      "entry_date": "2026-04-01",
-      "entry_price": 422.82,
-      "current_price": 644.58,
-      "return_pct": 52.45
+      "entry_date": "2026-11-02",
+      "entry_price": 51.19,
+      "current_price": 51.19,
+      "return_pct": 0.0
     }
   ],
-  "pending_signal": {
-    "for_month": "2026-11",
-    "computed_date": "2026-10-30",
-    "execute_on": "2026-11-02",
-    "regime_ok": true,
-    "picks": [
-      {
-        "ticker": "SNDK",
-        "name": "Sandisk Corporation",
-        "sector": "Electronic Technology",
-        "price": 1150.89
-      },
-      {
-        "ticker": "MU",
-        "name": "Micron Technology, Inc.",
-        "sector": "Electronic Technology",
-        "price": 884.74
-      },
-      {
-        "ticker": "OKTA",
-        "name": "Okta, Inc.",
-        "sector": "Technology Services",
-        "price": 208.24
-      },
-      {
-        "ticker": "LITE",
-        "name": "Lumentum Holdings Inc.",
-        "sector": "Producer Manufacturing",
-        "price": 840.7
-      },
-      {
-        "ticker": "DELL",
-        "name": "Dell Technologies Inc.",
-        "sector": "Electronic Technology",
-        "price": 424.3
-      },
-      {
-        "ticker": "ILMN",
-        "name": "Illumina, Inc.",
-        "sector": "Health Technology",
-        "price": 235.99
-      },
-      {
-        "ticker": "HPE",
-        "name": "Hewlett Packard Enterprise Company",
-        "sector": "Electronic Technology",
-        "price": 55.09
-      }
-    ]
-  },
-  "ytd_2026": 156.06,
+  "pending_signal": null,
+  "ytd_2026": 133.01,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -263,10 +214,10 @@
       "return_pct": 11.92
     },
     {
-      "month": "Oct 2026",
+      "month": "Nov 2026",
       "is_current": false,
       "start": "2026-10-01",
-      "end": "2026-10-31",
+      "end": "2026-11-02",
       "tickers": [
         "SNDK",
         "MU",
@@ -276,7 +227,23 @@
         "AMD",
         "STX"
       ],
-      "return_pct": -26.3
+      "return_pct": -32.93
+    },
+    {
+      "month": "Nov 2026 (MTD)",
+      "is_current": true,
+      "start": "2026-11-02",
+      "end": "2026-11-03",
+      "tickers": [
+        "SNDK",
+        "MU",
+        "OKTA",
+        "LITE",
+        "DELL",
+        "ILMN",
+        "HPE"
+      ],
+      "return_pct": 0.0
     }
   ]
 }
