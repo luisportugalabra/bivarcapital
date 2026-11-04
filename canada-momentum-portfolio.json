@@ -1,11 +1,11 @@
 {
   "last_rebalance": "2026-11-02",
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "ytd_2026": 5.96,
   "regime": "defensive",
   "currency": "CAD",
-  "tsx": 35801.1,
-  "tsx_ma75": 35930.1,
+  "tsx": 35532.3,
+  "tsx_ma75": 35932.7,
   "holdings": [],
   "monthly_breakdown": [
     {
@@ -334,7 +334,7 @@
         "TXG",
         "TVK"
       ],
-      "return_pct": 17.74
+      "return_pct": 19.4
     },
     {
       "month": "Jun 2025",
@@ -353,7 +353,7 @@
         "SSRM",
         "TXG"
       ],
-      "return_pct": -2.27
+      "return_pct": -1.71
     },
     {
       "month": "Jul 2025",
