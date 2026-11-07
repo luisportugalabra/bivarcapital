@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-11-02",
-  "updated": "2026-11-06 03:19 UTC",
+  "updated": "2026-11-07 02:39 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 806.43,
-      "return_pct": 192.99
+      "current_price": 835.06,
+      "return_pct": 203.39
     },
     {
       "ticker": "MU",
@@ -17,8 +17,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 656.39,
-      "return_pct": 21.08
+      "current_price": 690.0,
+      "return_pct": 27.28
     },
     {
       "ticker": "OKTA",
@@ -26,8 +26,8 @@
       "sector": "Technology Services",
       "entry_date": "2026-11-02",
       "entry_price": 184.87,
-      "current_price": 171.16,
-      "return_pct": -7.42
+      "current_price": 168.69,
+      "return_pct": -8.75
     },
     {
       "ticker": "LITE",
@@ -35,8 +35,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 509.7,
-      "return_pct": 32.01
+      "current_price": 538.59,
+      "return_pct": 39.49
     },
     {
       "ticker": "DELL",
@@ -44,8 +44,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
       "entry_price": 425.0,
-      "current_price": 316.91,
-      "return_pct": -25.43
+      "current_price": 328.53,
+      "return_pct": -22.7
     },
     {
       "ticker": "ILMN",
@@ -53,8 +53,8 @@
       "sector": "Health Technology",
       "entry_date": "2026-11-02",
       "entry_price": 226.58,
-      "current_price": 208.0,
-      "return_pct": -8.2
+      "current_price": 213.13,
+      "return_pct": -5.94
     },
     {
       "ticker": "HPE",
@@ -62,12 +62,12 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-11-02",
       "entry_price": 51.19,
-      "current_price": 44.16,
-      "return_pct": -13.73
+      "current_price": 44.77,
+      "return_pct": -12.54
     }
   ],
   "pending_signal": null,
-  "ytd_2026": 92.92,
+  "ytd_2026": 98.24,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -233,7 +233,7 @@
       "month": "Nov 2026 (MTD)",
       "is_current": true,
       "start": "2026-11-02",
-      "end": "2026-11-06",
+      "end": "2026-11-07",
       "tickers": [
         "SNDK",
         "MU",
@@ -243,7 +243,7 @@
         "ILMN",
         "HPE"
       ],
-      "return_pct": -17.21
+      "return_pct": -14.92
     }
   ]
 }
