@@ -1,101 +1,101 @@
 {
   "last_rebalance": "2026-11-02",
-  "updated": "2026-11-12",
-  "ytd_2026": -1.85,
+  "updated": "2026-11-13",
+  "ytd_2026": -6.25,
   "regime": "momentum",
   "currency": "EUR",
-  "dax": 26662.8,
-  "dax_ma200": 24953.1,
+  "dax": 26771.9,
+  "dax_ma200": 24963.0,
   "holdings": [
     {
       "ticker": "SNG",
       "name": "SINGULUS TECHNOLOGIES AG",
       "entry_date": "2026-09-01",
       "entry_price": 7.98,
-      "current_price": 26.5,
+      "current_price": 22.0,
       "weight": 0.1,
-      "return_pct": 232.08
+      "return_pct": 175.69
     },
     {
       "ticker": "AIXA",
       "name": "AIXTRON SE",
       "entry_date": "2026-09-01",
       "entry_price": 35.7,
-      "current_price": 34.29,
+      "current_price": 33.71,
       "weight": 0.1,
-      "return_pct": -3.95
+      "return_pct": -5.57
     },
     {
       "ticker": "M7U",
       "name": "Nynomic AG",
       "entry_date": "2026-10-01",
       "entry_price": 25.5,
-      "current_price": 24.7,
+      "current_price": 24.1,
       "weight": 0.1,
-      "return_pct": -3.14
+      "return_pct": -5.49
     },
     {
       "ticker": "OHB",
       "name": "OHB SE",
       "entry_date": "2026-11-02",
       "entry_price": 217.0,
-      "current_price": 211.5,
+      "current_price": 192.6,
       "weight": 0.1,
-      "return_pct": -2.53
+      "return_pct": -11.24
     },
     {
       "ticker": "JEN",
       "name": "Jenoptik AG",
       "entry_date": "2026-09-01",
       "entry_price": 39.0,
-      "current_price": 38.2,
+      "current_price": 37.78,
       "weight": 0.1,
-      "return_pct": -2.05
+      "return_pct": -3.13
     },
     {
       "ticker": "A1OS",
       "name": "All for One Group SE",
       "entry_date": "2026-11-02",
       "entry_price": 80.2,
-      "current_price": 77.8,
+      "current_price": 78.2,
       "weight": 0.1,
-      "return_pct": -2.99
+      "return_pct": -2.49
     },
     {
       "ticker": "DR0",
       "name": "Deutsche Rohstoff AG",
       "entry_date": "2026-11-02",
       "entry_price": 85.7,
-      "current_price": 73.0,
+      "current_price": 76.2,
       "weight": 0.1,
-      "return_pct": -14.82
+      "return_pct": -11.09
     },
     {
       "ticker": "SMHN",
       "name": "SUSS MicroTec SE",
       "entry_date": "2026-09-01",
       "entry_price": 68.15,
-      "current_price": 52.0,
+      "current_price": 50.45,
       "weight": 0.1,
-      "return_pct": -23.7
+      "return_pct": -25.97
     },
     {
       "ticker": "NF4",
       "name": "Netfonds AG",
       "entry_date": "2026-11-02",
       "entry_price": 81.0,
-      "current_price": 81.0,
+      "current_price": 80.5,
       "weight": 0.1,
-      "return_pct": 0.0
+      "return_pct": -0.62
     },
     {
       "ticker": "BAYN",
       "name": "Bayer AG",
       "entry_date": "2026-11-02",
       "entry_price": 50.02,
-      "current_price": 56.76,
+      "current_price": 56.56,
       "weight": 0.1,
-      "return_pct": 13.47
+      "return_pct": 13.07
     }
   ],
   "monthly_breakdown": [
@@ -439,7 +439,7 @@
         "NF4": 0.1,
         "BAYN": 0.1
       },
-      "return_pct": 11.33,
+      "return_pct": 6.34,
       "config_version": "v3-2026-08-26-de-only"
     }
   ],
