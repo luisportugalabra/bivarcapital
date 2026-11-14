@@ -91,8 +91,18 @@ for period in history:
     else:
         period_ret = 0.0
 
-    # Label = month the return was EARNED (end month, or "MTD" if current)
-    month_label = end_dt.strftime('%b %Y') if not is_current else today.strftime('%b %Y') + ' (MTD)'
+    # Label = month the return was EARNED, or "MTD" if current.
+    # 'period_month' (stamped when the period was closed) is authoritative once
+    # present: 'end' gets overwritten with the *next* period's execution date to
+    # keep the price series contiguous, so its month no longer reflects the
+    # month this period's return belongs to. Fall back to end_dt for older
+    # entries recorded before 'period_month' existed.
+    if is_current:
+        month_label = today.strftime('%b %Y') + ' (MTD)'
+    elif 'period_month' in period:
+        month_label = datetime.strptime(period['period_month'], '%Y-%m').strftime('%b %Y')
+    else:
+        month_label = end_dt.strftime('%b %Y')
     label = month_label
 
     monthly_breakdown.append({

@@ -206,6 +206,12 @@ def _update_picks_history(tickers, today_str):
         # signal: the signal-day close is the price you needed in order to know
         # what to buy, so you cannot have bought at it. Closing the previous
         # period here too keeps the series contiguous.
+        #
+        # Stamp the display month BEFORE overwriting 'end' — once 'end' becomes
+        # the next period's execution date, its month no longer matches the
+        # month whose return this period actually represents.
+        if 'period_month' not in history[-1]:
+            history[-1]['period_month'] = last_end.strftime('%Y-%m')
         history[-1]['end'] = today_str
         new_period = {
             "start": today_str,
