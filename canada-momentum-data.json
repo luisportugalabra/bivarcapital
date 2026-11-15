@@ -12,7 +12,7 @@
       "name": "Bird Construction Inc.",
       "ret_12m": 200.04,
       "net_income_ttm_m": 78.8,
-      "mcap_b": 4.247,
+      "mcap_b": 4.249,
       "weight": 0.1,
       "selected": true
     },
@@ -22,7 +22,7 @@
       "name": "Firan Technology Group Corporation",
       "ret_12m": 185.44,
       "net_income_ttm_m": 22.2,
-      "mcap_b": 0.862,
+      "mcap_b": 0.8,
       "weight": 0.1,
       "selected": true
     },
@@ -32,7 +32,7 @@
       "name": "Amerigo Resources Ltd",
       "ret_12m": 136.34,
       "net_income_ttm_m": 102.2,
-      "mcap_b": 1.337,
+      "mcap_b": 1.273,
       "weight": 0.1,
       "selected": true
     },
@@ -42,7 +42,7 @@
       "name": "Total Energy Services Inc.",
       "ret_12m": 135.95,
       "net_income_ttm_m": 96.0,
-      "mcap_b": 1.249,
+      "mcap_b": 1.271,
       "weight": 0.1,
       "selected": true
     },
@@ -52,7 +52,7 @@
       "name": "ADF Group Inc.",
       "ret_12m": 130.16,
       "net_income_ttm_m": 31.7,
-      "mcap_b": 0.508,
+      "mcap_b": 0.497,
       "weight": 0.1,
       "selected": true
     },
@@ -62,7 +62,7 @@
       "name": "CES Energy Solutions Corp.",
       "ret_12m": 118.46,
       "net_income_ttm_m": 230.4,
-      "mcap_b": 4.247,
+      "mcap_b": 4.542,
       "weight": 0.1,
       "selected": true
     },
@@ -72,7 +72,7 @@
       "name": "Valeura Energy Inc.",
       "ret_12m": 118.11,
       "net_income_ttm_m": 100.1,
-      "mcap_b": 1.55,
+      "mcap_b": 1.573,
       "weight": 0.1,
       "selected": true
     },
@@ -82,7 +82,7 @@
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 114.88,
       "net_income_ttm_m": 22.8,
-      "mcap_b": 0.302,
+      "mcap_b": 0.295,
       "weight": 0.1,
       "selected": true
     },
@@ -102,7 +102,7 @@
       "name": "Mullen Group Ltd.",
       "ret_12m": 113.09,
       "net_income_ttm_m": 123.1,
-      "mcap_b": 2.894,
+      "mcap_b": 2.919,
       "weight": 0.1,
       "selected": true
     }
@@ -114,7 +114,7 @@
       "name": "Bird Construction Inc.",
       "ret_12m": 200.04,
       "net_income_ttm_m": 78.8,
-      "mcap_b": 4.247,
+      "mcap_b": 4.249,
       "weight": 0.1,
       "selected": true
     },
@@ -124,7 +124,7 @@
       "name": "Firan Technology Group Corporation",
       "ret_12m": 185.44,
       "net_income_ttm_m": 22.2,
-      "mcap_b": 0.862,
+      "mcap_b": 0.8,
       "weight": 0.1,
       "selected": true
     },
@@ -134,7 +134,7 @@
       "name": "Amerigo Resources Ltd",
       "ret_12m": 136.34,
       "net_income_ttm_m": 102.2,
-      "mcap_b": 1.337,
+      "mcap_b": 1.273,
       "weight": 0.1,
       "selected": true
     },
@@ -144,7 +144,7 @@
       "name": "Total Energy Services Inc.",
       "ret_12m": 135.95,
       "net_income_ttm_m": 96.0,
-      "mcap_b": 1.249,
+      "mcap_b": 1.271,
       "weight": 0.1,
       "selected": true
     },
@@ -154,7 +154,7 @@
       "name": "ADF Group Inc.",
       "ret_12m": 130.16,
       "net_income_ttm_m": 31.7,
-      "mcap_b": 0.508,
+      "mcap_b": 0.497,
       "weight": 0.1,
       "selected": true
     },
@@ -164,7 +164,7 @@
       "name": "CES Energy Solutions Corp.",
       "ret_12m": 118.46,
       "net_income_ttm_m": 230.4,
-      "mcap_b": 4.247,
+      "mcap_b": 4.542,
       "weight": 0.1,
       "selected": true
     },
@@ -174,7 +174,7 @@
       "name": "Valeura Energy Inc.",
       "ret_12m": 118.11,
       "net_income_ttm_m": 100.1,
-      "mcap_b": 1.55,
+      "mcap_b": 1.573,
       "weight": 0.1,
       "selected": true
     },
@@ -184,7 +184,7 @@
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 114.88,
       "net_income_ttm_m": 22.8,
-      "mcap_b": 0.302,
+      "mcap_b": 0.295,
       "weight": 0.1,
       "selected": true
     },
@@ -204,7 +204,7 @@
       "name": "Mullen Group Ltd.",
       "ret_12m": 113.09,
       "net_income_ttm_m": 123.1,
-      "mcap_b": 2.894,
+      "mcap_b": 2.919,
       "weight": 0.1,
       "selected": true
     },
@@ -214,7 +214,7 @@
       "name": "Cavvy Energy Ltd",
       "ret_12m": 112.22,
       "net_income_ttm_m": 26.8,
-      "mcap_b": 0.584,
+      "mcap_b": 0.567,
       "weight": null,
       "selected": false
     },
@@ -224,7 +224,7 @@
       "name": "VersaBank",
       "ret_12m": 109.74,
       "net_income_ttm_m": 33.9,
-      "mcap_b": 1.115,
+      "mcap_b": 1.103,
       "weight": null,
       "selected": false
     },
@@ -234,7 +234,7 @@
       "name": "BlackBerry Limited",
       "ret_12m": 104.35,
       "net_income_ttm_m": 111.7,
-      "mcap_b": 7.637,
+      "mcap_b": 7.449,
       "weight": null,
       "selected": false
     },
@@ -244,7 +244,7 @@
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 102.74,
       "net_income_ttm_m": 185.3,
-      "mcap_b": 4.678,
+      "mcap_b": 4.693,
       "weight": null,
       "selected": false
     },
@@ -254,7 +254,7 @@
       "name": "Russel Metals Inc.",
       "ret_12m": 99.27,
       "net_income_ttm_m": 306.2,
-      "mcap_b": 4.329,
+      "mcap_b": 4.36,
       "weight": null,
       "selected": false
     },
@@ -264,7 +264,7 @@
       "name": "Calfrac Well Services Ltd.",
       "ret_12m": 96.87,
       "net_income_ttm_m": 71.9,
-      "mcap_b": 0.649,
+      "mcap_b": 0.634,
       "weight": null,
       "selected": false
     },
@@ -284,7 +284,7 @@
       "name": "Knight Therapeutics, Inc.",
       "ret_12m": 93.27,
       "net_income_ttm_m": 16.0,
-      "mcap_b": 1.184,
+      "mcap_b": 1.185,
       "weight": null,
       "selected": false
     },
@@ -294,7 +294,7 @@
       "name": "Magellan Aerospace Corporation",
       "ret_12m": 92.2,
       "net_income_ttm_m": 66.9,
-      "mcap_b": 2.069,
+      "mcap_b": 1.954,
       "weight": null,
       "selected": false
     },
@@ -304,7 +304,7 @@
       "name": "Mattr Corp",
       "ret_12m": 88.23,
       "net_income_ttm_m": 42.7,
-      "mcap_b": 1.335,
+      "mcap_b": 1.128,
       "weight": null,
       "selected": false
     }
@@ -315,7 +315,7 @@
       "ticker": "TLO",
       "name": "Talon Metals Corp.",
       "ret_12m": 1437.5,
-      "mcap_b": 1.012,
+      "mcap_b": 0.996,
       "selected": true
     },
     {
@@ -323,7 +323,7 @@
       "ticker": "BDT",
       "name": "Bird Construction Inc.",
       "ret_12m": 206.16,
-      "mcap_b": 4.247,
+      "mcap_b": 4.249,
       "selected": true
     },
     {
@@ -331,7 +331,7 @@
       "ticker": "FTG",
       "name": "Firan Technology Group Corporation",
       "ret_12m": 205.48,
-      "mcap_b": 0.862,
+      "mcap_b": 0.8,
       "selected": true
     },
     {
@@ -339,7 +339,7 @@
       "ticker": "ARG",
       "name": "Amerigo Resources Ltd",
       "ret_12m": 171.75,
-      "mcap_b": 1.337,
+      "mcap_b": 1.273,
       "selected": true
     },
     {
@@ -347,7 +347,7 @@
       "ticker": "TOT",
       "name": "Total Energy Services Inc.",
       "ret_12m": 162.36,
-      "mcap_b": 1.249,
+      "mcap_b": 1.271,
       "selected": true
     },
     {
@@ -355,7 +355,7 @@
       "ticker": "DRX",
       "name": "ADF Group Inc.",
       "ret_12m": 135.97,
-      "mcap_b": 0.508,
+      "mcap_b": 0.497,
       "selected": true
     },
     {
@@ -363,7 +363,7 @@
       "ticker": "CEU",
       "name": "CES Energy Solutions Corp.",
       "ret_12m": 128.93,
-      "mcap_b": 4.247,
+      "mcap_b": 4.542,
       "selected": true
     },
     {
@@ -371,7 +371,7 @@
       "ticker": "MATR",
       "name": "Mattr Corp",
       "ret_12m": 127.04,
-      "mcap_b": 1.335,
+      "mcap_b": 1.128,
       "selected": true
     },
     {
@@ -379,7 +379,7 @@
       "ticker": "VLE",
       "name": "Valeura Energy Inc.",
       "ret_12m": 126.45,
-      "mcap_b": 1.55,
+      "mcap_b": 1.573,
       "selected": true
     },
     {
@@ -387,7 +387,7 @@
       "ticker": "MTL",
       "name": "Mullen Group Ltd.",
       "ret_12m": 124.26,
-      "mcap_b": 2.894,
+      "mcap_b": 2.919,
       "selected": true
     },
     {
@@ -395,7 +395,7 @@
       "ticker": "HMM.A",
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 120.9,
-      "mcap_b": 0.302,
+      "mcap_b": 0.295,
       "selected": false
     },
     {
@@ -403,7 +403,7 @@
       "ticker": "CVVY",
       "name": "Cavvy Energy Ltd",
       "ret_12m": 119.54,
-      "mcap_b": 0.584,
+      "mcap_b": 0.567,
       "selected": false
     },
     {
@@ -419,7 +419,7 @@
       "ticker": "AYA",
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 111.28,
-      "mcap_b": 4.678,
+      "mcap_b": 4.693,
       "selected": false
     },
     {
@@ -435,7 +435,7 @@
       "ticker": "VBNK",
       "name": "VersaBank",
       "ret_12m": 108.25,
-      "mcap_b": 1.115,
+      "mcap_b": 1.103,
       "selected": false
     },
     {
@@ -443,7 +443,7 @@
       "ticker": "BB",
       "name": "BlackBerry Limited",
       "ret_12m": 108.03,
-      "mcap_b": 7.637,
+      "mcap_b": 7.449,
       "selected": false
     },
     {
@@ -451,7 +451,7 @@
       "ticker": "RUS",
       "name": "Russel Metals Inc.",
       "ret_12m": 107.78,
-      "mcap_b": 4.329,
+      "mcap_b": 4.36,
       "selected": false
     },
     {
@@ -459,7 +459,7 @@
       "ticker": "TCL.A",
       "name": "Transcontinental Inc. Class A",
       "ret_12m": 107.44,
-      "mcap_b": 0.495,
+      "mcap_b": 0.494,
       "selected": false
     },
     {
@@ -467,7 +467,7 @@
       "ticker": "MAL",
       "name": "Magellan Aerospace Corporation",
       "ret_12m": 99.46,
-      "mcap_b": 2.069,
+      "mcap_b": 1.954,
       "selected": false
     }
   ],
