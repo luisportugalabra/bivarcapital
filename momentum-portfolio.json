@@ -1,6 +1,6 @@
 {
   "last_rebalance": "2026-11-02",
-  "updated": "2026-11-18 04:05 UTC",
+  "updated": "2026-11-19 04:02 UTC",
   "holdings": [
     {
       "ticker": "SNDK",
@@ -8,8 +8,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-01-02",
       "entry_price": 275.24,
-      "current_price": 797.24,
-      "return_pct": 189.65
+      "current_price": 776.22,
+      "return_pct": 182.02
     },
     {
       "ticker": "MU",
@@ -17,8 +17,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-05-01",
       "entry_price": 542.13,
-      "current_price": 712.42,
-      "return_pct": 31.41
+      "current_price": 705.27,
+      "return_pct": 30.09
     },
     {
       "ticker": "OKTA",
@@ -26,8 +26,8 @@
       "sector": "Technology Services",
       "entry_date": "2026-11-02",
       "entry_price": 184.87,
-      "current_price": 174.54,
-      "return_pct": -5.59
+      "current_price": 195.61,
+      "return_pct": 5.81
     },
     {
       "ticker": "LITE",
@@ -35,8 +35,8 @@
       "sector": "Producer Manufacturing",
       "entry_date": "2026-01-02",
       "entry_price": 386.11,
-      "current_price": 559.97,
-      "return_pct": 45.03
+      "current_price": 551.07,
+      "return_pct": 42.72
     },
     {
       "ticker": "DELL",
@@ -44,8 +44,8 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-09-01",
       "entry_price": 425.0,
-      "current_price": 322.79,
-      "return_pct": -24.05
+      "current_price": 313.11,
+      "return_pct": -26.33
     },
     {
       "ticker": "ILMN",
@@ -53,8 +53,8 @@
       "sector": "Health Technology",
       "entry_date": "2026-11-02",
       "entry_price": 226.58,
-      "current_price": 202.61,
-      "return_pct": -10.58
+      "current_price": 210.01,
+      "return_pct": -7.31
     },
     {
       "ticker": "HPE",
@@ -62,12 +62,12 @@
       "sector": "Electronic Technology",
       "entry_date": "2026-11-02",
       "entry_price": 51.19,
-      "current_price": 46.09,
-      "return_pct": -9.96
+      "current_price": 45.78,
+      "return_pct": -10.57
     }
   ],
   "pending_signal": null,
-  "ytd_2026": 98.89,
+  "ytd_2026": 72.11,
   "monthly_breakdown": [
     {
       "month": "Jan 2026",
@@ -83,7 +83,7 @@
         "WBD",
         "STX"
       ],
-      "return_pct": 49.23
+      "return_pct": 30.53
     },
     {
       "month": "Feb 2026",
@@ -99,7 +99,7 @@
         "CIEN",
         "CDE"
       ],
-      "return_pct": 24.52
+      "return_pct": 26.9
     },
     {
       "month": "Mar 2026",
@@ -115,7 +115,7 @@
         "MU",
         "HL"
       ],
-      "return_pct": -6.84
+      "return_pct": -7.97
     },
     {
       "month": "Apr 2026",
@@ -131,7 +131,7 @@
         "STX",
         "FIX"
       ],
-      "return_pct": 58.87
+      "return_pct": 56.58
     },
     {
       "month": "May 2026",
@@ -147,7 +147,7 @@
         "STX",
         "MU"
       ],
-      "return_pct": 28.64
+      "return_pct": 24.32
     },
     {
       "month": "Jun 2026",
@@ -163,7 +163,7 @@
         "STX",
         "MU"
       ],
-      "return_pct": 10.6
+      "return_pct": 6.67
     },
     {
       "month": "Jul 2026",
@@ -179,7 +179,7 @@
         "STX",
         "DOCN"
       ],
-      "return_pct": -25.03
+      "return_pct": -21.44
     },
     {
       "month": "Aug 2026",
@@ -195,7 +195,7 @@
         "STX",
         "VSAT"
       ],
-      "return_pct": 5.82
+      "return_pct": 1.96
     },
     {
       "month": "Sep 2026",
@@ -211,7 +211,7 @@
         "DELL",
         "MRVL"
       ],
-      "return_pct": 11.92
+      "return_pct": 12.07
     },
     {
       "month": "Oct 2026",
@@ -227,13 +227,13 @@
         "AMD",
         "STX"
       ],
-      "return_pct": -32.93
+      "return_pct": -31.78
     },
     {
       "month": "Nov 2026 (MTD)",
       "is_current": true,
       "start": "2026-11-02",
-      "end": "2026-11-18",
+      "end": "2026-11-19",
       "tickers": [
         "SNDK",
         "MU",
@@ -243,7 +243,7 @@
         "ILMN",
         "HPE"
       ],
-      "return_pct": -14.64
+      "return_pct": -11.21
     }
   ]
 }
