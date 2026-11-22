@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21 03:51 UTC",
+  "updated": "2026-11-22 02:55 UTC",
   "strategies": {
     "discretionary": {
       "positions": [
@@ -154,7 +154,7 @@
           "ticker": "WISE",
           "qty": 1000.0,
           "price": 10.88,
-          "mkt_value": 10882.68,
+          "mkt_value": 10878.84,
           "weight": 1.2
         },
         {
@@ -172,7 +172,7 @@
           "weight": 0.7
         }
       ],
-      "total_value": 944882.45,
+      "total_value": 944878.61,
       "n_positions": 24,
       "ytd_2026": 0.4
     },
@@ -421,6 +421,10 @@
   },
   "activity": [
     {
+      "date": "Nov 22",
+      "text": "Prices updated from market close"
+    },
+    {
       "date": "Nov 21",
       "text": "Prices updated from market close"
     },
@@ -434,10 +438,6 @@
     },
     {
       "date": "Nov 18",
-      "text": "Prices updated from market close"
-    },
-    {
-      "date": "Nov 17",
       "text": "Prices updated from market close"
     }
   ]

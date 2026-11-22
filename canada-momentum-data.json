@@ -4,7 +4,7 @@
   "tsx": 33189.9,
   "tsx_ma75": 35944.3,
   "pct_above_ma": -7.7,
-  "total_eligible": 351,
+  "total_eligible": 352,
   "portfolio": [],
   "top20": [
     {
@@ -13,7 +13,7 @@
       "name": "ADF Group Inc.",
       "ret_12m": 206.51,
       "net_income_ttm_m": 31.7,
-      "mcap_b": 0.593,
+      "mcap_b": 0.619,
       "weight": null,
       "selected": false
     },
@@ -23,7 +23,7 @@
       "name": "Firan Technology Group Corporation",
       "ret_12m": 169.89,
       "net_income_ttm_m": 22.2,
-      "mcap_b": 0.77,
+      "mcap_b": 0.709,
       "weight": null,
       "selected": false
     },
@@ -33,7 +33,7 @@
       "name": "Bird Construction Inc.",
       "ret_12m": 165.18,
       "net_income_ttm_m": 78.8,
-      "mcap_b": 3.957,
+      "mcap_b": 3.848,
       "weight": null,
       "selected": false
     },
@@ -43,7 +43,7 @@
       "name": "Total Energy Services Inc.",
       "ret_12m": 130.11,
       "net_income_ttm_m": 96.0,
-      "mcap_b": 1.233,
+      "mcap_b": 1.179,
       "weight": null,
       "selected": false
     },
@@ -53,7 +53,7 @@
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 121.13,
       "net_income_ttm_m": 22.8,
-      "mcap_b": 0.276,
+      "mcap_b": 0.282,
       "weight": null,
       "selected": false
     },
@@ -63,7 +63,7 @@
       "name": "Mattr Corp",
       "ret_12m": 113.68,
       "net_income_ttm_m": 42.7,
-      "mcap_b": 1.066,
+      "mcap_b": 1.025,
       "weight": null,
       "selected": false
     },
@@ -73,7 +73,7 @@
       "name": "Mullen Group Ltd.",
       "ret_12m": 100.42,
       "net_income_ttm_m": 123.1,
-      "mcap_b": 2.865,
+      "mcap_b": 2.792,
       "weight": null,
       "selected": false
     },
@@ -83,7 +83,7 @@
       "name": "High Liner Foods Incorporated",
       "ret_12m": 98.75,
       "net_income_ttm_m": 66.5,
-      "mcap_b": 0.754,
+      "mcap_b": 0.756,
       "weight": null,
       "selected": false
     },
@@ -93,7 +93,7 @@
       "name": "Liberty Gold Corp",
       "ret_12m": 93.67,
       "net_income_ttm_m": 23.7,
-      "mcap_b": 0.952,
+      "mcap_b": 0.847,
       "weight": null,
       "selected": false
     },
@@ -103,7 +103,7 @@
       "name": "Amerigo Resources Ltd",
       "ret_12m": 84.29,
       "net_income_ttm_m": 102.2,
-      "mcap_b": 1.082,
+      "mcap_b": 0.986,
       "weight": null,
       "selected": false
     },
@@ -113,7 +113,7 @@
       "name": "BlackBerry Limited",
       "ret_12m": 82.87,
       "net_income_ttm_m": 111.7,
-      "mcap_b": 7.009,
+      "mcap_b": 6.516,
       "weight": null,
       "selected": false
     },
@@ -123,7 +123,7 @@
       "name": "Knight Therapeutics, Inc.",
       "ret_12m": 81.73,
       "net_income_ttm_m": 16.0,
-      "mcap_b": 1.11,
+      "mcap_b": 1.095,
       "weight": null,
       "selected": false
     },
@@ -143,7 +143,7 @@
       "name": "Magellan Aerospace Corporation",
       "ret_12m": 76.73,
       "net_income_ttm_m": 66.9,
-      "mcap_b": 1.852,
+      "mcap_b": 1.751,
       "weight": null,
       "selected": false
     },
@@ -153,7 +153,7 @@
       "name": "Russel Metals Inc.",
       "ret_12m": 76.38,
       "net_income_ttm_m": 306.2,
-      "mcap_b": 4.076,
+      "mcap_b": 3.883,
       "weight": null,
       "selected": false
     },
@@ -163,7 +163,7 @@
       "name": "NFI Group Inc.",
       "ret_12m": 76.1,
       "net_income_ttm_m": 271.4,
-      "mcap_b": 2.895,
+      "mcap_b": 2.811,
       "weight": null,
       "selected": false
     },
@@ -173,7 +173,7 @@
       "name": "Methanex Corporation",
       "ret_12m": 75.77,
       "net_income_ttm_m": 502.4,
-      "mcap_b": 7.006,
+      "mcap_b": 6.796,
       "weight": null,
       "selected": false
     },
@@ -183,7 +183,7 @@
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 75.44,
       "net_income_ttm_m": 185.3,
-      "mcap_b": 3.911,
+      "mcap_b": 3.605,
       "weight": null,
       "selected": false
     },
@@ -193,7 +193,7 @@
       "name": "Cavvy Energy Ltd",
       "ret_12m": 75.27,
       "net_income_ttm_m": 26.8,
-      "mcap_b": 0.492,
+      "mcap_b": 0.484,
       "weight": null,
       "selected": false
     },
@@ -203,7 +203,7 @@
       "name": "Tenaz Energy Corp",
       "ret_12m": 72.08,
       "net_income_ttm_m": 11.2,
-      "mcap_b": 1.336,
+      "mcap_b": 1.43,
       "weight": null,
       "selected": false
     }
@@ -214,7 +214,7 @@
       "ticker": "TLO",
       "name": "Talon Metals Corp.",
       "ret_12m": 1105.13,
-      "mcap_b": 0.74,
+      "mcap_b": 0.761,
       "selected": true
     },
     {
@@ -222,7 +222,7 @@
       "ticker": "DRX",
       "name": "ADF Group Inc.",
       "ret_12m": 207.6,
-      "mcap_b": 0.593,
+      "mcap_b": 0.619,
       "selected": true
     },
     {
@@ -230,7 +230,7 @@
       "ticker": "BDT",
       "name": "Bird Construction Inc.",
       "ret_12m": 180.11,
-      "mcap_b": 3.957,
+      "mcap_b": 3.848,
       "selected": true
     },
     {
@@ -238,7 +238,7 @@
       "ticker": "FTG",
       "name": "Firan Technology Group Corporation",
       "ret_12m": 178.71,
-      "mcap_b": 0.77,
+      "mcap_b": 0.709,
       "selected": true
     },
     {
@@ -246,7 +246,7 @@
       "ticker": "TOT",
       "name": "Total Energy Services Inc.",
       "ret_12m": 138.17,
-      "mcap_b": 1.233,
+      "mcap_b": 1.179,
       "selected": true
     },
     {
@@ -254,7 +254,7 @@
       "ticker": "HMM.A",
       "name": "Hammond Manufacturing Co. Ltd. Class A",
       "ret_12m": 120.4,
-      "mcap_b": 0.276,
+      "mcap_b": 0.282,
       "selected": true
     },
     {
@@ -262,7 +262,7 @@
       "ticker": "MATR",
       "name": "Mattr Corp",
       "ret_12m": 116.17,
-      "mcap_b": 1.066,
+      "mcap_b": 1.025,
       "selected": true
     },
     {
@@ -270,7 +270,7 @@
       "ticker": "MTL",
       "name": "Mullen Group Ltd.",
       "ret_12m": 115.4,
-      "mcap_b": 2.865,
+      "mcap_b": 2.792,
       "selected": true
     },
     {
@@ -278,7 +278,7 @@
       "ticker": "ARG",
       "name": "Amerigo Resources Ltd",
       "ret_12m": 114.6,
-      "mcap_b": 1.082,
+      "mcap_b": 0.986,
       "selected": true
     },
     {
@@ -286,7 +286,7 @@
       "ticker": "HLF",
       "name": "High Liner Foods Incorporated",
       "ret_12m": 113.4,
-      "mcap_b": 0.754,
+      "mcap_b": 0.756,
       "selected": true
     },
     {
@@ -294,7 +294,7 @@
       "ticker": "LGD",
       "name": "Liberty Gold Corp",
       "ret_12m": 98.7,
-      "mcap_b": 0.952,
+      "mcap_b": 0.847,
       "selected": false
     },
     {
@@ -302,7 +302,7 @@
       "ticker": "TCL.A",
       "name": "Transcontinental Inc. Class A",
       "ret_12m": 93.78,
-      "mcap_b": 0.464,
+      "mcap_b": 0.454,
       "selected": false
     },
     {
@@ -310,7 +310,7 @@
       "ticker": "BB",
       "name": "BlackBerry Limited",
       "ret_12m": 90.07,
-      "mcap_b": 7.009,
+      "mcap_b": 6.516,
       "selected": false
     },
     {
@@ -318,7 +318,7 @@
       "ticker": "AYA",
       "name": "Aya Gold & Silver Inc.",
       "ret_12m": 89.11,
-      "mcap_b": 3.911,
+      "mcap_b": 3.605,
       "selected": false
     },
     {
@@ -326,7 +326,7 @@
       "ticker": "MAL",
       "name": "Magellan Aerospace Corporation",
       "ret_12m": 87.79,
-      "mcap_b": 1.852,
+      "mcap_b": 1.751,
       "selected": false
     },
     {
@@ -334,7 +334,7 @@
       "ticker": "MX",
       "name": "Methanex Corporation",
       "ret_12m": 85.48,
-      "mcap_b": 7.006,
+      "mcap_b": 6.796,
       "selected": false
     },
     {
@@ -342,7 +342,7 @@
       "ticker": "RUS",
       "name": "Russel Metals Inc.",
       "ret_12m": 84.74,
-      "mcap_b": 4.076,
+      "mcap_b": 3.883,
       "selected": false
     },
     {
@@ -358,7 +358,7 @@
       "ticker": "GUD",
       "name": "Knight Therapeutics, Inc.",
       "ret_12m": 83.83,
-      "mcap_b": 1.11,
+      "mcap_b": 1.095,
       "selected": false
     },
     {
@@ -366,7 +366,7 @@
       "ticker": "WTE",
       "name": "Westshore Terminals Investment Corporation",
       "ret_12m": 82.53,
-      "mcap_b": 2.714,
+      "mcap_b": 2.659,
       "selected": false
     }
   ],

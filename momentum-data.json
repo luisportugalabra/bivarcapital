@@ -3,7 +3,7 @@
   "regime": "cash",
   "sp500": 6910.39,
   "sp500_ma250": 7255.09,
-  "total_eligible": 672,
+  "total_eligible": 673,
   "portfolio": [
     {
       "rank": 1,
@@ -419,7 +419,7 @@
       "ret_6m": -58.3,
       "ret_12m": 151.4,
       "composite": 46.5,
-      "mcap_b": 13.4,
+      "mcap_b": 90.2,
       "ebit_m": 21056.0,
       "selected": false
     },
@@ -517,7 +517,7 @@
       "ret_6m": -48.9,
       "ret_12m": 285.4,
       "composite": 118.2,
-      "mcap_b": 13.4,
+      "mcap_b": 90.2,
       "selected": true
     },
     {
