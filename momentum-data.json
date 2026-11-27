@@ -80,7 +80,7 @@
       "ret_12m": 102.6,
       "composite": 68.9,
       "mcap_b": 78.0,
-      "ebit_m": 6869.0,
+      "ebit_m": 6903.0,
       "selected": true
     },
     {
@@ -92,7 +92,7 @@
       "ret_6m": -37.2,
       "ret_12m": 174.3,
       "composite": 68.5,
-      "mcap_b": 681.1,
+      "mcap_b": 770.2,
       "ebit_m": 99901.0,
       "selected": true
     }
@@ -173,7 +173,7 @@
       "ret_12m": 102.6,
       "composite": 68.9,
       "mcap_b": 78.0,
-      "ebit_m": 6869.0,
+      "ebit_m": 6903.0,
       "selected": true
     },
     {
@@ -185,7 +185,7 @@
       "ret_6m": -37.2,
       "ret_12m": 174.3,
       "composite": 68.5,
-      "mcap_b": 681.1,
+      "mcap_b": 770.2,
       "ebit_m": 99901.0,
       "selected": true
     },
@@ -393,7 +393,7 @@
       "ret_6m": 49.2,
       "ret_12m": 46.7,
       "composite": 47.9,
-      "mcap_b": 60.3,
+      "mcap_b": 60.0,
       "ebit_m": 3291.0,
       "selected": false
     },
@@ -607,7 +607,7 @@
       "ret_6m": -35.2,
       "ret_12m": 168.1,
       "composite": 66.4,
-      "mcap_b": 681.1,
+      "mcap_b": 770.2,
       "selected": false
     },
     {
